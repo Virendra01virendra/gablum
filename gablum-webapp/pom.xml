@@ -85,10 +85,13 @@
 				</execution></executions>
 				<configuration>
 					<skip>${skip.angular}</skip>
-					<executable>ng</executable>
+					<executable>npm</executable>
 					<workingDirectory>src/main/resources/frontend/</workingDirectory>
 					<arguments>
+						<argument>run</argument>
 						<argument>build</argument>
+						<argument>--</argument>
+						<argument>--prod</argument>
 					</arguments>
 				</configuration>
 			</plugin>
