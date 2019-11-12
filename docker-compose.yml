@@ -74,9 +74,9 @@ services:
       - -jar
       - /usr/app/app.jar
   
-  ui:
+  webapp:
     build:
-      context: ./ui
+      context: ./webapp
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000

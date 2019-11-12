@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gablum</groupId>
-	<artifactId>ui</artifactId>
+	<artifactId>webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ui</name>
+	<name>webapp</name>
 	<description>Angular UI for Gablum</description>
 
 	<properties>

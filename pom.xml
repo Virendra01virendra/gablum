@@ -66,7 +66,7 @@
         <module>config-server</module>
         <module>discovery-server</module>
         <module>gateway</module>
-        <module>ui</module>
+        <module>webapp</module>
         <module>user-api</module>
     </modules>
 </project>

@@ -1,5 +1,5 @@
 spring:
   cloud:
     config:
-      name: ui-service
+      name: webapp-service
       uri: ${CONFIG_SERVER}
