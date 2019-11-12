@@ -76,7 +76,7 @@ services:
   
   webapp:
     build:
-      context: ./webapp
+      context: ./gablum-webapp
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000

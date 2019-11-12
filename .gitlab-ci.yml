@@ -39,7 +39,7 @@ angular-build:
     image: node:12-alpine
     stage: build
     script:
-        - cd webapp/src/main/resources/frontend && npm install && npm run build -- --prod
+        - cd gablum-webapp/src/main/resources/frontend && npm install && npm run build -- --prod
     tags:
         - gablum-ci-jobs
 
@@ -47,7 +47,7 @@ angular-lint:
     image: node:12-alpine
     stage: test
     script:
-        - cd webapp/src/main/resources/frontend && npm install && npm run lint
+        - cd gablum-webapp/src/main/resources/frontend && npm install && npm run lint
     tags:
         - gablum-ci-jobs
 
@@ -55,6 +55,6 @@ angular-tests:
     image: circleci/node:12-browsers
     stage: test
     script:
-        - cd webapp/src/main/resources/frontend && npm install && npm run test
+        - cd gablum-webapp/src/main/resources/frontend && npm install && npm run test
     tags:
         - gablum-ci-jobs
