@@ -55,9 +55,9 @@ services:
       - -jar
       - /usr/app/app.jar
   
-  user-api:
+  user-service:
     build:
-      context: ./user-api
+      context: ./user
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000
