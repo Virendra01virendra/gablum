@@ -1,4 +1,4 @@
-package com.gablum.userapi.users;
+package com.gablum.usermanagement.users;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

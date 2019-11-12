@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gablum</groupId>
-	<artifactId>user</artifactId>
+	<artifactId>usermanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user</name>
+	<name>gablum-user-management</name>
 	<description>User API for Gablum</description>
 
 	<properties>

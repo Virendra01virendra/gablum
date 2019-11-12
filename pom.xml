@@ -67,6 +67,6 @@
         <module>discovery-server</module>
         <module>gateway</module>
         <module>webapp</module>
-        <module>user</module>
+        <module>gablum-user-management</module>
     </modules>
 </project>

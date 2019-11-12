@@ -57,7 +57,7 @@ services:
   
   user-service:
     build:
-      context: ./user
+      context: ./gablum-user-management
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000
