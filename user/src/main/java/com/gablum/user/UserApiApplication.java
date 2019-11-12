@@ -1,4 +1,4 @@
-package com.gablum.userapi;
+package com.gablum.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

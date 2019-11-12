@@ -67,6 +67,6 @@
         <module>discovery-server</module>
         <module>gateway</module>
         <module>webapp</module>
-        <module>user-api</module>
+        <module>user</module>
     </modules>
 </project>

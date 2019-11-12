@@ -1,4 +1,4 @@
-package com.gablum.userapi;
+package com.gablum.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
