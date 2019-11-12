@@ -95,7 +95,7 @@ services:
 
   auctions:
     build:
-      context: ./auction/auctions
+      context: ./gablum-auction/auctions
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000
@@ -114,7 +114,7 @@ services:
 
   bid:
     build:
-      context: ./auction/bid
+      context: ./gablum-auction/bid
     environment: 
       - REGISTRY_URI=http://discovery:8001/eureka
       - CONFIG_SERVER=http://config-server:8000

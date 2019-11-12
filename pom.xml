@@ -62,7 +62,7 @@
     </build>
 
     <modules>
-        <module>auction</module>
+        <module>gablum-auction</module>
         <module>config-server</module>
         <module>discovery-server</module>
         <module>gateway</module>
