@@ -7,7 +7,7 @@ RUN npm i -g @angular/cli
 
 WORKDIR /usr/app/src/main/resources/frontend/
 
-RUN ng build
+RUN npm run build -- --prod
 
 FROM tastycats/gablumdeps:latest as build
 
@@ -15,7 +15,7 @@ COPY --from=ng_build /usr/app /usr/app
 
 RUN ls /usr/app
 
-RUN mvn -f /usr/app clean package -PskipAngular
+RUN mvn -f /usr/app clean package -PskipAngular -DskipTests
 
 
 FROM gesellix/wait-for as waitfor

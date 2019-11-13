@@ -5,7 +5,7 @@ COPY pom.xml /usr/app
 
 RUN ls /usr/app
 
-RUN mvn -f /usr/app clean package
+RUN mvn -f /usr/app clean package -DskipTests
 
 FROM gesellix/wait-for as waitfor
 
