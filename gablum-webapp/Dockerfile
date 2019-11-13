@@ -30,7 +30,3 @@ COPY --from=waitfor ./wait-for ./wait
 EXPOSE 4000
 
 ENTRYPOINT [ "java","-jar","usr/app/app.jar" ]
-# COPY "${pwd}" /gateway/
-
-
-# CMD cd /gateway/ && mvn spring-boot:run -DskipTests
