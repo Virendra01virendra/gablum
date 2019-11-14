@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NavbarMaterialModule } from 'src/app/modules/navbar/navbar-material.module';
+import { NavbarMaterialModule } from './navbar-material.module';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
