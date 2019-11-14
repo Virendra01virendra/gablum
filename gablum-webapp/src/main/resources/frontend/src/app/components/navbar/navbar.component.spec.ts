@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppMaterialModule } from 'src/app/app-material/app-material.module';
+import { NavbarMaterialModule } from 'src/app/modules/navbar/navbar-material.module';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -13,7 +13,7 @@ describe('NavbarComponent', () => {
       declarations: [ NavbarComponent ],
       imports: [
         RouterTestingModule,
-        AppMaterialModule
+        NavbarMaterialModule
       ]
     })
     .compileComponents();
