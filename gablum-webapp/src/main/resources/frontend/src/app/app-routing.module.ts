@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const routes: Routes = [
-  {path: '', component: LandingPageComponent, pathMatch: 'full'}
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
+    pathMatch: 'full'}
 ];
 
 @NgModule({
