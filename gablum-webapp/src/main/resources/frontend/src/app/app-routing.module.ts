@@ -25,6 +25,14 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
   },
   {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+  },
+  {
+    path: 'new',
+    loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
+  },
+  {
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full'},

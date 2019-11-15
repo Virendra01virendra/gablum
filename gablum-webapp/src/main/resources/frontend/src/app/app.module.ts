@@ -10,6 +10,8 @@ import { HistoryModule } from './history/history.module';
 import { InboxModule } from './inbox/inbox.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
+import { RegisterModule } from './register/register.module';
+import { NewProposalModule } from './new-proposal/new-proposal.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProfileModule } from './profile/profile.module';
     HistoryModule,
     InboxModule,
     CalendarModule,
-    ProfileModule
+    ProfileModule,
+    RegisterModule,
+    NewProposalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
