@@ -9,9 +9,25 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
   },
   {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then(module => module.HistoryModule)
+  },
+  {
+    path: 'inbox',
+    loadChildren: () => import('./inbox/inbox.module').then(module => module.InboxModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
     path: '',
     component: LandingPageComponent,
-    pathMatch: 'full'}
+    pathMatch: 'full'},
 ];
 
 @NgModule({

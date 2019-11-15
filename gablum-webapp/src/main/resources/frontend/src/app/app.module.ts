@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarModule } from './common/navbar/navbar.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { HistoryModule } from './history/history.module';
+import { InboxModule } from './inbox/inbox.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NavbarModule
+    NavbarModule,
+    HistoryModule,
+    InboxModule,
+    CalendarModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
