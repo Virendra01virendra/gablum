@@ -67,6 +67,9 @@
         <module>discovery-server</module>
         <module>gateway</module>
         <module>gablum-webapp</module>
+        <module>gablum-proposals</module>
+        <module>gablum-scheduler</module>
+        <module>gablum-contracts</module>
         <module>gablum-user-management</module>
     </modules>
 </project>
