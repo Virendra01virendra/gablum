@@ -10,7 +10,9 @@ gituser=$DEPLOY_GITLAB_USER
 
 echo "Deploying project on server ${server} as ${user} from branch ${branch}"
 
-apt-get update && apt-get install -y openssh-client 
+apt-get update && apt-get install -y openssh-client software-properties-common apt-transport-https
+
+apt-get install docker docker-compose -y
 
 ## Rolling Update
 
