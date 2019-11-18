@@ -68,7 +68,7 @@ release_deploy:
     image: ubuntu:latest
     stage: release
     tags:
-        - gablum_ci_jobs
+        - gablum-ci-jobs
     before_script:
         - mkdir -p ~/.ssh
         - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
@@ -88,7 +88,7 @@ production_deploy:
     image: ubuntu:latest
     stage: production
     tags:
-        - gablum_ci_jobs
+        - gablum-ci-jobs
     before_script:
         #generate ssh key
         - mkdir -p ~/.ssh
