@@ -12,4 +12,9 @@ public class UserController {
     public String getUsers() {
         return "user: yay";
     }
+
+    @GetMapping("/echo") 
+    public String getEcho() {
+        return "users";
+    }
 }
