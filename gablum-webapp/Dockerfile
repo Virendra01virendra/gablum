@@ -3,9 +3,9 @@ FROM node:latest as ng_build
 COPY src /usr/app/src
 COPY pom.xml /usr/app
 
-RUN npm i -g @angular/cli
-
 WORKDIR /usr/app/src/main/resources/frontend/
+
+RUN npm install
 
 RUN npm run build -- --prod
 

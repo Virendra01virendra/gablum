@@ -6,16 +6,13 @@ services:
       context: ./config-server
     expose: 
       - 8000
-    environment:
-      - CONFIG_URL=https://github.com/tastycats/gablum-config.git
-      - CONFIG_SERVER_PORT=8000
+    env_file: 
+      - env_${DEPLOY_ENV}.env
 
   discovery:
     build:
       context: ./discovery-server
-    environment: 
-      - CONFIG_SERVER=http://config-server:8000
-      - DISCOVERY_PORT=8001
+    env_file: env_${DEPLOY_ENV}.env
     expose: 
        - 8001
     ports:
@@ -35,14 +32,11 @@ services:
   gateway:
     build:
       context: ./gateway
-    environment: 
-      - REGISTRY_URI=http://discovery:8001/eureka
-      - CONFIG_SERVER=http://config-server:8000
-      - GATEWAY_PORT=80
+    env_file: env_${DEPLOY_ENV}.env
     expose: 
-       - 80
+       - 8080
     ports:
-      - "80:80"
+      - "8080:8080"
     depends_on: 
       - discovery
     entrypoint: 
@@ -58,10 +52,7 @@ services:
   user-service:
     build:
       context: ./gablum-user-management
-    environment: 
-      - REGISTRY_URI=http://discovery:8001/eureka
-      - CONFIG_SERVER=http://config-server:8000
-      - SERVER_PORT=4000
+    env_file: env_${DEPLOY_ENV}.env
     depends_on: 
       - discovery
     entrypoint: 
@@ -77,10 +68,7 @@ services:
   webapp:
     build:
       context: ./gablum-webapp
-    environment: 
-      - REGISTRY_URI=http://discovery:8001/eureka
-      - CONFIG_SERVER=http://config-server:8000
-      - SERVER_PORT=4000
+    env_file: env_${DEPLOY_ENV}.env
     depends_on: 
       - discovery
     entrypoint: 
@@ -93,13 +81,15 @@ services:
       - -jar
       - /usr/app/app.jar
 
+  rabbit:
+    image: rabbitmq:3.8.1-alpine
+    depends_on: 
+      - discovery
+
   auctions:
     build:
       context: ./gablum-auction/auctions
-    environment: 
-      - REGISTRY_URI=http://discovery:8001/eureka
-      - CONFIG_SERVER=http://config-server:8000
-      - SERVER_PORT=4000
+    env_file: env_${DEPLOY_ENV}.env
     depends_on: 
       - discovery
     entrypoint: 
@@ -115,10 +105,55 @@ services:
   bid:
     build:
       context: ./gablum-auction/bid
-    environment: 
-      - REGISTRY_URI=http://discovery:8001/eureka
-      - CONFIG_SERVER=http://config-server:8000
-      - SERVER_PORT=4000
+    env_file: env_${DEPLOY_ENV}.env
+    depends_on: 
+      - discovery
+    entrypoint: 
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+
+  proposals:
+    build:
+      context: ./gablum-proposals
+    env_file: env_${DEPLOY_ENV}.env
+    depends_on: 
+      - discovery
+    entrypoint: 
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+
+  scheduler:
+    build:
+      context: ./gablum-scheduler
+    env_file: env_${DEPLOY_ENV}.env
+    depends_on: 
+      - discovery
+    entrypoint: 
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+
+  contracts:
+    build:
+      context: ./gablum-contracts
+    env_file: env_${DEPLOY_ENV}.env
     depends_on: 
       - discovery
     entrypoint: 
