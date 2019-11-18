@@ -32,6 +32,7 @@ command="ls -ltr && \
  cd /home/ubuntu/gablum && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd /home/ubuntu/gablum/gablumplatform && \
+ ls -ltr && \
  echo 'Deploying the Gablum Application' && \
  docker-compose up --build -d --remove-orphans && \
  echo 'DONE DEPLOYING'"
