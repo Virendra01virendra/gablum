@@ -27,11 +27,12 @@ apt-get update && apt-get install -y openssh-client
 #  rm -rf /home/ubuntu/gablumplatform && \
 
 command="ls -ltr && \
- rm -rf /home/ubuntu/gablumplatform
+ rm -rf /home/ubuntu/gablumplatform && \
  mkdir -p /home/ubuntu/gablumplatform && \
  cd /home/ubuntu/gablumplatform && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd /home/ubuntu/gablumplatform/gablumplatform && \
+ echo 'listing things' && \
  ls -ltr && \
  echo 'Deploying the Gablum Application' && \
  docker-compose up --build -d --remove-orphans && \
