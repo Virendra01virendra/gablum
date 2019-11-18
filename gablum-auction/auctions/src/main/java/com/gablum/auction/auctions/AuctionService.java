@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AuctionService implements IAuctionService{
@@ -19,8 +20,8 @@ public class AuctionService implements IAuctionService{
     }
 
     @Override
-    public Auction getAuctionById(ObjectId auctionId) {
-        return auctionRepo.findById(auctionId).orElse(null);
+    public Auction getAuctionById(UUID auctionId) {
+        return auctionRepo.findByAuctionId(auctionId).orElse(null);
     }
 
     @Override

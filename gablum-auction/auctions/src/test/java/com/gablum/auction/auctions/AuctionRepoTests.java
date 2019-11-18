@@ -1,6 +1,14 @@
 package com.gablum.auction.auctions;
 
 
+import com.mongodb.Block;
+import com.mongodb.async.SingleResultCallback;
+import com.mongodb.client.ChangeStreamIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.changestream.ChangeStreamDocument;
+import org.bson.Document;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,9 +16,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)
 @DataMongoTest
@@ -24,10 +34,8 @@ public class AuctionRepoTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(13);
-        testAuction1.setAuctionId(1);
-        testAuction2.setProposalId(42);
-        testAuction2.setAuctionId(2);
+        testAuction1.setProposalId(UUID.randomUUID());
+        testAuction2.setProposalId(UUID.randomUUID());
     }
 
     @AfterEach

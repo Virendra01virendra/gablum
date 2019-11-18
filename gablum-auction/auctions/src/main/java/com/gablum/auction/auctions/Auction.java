@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.AccessLevel;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -22,18 +24,21 @@ public class Auction {
     private ObjectId _id;
 
     @Indexed(unique = true)
-    private long auctionId;
-    private long proposalId;
+    @Setter(AccessLevel.NONE)
+    private UUID auctionId = UUID.randomUUID();
+    private UUID proposalId;
 
-    private long participantsVerificationId;
-    private List<Long> selectedParticipantList;
-    private List<Long> bidIdList;
+    boolean auctionStatus;
+
+    private UUID participantsVerificationId;
+    private List<UUID> selectedParticipantList;
+    private List<UUID> bidIdList;
 
     private Date createdOn;
     private Date updatedOn;
 
-    private long createdBy;
-    private long updatedBy;
+    private UUID createdBy;
+    private UUID updatedBy;
 
     private Date auctionStartDate;
     private Date auctionEndDate;
