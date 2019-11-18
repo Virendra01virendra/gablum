@@ -1,6 +1,7 @@
 package com.gablum.auction.auctions;
 
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,17 +30,66 @@ public class AuctionRepoTests {
         testAuction2.setAuctionId(2);
     }
 
+    @AfterEach
+    public void removeEntities() {
+        auctionRepo.deleteAll();
+    }
+
     @Test
     public void dbCanStore() {
+        Assertions.assertEquals(
+                2,
+                auctionRepo.saveAll(
+                        List.of(testAuction1, testAuction2)
+                ).size(),
+                "repo should be able to store all"
+        );
+    }
+
+    @Test
+    public void dbCanFetchAll() {
         auctionRepo.saveAll(
                 List.of(testAuction1, testAuction2)
         );
         Assertions.assertEquals(
                 2,
                 auctionRepo.findAll().size(),
-                "db can store all elements and fetch"
+                "repo can store and fetch all elements"
         );
     }
 
-    public void 
+    @Test
+    public void dbCanFetchOne() {
+        auctionRepo.saveAll(
+                List.of(testAuction1, testAuction2)
+        );
+
+        Assertions.assertEquals(
+                testAuction1.getAuctionId(),
+                auctionRepo.findByAuctionId(testAuction1.getAuctionId()).orElse(null).getAuctionId(),
+                "repo should be able to fetch a specific auction from id"
+        );
+    }
+
+    @Test
+    public void dbCanDeleteOne() {
+        auctionRepo.saveAll(
+                List.of(testAuction1, testAuction2)
+        );
+
+        Auction auctionToDelete = auctionRepo.findByAuctionId(testAuction1.getAuctionId()).orElse(null);
+        auctionRepo.delete(auctionToDelete);
+
+        Assertions.assertEquals(
+                1,
+                auctionRepo.findAll().size(),
+                "should now contain one element"
+        );
+
+        Assertions.assertEquals(
+                testAuction2.getAuctionId(),
+                auctionRepo.findAll().get(0).getAuctionId(),
+                "should now only contain 'testAuction2'"
+        );
+    }
 }
