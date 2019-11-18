@@ -36,8 +36,10 @@ Complete Build
 
 command="ls -ltr && \
  rm -rf gablumplatform && \
+ mkdir -p /home/devuser && \
+ cd /home/devuser
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
- cd gablumplatform && \
+ cd /home/devuser/gablumplatform && \
  echo 'Deploying the Gablum Application' && \
  docker-compose up --build -d --remove-orphans && \
  echo 'DONE DEPLOYING'"
