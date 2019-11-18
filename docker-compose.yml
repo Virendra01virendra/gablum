@@ -34,9 +34,9 @@ services:
       context: ./gateway
     env_file: env_${DEPLOY_ENV}.env
     expose: 
-       - 80
+       - 8080
     ports:
-      - "80:80"
+      - "8080:8080"
     depends_on: 
       - discovery
     entrypoint: 
