@@ -10,7 +10,9 @@ gituser=$DEPLOY_GITLAB_USER
 
 echo "Deploying project on server ${server} as ${user} from branch ${branch}"
 
-apt-get update && apt-get install -y openssh-client
+apt-get update && apt-get install -y openssh-client 
+
+apt-get install docker-ce docker-ce-cli containerd.io
 
 ## Rolling Update
 
@@ -36,10 +38,8 @@ Complete Build
 
 command="ls -ltr && \
  rm -rf gablumplatform && \
- mkdir -p /home/devuser && \
- cd /home/devuser
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
- cd /home/devuser/gablumplatform && \
+ cd gablumplatform && \
  echo 'Deploying the Gablum Application' && \
  docker-compose up --build -d --remove-orphans && \
  echo 'DONE DEPLOYING'"
