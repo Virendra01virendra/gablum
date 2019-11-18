@@ -14,6 +14,10 @@ apt-get update && apt-get install -y openssh-client software-properties-common a
 
 apt-get install docker docker-compose -y
 
+ls -la /usr/local/bin/ | grep -i compose
+ls -la / | grep -i compose
+ls -la /bin/ | grep -i compose
+
 ## Rolling Update
 
 # command="ls -ltr && \
