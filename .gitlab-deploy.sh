@@ -37,6 +37,8 @@ Complete Build
 command="ls -ltr && \
  rm -rf gablumplatform && \
  ls -ltr /home/deployer && \
+ cd /home/deployer && \
+ docker-compose --version
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd gablumplatform && \
  ls -ltr && \
