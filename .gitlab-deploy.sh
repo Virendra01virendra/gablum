@@ -22,12 +22,20 @@ apt-get update && apt-get install -y openssh-client
 
 Complete Build
 
+# command="ls -ltr && \
+#  mkdir -p /home/devuser/gablumplatform && \
+#  cd /home/devuser/gablumplatform && \
+#  docker-compose -f docker-compose.yml down && \
+#  cd /home/devuser && \
+#  rm -rf /home/devuser/gablumplatform && \
+#  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
+#  cd /home/devuser/gablumplatform && \
+#  echo 'Deploying the Gablum Application' && \
+#  docker-compose up --build -d --remove-orphans && \
+#  echo 'DONE DEPLOYING'"
+
 command="ls -ltr && \
- mkdir -p /home/devuser/gablumplatform && \
- cd /home/devuser/gablumplatform && \
- docker-compose -f docker-compose.yml down && \
  cd /home/devuser && \
- rm -rf /home/devuser/gablumplatform && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd /home/devuser/gablumplatform && \
  echo 'Deploying the Gablum Application' && \
