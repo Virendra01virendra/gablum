@@ -35,6 +35,7 @@ Complete Build
 #  echo 'DONE DEPLOYING'"
 
 command="ls -ltr && \
+ mkdir -p /home/devuser && \
  cd /home/devuser && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd /home/devuser/gablumplatform && \
