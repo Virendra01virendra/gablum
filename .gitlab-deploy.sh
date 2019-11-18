@@ -28,10 +28,10 @@ apt-get update && apt-get install -y openssh-client
 
 command="ls -ltr && \
  rm -rf /home/ubuntu/gablumplatform && \
- mkdir -p /home/ubuntu/gablumplatform && \
- cd /home/ubuntu/gablumplatform && \
+ mkdir -p /home/ubuntu/gablum && \
+ cd /home/ubuntu/gablum && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
- cd /home/ubuntu/gablumplatform/gablumplatform && \
+ cd /home/ubuntu/gablum/gablumplatform && \
  echo 'listing things' && \
  ls -ltr && \
  echo 'Deploying the Gablum Application' && \
