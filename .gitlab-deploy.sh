@@ -28,6 +28,7 @@ apt-get update && apt-get install -y openssh-client
 
 command="ls -ltr && \
  rm -rf gablum && \
+ ls -ltr && \
  docker-compose -f /home/ubuntu/gablum/gablumplatform/docker-compose.yml down && \
  rm -rf /home/ubuntu/gablum && \
  mkdir -p /home/ubuntu/gablum && \
