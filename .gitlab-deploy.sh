@@ -36,7 +36,7 @@ Complete Build
 
 command="ls -ltr && \
  rm -rf gablumplatform && \
- ls -ltr /home && \
+ ls -ltr /home/deployer && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd gablumplatform && \
  ls -ltr && \
