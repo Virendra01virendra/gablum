@@ -12,8 +12,6 @@ echo "Deploying project on server ${server} as ${user} from branch ${branch}"
 
 apt-get update && apt-get install -y openssh-client 
 
-apt-get install docker-ce docker-ce-cli containerd.io
-
 ## Rolling Update
 
 # command="ls -ltr && \
@@ -38,8 +36,10 @@ Complete Build
 
 command="ls -ltr && \
  rm -rf gablumplatform && \
+ ls -ltr /home && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
  cd gablumplatform && \
+ ls -ltr && \
  echo 'Deploying the Gablum Application' && \
  docker-compose up --build -d --remove-orphans && \
  echo 'DONE DEPLOYING'"
