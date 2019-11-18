@@ -27,7 +27,6 @@ apt-get update && apt-get install -y openssh-client
 #  rm -rf /home/ubuntu/gablumplatform && \
 
 command="ls -ltr && \
- ls -ltr /home && \
  mkdir -p /home/ubuntu/gablum && \
  cd /home/ubuntu/gablum && \
  git clone https://${gituser}:${gittoken}@gitlab.stackroute.in/gablum/gablumplatform.git -b ${branch} && \
