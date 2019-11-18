@@ -5,7 +5,7 @@ stages:
     - production
 
 variables:
-  DEPLOY_BRANCH: $CI_COMMIT_REF_NAME
+    DEPLOY_BRANCH: $CI_COMMIT_REF_NAME
 
 java-build:
     image: tastycats/gablumdeps:latest
@@ -14,7 +14,6 @@ java-build:
         - mvn package -PskipAngular -DskipTests
     tags:
         - gablum-ci-jobs
-
 
 java-tests:
     image: tastycats/gablumdeps:latest
@@ -65,27 +64,25 @@ angular-tests:
         - gablum-ci-jobs
 
 # CD stage
-
 release_deploy:
-  image: ubuntu:latest
-  stage: release
-  tags:
-    - gablum_ci_jobs
-  before_script:
-    - mkdir -p ~/.ssh
-    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'   
-  script:
-    - ls -ltr
-    - /bin/sh .gitlab-deploy.sh   
-  environment:
-    name: release
-    url: http://gablum-dev.stackroute.io
-  when: on_success
-  only:
-    - release_v010
-
+    image: ubuntu:latest
+    stage: release
+    tags:
+        - gablum_ci_jobs
+    before_script:
+        - mkdir -p ~/.ssh
+        - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        - chmod 600 ~/.ssh/id_rsa
+        - 'echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    script:
+        - ls -ltr
+        - /bin/sh .gitlab-deploy.sh
+    environment:
+        name: release
+        url: http://gablum-dev.stackroute.io
+    when: on_success
+    only:
+        - release_v010
 
 production_deploy:
     image: ubuntu:latest
@@ -93,7 +90,7 @@ production_deploy:
     tags:
         - gablum_ci_jobs
     before_script:
-    #generate ssh key
+        #generate ssh key
         - mkdir -p ~/.ssh
         - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         - chmod 600 ~/.ssh/id_rsa
