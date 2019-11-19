@@ -1,7 +1,7 @@
-package com.gablum.auction.bid.service;
+package com.gablum.auction.bid;
 
-import com.gablum.auction.bid.model.Bid;
-import com.gablum.auction.bid.repository.BidRepository;
+import com.gablum.auction.bid.Bid;
+import com.gablum.auction.bid.BidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

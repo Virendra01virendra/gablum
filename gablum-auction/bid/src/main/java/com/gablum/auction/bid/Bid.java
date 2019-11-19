@@ -1,17 +1,24 @@
-package com.gablum.auction.bid.model;
+package com.gablum.auction.bid;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import static com.gablum.auction.bid.BidEvaluation.score;
 
-@Document
+@Document(collection = "bids")
 public class Bid {
     @Id
-    private UUID bidId;
+    private ObjectId _id;
+
+    @Indexed(unique = true)
+    private UUID bidId = UUID.randomUUID();
+
     private UUID participantId;
     private float score;
     private int price;
@@ -24,13 +31,16 @@ public class Bid {
     private Date createdOn;
     private Date updatedOn;
 
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
 
     public UUID getBidId() {
         return bidId;
-    }
-
-    public void setBidId(UUID bidId) {
-        this.bidId = bidId;
     }
 
     public UUID getParticipantId() {

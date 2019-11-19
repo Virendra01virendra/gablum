@@ -13,11 +13,13 @@ import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BidFormComponent } from './bid-form/bid-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    BidFormComponent
   ],
   imports: [
     BrowserModule,
