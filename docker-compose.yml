@@ -1,25 +1,26 @@
-version: '3'
+version: "3"
 
 services:
   config-server:
     build:
       context: ./config-server
-    expose: 
+    expose:
       - 8000
-    env_file: 
+    env_file:
       - env_${DEPLOY_ENV}.env
+    restart: on-failure
 
   discovery:
     build:
       context: ./discovery-server
     env_file: env_${DEPLOY_ENV}.env
-    expose: 
-       - 8001
+    expose:
+      - 8001
     ports:
       - "8001:8001"
-    depends_on: 
+    depends_on:
       - config-server
-    entrypoint: 
+    entrypoint:
       - ./wait
       - config-server:8000
       - -t
@@ -28,18 +29,19 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
-  
+    restart: on-failure
+
   gateway:
     build:
       context: ./gateway
     env_file: env_${DEPLOY_ENV}.env
-    expose: 
-       - 80
+    expose:
+      - 8080
     ports:
-      - "80:80"
-    depends_on: 
+      - "8080:8080"
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -48,14 +50,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
-  
+    restart: on-failure
+
   user-service:
     build:
       context: ./gablum-user-management
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -64,14 +67,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
-  
+    restart: on-failure
+
   webapp:
     build:
       context: ./gablum-webapp
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -80,19 +84,20 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
 
-  rabbit:
-    image: rabbitmq:3.8.1-alpine
-    depends_on: 
-      - discovery
+  # rabbit:
+  #   image: rabbitmq:3.8.1-alpine
+  #   depends_on:
+  #     - discovery
 
   auctions:
     build:
       context: ./gablum-auction/auctions
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -101,14 +106,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
 
   bid:
     build:
       context: ./gablum-auction/bid
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -117,14 +123,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
 
   proposals:
     build:
       context: ./gablum-proposals
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -133,14 +140,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
 
   scheduler:
     build:
       context: ./gablum-scheduler
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -149,14 +157,15 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
 
   contracts:
     build:
       context: ./gablum-contracts
     env_file: env_${DEPLOY_ENV}.env
-    depends_on: 
+    depends_on:
       - discovery
-    entrypoint: 
+    entrypoint:
       - ./wait
       - discovery:8001
       - -t
@@ -165,3 +174,4 @@ services:
       - java
       - -jar
       - /usr/app/app.jar
+    restart: on-failure
