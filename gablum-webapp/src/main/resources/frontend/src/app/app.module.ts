@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,9 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 @NgModule({
   declarations: [
@@ -27,8 +30,11 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
     CalendarModule,
     ProfileModule,
     RegisterModule,
-    NewProposalModule
+    NewProposalModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })
