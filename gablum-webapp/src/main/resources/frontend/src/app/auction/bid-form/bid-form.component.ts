@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-bid-form',
@@ -11,6 +10,7 @@ export class BidFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
