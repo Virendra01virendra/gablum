@@ -12,6 +12,7 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
     CalendarModule,
     ProfileModule,
     RegisterModule,
-    NewProposalModule
+    NewProposalModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
