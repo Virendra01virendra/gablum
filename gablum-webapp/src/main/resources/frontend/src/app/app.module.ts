@@ -12,11 +12,12 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { ContractsModule } from './contracts/contracts.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
     CalendarModule,
     ProfileModule,
     RegisterModule,
-    NewProposalModule
+    NewProposalModule,
+    ContractsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

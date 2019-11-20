@@ -33,6 +33,10 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
   {
+    path: 'contract',
+    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
+  },
+  {
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full'},

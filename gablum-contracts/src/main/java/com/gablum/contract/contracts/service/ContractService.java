@@ -1,5 +1,6 @@
 package com.gablum.contract.contracts.service;
 
+import com.gablum.contract.contracts.model.ContractStatusEditable;
 import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.repository.ContractDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,10 @@ public class ContractService {
     }
 
     @Transactional
-    public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated){
+    public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,ContractStatusEditable contractUpdate){
         Contracts updatedContract = contractDetails.findByContractsId(contractWhichNeedsTobeInvalidated);
         updatedContract.setContractsId(contractWhichNeedsTobeInvalidated);
-        updatedContract.setContractStatus(false);
-//        updatedContract.setContractsId(null);
+        updatedContract.setContractStatus(contractUpdate.getContractStatus());
         return contractDetails.save(updatedContract);
         }
 }

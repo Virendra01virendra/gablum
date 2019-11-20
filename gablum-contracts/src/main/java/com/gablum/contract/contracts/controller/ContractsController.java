@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-
+@CrossOrigin("*")
 @RestController
 public class ContractsController {
     @Autowired
@@ -29,6 +29,6 @@ public class ContractsController {
 
     @PutMapping("/contracts/{contractsId}")
     public Contracts updateContractStatus(@PathVariable UUID contractsId, @RequestBody ContractStatusEditable contractToEdit){
-        return contractService.updateContract(contractsId);
+        return contractService.updateContract(contractsId, contractToEdit);
     }
 }
