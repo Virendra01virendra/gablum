@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+
 @RestController
 @CrossOrigin(origins = "*")
 public class AuctionController {
@@ -31,5 +32,10 @@ public class AuctionController {
     @PostMapping("/auctions")
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd) {
         return auctionService.addAuctions(auctionsToAdd);
+    }
+
+    @PostMapping("/auctions/bid")
+    public float score(@RequestBody List<Bid> bid) {
+        return score(bid);
     }
 }

@@ -7,13 +7,13 @@ public class BidEvaluation {
     public static void main(String[] args) {
         float price = 400;
         Date timeOfDelivery = new Date(15);
-        Date creditPeriod = new Date(1);
-        boolean qaqccertification = false;
+        int creditPeriod = 1;
+        boolean qaqccertification = true;
         boolean typeOfSupply = true;
 
         float priceSpec = 400;
         Date timeOfDeliverySpec = new Date(15);
-        Date creditPeriodSpec = new Date(1);
+        int creditPeriodSpec = 1;
         boolean qaqccertificationSpec = true;
         boolean typeOfSupplySpec = true;
 
@@ -30,9 +30,9 @@ public class BidEvaluation {
         System.out.println("score------------->" + scorecnt);
     }
 
-    public static float score(float price, Date timeOfDelivery, Date creditPeriod, boolean qaqcCertificate,
+    public static float score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
                               boolean typeOfSupply,
-                              float priceSpec, Date timeOfDeliverySpec, Date creditPeriodSpec,
+                              float priceSpec, Date timeOfDeliverySpec, int creditPeriodSpec,
                               boolean qaqcCertificateSpec,
                               boolean typeOfSupplySpec,
                               float weightPriceSpec, float weightTimeOfDeliverySpec, float weightCreditPeriodSpec,
@@ -59,7 +59,7 @@ public class BidEvaluation {
         float priceNorm = (price - priceSpec) / priceSpec;
         float timeOfDeliveryNorm =
                 (-(float)timeOfDelivery.getTime() + (float)timeOfDeliverySpec.getTime()) / ((float)timeOfDeliverySpec.getTime());
-        float creditPeriodNorm = ((float)creditPeriod.getTime() - (float)creditPeriodSpec.getTime()) / (float)creditPeriodSpec.getTime();
+        float creditPeriodNorm = (creditPeriod - creditPeriodSpec) / (float)creditPeriodSpec;
         System.out.println(creditPeriodNorm);
         float certificationNorm = 0;
         float typeOfSupplyNorm = 0;
