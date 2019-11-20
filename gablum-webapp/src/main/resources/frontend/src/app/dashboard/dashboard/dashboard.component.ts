@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Stomp, CompatClient } from '@stomp/stompjs';
-import * as sockjs from 'sockjs-client';
-
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,27 +8,30 @@ import * as sockjs from 'sockjs-client';
 })
 export class DashboardComponent implements OnInit {
 
-  private socket: object;
-  private stompClient: CompatClient;
+  public static messageKey = 'DashboardComponent';
 
-  constructor() {
-    this.socket = new sockjs('http://localhost:8080/ws');
-    this.stompClient = Stomp.over(this.socket);
-    console.log(this.stompClient);
-    this.stompClient.connect({}, frame => {});
-    console.log(this.stompClient);
-  }
+  constructor(private ws: WebsocketService) { }
 
   ngOnInit() {
-    // if (this.stompClient.connected)
+    this.ws.connect();
   }
 
   send() {
-    this.stompClient.send('/bids.addbid', {}, 'hello');
-    this.stompClient.subscribe('/topic/newbid', msg => {
-      console.log(msg);
-      console.log(msg.body);
-    });
+    this.ws.sendBid({price: 100});
+  }
+
+  subscribe() {
+    this.ws.subscribe(
+      '/topic/newbid',
+      DashboardComponent.messageKey,
+      'newbid').subscribe(message => {
+        if (message.dest === '@all' || message.dest === DashboardComponent.messageKey) {
+          const data = message.data;
+          if ('newbid' in data) {
+            console.log(data.newbid);
+          }
+        }
+      });
   }
 
 }
