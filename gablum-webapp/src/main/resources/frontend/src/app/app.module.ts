@@ -14,13 +14,13 @@ import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { HttpClientModule } from '@angular/common/http';
-import { BidFormComponent } from './auction/bid-form/bid-form.component';
+import { AuctionModule } from './auction/auction.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    BidFormComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +32,9 @@ import { BidFormComponent } from './auction/bid-form/bid-form.component';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
-    HttpClientModule
+    HttpClientModule,
+    AuctionModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
