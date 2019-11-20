@@ -4,38 +4,35 @@
 </p>
 <app-window *ngIf="showPortal">
   <h2>This will be the view where We will have a list of sellers for Live Auctions </h2>
-  
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
+  <div class="tableview">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Position Column -->
     <ng-container matColumnDef="rank">
-      <th mat-header-cell *matHeaderCellDef> Rank </th>
-      <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+      <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rank}} </mat-cell>
     </ng-container>
   
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
   
     <!-- Weight Column -->
     <ng-container matColumnDef="bids">
-      <th mat-header-cell *matHeaderCellDef> Bids </th>
-      <td mat-cell *matCellDef="let element"> {{element.bids}} </td>
+      <mat-header-cell *matHeaderCellDef> Bids </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.bids}} </mat-cell>
     </ng-container>
   
     <!-- Symbol Column -->
     <ng-container matColumnDef="xfactor">
-      <th mat-header-cell *matHeaderCellDef> X-Factor</th>
-      <td mat-cell *matCellDef="let element"> {{element.xfactor}} </td>
+      <mat-header-cell *matHeaderCellDef> X-Factor</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.xfactor}} </mat-cell>
     </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  </div>
   <button (click)="showPortal = false">Close me!</button>
 </app-window>

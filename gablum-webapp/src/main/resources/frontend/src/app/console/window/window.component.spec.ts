@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WindowComponent } from './window.component';
+import { CdkPortal } from '@angular/cdk/portal';
 
 describe('WindowComponent', () => {
   let component: WindowComponent;
@@ -8,7 +8,8 @@ describe('WindowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WindowComponent ]
+      declarations: [ WindowComponent, CdkPortal
+       ]
     })
     .compileComponents();
   }));

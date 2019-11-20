@@ -1,6 +1,6 @@
 
 import { Component, ViewChild, OnInit, ComponentFactoryResolver, ApplicationRef, Injector, OnDestroy } from '@angular/core';
-import { CdkPortal, DomPortalHost, DomPortalOutlet } from '@angular/cdk/portal';
+import { CdkPortal, DomPortalOutlet } from '@angular/cdk/portal';
 
 /**
  * This component template wrap the projected content

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MatTableDataSource } from '@angular/material';
 
 export interface PeriodicElement {
   name: string;
@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ButtonComponent {
   showPortal = false;
   displayedColumns: string[] = ['rank', 'name', 'bids', 'xfactor'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
   constructor() { }
 
