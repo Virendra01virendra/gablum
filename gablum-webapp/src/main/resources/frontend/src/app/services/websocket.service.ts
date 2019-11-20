@@ -16,6 +16,8 @@ export class WebsocketService {
   constructor(private comms: CommunicatorService) {
     this.socket = new sockjs('http://localhost:8080/api/auctions/ws');
     this.stompClient = Stomp.over(this.socket);
+    this.stompClient.heartbeatIncoming = 2000;
+    this.stompClient.heartbeatOutgoing = 2000;
   }
 
   connect() {
