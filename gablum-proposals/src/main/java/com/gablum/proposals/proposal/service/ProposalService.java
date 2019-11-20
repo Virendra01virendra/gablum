@@ -12,7 +12,6 @@ public class ProposalService {
 
     public Proposal saveProposal(Proposal proposal) {
         return proposalRepo.save(proposal);
-
     }
 
     public Proposal getProposalById(UUID proposalId) {      //search by proposal Id
@@ -20,6 +19,7 @@ public class ProposalService {
     }
 
     public List<Proposal> getProposals() {       // get all proposals
+
         return proposalRepo.findAll();
     }
 }

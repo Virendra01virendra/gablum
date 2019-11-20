@@ -1,0 +1,40 @@
+<form [formGroup]="productSpecsForm" class="first-form">
+    <h1>New Proposal Form </h1>
+    <mat-toolbar class="header">
+        <div class="head">Product Details</div>
+    </mat-toolbar>
+    
+    <mat-form-field appearance="outline"  >
+    <mat-label class="form-label" >Sub-domain:</mat-label>
+        <input matInput type="text" placeholder="Sub-domain" formControlName="subDomain">
+    <!-- <select id="subDomain-select" formControlName="subDomain" > -->
+    <!-- <option >--Please choose an option--</option>
+    <option >Raw Material</option>
+    <option >Crops</option>
+    <option >Machinery</option> -->
+    <!-- <mat-option *ngFor="let food of subDomain" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option> -->
+    <!-- </select> -->
+   </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label class="form-label">Product name:</mat-label>
+        <input matInput type="text" placeholder="Product Name" formControlName="productName">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label class = "form-label">Quantity:</mat-label>
+        <input matInput type="text" placeholder="Quantity" formControlName="quantity">
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline">
+      <mat-label class="form-label">Upload Product images:</mat-label>
+      <input matInput type="file" accept="image/png, image/jpeg" formControlName="images">
+      </mat-form-field> -->
+
+      <button mat-raised-button type="submit" [disabled]="!productSpecsForm.valid" (click)="onNext()">Next</button>
+    </form>
+  
+  
+  

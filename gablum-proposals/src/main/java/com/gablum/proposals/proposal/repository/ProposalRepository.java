@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface ProposalRepository extends MongoRepository<Proposal, Integer> {
 
-    public Proposal findByProposalId(UUID proposalId);
+    Proposal findByProposalId(UUID proposalId);
 }

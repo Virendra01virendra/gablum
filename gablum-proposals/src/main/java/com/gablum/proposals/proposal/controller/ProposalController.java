@@ -33,11 +33,11 @@ public class ProposalController {
         return proposalService.getProposals();
     }
 
-    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
-    public Proposal editProposal(@PathVariable("proposalId") UUID proposalId) {
-      Proposal proposal = proposalService.getProposalById(proposalId);
-      return proposal;
-    }
+//    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
+//    public Proposal editProposal(@PathVariable("proposalId") UUID proposalId) {
+//      Proposal proposal = proposalService.getProposalById(proposalId);
+//      return proposal;
+//    }
 
 
 

@@ -1,0 +1,25 @@
+.first-form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin: 3%;
+  }
+
+  h1 {
+    align-content: center;
+  }
+
+  .header {
+    background: lightgray;
+  }
+  .head {
+    align-content: center;
+    margin: 30%;
+  }
+
+  
+
+  /* .form-label {
+    color: black;
+  } */

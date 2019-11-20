@@ -1,0 +1,17 @@
+.second-form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin: 3%;
+  }
+
+  
+  
+  .second-form > * {
+    width: 90%;
+  }
+/* 
+  .form-label {
+    color: black;
+  } */
