@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @Repository
 public interface ContractDetailsRepository extends MongoRepository<Contracts, Integer> {
-    public Contracts findByContractsId(UUID contractsId);
+    Contracts findByContractsId(UUID contractsId);
 }
