@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -15,6 +16,9 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ConsoleModule } from './console/console.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
+import { AuctionModule } from './auction/auction.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { MatTableModule } from '@angular/material/table';
     CommonModule,
     PortalModule,
     ConsoleModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    AuctionModule,
+    MaterialModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

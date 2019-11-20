@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: ${AUCTIONS_DB_URI}

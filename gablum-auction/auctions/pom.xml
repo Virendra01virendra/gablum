@@ -52,6 +52,30 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.10</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -107,6 +131,26 @@
 					</execution>
 				</executions>
 			</plugin>
+
+<!--			<plugin>-->
+<!--				<groupId>com.github.joelittlejohn.embedmongo</groupId>-->
+<!--				<artifactId>embedmongo-maven-plugin</artifactId>-->
+<!--				<version>0.4.1</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>test</phase>-->
+<!--						<id>start</id>-->
+<!--						<goals>-->
+<!--							<goal>start</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<port>27017</port>-->
+<!--							<bindIp>127.0.0.1</bindIp>-->
+<!--							<version>3.5.3</version>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 

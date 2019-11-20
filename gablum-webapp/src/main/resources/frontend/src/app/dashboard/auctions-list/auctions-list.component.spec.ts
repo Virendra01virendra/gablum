@@ -1,23 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
-import { AuctionsListComponent } from '../auctions-list/auctions-list.component';
+import { AuctionsListComponent } from './auctions-list.component';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('AuctionsListComponent', () => {
+  let component: AuctionsListComponent;
+  let fixture: ComponentFixture<AuctionsListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      declarations: [ DashboardComponent, AuctionsListComponent]
+      declarations: [ AuctionsListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(AuctionsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
