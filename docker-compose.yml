@@ -86,11 +86,6 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-  # rabbit:
-  #   image: rabbitmq:3.8.1-alpine
-  #   depends_on:
-  #     - discovery
-
   auctions:
     build:
       context: ./gablum-auction/auctions
