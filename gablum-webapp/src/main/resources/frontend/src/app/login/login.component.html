@@ -1,1 +1,21 @@
-<p>login works!</p>
+<mat-toolbar class="header">
+        <div class="head">Login to your Account?</div>
+</mat-toolbar>
+
+    <mat-card-content>
+        <form class="logForm">
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input  matInput name="userName" required>
+            </mat-form-field>
+
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input  matInput name="BCryptPassword" required>
+            </mat-form-field>
+                
+            <div class="btn">
+                <button mat-raised-button color="primary">Login</button>
+            </div>
+        </form>
+    </mat-card-content>
