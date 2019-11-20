@@ -21,7 +21,9 @@ describe('AppComponent', () => {
         MatCardModule,
         MatButtonModule,
         MatRadioModule,
-        MatToolbarModule
+        MatToolbarModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       declarations: [
         AppComponent,

@@ -14,7 +14,7 @@ describe('LandingPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LandingPageComponent, LoginComponent ],
       imports: [ MatFormFieldModule, MatInputModule, BrowserAnimationsModule,
-        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule ]
+        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule, ReactiveFormsModule, FormsModule ]
     })
     .compileComponents();
   }));

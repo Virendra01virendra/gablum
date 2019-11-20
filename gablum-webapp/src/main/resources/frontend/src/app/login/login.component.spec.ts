@@ -13,7 +13,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [ MatFormFieldModule, MatInputModule, BrowserAnimationsModule,
-        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule ]
+        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule, ReactiveFormsModule, FormsModule ]
     })
     .compileComponents();
   }));
