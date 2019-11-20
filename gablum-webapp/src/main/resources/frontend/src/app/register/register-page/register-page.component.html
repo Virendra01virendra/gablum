@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <mat-card-content>
-        <form class="regForm">
+        <form class="regForm" [formGroup]="registrationForm">
            <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Name</mat-label>
                 <input  matInput name="fname" required>
@@ -44,14 +44,18 @@
                 <input  matInput name="role" required>
             </mat-form-field>
 
-            <mat-form-field class="fullWidth" appearance="outline">
-                <mat-label>Domain Name</mat-label>
-                <input  matInput name="domainName" required>
+            <mat-form-field appearance="outline">
+                <mat-label class="form-label">Business Domain:</mat-label>
+                <input matInput type="text" disabled value="Agriculture" formControName="businessDomain">
             </mat-form-field>
-
-            <mat-form-field class="fullWidth" appearance="outline">
-                <mat-label>Sub-Domain</mat-label>
-                <input  matInput name="subDomain" required>
+            
+            <mat-form-field appearance="outline" >
+                <mat-label class="form-label" >Business Sub-domain:</mat-label>
+                <mat-select id="subDomain-select" formControlName="businessSubDomain">
+                <mat-option value="" disabled>Choose your Sub-domain</mat-option>
+                <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
+                </mat-option>
+                </mat-select>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">

@@ -6,7 +6,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
-import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule, MatRadioModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatFormFieldModule,
+        MatButtonModule, MatRadioModule, MatOptionModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [RegisterPageComponent],
@@ -20,7 +21,9 @@ import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule, M
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatRadioModule
+    MatRadioModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class RegisterModule { }

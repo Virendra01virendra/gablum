@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { MatOptionModule, MatSelectModule } from '@angular/material';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 @NgModule({
@@ -37,6 +38,8 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

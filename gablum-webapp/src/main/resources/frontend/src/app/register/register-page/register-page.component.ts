@@ -9,6 +9,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class RegisterPageComponent implements OnInit {
 
+  subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+
   registrationForm = new FormGroup({
     name : new FormControl(''),
     email : new FormControl(''),
@@ -19,8 +21,8 @@ export class RegisterPageComponent implements OnInit {
     businessLicense : new FormControl(''),
     BCryptPassword : new FormControl(''),
     role : new FormControl(''),
-    domainName : new FormControl(''),
-    subDomain : new FormControl('')
+    businessDomain : new FormControl(''),
+    businessSubDomain : new FormControl('')
   });
   constructor() { }
 

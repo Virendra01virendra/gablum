@@ -5,7 +5,8 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NavbarModule } from './common/navbar/navbar.module';
 import { LoginComponent } from './login/login.component';
-import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule, MatRadioModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule,
+        MatRadioModule, MatInputModule, MatOptionModule, MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,7 +24,9 @@ describe('AppComponent', () => {
         MatRadioModule,
         MatToolbarModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MatOptionModule,
+        MatSelectModule
       ],
       declarations: [
         AppComponent,
