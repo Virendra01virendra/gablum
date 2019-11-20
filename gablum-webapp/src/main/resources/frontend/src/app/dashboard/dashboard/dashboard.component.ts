@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   }
 
   send() {
-    this.stompClient.send('/app/bids.addbid', {}, 'hello');
+    this.stompClient.send('/bids.addbid', {}, 'hello');
     this.stompClient.subscribe('/topic/newbid', msg => {
       console.log(msg);
       console.log(msg.body);
