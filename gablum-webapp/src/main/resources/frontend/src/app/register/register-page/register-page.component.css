@@ -1,0 +1,30 @@
+.header{
+    background:lightgray;
+}
+
+.head{
+    font-size: 2rem;
+    /* margin: 40%; */
+}
+.regForm{
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 35%; */
+    padding-right: 60%;
+  }
+   
+.fullWidth{
+    margin-left: 4%;
+  }
+
+.regForm{
+    /* margin-left: 30%; */
+    margin-top: 1.0%;
+}
+
+.btn{
+  /* display: flex;
+    flex-direction: column; */
+    margin-left: 4%;
+    margin-bottom: 5%;
+}

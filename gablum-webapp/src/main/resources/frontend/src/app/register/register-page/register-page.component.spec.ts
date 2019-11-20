@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterPageComponent } from './register-page.component';
+import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule, MatRadioModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
@@ -8,7 +11,9 @@ describe('RegisterPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterPageComponent ]
+      declarations: [ RegisterPageComponent ],
+      imports: [ MatFormFieldModule, MatInputModule, BrowserAnimationsModule,
+        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule ]
     })
     .compileComponents();
   }));

@@ -6,12 +6,6 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./new-proposal-page.component.css']
 })
 export class NewProposalPageComponent implements OnInit {
-
-  productSpecsForm = new FormGroup({
-    subDomain: new FormControl(''),
-    productName: new FormControl(''),
-    quantity: new FormControl('')
-  });
   constructor() { }
 
   ngOnInit() {

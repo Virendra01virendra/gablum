@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-
 @Component({
-  selector: 'app-register-page',
-  templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class RegisterPageComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
-  registrationForm = new FormGroup({
+  loginForm = new FormGroup({
     name : new FormControl(''),
     email : new FormControl(''),
     address : new FormControl(''),
@@ -22,6 +21,7 @@ export class RegisterPageComponent implements OnInit {
     domainName : new FormControl(''),
     subDomain : new FormControl('')
   });
+
   constructor() { }
 
   ngOnInit() {
