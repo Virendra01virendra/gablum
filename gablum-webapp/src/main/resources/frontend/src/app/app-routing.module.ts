@@ -33,10 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
-  },
-  {
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full'},

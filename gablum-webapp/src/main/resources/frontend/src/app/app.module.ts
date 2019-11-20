@@ -15,14 +15,12 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './register/login/login.component';
 // import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
