@@ -1,4 +1,4 @@
-package com.gablum.usermanagement.user.security;
+package com.gablum.gateway.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Entry points
         http.authorizeRequests()
-//                .antMatchers("/**/signin/**").permitAll()
+                .antMatchers("/**/signin/**").permitAll()
                 // Disallow everything else..
-                .anyRequest().permitAll();
+                .anyRequest().authenticated();
 
         // If a user try to access a resource without having enough permissions
         http.exceptionHandling().accessDeniedPage("/login");

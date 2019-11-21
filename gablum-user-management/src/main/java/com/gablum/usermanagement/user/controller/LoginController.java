@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class LoginController {
     @CrossOrigin("*")
     @PostMapping("/signin")
     @ResponseBody
-    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
         String token = iLoginService.login(loginRequest.getUsername(),loginRequest.getPassword());
         HttpHeaders headers = new HttpHeaders();
         List<String> headerlist = new ArrayList<>();
@@ -36,12 +38,14 @@ public class LoginController {
         exposeList.add("Authorization");
         headers.setAccessControlExposeHeaders(exposeList);
         headers.set("Authorization", token);
+        Cookie cookie = new Cookie("Authorization", token);
+        response.addCookie(cookie);
         return new ResponseEntity<AuthResponse>(new AuthResponse(token), headers, HttpStatus.CREATED);
     }
     @CrossOrigin("*")
     @PostMapping("/signout")
     @ResponseBody
-    public ResponseEntity<AuthResponse> logout (@RequestHeader(value="Authorization") String token) {
+    public ResponseEntity<AuthResponse> logout (@RequestHeader(value="Authorization") String token, HttpServletResponse response) {
         HttpHeaders headers = new HttpHeaders();
         if (iLoginService.logout(token)) {
             headers.remove("Authorization");
