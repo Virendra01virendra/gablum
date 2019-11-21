@@ -3,14 +3,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarModule } from './common/navbar/navbar.module';
+import { AppCommonModule } from './common/common.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        NavbarModule
+        AppCommonModule
       ],
       declarations: [
         AppComponent,
