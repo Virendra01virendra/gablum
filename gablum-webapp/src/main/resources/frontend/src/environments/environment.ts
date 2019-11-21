@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  wsURL: 'http://localhost:8080/api/auctions/ws'
+  wsURL: 'https://gablum-dev.stackroute.io/api/auctions/ws'
 };
 
 /*

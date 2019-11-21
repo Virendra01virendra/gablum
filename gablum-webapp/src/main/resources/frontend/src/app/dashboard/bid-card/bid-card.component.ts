@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Bid } from 'src/app/interfaces/bid';
 
 @Component({
   selector: 'app-bid-card',
@@ -7,7 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BidCardComponent implements OnInit {
 
-  constructor() { }
+  @Input()bid: object;
+
+  constructor() {
+    if (!this.bid) {
+      this.bid = {
+        seller: 'A GLorious Seller',
+        price: 100,
+        unitPrice: 12.5,
+        rank: 2,
+        scores: {
+          one: 4,
+          two: 7,
+          three: 6
+        },
+        totalScore: 17,
+        profileUrl: 'https://picsum.photos/400/400'
+      };
+    }
+  }
 
   ngOnInit() {
   }

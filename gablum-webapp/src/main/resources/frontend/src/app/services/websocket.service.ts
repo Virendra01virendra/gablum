@@ -21,9 +21,8 @@ export class WebsocketService {
     this.stompClient.heartbeatOutgoing = 2000;
   }
 
-  connect() {
-    this.stompClient.connect({}, connectMessage => {
-    });
+  connect(connectCb = connectMessage => {console.log(connectMessage)}) {
+    this.stompClient.connect({}, connectCb);
   }
 
   sendBid(bid: Bid) {

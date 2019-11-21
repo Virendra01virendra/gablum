@@ -5,7 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DetailComponent } from './detail/detail.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionsListComponent } from './auctions-list/auctions-list.component';
-
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { AuctionsListComponent } from './auctions-list/auctions-list.component';
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    MaterialModule
   ]
 })
 export class DashboardModule { }
