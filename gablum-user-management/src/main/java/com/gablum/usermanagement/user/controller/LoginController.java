@@ -2,7 +2,9 @@ package com.gablum.usermanagement.user.controller;
 
 import com.gablum.usermanagement.user.model.AuthResponse;
 import com.gablum.usermanagement.user.model.LoginRequest;
+import com.gablum.usermanagement.user.model.SignUpRequest;
 import com.gablum.usermanagement.user.services.ILoginService;
+import com.gablum.usermanagement.user.services.ISignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ public class LoginController {
 
     @Autowired
     private ILoginService iLoginService;
+
 
     @CrossOrigin("*")
     @PostMapping("/signin")

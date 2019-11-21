@@ -27,6 +27,8 @@ public class User {
     private String password;
     private String address;
     private long phone;
+    private String companyName;
+    private String userName;
     private String businessLicense;
 
     public static enum role {

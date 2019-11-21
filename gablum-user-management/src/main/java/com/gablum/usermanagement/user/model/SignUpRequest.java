@@ -1,5 +1,12 @@
 package com.gablum.usermanagement.user.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@AllArgsConstructor
+@Setter
+@Getter
 public class SignUpRequest {
 
     private String name;
