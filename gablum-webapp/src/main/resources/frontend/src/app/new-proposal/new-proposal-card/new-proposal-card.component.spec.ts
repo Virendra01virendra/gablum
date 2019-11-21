@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewProposalForm3Component } from './new-proposal-form3.component';
+import { NewProposalCardComponent } from './new-proposal-card.component';
 
-describe('NewProposalForm3Component', () => {
-  let component: NewProposalForm3Component;
-  let fixture: ComponentFixture<NewProposalForm3Component>;
+describe('NewProposalCardComponent', () => {
+  let component: NewProposalCardComponent;
+  let fixture: ComponentFixture<NewProposalCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewProposalForm3Component ]
+      declarations: [ NewProposalCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewProposalForm3Component);
+    fixture = TestBed.createComponent(NewProposalCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

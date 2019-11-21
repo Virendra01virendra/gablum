@@ -3,21 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { NewProposalRoutingModule } from './new-proposal-routing.module';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { NewProposalPageComponent} from './new-proposal-page/new-proposal-page.component';
-import { NewProposalForm2Component } from './new-proposal-form2/new-proposal-form2.component';
-import { NewProposalForm1Component } from './new-proposal-form1/new-proposal-form1.component';
-import { NewProposalForm3Component } from './new-proposal-form3/new-proposal-form3.component';
+import { NewProposalForm1Component } from './new-proposal-form/new-proposal-form1.component';
+import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
+import { MatCardModule } from '@angular/material';
 
 
 @NgModule({
-  declarations: [NewProposalPageComponent, NewProposalForm2Component, NewProposalForm1Component, NewProposalForm3Component],
+  declarations: [NewProposalPageComponent, NewProposalForm1Component, NewProposalCardComponent],
   imports: [
     CommonModule,
     NewProposalRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    FormsModule,
+    MaterialModule,
+    MatCardModule
   ]
 })
 export class NewProposalModule { }
