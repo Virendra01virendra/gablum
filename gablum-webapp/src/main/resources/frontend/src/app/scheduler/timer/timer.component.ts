@@ -22,13 +22,13 @@ export class TimerComponent implements OnInit {
   constructor(private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.startAt = 86400000;
+    this.startAt = 86400000; /** Here the duration for which timer is to be run will be bound */
     this.start();
   }
     public start() {
     this.timeRemaining = this.formatValue(this.startAt);
     this.changeDetector.detectChanges();
-    const t: Observable<number> = interval(1000);
+    const t: Observable<number> = interval(1);
     this.currentSubscription = t.pipe(take(this.startAt) , map(v => this.startAt - v)).subscribe(v => {
     this.timeRemaining = this.formatValue(v);
     this.changeDetector.detectChanges();

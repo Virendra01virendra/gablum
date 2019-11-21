@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarModule } from './common/navbar/navbar.module';
+import { AppCommonModule } from './common/common.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HistoryModule } from './history/history.module';
 import { InboxModule } from './inbox/inbox.module';
@@ -14,6 +14,7 @@ import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NavbarModule,
+    AppCommonModule,
     HistoryModule,
     InboxModule,
     CalendarModule,
@@ -31,7 +32,8 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     RegisterModule,
     NewProposalModule,
     ContractsModule,
-    SchedulerModule
+    SchedulerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
