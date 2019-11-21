@@ -4,14 +4,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DetailComponent } from './detail/detail.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
-
+import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     DetailComponent,
-    BidCardComponent
+    BidCardComponent,
+    AuctionsListComponent
   ],
   imports: [
     CommonModule,

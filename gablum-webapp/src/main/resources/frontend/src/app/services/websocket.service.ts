@@ -3,6 +3,7 @@ import { Stomp, CompatClient } from '@stomp/stompjs';
 import * as sockjs from 'sockjs-client';
 import { Bid } from '../interfaces/bid';
 import { CommunicatorService } from './communicator.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class WebsocketService {
   private stompClient: CompatClient;
 
   constructor(private comms: CommunicatorService) {
-    this.socket = new sockjs('http://localhost:8080/api/auctions/ws');
+    this.socket = new sockjs(environment.wsURL);
     this.stompClient = Stomp.over(this.socket);
     this.stompClient.heartbeatIncoming = 2000;
     this.stompClient.heartbeatOutgoing = 2000;
