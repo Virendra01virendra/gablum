@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidCardComponent } from './bid-card.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BidCardComponent', () => {
   let component: BidCardComponent;
@@ -8,7 +10,11 @@ describe('BidCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidCardComponent ]
+      declarations: [ BidCardComponent ],
+      imports: [
+        MaterialModule,
+        BrowserAnimationsModule
+      ]
     })
     .compileComponents();
   }));

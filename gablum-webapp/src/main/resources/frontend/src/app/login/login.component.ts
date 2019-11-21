@@ -41,8 +41,7 @@ export class LoginComponent implements OnInit {
             // console.log(loginToken.accessToken);
             if (loginToken === undefined || loginToken === null) {
 
-            }
-            else {
+            } else {
               this.router.navigate(['dashboard']);
             }
           }

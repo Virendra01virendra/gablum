@@ -6,6 +6,7 @@ import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule, M
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
@@ -14,9 +15,19 @@ describe('LandingPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LandingPageComponent, LoginComponent ],
-      imports: [ MatFormFieldModule, MatInputModule, BrowserAnimationsModule,
-        MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule, ReactiveFormsModule,
-        FormsModule, RouterTestingModule ]
+      imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatToolbarModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterTestingModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   }));
