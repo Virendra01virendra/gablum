@@ -77,7 +77,7 @@ public class AuctionRepoTests {
         );
 
         Auction auctionToDelete = auctionRepo.findByAuctionId(testAuction1.getAuctionId()).orElse(null);
-        auctionRepo.delete(auctionToDelete);
+        auctionRepo.deleteByAuctionId(auctionToDelete.getAuctionId());
 
         Assertions.assertEquals(
                 1,
