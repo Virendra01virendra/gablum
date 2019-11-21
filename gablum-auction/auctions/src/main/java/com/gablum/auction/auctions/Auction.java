@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.AccessLevel;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -20,8 +18,6 @@ import java.util.UUID;
 @ToString
 @Document(collection = "auctions")
 public class Auction {
-    @Id
-    private ObjectId _id;
 
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
@@ -31,14 +27,14 @@ public class Auction {
     boolean auctionStatus;
 
     private UUID participantsVerificationId;
-    private List<UUID> selectedParticipantList;
+    private List<String> selectedParticipantList; // usernames
     private List<UUID> bidIdList;
 
     private Date createdOn;
     private Date updatedOn;
 
-    private UUID createdBy;
-    private UUID updatedBy;
+    private String createdBy; // username
+    private String updatedBy; // username
 
     private Date auctionStartDate;
     private Date auctionEndDate;
