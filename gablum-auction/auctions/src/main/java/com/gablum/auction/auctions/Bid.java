@@ -3,17 +3,17 @@ package com.gablum.auction.auctions;
 import java.util.Date;
 
 public class Bid {
-    private int price;
+    private float price;
     private int creditPeriod;
     private boolean qaqcCertificate;
     private boolean typeOfSupply;
     private Date timeOfDelivery;
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

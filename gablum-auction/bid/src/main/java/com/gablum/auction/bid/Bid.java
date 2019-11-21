@@ -150,9 +150,7 @@ public class Bid {
                Date updatedOn) {
         this.bidId = bidId;
         this.participantId = participantId;
-        this.score = score(price, timeOfDelivery, creditPeriod, qaqcCertificate, typeOfSupply,
-                priceSpec, timeOfDeliverySpec, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec, weightPriceSpec,
-                weightTimeOfDeliverySpec, weightCreditPeriodSpec, weightQaqcCertificateSpec, weightTypeOfSupplySpec);
+        this.score = score;
         this.price = price;
         this.creditPeriod = creditPeriod;
         this.qaqcCertificate = qaqcCertificate;

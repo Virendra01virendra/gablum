@@ -1,0 +1,44 @@
+form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30%;
+    padding-right: 30%;
+    margin: 3%;
+  }
+mat-toolbar {
+    display: flex;
+    flex-direction: row;
+
+}
+h1 {
+    align-content: center;
+  }
+
+
+.header {
+    color: black;
+    background-color: transparent;
+    font-size: 120%;
+  }
+.head {
+    align-content: center;
+    margin: 30%;
+  }
+mat-label {
+    color: gray;   
+}
+
+mat-hint {
+    color: red;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: purple;
+    opacity: 1;
+    
+}
+
+mat-radio-group{
+    margin: 3%;
+}
+
