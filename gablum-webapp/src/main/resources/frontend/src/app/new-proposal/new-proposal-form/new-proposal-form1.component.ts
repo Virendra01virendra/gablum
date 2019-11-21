@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 
 export class NewProposalForm1Component implements OnInit {
 
+  showTicks = false;
+
   constructor(private router: Router) { }
 
   subDomains = ['Raw material', 'Crops', 'Machinery'];
@@ -28,7 +30,9 @@ export class NewProposalForm1Component implements OnInit {
   value = 0;
   vertical = false;
 
-  paramForm = new FormGroup({
+
+
+    paramForm = new FormGroup({
     price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(2)]),
     priceWeight: new FormControl(''),
     deliveryDate: new FormControl('', Validators.required),
@@ -48,7 +52,9 @@ export class NewProposalForm1Component implements OnInit {
     auctionEndDate: new FormControl('')
   });
 
-
+  formatLabel(value: number) {
+    return value;
+  }
   ngOnInit() {
   }
 
