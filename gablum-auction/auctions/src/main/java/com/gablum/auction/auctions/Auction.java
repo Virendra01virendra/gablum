@@ -23,8 +23,9 @@ public class Auction {
     @Setter(AccessLevel.NONE)
     private UUID auctionId = UUID.randomUUID();
     private UUID proposalId;
+    private String auctionName;
 
-    boolean auctionStatus;
+    boolean isAuctionActive;
 
     private UUID participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
