@@ -3,19 +3,29 @@
 </mat-toolbar>
 
     <mat-card-content>
-        <form class="logForm" [formGroup]="loginForm">
+        <form class="logForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Username</mat-label>
-                <input  matInput name="userName" required>
+                <input  matInput formControlName="userName" required/>
+                <!-- <div *ngIf="userName.inavlid || userName.touched">
+                    <small *ngIf="userName.errors?.required" class="text-danger">*Username is required</small> 
+                </div>  -->
+                <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input  matInput name="BCryptPassword" required>
+                <input  matInput formControlName="password" required>
+                <!-- <div *ngIf="BCryptPassword.inavlid || BCryptPassword.touched">
+                    <small *ngIf="BCryptPassword.errors?.required" class="text-danger">*Password is required</small> 
+                </div>  -->
+                <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage2()}}</mat-error>
             </mat-form-field>
                 
             <div class="btn">
-                <button mat-raised-button color="primary">Login</button>
+                <button mat-raised-button color="primary" [disabled]='!loginForm.valid'
+                type="submit">Login</button>
+                &nbsp; &nbsp; <u>Forgot Password?</u>
             </div>
         </form>
     </mat-card-content>
