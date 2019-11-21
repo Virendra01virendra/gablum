@@ -9,6 +9,7 @@ import { NewProposalPageComponent} from './new-proposal-page/new-proposal-page.c
 import { NewProposalForm1Component } from './new-proposal-form/new-proposal-form1.component';
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { MatCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatCardModule } from '@angular/material';
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    MatCardModule
+    MatCardModule,
+    FlexLayoutModule
   ]
 })
 export class NewProposalModule { }

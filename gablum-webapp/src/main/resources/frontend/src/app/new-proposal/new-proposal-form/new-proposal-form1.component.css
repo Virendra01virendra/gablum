@@ -1,11 +1,11 @@
-.body {
+/* .body {
 background-image: url(/src/main/resources/frontend/src/assets/night.jpg);
   background-repeat: no-repeat;
   background: 100%;
 }
 .form-container {
-  /* background-image: url(../../../assets/night.jpg); */
-  background-color: #b1b967;
+  display: flex;
+  flex-direction: row;
   text-align: center; 
   margin: 50px 250px;
 }
@@ -31,7 +31,7 @@ background-image: url(/src/main/resources/frontend/src/assets/night.jpg);
   .head {
     align-content: center;
     margin: 30%;
-  }
+  } */
 
   
 
