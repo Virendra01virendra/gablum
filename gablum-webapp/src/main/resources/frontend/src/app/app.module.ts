@@ -19,7 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MaterialModule } from './material/material.module';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,10 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     AuctionModule,
     MaterialModule,
-    
+    MDBBootstrapModule
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

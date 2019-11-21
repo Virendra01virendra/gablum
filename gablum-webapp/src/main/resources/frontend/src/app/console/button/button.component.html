@@ -2,34 +2,7 @@
 <p>Sample Row with Live Auction and a button to enable console
 <button (click)="showPortal = true">open me!</button>
 </p>
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Position Column -->
-  <ng-container matColumnDef="rank">
-    <mat-header-cell *matHeaderCellDef> Rank </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.rank}} </mat-cell>
-  </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="bids">
-    <mat-header-cell *matHeaderCellDef> Bids </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.bids}} </mat-cell>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="xfactor">
-    <mat-header-cell *matHeaderCellDef> X-Factor</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.xfactor}} </mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
 <app-window *ngIf="showPortal">
   <h2>This will be the view where We will have a list of sellers for Live Auctions </h2>
   <div class="tableview">
