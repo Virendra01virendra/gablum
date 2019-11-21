@@ -7,13 +7,13 @@ services:
     expose:
       - 8000
     env_file:
-      - env_production.env
+      - env_local.env
     restart: on-failure
 
   discovery:
     build:
       context: ./discovery-server
-    env_file: env_production.env
+    env_file: env_local.env
     expose:
       - 8001
     ports:
@@ -34,7 +34,7 @@ services:
   gateway:
     build:
       context: ./gateway
-    env_file: env_production.env
+    env_file: env_local.env
     expose:
       - 8080
     ports:
@@ -55,7 +55,7 @@ services:
   user-service:
     build:
       context: ./gablum-user-management
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -72,7 +72,7 @@ services:
   webapp:
     build:
       context: ./gablum-webapp
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -89,7 +89,7 @@ services:
   auctions:
     build:
       context: ./gablum-auction/auctions
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -106,7 +106,7 @@ services:
   bid:
     build:
       context: ./gablum-auction/bid
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -123,7 +123,7 @@ services:
   proposals:
     build:
       context: ./gablum-proposals
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -140,7 +140,7 @@ services:
   scheduler:
     build:
       context: ./gablum-scheduler
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -157,7 +157,7 @@ services:
   contracts:
     build:
       context: ./gablum-contracts
-    env_file: env_production.env
+    env_file: env_local.env
     depends_on:
       - discovery
     entrypoint:
@@ -170,7 +170,26 @@ services:
       - -jar
       - /usr/app/app.jar
     restart: on-failure
-  db:
-    image: mongo:latest
+  
+  mongodb:
+    image: 'mongo:latest'
+    restart: always
+    volumes:
+      - '$HOME/mongo_data/gablumDB:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: gablum
+      MONGO_INITDB_ROOT_PASSWORD: GaB1uM
     ports:
-      - "27017:27017"
+      - '27017:27017'
+
+  rabbitmq:
+    image: rabbitmq:management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - $HOME/rabbitmq_data/gablumMQ:/data/db
+    environment:
+      RABBITMQ_DEFAULT_USER: "gablum"
+      RABBITMQ_DEFAULT_PASS: "GaB1uM"
