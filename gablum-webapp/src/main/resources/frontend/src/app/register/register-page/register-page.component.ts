@@ -126,4 +126,8 @@ export class RegisterPageComponent implements OnInit {
     return this.role.hasError('required') ? '*Required' :
     '';
   }
+
+  onSubmit() {
+    console.log(this.registrationForm.value);
+  }
 }
