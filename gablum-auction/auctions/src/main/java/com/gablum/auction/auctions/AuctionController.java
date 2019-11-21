@@ -5,16 +5,21 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "localhost:4200")
 public class AuctionController {
 
     @Autowired
     private AuctionService auctionService;
 
+    @Autowired
+    private SimpMessageSendingOperations messageSendingOperations;
+
     @GetMapping("/echo")
     public String getEcho() {
+        messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
         return "auctions";
     }
 

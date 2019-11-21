@@ -6,9 +6,12 @@ import { DetailComponent } from './detail/detail.component';
 import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 
 
-
 @NgModule({
-  declarations: [DashboardComponent, DetailComponent, AuctionsListComponent],
+  declarations: [
+    DashboardComponent,
+    DetailComponent,
+    AuctionsListComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule

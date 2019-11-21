@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidFormComponent } from './bid-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../../material/material.module';
+
+
 
 describe('BidFormComponent', () => {
   let component: BidFormComponent;
@@ -8,7 +12,8 @@ describe('BidFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidFormComponent ]
+      declarations: [ BidFormComponent ],
+      imports: [ ReactiveFormsModule, MaterialModule ]
     })
     .compileComponents();
   }));

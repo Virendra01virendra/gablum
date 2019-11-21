@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonComponent } from './button.component';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+import { WindowComponent } from '../window/window.component';
 
 
 describe('ButtonComponent', () => {
@@ -10,7 +11,8 @@ describe('ButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonComponent ]
+      declarations: [ ButtonComponent, WindowComponent ],
+      imports: [MatTableModule]
     })
     .compileComponents();
   }));

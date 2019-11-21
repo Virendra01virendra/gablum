@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
 
     Optional<Auction> findByAuctionId(UUID auctionId);
+    void deleteByAuctionId(UUID auctionId);
 }

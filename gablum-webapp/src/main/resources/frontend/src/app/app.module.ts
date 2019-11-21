@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarModule } from './common/navbar/navbar.module';
+import { NavbarMaterialModule } from './common/navbar/navbar-material.module';
+import { AppCommonModule } from './common/common.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { HistoryModule } from './history/history.module';
 import { InboxModule } from './inbox/inbox.module';
 import { CalendarModule } from './calendar/calendar.module';
@@ -14,7 +15,6 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { CommonModule } from '@angular/common';
 import { PortalModule } from '@angular/cdk/portal';
 import { ConsoleModule } from './console/console.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
@@ -30,8 +30,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NavbarModule,
     DashboardModule,
+    AppCommonModule,
     HistoryModule,
     InboxModule,
     CalendarModule,
@@ -45,7 +45,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     HttpClientModule,
     AuctionModule,
     MaterialModule,
-    MDBBootstrapModule
+    MDBBootstrapModule,
+    NavbarMaterialModule
 
 
 
