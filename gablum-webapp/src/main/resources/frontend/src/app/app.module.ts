@@ -18,7 +18,6 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-// import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -29,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AppCommonModule,
     HistoryModule,
@@ -37,13 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
-    BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule,
-    MatOptionModule,
-    MatSelectModule,
-    RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
