@@ -31,13 +31,13 @@ public class User {
     private String userName;
     private String businessLicense;
 
-    public static enum role {
+    public enum role {
         ADMIN, BUYER, SELLER
     }
-    public static enum domain {
+    public enum domain {
         Agriculture, Textile, Others
     }
-    public static enum subDomain {
+    public enum subDomain {
         RawMaterial, Equipments, Produce
     }
     private Set<Role> role = Set.of(new Role(1, "user"));

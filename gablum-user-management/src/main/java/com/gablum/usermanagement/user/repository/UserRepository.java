@@ -3,7 +3,6 @@ package com.gablum.usermanagement.user.repository;
 
 import com.gablum.usermanagement.user.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository

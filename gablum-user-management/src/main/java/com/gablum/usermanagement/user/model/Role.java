@@ -1,8 +1,6 @@
 package com.gablum.usermanagement.user.model;
 
 import lombok.AllArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @AllArgsConstructor
@@ -24,11 +22,6 @@ public class Role {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     @Override

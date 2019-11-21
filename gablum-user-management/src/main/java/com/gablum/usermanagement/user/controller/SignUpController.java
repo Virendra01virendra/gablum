@@ -1,31 +1,19 @@
 package com.gablum.usermanagement.user.controller;
 
 import com.gablum.usermanagement.user.exception.EmailExistsException;
-import com.gablum.usermanagement.user.model.AuthResponse;
-import com.gablum.usermanagement.user.model.SignUpRequest;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.repository.UserRepository;
-import com.gablum.usermanagement.user.services.ISignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SignUpController {
     @Autowired
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
-    private ISignUpService iSignUpService;
 
     @CrossOrigin("*")
     @PostMapping("/signup")

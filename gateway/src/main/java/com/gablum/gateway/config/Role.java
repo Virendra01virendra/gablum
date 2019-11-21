@@ -25,11 +25,6 @@ public class Role {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
