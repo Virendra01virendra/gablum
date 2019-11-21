@@ -22,6 +22,10 @@
     margin-top: 1.0%;
 }
 
+.form-label{
+    margin-left: 4%;
+}
+
 .btn{
   /* display: flex;
     flex-direction: column; */

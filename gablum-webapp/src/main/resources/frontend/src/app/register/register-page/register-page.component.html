@@ -3,53 +3,69 @@
 </mat-toolbar>
 
 <mat-card-content>
-        <form class="regForm" [formGroup]="registrationForm">
+        <form class="regForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
            <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Name</mat-label>
-                <input  matInput name="fname" required>
+                <input  matInput formControlName="name" required />
+                <mat-hint align="start">Not more then 60 characters long.</mat-hint>
+                <mat-error *ngIf="name.touched || name.invalid">{{getErrorMessage1()}}</mat-error>
             </mat-form-field>
+
+            <!-- <form class="logForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="fullWidth" appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input  matInput formControlName="userName" required/>
+                    <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
+                </mat-form-field> -->
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input  matInput name="email" required>
+                <input  matInput formControlName="email" required />
+                <mat-error *ngIf="email.touched || email.invalid">{{getErrorMessage2()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Address</mat-label>
-                <input  matInput name="address" required>
+                <input  matInput formControlName="address" required />
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input  matInput name="phone" required>
+                <input  matInput formControlName="phone" placeholder="+91" required />
+                <mat-error *ngIf="phone.touched || phone.invalid">{{getErrorMessage3()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Company Name</mat-label>
-                <input  matInput name="cName" required>
+                <input  matInput formControlName="companyName" required>
+                <mat-error *ngIf="companyName.touched || companyName.invalid">{{getErrorMessage4()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Username</mat-label>
-                <input  matInput name="userName" required>
+                <input  matInput formControlName="userName" required>
+                <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage5()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Business License No.</mat-label>
-                <input  matInput name="businessLicense" required>
+                <input  matInput formControlName="businessLicense" required>
+                <mat-hint align="start">*GSTIN Egs: 27AAPFU0939F1ZV, 27AASCS2460H1Z0</mat-hint>
+                <mat-error *ngIf="businessLicense.touched || businessLicense.invalid">{{getErrorMessage7()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Role</mat-label>
-                <input  matInput name="role" required>
+                <input  matInput formControlName="role" required>
+                <mat-error *ngIf="role.touched || role.invalid">{{getErrorMessage8()}}</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="fullWidth">
                 <mat-label class="form-label">Business Domain:</mat-label>
                 <input matInput type="text" disabled value="Agriculture" formControName="businessDomain">
             </mat-form-field>
             
-            <mat-form-field appearance="outline" >
+            <mat-form-field appearance="outline" class="fullWidth" >
                 <mat-label class="form-label" >Business Sub-domain:</mat-label>
                 <mat-select id="subDomain-select" formControlName="businessSubDomain">
                 <mat-option value="" disabled>Choose your Sub-domain</mat-option>
@@ -60,7 +76,8 @@
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Set Password</mat-label>
-                <input  matInput name="BCryptPassword" required>
+                <input  matInput formControlName="password" required>
+                <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage6()}}</mat-error>
             </mat-form-field>        
             
             <div class="btn">

@@ -7,18 +7,12 @@
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Username</mat-label>
                 <input  matInput formControlName="userName" required/>
-                <!-- <div *ngIf="userName.inavlid || userName.touched">
-                    <small *ngIf="userName.errors?.required" class="text-danger">*Username is required</small> 
-                </div>  -->
                 <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input  matInput formControlName="password" required>
-                <!-- <div *ngIf="BCryptPassword.inavlid || BCryptPassword.touched">
-                    <small *ngIf="BCryptPassword.errors?.required" class="text-danger">*Password is required</small> 
-                </div>  -->
                 <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage2()}}</mat-error>
             </mat-form-field>
                 
