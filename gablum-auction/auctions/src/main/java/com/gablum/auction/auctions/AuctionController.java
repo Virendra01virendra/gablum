@@ -13,15 +13,29 @@ import java.util.UUID;
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
 
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.messaging.MessageChannel;
+
+
 @RestController
 @CrossOrigin(origins = "http://localhost:8080/auctions/auctions/bid")
 public class AuctionController {
 
     @Autowired
+
     private AuctionService auctionService;
+
+    private SimpMessageSendingOperations messageSendingOperations;
+
 
     @GetMapping("/echo")
     public String getEcho() {
+        messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
         return "auctions";
     }
 
@@ -52,4 +66,6 @@ public class AuctionController {
                 400, d,12, true, true,
                 1,1,1,1,1);
     }
+
+    
 }

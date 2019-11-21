@@ -5,6 +5,7 @@ import { AuctionRoutingModule } from './auction-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -13,7 +14,9 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     CommonModule,
     AuctionRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ]
 })
 export class AuctionModule { }
