@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContractComponent } from './contract/contract.component';
 import { ContractRoutingModule } from './contract-routing.module';
+// import { MaterialModule } from '../material/material-module';
+import { MatCardModule, MatButtonModule, MatListModule } from '@angular/material';
 
 
 
@@ -9,7 +11,11 @@ import { ContractRoutingModule } from './contract-routing.module';
   declarations: [ContractComponent],
   imports: [
     CommonModule,
-    ContractRoutingModule
+    ContractRoutingModule,
+    // MaterialModule,
+    MatCardModule,
+    MatButtonModule,
+    MatListModule
   ]
 })
 export class ContractsModule { }

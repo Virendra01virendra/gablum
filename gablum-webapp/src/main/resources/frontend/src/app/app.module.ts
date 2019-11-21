@@ -13,6 +13,7 @@ import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { ContractsModule } from './contracts/contracts.module';
+// import { MaterialModule } from './material/material-module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ContractsModule } from './contracts/contracts.module';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
-    ContractsModule
+    ContractsModule,
+    // MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

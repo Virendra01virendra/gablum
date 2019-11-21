@@ -11,13 +11,16 @@ import { NetworkingService } from 'src/app/services/networking.service';
 export class ContractComponent implements OnInit {
   public contractData: any;
   public productName: string;
-
+  public sellerName: string;
+  public companyName: string;
+  public deliveryDate: Date;
+  public creditPeriod: number;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private communicator: CommunicatorService,
-    private networking: NetworkingService
+    // private router: Router,
+    // private route: ActivatedRoute,
+    // private communicator: CommunicatorService,
+    // private networking: NetworkingService
   ) { }
 
   ngOnInit() {

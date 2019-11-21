@@ -1,0 +1,13 @@
+.contract-card {
+    max-width: 50%;
+    float: center;
+    /* align-content: center; */
+    text-align: content;
+    box-shadow: 10px 10px 10px grey;
+    font-size: 40rem;
+    margin-left: 10%;
+}
+
+.compact-contract-card {
+    background-color: lightgray;
+}
