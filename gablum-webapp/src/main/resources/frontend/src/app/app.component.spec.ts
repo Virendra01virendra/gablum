@@ -3,19 +3,18 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarModule } from './common/navbar/navbar.module';
 import { LoginComponent } from './login/login.component';
 import { MatToolbarModule, MatCardModule, MatFormFieldModule, MatButtonModule,
         MatRadioModule, MatInputModule, MatOptionModule, MatSelectModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppCommonModule } from './common/common.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        NavbarModule,
         MatFormFieldModule,
         MatInputModule,
         BrowserAnimationsModule,
@@ -26,7 +25,8 @@ describe('AppComponent', () => {
         ReactiveFormsModule,
         FormsModule,
         MatOptionModule,
-        MatSelectModule
+        MatSelectModule,
+        AppCommonModule
       ],
       declarations: [
         AppComponent,

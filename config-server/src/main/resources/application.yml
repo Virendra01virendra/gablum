@@ -9,3 +9,6 @@ spring:
       server:
         git:
           uri: ${CONFIG_URL}
+          default-label: ${CONFIG_LABEL}
+          username: ${CONFIG_USER}
+          password: ${CONFIG_PASS}

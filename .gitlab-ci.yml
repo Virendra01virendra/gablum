@@ -16,7 +16,7 @@ java-build:
         - gablum-ci-jobs
 
 java-tests:
-    image: tastycats/gablumdeps:latest
+    image: tastycats/gablumdeps:not-alpine
     stage: test
     script:
         - mvn test -PskipAngular
@@ -32,7 +32,7 @@ java-lint:
         - gablum-ci-jobs
 
 java-coverage:
-    image: tastycats/gablumdeps:latest
+    image: tastycats/gablumdeps:not-alpine
     stage: test
     script:
         - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
@@ -82,7 +82,7 @@ release_deploy:
         url: http://gablum-dev.stackroute.io
     when: on_success
     only:
-        - feature/boilerplate
+        - release_v010
 
 production_deploy:
     image: ubuntu:latest

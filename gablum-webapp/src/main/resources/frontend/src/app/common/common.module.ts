@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarMaterialModule } from './navbar-material.module';
-import { NavbarComponent } from './navbar.component';
+import { NavbarMaterialModule } from './navbar/navbar-material.module';
+import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -21,4 +21,4 @@ import { BrowserModule } from '@angular/platform-browser';
     NavbarComponent
   ]
 })
-export class NavbarModule { }
+export class AppCommonModule { }
