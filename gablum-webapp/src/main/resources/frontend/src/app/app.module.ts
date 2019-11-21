@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { NavbarModule } from './common/navbar/navbar.module';
+import { AppCommonModule } from './common/common.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HistoryModule } from './history/history.module';
 import { InboxModule } from './inbox/inbox.module';
@@ -21,7 +21,7 @@ import { NewProposalModule } from './new-proposal/new-proposal.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NavbarModule,
+    AppCommonModule,
     HistoryModule,
     InboxModule,
     CalendarModule,
