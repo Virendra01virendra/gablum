@@ -12,11 +12,8 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
-<<<<<<< HEAD
 import { MaterialModule } from './material/material.module';
-=======
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> feature/auctions
 
 @NgModule({
   declarations: [
@@ -33,11 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
-<<<<<<< HEAD
-    MaterialModule
-=======
+    MaterialModule,
     HttpClientModule
->>>>>>> feature/auctions
   ],
   providers: [],
   bootstrap: [AppComponent]
