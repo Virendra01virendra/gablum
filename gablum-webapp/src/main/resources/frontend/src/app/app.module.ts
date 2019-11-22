@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { ContractsModule } from './contracts/contracts.module';
 // import { MaterialModule } from './material/material-module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -33,8 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
     NewProposalModule,
     ContractsModule,
     // MaterialModule
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })

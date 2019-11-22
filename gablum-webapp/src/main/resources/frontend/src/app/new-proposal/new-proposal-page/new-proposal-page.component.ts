@@ -12,4 +12,6 @@ export class NewProposalPageComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
 }
