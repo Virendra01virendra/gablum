@@ -12,8 +12,10 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { LoginComponent } from './login/login.component';
+import { MatOptionModule, MatSelectModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 import { ContractsModule } from './contracts/contracts.module';
-// import { MaterialModule } from './material/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -24,9 +26,15 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     LandingPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule,
+    MatOptionModule,
+    MatSelectModule,
+    DashboardModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AppCommonModule,
     HistoryModule,
@@ -35,8 +43,10 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     ContractsModule,
-    // MaterialModule
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,

@@ -1,0 +1,22 @@
+mat-expansion-panel {
+    width: 30em;
+}
+
+.bid-primary-container {
+    padding: 1em;
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+/* mat-chip-list {
+    width: 100%;
+}
+
+.mat-chip-list-wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+} */
