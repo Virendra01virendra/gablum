@@ -12,12 +12,14 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { ContractsModule } from './contracts/contracts.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
+    ContractsModule,
+    SchedulerModule,
     HttpClientModule
   ],
   providers: [],
