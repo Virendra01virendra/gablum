@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,19 +17,24 @@ import { CommonModule } from '@angular/common';
 import { PortalModule } from '@angular/cdk/portal';
 import { ConsoleModule } from './console/console.module';
 import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { MatOptionModule, MatSelectModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
-import { MaterialModule } from './material/material.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-
-
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     DashboardModule,
     AppCommonModule,
@@ -47,11 +52,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     AuctionModule,
     MaterialModule,
     MDBBootstrapModule,
-    NavbarMaterialModule
-
-
-
+    NavbarMaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })
