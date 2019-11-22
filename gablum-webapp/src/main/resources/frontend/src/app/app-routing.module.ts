@@ -33,22 +33,19 @@ const routes: Routes = [
     path: 'new',
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
-  // {
-  //   path: 'login',
-  //   loadChildren: () => import('./app.module').then(m => m.AppModule)
-  // },
   {
     path: 'contracts',
     loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
   },
   {
     path: 'timer',
-    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
+    loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',
     component: LandingPageComponent,
-    pathMatch: 'full'},
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
