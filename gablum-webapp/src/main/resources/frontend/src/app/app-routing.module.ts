@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { TimerComponent } from './scheduler/timer/timer.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
+  },
+  {
+    path: 'contracts',
+    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
+  },
+  {
+    path: 'timer',
+    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',

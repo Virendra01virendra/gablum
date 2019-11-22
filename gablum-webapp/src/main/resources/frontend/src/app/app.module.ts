@@ -17,6 +17,8 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { ContractsModule } from './contracts/contracts.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MaterialModule } from './material/material.module';
@@ -42,7 +44,10 @@ import { MaterialModule } from './material/material.module';
     AuctionModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ContractsModule,
+    SchedulerModule,
+    HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
