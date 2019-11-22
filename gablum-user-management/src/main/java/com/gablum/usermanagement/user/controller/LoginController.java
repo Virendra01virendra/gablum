@@ -16,14 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api")
 public class LoginController {
 
     @Autowired
     private ILoginService iLoginService;
 
 
-    @CrossOrigin("*")
+//    @CrossOrigin("*")
     @PostMapping("/signin")
     @ResponseBody
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
