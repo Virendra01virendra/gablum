@@ -1,7 +1,7 @@
 export interface Ibid {
-    newPrice: number;
-    newCreditPeriod: number;
-    newQaqcCertificate: boolean;
-    newTypeOfDelivery: boolean;
-    newTimeOfDelivery: number;
+    price: number;
+    creditPeriod: number;
+    qaqcCertificate: boolean;
+    typeOfDelivery: boolean;
+    timeOfDelivery: number;
 }

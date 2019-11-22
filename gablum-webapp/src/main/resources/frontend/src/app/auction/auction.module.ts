@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
 // import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+// import {FlexL  ayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [BidFormComponent, AuctionCardComponent],
@@ -15,6 +15,7 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
     AuctionRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
+    // FlexLayoutModule
     // BrowserAnimationsModule,
     // NoopAnimationsModule
   ]

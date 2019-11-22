@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import {MatCardModule} from '@angular/material/card';
 
 const modules = [
   CommonModule,
@@ -22,7 +22,8 @@ const modules = [
   MatChipsModule,
   MatRadioModule,
   MatToolbarModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatCardModule
 ];
 
 @NgModule({
