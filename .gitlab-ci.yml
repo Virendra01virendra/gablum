@@ -31,13 +31,13 @@ java-lint:
     tags:
         - gablum-ci-jobs
 
-java-coverage:
-    image: tastycats/gablumdeps:not-alpine
-    stage: test
-    script:
-        - mvn -q jacoco:prepare-agent install jacoco:report -PskipAngular
-    tags:
-        - gablum-ci-jobs
+# java-coverage:
+#     image: tastycats/gablumdeps:not-alpine
+#     stage: test
+#     script:
+#         - mvn -q jacoco:prepare-agent install jacoco:report -PskipAngular
+#     tags:
+#         - gablum-ci-jobs
 
 angular-build:
     image: node:12-alpine
