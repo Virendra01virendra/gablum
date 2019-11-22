@@ -40,16 +40,14 @@ export class BidFormComponent implements OnInit {
  
   onSubmit(form: FormGroup) {
     // console.log('price----->', form.value.newTimeOfDelivery);
-    let score;
-    var bid = {
+    const bid = {
     price: form.value.newPrice,
     timeOfDelivery: form.value.newTimeOfDelivery,
     typeOfDelivery: form.value.newTypeOfDelivery,
-    creditPeriod:form.value.newCreditPeriod,
+    creditPeriod: form.value.newCreditPeriod,
     qaqcCertificate: form.value.newQaqcCertificate
     };
     console.log('making api call', bid);
-  
     this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
       console.log('response ::', response);
     });
