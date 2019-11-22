@@ -23,6 +23,8 @@ import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { ContractsModule } from './contracts/contracts.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -57,7 +59,10 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ContractsModule,
+    SchedulerModule,
+    HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

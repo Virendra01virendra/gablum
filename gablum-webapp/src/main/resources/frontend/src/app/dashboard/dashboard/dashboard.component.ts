@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { NewBid } from 'src/app/interfaces/newbid';
-import { BidCardComponent } from '../../../../../../../../target/classes/frontend/src/app/dashboard/bid-card/bid-card.component';
+import { BidCardComponent } from './../bid-card/bid-card.component';
 import { MatChipsModule } from '@angular/material/chips';
 
 @Component({

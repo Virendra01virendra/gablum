@@ -229,7 +229,6 @@ input {
 {
 	flex: 1;
 	padding: 20px;
-	border: 1px solid white;
 }
 .footer .footer-content .about .contact .span
 {
@@ -239,7 +238,6 @@ input {
 
 footer {
     background-color: #222;
-    color: #fff;
     font-size: 14px;
     bottom: 0;
     position: fixed;
