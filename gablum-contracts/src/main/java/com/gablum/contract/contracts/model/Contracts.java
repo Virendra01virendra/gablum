@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class Contracts {
 //    @Indexed(unique = true)
-    @Id
+    @Id                                                                                                                                                                                             
     @NotNull
     private UUID contractId;
 

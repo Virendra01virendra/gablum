@@ -17,6 +17,7 @@ import { ContractsModule } from './contracts/contracts.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    SchedulerModule,
     HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
