@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ContractComponent } from './contract/contract.component';
 import { ContractRoutingModule } from './contract-routing.module';
 // import { MaterialModule } from '../material/material-module';
-import { MatCardModule, MatButtonModule, MatListModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatListModule, MatExpansionModule } from '@angular/material';
 
 
 
@@ -15,7 +15,8 @@ import { MatCardModule, MatButtonModule, MatListModule } from '@angular/material
     // MaterialModule,
     MatCardModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ]
 })
 export class ContractsModule { }

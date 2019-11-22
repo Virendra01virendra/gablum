@@ -15,6 +15,21 @@ export class ContractComponent implements OnInit {
   public companyName: string;
   public deliveryDate: Date;
   public creditPeriod: number;
+  // panelOpenState = false;
+
+  step = 0;
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 
   constructor(
     // private router: Router,
