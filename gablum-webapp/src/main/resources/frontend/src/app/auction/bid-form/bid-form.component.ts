@@ -22,6 +22,7 @@ export class BidFormComponent implements OnInit {
 
   url = 'localhost:8080/api/auctions/auctions/bid';
   public static messageKey = 'BidFormComponent';
+  result;
 
   constructor(public http: HttpClient, private ws: WebsocketService) { }
   ngOnInit() {
@@ -75,6 +76,7 @@ export class BidFormComponent implements OnInit {
         if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
           const data = message.data;
           if ('newbid' in data) {
+            this.result = data.newbid.body;
             console.log(data.newbid.body);
             // this.bids.push(this.testBid);
           }
