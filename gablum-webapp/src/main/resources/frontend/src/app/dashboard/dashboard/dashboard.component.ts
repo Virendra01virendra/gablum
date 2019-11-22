@@ -11,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
 
-  public bids: NewBid[];
+  public bids: NewBid[] = [];
   public testBid: NewBid = {
     seller: {
       name: 'A glorious seller',
