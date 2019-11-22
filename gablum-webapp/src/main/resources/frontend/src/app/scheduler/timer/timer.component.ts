@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { EventEmitter } from 'events';
-import { Observable, interval, Subscription } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { Observable, Subscription, timer, interval } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timer',
@@ -11,31 +11,41 @@ import { take, map } from 'rxjs/operators';
 })
 export class TimerComponent implements OnInit {
 
-  // @Input()
-  startAt = 0; /** the time period of the auction/ registeration is defined here */
+  @Input()
+  startAt ; /** the time period of the auction/ registeration is defined here */
 
-  // @Output()
+  @Output()
   counterState = new EventEmitter();
-  timeRemaining = '';
+  private startDate = new Date('11/22/2019 10:53:30');
+  private endDate = new Date('2019/11/25 10:53:30');
+  public currentTime = new Date();
+  public days = 0;
+  public hours = 0;
+  public minutes = 0;
+  public seconds = 0;
+  public toStartMsg: string;
+  public endedMsg: string;
+  timerEventTime: number;
   currentSubscription: Subscription;
 
   constructor(private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.startAt = 86400000; /** Here the duration for which timer is to be run will be bound */
+    // this.startAt = this.currentTime; /** Here we set the timer to Client system time so that the timer can be bound to this value */
+    this.timerLogic(this.startDate, this.endDate, this.currentTime);
     this.start();
   }
     public start() {
-    this.timeRemaining = this.formatValue(this.startAt);
+    const t: Observable<number> = interval(1000);
+    this.currentSubscription = t.pipe(map(v => this.timerEventTime - v)).subscribe(v => {
+    this.formatValue(v);
     this.changeDetector.detectChanges();
-    const t: Observable<number> = interval(1);
-    this.currentSubscription = t.pipe(take(this.startAt) , map(v => this.startAt - v)).subscribe(v => {
-    this.timeRemaining = this.formatValue(v);
+    this.timerEventTime = v;
     this.changeDetector.detectChanges();
   }, err => {
     this.counterState.emit('something is up');
   }, () => {
-    this.timeRemaining = '00:00:00:00';
+    this.timerEventTime = 0;
     this.counterState.emit('Time is UP');
     this.changeDetector.detectChanges();
   });
@@ -60,11 +70,21 @@ export class TimerComponent implements OnInit {
 
 
   private formatValue(timePeriod: number) {
-    const days = this.day(timePeriod);
-    const hours = this.hour(timePeriod);
-    const minutes = this.minute(timePeriod);
-    const seconds = this.second(timePeriod);
-    return `${days}: ${hours} : ${minutes} : ${seconds}` ;
+    this.days = this.day(timePeriod);
+    this.hours = this.hour(timePeriod);
+    this.minutes = this.minute(timePeriod);
+    this.seconds = this.second(timePeriod);
+  }
+
+  public timerLogic(timetoStart: Date, timeToEnd: Date, localTime: Date) {
+    if (localTime.getTime() < timetoStart.getTime()) {
+      this.toStartMsg = 'The Event is yet to Begin';
+    } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
+      this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
+      this.formatValue(this.timerEventTime);
+    } else if (localTime.getTime() > timeToEnd.getTime()) {
+      this.endedMsg = 'Event has ended';
+    }
   }
 
 }
