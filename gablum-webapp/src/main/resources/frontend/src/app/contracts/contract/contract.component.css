@@ -1,9 +1,11 @@
-/* #contract-card>mat-card-header {
-    justify-content: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 2em;
+mat-card {
+    background-color: rgb(245, 245, 245);
+    padding: 4px;
+    font-family: monospace;
 }
 
+
+/* 
 #contract-card {
     width: 60%;
     float: center;
@@ -24,16 +26,28 @@
     margin: 1em 10% 1em 10%;
 } */
 
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
-}
 
-.example-headers-align .mat-expansion-panel-header-description {
+/* .contract-headers-align .mat-expansion-panel-header-title,
+.contract-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+} */
+
+
+/* .contract-headers-align .mat-expansion-panel-header-description {
     justify-content: space-between;
     align-items: center;
-}
+} */
 
 mat-form-field {
     margin-right: 12px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+article {
+    text-align: justify;
+    font-family: monospace;
 }

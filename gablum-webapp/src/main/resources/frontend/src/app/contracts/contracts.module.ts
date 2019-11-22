@@ -4,8 +4,7 @@ import { ContractComponent } from './contract/contract.component';
 import { ContractRoutingModule } from './contract-routing.module';
 // import { MaterialModule } from '../material/material-module';
 import { MatCardModule, MatButtonModule, MatListModule, MatExpansionModule } from '@angular/material';
-
-
+// import '~@angular/material/theming';
 
 @NgModule({
   declarations: [ContractComponent],

@@ -12,10 +12,10 @@ public class Contracts {
 //    @Indexed(unique = true)
     @Id
     @NotNull
-    private UUID contractsId;
+    private UUID contractId;
 
     @NotNull
-    private Object auctionDetails;
+    private Auction auctionDetails;
 
     @NotNull
     private Object BidDetails;
