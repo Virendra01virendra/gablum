@@ -22,6 +22,7 @@ export class NewProposalForm1Component implements OnInit {
   thumbLabel = false;
   value = 0;
   vertical = false;
+  panelOpenState = false;
 
   productSpecsForm = new FormGroup({
     businessDomain: new FormControl(''),
