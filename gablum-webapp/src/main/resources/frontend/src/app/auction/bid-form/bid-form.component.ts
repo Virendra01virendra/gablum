@@ -17,16 +17,14 @@ const httpOptions = {
   styleUrls: ['./bid-form.component.css']
 })
 export class BidFormComponent implements OnInit {
-
-  bidForm: FormGroup;
-
-  url = 'localhost:8080/api/auctions/auctions/bid';
   public static messageKey = 'BidFormComponent';
+  bidForm: FormGroup;
+  url = 'localhost:8080/api/auctions/auctions/bid';
   result;
 
   constructor(public http: HttpClient, private ws: WebsocketService) { }
   ngOnInit() {
-  
+
     this.ws.connect(message => this.subscribe());
 
     this.bidForm = new FormGroup({
@@ -42,11 +40,10 @@ export class BidFormComponent implements OnInit {
       });
 
   }
- 
+
   onSubmit(form: FormGroup) {
     // console.log('price----->', form.value.newTimeOfDelivery);
-    let score;
-    var bid = {
+    const bid = {
     price: form.value.newPrice,
     creditPeriod:form.value.newCreditPeriod,
     qaqcCertificate: form.value.newQaqcCertificate,
@@ -54,18 +51,14 @@ export class BidFormComponent implements OnInit {
     timeOfDelivery: form.value.newTimeOfDelivery,
     };
 
-    
     console.log('making api call', bid);
 
-    
-  
-  
     // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
     //   console.log('response ::', response);
     // });
 
     this.ws.sendBid(bid);
-  
+
   }
 
   subscribe() {
