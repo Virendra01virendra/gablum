@@ -39,7 +39,6 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
-
   },
   {
     path: '',
