@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -13,10 +15,7 @@ export class LandingPageComponent implements OnInit {
     config.keyboard = false;
     config.pauseOnHover = false;
   }
-  
-
-  ngOnInit()
-  {
+  ngOnInit() {
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container = document.getElementById('container');

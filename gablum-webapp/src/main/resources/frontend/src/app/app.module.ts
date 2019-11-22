@@ -19,13 +19,14 @@ import { ConsoleModule } from './console/console.module';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,9 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MDBBootstrapModule,
     NavbarMaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
