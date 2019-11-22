@@ -22,7 +22,7 @@ public class LoginController {
     private ILoginService iLoginService;
 
 
-//    @CrossOrigin("*")
+    @CrossOrigin("*")
     @PostMapping("/signin")
     @ResponseBody
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {

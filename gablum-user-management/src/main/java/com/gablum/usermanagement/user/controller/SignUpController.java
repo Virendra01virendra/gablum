@@ -1,18 +1,16 @@
 package com.gablum.usermanagement.user.controller;
 
+import com.gablum.usermanagement.user.model.SignupResult;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class SignUpController {
     @Autowired
     private UserRepository userRepository;
@@ -21,13 +19,14 @@ public class SignUpController {
     private PasswordEncoder passwordEncoder;
 
     @CrossOrigin("*")
-    @PostMapping("/signup")
+    @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> newRegistration(@RequestBody User user)  {
+    public ResponseEntity<SignupResult> newRegistration(@RequestBody User user)  {
         if (emailExist(user.getEmail())) {
 //            throw new EmailExistsException(
 //                    "There is an account with that email address:" + user.getEmail());
-            return new ResponseEntity<String>("There is an account with that email address", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<SignupResult>(
+                    new SignupResult("There is an account with that email address", false), HttpStatus.NOT_ACCEPTABLE);
         }
         System.out.println(user);
         user.setName(user.getName());
@@ -39,7 +38,7 @@ public class SignUpController {
         user.setBusinessLicense(user.getBusinessLicense());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return new ResponseEntity<String>("ok", HttpStatus.CREATED);
+        return new ResponseEntity<SignupResult>(new SignupResult("ok", true), HttpStatus.CREATED );
     }
 
     private boolean emailExist(String email) {
