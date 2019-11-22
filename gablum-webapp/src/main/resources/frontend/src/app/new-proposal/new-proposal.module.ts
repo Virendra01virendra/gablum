@@ -10,10 +10,11 @@ import { NewProposalForm1Component } from './new-proposal-form/new-proposal-form
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormConfirmDialogComponent } from './form-confirm-dialog/form-confirm-dialog.component';
 
 
 @NgModule({
-  declarations: [NewProposalPageComponent, NewProposalForm1Component, NewProposalCardComponent],
+  declarations: [NewProposalPageComponent, NewProposalForm1Component, NewProposalCardComponent, FormConfirmDialogComponent],
   imports: [
     CommonModule,
     NewProposalRoutingModule,
