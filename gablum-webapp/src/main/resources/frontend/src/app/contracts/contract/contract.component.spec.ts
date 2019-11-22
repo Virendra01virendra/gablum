@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 // import { MatListModule } from '@angular/material';
 import { ContractComponent } from './contract.component';
-import { MatListModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MatListModule, MatButtonModule, MatCardModule, MatExpansionModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ContractComponent', () => {
   let component: ContractComponent;
@@ -10,7 +11,11 @@ describe('ContractComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ContractComponent],
-      imports: [MatListModule, MatButtonModule, MatCardModule]
+      imports: [MatListModule,
+        MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        BrowserAnimationsModule]
     })
     .compileComponents();
   }));
