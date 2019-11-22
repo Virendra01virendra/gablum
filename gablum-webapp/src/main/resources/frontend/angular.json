@@ -24,13 +24,8 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-              "src/styles.css",
-              "src/app/theme.scss"
-=======
               "src/custom_theme.scss",
               "src/styles.css"
->>>>>>> release_v010
             ],
             "scripts": []
           },
