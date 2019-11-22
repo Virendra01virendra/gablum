@@ -10,13 +10,15 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { AuctionCardComponent } from '../auction-card/auction-card.component';
+
 describe('BidFormComponent', () => {
   let component: BidFormComponent;
   let fixture: ComponentFixture<BidFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidFormComponent ],
+      declarations: [ BidFormComponent, AuctionCardComponent ],
       imports: [ReactiveFormsModule, MaterialModule, HttpClientModule, BrowserAnimationsModule, NoopAnimationsModule],
       providers: [
         BrowserAnimationsModule,
