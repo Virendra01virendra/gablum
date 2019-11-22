@@ -20,11 +20,13 @@ public class ContractsController {
     }
 
     @GetMapping("/contracts/{contractsId}")
-    public Contracts getContract(@PathVariable UUID contractsId){
-        return contractService.getContractbyId(contractsId);
+    public Contracts getContract(@PathVariable UUID contractId){
+        return contractService.getContractById(contractId);
     }
     @GetMapping("/contracts")
-    public List<Contracts> getContractByBuyerId(@RequestParam UUID buyerId)
+    public List<Contracts> getContractByBuyerId(@RequestParam UUID buyerId){
+        return contractService.getContractByBuyerId(buyerId);
+    }
     @PostMapping("/contracts")
     public Contracts saveContract(@RequestBody Contracts contracts){
         return contractService.saveContract(contracts);

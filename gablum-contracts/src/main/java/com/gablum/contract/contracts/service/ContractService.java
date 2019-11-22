@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -14,19 +15,23 @@ public class ContractService {
     @Autowired
     private ContractDetailsRepository contractDetails;
 
-    public Contracts getContractbyId(UUID contractsId){
-        return contractDetails.findByContractsId(contractsId);
+    public Contracts getContractById(UUID contractsId){
+        return contractDetails.findByContractId(contractsId);
     }
 
     public Contracts saveContract(Contracts contractToBeSaved){
         return contractDetails.save(contractToBeSaved);
     }
 
+    public List<Contracts> getContractByBuyerId(UUID buyerId) {
+        return contractDetails.findByBuyerId(buyerId);
+    }
     @Transactional
     public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,ContractStatusEditable contractUpdate){
-        Contracts updatedContract = contractDetails.findByContractsId(contractWhichNeedsTobeInvalidated);
-        updatedContract.setContractsId(contractWhichNeedsTobeInvalidated);
+        Contracts updatedContract = contractDetails.findByContractId(contractWhichNeedsTobeInvalidated);
+        updatedContract.setContractId(contractWhichNeedsTobeInvalidated);
         updatedContract.setContractStatus(contractUpdate.getContractStatus());
         return contractDetails.save(updatedContract);
         }
+
 }

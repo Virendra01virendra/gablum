@@ -15,16 +15,16 @@ public class Contracts {
     private UUID contractId;
 
     @NotNull
-    private Auction auctionDetails;
+    private Object auctionDetails;
 
     @NotNull
     private Object BidDetails;
 
     @NotNull
-    private Object auctionHostDetails;
+    private UUID buyerId;
 
     @NotNull
-    private Object auctionGuestDetails;
+    private UUID sellerId;
 
     @NotNull
     private Boolean contractStatus = true;
