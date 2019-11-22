@@ -45,7 +45,7 @@ export class BidFormComponent implements OnInit {
     // console.log('price----->', form.value.newTimeOfDelivery);
     const bid = {
     price: form.value.newPrice,
-    creditPeriod:form.value.newCreditPeriod,
+    creditPeriod: form.value.newCreditPeriod,
     qaqcCertificate: form.value.newQaqcCertificate,
     typeOfSupply: form.value.newTypeOfDelivery,
     timeOfDelivery: form.value.newTimeOfDelivery,
