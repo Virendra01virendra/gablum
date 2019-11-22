@@ -9,19 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-<<<<<<< HEAD
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-
-@RestController
-@CrossOrigin(origins = "localhost:4200")
-public class AuctionController {
-
-    @Autowired
-    private AuctionService auctionService;
-
-    @Autowired
-    private SimpMessageSendingOperations messageSendingOperations;
-=======
 
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
@@ -30,9 +17,9 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.messaging.MessageChannel;
+// import org.springframework.messaging.Message;
+// import org.springframework.messaging.support.MessageBuilder;
+// import org.springframework.messaging.MessageChannel;
 
 
 @RestController
@@ -45,7 +32,6 @@ public class AuctionController {
 
     private SimpMessageSendingOperations messageSendingOperations;
 
->>>>>>> 6d45821018bcd614349978dfb1698e849d103e91
 
     @GetMapping("/echo")
     public String getEcho() {

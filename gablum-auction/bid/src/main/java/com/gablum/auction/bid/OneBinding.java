@@ -6,5 +6,5 @@ import org.springframework.messaging.SubscribableChannel;
 public interface OneBinding {
 
     @Input("chn")
-    public SubscribableChannel getChannel();
+    SubscribableChannel getChannel();
 }
