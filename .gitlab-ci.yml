@@ -11,7 +11,7 @@ java-build:
     image: tastycats/gablumdeps:latest
     stage: build
     script:
-        - mvn package -PskipAngular -DskipTests
+        - mvn -B package -PskipAngular -DskipTests
     tags:
         - gablum-ci-jobs
 
@@ -19,7 +19,7 @@ java-tests:
     image: tastycats/gablumdeps:not-alpine
     stage: test
     script:
-        - mvn test -PskipAngular
+        - mvn -B test -PskipAngular
     tags:
         - gablum-ci-jobs
 
@@ -27,7 +27,7 @@ java-lint:
     image: tastycats/gablumdeps:latest
     stage: test
     script:
-        - mvn pmd:check
+        - mvn -B pmd:check
     tags:
         - gablum-ci-jobs
 
@@ -35,7 +35,7 @@ java-coverage:
     image: tastycats/gablumdeps:not-alpine
     stage: test
     script:
-        - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
+        - mvn -B jacoco:prepare-agent install jacoco:report -PskipAngular
     tags:
         - gablum-ci-jobs
 

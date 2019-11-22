@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  wsURL: 'http://localhost:8080/api/auctions/ws'
+  wsURL: 'http://localhost:8080/api/auctions/ws',
+  contractUrl: 'http://localhost:8080/contracts'
 };
 
 /*
