@@ -37,6 +37,11 @@ const routes: Routes = [
     loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
   },
   {
+    path: 'login',
+    loadChildren: () => import('./app.module').then(m => m.AppModule)
+
+  },
+  {
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full'},

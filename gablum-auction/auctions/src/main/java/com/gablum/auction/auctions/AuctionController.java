@@ -23,13 +23,13 @@ import org.springframework.messaging.MessageChannel;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080/auctions/auctions/bid")
+@CrossOrigin(origins = "*")
 public class AuctionController {
 
     @Autowired
-
     private AuctionService auctionService;
 
+    @Autowired
     private SimpMessageSendingOperations messageSendingOperations;
 
 

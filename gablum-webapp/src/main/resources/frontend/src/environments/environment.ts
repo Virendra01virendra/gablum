@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  wsURL: 'https://gablum-dev.stackroute.io/api/auctions/ws',
+  loginApi: 'http://localhost:8080/api/users/api/signin'
 };
 
 /*

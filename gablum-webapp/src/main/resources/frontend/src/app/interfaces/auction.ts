@@ -4,16 +4,16 @@ export interface Auction {
     auctionId: uuid;
     proposalId: uuid;
 
-    auctionStatus: boolean;
+    isAuctionActive: boolean;
 
     participantsVerificationId: uuid;
-    selectedParticipantList: uuid[];
+    selectedParticipantList: string[];
     bidIdList: uuid[];
 
     createdOn: Date;
     updatedOn: Date;
-    createdBy: uuid;
-    updatedBy: uuid;
+    createdBy: string;
+    updatedBy: string;
 
     auctionStartDate: Date;
     auctionEndDate: Date;

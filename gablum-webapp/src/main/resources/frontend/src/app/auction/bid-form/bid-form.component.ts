@@ -3,6 +3,7 @@ import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { Ibid } from '../ibid';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,7 @@ export class BidFormComponent implements OnInit {
 
   url = 'localhost:8080/api/auctions/auctions/bid';
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private ws: WebsocketService) { }
   ngOnInit() {
 
     this.bidForm = new FormGroup({
@@ -50,9 +51,12 @@ export class BidFormComponent implements OnInit {
     };
     console.log('making api call', bid);
   
-    this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
-      console.log('response ::', response);
-    });
+    // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
+    //   console.log('response ::', response);
+    // });
+
+    this.ws.sendBid(bid);
+  
   }
 
 }

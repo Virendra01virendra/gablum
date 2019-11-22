@@ -23,3 +23,8 @@
 #     web:
 #       exposure:
 #         include: "*"
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://db:27017/user
