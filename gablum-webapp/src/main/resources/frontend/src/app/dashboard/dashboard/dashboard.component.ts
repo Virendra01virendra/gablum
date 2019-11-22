@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { NewBid } from 'src/app/interfaces/newbid';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,19 +11,28 @@ export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
 
-  public bids = [];
-  public testBid = {
-    seller: 'A GLorious Seller',
+  public bids: NewBid[] = [];
+  public testBid: NewBid = {
+    seller: {
+      name: 'A glorious seller',
+      company: 'Company ye',
+      rating: 4.4,
+      username: 'aGloriousSeller',
+      profileUrl: ''
+    },
     price: 100,
     unitPrice: 12.5,
     rank: 2,
-    scores: {
-      one: 4,
-      two: 7,
-      three: 6
-    },
+    scores: [
+      {
+        scoreIdentifier: 'abc',
+        scoreName: 'def',
+        scoreCalculated: 0,
+        scoreWeight: 0,
+        scoreRawValue: 6
+      }
+    ],
     totalScore: 17,
-    profileUrl: 'https://picsum.photos/400/400'
   };
 
   constructor(private ws: WebsocketService) { }
