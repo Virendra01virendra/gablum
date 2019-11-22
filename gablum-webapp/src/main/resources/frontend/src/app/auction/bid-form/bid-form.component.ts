@@ -37,7 +37,6 @@ export class BidFormComponent implements OnInit {
       });
 
   }
- 
   onSubmit(form: FormGroup) {
     // console.log('price----->', form.value.newTimeOfDelivery);
     const bid = {
