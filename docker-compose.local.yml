@@ -72,6 +72,7 @@ services:
   webapp:
     build:
       context: ./gablum-webapp
+      dockerfile: ./gablum-webapp/DockerfileDevelop
     env_file: env_local.env
     depends_on:
       - discovery
