@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 
 @Slf4j
 @Controller
-public class BidController {
+public class    BidController {
 
     @MessageMapping("/bids.addbid")
     @SendTo("/topic/newbid")

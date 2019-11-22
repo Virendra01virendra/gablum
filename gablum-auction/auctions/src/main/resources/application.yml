@@ -1,3 +1,7 @@
 logging:
   level:
+<<<<<<< HEAD
     root: INFO
+=======
+    root: INFO
+>>>>>>> 6d45821018bcd614349978dfb1698e849d103e91

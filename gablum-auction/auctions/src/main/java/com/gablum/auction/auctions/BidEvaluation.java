@@ -1,4 +1,4 @@
-package com.gablum.auction.bid;
+package com.gablum.auction.auctions;
 
 
 import java.util.Date;
@@ -8,7 +8,7 @@ public class BidEvaluation {
         float price = 400;
         Date timeOfDelivery = new Date(15);
         int creditPeriod = 1;
-        boolean qaqccertification = true;
+        boolean qaqccertification = false;
         boolean typeOfSupply = true;
 
         float priceSpec = 400;

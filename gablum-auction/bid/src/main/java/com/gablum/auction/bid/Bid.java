@@ -22,7 +22,7 @@ public class Bid {
     private UUID participantId;
     private float score;
     private int price;
-    private Date creditPeriod;
+    private int creditPeriod;
     private boolean qaqcCertificate;
     private boolean typeOfSupply;
     private Date timeOfDelivery;
@@ -67,11 +67,11 @@ public class Bid {
         this.price = price;
     }
 
-    public Date getCreditPeriod() {
+    public int getCreditPeriod() {
         return creditPeriod;
     }
 
-    public void setCreditPeriod(Date creditPeriod) {
+    public void setCreditPeriod(int creditPeriod) {
         this.creditPeriod = creditPeriod;
     }
 
@@ -134,7 +134,7 @@ public class Bid {
 
     float priceSpec = 400;
     Date timeOfDeliverySpec = new Date(15);
-    Date creditPeriodSpec = new Date(1);
+    int creditPeriodSpec = 1;
     boolean qaqcCertificateSpec = true;
     boolean typeOfSupplySpec = true;
 
@@ -145,14 +145,12 @@ public class Bid {
     float weightTypeOfSupplySpec = 1;
 
 
-    public Bid(UUID bidId, UUID participantId, float score, int price, Date creditPeriod, boolean qaqcCertificate,
+    public Bid(UUID bidId, UUID participantId, float score, int price, int creditPeriod, boolean qaqcCertificate,
                boolean typeOfSupply, Date deliveryDate, List<String> productSpecList, UUID auctionId, Date createdOn,
                Date updatedOn) {
         this.bidId = bidId;
         this.participantId = participantId;
-        this.score = score(price, timeOfDelivery, creditPeriod, qaqcCertificate, typeOfSupply,
-                priceSpec, timeOfDeliverySpec, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec, weightPriceSpec,
-                weightTimeOfDeliverySpec, weightCreditPeriodSpec, weightQaqcCertificateSpec, weightTypeOfSupplySpec);
+        this.score = score;
         this.price = price;
         this.creditPeriod = creditPeriod;
         this.qaqcCertificate = qaqcCertificate;

@@ -3,8 +3,13 @@ package com.gablum.auction.auctions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+<<<<<<< HEAD
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
 @RestController
@@ -16,6 +21,31 @@ public class AuctionController {
 
     @Autowired
     private SimpMessageSendingOperations messageSendingOperations;
+=======
+
+import static com.gablum.auction.auctions.BidEvaluation.score;
+
+
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.messaging.MessageChannel;
+
+
+@RestController
+@CrossOrigin(origins = "http://localhost:8080/auctions/auctions/bid")
+public class AuctionController {
+
+    @Autowired
+
+    private AuctionService auctionService;
+
+    private SimpMessageSendingOperations messageSendingOperations;
+
+>>>>>>> 6d45821018bcd614349978dfb1698e849d103e91
 
     @GetMapping("/echo")
     public String getEcho() {
@@ -37,4 +67,19 @@ public class AuctionController {
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd) {
         return auctionService.addAuctions(auctionsToAdd);
     }
+
+    @PostMapping("/auctions/bid")
+    public float score1(@RequestBody Bid bid) {
+        Date d;
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dt = "12/02/2019";
+        ParsePosition pp1 = new ParsePosition(0);
+        d = formatter.parse(dt, pp1);
+        return score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(), bid.isQaqcCertificate(),
+                bid.isTypeOfSupply(),
+                400, d,12, true, true,
+                1,1,1,1,1);
+    }
+
+    
 }
