@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { noConflict } from 'q';
+import { RegisterToken } from '../../interfaces/register-token';
+import { RegisterDataService } from '../../services/register-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Router } from '@angular/router';
+import { componentFactoryName } from '@angular/compiler';
 
 
 @Component({
@@ -9,6 +14,8 @@ import { noConflict } from 'q';
   styleUrls: ['./register-page.component.css']
 })
 export class RegisterPageComponent implements OnInit {
+
+  public static msgKey = 'regPage-component';
 
   get name() {
     return this.registrationForm.get('name');
@@ -69,11 +76,29 @@ export class RegisterPageComponent implements OnInit {
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
     password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
     Validators.minLength(8)])),
-    role : new FormControl('', Validators.required),
+    // role : new FormControl('', Validators.required),
     businessDomain : new FormControl(''),
     businessSubDomain : new FormControl('')
   });
-  constructor() { }
+  constructor(
+    private router: Router,
+    private registrationService: RegisterDataService,
+    private comms: CommunicatorService) {
+      this.comms.getMessages().subscribe(message => {
+        if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
+          const data = message.data;
+          if ('registrationResult' in data) {
+            const registrationToken: RegisterToken = data.registrationResult;
+            // console.log(loginToken.accessToken);
+            if (registrationToken === undefined || registrationToken === null) {
+
+            } else {
+              this.router.navigate(['/']);
+            }
+          }
+        }
+      });
+  }
 
   ngOnInit() {
   }
@@ -128,6 +153,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registrationForm.value);
+    this.registrationService.register(this.registrationForm.value);
   }
 }

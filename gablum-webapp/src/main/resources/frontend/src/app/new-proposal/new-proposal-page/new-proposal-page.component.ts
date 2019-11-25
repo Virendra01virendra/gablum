@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-new-proposal-page',
   templateUrl: './new-proposal-page.component.html',
@@ -10,5 +10,4 @@ export class NewProposalPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
