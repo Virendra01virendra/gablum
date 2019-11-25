@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule} from '@angular/material';
+import { MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule, MatSidenavModule, MatIconModule} from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 const modules = [
@@ -32,7 +33,10 @@ const modules = [
   MatButtonModule,
   MatExpansionModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSidenavModule,
+  FlexLayoutModule,
+  MatIconModule
 ];
 
 @NgModule({

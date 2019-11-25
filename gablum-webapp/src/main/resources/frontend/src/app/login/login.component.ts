@@ -5,6 +5,7 @@ import { NetworkingService } from '../services/networking.service';
 import { LoginToken } from '../interfaces/login-token';
 import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
+import { AuthenticationService } from '../services/authentication.service';
 // import { MatError } from '@angular/material';
 
 @Component({
@@ -32,16 +33,18 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginDataService,
-    private comms: CommunicatorService) {
+    private comms: CommunicatorService,
+    private auth: AuthenticationService) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
           if ('loginResult' in data) {
             const loginToken: LoginToken = data.loginResult.accessToken;
-            // console.log(loginToken.accessToken);
             if (loginToken === undefined || loginToken === null) {
 
             } else {
+              console.log(auth);
+              auth.setToken(loginToken.accessToken);
               this.router.navigate(['dashboard']);
             }
           }
@@ -67,9 +70,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.networking.postData<LoginToken>()
     this.loginService.login(this.loginForm.value);
-    // this.router.navigate(['/dashboard']);
   }
 
 }

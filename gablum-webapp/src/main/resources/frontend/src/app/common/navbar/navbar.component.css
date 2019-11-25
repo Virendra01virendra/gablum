@@ -31,6 +31,12 @@
     padding: 0 1em;
 }
 
+.menu-link {
+    text-decoration: none;
+    height: 100%;
+    padding: 0;
+}
+
 .nav-link:hover {
-    background: #522aa7;    
+    background: #880E4F;    
 }

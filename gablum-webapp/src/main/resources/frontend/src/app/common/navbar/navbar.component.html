@@ -1,9 +1,15 @@
 <mat-toolbar class="mat-elevation-z8" color="primary">
-    <nav class="navbar-base">
-        <a [routerLink]="['/']" class="home-link nav-icon">Gablum</a>
+    <nav class="navbar-base" >
+        <button class="menu-link nav-icon" mat-icon-button (click)="menuClicked($event)" fxHide.gt-xs>
+                <mat-icon>menu</mat-icon>
+        </button>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs>Gablum</a>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs>b</a>
         <div class="spacer"></div>
-        <a [routerLink]="['/']" class="nav-link nav-icon">Login</a>
-        <a [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
-        <a [routerLink]="['/']" class="nav-link nav-icon">Contact</a>
+        <div class="nav-links" *ngIf="!isLoggedIn" fxLayout="row" fxHide.xs>
+            <a [routerLink]="['/']" class="nav-link nav-icon">Login</a>
+            <a [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
+            <a [routerLink]="['/']" class="nav-link nav-icon">Contact</a>
+        </div>
     </nav>
 </mat-toolbar>
