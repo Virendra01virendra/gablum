@@ -14,7 +14,12 @@ import { FormConfirmDialogComponent } from './form-confirm-dialog/form-confirm-d
 
 
 @NgModule({
-  declarations: [NewProposalPageComponent, NewProposalForm1Component, NewProposalCardComponent, FormConfirmDialogComponent],
+  declarations: [
+    NewProposalPageComponent,
+    NewProposalForm1Component,
+    NewProposalCardComponent,
+    FormConfirmDialogComponent],
+
   imports: [
     CommonModule,
     NewProposalRoutingModule,
@@ -23,6 +28,7 @@ import { FormConfirmDialogComponent } from './form-confirm-dialog/form-confirm-d
     MaterialModule,
     MatCardModule,
     FlexLayoutModule
-  ]
+  ],
+  entryComponents: [FormConfirmDialogComponent]
 })
 export class NewProposalModule { }
