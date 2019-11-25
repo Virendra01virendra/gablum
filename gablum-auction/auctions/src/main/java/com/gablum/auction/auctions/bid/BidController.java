@@ -46,6 +46,7 @@ public class BidController {
                 400, d, 12, true, true,
                 1, 1, 1, 1, 1);
         String message1 = "Bid score is " + scorecnt;
+        System.out.println("Message1 is :::"+message1);
         messageSendingOperations.convertAndSend(
                 "/topic/newbid",
                 message1
