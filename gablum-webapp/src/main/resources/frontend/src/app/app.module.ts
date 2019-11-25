@@ -22,6 +22,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MaterialModule } from './material/material.module';
+import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
 
 @NgModule({
   declarations: [

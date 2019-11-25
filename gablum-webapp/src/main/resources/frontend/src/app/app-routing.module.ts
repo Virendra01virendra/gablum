@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
   {
-    path: 'auction',
+    path: 'new/bid',
     loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
   },
   {
