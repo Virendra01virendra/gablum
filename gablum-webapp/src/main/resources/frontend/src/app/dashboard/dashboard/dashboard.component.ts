@@ -27,9 +27,16 @@ export class DashboardComponent implements OnInit {
       {
         scoreIdentifier: 'abc',
         scoreName: 'def',
-        scoreCalculated: 0,
-        scoreWeight: 0,
+        scoreCalculated: 12,
+        scoreWeight: 2,
         scoreRawValue: 6
+      },
+      {
+        scoreIdentifier: 'khi',
+        scoreName: 'kli',
+        scoreCalculated: 15,
+        scoreWeight: 3,
+        scoreRawValue: 5
       }
     ],
     totalScore: 17,
@@ -58,7 +65,7 @@ export class DashboardComponent implements OnInit {
           const data = message.data;
           if ('newbid' in data) {
             console.log(data.newbid.body);
-            this.bids.push(data.newbid.body);
+            this.bids.push(this.testBid);
           }
         }
       });

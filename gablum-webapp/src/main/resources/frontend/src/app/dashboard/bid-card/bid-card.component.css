@@ -4,7 +4,8 @@ mat-expansion-panel {
 }
 
 .bid-primary-container {
-    padding: 1em;
+    padding: 0 1em;
+    height: 5em;
 }
 .profile-image {
     width: 5em;
@@ -15,8 +16,8 @@ mat-expansion-panel {
 
 .profile-image > img {
     object-fit: cover;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
 }
 
 .bid-body {
