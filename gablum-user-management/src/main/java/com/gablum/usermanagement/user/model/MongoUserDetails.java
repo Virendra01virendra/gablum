@@ -17,7 +17,20 @@ public class MongoUserDetails implements UserDetails {
     private boolean isEnabled;
     private List<GrantedAuthority> grantedAuthorities;
 
-    public MongoUserDetails(String username, String BCryptPassword,Integer active, boolean isLocked, boolean
+    @Override
+    public String toString() {
+        return "MongoUserDetails{" +
+                "username='" + username + '\'' +
+                ", BCryptPassword='" + BCryptPassword + '\'' +
+                ", active=" + active +
+                ", isLocked=" + isLocked +
+                ", isExpired=" + isExpired +
+                ", isEnabled=" + isEnabled +
+                ", grantedAuthorities=" + grantedAuthorities +
+                '}';
+    }
+
+    public MongoUserDetails(String username, String BCryptPassword, Integer active, boolean isLocked, boolean
             isExpired, boolean isEnabled, String [] authorities) {
         this.username = username;
         this.BCryptPassword = BCryptPassword;

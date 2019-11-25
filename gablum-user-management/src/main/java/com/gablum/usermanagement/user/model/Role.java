@@ -16,6 +16,9 @@ public class Role {
         this.id = id;
     }
 
+    public Role() {
+    }
+
     public String getRole() {
         return role;
     }
