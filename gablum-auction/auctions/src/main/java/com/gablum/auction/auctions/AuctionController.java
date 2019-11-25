@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
@@ -24,7 +25,7 @@ public class AuctionController {
     }
 
     @GetMapping("/auctions")
-    public List<Auction> getAllAuctions() {
+    public List<Auction> getAllAuctions(@RequestParam Map<String, String> queryMap) {
         return auctionService.getAllAuctions();
     }
 

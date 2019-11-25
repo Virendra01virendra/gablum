@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+  public isLoggedIn = false;
 
   sideNavToggle() {
     console.log('sidenav toggle');

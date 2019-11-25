@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
 
   menuClicked(event) {
     this.menuToggled.emit(event);
-    console.log('nav clicked');
   }
 
 }
