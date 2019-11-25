@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
       company: 'Company ye',
       rating: 4.4,
       username: 'aGloriousSeller',
-      profileUrl: ''
+      profileUrl: 'https://picsum.photos/400/400'
     },
     price: 100,
     unitPrice: 12.5,
@@ -33,12 +33,16 @@ export class DashboardComponent implements OnInit {
       }
     ],
     totalScore: 17,
+    certifications: ['CE'],
+    creditPeriodInDays: 30,
+    estimatedDispatchDate: new Date()
   };
 
   constructor(private ws: WebsocketService) { }
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
+    this.bids.push(this.testBid);
   }
 
   send() {
@@ -53,8 +57,8 @@ export class DashboardComponent implements OnInit {
         if (message.dest === '@all' || message.dest === DashboardComponent.messageKey) {
           const data = message.data;
           if ('newbid' in data) {
-            console.log(data.newbid);
-            this.bids.push(this.testBid);
+            console.log(data.newbid.body);
+            this.bids.push(data.newbid.body);
           }
         }
       });

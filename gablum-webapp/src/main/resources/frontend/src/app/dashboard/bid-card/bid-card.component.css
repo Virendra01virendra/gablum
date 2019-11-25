@@ -1,22 +1,28 @@
 mat-expansion-panel {
-    width: 30em;
+    width: 25em;
+    margin-bottom: 0.5em;
 }
 
 .bid-primary-container {
     padding: 1em;
-    display: flex;
-    width: 100%;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+}
+.profile-image {
+    width: 5em;
+    height: 5em;
+    border-radius: 2.5em;
+    overflow: hidden;
 }
 
-/* mat-chip-list {
-    width: 100%;
+.profile-image > img {
+    object-fit: cover;
+    width: auto;
+    height: auto;
 }
 
-.mat-chip-list-wrapper {
+.bid-body {
     width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-} */
+    padding: 0.5em;
+}
+.bid-body > span {
+    padding: 1em 1em 0 1em;
+}

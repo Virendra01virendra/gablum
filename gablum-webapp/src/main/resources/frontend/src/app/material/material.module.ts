@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule} from '@angular/material';
+import {MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule, MatDividerModule, MatListModule} from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 const modules = [
@@ -18,7 +19,10 @@ const modules = [
   MatToolbarModule,
   MatExpansionModule,
   MatTooltipModule,
-  MatChipsModule
+  MatChipsModule,
+  MatDividerModule,
+  FlexLayoutModule,
+  MatListModule
 ];
 @NgModule({
   declarations: [],

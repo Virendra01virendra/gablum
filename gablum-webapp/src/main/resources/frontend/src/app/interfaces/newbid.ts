@@ -8,4 +8,7 @@ export interface NewBid {
     rank: number;
     scores: BidScore[];
     totalScore: number;
+    estimatedDispatchDate: Date;
+    creditPeriodInDays: number;
+    certifications: string[];
 }
