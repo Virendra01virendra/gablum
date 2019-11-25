@@ -12,5 +12,5 @@ public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
 
     Optional<Auction> findByAuctionId(UUID auctionId);
     void deleteByAuctionId(UUID auctionId);
-    Page<Auction> getAllAuctions(Pageable pageable);
+    Page<Auction> findAll(Pageable pageable);
 }

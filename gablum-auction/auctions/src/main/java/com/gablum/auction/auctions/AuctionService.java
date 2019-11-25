@@ -16,6 +16,8 @@ public class AuctionService implements IAuctionService{
     @Autowired
     private AuctionRepo auctionRepo;
 
+
+
     private Pageable getPageable(Map<String, String> queryMap) {
         String sortKey = "auctionName";
         int pageLength = 10;
@@ -34,8 +36,8 @@ public class AuctionService implements IAuctionService{
     }
 
     @Override
-    public List<Auction> getAllAuctions(Map<String, String> queryparam) {
-        return auctionRepo.findAll(getPageable(queryparam)).getContent();
+    public List<Auction> getAllAuctions(Map<String, String> queryMap) {
+        return auctionRepo.findAll(getPageable(queryMap)).getContent();
     }
 
     @Override

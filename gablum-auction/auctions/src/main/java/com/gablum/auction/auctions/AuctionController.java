@@ -1,5 +1,9 @@
 package com.gablum.auction.auctions;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,8 @@ public class AuctionController {
     @Autowired
     private AuctionService auctionService;
 
+    Claims claims;
+
     @Autowired
     private SimpMessageSendingOperations messageSendingOperations;
 
@@ -25,8 +31,14 @@ public class AuctionController {
     }
 
     @GetMapping("/auctions")
-    public List<Auction> getAllAuctions(@RequestParam Map<String, String> queryMap) {
-        return auctionService.getAllAuctions();
+    public List<Auction> getAllAuctions(
+            @RequestParam Map<String, String> queryMap,
+            @RequestHeader("Authorization") String token
+    ) {
+        JwtParser parser = Jwts.parser();
+        claims = parser.parseClaimsJwt(token).getBody();
+        System.out.println(claims);
+        return auctionService.getAllAuctions(queryMap);
     }
 
     @GetMapping("/auctions/{id}")
