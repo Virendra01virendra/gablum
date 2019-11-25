@@ -66,12 +66,12 @@ export class BidFormComponent implements OnInit {
       '/topic/newbid',
       BidFormComponent.messageKey,
       'newbid').subscribe(message => {
-        console.log("message received is ::",message);
+        console.log('message received is ::',message);
         if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
           const data = message.data;
           if ('newbid' in data) {
             this.result = data.newbid.body;
-            console.log("message received is ::", data.newbid.body);
+            console.log('message received is ::', data.newbid.body);
             // this.bids.push(this.testBid);
           }
         }
