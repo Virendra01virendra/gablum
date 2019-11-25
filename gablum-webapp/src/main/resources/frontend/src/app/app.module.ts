@@ -1,17 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AppCommonModule } from './common/common.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { HistoryModule } from './history/history.module';
+import { InboxModule } from './inbox/inbox.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { ProfileModule } from './profile/profile.module';
+import { RegisterModule } from './register/register.module';
+import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ContractsModule } from './contracts/contracts.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuctionModule } from './auction/auction.module';
+import { MaterialModule } from './material/material.module';
 import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
 
 @NgModule({
@@ -21,13 +31,28 @@ import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/f
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AppCommonModule,
+    HistoryModule,
+    InboxModule,
+    CalendarModule,
+    ProfileModule,
+    RegisterModule,
+    NewProposalModule,
+    HttpClientModule,
+    AuctionModule,
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ContractsModule,
+    SchedulerModule,
     RouterModule,
     MatOptionModule,
     MatSelectModule,
     AppRoutingModule,
     AppCommonModule,
-    BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
