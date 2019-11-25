@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule} from '@angular/material';
+import { MatInputModule, MatButtonModule, MatOptionModule, MatSelectModule, MatDialogModule} from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
@@ -19,6 +19,16 @@ const modules = [
   CommonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatButtonModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatExpansionModule,
+  MatTooltipModule,
+  MatChipsModule,
+  MatRadioModule,
+  MatToolbarModule,
+  MatDatepickerModule,
+  MatCardModule,
   MatNativeDateModule,
   MatDatepickerModule,
   MatNativeDateModule,
@@ -35,7 +45,8 @@ const modules = [
   MatExpansionModule,
   MatChipsModule,
   MatTooltipModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDialogModule
 ];
 
 @NgModule({
