@@ -6,6 +6,7 @@ import com.gablum.contract.contracts.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 @CrossOrigin("*")
 @RestController
@@ -19,8 +20,12 @@ public class ContractsController {
     }
 
     @GetMapping("/contracts/{contractsId}")
-    public Contracts getContract(@PathVariable UUID contractsId){
-        return contractService.getContractbyId(contractsId);
+    public Contracts getContract(@PathVariable UUID contractId){
+        return contractService.getContractById(contractId);
+    }
+    @GetMapping("/contracts")
+    public List<Contracts> getContractByBuyerId(@RequestParam UUID buyerId){
+        return contractService.getContractByBuyerId(buyerId);
     }
     @PostMapping("/contracts")
     public Contracts saveContract(@RequestBody Contracts contracts){

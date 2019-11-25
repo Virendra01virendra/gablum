@@ -170,7 +170,3 @@ services:
       - -jar
       - /usr/app/app.jar
     restart: on-failure
-  db:
-    image: mongo:latest
-    ports:
-      - "27017:27017"

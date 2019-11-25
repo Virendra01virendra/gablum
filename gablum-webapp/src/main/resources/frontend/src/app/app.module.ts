@@ -13,7 +13,7 @@ import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -47,6 +47,14 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     ContractsModule,
     SchedulerModule,
+    RouterModule,
+    MatOptionModule,
+    MatSelectModule,
+    AppRoutingModule,
+    AppCommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

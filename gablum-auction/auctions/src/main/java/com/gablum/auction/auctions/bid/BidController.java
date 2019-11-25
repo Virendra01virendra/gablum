@@ -45,11 +45,11 @@ public class BidController {
                 bid.isTypeOfSupply(),
                 400, d, 12, true, true,
                 1, 1, 1, 1, 1);
-        message = "Bid score is " + scorecnt;
+        String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
                 "/topic/newbid",
-                message
+                message1
         );
-        return message;
+        return message1;
     }
 }

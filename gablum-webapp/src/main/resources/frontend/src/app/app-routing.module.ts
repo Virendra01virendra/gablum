@@ -47,12 +47,13 @@ const routes: Routes = [
   },
   {
     path: 'timer',
-    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
+    loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',
     component: LandingPageComponent,
-    pathMatch: 'full'},
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
