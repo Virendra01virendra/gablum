@@ -61,6 +61,18 @@ export class BidFormComponent implements OnInit {
 
   }
 
+  seeScore(form: FormGroup) {
+    const bid = {
+      price: form.value.newPrice,
+      creditPeriod: form.value.newCreditPeriod,
+      qaqcCertificate: form.value.newQaqcCertificate,
+      typeOfSupply: form.value.newTypeOfDelivery,
+      timeOfDelivery: form.value.newTimeOfDelivery,
+      };
+
+    this.ws.getBidScore(bid);
+  }
+
   subscribe() {
     this.ws.subscribe(
       '/topic/newbid',

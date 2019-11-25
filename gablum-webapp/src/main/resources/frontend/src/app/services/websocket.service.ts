@@ -33,6 +33,14 @@ export class WebsocketService {
     this.stompClient.send('/bids.addbid', {}, JSON.stringify(bid));
   }
 
+  getBidScore(bid: Bid) {
+    if (!this.stompClient.connected) {
+      throw new Error('connection not yet open');
+    }
+
+    this.stompClient.send('/bids.getscore', {}, JSON.stringify(bid));
+  }
+
   subscribe(topic: string, dest: string, key: string) {
     if (!this.stompClient.connected) {
       throw new Error('connection not yet open');
