@@ -1,0 +1,13 @@
+<mat-expansion-panel *ngIf="bid">
+    <mat-expansion-panel-header>
+       <div class="bid-primary-container">
+           <mat-chip color="primary" selected>{{bid.seller.name}}</mat-chip>
+           <mat-chip-list>
+                <mat-chip matTooltip="Unit price">{{bid.unitPrice}}</mat-chip>
+                <mat-chip matTooltip="Total price">{{bid.price}}</mat-chip>
+                <mat-chip matTooltip="Bid rank" color="accent" selected>#{{bid.rank}}</mat-chip>
+            </mat-chip-list>
+       </div>
+    </mat-expansion-panel-header>
+    <p>hello</p>
+</mat-expansion-panel>

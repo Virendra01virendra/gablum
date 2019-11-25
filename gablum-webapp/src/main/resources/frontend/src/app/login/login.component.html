@@ -1,0 +1,25 @@
+<mat-toolbar class="header">
+        <div class="head">Login to your Account?</div>
+</mat-toolbar>
+
+    <mat-card-content>
+        <form class="logForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input  matInput formControlName="username" required/>
+                <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input  matInput formControlName="password" required type="password">
+                <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage2()}}</mat-error>
+            </mat-form-field>
+                
+            <div class="btn">
+                <button mat-raised-button color="primary" [disabled]='!loginForm.valid'
+                type="submit">Login</button>
+                &nbsp; &nbsp; <u>Forgot Password?</u>
+            </div>
+        </form>
+    </mat-card-content>
