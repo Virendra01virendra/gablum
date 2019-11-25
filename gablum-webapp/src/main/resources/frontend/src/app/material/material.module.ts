@@ -11,6 +11,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 
 const modules = [
@@ -32,7 +34,8 @@ const modules = [
   MatButtonModule,
   MatExpansionModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatBadgeModule
 ];
 
 @NgModule({

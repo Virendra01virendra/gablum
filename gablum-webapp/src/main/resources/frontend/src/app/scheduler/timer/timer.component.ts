@@ -17,7 +17,7 @@ export class TimerComponent implements OnInit {
   @Output()
   counterState = new EventEmitter();
   private startDate = new Date('11/22/2019 10:53:30');
-  private endDate = new Date('2019/11/25 10:53:30');
+  private endDate = new Date('2019/12/17 10:53:30');
   public currentTime = new Date();
   public days = 0;
   public hours = 0;
