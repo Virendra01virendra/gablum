@@ -8,6 +8,6 @@ public class SchedulingLogic {
 
     @Scheduled(cron = "")
     public Boolean startProposal(Date proposalStart, Date proposalEnd){
-
+        return true;
     }
 }
