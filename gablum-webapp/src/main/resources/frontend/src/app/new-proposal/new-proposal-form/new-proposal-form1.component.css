@@ -1,0 +1,11 @@
+.body {
+  /* background: 100%; */
+  background-color: antiquewhite;
+  /* background-image: url('/assets/night.jpg'); */
+  /* background-repeat: no-repeat; */
+  text-align: center;
+}
+
+.stepper {
+  background-color: rgb(245, 244, 252);
+}

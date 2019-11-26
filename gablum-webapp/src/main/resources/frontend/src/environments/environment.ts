@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  wsURL: 'https://gablum-dev.stackroute.io/api/auctions/ws',
-  loginApi: 'http://localhost:8080/api/users/api/signin'
+  wsURL: 'http://localhost:8080/api/auctions/ws',
+  loginApi: 'http://localhost:8080/api/users/signin',
+  registerApi: 'http://localhost:8080/api/users/signup',
+  contractUrl: 'http://localhost:8080/api/contracts'
 };
 
 /*

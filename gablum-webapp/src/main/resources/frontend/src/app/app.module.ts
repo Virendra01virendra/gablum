@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,12 +13,16 @@ import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { ContractsModule } from './contracts/contracts.module';
+import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuctionModule } from './auction/auction.module';
+import { MaterialModule } from './material/material.module';
+import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppCommonModule,
@@ -37,9 +41,22 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
+    HttpClientModule,
+    AuctionModule,
     MaterialModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ContractsModule,
+    SchedulerModule,
+    RouterModule,
+    MatOptionModule,
+    MatSelectModule,
+    AppRoutingModule,
+    AppCommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
