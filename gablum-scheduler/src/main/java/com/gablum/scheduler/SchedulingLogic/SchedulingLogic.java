@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class SchedulingLogic {
 
-    @Scheduled(cron = "")
+    @Scheduled
     public Boolean startProposal(Date proposalStart, Date proposalEnd){
         return true;
     }
