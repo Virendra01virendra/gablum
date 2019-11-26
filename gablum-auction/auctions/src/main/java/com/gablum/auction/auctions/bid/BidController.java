@@ -29,50 +29,12 @@ public class BidController {
     @Autowired
     private BidService bidService;
 
-    @MessageMapping("/bids.addbid")
-//    @SendTo("/topic/newbid")
-    public String addNewBid(@Payload String message) throws JsonProcessingException {
-        log.info("on /bids.addbid, message: " + message);
 
-        Date d;
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dt = "12/02/2019";
-        ParsePosition pp1 = new ParsePosition(0);
-        d = formatter.parse(dt, pp1);
-
-        ObjectMapper mapper = new ObjectMapper();
-        Bid bid =  mapper.readValue(message, Bid.class);
-        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
-                bid.isQaqcCertificate(),
-                bid.isTypeOfSupply(),
-                400, d, 12, true, true,
-                1, 1, 1, 1, 1);
-
-        BidDataEntity bidDataEntity = new BidDataEntity();
-        bidDataEntity.setBid(bid);
-        bidDataEntity.setScore(scorecnt);
-
-
-        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
-
-        System.out.println("Bid entity :::::"+bidDataEntity1);
-
-        String message1 = "Bid is stored, and score is " + scorecnt + bidDataEntity.toString();
-
-        messageSendingOperations.convertAndSend(
-                "/topic/newbid",
-                message1
-        );
-
-        return message1;
-    }
-
-
+    // Getting score
 
     @MessageMapping("/bids.getscore")
-//    @SendTo("/topic/newbid")
     public String getBidScore(@Payload String message) throws JsonProcessingException {
-        log.info("on /bids.addbid, message: " + message);
+        log.info("on /bids.getscore, message: " + message);
         Date d;
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dt = "12/02/2019";
@@ -88,9 +50,70 @@ public class BidController {
                 1, 1, 1, 1, 1);
         String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
-                "/topic/newbid",
+                "/topic/getscore",
                 message1
         );
         return message1;
     }
+
+
+//    Adding bids
+
+    @MessageMapping("/bids.addbid")
+    public String addNewBid(@Payload String message) throws JsonProcessingException {
+        log.info("on /bids.addbid, message: " + message);
+
+        Date d;
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dt = "12/02/2019";
+        ParsePosition pp1 = new ParsePosition(0);
+        d = formatter.parse(dt, pp1);
+
+        ObjectMapper mapper = new ObjectMapper();
+        Bid bid =  mapper.readValue(message, Bid.class);
+        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
+                bid.isQaqcCertificate(),
+                bid.isTypeOfSupply(),
+                400, d  , 12, true, true,
+                1, 1, 1, 1, 1);
+
+        BidDataEntity bidDataEntity = new BidDataEntity();
+        bidDataEntity.setBid(bid);
+        bidDataEntity.setScore(scorecnt);
+
+
+        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
+
+        System.out.println("Bid entity :::::"+bidDataEntity1);
+
+        String message2 = "Bid is stored, and score is " + scorecnt;
+
+        messageSendingOperations.convertAndSend(
+                "/topic/newbid",
+                message2
+        );
+
+        return message2;
+    }
+
+
+    //    fetching bids
+
+    @MessageMapping("/bids.fetchbid")
+    public String fetchBid(@Payload String message) throws JsonProcessingException {
+        log.info("on /bids.fetchbid, message: " + message);
+
+
+        String message3 = "List of bids ";
+
+        messageSendingOperations.convertAndSend(
+                "/topic/fetchbid",
+                message3
+        );
+
+        return message3;
+    }
+
+
+
 }

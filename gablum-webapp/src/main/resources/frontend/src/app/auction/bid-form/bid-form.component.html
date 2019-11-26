@@ -7,7 +7,7 @@
     <app-auction-card></app-auction-card>
   </div>
 <div class="right">
-  <form [formGroup]="bidForm" (ngSubmit)="onSubmit(bidForm)">
+  <form [formGroup]="bidForm">
       
       <!-- <h3> Bid Submission</h3> -->
     
@@ -61,10 +61,21 @@
       <button (click)="seeScore(bidForm)" mat-raised-button> See my score! </button>
       <br>
       <br>
-      <button type="submit" mat-raised-button>Submit</button>
+      <button (click)="onSubmit(bidForm)" mat-raised-button>Submit</button>
+      <br>
+      <br>
+      <button (click)="bidList()" mat-raised-button>Bid List</button>
+
+
   </form>
 </div>
 
+
 </div>
 
-{{ result }}
+
+{{ result1 }}
+
+{{ result2 }}
+
+{{ result3 }}
