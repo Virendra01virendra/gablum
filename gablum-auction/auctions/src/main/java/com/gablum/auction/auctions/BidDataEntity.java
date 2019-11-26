@@ -15,7 +15,7 @@ public class BidDataEntity {
 
     @Id
     @NotNull
-    private UUID bidId;
+    private UUID bidId = UUID.randomUUID();
 
     @NotNull
     private UUID auctionId;
@@ -24,7 +24,9 @@ public class BidDataEntity {
     private UUID userId;
 
     @NotNull
-    private com.gablum.auction.auctions.Bid bid;
+    private Bid bid;
+
+    private float score;
 
 
 

@@ -48,19 +48,22 @@ public class BidController {
                 bid.isTypeOfSupply(),
                 400, d, 12, true, true,
                 1, 1, 1, 1, 1);
-        String message1 = "Bid score is " + scorecnt;
-        System.out.println("Message1 is :::"+message1);
-//        messageSendingOperations.convertAndSend(
-//                "/topic/newbid",
-//                message1
-//        );
-
 
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
+        bidDataEntity.setScore(scorecnt);
 
 
-        bidService.addbid(bidDataEntity);
+        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
+
+        System.out.println("Bid entity :::::"+bidDataEntity1);
+
+        String message1 = "Bid is stored, and score is " + scorecnt + bidDataEntity.toString();
+
+        messageSendingOperations.convertAndSend(
+                "/topic/newbid",
+                message1
+        );
 
         return message1;
     }
@@ -85,7 +88,6 @@ public class BidController {
                 400, d, 12, true, true,
                 1, 1, 1, 1, 1);
         String message1 = "Bid score is " + scorecnt;
-        System.out.println("Message1 is :::"+message1);
         messageSendingOperations.convertAndSend(
                 "/topic/newbid",
                 message1

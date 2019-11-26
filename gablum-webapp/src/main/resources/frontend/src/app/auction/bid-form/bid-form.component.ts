@@ -88,6 +88,7 @@ export class BidFormComponent implements OnInit {
           }
         }
       });
+
   }
 
 }

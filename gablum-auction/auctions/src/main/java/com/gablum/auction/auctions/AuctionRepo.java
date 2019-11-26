@@ -1,6 +1,5 @@
 package com.gablum.auction.auctions;
 
-import com.gablum.auction.auctions.Auction;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
