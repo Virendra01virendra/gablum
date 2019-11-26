@@ -16,6 +16,7 @@ import java.text.DateFormat;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
@@ -104,8 +105,9 @@ public class BidController {
         log.info("on /bids.fetchbid, message: " + message);
 
 
-        String message3 = "List of bids ";
-
+        String message3 = "List of bids \n";
+        List<BidDataEntity> bidList = bidService.getBids();
+        message3 = message3 + bidList;
         messageSendingOperations.convertAndSend(
                 "/topic/fetchbid",
                 message3
