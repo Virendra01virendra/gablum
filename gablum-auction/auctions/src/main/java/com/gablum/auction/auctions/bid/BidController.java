@@ -2,7 +2,6 @@ package com.gablum.auction.auctions.bid;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gablum.auction.auctions.AuctionService;
 import com.gablum.auction.auctions.Bid;
 import com.gablum.auction.auctions.BidDataEntity;
 import com.gablum.auction.auctions.BidService;
