@@ -11,4 +11,5 @@ public interface IAuctionService {
     Auction getAuctionById(UUID auctionId);
 
     List<Auction> addAuctions(List<Auction> auctionToAdd);
+
 }

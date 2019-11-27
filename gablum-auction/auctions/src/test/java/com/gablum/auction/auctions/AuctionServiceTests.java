@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -33,9 +32,7 @@ public class AuctionServiceTests {
     @BeforeEach
     public void setupEntities() {
         testAuction1.setProposalId(UUID.randomUUID());
-//        testAuction1.setAuctionId(1);
         testAuction2.setProposalId(UUID.randomUUID());
-//        testAuction2.setAuctionId(2);
     }
 
     @Test

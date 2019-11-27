@@ -49,4 +49,5 @@ public class AuctionService implements IAuctionService{
     public List<Auction> addAuctions(List<Auction> auctionToAdd) {
         return auctionRepo.saveAll(auctionToAdd);
     }
+
 }

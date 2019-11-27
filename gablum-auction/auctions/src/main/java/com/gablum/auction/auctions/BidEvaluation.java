@@ -23,7 +23,7 @@ public class BidEvaluation {
         float weightQaqcCertificationSpec = 1;
         float weightTypeOfSupplySpec = 1;
 
-        double scorecnt = score(price, timeOfDelivery, creditPeriod, qaqccertification, typeOfSupply,
+        double scorecnt =  score(price, timeOfDelivery, creditPeriod, qaqccertification, typeOfSupply,
                 priceSpec, timeOfDeliverySpec, creditPeriodSpec, qaqccertificationSpec, typeOfSupplySpec,
                 weightPriceSpec,
                 weightTimeOfDeliverySpec, weightCreditPeriodSpec, weightQaqcCertificationSpec, weightTypeOfSupplySpec);
@@ -79,8 +79,7 @@ public class BidEvaluation {
             typeOfSupplyNorm = 0;
         }
 
-        score =
-                percentWeightPriceSpec * priceNorm
+        score = 100 -  percentWeightPriceSpec * priceNorm
                         + percentWeightTimeOfDeliverySpec * timeOfDeliveryNorm
                         + percentWeightCreditPeriodSpec * creditPeriodNorm
                         + percentWeightQaqcCertificationSpec * certificationNorm
