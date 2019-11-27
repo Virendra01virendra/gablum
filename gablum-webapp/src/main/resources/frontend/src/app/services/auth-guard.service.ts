@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanLoad } from '@angular/router';
+import { CanLoad, Router } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
@@ -8,10 +8,17 @@ import { AuthenticationService } from './authentication.service';
 export class AuthGuardService implements CanLoad {
 
   constructor(
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private router: Router
   ) { }
 
   canLoad() {
-    return this.auth.isAuthorized();
+    return true;
+    if (this.auth.getAuthenticated()) {
+      return true;
+    } else {
+      this.router.navigate(['/']);
+      return false;
+    }
   }
 }

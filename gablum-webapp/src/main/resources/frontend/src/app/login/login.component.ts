@@ -36,16 +36,18 @@ export class LoginComponent implements OnInit {
     private comms: CommunicatorService,
     private auth: AuthenticationService) {
       this.comms.getMessages().subscribe(message => {
+        console.log(message);
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
           if ('loginResult' in data) {
             const loginToken: LoginToken = data.loginResult.accessToken;
+            console.log(loginToken);
             if (loginToken === undefined || loginToken === null) {
 
             } else {
+              auth.setAuthenticated(true);
               console.log(auth);
-              auth.setToken(loginToken.accessToken);
-              this.router.navigate(['dashboard']);
+              this.router.navigate(['/dashboard']);
             }
           }
         }

@@ -22,7 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 const modules = [
@@ -59,7 +59,8 @@ const modules = [
   FlexLayoutModule,
   MatIconModule,
   MatBadgeModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTabsModule
 ];
 
 @NgModule({

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TimerComponent } from './scheduler/timer/timer.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
+    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
+    canLoad: [AuthGuardService]
   },
   {
     path: 'history',

@@ -1,5 +1,6 @@
 package com.gablum.usermanagement.user.controller;
 
+import com.gablum.usermanagement.user.exception.CustomException;
 import com.gablum.usermanagement.user.model.AuthResponse;
 import com.gablum.usermanagement.user.model.LoginRequest;
 import com.gablum.usermanagement.user.services.ILoginService;
@@ -26,7 +27,16 @@ public class LoginController {
     @PostMapping("/signin")
     @ResponseBody
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
-        String token = iLoginService.login(loginRequest.getUsername(),loginRequest.getPassword());
+        String token;
+        try {
+            token = iLoginService.login(loginRequest.getUsername(), loginRequest.getPassword());
+        }
+        catch (CustomException ex) {
+            return new ResponseEntity<AuthResponse>(
+                    new AuthResponse(""),
+                    HttpStatus.UNAUTHORIZED
+            );
+        }
         HttpHeaders headers = new HttpHeaders();
         List<String> headerlist = new ArrayList<>();
         List<String> exposeList = new ArrayList<>();
@@ -37,10 +47,12 @@ public class LoginController {
         headers.setAccessControlAllowHeaders(headerlist);
         exposeList.add("Authorization");
         headers.setAccessControlExposeHeaders(exposeList);
-        headers.set("Authorization", token);
+        //headers.set("Authorization", token);
         Cookie cookie = new Cookie("Authorization", token);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
         response.addCookie(cookie);
-        return new ResponseEntity<AuthResponse>(new AuthResponse(token), headers, HttpStatus.CREATED);
+        return new ResponseEntity<AuthResponse>(new AuthResponse(""), headers, HttpStatus.CREATED);
     }
     @CrossOrigin("*")
     @PostMapping("/signout")
@@ -49,6 +61,11 @@ public class LoginController {
         HttpHeaders headers = new HttpHeaders();
         if (iLoginService.logout(token)) {
             headers.remove("Authorization");
+            Cookie cookie = new Cookie("Authorization", "");
+            cookie.setHttpOnly(true);
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
             return new ResponseEntity<AuthResponse>(new AuthResponse("logged out"), headers, HttpStatus.CREATED);
         }
         return new ResponseEntity<AuthResponse>(new AuthResponse("Logout Failed"), headers, HttpStatus.NOT_MODIFIED);

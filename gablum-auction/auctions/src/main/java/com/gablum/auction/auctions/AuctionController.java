@@ -14,6 +14,9 @@ import java.util.UUID;
 
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -21,6 +24,22 @@ public class AuctionController {
 
     @Autowired
     private AuctionService auctionService;
+
+
+    private String tokenParser(HttpServletRequest req) {
+        String bearerToken = null;
+        try {
+            Cookie[] cookies = req.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("Authorization")) {
+                    bearerToken = cookie.getValue();
+                }
+            }
+            return bearerToken;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
 
     Claims claims;
 
@@ -37,8 +56,10 @@ public class AuctionController {
     @GetMapping("/auctions")
     public List<Auction> getAllAuctions(
             @RequestParam Map<String, String> queryMap,
-            @RequestHeader("Authorization") String token
+            HttpServletRequest request
     ) {
+        String token = tokenParser(request);
+        System.out.println("\n\n" + token + "\n\n");
         JwtParser parser = Jwts.parser();
         claims = parser.parseClaimsJwt(token).getBody();
         System.out.println(claims);

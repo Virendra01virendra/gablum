@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
+// import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -7,36 +7,25 @@ import { JwtHelper } from 'angular2-jwt';
 export class AuthenticationService {
 
   private loginToken: string;
-  private jwtHelper: JwtHelper;
+  private roles: string[];
+  private isAuthenticated = false;
 
   constructor() {
-    this.jwtHelper = new JwtHelper();
   }
 
-  setToken(token: string) {
-    this.loginToken = token;
-    localStorage.setItem('auth_token', this.loginToken);
+  setAuthenticated(isAuthenticated: boolean) {
+    this.isAuthenticated = isAuthenticated;
   }
 
-  removeToken() {
-    this.loginToken = null;
-    localStorage.removeItem('auth_token');
+  setRoles(roles: string[]) {
+    this.roles = roles;
   }
 
-  getToken() {
-    this.loginToken = localStorage.getItem('auth_token');
-    return this.loginToken;
+  hasRole(role: string) {
+    return (this.roles.indexOf(role) > -1);
   }
 
-  isAuthorized() {
-    const token = this.getToken();
-    if (token === undefined || token === null) {
-      return false;
-    }
-    if (this.jwtHelper.isTokenExpired(token)) {
-      this.removeToken();
-      return false;
-    }
-    return true;
+  getAuthenticated() {
+    return this.isAuthenticated;
   }
 }
