@@ -1,6 +1,7 @@
-<h2>
-    <span>{{days}}</span>::<span>{{hours}}</span>::<span>{{minutes}}</span>
-    <!-- {{timerEventTime}}<br> -->
-    {{toStartMsg}}<br>
-    {{endedMsg}}<br>
-</h2>
+<mat-chip-list aria-label="Timer Display">    
+    <mat-chip color= "primary" selected>Days: <span>{{days}}</span></mat-chip>
+    <mat-chip color = "warn">Hours: <span>{{hours}}</span></mat-chip>
+    <mat-chip color ="warn" >Minutes: <span>{{minutes}}</span></mat-chip>    
+    <mat-chip *ngIf="toStartMsg!= null" color ="primary">{{toStartMsg}}</mat-chip>    
+    <mat-chip *ngIf="endedMsg!= null" color ="warn">{{endedMsg}}</mat-chip>     
+</mat-chip-list>

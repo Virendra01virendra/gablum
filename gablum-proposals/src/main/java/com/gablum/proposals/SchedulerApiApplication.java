@@ -1,4 +1,4 @@
-package com.gablum.scheduler;
+package com.gablum.proposals;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class UserApiApplication {
+public class SchedulerApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserApiApplication.class, args);
+		SpringApplication.run(SchedulerApiApplication.class, args);
 	}
 
 }

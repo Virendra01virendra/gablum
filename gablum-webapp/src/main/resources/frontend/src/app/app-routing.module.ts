@@ -34,6 +34,14 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
   {
+    path: 'new/bid',
+    loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./app.module').then(m => m.AppModule)
+  },
+  {
     path: 'contracts',
     loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
   },
