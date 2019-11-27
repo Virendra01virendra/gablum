@@ -5,12 +5,14 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 import { MaterialModule } from '../material/material.module';
+import { ProposalsListComponent } from './proposals-list/proposals-list.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     BidCardComponent,
-    AuctionsListComponent
+    AuctionsListComponent,
+    ProposalsListComponent
   ],
   imports: [
     CommonModule,

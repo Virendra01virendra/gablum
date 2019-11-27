@@ -35,7 +35,7 @@ export class NewProposalForm1Component implements OnInit {
     paramForm = new FormGroup({
     price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(2)]),
     priceWeight: new FormControl(''),
-    deliveryDate: new FormControl('', Validators.required),
+    deliveryDate: new FormControl({value: ''}, Validators.required),
     deliveryDateWeight: new FormControl(''),
     creditPeriod: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     creditPeriodWeight: new FormControl(''),
@@ -46,10 +46,10 @@ export class NewProposalForm1Component implements OnInit {
   });
 
   timeForm = new FormGroup({
-    regStartDate: new FormControl('', [Validators.required]),
-    regEndDate: new FormControl('', [Validators.required]),
-    auctionStartDate: new FormControl('', [Validators.required]),
-    auctionEndDate: new FormControl('', [Validators.required])
+    regStartDate: new FormControl({value: '', disabled: true}, [Validators.required]),
+    regEndDate: new FormControl({value: '', disabled: true}, [Validators.required]),
+    auctionStartDate: new FormControl({value: '', disabled: true}, [Validators.required]),
+    auctionEndDate: new FormControl({value: '', disabled: true}, [Validators.required])
   });
 
   formatLabel(value: number) {
@@ -62,10 +62,36 @@ export class NewProposalForm1Component implements OnInit {
     console.log('name' + form.value.productName);
   }
 
-  onConfirm() {
+  onSubmit() {
   this.dialog.open(FormConfirmDialogComponent,
     {data: {form2: this.paramForm, form1: this.productSpecsForm,
       form3: this.timeForm}});
+  }
+
+  // myFilter1 = (d: Date): boolean => {
+  //   // Prevent dates before auction start date
+  //   return d > this.timeForm.value.auctionStartDate ;
+  // }
+
+  myFilter2 = (d: Date): boolean => {
+    // Prevent dates before auction start date
+    console.log('del-date--' + this.paramForm.value.deliveryDate +
+    'price--' + this.paramForm.value.price );
+    return d < this.paramForm.value.deliveryDate ;
+  }
+
+  myFilter3 = (d: Date): boolean => {
+    // Prevent dates before auction start date
+    return d > this.timeForm.value.regStartDate ;
+  }
+  myFilter4 = (d: Date): boolean => {
+    // Prevent dates before auction start date
+    return d > this.timeForm.value.regEndDate ;
+  }
+  myFilter5 = (d: Date): boolean => {
+    // Prevent dates before auction start date
+    console.log('Auc-start-date---' + this.timeForm.value.auctionStartDate);
+    return d > this.timeForm.value.auctionStartDate ;
   }
 
 }

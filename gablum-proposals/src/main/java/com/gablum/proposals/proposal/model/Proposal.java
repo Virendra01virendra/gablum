@@ -1,5 +1,6 @@
 package com.gablum.proposals.proposal.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -8,30 +9,72 @@ import java.util.UUID;
 @Document
 public class Proposal {
 
-    private UUID proposalId;
+    @Id
+    private UUID proposalId=UUID.randomUUID();
     private UUID productId;
     private UUID createdBy;
     private UUID updatedBy;
-    private enum domainName{Agriculture;};
-    private enum subDomain{cd,ef,gf;};
+    private String businessDomain;
+    private String businessSubDomain;
+    private String productName;
+    private int quantity;
     private Float price;
-    private Date eod;
+    private Date deliveryDate;
+    private int creditPeriod;
+    private boolean qualityCertificate;
+    private boolean methodOfSupply;
     private Date regStartDate;
     private Date regEndDate;
     private Date auctionStartDate;
     private Date auctionEndDate;
     private Date createdOn;
     private Date updatedOn;
-    private int quantity;
-    private int creditPeriod;
     private int thresholdParticipants;
     private int views;
     private int interested;
-    private boolean qaqcCertificate;
 
-    public Proposal(Float price, int quantity) {
+    public Proposal(Float price, int quantity) {      // Constructor
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public String getBusinessDomain() {
+        return businessDomain;
+    }
+
+    public void setBusinessDomain(String businessDomain) {
+        this.businessDomain = businessDomain;
+    }
+
+    public String getBusinessSubDomain() {
+        return businessSubDomain;
+    }
+
+    public void setBusinessSubDomain(String businessSubDomain) {
+        this.businessSubDomain = businessSubDomain;
+    }
+
+    public boolean isQualityCertificate() {
+        return qualityCertificate;
+    }
+
+    public void setQualityCertificate(boolean qualityCertificate) {
+        this.qualityCertificate = qualityCertificate;
+    }
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public boolean isMethodOfSupply() {
+        return methodOfSupply;
+    }
+
+    public void setMethodOfSupply(boolean methodOfSupply) {
+        this.methodOfSupply = methodOfSupply;
     }
 
     public UUID getProposalId() {
@@ -74,12 +117,12 @@ public class Proposal {
         this.price = price;
     }
 
-    public Date getEod() {
-        return eod;
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
-    public void setEod(Date eod) {
-        this.eod = eod;
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public Date getRegStartDate() {
@@ -170,11 +213,4 @@ public class Proposal {
         this.interested = interested;
     }
 
-    public boolean isQaqcCertificate() {
-        return qaqcCertificate;
-    }
-
-    public void setQaqcCertificate(boolean qaqcCertificate) {
-        this.qaqcCertificate = qaqcCertificate;
-    }
 }

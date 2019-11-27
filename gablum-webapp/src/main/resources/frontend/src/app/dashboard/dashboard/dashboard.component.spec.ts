@@ -5,6 +5,7 @@ import { AuctionsListComponent } from '../auctions-list/auctions-list.component'
 import { HttpClientModule } from '@angular/common/http';
 import { BidCardComponent } from '../bid-card/bid-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { ProposalsListComponent } from '../proposals-list/proposals-list.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -19,7 +20,8 @@ describe('DashboardComponent', () => {
       declarations: [
         DashboardComponent,
         AuctionsListComponent,
-        BidCardComponent
+        BidCardComponent,
+        ProposalsListComponent
       ]
     })
     .compileComponents();
