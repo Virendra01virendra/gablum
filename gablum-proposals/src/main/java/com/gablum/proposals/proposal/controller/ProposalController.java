@@ -13,13 +13,12 @@ public class ProposalController {
 
     @GetMapping("/echo")
     public String getEcho() {
-
         return "proposal";
     }
 
     @PostMapping("/proposals")                                 // Add proposal details
-    public Proposal saveProposal(@RequestBody Proposal proposalData) {
-        Proposal savedProposal = proposalService.saveProposal(proposalData);
+    public Proposal addProposal(@RequestBody Proposal proposalData) {
+        Proposal savedProposal = proposalService.addProposals(proposalData);
         return savedProposal;
     }
 
@@ -30,7 +29,7 @@ public class ProposalController {
 
     @GetMapping("/proposals")
     public List<Proposal> getProposals() {
-        return proposalService.getProposals();
+        return proposalService.getAllProposals();
     }
 
 //    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
@@ -38,6 +37,11 @@ public class ProposalController {
 //      Proposal proposal = proposalService.getProposalById(proposalId);
 //      return proposal;
 //    }
+
+    @GetMapping("/proposals/{proposalId}")                                      //Delete Proposal
+    public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
+        proposalService.deleteProposalbyID(proposalId);
+    }
 
 
 

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.UUID;
 
-@Document
+@Document(collection = "proposals")
 public class Proposal {
 
     private UUID proposalId;
@@ -14,7 +14,7 @@ public class Proposal {
     private UUID updatedBy;
     private enum domainName{Agriculture;};
     private enum subDomain{cd,ef,gf;};
-    private Float price;
+    private float price;
     private Date eod;
     private Date regStartDate;
     private Date regEndDate;
@@ -27,6 +27,10 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+
+    public Proposal() {
+    }
+
     private boolean qaqcCertificate;
 
     public Proposal(Float price, int quantity) {
