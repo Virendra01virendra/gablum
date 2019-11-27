@@ -14,6 +14,7 @@ import static com.gablum.auction.auctions.BidEvaluation.score;
 
 
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
+<<<<<<< HEAD
 // import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +31,18 @@ public class AuctionController {
 
     private AuctionService auctionService;
 
+=======
+
+
+@RestController
+@CrossOrigin(origins = "*")
+public class AuctionController {
+
+    @Autowired
+    private AuctionService auctionService;
+
+    @Autowired
+>>>>>>> 63f12f8b44b6d1d1405489126a7f1d7105703c7c
     private SimpMessageSendingOperations messageSendingOperations;
 
 
@@ -67,5 +80,5 @@ public class AuctionController {
                 1,1,1,1,1);
     }
 
-    
+
 }

@@ -1,6 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -18,7 +17,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ConsoleModule } from './console/console.module';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { MatOptionModule, MatSelectModule } from '@angular/material';
@@ -29,6 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './material/material.module';
+import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
   ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     DashboardModule,
@@ -62,6 +63,14 @@ import {FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     ContractsModule,
     SchedulerModule,
+    RouterModule,
+    MatOptionModule,
+    MatSelectModule,
+    AppRoutingModule,
+    AppCommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

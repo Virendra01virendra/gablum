@@ -6,7 +6,6 @@
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-example-2" data-slide-to="1"></li>
       <li data-target="#carousel-example-2" data-slide-to="2"></li>
-      <li data-target="#carousel-example-2" data-slide-to="3"></li>
     </ol>
     <!--/.Indicators-->
     <!--Slides-->
@@ -15,7 +14,7 @@
         <div class="view">
           <img class="d-block w-100" src="assets/Images/final.jpg"
             alt="First slide">
-          <div class="mask rgba-black-light"></div>
+          <div class="mask rgba-light"></div>
         </div>
         <!-- <div class="carousel-caption">
           <h3 class="h3-responsive">Info Graphics of Our Website</h3>
@@ -27,7 +26,7 @@
         <div class="view">
           <img class="d-block w-100" src="assets/Images/floes.jpg"
             alt="Second slide">
-          <div class="mask rgba-black-light"></div>
+          <div class="mask rgba-light"></div>
         </div>
         <!-- <div class="carousel-caption">
           <h3 class="h3-responsive">How our Website Works</h3>
@@ -39,7 +38,7 @@
         <div class="view">
           <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg"
             alt="First slide">
-          <div class="mask rgba-black-light"></div>
+          <div class="mask rgba-light"></div>
         </div>
         <div class="carousel-caption">
           <h3 class="h3-responsive">Selling Points</h3>
@@ -63,63 +62,25 @@
   <!--/.Carousel Wrapper-->
 
   <!-- LOGIN/REGISTRATION -->
-<div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
-			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="#">
-			<h1>Sign in</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div>
+  <div class="cont" fxLayout="row wrap">
+      <div class="box1" fxFlex=60>
 
-<footer>
-	<p>
-		Created with <i class="fa fa-heart"></i> by
-		<a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-		- Read how I created this and how you can join the challenge
-		<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-	</p>
-</footer>
-<div class= "footer">
-    <div class="footer-content" fxLayout="row wrap" fxLayoutAlign="center center">
+
+          <!-- <app-login></app-login> -->
+          </div>  
+    <div class="box2" fxFlex=40>
+      <!-- <mat-card>
+          <h1>Create Account</h1>
+          <h3>LETS GET YOU STARTED!!<br>
+            BEGIN YOUR REGISTRATION</h3>
+          <button mat-raised-button color="primary" [routerLink]="['/register']">Sign Up</button>
+          </mat-card> -->
+      </div>
+    
+    </div>
+
+<!-- FOOTER STUFF -->
+    <div class="footer" fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
         <div class ="footer-section about">
             <h1 class="logo-text">GABLUM</h1>
             <p>
@@ -149,20 +110,19 @@
         </div>
         <div class ="footer-section contact">
                 <h1>GET IN TOUCH</h1><br>
-                <input type="email" name="email" placeholder="your email adress">
-                <textarea name="message" placeholder="Your message"></textarea><br>
-                <button mat-button type="submit">Send</button>
-
-
-
+                <input mat-input name="name" placeholder="Your name"><br>
+                <br>
+                <input mat-input type="email" name="email" placeholder="your email adress"><br>
+                <br>
+                <button mat-raised-button color="primary" type="submit">Send</button>
         </div>
     </div>
-            <footer>
+<!-- <footer>
    
-                    <p>
-                        Created with <i class="fa fa-heart"></i> by
-                        <a target="_blank" href="#">SLEEPY CATS</a>
-                    </p>
-                
-                </footer>
-</div>
+  <p>
+      Created with <i class="fa fa-heart"></i> by
+      <a target="_blank" href="#">SLEEPY CATS</a>
+  </p>
+
+</footer> -->
+

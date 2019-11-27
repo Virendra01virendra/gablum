@@ -38,6 +38,10 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
   },
   {
+    path: 'new/bid',
+    loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./app.module').then(m => m.AppModule)
   },
@@ -52,7 +56,8 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPageComponent,
-    pathMatch: 'full'},
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

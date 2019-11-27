@@ -1,1 +1,20 @@
-<p>auction-card works!</p>
+<mat-card class="auction-card" [style.backgroundColor]="'transparent'">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title [style.color]="'red'">Auction Title</mat-card-title>
+      <mat-card-subtitle>Auction Domain</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Auction detail 1
+        <br>
+        Auction detail 2
+        <br>
+        Auction detail 3
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Show Details</button>
+    </mat-card-actions>
+  </mat-card>
+  
