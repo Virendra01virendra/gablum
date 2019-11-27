@@ -2,13 +2,17 @@ package com.gablum.proposals.proposal.controller;
 
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins="*")
 public class ProposalController {
 
+    @Autowired
     private ProposalService proposalService;
 
     @GetMapping("/echo")
@@ -18,9 +22,8 @@ public class ProposalController {
     }
 
     @PostMapping("/proposals")                                 // Add proposal details
-    public Proposal saveProposal(@RequestBody Proposal proposalData) {
-        Proposal savedProposal = proposalService.saveProposal(proposalData);
-        return savedProposal;
+    public Proposal saveProposal1(@RequestBody Proposal proposalData) {
+        return proposalService.saveProposal(proposalData);
     }
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id

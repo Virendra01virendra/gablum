@@ -25,11 +25,12 @@ export class NetworkingService {
       });
   }
 
-  postData<T>(url: string, dest: string, data: string, key = 'inventory') {
+  postData<T>(url: string, dest: string, data, key = 'inventory') {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })};
+    console.log( ' datatatatat :::', data);
     this.http.post<T>(url, data, httpOptions)
       .pipe(
         retry(3),
