@@ -55,6 +55,7 @@ public class LoginController {
         //headers.set("Authorization", token);
         Cookie cookie = new Cookie("Authorization", token);
         cookie.setHttpOnly(true);
+        cookie.setMaxAge(3600);
         cookie.setPath("/");
         response.addCookie(cookie);
         return new ResponseEntity<AuthResponse>(new AuthResponse(""), headers, HttpStatus.CREATED);

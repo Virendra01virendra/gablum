@@ -1,1 +1,6 @@
-<app-login></app-login>
+<div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
+    <div class="hero-text-container" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">
+        <h2 class="hero-text">{{heroText}}</h2>
+    </div>
+</div>
+<app-login id="login" class="login-container"></app-login>

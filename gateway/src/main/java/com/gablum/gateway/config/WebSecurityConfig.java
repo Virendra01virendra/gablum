@@ -35,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**/signin/**").permitAll()
                 .antMatchers("/**/signup/**").permitAll()
                 .antMatchers("/api/auctions/ws/**").permitAll()
-                .antMatchers("/api/proposals/**").permitAll()
                 // Disallow every api
                 .antMatchers("/api/**").authenticated()
                 // allow ui

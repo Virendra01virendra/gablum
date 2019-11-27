@@ -1,5 +1,6 @@
+<app-navbar (menuToggled)="sideNav.toggle()" ></app-navbar>
 <mat-sidenav-container>
-    <mat-sidenav #sideNav [mode]="'over'" [fixedInViewport]="true" [position]="'start'" color="primary" [disableClose]="false" fxHide.gt-xs>
+    <mat-sidenav #sideNav [mode]="'over'" [fixedInViewport]="true" [position]="'start'" color="primary" [disableClose]="false" fxHide.gt-xs [fixedTopGap]="56">
         <mat-nav-list *ngIf="!isLoggedIn">
             <a mat-list-item [routerLink]="['/']" class="nav-link nav-icon">Login</a>
             <a mat-list-item [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
@@ -7,7 +8,7 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="page-content">
-        <app-navbar (menuToggled)="sideNav.toggle()" ></app-navbar>
+        <app-page-title></app-page-title>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
