@@ -107,8 +107,8 @@
           <div>
             <mat-label class="form-label">Quality Certification: </mat-label>
             <mat-radio-group formControlName="qualityCertification">
-              <mat-radio-button value="1">Yes</mat-radio-button>
-              <mat-radio-button value="0">No</mat-radio-button>
+              <mat-radio-button [value]="true">Yes</mat-radio-button>
+              <mat-radio-button [value]="false">No</mat-radio-button>
             </mat-radio-group>
           </div>
           <div>
@@ -123,8 +123,8 @@
           <div>
             <mat-label class="form-label">Method of Supply: </mat-label>
             <mat-radio-group aria-label="Select an option" formControlName="methodOfSupply">
-              <mat-radio-button value="1">Full</mat-radio-button>
-              <mat-radio-button value="0">Parts</mat-radio-button>
+              <mat-radio-button [value]="true">Full</mat-radio-button>
+              <mat-radio-button [value]="false">Parts</mat-radio-button>
             </mat-radio-group>
           </div>
            <div>
@@ -135,8 +135,8 @@
            </div>
           </div>
           <div>
-            <button mat-button color="primary" matStepperPrevious>Back</button>
-            <button mat-button color="primary" matStepperNext [disabled]="!paramForm.valid">Next</button>
+            <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="!paramForm.valid">Next</button>
           </div>
           </div>
 

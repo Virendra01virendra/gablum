@@ -1,5 +1,6 @@
 package com.gablum.proposals.proposal.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -8,7 +9,8 @@ import java.util.UUID;
 @Document
 public class Proposal {
 
-    private UUID proposalId;
+    @Id
+    private UUID proposalId=UUID.randomUUID();
     private UUID productId;
     private UUID createdBy;
     private UUID updatedBy;
