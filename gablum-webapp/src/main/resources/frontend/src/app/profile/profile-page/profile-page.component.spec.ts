@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilePageComponent } from './profile-page.component';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ProfileRoutingModule } from '../profile-routing.module';
+import { CommonModule } from '@angular/common';
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
@@ -8,7 +12,9 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfilePageComponent ]
+      declarations: [ ProfilePageComponent ],
+      imports: [ MatDialogModule, MatButtonModule, FlexLayoutModule, ProfileRoutingModule,
+        CommonModule]
     })
     .compileComponents();
   }));

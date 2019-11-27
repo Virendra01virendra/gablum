@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-  
-
-  constructor() { }
+  constructor(private  dialog: MatDialog) { }
 
   ngOnInit() {
   }
-
+  onClick() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.closeOnNavigation = true;
+    // this.dialog.open(CourseDialogComponent, dialogConfig);
+  }
 }
