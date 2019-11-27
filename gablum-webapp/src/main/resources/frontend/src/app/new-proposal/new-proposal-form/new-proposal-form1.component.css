@@ -9,3 +9,19 @@
 .stepper {
   background-color: rgb(245, 244, 252);
 }
+
+.prod-details {
+  width: 80%;
+}
+
+.grid-container {
+  margin: 2em 0;
+}
+
+.radio-btn {
+  padding: 0 1em;
+}
+
+.padded-btn {
+  margin: 0.5em 1em;
+}

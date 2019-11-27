@@ -3,6 +3,7 @@ package com.gablum.usermanagement.user.controller;
 import com.gablum.usermanagement.user.exception.CustomException;
 import com.gablum.usermanagement.user.model.AuthResponse;
 import com.gablum.usermanagement.user.model.LoginRequest;
+import com.gablum.usermanagement.user.security.JwtTokenProvider;
 import com.gablum.usermanagement.user.services.ILoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,9 @@ public class LoginController {
 
     @Autowired
     private ILoginService iLoginService;
+
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
 
 
     @CrossOrigin("*")
@@ -57,10 +62,10 @@ public class LoginController {
     @CrossOrigin("*")
     @PostMapping("/signout")
     @ResponseBody
-    public ResponseEntity<AuthResponse> logout (@RequestHeader(value="Authorization") String token, HttpServletResponse response) {
+    public ResponseEntity<AuthResponse> logout (HttpServletResponse response, HttpServletRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        if (iLoginService.logout(token)) {
-            headers.remove("Authorization");
+        System.out.println("\n\n" + request.getCookies() + "\n\n");
+        if (iLoginService.logout(jwtTokenProvider.resolveToken(request))) {
             Cookie cookie = new Cookie("Authorization", "");
             cookie.setHttpOnly(true);
             cookie.setPath("/");

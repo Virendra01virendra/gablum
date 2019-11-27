@@ -54,12 +54,14 @@ public class AuctionController {
     }
 
     @GetMapping("/auctions")
+    @ResponseBody
     public List<Auction> getAllAuctions(
             @RequestParam Map<String, String> queryMap,
             HttpServletRequest request
     ) {
+//        System.out.println("\n\n" + request.getHeader("Cookie") + "\n\n");
         String token = tokenParser(request);
-        System.out.println("\n\n" + token + "\n\n");
+        System.out.println("\n\n" + request.getCookies() + "\n\n");
         JwtParser parser = Jwts.parser();
         claims = parser.parseClaimsJwt(token).getBody();
         System.out.println(claims);
