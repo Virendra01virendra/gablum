@@ -3,8 +3,12 @@ import { UserProfile } from './user';
 
 export interface NewBid {
     price: number;
-    creditPeriod: number;
-    qaqcCertificate: boolean;
-    typeOfSupply: boolean;
-    timeOfDelivery: number;
+    seller: UserProfile;
+    unitPrice: number;
+    rank: number;
+    scores: BidScore[];
+    totalScore: number;
+    estimatedDispatchDate: Date;
+    creditPeriodInDays: number;
+    certifications: string[];
 }

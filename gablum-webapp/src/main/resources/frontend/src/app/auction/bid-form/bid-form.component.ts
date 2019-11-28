@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { from } from 'rxjs';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import {NewBid} from '../../interfaces/newbid';
+import { LoggerService } from 'src/app/services/logger.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -24,7 +25,10 @@ export class BidFormComponent implements OnInit {
   result2;
   result3;
 
-  constructor(public http: HttpClient, private ws: WebsocketService) { }
+  constructor(
+    public http: HttpClient,
+    private ws: WebsocketService,
+    private logger: LoggerService) { }
   ngOnInit() {
 
     this.ws.connect(message => this.subscribe());
@@ -53,7 +57,7 @@ export class BidFormComponent implements OnInit {
     timeOfDelivery: form.value.newTimeOfDelivery,
     };
 
-    console.log('making api call', bid);
+    this.logger.log('making api call', bid);
 
     // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
     //   console.log('response ::', response);
@@ -84,22 +88,22 @@ export class BidFormComponent implements OnInit {
       '/topic/*',
       BidFormComponent.messageKey,
       'newbid').subscribe(message => {
-        console.log('message received is ::', message);
+        this.logger.log('message received is ::', message);
         if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
           const data = message.data;
           if ('getscore' in data) {
             this.result1 = data.getscore.body;
-            console.log('message received is ::', data.getscore.body);
+            this.logger.log('message received is ::', data.getscore.body);
             // this.bids.push(this.testBid);
           }
           if ('newbid' in data) {
             this.result2 = data.newbid.body;
-            console.log('message received is ::', data.newbid.body);
+            this.logger.log('message received is ::', data.newbid.body);
             // this.bids.push(this.testBid);
           }
           if ('fetchbid' in data) {
             this.result3 = data.fetchbid.body;
-            console.log('message received is ::', data.newbid.body);
+            this.logger.log('message received is ::', data.newbid.body);
             // this.bids.push(this.testBid);
           }
         }
