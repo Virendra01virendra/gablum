@@ -13,7 +13,6 @@ export class AuthGuardService implements CanLoad {
   ) { }
 
   canLoad() {
-    return true;
     if (this.auth.getAuthenticated()) {
       return true;
     } else {
