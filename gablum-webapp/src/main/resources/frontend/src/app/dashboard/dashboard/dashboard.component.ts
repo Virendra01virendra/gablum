@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { DashboardSection } from 'src/app/interfaces/dashboard-section';
 import { NewBid } from 'src/app/interfaces/newbid';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +47,9 @@ export class DashboardComponent implements OnInit {
     estimatedDispatchDate: new Date()
   };
 
-  constructor(private ws: WebsocketService) { }
+  constructor(
+    private ws: WebsocketService,
+    private logger: LoggerService) { }
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
@@ -65,7 +68,7 @@ export class DashboardComponent implements OnInit {
         if (message.dest === '@all' || message.dest === DashboardComponent.messageKey) {
           const data = message.data;
           if ('newbid' in data) {
-            console.log(data.newbid.body);
+            this.logger.log(data.newbid.body);
             this.bids.push(this.testBid);
           }
         }

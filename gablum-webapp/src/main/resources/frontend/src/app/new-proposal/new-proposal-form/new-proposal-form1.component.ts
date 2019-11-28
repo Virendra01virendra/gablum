@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormConfirmDialogComponent } from '../form-confirm-dialog/form-confirm-dialog.component';
 import { MatDialog} from '@angular/material';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-new-proposal-form1',
@@ -14,7 +15,10 @@ export class NewProposalForm1Component implements OnInit {
 
   showTicks = false;
 
-  constructor(private router: Router, private dialog: MatDialog) { }
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private logger: LoggerService) { }
 
   subDomains = ['Raw material', 'Crops', 'Machinery'];
   disabled = false;
@@ -59,7 +63,7 @@ export class NewProposalForm1Component implements OnInit {
   }
 
   onNext1(form: FormGroup) {
-    console.log('name' + form.value.productName);
+    this.logger.log('name' + form.value.productName);
   }
 
   onSubmit() {
@@ -75,7 +79,7 @@ export class NewProposalForm1Component implements OnInit {
 
   myFilter2 = (d: Date): boolean => {
     // Prevent dates before auction start date
-    console.log('del-date--' + this.paramForm.value.deliveryDate +
+    this.logger.log('del-date--' + this.paramForm.value.deliveryDate +
     'price--' + this.paramForm.value.price );
     return d < this.paramForm.value.deliveryDate ;
   }
@@ -90,7 +94,7 @@ export class NewProposalForm1Component implements OnInit {
   }
   myFilter5 = (d: Date): boolean => {
     // Prevent dates before auction start date
-    console.log('Auc-start-date---' + this.timeForm.value.auctionStartDate);
+    this.logger.log('Auc-start-date---' + this.timeForm.value.auctionStartDate);
     return d > this.timeForm.value.auctionStartDate ;
   }
 
