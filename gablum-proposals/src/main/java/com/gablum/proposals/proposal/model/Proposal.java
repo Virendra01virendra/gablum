@@ -9,14 +9,10 @@ import java.util.UUID;
 @Document(collection = "proposals")
 public class Proposal {
 
-    @Id
     private UUID proposalId = UUID.randomUUID();
     private UUID productId;
     private UUID createdBy;
     private UUID updatedBy;
-    private enum domainName{Agriculture;};
-    private enum subDomain{cd,ef,gf;};
-    private Date eod;
     private String businessDomain;
     private String businessSubDomain;
     private String productName;
@@ -36,12 +32,12 @@ public class Proposal {
     private int views;
     private int interested;
 
+    //Empty constructor
     public Proposal() {
     }
 
-    
-
-    public Proposal(Float price, int quantity) {      // Constructor
+    // Constructor
+    public Proposal(Float price, int quantity) {
         this.price = price;
         this.quantity = quantity;
     }
