@@ -20,7 +20,9 @@ export class BidFormComponent implements OnInit {
   public static messageKey = 'BidFormComponent';
   bidForm: FormGroup;
   url = 'localhost:8080/api/auctions/auctions/bid';
-  result;
+  result1;
+  result2;
+  result3;
 
   constructor(public http: HttpClient, private ws: WebsocketService) { }
   ngOnInit() {
@@ -61,21 +63,48 @@ export class BidFormComponent implements OnInit {
 
   }
 
+  seeScore(form: FormGroup) {
+    const bid = {
+      price: form.value.newPrice,
+      creditPeriod: form.value.newCreditPeriod,
+      qaqcCertificate: form.value.newQaqcCertificate,
+      typeOfSupply: form.value.newTypeOfDelivery,
+      timeOfDelivery: form.value.newTimeOfDelivery,
+      };
+
+    this.ws.getBidScore(bid);
+  }
+
+  bidList() {
+    this.ws.fetchBids();
+  }
+
   subscribe() {
     this.ws.subscribe(
-      '/topic/newbid',
+      '/topic/*',
       BidFormComponent.messageKey,
       'newbid').subscribe(message => {
         console.log('message received is ::', message);
         if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
           const data = message.data;
+          if ('getscore' in data) {
+            this.result1 = data.getscore.body;
+            console.log('message received is ::', data.getscore.body);
+            // this.bids.push(this.testBid);
+          }
           if ('newbid' in data) {
-            this.result = data.newbid.body;
+            this.result2 = data.newbid.body;
+            console.log('message received is ::', data.newbid.body);
+            // this.bids.push(this.testBid);
+          }
+          if ('fetchbid' in data) {
+            this.result3 = data.fetchbid.body;
             console.log('message received is ::', data.newbid.body);
             // this.bids.push(this.testBid);
           }
         }
       });
+
   }
 
 }
