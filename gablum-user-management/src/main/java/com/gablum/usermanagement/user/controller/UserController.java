@@ -6,7 +6,6 @@ import com.gablum.usermanagement.user.security.JwtTokenProvider;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import lombok.extern.slf4j.XSlf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +22,8 @@ public class UserController {
     @Autowired
     private UserManagementService managementService;
 
+    private Claims tokenClaims;
+
     @GetMapping
     public String getUsers() {
         return "user: yay";
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/menuitems")
-    List<NavLink> getMenuItems(@RequestHeader("Authorization") String token) {
+    public List<NavLink> getMenuItems(@RequestHeader("Authorization") String token) {
         // FIXME: don't return hardcoded list
 
         return List.of(
@@ -45,9 +46,9 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    private User getUserProfile(HttpServletRequest request) {
+    public User getUserProfile(HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
-        Claims tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
+        tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         String email = tokenClaims.get("sub", String.class);
         User foundUser = managementService.getUser(email);
         foundUser.setPassword(null);
@@ -55,10 +56,10 @@ public class UserController {
     }
 
     @PatchMapping("/profile")
-    private User editUserProfile(@RequestBody User user, HttpServletRequest request) {
+    public User editUserProfile(@RequestBody User user, HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
-        Claims tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
-        return new User();
+        tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
+        return user;
     }
 
 }
