@@ -6,6 +6,7 @@ import { LoginToken } from '../interfaces/login-token';
 import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { LoggerService } from '../services/logger.service';
 // import { MatError } from '@angular/material';
 
 @Component({
@@ -34,19 +35,17 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginDataService,
     private comms: CommunicatorService,
+    private logger: LoggerService,
     private auth: AuthenticationService) {
       this.comms.getMessages().subscribe(message => {
-        console.log(message);
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
           if ('loginResult' in data) {
             const loginToken: LoginToken = data.loginResult.accessToken;
-            console.log(loginToken);
             if (loginToken === undefined || loginToken === null) {
 
             } else {
               auth.setAuthenticated(true);
-              console.log(auth);
               this.router.navigate(['/dashboard']);
             }
           }

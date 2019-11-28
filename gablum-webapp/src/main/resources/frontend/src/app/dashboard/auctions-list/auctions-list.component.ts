@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Auction } from 'src/app/interfaces/auction';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-auctions-list',
@@ -16,7 +17,8 @@ export class AuctionsListComponent implements OnInit {
 
   constructor(
     private auctionDataService: AuctionsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private logger: LoggerService
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === AuctionsListComponent.messageKey || msg.dest === '@all') {
@@ -24,7 +26,7 @@ export class AuctionsListComponent implements OnInit {
 
           if ('auctions' in data) {
             this.auctions = data.auctions;
-            console.log(this.auctions);
+            this.logger.log(this.auctions);
           }
         }
       });
