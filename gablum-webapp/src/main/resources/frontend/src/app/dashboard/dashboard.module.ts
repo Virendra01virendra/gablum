@@ -6,13 +6,15 @@ import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 import { MaterialModule } from '../material/material.module';
 import { ProposalsListComponent } from './proposals-list/proposals-list.component';
+import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     BidCardComponent,
     AuctionsListComponent,
-    ProposalsListComponent
+    ProposalsListComponent,
+    NewProposalCardComponent
   ],
   imports: [
     CommonModule,

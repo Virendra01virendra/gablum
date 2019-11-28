@@ -15,8 +15,7 @@ public class ProposalService {
     private ProposalRepository proposalRepo;
 
     public Proposal saveProposal(Proposal proposal) {
-        Proposal proposal1 = proposal;
-        return proposalRepo.save(proposal1);
+        return proposalRepo.save(proposal);
     }
 
     public Proposal getProposalById(UUID proposalId) {      //search by proposal Id

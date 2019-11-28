@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins="*")
 public class ProposalController {
 
     @Autowired

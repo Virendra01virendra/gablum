@@ -12,28 +12,27 @@ import { MatDialog} from '@angular/material';
 
 export class NewProposalForm1Component implements OnInit {
 
-  showTicks = false;
-
   constructor(private router: Router, private dialog: MatDialog) { }
 
+  showTicks = false;
   subDomains = ['Raw material', 'Crops', 'Machinery'];
-  disabled = false;
   invert = false;
   thumbLabel = false;
   value = 0;
   vertical = false;
   panelOpenState = false;
+  editable = false;
 
   productSpecsForm = new FormGroup({
     businessDomain: new FormControl(''),
-    businessSubDomain: new FormControl(''),
-    productName: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    quantity: new FormControl('', [Validators.required, Validators.pattern('^[1-9]*$'), Validators.min(1)]),
+    businessSubDomain: new FormControl('', [Validators.required]),
+    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$'), Validators.minLength(3)]),
+    quantity: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     images: new FormControl('')
   });
 
     paramForm = new FormGroup({
-    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(2)]),
+    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1), Validators.minLength(2)]),
     priceWeight: new FormControl(''),
     deliveryDate: new FormControl({value: ''}, Validators.required),
     deliveryDateWeight: new FormControl(''),
@@ -46,10 +45,10 @@ export class NewProposalForm1Component implements OnInit {
   });
 
   timeForm = new FormGroup({
-    regStartDate: new FormControl({value: '', disabled: true}, [Validators.required]),
-    regEndDate: new FormControl({value: '', disabled: true}, [Validators.required]),
-    auctionStartDate: new FormControl({value: '', disabled: true}, [Validators.required]),
-    auctionEndDate: new FormControl({value: '', disabled: true}, [Validators.required])
+    regStartDate: new FormControl({value: ''}, [Validators.required]),
+    regEndDate: new FormControl({value: ''}, [Validators.required]),
+    auctionStartDate: new FormControl({value: ''}, [Validators.required]),
+    auctionEndDate: new FormControl({value: ''}, [Validators.required])
   });
 
   formatLabel(value: number) {
