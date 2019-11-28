@@ -13,6 +13,12 @@ export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
 
+  public dashboardSections: DashboardSection[] = [
+    {label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', isActive: true},
+    {label: 'Active Proposals', desc: 'Proposals currently active', icon: ''},
+    {label: 'Past Auctions', desc: 'Your past auctions', icon: ''},
+  ];
+
   public bids: NewBid[] = [];
   public testBid: NewBid = {
     seller: {
