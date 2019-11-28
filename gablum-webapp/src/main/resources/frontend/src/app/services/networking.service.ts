@@ -25,6 +25,24 @@ export class NetworkingService {
       });
   }
 
+  patchData<T>(url: string, dest: string, data, key = 'inventory') {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })};
+    console.log( 'datata :::', data);
+    this.http.patch<T>(url, data, httpOptions)
+      .pipe(
+        retry(3),
+        catchError(err => {
+          return throwError(err);
+        })
+      )
+      .subscribe(res => {
+        this.comms.postMessage(this, dest, {[key]: res});
+      });
+  }
+
   postData<T>(url: string, dest: string, data, key = 'inventory') {
     const httpOptions = {
       headers: new HttpHeaders({

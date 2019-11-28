@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { EditProfileDialogComponent} from '../edit-profile-dialog/edit-profile-dialog.component'
+import { EditProfileDialogComponent} from '../edit-profile-dialog/edit-profile-dialog.component';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
@@ -42,6 +42,6 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.closeOnNavigation = true;
-    this.dialog.open(EditProfileDialogComponent, dialogConfig);
+    this.dialog.open(EditProfileDialogComponent, {data: this.profile});
   }
 }
