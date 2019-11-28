@@ -6,11 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
-
 
 @AllArgsConstructor
 @Getter
@@ -20,17 +23,32 @@ public class ProposalService implements IProposalService {
 
     @Autowired
     private ProposalRepository proposalRepo;
-//    public Proposal saveProposal(Proposal proposal) {
-//        return proposalRepo.save(proposal);
-//    }
 
     private List<Proposal> proposals;
+
+    private Pageable getPageable(Map<String, String> queryMap) {
+        String sortKey = "auctionName";
+        int pageLength = 10;
+        int page = 0;
+        if (queryMap.containsKey("sort")) {
+            sortKey = queryMap.get("sort");
+        }
+        if (queryMap.containsKey("pagesize")) {
+            pageLength = Integer.parseInt(queryMap.get("pagesize"));
+        }
+        if (queryMap.containsKey("page")) {
+            page = Integer.parseInt(queryMap.get("page"));
+        }
+
+        return PageRequest.of(page, pageLength, Sort.by(sortKey));
+    }
 
     // get all proposals
     @Override
     public List<Proposal> getAllProposals() {
         return proposalRepo.findAll();
     }
+
     public Proposal saveProposal(Proposal proposal) {
         return proposalRepo.save(proposal);
     }
@@ -41,7 +59,7 @@ public class ProposalService implements IProposalService {
         return proposalRepo.findByProposalId(proposalId).orElse(null);
     }
 
-    //adding proposals
+    // adding proposals
     @Override
     public Proposal addProposals(Proposal proposalToAdd) {
         return proposalRepo.save(proposalToAdd);
@@ -51,12 +69,15 @@ public class ProposalService implements IProposalService {
         proposalRepo.deleteByProposalId(proposalId);
     }
 
-    //extend Proposal
+    // extend Proposal
     public Proposal extendProposal(Proposal currentProposal, UUID proposalId) {
         Proposal proposal = getProposalById(proposalId);
         proposal.setRegEndDate(currentProposal.getRegEndDate());
         proposal.setRegStartDate(currentProposal.getRegStartDate());
         return proposalRepo.save(proposal);
+    }
 
+    public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
+        return proposalRepo.getAllProposalsByCreatedBy(email, getPageable(queryMap)).getContent();
     }
 }

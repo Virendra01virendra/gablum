@@ -2,11 +2,16 @@ package com.gablum.proposals.proposal.controller;
 
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
+import com.gablum.proposals.proposal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -16,13 +21,16 @@ public class ProposalController {
     @Autowired
     private ProposalService proposalService;
 
-    @GetMapping("/echo")
-    public String getEcho() {
-        return "proposal";
-    }
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/proposals")                                 // Add proposal details
-    public Proposal addProposal(@RequestBody Proposal proposalData) {
+    public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
+        String email = userService.getEmail(request);
+        proposalData.setCreatedBy(email);
+        proposalData.setUpdatedBy(email);
+        proposalData.setCreatedOn(new Date());
+        proposalData.setUpdatedOn(new Date());
         Proposal savedProposal = proposalService.addProposals(proposalData);
         return savedProposal;
     }
@@ -33,8 +41,9 @@ public class ProposalController {
     }
 
     @GetMapping("/proposals")
-    public List<Proposal> getProposals() {
-        return proposalService.getAllProposals();
+    public List<Proposal> getProposals(@RequestParam Map<String, String> queryMap, HttpServletRequest request) {
+        String email = userService.getEmail(request);
+        return proposalService.getAllProposals(queryMap, email);
     }
 
 //    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
