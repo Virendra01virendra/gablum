@@ -54,6 +54,7 @@ const modules = [
   MatOptionModule,
   MatButtonModule,
   MatExpansionModule,
+  MatTooltipModule,
   MatChipsModule,
   MatTooltipModule,
   MatSidenavModule,
@@ -62,7 +63,10 @@ const modules = [
   MatBadgeModule,
   MatDialogModule,
   MatTabsModule,
-  MatGridListModule
+  MatGridListModule,
+  MatDividerModule,
+  FlexLayoutModule,
+  MatListModule
 ];
 
 @NgModule({

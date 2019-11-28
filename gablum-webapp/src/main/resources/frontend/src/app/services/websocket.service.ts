@@ -11,17 +11,31 @@ import { environment } from 'src/environments/environment';
 })
 export class WebsocketService {
 
-  private socket: object;
+  private socket: any;
   private stompClient: CompatClient;
 
-  constructor(private comms: CommunicatorService) {
+  private storedSubcriptions = connectMessage => {};
+
+  private socketReconnect = (isReconnect = true) => {
     this.socket = new sockjs(environment.wsURL);
     this.stompClient = Stomp.over(this.socket);
     this.stompClient.heartbeatIncoming = 1000;
     this.stompClient.heartbeatOutgoing = 2000;
+    this.stompClient.onWebSocketClose = () => {
+      console.log('rip');
+      setTimeout(this.socketReconnect, 5000);
+    };
+    if (isReconnect) {
+      this.stompClient.connect({}, this.storedSubcriptions);
+    }
+  }
+
+  constructor(private comms: CommunicatorService) {
+    this.socketReconnect(false);
   }
 
   connect(connectCb = connectMessage => { console.log(connectMessage); }) {
+    this.storedSubcriptions = connectCb;
     this.stompClient.connect({}, connectCb);
   }
 
