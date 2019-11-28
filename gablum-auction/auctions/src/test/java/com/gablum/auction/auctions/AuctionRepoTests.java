@@ -26,8 +26,8 @@ public class AuctionRepoTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(UUID.randomUUID());
-        testAuction2.setProposalId(UUID.randomUUID());
+        testAuction1.setProposalId(UUID.randomUUID().toString());
+        testAuction2.setProposalId(UUID.randomUUID().toString());
     }
 
     @AfterEach

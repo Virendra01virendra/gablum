@@ -31,8 +31,8 @@ public class AuctionServiceTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(UUID.randomUUID());
-        testAuction2.setProposalId(UUID.randomUUID());
+        testAuction1.setProposalId(UUID.randomUUID().toString());
+        testAuction2.setProposalId(UUID.randomUUID().toString());
     }
 
     @Test
@@ -63,13 +63,13 @@ public class AuctionServiceTests {
 
     @Test
     public void serviceCanGetById() {
-        Mockito.when(auctionRepo.findByAuctionId(Mockito.any(UUID.class))).thenReturn(
+        Mockito.when(auctionRepo.findByAuctionId(Mockito.any(String.class))).thenReturn(
                 Optional.of(testAuction1)
         );
 
         Assertions.assertEquals(
                 testAuction1.getAuctionId(),
-                auctionService.getAuctionById(UUID.randomUUID()).getAuctionId(),
+                auctionService.getAuctionById(UUID.randomUUID().toString()).getAuctionId(),
                 "service should be able to get auction by id"
         );
     }
