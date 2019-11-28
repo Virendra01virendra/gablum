@@ -54,7 +54,6 @@ public class ProposalService implements IProposalService {
     //extend Proposal
     public Proposal extendProposal(Proposal currentProposal, UUID proposalId) {
         Proposal proposal = getProposalById(proposalId);
-        proposal.setProposalId(proposalId);
         proposal.setRegEndDate(currentProposal.getRegEndDate());
         proposal.setRegStartDate(currentProposal.getRegStartDate());
         return proposalRepo.save(proposal);

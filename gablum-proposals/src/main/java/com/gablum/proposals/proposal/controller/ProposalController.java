@@ -1,15 +1,12 @@
 package com.gablum.proposals.proposal.controller;
 
 import com.gablum.proposals.proposal.model.Proposal;
-import com.gablum.proposals.proposal.repository.ProposalRepository;
 import com.gablum.proposals.proposal.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -18,9 +15,6 @@ public class ProposalController {
 
     @Autowired
     private ProposalService proposalService;
-
-    @Autowired
-    private ProposalRepository proposalRepository;
 
     @GetMapping("/echo")
     public String getEcho() {
