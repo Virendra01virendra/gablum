@@ -22,6 +22,9 @@ public class ProposalService implements IProposalService {
     public List<Proposal> getAllProposals() {
         return proposalRepo.findAll();
     }
+    public Proposal saveProposal(Proposal proposal) {
+        return proposalRepo.save(proposal);
+    }
 
     // get proposal by ID
     @Override

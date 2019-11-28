@@ -1,8 +1,9 @@
 package com.gablum.usermanagement.user.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gablum.usermanagement.user.model.NavLink;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping
 @RestController
@@ -16,5 +17,16 @@ public class UserController {
     @GetMapping("/echo") 
     public String getEcho() {
         return "users";
+    }
+
+    @GetMapping("/getMenuItems")
+    List<NavLink> getMenuItems(@RequestHeader("Authorization") String token) {
+        // FIXME: don't return hardcoded list
+
+        return List.of(
+                new NavLink("Dashboard", "/dashboard", "dashboard"),
+                new NavLink("About Us", "#about", "device_hub"),
+                new NavLink("Contact", "#contact", "contact_support")
+        );
     }
 }
