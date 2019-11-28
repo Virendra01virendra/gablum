@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('FormConfirmDialogComponent', () => {
   let component: FormConfirmDialogComponent;
@@ -57,7 +58,8 @@ describe('FormConfirmDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [FormConfirmDialogComponent],
-      imports: [MaterialModule, RouterTestingModule, ReactiveFormsModule, FormsModule],
+      imports: [MaterialModule, RouterTestingModule, ReactiveFormsModule, FormsModule,
+      HttpClientTestingModule],
       providers: [{
         provide: MAT_DIALOG_DATA,
         useValue: data,

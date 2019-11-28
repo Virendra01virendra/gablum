@@ -1,54 +1,19 @@
-/* FOOTER */
-.cont{
-	border-style: solid;
-	/* height:200px; */
+.hero-container {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-image: url("https://picsum.photos/1600/1200");
+    background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2)), url("https://picsum.photos/1600/1200");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.box1
-{
-	/* height:200px; */
-	background:blue;
-	border-style: solid;
-}
-.box2
-{
-	/* height:200px; */
-	border-style: solid;
-	background: green;
-	/* justify-content: center;
-	display: flex;
-	flex-direction: column; */
-	
-}
-.footer
-{
-    background: #222;
-    color: white;
+.hero-text-container {
+    color: antiquewhite;
+    padding: 0 2em;
 }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
+.hero-text-container > h2 {
     text-align: center;
-	z-index: 999;
+    font-weight: lighter;
 }
-
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
-
-/* FOOTER */

@@ -69,7 +69,6 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-<<<<<<< HEAD
   webapp:
     build:
       context: ./gablum-webapp
@@ -87,7 +86,7 @@ services:
       - -jar
       - /usr/app/app.jar
     restart: on-failure
-=======
+
   # webapp:
   #   build:
   #     context: ./gablum-webapp
@@ -105,7 +104,6 @@ services:
   #     - -jar
   #     - /usr/app/app.jar
   #   restart: on-failure
->>>>>>> 63f12f8b44b6d1d1405489126a7f1d7105703c7c
 
   auctions:
     build:
