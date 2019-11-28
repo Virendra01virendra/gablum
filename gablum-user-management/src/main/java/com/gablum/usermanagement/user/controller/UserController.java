@@ -48,7 +48,8 @@ public class UserController {
     private User getUserProfile(HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
         Claims tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
-        User foundUser = managementService.getUser(tokenClaims.get("sub", String.class));
+        String email = tokenClaims.get("sub", String.class);
+        User foundUser = managementService.getUser(email);
         foundUser.setPassword(null);
         return foundUser;
     }
