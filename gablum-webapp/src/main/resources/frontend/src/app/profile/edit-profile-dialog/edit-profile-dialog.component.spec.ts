@@ -9,6 +9,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfilePageComponent } from '../profile-page/profile-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('EditProfileDialogComponent', () => {
   let component: EditProfileDialogComponent;
@@ -19,7 +20,10 @@ describe('EditProfileDialogComponent', () => {
       declarations: [ EditProfileDialogComponent, ProfilePageComponent],
       imports: [MatDialogModule, MatButtonModule, FlexLayoutModule, ProfileRoutingModule,
         CommonModule, MatSelectModule, MatOptionModule, ReactiveFormsModule, FormsModule,
-        MaterialModule, HttpClientModule, MatDialogModule, MAT_DIALOG_DATA]
+        MaterialModule, HttpClientModule, MatDialogModule, BrowserAnimationsModule],
+        providers: [
+          { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
     })
     .compileComponents();
   }));

@@ -25,16 +25,12 @@ import { MaterialModule } from './material/material.module';
 import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { InterceptorService } from './services/interceptor.service';
-import { EditProfileDialogComponent } from './profile/edit-profile-dialog/edit-profile-dialog.component';
-import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    LoginComponent,
-    EditProfileDialogComponent,
-    ProfilePageComponent
+    LoginComponent
   ],
   imports: [
     // BrowserModule,
