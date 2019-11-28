@@ -25,7 +25,7 @@ export class NewProposalForm1Component implements OnInit {
   panelOpenState = false;
 
   productSpecsForm = new FormGroup({
-    businessDomain: new FormControl(''),
+    businessDomain: new FormControl({value: '', disabled: true}),
     businessSubDomain: new FormControl(''),
     productName: new FormControl('', [Validators.required, Validators.minLength(3)]),
     quantity: new FormControl('', [Validators.required, Validators.pattern('^[1-9]*$'), Validators.min(1)]),
@@ -35,7 +35,7 @@ export class NewProposalForm1Component implements OnInit {
     paramForm = new FormGroup({
     price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(2)]),
     priceWeight: new FormControl(''),
-    deliveryDate: new FormControl({value: ''}, Validators.required),
+    deliveryDate: new FormControl({value: '', disabled: true}, Validators.required),
     deliveryDateWeight: new FormControl(''),
     creditPeriod: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     creditPeriodWeight: new FormControl(''),
