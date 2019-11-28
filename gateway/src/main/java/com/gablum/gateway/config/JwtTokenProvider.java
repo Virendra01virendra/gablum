@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
@@ -56,10 +57,22 @@ public class JwtTokenProvider {
     }
 
     public String resolveToken(HttpServletRequest req) {
-        String bearerToken = req.getHeader(AUTHORIZATION);
-        /*if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
-        }*/
+        String bearerToken = null;
+        if (req.getRequestURI().contains("/signin")) {
+            return null;
+        }
+        try {
+            Cookie[] cookies = req.getCookies();
+            System.out.println("\n\n" + cookies + "\n\n");
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(AUTHORIZATION)) {
+                    bearerToken = cookie.getValue();
+                }
+            }
+        }
+        catch (Exception ex) {
+            return null;
+        }
         if (bearerToken != null ) {
             return bearerToken;
         }

@@ -36,6 +36,7 @@ export class LoginDataService {
           return throwError(err);
         })
       ).subscribe(res => {
+        console.log('res');
         this.comms.postMessage(
           this,
           '@all',

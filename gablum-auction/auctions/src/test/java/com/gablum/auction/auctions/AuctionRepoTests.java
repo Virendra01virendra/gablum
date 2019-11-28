@@ -1,6 +1,7 @@
 package com.gablum.auction.auctions;
 
 
+import com.gablum.auction.auctions.Auction;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
