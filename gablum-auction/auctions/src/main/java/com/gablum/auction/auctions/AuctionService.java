@@ -40,8 +40,12 @@ public class AuctionService implements IAuctionService{
         return auctionRepo.findAll(getPageable(queryMap)).getContent();
     }
 
+    public List<Auction> getAllAuctionsBuyer(Map<String, String> queryMap, String email) {
+        return auctionRepo.findAllByCreatedBy(getPageable(queryMap), email).getContent();
+    }
+
     @Override
-    public Auction getAuctionById(UUID auctionId) {
+    public Auction getAuctionById(String auctionId) {
         return auctionRepo.findByAuctionId(auctionId).orElse(null);
     }
 

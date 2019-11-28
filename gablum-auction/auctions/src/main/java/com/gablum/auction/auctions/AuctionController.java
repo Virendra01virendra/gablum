@@ -40,25 +40,20 @@ public class AuctionController {
         messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
         return "auctions";
     }
-
+    //FIXME: check roles before returning auction
+    //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
     @ResponseBody
     public List<Auction> getAllAuctions(
             @RequestParam Map<String, String> queryMap,
             HttpServletRequest request
     ) {
-//        System.out.println("\n\n" + request.getHeader("Cookie") + "\n\n");
-//        String token = tokenParser(request);
-//        System.out.println("\n\n" + request.getCookies() + "\n\n");
-//        JwtParser parser = Jwts.parser();
-//        claims = parser.parseClaimsJwt(token).getBody();
-//        System.out.println(claims);
         String email = userService.getEmail(request);
         return auctionService.getAllAuctions(queryMap);
     }
 
     @GetMapping("/auctions/{id}")
-    public Auction getAuctionById(@PathVariable("id") UUID auctionId) {
+    public Auction getAuctionById(@PathVariable("id") String auctionId) {
         return auctionService.getAuctionById(auctionId);
     }
 
