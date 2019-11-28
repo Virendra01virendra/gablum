@@ -25,7 +25,6 @@ import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
@@ -56,7 +55,6 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule,
     AuctionModule,
     MaterialModule,
-    MDBBootstrapModule,
     NavbarMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,

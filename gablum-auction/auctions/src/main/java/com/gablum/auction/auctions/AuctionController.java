@@ -12,24 +12,6 @@ import java.util.UUID;
 
 
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-<<<<<<< HEAD
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RestController;
-
-// import org.springframework.messaging.Message;
-// import org.springframework.messaging.support.MessageBuilder;
-// import org.springframework.messaging.MessageChannel;
-
-
-@RestController
-@CrossOrigin(origins = "http://localhost:8080/auctions/auctions/bid")
-public class AuctionController {
-
-    @Autowired
-
-    private AuctionService auctionService;
-
-=======
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -61,7 +43,6 @@ public class AuctionController {
     Claims claims;
 
     @Autowired
->>>>>>> 63f12f8b44b6d1d1405489126a7f1d7105703c7c
     private SimpMessageSendingOperations messageSendingOperations;
 
 
