@@ -1,10 +1,15 @@
 package com.gablum.proposals.proposal.controller;
 
 import com.gablum.proposals.proposal.model.Proposal;
+import com.gablum.proposals.proposal.repository.ProposalRepository;
 import com.gablum.proposals.proposal.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -13,6 +18,9 @@ public class ProposalController {
 
     @Autowired
     private ProposalService proposalService;
+
+    @Autowired
+    private ProposalRepository proposalRepository;
 
     @GetMapping("/echo")
     public String getEcho() {
@@ -41,11 +49,21 @@ public class ProposalController {
 //      return proposal;
 //    }
 
-    @GetMapping("/proposals/{proposalId}")                                      //Delete Proposal
+    @DeleteMapping("/proposals/{proposalId}")                                      //Delete Proposal
     public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
         proposalService.deleteProposalbyID(proposalId);
     }
 
-
+    //Extending the proposal
+    @PatchMapping("proposals/{proposalId}")
+    public ResponseEntity<Proposal> extendedProposal (
+            @RequestBody Proposal currentProposal, @PathVariable("proposalId") UUID proposalId) {
+        Proposal proposal = proposalService.getProposalById(proposalId);
+        if (proposal == null) {
+            return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
+        }
+        proposalService.extendProposal(currentProposal, proposalId);
+        return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
+    }
 
 }
