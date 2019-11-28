@@ -21,7 +21,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-class UserServiceTest {
+class UserManagementServiceTest {
 
     @Mock
     private UserRepository userRepository;
