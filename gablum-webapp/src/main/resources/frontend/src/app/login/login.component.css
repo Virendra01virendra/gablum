@@ -1,23 +1,12 @@
-.header{
-    background:lightgray;
-}
-
-.head{
-    font-size: 2rem;
-    /* margin: 40%; */
-    margin-left: 1.8%;
-
-}
-
 .logForm{
     display: flex;
     flex-direction: column;
-    /* padding-left: 35%; */
-    padding-right: 60%;
   }
 
   .fullWidth{
-    margin-left: 4%;
+    /* margin-left: 4%; */
+    width: 100%;
+    padding: 1em 0;
   }
 
 .regForm{
@@ -26,8 +15,11 @@
 }
 
 .btn{
-  /* display: flex;
-    flex-direction: column; */
     margin-left: 4%;
     margin-bottom: 5%;
+}
+
+.login-signup-container {
+  width: 100%;
+  min-height: 100vh;
 }

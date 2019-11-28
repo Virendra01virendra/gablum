@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimerComponent } from './timer/timer.component';
 import { SchedulerRoutingModule } from './scheduler-routing.module';
+import {MaterialModule} from './../material/material.module';
 
 
 
@@ -9,7 +10,8 @@ import { SchedulerRoutingModule } from './scheduler-routing.module';
   declarations: [TimerComponent],
   imports: [
     CommonModule,
-    SchedulerRoutingModule
+    SchedulerRoutingModule,
+    MaterialModule
   ]
 })
 export class SchedulerModule { }

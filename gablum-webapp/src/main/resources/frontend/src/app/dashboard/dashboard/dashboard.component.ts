@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { DashboardSection } from 'src/app/interfaces/dashboard-section';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +10,12 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
+
+  public dashboardSections: DashboardSection[] = [
+    {label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', isActive: true},
+    {label: 'Active Proposals', desc: 'Proposals currently active', icon: ''},
+    {label: 'Past Auctions', desc: 'Your past auctions', icon: ''},
+  ];
 
   public bids = [];
   public testBid = {

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
+  public heroText = 'A B2B Auctioning platform, where quality meets you';
+
   constructor() { }
 
   ngOnInit() {
