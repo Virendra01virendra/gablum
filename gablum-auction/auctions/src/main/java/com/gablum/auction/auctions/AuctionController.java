@@ -1,5 +1,6 @@
 package com.gablum.auction.auctions;
 
+import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
@@ -25,25 +26,13 @@ public class AuctionController {
     private AuctionService auctionService;
 
 
-    private String tokenParser(HttpServletRequest req) {
-        String bearerToken = null;
-        try {
-            Cookie[] cookies = req.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("Authorization")) {
-                    bearerToken = cookie.getValue();
-                }
-            }
-            return bearerToken;
-        } catch (Exception ex) {
-            return null;
-        }
-    }
-
     Claims claims;
 
     @Autowired
     private SimpMessageSendingOperations messageSendingOperations;
+
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/echo")
@@ -59,11 +48,12 @@ public class AuctionController {
             HttpServletRequest request
     ) {
 //        System.out.println("\n\n" + request.getHeader("Cookie") + "\n\n");
-        String token = tokenParser(request);
-        System.out.println("\n\n" + request.getCookies() + "\n\n");
-        JwtParser parser = Jwts.parser();
-        claims = parser.parseClaimsJwt(token).getBody();
-        System.out.println(claims);
+//        String token = tokenParser(request);
+//        System.out.println("\n\n" + request.getCookies() + "\n\n");
+//        JwtParser parser = Jwts.parser();
+//        claims = parser.parseClaimsJwt(token).getBody();
+//        System.out.println(claims);
+        String email = userService.getEmail(request);
         return auctionService.getAllAuctions(queryMap);
     }
 
