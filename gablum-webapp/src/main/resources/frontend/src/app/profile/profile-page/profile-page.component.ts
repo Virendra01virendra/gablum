@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { EditProfileDialogComponent} from '../edit-profile-dialog/edit-profile-dialog.component'
 
 @Component({
   selector: 'app-profile-page',
@@ -8,7 +9,7 @@ import {MatDialog, MatDialogConfig} from '@angular/material';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(private  dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -17,6 +18,6 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.closeOnNavigation = true;
-    // this.dialog.open(CourseDialogComponent, dialogConfig);
+    this.dialog.open(EditProfileDialogComponent, dialogConfig);
   }
 }
