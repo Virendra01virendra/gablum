@@ -5,9 +5,10 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { ProfileDialogComponent } from './profile-dialog/profile-dialog.component';
 
 @NgModule({
-  declarations: [ProfilePageComponent],
+  declarations: [ProfilePageComponent, ProfileDialogComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,
