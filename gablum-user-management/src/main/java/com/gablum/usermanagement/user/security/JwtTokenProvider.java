@@ -7,6 +7,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ import java.util.List;
 public class JwtTokenProvider {
     private static final String AUTH="auth";
     private static final String AUTHORIZATION="Authorization";
+    @Getter
     private String secretKey="secret-key";
     private long validityInMilliseconds = 3600000; // 1h
 
