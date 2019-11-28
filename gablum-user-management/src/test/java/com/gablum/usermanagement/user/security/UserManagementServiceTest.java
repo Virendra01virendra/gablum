@@ -30,7 +30,6 @@ class UserManagementServiceTest {
     private UserService userService;
 
     private User testUser1 = new User();
-    private User testUser2 = new User();
 
     @BeforeEach
     public void setUp() {
