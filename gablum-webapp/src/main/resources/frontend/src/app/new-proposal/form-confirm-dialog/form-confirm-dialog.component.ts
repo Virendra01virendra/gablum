@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-form-confirm-dialog',
@@ -12,16 +13,20 @@ export class FormConfirmDialogComponent implements OnInit {
 
   public static messageKey = 'form-confirm-dialog-component';
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private proposalService: ProposalsDataService) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router,
+    private proposalService: ProposalsDataService,
+    private logger: LoggerService) { }
 
   ngOnInit() {
-    console.log( ' data ::', this.data.form1 , this.data.form2, this.data.form3);
+    // console.log( ' data ::', this.data.form1 , this.data.form2, this.data.form3);
   }
 
 
   onConfirm(data) {
     this.router.navigate(['/dashboard']);
-    console.log('price---' + data.form2.value.price);
+    this.logger.log('price---' + data.form2.value.price);
     const proposalFormDetails = {
     businessDomain: data.form1.value.businessDomain,
     businessSubDomain: data.form1.value.businessSubDomain,

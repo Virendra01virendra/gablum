@@ -63,7 +63,6 @@ public class JwtTokenProvider {
         }
         try {
             Cookie[] cookies = req.getCookies();
-            System.out.println("\n\n" + cookies + "\n\n");
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(AUTHORIZATION)) {
                     bearerToken = cookie.getValue();

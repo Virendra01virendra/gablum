@@ -18,7 +18,6 @@ export class RegisterDataService {
     ) { }
 
   register(params: RegisterRequest) {
-    console.log(params);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'

@@ -38,7 +38,7 @@ public class User {
     public enum subDomain {
         RawMaterial, Equipments, Produce
     }
-    private Set<Role> role = Set.of(new Role(1, "user"));
+    private Set<Role> role = Set.of(new Role(1, "buyer"));
     // TODO: remove hard coded role
     private Integer active=1;
     private boolean isLocked=false;

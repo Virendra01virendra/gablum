@@ -1,13 +1,26 @@
-<!-- <mat-expansion-panel *ngIf="bid">
-    <mat-expansion-panel-header>
-       <div class="bid-primary-container">
-           <mat-chip color="primary" selected>{{bid.seller.name}}</mat-chip>
-           <mat-chip-list>
+<mat-expansion-panel *ngIf="bid" >
+    <mat-expansion-panel-header [collapsedHeight]="'8em'" [expandedHeight]="'11em'" fxLayout="row" class="mat-elevation-z4">
+        <div class="profile-image" fxFlex="0 0 auto">
+            <img src="{{bid.seller.profileUrl}}" alt="">
+        </div>
+        <div class="bid-primary-container" fxLayout="column" fxLayoutAlign="space-around">
+            <span >{{bid.seller.name}}</span>
+            <mat-divider></mat-divider>
+            <mat-chip-list>
                 <mat-chip matTooltip="Unit price">{{bid.unitPrice}}</mat-chip>
                 <mat-chip matTooltip="Total price">{{bid.price}}</mat-chip>
+                <mat-chip matTooltip="Total Score Received">{{bid.totalScore}}</mat-chip>
                 <mat-chip matTooltip="Bid rank" color="accent" selected>#{{bid.rank}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
-    <p>hello</p>
-</mat-expansion-panel> -->
+    <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
+        <span matTooltip="Seller rating">{{bid.seller.rating}}/5</span>
+        <span matTooltip="Estimated dispatch date">{{bid.estimatedDispatchDate | date}}</span>
+        <span matTooltip="Credit period (days)">{{bid.creditPeriodInDays}}</span>
+    </div>
+    <div class="certifications-container" fxLayout="row">
+        <strong>Certifications:</strong>
+        <span *ngFor="let cert of bid.certifications">{{cert}}</span>
+    </div>
+</mat-expansion-panel>
