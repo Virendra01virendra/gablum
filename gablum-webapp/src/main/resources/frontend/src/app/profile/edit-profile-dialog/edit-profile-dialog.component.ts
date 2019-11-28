@@ -9,52 +9,52 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class EditProfileDialogComponent implements OnInit {
 
   get name() {
-    return this.registrationForm.get('name');
+    return this.editProfileForm.get('name');
   }
 
   get email() {
-    return this.registrationForm.get('email');
+    return this.editProfileForm.get('email');
   }
 
   get address() {
-    return this.registrationForm.get('address');
+    return this.editProfileForm.get('address');
   }
 
   get phone() {
-    return this.registrationForm.get('phone');
+    return this.editProfileForm.get('phone');
   }
 
   get companyName() {
-    return this.registrationForm.get('companyName');
+    return this.editProfileForm.get('companyName');
   }
 
   get userName() {
-    return this.registrationForm.get('userName');
+    return this.editProfileForm.get('userName');
   }
 
   get businessLicense() {
-    return this.registrationForm.get('businessLicense');
+    return this.editProfileForm.get('businessLicense');
   }
 
   get password() {
-    return this.registrationForm.get('password');
+    return this.editProfileForm.get('password');
   }
 
   get role() {
-    return this.registrationForm.get('role');
+    return this.editProfileForm.get('role');
   }
 
   get businessDomain() {
-    return this.registrationForm.get('businessDomain');
+    return this.editProfileForm.get('businessDomain');
   }
 
   get businessSubDomain() {
-    return this.registrationForm.get('businessSubDomain');
+    return this.editProfileForm.get('businessSubDomain');
   }
 
   subDomains = ['Raw Materials', 'Crops', 'Machinery'];
 
-  registrationForm = new FormGroup({
+  editProfileForm = new FormGroup({
     name : new FormControl('', Validators.required),
     email : new FormControl('', Validators.compose([Validators.required, Validators.email])),
     address : new FormControl(''),

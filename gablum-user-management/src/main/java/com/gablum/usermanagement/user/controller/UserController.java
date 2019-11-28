@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public User getUserProfile(HttpServletRequest request) {
+    public User getUserProfileByEmail(HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         String email = tokenClaims.get("sub", String.class);
