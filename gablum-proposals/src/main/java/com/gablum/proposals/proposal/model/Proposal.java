@@ -1,16 +1,14 @@
 package com.gablum.proposals.proposal.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Document
+@Document(collection = "proposals")
 public class Proposal {
 
-    @Id
-    private UUID proposalId=UUID.randomUUID();
+    private UUID proposalId = UUID.randomUUID();
     private UUID productId;
     private UUID createdBy;
     private UUID updatedBy;
@@ -18,7 +16,7 @@ public class Proposal {
     private String businessSubDomain;
     private String productName;
     private int quantity;
-    private Float price;
+    private float price;
     private Date deliveryDate;
     private int creditPeriod;
     private boolean qualityCertificate;
@@ -33,7 +31,12 @@ public class Proposal {
     private int views;
     private int interested;
 
-    public Proposal(Float price, int quantity) {      // Constructor
+    //Empty constructor
+    public Proposal() {
+    }
+
+    // Constructor
+    public Proposal(Float price, int quantity) {
         this.price = price;
         this.quantity = quantity;
     }

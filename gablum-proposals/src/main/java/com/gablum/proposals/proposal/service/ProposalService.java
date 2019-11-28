@@ -9,22 +9,36 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ProposalService {
+public class ProposalService implements IProposalService {
 
     @Autowired
     private ProposalRepository proposalRepo;
+//    public Proposal saveProposal(Proposal proposal) {
+//        return proposalRepo.save(proposal);
+//    }
 
-    public Proposal saveProposal(Proposal proposal) {
-        Proposal proposal1 = proposal;
-        return proposalRepo.save(proposal1);
-    }
-
-    public Proposal getProposalById(UUID proposalId) {      //search by proposal Id
-        return proposalRepo.findByProposalId(proposalId);
-    }
-
-    public List<Proposal> getProposals() {       // get all proposals
-
+    // get all proposals
+    @Override
+    public List<Proposal> getAllProposals() {
         return proposalRepo.findAll();
+    }
+    public Proposal saveProposal(Proposal proposal) {
+        return proposalRepo.save(proposal);
+    }
+
+    // get proposal by ID
+    @Override
+    public Proposal getProposalById(UUID proposalId) {
+        return proposalRepo.findByProposalId(proposalId).orElse(null);
+    }
+
+    //adding proposals
+    @Override
+    public Proposal addProposals(Proposal proposalToAdd) {
+        return proposalRepo.save(proposalToAdd);
+    }
+
+    public void deleteProposalbyID(UUID proposalId) {
+        proposalRepo.deleteByProposalId(proposalId);
     }
 }
