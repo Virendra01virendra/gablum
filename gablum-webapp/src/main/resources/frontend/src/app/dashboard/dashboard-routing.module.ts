@@ -5,7 +5,10 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent, pathMatch: 'full'},
+  {path: '',
+   component: DashboardComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'card',
     component: NewProposalCardComponent,

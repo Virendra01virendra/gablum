@@ -25,6 +25,7 @@ public class ProposalController {
 
     @PostMapping("/proposals")                                 // Add proposal details
     public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
+        //FIXME: ensure it is a buyer floating a proposal
         String email = userService.getEmail(request);
         proposalData.setCreatedBy(email);
         proposalData.setUpdatedBy(email);

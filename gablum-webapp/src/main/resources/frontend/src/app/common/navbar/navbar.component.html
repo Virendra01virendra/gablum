@@ -11,5 +11,6 @@
             <a [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
             <a [routerLink]="['/']" class="nav-link nav-icon">Contact</a>
         </div>
+        <a [routerLink]="['/profile']" nav-link nav-icon *ngIf="isLoggedIn">profile</a>
     </nav>
 </mat-toolbar>
