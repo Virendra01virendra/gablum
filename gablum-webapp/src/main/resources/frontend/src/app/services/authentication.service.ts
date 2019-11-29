@@ -4,7 +4,6 @@ import { CommunicatorService } from './communicator.service';
 import { LoggerService } from './logger.service';
 import { UserProfile } from '../interfaces/user';
 import { Profile } from '../interfaces/profile';
-// import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
