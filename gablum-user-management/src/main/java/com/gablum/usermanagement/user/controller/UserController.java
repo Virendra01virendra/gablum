@@ -61,5 +61,4 @@ public class UserController {
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         return user;
     }
-
 }

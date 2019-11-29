@@ -7,7 +7,7 @@
            <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Name</mat-label>
                 <input  matInput formControlName="name" required />
-                <mat-hint align="start">Not more then 60 characters long.</mat-hint>
+                <mat-hint align="start">*Not more then 30 characters long.</mat-hint>
                 <mat-error *ngIf="name.touched || name.invalid">{{getErrorMessage1()}}</mat-error>
             </mat-form-field>
 
@@ -31,7 +31,8 @@
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Phone</mat-label>
-                <input  matInput formControlName="phone" placeholder="+91" required />
+                <input  matInput formControlName="phone" placeholder="default country code (+91)" required />
+                <mat-hint align="start">*Do not enter country code.</mat-hint>
                 <mat-error *ngIf="phone.touched || phone.invalid">{{getErrorMessage3()}}</mat-error>
             </mat-form-field>
 
@@ -54,15 +55,20 @@
                 <mat-error *ngIf="businessLicense.touched || businessLicense.invalid">{{getErrorMessage7()}}</mat-error>
             </mat-form-field>
 
-            <!-- <mat-form-field class="fullWidth" appearance="outline">
-                <mat-label>Role</mat-label>
-                <input  matInput formControlName="role" required>
+            <mat-form-field appearance="outline" class="fullWidth" >
+                <mat-label class="form-label" >Role:</mat-label>
+                <mat-select id="role-select" formControlName="role">
+                <mat-option value="" disabled>Choose your Role</mat-option>
+                <mat-option *ngFor="let roles of roles" [value]="roles">{{roles}}
+                </mat-option>
+                </mat-select>
                 <mat-error *ngIf="role.touched || role.invalid">{{getErrorMessage8()}}</mat-error>
-            </mat-form-field> -->
+            </mat-form-field>
 
             <mat-form-field appearance="outline" class="fullWidth">
                 <mat-label class="form-label">Business Domain:</mat-label>
                 <input matInput type="text" disabled value="Agriculture" formControName="businessDomain">
+                <mat-error *ngIf="businessDomain.touched || businessDomain.invalid">{{getErrorMessage8()}}</mat-error>
             </mat-form-field>
             
             <mat-form-field appearance="outline" class="fullWidth" >
@@ -72,11 +78,12 @@
                 <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
                 </mat-option>
                 </mat-select>
+                <mat-error *ngIf="businessSubDomain.touched || businessSubDomain.invalid">{{getErrorMessage8()}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="fullWidth" appearance="outline">
                 <mat-label>Set Password</mat-label>
-                <input  matInput formControlName="password" required>
+                <input  matInput type="password" formControlName="password" required>
                 <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage6()}}</mat-error>
             </mat-form-field>        
             

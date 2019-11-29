@@ -62,23 +62,26 @@ export class RegisterPageComponent implements OnInit {
   }
 
   subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+  roles = ['Buyer', 'Seller', 'Both'];
 
   registrationForm = new FormGroup({
-    name : new FormControl('', Validators.required),
-    email : new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    name : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(30)])),
+    email : new FormControl('', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])),
     address : new FormControl(''),
-    phone : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(14),
-      Validators.pattern('^[0-9-.+]*$')])),
-    companyName : new FormControl(''),
-    userName : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
-    Validators.minLength(8)])),
+    phone : new FormControl('', Validators.compose([Validators.required,
+      Validators.pattern('^[6-9]{1}[0-9]{9}$')])),
+    companyName : new FormControl('', Validators.maxLength(80)),
+    userName : new FormControl('', Validators.compose([Validators.required,
+      Validators.pattern('^[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}$'),
+      Validators.maxLength(30)])),
     businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
-    Validators.minLength(8)])),
-    // role : new FormControl('', Validators.required),
-    businessDomain : new FormControl(''),
-    businessSubDomain : new FormControl('')
+      password : new FormControl('', Validators.compose([Validators.required,
+      Validators.pattern('^[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]+[a-zA-Z0-9]+[&@$_.#!]{0,1}$'),
+      Validators.minLength(5)])),
+    role : new FormControl('', Validators.required),
+    businessDomain : new FormControl('', Validators.required),
+    businessSubDomain : new FormControl('', Validators.required)
   });
   constructor(
     private router: Router,
@@ -105,6 +108,7 @@ export class RegisterPageComponent implements OnInit {
 
   getErrorMessage1() {
     return this.name.hasError('required') ? '*You must enter a name' :
+    this.name.hasError('maxlength') ? '*More than 30 characters not allowed' :
             '';
   }
 
@@ -117,8 +121,6 @@ export class RegisterPageComponent implements OnInit {
   getErrorMessage3() {
     return this.phone.hasError('required') ? '*Required' :
         this.phone.hasError('pattern') ? '*Not a valid phone no' :
-        this.phone.hasError('minlength') ? '*Minimum 10 characters' :
-        this.phone.hasError('maxlength') ? '*Invalid Phone no.' :
             '';
   }
 
@@ -130,14 +132,14 @@ export class RegisterPageComponent implements OnInit {
   getErrorMessage5() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
         this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('minlength') ? '*Minimum 8 characters' :
+        this.userName.hasError('maxlength') ? '*Maximum 30 characters only' :
             '';
   }
 
   getErrorMessage6() {
     return this.password.hasError('required') ? '*You must enter a Password' :
         this.password.hasError('pattern') ? '*Not a valid Password' :
-        this.password.hasError('minlength') ? '*Minimum 8 characters' :
+        this.password.hasError('minlength') ? '*Minimum 5 characters' :
             '';
   }
 

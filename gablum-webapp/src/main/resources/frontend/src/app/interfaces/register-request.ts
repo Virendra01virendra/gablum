@@ -6,7 +6,7 @@ export interface RegisterRequest {
     userName: string;
     businessLicense: string;
     password: string;
-    // role: string;
+    role: string;
     businessDomain: string;
     businessSubDomain: string;
 }
