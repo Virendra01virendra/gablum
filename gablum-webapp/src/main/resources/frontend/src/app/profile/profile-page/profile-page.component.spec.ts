@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { EditProfileDialogComponent } from '../edit-profile-dialog/edit-profile-dialog.component';
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
@@ -16,7 +15,7 @@ describe('ProfilePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfilePageComponent, EditProfileDialogComponent ],
+      declarations: [ ProfilePageComponent ],
       imports: [ MatDialogModule, MatButtonModule, FlexLayoutModule, ProfileRoutingModule,
         CommonModule, MatSelectModule, MatOptionModule, ReactiveFormsModule, FormsModule,
         MaterialModule, HttpClientModule ]
