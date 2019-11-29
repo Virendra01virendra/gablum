@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { ProposalsDataService } from './proposals-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NetworkingService } from './networking.service';

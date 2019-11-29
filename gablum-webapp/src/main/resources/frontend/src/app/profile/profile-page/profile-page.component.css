@@ -1,0 +1,19 @@
+.material-icons{
+    font-size: 6rem;
+}
+
+#id.material-icons{
+    font-size: 0%;
+}
+
+.name{
+    padding: 2% 0% 2% 0%;
+}
+
+.profile{
+    padding: 2% 0 2% 0;
+}
+
+.md-dialog-container {
+    width: 50%;
+}
