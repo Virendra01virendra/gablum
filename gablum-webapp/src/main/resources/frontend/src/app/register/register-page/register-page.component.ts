@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { noConflict } from 'q';
 import { RegisterToken } from '../../interfaces/register-token';
 import { RegisterDataService } from '../../services/register-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
-import { componentFactoryName } from '@angular/compiler';
 import { RegisterRequest } from 'src/app/interfaces/register-request';
 import { UserRole } from 'src/app/interfaces/user-role';
 
