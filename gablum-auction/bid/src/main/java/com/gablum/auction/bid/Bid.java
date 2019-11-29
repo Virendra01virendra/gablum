@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import static com.gablum.auction.bid.BidEvaluation.score;
 
-@Document(collection = "bids")
+@Document(collection = "Bids")
 public class Bid {
     @Id
     private ObjectId _id;

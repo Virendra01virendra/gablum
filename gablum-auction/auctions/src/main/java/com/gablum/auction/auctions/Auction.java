@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @ToString
-@Document(collection = "auctions")
+@Document(collection = "Auctions")
 public class Auction {
 
     @Indexed(unique = true)

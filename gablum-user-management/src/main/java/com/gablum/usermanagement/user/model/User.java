@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Document("user")
+@Document("Users")
 public class User {
 
     private UUID userId;

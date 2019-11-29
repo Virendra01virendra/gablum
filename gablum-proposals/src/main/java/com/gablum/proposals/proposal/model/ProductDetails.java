@@ -11,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Document("ProductDetail")
+@Document("ProductDetails")
 public class ProductDetails {
 
     private UUID productId;
