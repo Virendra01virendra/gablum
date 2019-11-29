@@ -21,15 +21,15 @@ public class Auction {
 
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
-    private UUID auctionId = UUID.randomUUID();
-    private UUID proposalId;
+    private String auctionId = UUID.randomUUID().toString();
+    private String proposalId;
     private String auctionName;
 
     boolean isAuctionActive;
 
-    private UUID participantsVerificationId;
+    private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
-    private List<UUID> bidIdList;
+    private List<String> bidIdList;
 
     private Date createdOn;
     private Date updatedOn;

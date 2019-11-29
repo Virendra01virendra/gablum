@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NewProposalForm1Component } from './new-proposal-form/new-proposal-form1.component';
-import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
+import { NewProposalCardComponent } from '../dashboard/new-proposal-card/new-proposal-card.component';
 
 
 const routes: Routes = [
@@ -9,12 +9,8 @@ const routes: Routes = [
     path: '',
     component: NewProposalForm1Component,
     pathMatch: 'full'
-  },
-  {
-    path: 'card',
-    component: NewProposalCardComponent,
-    pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

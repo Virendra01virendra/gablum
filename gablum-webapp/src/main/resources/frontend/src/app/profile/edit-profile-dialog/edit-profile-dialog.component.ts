@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { ProfilePageComponent } from '../profile-page/profile-page.component';
 
 @Component({
   selector: 'app-edit-profile-dialog',
@@ -133,6 +132,6 @@ export class EditProfileDialogComponent implements OnInit {
 
   onConfirm(data) {
     this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, data, 'profile');
-    this.profileService.getUserProfileByEmail(ProfilePageComponent.messageKey, 'profile');
+    this.profileService.getUserProfileByEmail('@all', 'profile');
   }
 }
