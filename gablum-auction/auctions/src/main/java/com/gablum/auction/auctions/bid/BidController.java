@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -64,7 +63,7 @@ public class BidController {
         float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
                 bid.isQaqcCertificate(),
                 bid.isTypeOfSupply(),
-                pricespec, d1, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
+                pricespec, timeOfDeliverySpec, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
                 weightPrice, weightTimeOfDelivery, weightCreditPeriod, weightQaqc, weightTypeOfSupply);
         String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
@@ -108,7 +107,7 @@ public class BidController {
         float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
                 bid.isQaqcCertificate(),
                 bid.isTypeOfSupply(),
-                pricespec, d1, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
+                pricespec, timeOfDeliverySpec, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
                 weightPrice, weightTimeOfDelivery, weightCreditPeriod, weightQaqc, weightTypeOfSupply);
         String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
