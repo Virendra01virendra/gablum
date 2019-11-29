@@ -130,8 +130,8 @@ export class EditProfileDialogComponent implements OnInit {
   //   '';
   // }
 
-  onConfirm(data) {
-    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, data, 'profile');
-    this.profileService.getUserProfileByEmail('@all', 'profile');
+  onConfirm() {
+    console.log('heyyyyy::::', this.editProfileForm.value);
+    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, this.editProfileForm.value, 'profile');
   }
 }
