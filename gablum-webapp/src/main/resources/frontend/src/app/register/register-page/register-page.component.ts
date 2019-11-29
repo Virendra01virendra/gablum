@@ -6,6 +6,8 @@ import { RegisterDataService } from '../../services/register-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
 import { componentFactoryName } from '@angular/compiler';
+import { RegisterRequest } from 'src/app/interfaces/register-request';
+import { UserRole } from 'src/app/interfaces/user-role';
 
 
 @Component({
@@ -70,13 +72,13 @@ export class RegisterPageComponent implements OnInit {
     phone : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(14),
       Validators.pattern('^[0-9-.+]*$')])),
     companyName : new FormControl(''),
-    userName : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
-    Validators.minLength(8)])),
+    // userName : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
+    // Validators.minLength(8)])),
     businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
     password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
     Validators.minLength(8)])),
-    // role : new FormControl('', Validators.required),
+    role : new FormControl('', Validators.required),
     businessDomain : new FormControl(''),
     businessSubDomain : new FormControl('')
   });
@@ -89,8 +91,9 @@ export class RegisterPageComponent implements OnInit {
           const data = message.data;
           if ('registrationResult' in data) {
             const registrationToken: RegisterToken = data.registrationResult;
-            // console.log(loginToken.accessToken);
-            if (registrationToken === undefined || registrationToken === null) {
+            if (registrationToken === undefined ||
+              registrationToken === null ||
+              !registrationToken.isOk) {
 
             } else {
               this.router.navigate(['/']);
@@ -153,6 +156,24 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registrationService.register(this.registrationForm.value);
+    const roleBuyer: UserRole = {
+      role: 'buyer',
+      id: 1
+    };
+    const roleSeller: UserRole = {
+      role: 'seller',
+      id: 2
+    };
+    const registerProfile: RegisterRequest = this.registrationForm.value;
+    if (this.registrationForm.value.role === 'buyer') {
+      registerProfile.role = [roleBuyer];
+    }
+    if (this.registrationForm.value.role === 'seller') {
+      registerProfile.role = [roleSeller];
+    }
+    if (this.registrationForm.value.role === 'both') {
+      registerProfile.role = [roleBuyer, roleSeller];
+    }
+    this.registrationService.register(registerProfile);
   }
 }

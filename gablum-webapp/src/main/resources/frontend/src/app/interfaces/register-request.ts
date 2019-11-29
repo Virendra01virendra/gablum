@@ -1,3 +1,5 @@
+import { UserRole } from './user-role';
+
 export interface RegisterRequest {
     name: string;
     email: string;
@@ -6,7 +8,7 @@ export interface RegisterRequest {
     userName: string;
     businessLicense: string;
     password: string;
-    // role: string;
+    role: UserRole[];
     businessDomain: string;
     businessSubDomain: string;
 }

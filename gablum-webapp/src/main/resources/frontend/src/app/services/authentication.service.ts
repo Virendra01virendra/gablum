@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Profile } from 'selenium-webdriver/firefox';
 // import { JwtHelper } from 'angular2-jwt';
 
 @Injectable({
@@ -27,5 +28,21 @@ export class AuthenticationService {
 
   getAuthenticated() {
     return this.isAuthenticated;
+  }
+
+  setProfile(profile: Profile) {
+    localStorage.setItem('profile', JSON.stringify(profile));
+  }
+
+  getProfile() {
+    const profileStr = localStorage.getItem('profile');
+    if (profileStr !== undefined && profileStr !== null) {
+      return JSON.parse(profileStr);
+    }
+    return null;
+  }
+
+  clearProfile() {
+    localStorage.removeItem('profile');
   }
 }
