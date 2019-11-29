@@ -1,7 +1,6 @@
 package com.gablum.usermanagement.user.controller;
 
 import com.gablum.usermanagement.user.model.NavLink;
-import com.gablum.usermanagement.user.model.Role;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.security.JwtTokenProvider;
 import com.gablum.usermanagement.user.services.UserManagementService;
@@ -41,7 +40,7 @@ public class UserController {
         // FIXME: don't return hardcoded list
         boolean isBuyer = false;
         boolean isSeller = false;
-        boolean isAdmin = false;
+//        boolean isAdmin = false;
         String token = tokenProvider.resolveToken(request);
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         List<String> roles = tokenClaims.get("auth", List.class);
@@ -52,9 +51,9 @@ public class UserController {
             if (role.equals("seller")) {
                 isSeller = true;
             }
-            if (role.equals("admin")) {
-                isAdmin = true;
-            }
+//            if (role.equals("admin")) {
+//                isAdmin = true;
+//            }
         }
         List<NavLink> menuItems = new ArrayList<NavLink>();
         if (isSeller || isBuyer) {
