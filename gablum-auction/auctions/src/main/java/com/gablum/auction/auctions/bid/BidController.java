@@ -15,7 +15,6 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
@@ -46,19 +45,6 @@ public class BidController {
 
         ObjectMapper mapper = new ObjectMapper();
         Bid bid =  mapper.readValue(message, Bid.class);
-//        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
-//                bid.isQaqcCertificate(),
-//                bid.isTypeOfSupply(),
-//                400, d, 12, true, true,
-//                1, 1, 1, 1, 1);
-
-//        messageSendingOperations.convertAndSend(
-//                "/topic/getscore",
-//                "Hellloooooooooo"
-//        );
-//        UUID id = UUID.fromString("3d5cb199-cc73-4831-8ce9-2894ee640472");
-//        System.out.println("id is"+ id);
-//        String msg = "heloooooo" + id;
 
 
         String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
@@ -66,26 +52,45 @@ public class BidController {
         Auction auction = auctionService.getAuctionById(id);
 
 
-        DateFormat formatter2 = new SimpleDateFormat("yyyy/MM/dd");
-        String msg = "Hello" + formatter.parse(auction.getProposal().getDeliveryDate(),pp1);
-        messageSendingOperations.convertAndSend(
-                "/topic/getscore",
-                msg
-        );
-        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
-                bid.isQaqcCertificate(), bid.isTypeOfSupply(),
-                auction.getProposal().getPrice(),
-                formatter2.parse(auction.getProposal().getDeliveryDate(),pp1), auction.getProposal().getCreditPeriod(),
-                auction.getProposal().isQualityCertificate(), auction.getProposal().isMethodOfSupply(),
-                auction.getProposal().getWeightPrice(), auction.getProposal().getWeightTimeOfDelivery(),
-                auction.getProposal().getWeightCreditPeriod(), auction.getProposal().getWeightQaqcCertificate(),
-                auction.getProposal().getWeightTypeOfDelivery()
-        );
-        String message1 = "Bid score is " + scorecnt;
+        DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = new Date();
+        d1 = formatter2.parse(auction.getProposal().getDeliveryDate(),pp1);
+
+        System.out.println("datetetetetetetetete ::::: is :::"+d1 + "            class:" + d1.getClass());
+
+
+        float pricespec = auction.getProposal().getPrice();
+        Date timeOfDeliverySpec = d1;
+        int creditPeriodSpec = auction.getProposal().getCreditPeriod();
+        boolean qaqcCertificateSpec = auction.getProposal().isQualityCertificate();
+        boolean typeOfSupplySpec = auction.getProposal().isMethodOfSupply();
+        int weightPrice = auction.getProposal().getWeightPrice();
+        int weightTimeOfDelivery = auction.getProposal().getWeightTimeOfDelivery();
+        int weightCreditPeriod = auction.getProposal().getWeightCreditPeriod();
+        int weightQaqc = auction.getProposal().getWeightQaqcCertificate();
+        int weightTypeOfSupply = auction.getProposal().getWeightTypeOfDelivery();
+
+
+        String message1 = "Bid score is " + d1;
         messageSendingOperations.convertAndSend(
                 "/topic/getscore",
                 message1
         );
+
+
+
+        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
+                bid.isQaqcCertificate(),
+                bid.isTypeOfSupply(),
+                400, d1, 12, true, true,
+                1, 1, 1, 1, 1);
+//        String message1 = "Bid score is " + scorecnt;
+//        messageSendingOperations.convertAndSend(
+//                "/topic/getscore",
+//                message1
+//        );
+
+
         return message1;
     }
 
