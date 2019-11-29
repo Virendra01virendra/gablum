@@ -12,6 +12,7 @@ import {MaterialModule} from './../material/material.module';
     CommonModule,
     SchedulerRoutingModule,
     MaterialModule
-  ]
+  ],
+  exports: [ TimerComponent ]
 })
 export class SchedulerModule { }
