@@ -1,5 +1,6 @@
 package com.gablum.scheduler;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SchedulerApiApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+		Assertions.assertEquals(0,0);
 	}
 
 }

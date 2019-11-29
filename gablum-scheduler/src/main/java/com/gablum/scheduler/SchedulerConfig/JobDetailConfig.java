@@ -442,6 +442,6 @@ public class JobDetailConfig {
             public void clear() throws SchedulerException {
 
             }
-        } ;
+        };
     }
 }
