@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavLink } from 'src/app/interfaces/navlink';
 
 @Component({
   selector: 'app-page-title',
@@ -7,11 +6,6 @@ import { NavLink } from 'src/app/interfaces/navlink';
   styleUrls: ['./page-title.component.css']
 })
 export class PageTitleComponent implements OnInit {
-
-  public navDetail: NavLink = {
-    title: 'Home',
-    icon: 'home'
-  };
 
   constructor() { }
 
