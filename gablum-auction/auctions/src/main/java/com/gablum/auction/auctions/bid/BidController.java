@@ -2,9 +2,7 @@ package com.gablum.auction.auctions.bid;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gablum.auction.auctions.Bid;
-import com.gablum.auction.auctions.BidDataEntity;
-import com.gablum.auction.auctions.BidService;
+import com.gablum.auction.auctions.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -17,6 +15,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
@@ -29,6 +28,9 @@ public class BidController {
 
     @Autowired
     private BidService bidService;
+
+    @Autowired
+    private AuctionService auctionService;
 
 
     // Getting score
@@ -44,11 +46,41 @@ public class BidController {
 
         ObjectMapper mapper = new ObjectMapper();
         Bid bid =  mapper.readValue(message, Bid.class);
+//        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
+//                bid.isQaqcCertificate(),
+//                bid.isTypeOfSupply(),
+//                400, d, 12, true, true,
+//                1, 1, 1, 1, 1);
+
+//        messageSendingOperations.convertAndSend(
+//                "/topic/getscore",
+//                "Hellloooooooooo"
+//        );
+//        UUID id = UUID.fromString("3d5cb199-cc73-4831-8ce9-2894ee640472");
+//        System.out.println("id is"+ id);
+//        String msg = "heloooooo" + id;
+
+
+        String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
+
+        Auction auction = auctionService.getAuctionById(id);
+
+
+        DateFormat formatter2 = new SimpleDateFormat("yyyy/MM/dd");
+        String msg = "Hello" + formatter.parse(auction.getProposal().getDeliveryDate(),pp1);
+        messageSendingOperations.convertAndSend(
+                "/topic/getscore",
+                msg
+        );
         float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
-                bid.isQaqcCertificate(),
-                bid.isTypeOfSupply(),
-                400, d, 12, true, true,
-                1, 1, 1, 1, 1);
+                bid.isQaqcCertificate(), bid.isTypeOfSupply(),
+                auction.getProposal().getPrice(),
+                formatter2.parse(auction.getProposal().getDeliveryDate(),pp1), auction.getProposal().getCreditPeriod(),
+                auction.getProposal().isQualityCertificate(), auction.getProposal().isMethodOfSupply(),
+                auction.getProposal().getWeightPrice(), auction.getProposal().getWeightTimeOfDelivery(),
+                auction.getProposal().getWeightCreditPeriod(), auction.getProposal().getWeightQaqcCertificate(),
+                auction.getProposal().getWeightTypeOfDelivery()
+        );
         String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
                 "/topic/getscore",

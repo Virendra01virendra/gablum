@@ -41,7 +41,7 @@ public class AuctionService implements IAuctionService{
     }
 
     @Override
-    public Auction getAuctionById(UUID auctionId) {
+    public Auction getAuctionById(String auctionId) {
         return auctionRepo.findByAuctionId(auctionId).orElse(null);
     }
 

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
 
-    Optional<Auction> findByAuctionId(UUID auctionId);
+    Optional<Auction> findByAuctionId(String auctionId);
     void deleteByAuctionId(UUID auctionId);
     Page<Auction> findAll(Pageable pageable);
 

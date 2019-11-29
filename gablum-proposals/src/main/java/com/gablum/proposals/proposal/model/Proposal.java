@@ -32,6 +32,51 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private int weightPrice;
+    private int weightCreditPeriod;
+    private int weightTimeOfDelivery;
+    private int weightTypeOfDelivery;
+    private int weightQaqcCertificate;
+
+    public int getWeightPrice() {
+        return weightPrice;
+    }
+
+    public void setWeightPrice(int weightPrice) {
+        this.weightPrice = weightPrice;
+    }
+
+    public int getWeightCreditPeriod() {
+        return weightCreditPeriod;
+    }
+
+    public void setWeightCreditPeriod(int weightCreditPeriod) {
+        this.weightCreditPeriod = weightCreditPeriod;
+    }
+
+    public int getWeightTimeOfDelivery() {
+        return weightTimeOfDelivery;
+    }
+
+    public void setWeightTimeOfDelivery(int weightTimeOfDelivery) {
+        this.weightTimeOfDelivery = weightTimeOfDelivery;
+    }
+
+    public int getWeightTypeOfDelivery() {
+        return weightTypeOfDelivery;
+    }
+
+    public void setWeightTypeOfDelivery(int weightTypeOfDelivery) {
+        this.weightTypeOfDelivery = weightTypeOfDelivery;
+    }
+
+    public int getWeightQaqcCertificate() {
+        return weightQaqcCertificate;
+    }
+
+    public void setWeightQaqcCertificate(int weightQaqcCertificate) {
+        this.weightQaqcCertificate = weightQaqcCertificate;
+    }
 
     public Proposal(Float price, int quantity) {      // Constructor
         this.price = price;

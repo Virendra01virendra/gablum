@@ -59,16 +59,16 @@ public class AuctionController {
             HttpServletRequest request
     ) {
 //        System.out.println("\n\n" + request.getHeader("Cookie") + "\n\n");
-        String token = tokenParser(request);
-        System.out.println("\n\n" + request.getCookies() + "\n\n");
-        JwtParser parser = Jwts.parser();
-        claims = parser.parseClaimsJwt(token).getBody();
-        System.out.println(claims);
+//        String token = tokenParser(request);
+//        System.out.println("\n\n" + request.getCookies() + "\n\n");
+//        JwtParser parser = Jwts.parser();
+//        claims = parser.parseClaimsJwt(token).getBody();
+//        System.out.println(claims);
         return auctionService.getAllAuctions(queryMap);
     }
 
     @GetMapping("/auctions/{id}")
-    public Auction getAuctionById(@PathVariable("id") UUID auctionId) {
+    public Auction getAuctionById(@PathVariable("id") String auctionId) {
         return auctionService.getAuctionById(auctionId);
     }
 
