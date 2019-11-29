@@ -3,7 +3,7 @@ package com.gablum.scheduler.SchedulerConfig;
 //import org.quartz.*;
 //import org.quartz.impl.matchers.GroupMatcher;
 //import org.quartz.spi.JobFactory;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 //
 //import java.util.Date;
