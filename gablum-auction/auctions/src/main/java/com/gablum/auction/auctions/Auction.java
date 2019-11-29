@@ -27,9 +27,9 @@ public class Auction {
     private Proposal proposal;
     boolean isAuctionActive;
 
-    private UUID participantsVerificationId;
+    private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
-    private List<UUID> bidIdList;
+    private List<String> bidIdList;
 
     private Date createdOn;
     private Date updatedOn;

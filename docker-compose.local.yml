@@ -138,39 +138,39 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-  # scheduler:
-  #   build:
-  #     context: ./gablum-scheduler
-  #   env_file: env_local.env
-  #   depends_on:
-  #     - discovery
-  #   entrypoint:
-  #     - ./wait
-  #     - discovery:8001
-  #     - -t
-  #     - "300"
-  #     - --
-  #     - java
-  #     - -jar
-  #     - /usr/app/app.jar
-  #   restart: on-failure
+  scheduler:
+    build:
+      context: ./gablum-scheduler
+    env_file: env_local.env
+    depends_on:
+      - discovery
+    entrypoint:
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+    restart: on-failure
 
-  # contracts:
-  #   build:
-  #     context: ./gablum-contracts
-  #   env_file: env_local.env
-  #   depends_on:
-  #     - discovery
-  #   entrypoint:
-  #     - ./wait
-  #     - discovery:8001
-  #     - -t
-  #     - "300"
-  #     - --
-  #     - java
-  #     - -jar
-  #     - /usr/app/app.jar
-  #   restart: on-failure
+  contracts:
+    build:
+      context: ./gablum-contracts
+    env_file: env_local.env
+    depends_on:
+      - discovery
+    entrypoint:
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+    restart: on-failure
   
   mongodb:
     image: 'mongo:latest'

@@ -11,6 +11,7 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,29 +36,19 @@ public class BidController {
     // Getting score
 
     @MessageMapping("/bids.getscore")
-    public String getBidScore(@Payload String message) throws JsonProcessingException {
+    public String getBidScore(@Payload String message) throws JsonProcessingException, ParseException {
         log.info("on /bids.getscore, message: " + message);
-        Date d;
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dt = "12/02/2019";
-        ParsePosition pp1 = new ParsePosition(0);
-        d = formatter.parse(dt, pp1);
 
         ObjectMapper mapper = new ObjectMapper();
         Bid bid =  mapper.readValue(message, Bid.class);
 
-
         String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
-
         Auction auction = auctionService.getAuctionById(id);
-
 
         DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
         Date d1 = new Date();
-        d1 = formatter2.parse(auction.getProposal().getDeliveryDate(),pp1);
-
-        System.out.println("datetetetetetetetete ::::: is :::"+d1 + "            class:" + d1.getClass());
-
+        String dt2 = auction.getProposal().getDeliveryDate();
+        d1 = formatter2.parse(dt2);
 
         float pricespec = auction.getProposal().getPrice();
         Date timeOfDeliverySpec = d1;
@@ -70,25 +61,16 @@ public class BidController {
         int weightQaqc = auction.getProposal().getWeightQaqcCertificate();
         int weightTypeOfSupply = auction.getProposal().getWeightTypeOfDelivery();
 
-
-        String message1 = "Bid score is " + d1;
+        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
+                bid.isQaqcCertificate(),
+                bid.isTypeOfSupply(),
+                pricespec, d1, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
+                weightPrice, weightTimeOfDelivery, weightCreditPeriod, weightQaqc, weightTypeOfSupply);
+        String message1 = "Bid score is " + scorecnt;
         messageSendingOperations.convertAndSend(
                 "/topic/getscore",
                 message1
         );
-
-
-
-        float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
-                bid.isQaqcCertificate(),
-                bid.isTypeOfSupply(),
-                400, d1, 12, true, true,
-                1, 1, 1, 1, 1);
-//        String message1 = "Bid score is " + scorecnt;
-//        messageSendingOperations.convertAndSend(
-//                "/topic/getscore",
-//                message1
-//        );
 
 
         return message1;
@@ -98,22 +80,41 @@ public class BidController {
 //    Adding bids
 
     @MessageMapping("/bids.addbid")
-    public String addNewBid(@Payload String message) throws JsonProcessingException {
+    public String addNewBid(@Payload String message) throws JsonProcessingException, ParseException {
         log.info("on /bids.addbid, message: " + message);
-
-        Date d;
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dt = "12/02/2019";
-        ParsePosition pp1 = new ParsePosition(0);
-        d = formatter.parse(dt, pp1);
 
         ObjectMapper mapper = new ObjectMapper();
         Bid bid =  mapper.readValue(message, Bid.class);
+
+        String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
+        Auction auction = auctionService.getAuctionById(id);
+
+        DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = new Date();
+        String dt2 = auction.getProposal().getDeliveryDate();
+        d1 = formatter2.parse(dt2);
+
+        float pricespec = auction.getProposal().getPrice();
+        Date timeOfDeliverySpec = d1;
+        int creditPeriodSpec = auction.getProposal().getCreditPeriod();
+        boolean qaqcCertificateSpec = auction.getProposal().isQualityCertificate();
+        boolean typeOfSupplySpec = auction.getProposal().isMethodOfSupply();
+        int weightPrice = auction.getProposal().getWeightPrice();
+        int weightTimeOfDelivery = auction.getProposal().getWeightTimeOfDelivery();
+        int weightCreditPeriod = auction.getProposal().getWeightCreditPeriod();
+        int weightQaqc = auction.getProposal().getWeightQaqcCertificate();
+        int weightTypeOfSupply = auction.getProposal().getWeightTypeOfDelivery();
+
         float scorecnt = score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
                 bid.isQaqcCertificate(),
                 bid.isTypeOfSupply(),
-                400, d  , 12, true, true,
-                1, 1, 1, 1, 1);
+                pricespec, d1, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
+                weightPrice, weightTimeOfDelivery, weightCreditPeriod, weightQaqc, weightTypeOfSupply);
+        String message1 = "Bid score is " + scorecnt;
+        messageSendingOperations.convertAndSend(
+                "/topic/getscore",
+                message1
+        );
 
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
