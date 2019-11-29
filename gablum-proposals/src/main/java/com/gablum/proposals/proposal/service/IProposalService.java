@@ -13,4 +13,5 @@ public interface IProposalService {
 
     Proposal addProposals(Proposal proposalToAdd);
 
+    Proposal extendProposal(Proposal proposal, UUID proposalId);
 }
