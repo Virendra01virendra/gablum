@@ -104,22 +104,22 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-  bid:
-    build:
-      context: ./gablum-auction/bid
-    env_file: env_local.env
-    depends_on:
-      - discovery
-    entrypoint:
-      - ./wait
-      - discovery:8001
-      - -t
-      - "300"
-      - --
-      - java
-      - -jar
-      - /usr/app/app.jar
-    restart: on-failure
+#  bid:
+#    build:
+#      context: ./gablum-auction/bid
+#    env_file: env_local.env
+#    depends_on:
+#      - discovery
+#    entrypoint:
+#      - ./wait
+#      - discovery:8001
+#      - -t
+#      - "300"
+#      - --
+#      - java
+#      - -jar
+#      - /usr/app/app.jar
+#    restart: on-failure
 
   proposals:
     build:
