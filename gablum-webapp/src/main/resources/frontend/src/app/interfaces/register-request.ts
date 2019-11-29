@@ -5,7 +5,7 @@ export interface RegisterRequest {
     email: string;
     phone: number;
     companyName: string;
-    userName: string;
+    // userName: string;
     businessLicense: string;
     password: string;
     role: UserRole[];
