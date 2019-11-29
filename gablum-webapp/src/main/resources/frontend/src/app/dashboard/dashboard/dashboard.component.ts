@@ -8,6 +8,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { Auction } from 'src/app/interfaces/auction';
 import { NewProposalCardComponent } from '../new-proposal-card/new-proposal-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,6 +66,7 @@ export class DashboardComponent implements OnInit {
     private ws: WebsocketService,
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
+    private router: Router,
     private logger: LoggerService
     ) {
     comms.getMessages().subscribe(msg => {

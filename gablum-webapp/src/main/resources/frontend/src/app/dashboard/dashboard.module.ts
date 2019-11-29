@@ -7,6 +7,7 @@ import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 import { MaterialModule } from '../material/material.module';
 import { ProposalsListComponent } from './proposals-list/proposals-list.component';
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
+import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
     BidCardComponent,
     AuctionsListComponent,
     ProposalsListComponent,
-    NewProposalCardComponent
+    NewProposalCardComponent,
+    ProposalCardDialogComponent
   ],
   imports: [
     CommonModule,
