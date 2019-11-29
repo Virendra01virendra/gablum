@@ -24,7 +24,7 @@ public class User {
     private String email;
     private String password;
     private String address;
-    private long phone;
+    private String phone;
     private String companyName;
     private String userName;
     private String businessLicense;
@@ -50,8 +50,8 @@ public class User {
         return isLocked;
     }
 
-    public void setLocked(boolean loacked) {
-        isLocked = loacked;
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public boolean isExpired() {
