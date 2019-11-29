@@ -31,7 +31,7 @@ export class NewProposalForm1Component implements OnInit {
   productSpecsForm = new FormGroup({
     businessDomain: new FormControl(''),
     businessSubDomain: new FormControl('', [Validators.required]),
-    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$'), Validators.minLength(3), 
+    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$'), Validators.minLength(3),
     Validators.maxLength(25)]),
     quantity: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     images: new FormControl('')

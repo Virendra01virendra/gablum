@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TimerComponent } from './timer/timer.component';
 import { SchedulerRoutingModule } from './scheduler-routing.module';
 import {MaterialModule} from './../material/material.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 
 
@@ -12,6 +13,8 @@ import {MaterialModule} from './../material/material.module';
     CommonModule,
     SchedulerRoutingModule,
     MaterialModule
-  ]
+  ],
+  exports: [
+    TimerComponent]
 })
 export class SchedulerModule { }

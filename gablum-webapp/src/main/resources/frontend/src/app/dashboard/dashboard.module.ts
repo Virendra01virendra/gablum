@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { ProposalsListComponent } from './proposals-list/proposals-list.component';
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
+import { SchedulerModule } from '../scheduler/scheduler.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-car
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
-  ]
+    SchedulerModule,
+    MaterialModule,
+  ],
+  entryComponents: [ProposalCardDialogComponent]
 })
 export class DashboardModule { }
