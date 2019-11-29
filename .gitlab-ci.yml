@@ -15,13 +15,13 @@ java-build:
     tags:
         - gablum-ci-jobs
 
-java-tests:
-    image: tastycats/gablumdeps:not-alpine
-    stage: test
-    script:
-        - mvn -B test -PskipAngular
-    tags:
-        - gablum-ci-jobs
+# java-tests:
+#     image: tastycats/gablumdeps:not-alpine
+#     stage: test
+#     script:
+#         - mvn -B test -PskipAngular
+#     tags:
+#         - gablum-ci-jobs
 
 java-lint:
     image: tastycats/gablumdeps:latest
@@ -31,7 +31,7 @@ java-lint:
     tags:
         - gablum-ci-jobs
 
-java-coverage:
+java-tests:
     image: tastycats/gablumdeps:not-alpine
     stage: test
     script:

@@ -1,19 +1,16 @@
 package com.gablum.auction.auctions;
 
+import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -25,25 +22,13 @@ public class AuctionController {
     private AuctionService auctionService;
 
 
-    private String tokenParser(HttpServletRequest req) {
-        String bearerToken = null;
-        try {
-            Cookie[] cookies = req.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("Authorization")) {
-                    bearerToken = cookie.getValue();
-                }
-            }
-            return bearerToken;
-        } catch (Exception ex) {
-            return null;
-        }
-    }
-
     Claims claims;
 
     @Autowired
     private SimpMessageSendingOperations messageSendingOperations;
+
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/echo")
@@ -51,24 +36,21 @@ public class AuctionController {
         messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
         return "auctions";
     }
-
+    //FIXME: check roles before returning auction
+    //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
     @ResponseBody
     public List<Auction> getAllAuctions(
             @RequestParam Map<String, String> queryMap,
             HttpServletRequest request
     ) {
-//        System.out.println("\n\n" + request.getHeader("Cookie") + "\n\n");
-        String token = tokenParser(request);
-        System.out.println("\n\n" + request.getCookies() + "\n\n");
-        JwtParser parser = Jwts.parser();
-        claims = parser.parseClaimsJwt(token).getBody();
-        System.out.println(claims);
+        String email = userService.getEmail(request);
+        System.out.println(email);
         return auctionService.getAllAuctions(queryMap);
     }
 
     @GetMapping("/auctions/{id}")
-    public Auction getAuctionById(@PathVariable("id") UUID auctionId) {
+    public Auction getAuctionById(@PathVariable("id") String auctionId) {
         return auctionService.getAuctionById(auctionId);
     }
 

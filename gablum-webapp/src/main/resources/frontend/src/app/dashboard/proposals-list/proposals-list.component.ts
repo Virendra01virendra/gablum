@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-proposals-list',
@@ -16,7 +17,8 @@ export class ProposalsListComponent implements OnInit {
 
   constructor(
     private proposalDataService: ProposalsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private logger: LoggerService
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === ProposalsListComponent.messageKey || msg.dest === '@all') {
@@ -24,7 +26,7 @@ export class ProposalsListComponent implements OnInit {
 
           if ('proposals' in data) {
             this.proposals = data.proposals;
-            console.log(this.proposals);
+            this.logger.log(this.proposals);
           }
         }
       });

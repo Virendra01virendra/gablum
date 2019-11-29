@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewProposalCardComponent } from './new-proposal-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('NewProposalCardComponent', () => {
   let component: NewProposalCardComponent;
@@ -10,7 +11,7 @@ describe('NewProposalCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ NewProposalCardComponent ],
-      imports: [MaterialModule]
+      imports: [MaterialModule, HttpClientModule]
     })
     .compileComponents();
   }));

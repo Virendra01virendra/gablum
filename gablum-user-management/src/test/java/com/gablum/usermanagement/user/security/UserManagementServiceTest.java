@@ -21,7 +21,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-class UserServiceTest {
+class UserManagementServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -30,7 +30,6 @@ class UserServiceTest {
     private UserService userService;
 
     private User testUser1 = new User();
-    private User testUser2 = new User();
 
     @BeforeEach
     public void setUp() {

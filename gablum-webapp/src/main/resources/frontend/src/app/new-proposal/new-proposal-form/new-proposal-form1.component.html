@@ -1,19 +1,19 @@
 <div class="body">
   <div class="form-container">
     
-    <mat-vertical-stepper class="stepper" #stepper>
-      <mat-step [stepControl]="productSpecsForm" editable="true">
+    <mat-vertical-stepper class="stepper" [linear]="false" #stepper>
+      <mat-step [stepControl]="productSpecsForm" >
         <form [formGroup]="productSpecsForm" (ngSubmit)="onNext1(productSpecsForm)">
           <ng-template matStepLabel>Fill product details</ng-template>
           <div fxLayout="column nowrap" fxLayoutAlign="space-around center" >
             <mat-form-field appearance="outline" class="prod-details">
               <mat-label class="form-label">Business Domain:</mat-label>
-              <input matInput type="text" readonly="true" value="Agriculture" formControName="businessDomain">
+              <input matInput type="text" value="Agriculture" formControName="businessDomain">
             </mat-form-field>
             
             <mat-form-field appearance="outline" class="prod-details">
               <mat-label class="form-label">Business Sub-domain:</mat-label>
-              <mat-select id="subDomain-select" formControlName="businessSubDomain">
+              <mat-select id="subDomain-select" formControlName="businessSubDomain" required>
                 <mat-option value="" disabled>Choose Sub-domain</mat-option>
                 <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
                 </mat-option>
@@ -22,21 +22,24 @@
             
             <mat-form-field appearance="outline" class="prod-details">
               <mat-label class="form-label">Product name:</mat-label>
-              <input matInput type="text" placeholder="Product Name" formControlName="productName">
+              <input matInput type="text" placeholder="Product Name" formControlName="productName" required>
             </mat-form-field>
             
             
             <mat-form-field appearance="outline" class="prod-details">
               <mat-label class="form-label">Quantity:</mat-label>
-              <input matInput type="text" placeholder="Quantity" formControlName="quantity">
+              <input matInput type="text" placeholder="Quantity" formControlName="quantity" required>
             </mat-form-field>
-            <button mat-raised-button color= "primary" [disabled]="!productSpecsForm.valid" matStepperNext>Next</button>
+            <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
+              <div></div>
+              <button mat-raised-button color= "primary" [disabled]="!productSpecsForm.valid" matStepperNext class="padded-btn">Next</button>
+            </div>
           </div>
         </form>
       </mat-step>
       
       
-      <mat-step [stepControl]="paramForm" editable="true">
+      <mat-step [stepControl]="paramForm">
         <form [formGroup]="paramForm">
           <ng-template matStepLabel>Assign weights</ng-template>
             <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
@@ -57,7 +60,7 @@
               <mat-form-field appearance="outline" class="prod-details">
                 <mat-label class="form-label">Delivery date:</mat-label>
                 <input matInput [matDatepicker]="picker1" placeholder="Choose a delivery date"
-                formControlName="deliveryDate" disabled>
+                formControlName="deliveryDate">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1 disabled="false"></mat-datepicker>
               </mat-form-field>
@@ -117,27 +120,27 @@
 
       </form>
     </mat-step>
-<mat-step [stepControl]="timeForm" editable="true">
+<mat-step [stepControl]="timeForm">
   <form [formGroup]="timeForm">
     <ng-template matStepLabel>Schedule Registration/Auction</ng-template>
     <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
       <mat-form-field>
         <mat-label class="form-label">Registration Start date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter2" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate" disabled>
+        <input matInput [matDatepickerFilter]="myFilter2" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 disabled="false"></mat-datepicker>
       </mat-form-field>
       
       <mat-form-field>
         <mat-label class="form-label">Registration End date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter3" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate" disabled>
+        <input matInput [matDatepickerFilter]="myFilter3" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate">
         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
         <mat-datepicker #picker3 disabled="false"></mat-datepicker>
       </mat-form-field>
     
       <mat-form-field>
         <mat-label class="form-label">Auction Start date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter4" [matDatepicker]="picker4" placeholder="Start date" formControlName="auctionStartDate" disabled>
+        <input matInput [matDatepickerFilter]="myFilter4" [matDatepicker]="picker4" placeholder="Start date" formControlName="auctionStartDate">
         <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
         <mat-datepicker #picker4 disabled="false"></mat-datepicker>
       </mat-form-field>
@@ -151,7 +154,7 @@
       <div></div>
       <div>
         <button mat-raised-button color="primary" matStepperPrevious class="padded-btn">Back</button>
-        <button mat-raised-button color="primary" matStepperNext (click)="onSubmit()" class="padded-btn">Submit</button>
+        <button mat-raised-button color="primary" matStepperNext (click)="onSubmit()" [disabled]="!timeForm.valid" class="padded-btn">Submit</button>
       </div>
     </div>
   </form>

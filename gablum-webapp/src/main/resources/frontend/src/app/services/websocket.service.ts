@@ -4,6 +4,7 @@ import * as sockjs from 'sockjs-client';
 import { Bid } from '../interfaces/bid';
 import { CommunicatorService } from './communicator.service';
 import { environment } from 'src/environments/environment';
+import { LoggerService } from './logger.service';
 
 
 @Injectable({
@@ -11,17 +12,34 @@ import { environment } from 'src/environments/environment';
 })
 export class WebsocketService {
 
-  private socket: object;
+  private socket: any;
   private stompClient: CompatClient;
 
-  constructor(private comms: CommunicatorService) {
+  private storedSubcriptions = connectMessage => {};
+
+  private socketReconnect = (isReconnect = true) => {
     this.socket = new sockjs(environment.wsURL);
     this.stompClient = Stomp.over(this.socket);
+    this.stompClient.debug = msg => this.logger.log(msg);
     this.stompClient.heartbeatIncoming = 1000;
     this.stompClient.heartbeatOutgoing = 2000;
+    this.stompClient.onWebSocketClose = () => {
+      this.logger.log('rip');
+      setTimeout(this.socketReconnect, 5000);
+    };
+    if (isReconnect) {
+      this.stompClient.connect({}, this.storedSubcriptions);
+    }
+  }
+
+  constructor(
+    private comms: CommunicatorService,
+    private logger: LoggerService) {
+    this.socketReconnect(false);
   }
 
   connect(connectCb = connectMessage => { console.log(connectMessage); }) {
+    this.storedSubcriptions = connectCb;
     this.stompClient.connect({}, connectCb);
   }
 

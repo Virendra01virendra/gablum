@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class AuctionService implements IAuctionService{
@@ -40,8 +39,12 @@ public class AuctionService implements IAuctionService{
         return auctionRepo.findAll(getPageable(queryMap)).getContent();
     }
 
+    public List<Auction> getAllAuctionsBuyer(Map<String, String> queryMap, String email) {
+        return auctionRepo.findAllByCreatedBy(getPageable(queryMap), email).getContent();
+    }
+
     @Override
-    public Auction getAuctionById(UUID auctionId) {
+    public Auction getAuctionById(String auctionId) {
         return auctionRepo.findByAuctionId(auctionId).orElse(null);
     }
 
