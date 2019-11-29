@@ -3,5 +3,7 @@ export const environment = {
   wsURL: 'https://gablum-dev.stackroute.io/api/auctions/ws',
   loginApi: 'https://gablum-dev.stackroute.io/api/users/signin',
   registerApi: 'https://gablum-dev.stackroute.io/api/users/signup',
-  contractUrl: 'http://gablum-dev.stackroute.io/api/contracts'
+  contractUrl: 'https://gablum-dev.stackroute.io/api/contracts',
+  profileUrl: 'https://gablum-dev.stackroute.io/api/users/profile',
+  proposalUrl: 'http://localhost:8080/api/proposals/proposals'
 };

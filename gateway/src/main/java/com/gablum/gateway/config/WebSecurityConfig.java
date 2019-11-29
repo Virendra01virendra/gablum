@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Disallow every api
                 .antMatchers("/api/**").authenticated()
                 // allow ui
+                .antMatchers("/api/proposals/**").permitAll()
                 .anyRequest().permitAll();
 
         // If a user try to access a resource without having enough permissions
