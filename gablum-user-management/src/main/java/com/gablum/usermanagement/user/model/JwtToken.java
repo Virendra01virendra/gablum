@@ -4,7 +4,7 @@ package com.gablum.usermanagement.user.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document("jwtTokens")
 public class JwtToken {
     @Id
     private String token;

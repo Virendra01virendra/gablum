@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Document("Users")
+@Document("users")
 public class User {
 
     private UUID userId;
@@ -24,7 +24,7 @@ public class User {
     private String email;
     private String password;
     private String address;
-    private long phone;
+    private String phone;
     private String companyName;
     private String userName;
     private String businessLicense;

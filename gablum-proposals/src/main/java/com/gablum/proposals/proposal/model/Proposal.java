@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
-@Document(collection = "Proposals")
+@Document(collection = "proposals")
 public class Proposal {
 
     private UUID proposalId = UUID.randomUUID();

@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
-@Document("Bids")
+@Document("bids")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class BidDataEntity {
 

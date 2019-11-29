@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Document("Contracts")
+@Document("contracts")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class Contracts {
 //    @Indexed(unique = true)
