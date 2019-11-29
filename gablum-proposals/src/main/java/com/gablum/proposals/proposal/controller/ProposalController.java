@@ -4,6 +4,8 @@ import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +15,6 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins="*")
 public class ProposalController {
 
     @Autowired
@@ -55,6 +56,16 @@ public class ProposalController {
         proposalService.deleteProposalbyID(proposalId);
     }
 
-
+    //Extending the proposal
+    @PatchMapping("proposals/{proposalId}")
+    public ResponseEntity<Proposal> extendedProposal (
+            @RequestBody Proposal currentProposal, @PathVariable("proposalId") UUID proposalId) {
+        Proposal proposal = proposalService.getProposalById(proposalId);
+        if (proposal == null) {
+            return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
+        }
+        proposalService.extendProposal(currentProposal, proposalId);
+        return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
+    }
 
 }

@@ -2,6 +2,9 @@ package com.gablum.proposals.proposal.service;
 
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.repository.ProposalRepository;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -12,11 +15,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+@AllArgsConstructor
+@Getter
+@Setter
 @Service
 public class ProposalService implements IProposalService {
 
     @Autowired
     private ProposalRepository proposalRepo;
+
+    private List<Proposal> proposals;
 
     private Pageable getPageable(Map<String, String> queryMap) {
         String sortKey = "auctionName";
@@ -34,11 +42,13 @@ public class ProposalService implements IProposalService {
 
         return PageRequest.of(page, pageLength, Sort.by(sortKey));
     }
+
     // get all proposals
     @Override
     public List<Proposal> getAllProposals() {
         return proposalRepo.findAll();
     }
+
     public Proposal saveProposal(Proposal proposal) {
         return proposalRepo.save(proposal);
     }
@@ -49,7 +59,7 @@ public class ProposalService implements IProposalService {
         return proposalRepo.findByProposalId(proposalId).orElse(null);
     }
 
-    //adding proposals
+    // adding proposals
     @Override
     public Proposal addProposals(Proposal proposalToAdd) {
         return proposalRepo.save(proposalToAdd);
@@ -57,6 +67,14 @@ public class ProposalService implements IProposalService {
 
     public void deleteProposalbyID(UUID proposalId) {
         proposalRepo.deleteByProposalId(proposalId);
+    }
+
+    // extend Proposal
+    public Proposal extendProposal(Proposal currentProposal, UUID proposalId) {
+        Proposal proposal = getProposalById(proposalId);
+        proposal.setRegEndDate(currentProposal.getRegEndDate());
+        proposal.setRegStartDate(currentProposal.getRegStartDate());
+        return proposalRepo.save(proposal);
     }
 
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {

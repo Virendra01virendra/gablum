@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { DashboardSection } from 'src/app/interfaces/dashboard-section';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { LoggerService } from 'src/app/services/logger.service';
+import { ProposalsDataService } from 'src/app/services/proposals-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Proposal } from 'src/app/interfaces/proposal';
+import { Auction } from 'src/app/interfaces/auction';
+import { NewProposalCardComponent } from '../new-proposal-card/new-proposal-card.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,10 +18,13 @@ export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
 
+  proposals: Proposal[];
+  auctions: Auction[];
+  pastAuctions: Proposal[];
   public dashboardSections: DashboardSection[] = [
-    {label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', isActive: true},
-    {label: 'Active Proposals', desc: 'Proposals currently active', icon: ''},
-    {label: 'Past Auctions', desc: 'Your past auctions', icon: ''},
+    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+    { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
+    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
   ];
 
   public bids: NewBid[] = [];
@@ -55,15 +63,31 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private ws: WebsocketService,
-    private logger: LoggerService) { }
+    private proposalDataService: ProposalsDataService,
+    private comms: CommunicatorService,
+    private logger: LoggerService
+    ) {
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+
+        if ('proposals' in data) {
+          this.proposals = data.proposals;
+          this.logger.log(this.proposals);
+          this.dashboardSections[1].data = this.proposals;
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
-    this.bids.push(this.testBid);
+    this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
+
   }
 
   send() {
-    this.ws.sendBid({price: 100});
+    this.ws.sendBid({ price: 100 });
   }
 
   subscribe() {

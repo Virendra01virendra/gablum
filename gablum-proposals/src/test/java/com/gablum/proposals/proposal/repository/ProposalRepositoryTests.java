@@ -59,7 +59,5 @@ public class ProposalRepositoryTests {
         Assertions.assertEquals(2, proposalRepository.findAll().size(),
                 "DB can store and fetch all elements");
     }
-
-
 }
 
