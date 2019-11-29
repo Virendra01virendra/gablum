@@ -39,7 +39,7 @@ export class NewProposalForm1Component implements OnInit {
     paramForm = new FormGroup({
     price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1), Validators.minLength(2)]),
     priceWeight: new FormControl(''),
-    deliveryDate: new FormControl({value: '', disabled: true}, Validators.required),
+    deliveryDate: new FormControl({value: ''}, Validators.required),
     deliveryDateWeight: new FormControl(''),
     creditPeriod: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     creditPeriodWeight: new FormControl(''),
@@ -79,9 +79,11 @@ export class NewProposalForm1Component implements OnInit {
 
   myFilter2 = (d: Date): boolean => {
     // Prevent dates before auction start date
-    this.logger.log('del-date--' + this.paramForm.value.deliveryDate +
-    'price--' + this.paramForm.value.price );
+    // this.logger.log(this.paramForm.value);
+    // this.logger.log('del-date--' + this.paramForm.value.deliveryDate +
+    // 'price--' + this.paramForm.value.price );
     return d < this.paramForm.value.deliveryDate ;
+    // return true;
   }
 
   myFilter3 = (d: Date): boolean => {

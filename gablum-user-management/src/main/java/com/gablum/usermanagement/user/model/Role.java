@@ -8,9 +8,6 @@ public class Role {
     private Integer id;
     private String role;
 
-    public Role(int i, String user) {
-    }
-
     public Integer getId() {
         return id;
     }
