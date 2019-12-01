@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-fdescribe('RegisterPageComponent', () => {
+describe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
   let fixture: ComponentFixture<RegisterPageComponent>;
 
@@ -93,7 +93,7 @@ fdescribe('RegisterPageComponent', () => {
     component.phone.setValue('9012345678');
     expect(component.phone.valid).toBeTruthy(); // suppose to be truthy.
   });
-  fit('Registration whole form testing', () => {
+  it('Registration whole form testing', () => {
     component.email.setValue('wrong@right.com');
     component.businessLicense.setValue('27AAPFU0939R1ZV');
     component.name.setValue('Right Or Wrong');
