@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-describe('RegisterPageComponent', () => {
+fdescribe('RegisterPageComponent', () => {
   let component: RegisterPageComponent;
   let fixture: ComponentFixture<RegisterPageComponent>;
 
@@ -87,20 +87,28 @@ describe('RegisterPageComponent', () => {
     expect(component.password.valid).toBeTruthy();
   });
   it('phone field testing', () => {
-    expect(component.password.valid).toBeFalsy();
+    expect(component.phone.valid).toBeFalsy();
     component.phone.setValue('1234567890');
-    expect(component.password.valid).toBeFalsy();
+    expect(component.phone.valid).toBeFalsy();
     component.phone.setValue('9012345678');
-    expect(component.password.valid).toBeFalsy(); // suppose to be truthy.
+    expect(component.phone.valid).toBeTruthy(); // suppose to be truthy.
   });
-  it('Registration whole form testing', () => {
+  fit('Registration whole form testing', () => {
     component.email.setValue('wrong@right.com');
     component.businessLicense.setValue('27AAPFU0939R1ZV');
     component.name.setValue('Right Or Wrong');
     component.address.setValue('adjf, aisdjf, ladfj, adf');
     component.companyName.setValue('Anu\'s Rag Pvt. Ltd. ');
-    // component.businessDomain.setValue('Agriculture');
+    component.businessDomain.setValue('Agriculture');
     component.businessSubDomain.setValue('Raw Materials');
     component.role.setValue('Buyer');
+    // expect(component.registrationForm.valid).toBeTruthy();
+
+    // spyOn(component, 'onSubmit');
+    // let button = fixture.debugElement.nativeElement.querySelector('button');
+    // button.click();
+    // fixture.whenStable.then(() => {
+
+    // });
   });
 });
