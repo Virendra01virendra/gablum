@@ -53,7 +53,6 @@ const modules = [
   MatDividerModule,
   MatListModule,
   MatOptionModule,
-  MatButtonModule,
   MatExpansionModule,
   MatTooltipModule,
   MatChipsModule,
