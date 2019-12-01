@@ -20,7 +20,6 @@ export class AuthenticationService {
     private comms: CommunicatorService,
     private logger: LoggerService
     ) {
-      this.profile.getUserProfileByEmail('@all', 'profile');
       comms.getMessages().subscribe(msg => {
         if (msg.dest === '@all') {
           const data = msg.data;
@@ -40,7 +39,7 @@ export class AuthenticationService {
           }
         }
       });
-      this.getProfile();
+      this.refreshProfile();
   }
 
   setAuthenticated(isAuthenticated: boolean) {
@@ -65,7 +64,7 @@ export class AuthenticationService {
     this.isAuthenticated = true;
   }
 
-  getProfile() {
+  refreshProfile() {
     const profileStr = localStorage.getItem('profile');
     if (profileStr !== undefined && profileStr !== null) {
       this.isAuthenticated = true;
@@ -87,5 +86,9 @@ export class AuthenticationService {
     this.comms.postMessage(
       this, '@all', {authChanged: ''}
     );
+  }
+
+  getProfileData() {
+    return this.profileData;
   }
 }
