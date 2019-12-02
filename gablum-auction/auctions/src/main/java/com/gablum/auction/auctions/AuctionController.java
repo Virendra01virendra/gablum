@@ -28,7 +28,6 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/echo")
     public String getEcho() {
         messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");

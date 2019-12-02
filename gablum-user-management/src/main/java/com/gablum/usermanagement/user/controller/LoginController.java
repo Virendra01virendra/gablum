@@ -90,7 +90,6 @@ public class LoginController {
 
 
     @PostMapping("/signin/token")
-    @CrossOrigin("*")
     @ResponseBody
     public ResponseEntity<AuthResponse> createNewToken (@RequestHeader(value="Authorization") String token) {
         String newToken = iLoginService.createNewToken(token);
