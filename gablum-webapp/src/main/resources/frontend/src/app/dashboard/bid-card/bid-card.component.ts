@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewBid } from 'src/app/interfaces/newbid';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 @Component({
   selector: 'app-bid-card',

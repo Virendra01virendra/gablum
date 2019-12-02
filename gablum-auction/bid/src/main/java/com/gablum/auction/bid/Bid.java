@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.gablum.auction.bid.BidEvaluation.score;
+// import static com.gablum.auction.bid.BidEvaluation.score;
 
 @Document(collection = "bids")
 public class Bid {

@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
   },
   {
+    path: 'console',
+    loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
+  },
+  {
     path: 'history',
     loadChildren: () => import('./history/history.module').then(module => module.HistoryModule)
   },
@@ -48,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'timer',
-    loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
+    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',
