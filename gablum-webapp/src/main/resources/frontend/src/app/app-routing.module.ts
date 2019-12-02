@@ -8,7 +8,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)
+    loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
+    canLoad: [AuthGuardService]
   },
   {
     path: 'console',
