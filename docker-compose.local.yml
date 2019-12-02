@@ -69,23 +69,23 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-  webapp:
-    build:
-      context: ./gablum-webapp
-      dockerfile: DockerfileDevelop
-    env_file: env_local.env
-    depends_on:
-      - discovery
-    entrypoint:
-      - ./wait
-      - discovery:8001
-      - -t
-      - "300"
-      - --
-      - java
-      - -jar
-      - /usr/app/app.jar
-    restart: on-failure
+  # webapp:
+  #   build:
+  #     context: ./gablum-webapp
+  #     dockerfile: DockerfileDevelop
+  #   env_file: env_local.env
+  #   depends_on:
+  #     - discovery
+  #   entrypoint:
+  #     - ./wait
+  #     - discovery:8001
+  #     - -t
+  #     - "300"
+  #     - --
+  #     - java
+  #     - -jar
+  #     - /usr/app/app.jar
+  #   restart: on-failure
 
   # webapp:
   #   build:
