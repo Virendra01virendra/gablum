@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -77,7 +78,15 @@ public class ProposalService implements IProposalService {
         return proposalRepo.save(proposal);
     }
 
+    @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
         return proposalRepo.getAllProposalsByCreatedBy(email, getPageable(queryMap)).getContent();
+    }
+
+    @Override
+    public List<Proposal> getAllProposals(Map<String, String> queryMap) {
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThan(
+                getPageable(queryMap), new Date()
+        ).getContent();
     }
 }
