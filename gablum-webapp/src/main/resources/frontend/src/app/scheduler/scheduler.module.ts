@@ -14,11 +14,8 @@ import { DashboardModule } from '../dashboard/dashboard.module';
     SchedulerRoutingModule,
     MaterialModule
   ],
-<<<<<<< HEAD
   exports: [
-    TimerComponent]
-=======
-  exports: [ TimerComponent ]
->>>>>>> 65737b05801d77d57b2056e495ce2d7ea7061723
+    TimerComponent
+  ]
 })
 export class SchedulerModule { }
