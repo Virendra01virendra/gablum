@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidDialogComponent } from './bid-dialog.component';
+import { Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 describe('BidDialogComponent', () => {
   let component: BidDialogComponent;
@@ -8,8 +10,12 @@ describe('BidDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidDialogComponent ]
-    })
+      declarations: [ BidDialogComponent ],
+      providers: [{
+        provide: MAT_DIALOG_DATA,
+        useValue: {}
+      }]
+        })
     .compileComponents();
   }));
 

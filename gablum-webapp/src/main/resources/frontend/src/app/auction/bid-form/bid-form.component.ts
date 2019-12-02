@@ -80,11 +80,13 @@ export class BidFormComponent implements OnInit {
       };
 
     this.ws.getBidScore(bid);
-    // console.log('dataaaaaaaaaa', this.result1);
-    // this.dialog.open(BidDialogComponent, {
-    //   height: '400px',
-    //   width: '600px',
-    // data: this.result1});
+
+
+    console.log('dataaaaaaaaaa', this.result1);
+    this.dialog.open(BidDialogComponent, {
+      height: '400px',
+      width: '600px',
+    data: this.result1});
   }
 
   bidList() {
@@ -103,11 +105,6 @@ export class BidFormComponent implements OnInit {
             this.result1 = data.getscore.body;
             this.logger.log('message received is ::', data.getscore.body);
             // this.bids.push(this.testBid);
-            console.log('dataaaaaaaaaa', this.result1);
-            this.dialog.open(BidDialogComponent, {
-              height: '400px',
-              width: '600px',
-            data: this.result1});
           }
           if ('newbid' in data) {
             this.result2 = data.newbid.body;
