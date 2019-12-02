@@ -76,7 +76,7 @@ export class RegisterPageComponent implements OnInit {
     //   Validators.maxLength(30)])),
     businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
-      password : new FormControl('', Validators.compose([Validators.required,
+    password : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]+[a-zA-Z0-9]+[&@$_.#!]{0,1}$'),
       Validators.minLength(5)])),
     role : new FormControl('', Validators.required),

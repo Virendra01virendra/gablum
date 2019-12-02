@@ -69,6 +69,12 @@ public class UserController {
             menuItems.add(new NavLink("New Proposal", "/new", "add"));
         }
 
+        if (isSeller) {
+            menuItems.add(
+                    new NavLink("Browse Proposals", "/browse", "list")
+            );
+        }
+
         return menuItems;
     }
 
