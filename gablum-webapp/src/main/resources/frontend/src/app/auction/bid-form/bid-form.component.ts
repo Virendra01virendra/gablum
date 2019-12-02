@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
-import { Ibid } from '../ibid';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { from } from 'rxjs';
 import { WebsocketService } from 'src/app/services/websocket.service';
-import {NewBid} from '../../interfaces/newbid';
 import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
@@ -31,7 +28,8 @@ export class BidFormComponent implements OnInit {
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
-    private dialog: MatDialog,) { }
+    private dialog: MatDialog,
+    ) { }
   ngOnInit() {
 
     this.ws.connect(message => this.subscribe());
@@ -83,10 +81,10 @@ export class BidFormComponent implements OnInit {
 
 
     console.log('dataaaaaaaaaa', this.result1);
-    this.dialog.open(BidDialogComponent, {
-      height: '400px',
-      width: '600px',
-    data: this.result1});
+    // this.dialog.open(BidDialogComponent, {
+    //   height: '400px',
+    //   width: '600px',
+    // data: this.result1});
   }
 
   bidList() {
@@ -105,6 +103,10 @@ export class BidFormComponent implements OnInit {
             this.result1 = data.getscore.body;
             this.logger.log('message received is ::', data.getscore.body);
             // this.bids.push(this.testBid);
+            this.dialog.open(BidDialogComponent, {
+              height: '400px',
+              width: '600px',
+            data: this.result1});
           }
           if ('newbid' in data) {
             this.result2 = data.newbid.body;
