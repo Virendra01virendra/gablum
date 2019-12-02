@@ -8,9 +8,10 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { Auction } from 'src/app/interfaces/auction';
 import { NewProposalCardComponent } from '../new-proposal-card/new-proposal-card.component';
-import { TimerComponent } from './../../scheduler/timer/timer.component';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-
+import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { TimerComponent } from './../../scheduler/timer/timer.component';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
     private ws: WebsocketService,
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
+    private router: Router,
     private logger: LoggerService
     ) {
     comms.getMessages().subscribe(msg => {
@@ -108,6 +110,8 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-  openDialog() { }
+  openDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
 
+  }
 }

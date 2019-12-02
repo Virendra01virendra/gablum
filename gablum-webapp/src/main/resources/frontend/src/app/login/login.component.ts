@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     username : new FormControl('', Validators.compose([Validators.required,
       Validators.minLength(3)])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
+    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
     Validators.minLength(3)]))
   });
   constructor(
@@ -62,14 +62,14 @@ export class LoginComponent implements OnInit {
   getErrorMessage1() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
         // this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('minlength') ? '*Minimum 8 characters' :
+        this.userName.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
 
   getErrorMessage2() {
     return this.password.hasError('required') ? '*You must enter a Password' :
         this.password.hasError('pattern') ? '*Not a valid Password' :
-        this.password.hasError('minlength') ? '*Minimum 8 characters' :
+        this.password.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
 
