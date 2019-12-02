@@ -25,8 +25,8 @@ public class AuctionRepoTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(UUID.randomUUID().toString());
-        testAuction2.setProposalId(UUID.randomUUID().toString());
+//        testAuction1.setProposalId(UUID.randomUUID());
+//        testAuction2.setProposalId(UUID.randomUUID());
     }
 
     @AfterEach
@@ -70,25 +70,25 @@ public class AuctionRepoTests {
         );
     }
 
-    @Test
-    public void dbCanDeleteOne() {
-        auctionRepo.saveAll(
-                List.of(testAuction1, testAuction2)
-        );
-
-        Auction auctionToDelete = auctionRepo.findByAuctionId(testAuction1.getAuctionId()).orElse(null);
-        auctionRepo.deleteByAuctionId(auctionToDelete.getAuctionId());
-
-        Assertions.assertEquals(
-                1,
-                auctionRepo.findAll().size(),
-                "should now contain one element"
-        );
-
-        Assertions.assertEquals(
-                testAuction2.getAuctionId(),
-                auctionRepo.findAll().get(0).getAuctionId(),
-                "should now only contain 'testAuction2'"
-        );
-    }
+//    @Test
+//    public void dbCanDeleteOne() {
+//        auctionRepo.saveAll(
+//                List.of(testAuction1, testAuction2)
+//        );
+//
+//        Auction auctionToDelete = auctionRepo.findByAuctionId(testAuction1.getAuctionId()).orElse(null);
+//        auctionRepo.deleteByAuctionId(auctionToDelete.getAuctionId());
+//
+//        Assertions.assertEquals(
+//                1,
+//                auctionRepo.findAll().size(),
+//                "should now contain one element"
+//        );
+//
+//        Assertions.assertEquals(
+//                testAuction2.getAuctionId(),
+//                auctionRepo.findAll().get(0).getAuctionId(),
+//                "should now only contain 'testAuction2'"
+//        );
+//    }
 }

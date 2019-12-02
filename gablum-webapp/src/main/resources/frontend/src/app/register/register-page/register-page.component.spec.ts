@@ -81,7 +81,7 @@ describe('RegisterPageComponent', () => {
   });
   it('password field testing', () => {
     expect(component.password.valid).toBeFalsy();
-    component.password.setValue('123456');
+    component.password.setValue('1234');
     expect(component.password.valid).toBeFalsy();
     component.password.setValue('anu@rag');
     expect(component.password.valid).toBeTruthy();

@@ -9,7 +9,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
-    // canLoad: [AuthGuardService]
+    canLoad: [AuthGuardService]
+  },
+  {
+    path: 'console',
+    loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
   },
   {
     path: 'history',
@@ -49,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'timer',
-    loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
+    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',

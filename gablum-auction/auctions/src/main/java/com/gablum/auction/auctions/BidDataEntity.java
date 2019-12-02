@@ -15,7 +15,7 @@ public class BidDataEntity {
 
     @Id
     @NotNull
-    private UUID bidId = UUID.randomUUID();
+    private String bidId = UUID.randomUUID().toString();
 
     @NotNull
     private UUID auctionId;

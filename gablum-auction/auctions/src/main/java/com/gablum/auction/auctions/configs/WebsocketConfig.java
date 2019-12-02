@@ -2,6 +2,7 @@ package com.gablum.auction.auctions.configs;
 
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -27,7 +28,12 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
         taskScheduler.initialize();
         registry.setApplicationDestinationPrefixes("");
         registry.enableSimpleBroker("/topic")
-                .setHeartbeatValue(new long[]{2000, 2000})
+                .setHeartbeatValue(new long[]{5000, 5000})
                 .setTaskScheduler(taskScheduler);
+    }
+
+    @Override
+    public void configureClientInboundChannel(ChannelRegistration registration) {
+        registration.interceptors(new TopicSubscriptionInterceptor());
     }
 }
