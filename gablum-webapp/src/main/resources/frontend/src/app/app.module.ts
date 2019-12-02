@@ -19,7 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { MatOptionModule, MatSelectModule } from '@angular/material';
+import { MatOptionModule, MatSelectModule, MatButton, MatButtonModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
@@ -28,13 +28,14 @@ import { AuctionModule } from './auction/auction.module';
 import {FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     // BrowserModule,
@@ -70,7 +71,9 @@ import { InterceptorService } from './services/interceptor.service';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

@@ -20,7 +20,7 @@ export class WebsocketService {
   private socketReconnect = (isReconnect = true) => {
     this.socket = new sockjs(environment.wsURL);
     this.stompClient = Stomp.over(this.socket);
-    // this.stompClient.debug = msg => msg;
+    this.stompClient.debug = msg => this.logger.log(msg);
     this.stompClient.heartbeatIncoming = 1000;
     this.stompClient.heartbeatOutgoing = 2000;
     this.stompClient.onWebSocketClose = () => {

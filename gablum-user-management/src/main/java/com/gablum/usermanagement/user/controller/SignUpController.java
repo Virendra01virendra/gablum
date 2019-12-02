@@ -28,8 +28,11 @@ public class SignUpController {
             return new ResponseEntity<SignupResult>(
                     new SignupResult("There is an account with that email address", false), HttpStatus.NOT_ACCEPTABLE);
         }
+
         System.out.println(user);
         user.setName(user.getName());
+        // FIXME: delete the admin role if the request came
+//        user.setRole(user.getRole().);
         user.setEmail(user.getEmail());
         user.setAddress(user.getAddress());
         user.setCompanyName(user.getCompanyName());
@@ -38,7 +41,7 @@ public class SignUpController {
         user.setBusinessLicense(user.getBusinessLicense());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return new ResponseEntity<SignupResult>(new SignupResult("ok", true), HttpStatus.CREATED );
+        return new ResponseEntity<SignupResult>(new SignupResult("Registered", true), HttpStatus.CREATED );
     }
 
     private boolean emailExist(String email) {

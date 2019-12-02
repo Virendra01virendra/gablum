@@ -27,6 +27,7 @@ public class ContractService {
         return contractDetails.findByBuyerId(buyerId);
     }
     @Transactional
+
     public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,ContractStatusEditable contractUpdate){
         Contracts updatedContract = contractDetails.findByContractId(contractWhichNeedsTobeInvalidated);
         updatedContract.setContractId(contractWhichNeedsTobeInvalidated);
