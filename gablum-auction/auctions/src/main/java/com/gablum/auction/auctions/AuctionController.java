@@ -2,18 +2,17 @@ package com.gablum.auction.auctions;
 
 import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-
-import javax.servlet.http.HttpServletRequest;
-
-
+@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 public class AuctionController {
@@ -45,7 +44,7 @@ public class AuctionController {
             HttpServletRequest request
     ) {
         String email = userService.getEmail(request);
-        System.out.println(email);
+        log.debug(email);
         return auctionService.getAllAuctions(queryMap);
     }
 

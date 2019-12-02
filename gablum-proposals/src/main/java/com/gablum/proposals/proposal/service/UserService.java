@@ -30,7 +30,6 @@ public class UserService {
         if (bearerToken == null) {
             return null;
         }
-        System.out.println(bearerToken.split("\\.").toString());
         String payloadEncoded = bearerToken.split("\\.")[1];
         String payload = new String(Base64.getDecoder().decode(payloadEncoded));
         JwtPayload jwtPayload;
