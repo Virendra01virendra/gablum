@@ -28,6 +28,11 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/echo")
+    public String getEcho() {
+        messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
+        return "auctions";
+    }
     //FIXME: check roles before returning auction
     //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")

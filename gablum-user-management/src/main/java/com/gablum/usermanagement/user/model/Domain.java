@@ -1,7 +1,5 @@
 package com.gablum.usermanagement.user.model;
 
-import com.thoughtworks.xstream.annotations.XStreamInclude;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
