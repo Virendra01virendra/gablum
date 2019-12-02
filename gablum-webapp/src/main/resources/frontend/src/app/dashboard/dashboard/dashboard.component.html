@@ -12,7 +12,7 @@
             <mat-card-title fxLayout="row" style="color: antiquewhite;">Product: {{proposal.productName}} </mat-card-title>
             <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
           </mat-card-header>
-          <app-timer></app-timer>
+          <!-- <app-timer></app-timer> -->
           <img mat-card-image class="image" src="https://picsum.photos/200" alt="Photo of a Sub-domain">
           <mat-card-content fxLayout="column" fxLayout="space-around center">
             
@@ -76,7 +76,7 @@
             <mat-card-title>Product: {{proposal.productName}} </mat-card-title>
             <mat-card-subtitle>{{proposal.businessSubDomain}}</mat-card-subtitle>
           </mat-card-header>
-          <app-timer></app-timer>
+          <!-- <app-timer></app-timer> -->
           <!-- <img mat-card-image src="https://picsum.photos/200" alt="Photo of a Shiba Inu"> -->
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="space-between stretch">
@@ -99,27 +99,6 @@
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<!-- 
-<mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://picsum.photos/300" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-   -->
 
 <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/new']">
   <mat-icon>add</mat-icon>
