@@ -108,10 +108,6 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-  openDialog()
-  {
-    // this.dialog.open(ProposalCardDialogComponent);
-
-  }
+  openDialog() { }
 
 }
