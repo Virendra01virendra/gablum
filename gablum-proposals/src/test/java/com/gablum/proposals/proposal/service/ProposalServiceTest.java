@@ -70,8 +70,8 @@ class ProposalServiceTest {
     void addProposals() {
         Mockito.when(proposalRepository.save(testProposal1)).thenReturn(testProposal1);
 
-        Assertions.assertEquals(testProposal1.getProposalId(), proposalService.addProposals(testProposal1).
-                getProposalId(), "the proposal is added");
+        Assertions.assertEquals(testProposal1.getProposalId(), proposalService.addProposals
+                (testProposal1).getProposalId(),"the proposal is added");
     }
 
 //    @Test
