@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class BidEvaluation {
     public static void main(String[] args) {
-        
+
     }
 
     public static float score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
