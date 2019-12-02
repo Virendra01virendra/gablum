@@ -10,16 +10,21 @@
     margin: 2em auto;
 }
 .example-card {
-    max-width: 300px;
+    max-width: 320px;
   }
-.example-card-image
-{
-    /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
-    background-size: cover;
-}
-.mat-head
-{
-    background-color: magenta;
 
+  .image 
+  {
+      max-width: 300px;
+      max-height: 200px;
+  }
+/* .image
+{
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+ background-size: cover;
+ }  */
 
+.heead
+{
+    background-color: #ad1457;
 }
