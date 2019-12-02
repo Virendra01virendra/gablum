@@ -125,7 +125,7 @@ public class BidController {
         bidDataEntity.setScore(scorecnt);
 
 
-        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
+//        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
 
 
         String message2 = "Bid is stored, and score is " + scorecnt;

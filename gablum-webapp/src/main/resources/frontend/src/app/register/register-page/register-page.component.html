@@ -3,6 +3,15 @@
 </mat-toolbar>
 
 <mat-card-content>
+<<<<<<< HEAD
+        <form class="regForm" [formGroup]="registrationForm">
+           <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input  matInput formControlName="name" required />
+                <mat-hint align="start">*Not more then 30 characters long.</mat-hint>
+                <mat-error *ngIf="name.touched || name.invalid">{{getErrorMessage1()}}</mat-error>
+            </mat-form-field>
+=======
     <form class="regForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="fullWidth" appearance="outline">
             <mat-label>Name</mat-label>
@@ -10,6 +19,7 @@
             <mat-hint align="start">*Not more then 30 characters long.</mat-hint>
             <mat-error *ngIf="name.touched || name.invalid">{{getErrorMessage1()}}</mat-error>
         </mat-form-field>
+>>>>>>> 65cb75078b5eda94c9996e136f8bd2383f99bbdb
 
         <!-- <form class="logForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <mat-form-field class="fullWidth" appearance="outline">
@@ -91,11 +101,18 @@
             <mat-error *ngIf="businessSubDomain.touched || businessSubDomain.invalid">{{getErrorMessage8()}}</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="fullWidth" appearance="outline">
-            <mat-label>Set Password</mat-label>
-            <input matInput type="password" formControlName="password" required>
-            <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage6()}}</mat-error>
-        </mat-form-field>
+            <mat-form-field class="fullWidth" appearance="outline">
+                <mat-label>Set Password</mat-label>
+                <input  matInput type="password" formControlName="password" required>
+                <mat-hint align="start">*Special characters allowed: &,@,$,_,.,#,!</mat-hint>
+                <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage6()}}</mat-error>
+            </mat-form-field>        
+            <mat-card-actions>    
+                <div class="btn">
+                    <button mat-raised-button color="primary" [disabled]='!registrationForm.valid' type="submit" (click)="onSubmit()">REGISTER</button>
+                </div>
+            </mat-card-actions>
+        </form>
 
         <div class="btn">
             <button [disabled]="!registrationForm.valid" mat-raised-button color="primary">REGISTER</button>
