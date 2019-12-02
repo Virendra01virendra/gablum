@@ -3,6 +3,7 @@ package com.gablum.proposals.proposal.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -14,7 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Document(collection = "proposals")
 public class Proposal {
-
+    @Id
+    private String _id;
     private UUID proposalId = UUID.randomUUID();
     private UUID productId;
     private String createdBy;

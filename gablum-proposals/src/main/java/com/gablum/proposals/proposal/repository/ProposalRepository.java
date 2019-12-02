@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface ProposalRepository extends MongoRepository<Proposal, ObjectId> {
+public interface ProposalRepository extends MongoRepository<Proposal, String> {
 
     Optional<Proposal> findByProposalId(UUID proposalId);
 

@@ -60,8 +60,10 @@ public class ProposalController {
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
         }
-        proposalService.extendProposal(modifiedProposal, proposalId);
-        return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
+        return new ResponseEntity<Proposal>(
+                proposalService.extendProposal(modifiedProposal, proposalId),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/proposals/browse")

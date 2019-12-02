@@ -76,13 +76,6 @@ public class ProposalService implements IProposalService {
         proposalToChange.setRegStartDate(modifiedProposal.getRegStartDate());
         proposalToChange.setRegEndDate(modifiedProposal.getRegEndDate());
         return proposalRepo.save(proposalToChange);
-
-
-
-//        Proposal proposal = getProposalById(proposalId);
-//        currentProposal.setRegEndDate(currentProposal.getRegEndDate());
-//        currentProposal.setRegStartDate(currentProposal.getRegStartDate());
-//        return proposalRepo.save(currentProposal);
     }
 
     @Override
