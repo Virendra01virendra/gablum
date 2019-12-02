@@ -7,7 +7,6 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { NewProposalPageComponent} from './new-proposal-page/new-proposal-page.component';
 import { NewProposalForm1Component } from './new-proposal-form/new-proposal-form1.component';
-import { NewProposalCardComponent } from '../dashboard/new-proposal-card/new-proposal-card.component';
 import { MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormConfirmDialogComponent } from './form-confirm-dialog/form-confirm-dialog.component';
