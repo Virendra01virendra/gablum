@@ -29,7 +29,6 @@ public class SignUpController {
                     new SignupResult("There is an account with that email address", false), HttpStatus.NOT_ACCEPTABLE);
         }
 
-        System.out.println(user);
         user.setName(user.getName());
         // FIXME: delete the admin role if the request came
 //        user.setRole(user.getRole().);

@@ -7,6 +7,7 @@ import { AuctionsListComponent } from './auctions-list/auctions-list.component';
 import { MaterialModule } from '../material/material.module';
 import { ProposalsListComponent } from './proposals-list/proposals-list.component';
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
+import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 
 @NgModule({
@@ -15,13 +16,15 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
     BidCardComponent,
     AuctionsListComponent,
     ProposalsListComponent,
-    NewProposalCardComponent
+    NewProposalCardComponent,
+    ProposalCardDialogComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    SchedulerModule,
     MaterialModule,
-    SchedulerModule
-  ]
+  ],
+  entryComponents: [ProposalCardDialogComponent]
 })
 export class DashboardModule { }

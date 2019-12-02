@@ -37,7 +37,6 @@ public class UserController {
 
     @GetMapping("/menuitems")
     public List<NavLink> getMenuItems(HttpServletRequest request) {
-        // FIXME: don't return hardcoded list
         boolean isBuyer = false;
         boolean isSeller = false;
 //        boolean isAdmin = false;
@@ -45,13 +44,13 @@ public class UserController {
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         List<String> roles = tokenClaims.get("auth", List.class);
         for(String role: roles) {
-            if (role.equals("buyer")) {
+            if (role.contains("buyer")) {
                 isBuyer = true;
             }
-            if (role.equals("seller")) {
+            if (role.contains("seller")) {
                 isSeller = true;
             }
-//            if (role.equals("admin")) {
+//            if (role.contains("admin")) {
 //                isAdmin = true;
 //            }
         }
@@ -67,6 +66,12 @@ public class UserController {
 
         if(isBuyer) {
             menuItems.add(new NavLink("New Proposal", "/new", "add"));
+        }
+
+        if (isSeller) {
+            menuItems.add(
+                    new NavLink("Browse Proposals", "/browse", "list")
+            );
         }
 
         return menuItems;

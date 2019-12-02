@@ -27,8 +27,6 @@ public class UserService implements UserDetailsService {
         }
         MongoUserDetails userDetails = new MongoUserDetails(user.getEmail(),user.getPassword(),user.getActive(),
                 user.isLocked(), user.isExpired(),user.isEnabled(),authorities);
-        System.out.println("ffff\n\n\n\n\n");
-        System.out.println(userDetails);
         return userDetails;
     }
 }
