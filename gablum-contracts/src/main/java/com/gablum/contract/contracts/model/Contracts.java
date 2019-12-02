@@ -9,8 +9,7 @@ import java.util.UUID;
 @Document("Contracts")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class Contracts {
-//    @Indexed(unique = true)
-    @Id                                                                                                                                                                                             
+    @Id
     @NotNull
     private UUID contractId;
 
