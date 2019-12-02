@@ -55,13 +55,14 @@ public class ProposalController {
     //Extending the proposal
     @PatchMapping("proposals/{proposalId}")
     public ResponseEntity<Proposal> extendedProposal (
-            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") UUID proposalId) {
-        Proposal proposal = proposalService.getProposalById(proposalId);
+            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") String proposalId) {
+        UUID proposalIdUuid = UUID.fromString(proposalId);
+        Proposal proposal = proposalService.getProposalById(proposalIdUuid);
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Proposal>(
-                proposalService.extendProposal(modifiedProposal, proposalId),
+                proposalService.extendProposal(modifiedProposal, proposalIdUuid),
                 HttpStatus.OK
         );
     }
