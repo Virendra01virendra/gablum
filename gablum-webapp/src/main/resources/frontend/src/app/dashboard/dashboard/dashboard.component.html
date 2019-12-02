@@ -1,8 +1,8 @@
 <div class="dashboard-container">
-  <mat-tab-group class="tab-container" fxHide.xs [selectedIndex]="0">
-    <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
-
-      <div *ngIf="section.label=='Ongoing Auctions'">
+    <mat-tab-group class="tab-container" fxHide.xs [selectedIndex]="0">
+        <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
+  
+     <div *ngIf="section.label=='Ongoing Auctions'">
         <p>Auction list</p>
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-between center" >

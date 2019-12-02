@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileDataService } from './services/profile-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,14 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   public isLoggedIn = false;
 
+  constructor(
+    private profile: ProfileDataService
+  ) { }
+
   sideNavToggle() {
-    console.log('sidenav toggle');
   }
 
   ngOnInit() {
+    this.profile.getUserProfileByEmail('@all', 'profile');
   }
 }
