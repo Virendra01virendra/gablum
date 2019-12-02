@@ -12,7 +12,6 @@ import java.util.concurrent.ScheduledFuture;
 public class SchedulerConfig implements SchedulingConfigurer {
     TaskScheduler taskScheduler;
 
-    private ScheduledFuture<?> job;
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
