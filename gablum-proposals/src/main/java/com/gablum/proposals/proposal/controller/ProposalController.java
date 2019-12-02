@@ -37,6 +37,7 @@ public class ProposalController {
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id
     public Proposal getProposalById(@PathVariable("proposalId") UUID proposalId) {
+        //FIXME: only seller can view another proposal
         return proposalService.getProposalById(proposalId);
     }
 
@@ -45,12 +46,6 @@ public class ProposalController {
         String email = userService.getEmail(request);
         return proposalService.getAllProposals(queryMap, email);
     }
-
-//    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
-//    public Proposal editProposal(@PathVariable("proposalId") UUID proposalId) {
-//      Proposal proposal = proposalService.getProposalById(proposalId);
-//      return proposal;
-//    }
 
     @DeleteMapping("/proposals/{proposalId}")                                      //Delete Proposal
     public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
@@ -69,4 +64,11 @@ public class ProposalController {
         return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
     }
 
+    @GetMapping("/proposals/browse")
+    public ResponseEntity<List<Proposal>> browseProposals(@RequestParam Map<String, String> queryMap) {
+        return new ResponseEntity<List<Proposal>>(
+                proposalService.getAllProposals(queryMap),
+                HttpStatus.OK
+        );
+    }
 }
