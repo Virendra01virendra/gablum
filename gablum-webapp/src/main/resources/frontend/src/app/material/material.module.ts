@@ -31,6 +31,7 @@ const modules = [
   CommonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatRadioModule,
   MatButtonModule,
   MatOptionModule,
   MatSelectModule,

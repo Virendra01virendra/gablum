@@ -55,6 +55,7 @@ export class BidFormComponent implements OnInit {
     qaqcCertificate: form.value.newQaqcCertificate,
     typeOfSupply: form.value.newTypeOfDelivery,
     timeOfDelivery: form.value.newTimeOfDelivery,
+    typeOfDelivery: form.value.newTypeOfDelivery
     };
 
     this.logger.log('making api call', bid);

@@ -44,4 +44,8 @@ export class NavbarComponent implements OnInit {
     this.menuToggled.emit(event);
   }
 
+  logout() {
+
+  }
+
 }
