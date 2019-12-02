@@ -33,38 +33,38 @@ export class DashboardComponent implements OnInit {
   ];
 
   public bids: NewBid[] = [];
-  public testBid: NewBid = {
-    seller: {
-      name: 'A glorious seller',
-      company: 'Company ye',
-      rating: 4.4,
-      username: 'aGloriousSeller',
-      profileUrl: 'https://picsum.photos/400/400'
-    },
-    price: 100,
-    unitPrice: 12.5,
-    rank: 2,
-    scores: [
-      {
-        scoreIdentifier: 'abc',
-        scoreName: 'def',
-        scoreCalculated: 12,
-        scoreWeight: 2,
-        scoreRawValue: 6
-      },
-      {
-        scoreIdentifier: 'khi',
-        scoreName: 'kli',
-        scoreCalculated: 15,
-        scoreWeight: 3,
-        scoreRawValue: 5
-      }
-    ],
-    totalScore: 17,
-    certifications: ['CE'],
-    creditPeriodInDays: 30,
-    estimatedDispatchDate: new Date()
-  };
+  // public testBid: NewBid = {
+  //   seller: {
+  //     name: 'A glorious seller',
+  //     company: 'Company ye',
+  //     rating: 4.4,
+  //     username: 'aGloriousSeller',
+  //     profileUrl: 'https://picsum.photos/400/400'
+  //   },
+  //   price: 100,
+  //   unitPrice: 12.5,
+  //   rank: 2,
+  //   scores: [
+  //     {
+  //       scoreIdentifier: 'abc',
+  //       scoreName: 'def',
+  //       scoreCalculated: 12,
+  //       scoreWeight: 2,
+  //       scoreRawValue: 6
+  //     },
+  //     {
+  //       scoreIdentifier: 'khi',
+  //       scoreName: 'kli',
+  //       scoreCalculated: 15,
+  //       scoreWeight: 3,
+  //       scoreRawValue: 5
+  //     }
+  //   ],
+  //   totalScore: 17,
+  //   certifications: ['CE'],
+  //   creditPeriodInDays: 30,
+  //   estimatedDispatchDate: new Date()
+  // };
 
   constructor(
     public dialog: MatDialog,
@@ -107,7 +107,7 @@ export class DashboardComponent implements OnInit {
           const data = message.data;
           if ('newbid' in data) {
             this.logger.log(data.newbid.body);
-            this.bids.push(this.testBid);
+            // this.bids.push(this.testBid);
           }
         }
       });

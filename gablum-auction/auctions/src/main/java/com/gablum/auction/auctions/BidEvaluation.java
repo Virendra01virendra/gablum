@@ -27,7 +27,6 @@ public class BidEvaluation {
                 priceSpec, timeOfDeliverySpec, creditPeriodSpec, qaqccertificationSpec, typeOfSupplySpec,
                 weightPriceSpec,
                 weightTimeOfDeliverySpec, weightCreditPeriodSpec, weightQaqcCertificationSpec, weightTypeOfSupplySpec);
-        System.out.println("score------------->" + scorecnt);
     }
 
     public static float score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
@@ -39,6 +38,9 @@ public class BidEvaluation {
                               float weightQaqcCertificateSpec,
                               float weightTypeOfSupplySpec) {
         float score;
+
+
+//        Converting weights to out of 100
 
         float percentWeightPriceSpec =
                 100*weightPriceSpec/(weightPriceSpec + weightTimeOfDeliverySpec + weightCreditPeriodSpec
@@ -56,11 +58,12 @@ public class BidEvaluation {
                 100*weightTypeOfSupplySpec/(weightPriceSpec + weightTimeOfDeliverySpec + weightCreditPeriodSpec
                         + weightQaqcCertificateSpec + weightTypeOfSupplySpec);
 
+
+//        normalization of bid parameters w.r.t. proposal specs
         float priceNorm = (price - priceSpec) / priceSpec;
         float timeOfDeliveryNorm =
                 (-(float)timeOfDelivery.getTime() + (float)timeOfDeliverySpec.getTime()) / ((float)timeOfDeliverySpec.getTime());
         float creditPeriodNorm = (creditPeriod - creditPeriodSpec) / (float)creditPeriodSpec;
-        System.out.println(creditPeriodNorm);
         float certificationNorm = 0;
         float typeOfSupplyNorm = 0;
 
@@ -87,6 +90,9 @@ public class BidEvaluation {
 
         return score;
     }
+
+    // The score will be a perfect 100, if the bid parameters exactly match proposal paramters.
+    // The score can be interpreted as what percent of proposal parameters are being satisfied by the current bid.
 
 }
 
