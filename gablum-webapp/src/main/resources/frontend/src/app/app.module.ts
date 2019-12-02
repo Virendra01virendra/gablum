@@ -62,7 +62,6 @@ import { InterceptorService } from './services/interceptor.service';
     MatIconModule,
     MatButtonModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],

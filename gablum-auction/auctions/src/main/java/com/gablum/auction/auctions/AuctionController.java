@@ -45,7 +45,6 @@ public class AuctionController {
             HttpServletRequest request
     ) {
         String email = userService.getEmail(request);
-        System.out.println(email);
         return auctionService.getAllAuctions(queryMap);
     }
 
