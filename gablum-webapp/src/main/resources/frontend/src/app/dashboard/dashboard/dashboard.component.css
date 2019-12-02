@@ -9,3 +9,17 @@
     width: 90%;
     margin: 2em auto;
 }
+.example-card {
+    max-width: 300px;
+  }
+.example-card-image
+{
+    /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
+    background-size: cover;
+}
+.mat-head
+{
+    background-color: magenta;
+
+
+}
