@@ -6,6 +6,8 @@ import { from } from 'rxjs';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import {NewBid} from '../../interfaces/newbid';
 import { LoggerService } from 'src/app/services/logger.service';
+import { MatDialog } from '@angular/material';
+import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -28,7 +30,8 @@ export class BidFormComponent implements OnInit {
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
-    private logger: LoggerService) { }
+    private logger: LoggerService,
+    private dialog: MatDialog,) { }
   ngOnInit() {
 
     this.ws.connect(message => this.subscribe());
@@ -77,6 +80,11 @@ export class BidFormComponent implements OnInit {
       };
 
     this.ws.getBidScore(bid);
+    // console.log('dataaaaaaaaaa', this.result1);
+    // this.dialog.open(BidDialogComponent, {
+    //   height: '400px',
+    //   width: '600px',
+    // data: this.result1});
   }
 
   bidList() {
@@ -95,6 +103,11 @@ export class BidFormComponent implements OnInit {
             this.result1 = data.getscore.body;
             this.logger.log('message received is ::', data.getscore.body);
             // this.bids.push(this.testBid);
+            console.log('dataaaaaaaaaa', this.result1);
+            this.dialog.open(BidDialogComponent, {
+              height: '400px',
+              width: '600px',
+            data: this.result1});
           }
           if ('newbid' in data) {
             this.result2 = data.newbid.body;
