@@ -5,28 +5,7 @@ import java.util.Date;
 
 public class BidEvaluation {
     public static void main(String[] args) {
-        float price = 400;
-        Date timeOfDelivery = new Date(15);
-        int creditPeriod = 1;
-        boolean qaqccertification = false;
-        boolean typeOfSupply = true;
-
-        float priceSpec = 400;
-        Date timeOfDeliverySpec = new Date(15);
-        int creditPeriodSpec = 1;
-        boolean qaqccertificationSpec = true;
-        boolean typeOfSupplySpec = true;
-
-        float weightPriceSpec = 1;
-        float weightTimeOfDeliverySpec = 5;
-        float weightCreditPeriodSpec = 1;
-        float weightQaqcCertificationSpec = 1;
-        float weightTypeOfSupplySpec = 1;
-
-        float scorecnt =  score(price, timeOfDelivery, creditPeriod, qaqccertification, typeOfSupply,
-                priceSpec, timeOfDeliverySpec, creditPeriodSpec, qaqccertificationSpec, typeOfSupplySpec,
-                weightPriceSpec,
-                weightTimeOfDeliverySpec, weightCreditPeriodSpec, weightQaqcCertificationSpec, weightTypeOfSupplySpec);
+        
     }
 
     public static float score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
