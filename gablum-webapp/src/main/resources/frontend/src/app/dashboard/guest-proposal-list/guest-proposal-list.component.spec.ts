@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GuestProposalListComponent } from './guest-proposal-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule , MatButtonModule} from '@angular/material';
+
 
 describe('GuestProposalListComponent', () => {
   let component: GuestProposalListComponent;
@@ -12,7 +13,8 @@ describe('GuestProposalListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        MatTableModule
+        MatTableModule,
+        MatButtonModule
       ],
       declarations: [ GuestProposalListComponent ]
     })

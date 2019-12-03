@@ -11,6 +11,7 @@ export const environment = {
   profileUrl: 'http://localhost:8080/api/users/profile',
   proposalUrl: 'http://localhost:8080/api/proposals/proposals',
   guestProposallistUrl: 'http://localhost:8080/api/proposals/proposals/browse',
+  interestedUserUrl: 'http://localhost:8080/api/proposals/proposals/addinteresteduser',
   navlinkUrl: 'http://localhost:8080/api/users/menuitems'
 };
 

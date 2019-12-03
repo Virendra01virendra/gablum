@@ -13,8 +13,9 @@ import { LoggerService } from 'src/app/services/logger.service';
 export class GuestProposalListComponent implements OnInit {
   public static messageKey = 'GuestProposalListComponent';
   proposals: Proposal[];
-  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'quantity'];
+  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'quantity', 'showInterest'];
   dataSource;
+  alreadyRegistered = false;
 
   constructor(
     private proposalDataService: ProposalsDataService,
@@ -36,5 +37,11 @@ export class GuestProposalListComponent implements OnInit {
 
   ngOnInit() {
     this.proposalDataService.getAllProposalForGuest(GuestProposalListComponent.messageKey, 'proposals');
+  }
+  shownInterest(element) {
+    const proposalId = element.proposalId;
+    this.logger.log('proposal id in which we have to store the data' , proposalId );
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(GuestProposalListComponent.messageKey, proposalId , 'interestedSellers');
   }
 }

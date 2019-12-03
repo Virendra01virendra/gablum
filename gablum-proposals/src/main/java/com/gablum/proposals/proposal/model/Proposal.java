@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -37,6 +38,7 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private List<String> interestedUsersEmail;
     private int weightPrice;
     private int weightCreditPeriod;
     private int weightTimeOfDelivery;

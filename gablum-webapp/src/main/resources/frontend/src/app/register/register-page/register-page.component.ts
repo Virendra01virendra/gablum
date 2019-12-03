@@ -175,5 +175,6 @@ export class RegisterPageComponent implements OnInit {
       registerProfile.role = [roleBuyer, roleSeller];
     }
     this.registrationService.register(registerProfile);
+    this.router.navigate(['']);
   }
 }
