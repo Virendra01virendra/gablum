@@ -3,20 +3,29 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-       Interested Sellers list
+        Product Specs
       </mat-panel-title>
-      <mat-panel-description>
-        
-      </mat-panel-description>
+      <mat-panel-description>You can view Product Specifications here</mat-panel-description>
     </mat-expansion-panel-header>
-
     <mat-list role="list">
-        <mat-list-item role="listitem">Seller 1</mat-list-item>
-        <mat-list-item role="listitem">seller 2</mat-list-item>
-        <mat-list-item role="listitem">seller 3</mat-list-item>
-      </mat-list>
+      <mat-list-item role="listitem">Product Price: {{data.price}}</mat-list-item>
+      <mat-list-item role="listitem">Quantity: {{data.quantity}}</mat-list-item>
+      <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate}}</mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Weights
+      </mat-panel-title>
+      <mat-panel-description>Here are the weights you specified</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list-item role="listitem">Price Weight: {{data.priceWeight}}</mat-list-item>
+    <mat-list-item role="listitem">Quantity Weight: {{data.quantityWeight}}</mat-list-item>
+    <mat-list-item role="listitem">Delivery Date Weight: {{data.deliveryDataWeight}}</mat-list-item>
+    
   </mat-expansion-panel>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close] >close</button>
+  <button mat-button [mat-dialog-close]>close</button>
 </div>
