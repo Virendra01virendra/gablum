@@ -12,11 +12,11 @@ import java.util.UUID;
 
 public interface ProposalRepository extends MongoRepository<Proposal, ObjectId> {
 
-    Optional<Proposal> findByProposalId(UUID proposalId);
+    Optional<Proposal> findByProposalId(String proposalId);
 
     Page<Proposal> getAllProposalsByCreatedBy(String email, Pageable page);
 
-    void deleteByProposalId(UUID proposalId);
+    void deleteByProposalId(String proposalId);
 
     Page<Proposal> getAllProposalsByRegEndDateGreaterThan(Pageable page, Date currentDate);
 

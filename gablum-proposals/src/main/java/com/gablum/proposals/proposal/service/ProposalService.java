@@ -56,7 +56,7 @@ public class ProposalService implements IProposalService {
 
     // get proposal by ID
     @Override
-    public Proposal getProposalById(UUID proposalId) {
+    public Proposal getProposalById(String proposalId) {
         return proposalRepo.findByProposalId(proposalId).orElse(null);
     }
 
@@ -66,12 +66,12 @@ public class ProposalService implements IProposalService {
         return proposalRepo.save(proposalToAdd);
     }
 
-    public void deleteProposalbyID(UUID proposalId) {
+    public void deleteProposalbyID(String proposalId) {
         proposalRepo.deleteByProposalId(proposalId);
     }
 
     // extend Proposal
-    public Proposal extendProposal(Proposal modifiedProposal, UUID proposalId) {
+    public Proposal extendProposal(Proposal modifiedProposal, String proposalId) {
         Proposal proposalToChange = getProposalById(proposalId);
         proposalToChange.setRegStartDate(modifiedProposal.getRegStartDate());
         proposalToChange.setRegEndDate(modifiedProposal.getRegEndDate());

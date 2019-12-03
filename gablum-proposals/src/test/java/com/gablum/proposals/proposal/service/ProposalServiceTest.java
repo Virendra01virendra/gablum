@@ -33,8 +33,8 @@ class ProposalServiceTest {
 
     @BeforeEach
     public void setUp() {
-        testProposal1.setProposalId(UUID.randomUUID());
-        testProposal2.setProposalId(UUID.randomUUID());
+        testProposal1.setProposalId(UUID.randomUUID().toString());
+        testProposal2.setProposalId(UUID.randomUUID().toString());
 
         //test Proposal1 details
         testProposal1.setRegStartDate(new Date(2019-06-12));

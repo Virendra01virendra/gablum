@@ -36,7 +36,7 @@ public class ProposalController {
     }
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id
-    public Proposal getProposalById(@PathVariable("proposalId") UUID proposalId) {
+    public Proposal getProposalById(@PathVariable("proposalId") String proposalId) {
         //FIXME: only seller can view another proposal
         return proposalService.getProposalById(proposalId);
     }
@@ -48,14 +48,14 @@ public class ProposalController {
     }
 
     @DeleteMapping("/proposals/{proposalId}")                                      //Delete Proposal
-    public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
+    public void deleteProposalbyID(@PathVariable("proposalId") String proposalId) {
         proposalService.deleteProposalbyID(proposalId);
     }
 
     //Extending the proposal
     @PatchMapping("proposals/{proposalId}")
     public ResponseEntity<Proposal> extendedProposal (
-            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") UUID proposalId) {
+            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") String proposalId) {
         Proposal proposal = proposalService.getProposalById(proposalId);
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);

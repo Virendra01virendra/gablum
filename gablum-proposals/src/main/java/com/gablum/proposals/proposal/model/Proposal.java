@@ -18,7 +18,7 @@ import java.util.UUID;
 @Document(collection = "proposals")
 public class Proposal {
     @Id
-    private UUID proposalId = UUID.randomUUID();
+    private String proposalId = UUID.randomUUID().toString();
     private UUID productId;
     private String createdBy;
     private String updatedBy;

@@ -10,11 +10,11 @@ public interface IProposalService {
 
     List<Proposal> getAllProposals();
 
-    Proposal getProposalById(UUID proposalId);
+    Proposal getProposalById(String proposalId);
 
     Proposal addProposals(Proposal proposalToAdd);
 
-    Proposal extendProposal(Proposal proposal, UUID proposalId);
+    Proposal extendProposal(Proposal proposal, String proposalId);
 
     List<Proposal> getAllProposals(Map<String, String> queryMap, String email);
 
