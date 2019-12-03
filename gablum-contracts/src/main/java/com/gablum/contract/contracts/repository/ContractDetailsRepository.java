@@ -1,7 +1,6 @@
 package com.gablum.contract.contracts.repository;
 
 import com.gablum.contract.contracts.model.Contracts;
-//import org.bson.codecs.UuidCodec;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

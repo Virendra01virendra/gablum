@@ -32,14 +32,10 @@ public class UserController {
     private Claims tokenClaims;
 
     @GetMapping
-    public String getUsers() {
-        return "user: yay";
+    public void getUsers() {
+        // TODO implement get all users for admin.
     }
 
-    @GetMapping("/echo") 
-    public String getEcho() {
-        return "users";
-    }
 
     @GetMapping("/menuitems")
     public List<NavLink> getMenuItems(HttpServletRequest request) {
