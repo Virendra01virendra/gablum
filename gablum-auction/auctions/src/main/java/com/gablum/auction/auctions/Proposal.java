@@ -15,8 +15,8 @@ import java.util.UUID;
 public class Proposal {
     private UUID proposalId=UUID.randomUUID();
     private UUID productId;
-    private UUID createdBy;
-    private UUID updatedBy;
+    private String createdBy;
+    private String updatedBy;
     private String businessDomain;
     private String businessSubDomain;
     private String productName;

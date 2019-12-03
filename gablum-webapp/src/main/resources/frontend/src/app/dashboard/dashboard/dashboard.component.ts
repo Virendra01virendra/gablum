@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -35,6 +36,12 @@ export class DashboardComponent implements OnInit {
 
   public bids: NewBid[] = [];
   data;
+  url = 'http://localhost:8080/auctions/auctions';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  };
   // public testBid: NewBid = {
   //   seller: {
   //     name: 'A glorious seller',
@@ -75,7 +82,8 @@ export class DashboardComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    private logger: LoggerService
+    private logger: LoggerService,
+    public http: HttpClient,
     ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
@@ -126,8 +134,14 @@ export class DashboardComponent implements OnInit {
       proposal: proposal1,
       isAuctionActive: true
     };
+    const auctionList = [];
+    auctionList.push(auction);
 
-    this.data = JSON.stringify(auction);
+    this.data = JSON.parse(JSON.stringify(auctionList));
+
+  //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
+  //   console.log('response ::', response);
+  // });
 
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 

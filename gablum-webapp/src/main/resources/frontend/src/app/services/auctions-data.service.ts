@@ -23,6 +23,6 @@ export class AuctionsDataService {
     }
 
     saveAuction(dest, data, key){
-      this.networking.postData<Auction>(this.auctionsUrl, dest, data, key);
+      this.networking.postData(this.auctionsUrl, dest, data, key);
     }
 }
