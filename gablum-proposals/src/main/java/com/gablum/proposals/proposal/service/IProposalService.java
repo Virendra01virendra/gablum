@@ -4,7 +4,6 @@ import com.gablum.proposals.proposal.model.Proposal;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public interface IProposalService {
 
