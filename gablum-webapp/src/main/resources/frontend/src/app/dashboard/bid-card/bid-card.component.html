@@ -7,20 +7,13 @@
             <span >{{bid.seller.name}}</span>
             <mat-divider></mat-divider>
             <mat-chip-list>
-                <mat-chip matTooltip="Unit price">{{bid.unitPrice}}</mat-chip>
-                <mat-chip matTooltip="Total price">{{bid.price}}</mat-chip>
-                <mat-chip matTooltip="Total Score Received">{{bid.totalScore}}</mat-chip>
-                <mat-chip matTooltip="Bid rank" color="accent" selected>#{{bid.rank}}</mat-chip>
+                <mat-chip matTooltip="Unit price">{{bid.price}}</mat-chip>
+                <mat-chip matTooltip="Score">{{bid.score}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
     <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
-        <span matTooltip="Seller rating">{{bid.seller.rating}}/5</span>
-        <span matTooltip="Estimated dispatch date">{{bid.estimatedDispatchDate | date}}</span>
-        <span matTooltip="Credit period (days)">{{bid.creditPeriodInDays}}</span>
-    </div>
-    <div class="certifications-container" fxLayout="row">
-        <strong>Certifications:</strong>
-        <span *ngFor="let cert of bid.certifications">{{cert}}</span>
+        <span matTooltip="Delivery Date">{{bid.timeOfdelivery | date}}</span>
+        <span matTooltip="Credit period (Months)">{{bid.creditPeriod}}</span>
     </div>
 </mat-expansion-panel>
