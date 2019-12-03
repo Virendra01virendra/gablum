@@ -98,7 +98,7 @@ public class ProposalService implements IProposalService {
     }
 
     public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
-        Proposal updatedProposal = proposalInWhichAdditionIsDone;
+        Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
         updatedProposal.setInterestedUsersEmail(currentLoggedUserEmail);
         updatedProposal.setInterested(updatedProposal.getInterestedUsersEmail().size());
         return proposalRepo.save(updatedProposal);
