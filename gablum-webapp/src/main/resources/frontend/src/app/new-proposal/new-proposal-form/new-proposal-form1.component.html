@@ -25,11 +25,23 @@
               <input matInput type="text" placeholder="Product Name" formControlName="productName" required>
             </mat-form-field>
             
+            <div>
+                <mat-form-field appearance="outline" class="prod-details">
+                    <mat-label class="form-label">Quantity:</mat-label>
+                    <input matInput type="text" placeholder="Quantity Value" formControlName="quantityValue" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-select id="subDomain-select" formControlName="quantityUnit" required>
+                          <mat-option value="" disabled>Choose Unit</mat-option>
+                          <mat-option *ngFor="let unit of units" [value]="unit">{{unit}}
+                          </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+            </div>
             
-            <mat-form-field appearance="outline" class="prod-details">
-              <mat-label class="form-label">Quantity:</mat-label>
-              <input matInput type="text" placeholder="Quantity" formControlName="quantity" required>
-            </mat-form-field>
+             
+          
+          
             <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
               <div></div>
               <button mat-raised-button color= "primary" [disabled]="!productSpecsForm.valid" matStepperNext class="padded-btn">Next</button>

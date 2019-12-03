@@ -8,66 +8,13 @@
     
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
-        fxLayout.sm="column">
+        fxLayout.sm="column"  fxLayoutAlign.sm="space-around center">
 
         <app-new-proposal-card *ngFor="let proposal of proposals"
         [proposal]="proposal">
 
         </app-new-proposal-card>
-        
-        <!--
-        <mat-card class="proposal-card" *ngFor="let proposal of dashboardSections[1].data" fxLayout="column"
-          fxLayoutGap="10px" fxLayoutAlign="space-around">
-          <mat-card-header class="heead" fxLayout="column" fxLayoutAlign="space-between">
-            <mat-card-title>{{proposal.productName}} </mat-card-title>
-            <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
-          </mat-card-header>
-          <div fxLayout="row" fxLayoutAlign="space-between">
-            <app-timer></app-timer>
-          </div>
-
-          <mat-card-content>
-            <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-
-              <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Price </mat-chip>
-                <mat-chip>{{proposal.price}} </mat-chip>
-
-              </div>
-              <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Quantity </mat-chip>
-                <mat-chip>{{proposal.quantity}}</mat-chip>
-
-              </div>
-             
-              <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Views</mat-chip>
-                <mat-chip>{{25}}</mat-chip>
-              </div>
-
-            </div>
-
-          </mat-card-content>
-
-          <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
-
-
-
-            <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)"
-              class="material-icons" matTooltip="Interested Sellers">
-              list
-            </mat-icon>
-
-            <mat-icon matTooltip="Extend Registration" class="material-icons">
-              hourglass_empty
-            </mat-icon>
-
-
-            <mat-icon matTooltip="Delete Proposal" class="material-icons">delete</mat-icon>
-            <mat-icon matTooltip="See Details" class="material-icons">visibility</mat-icon>
-
-          </mat-card-actions>
-        </mat-card> -->
+  
         
        
 

@@ -22,7 +22,8 @@ public class Proposal {
     private String businessDomain;
     private String businessSubDomain;
     private String productName;
-    private String quantity;
+    private int quantityValue;
+    private String quantityUnit;
     private float price;
     private Date deliveryDate;
     private String creditPeriod;
@@ -47,9 +48,5 @@ public class Proposal {
     public Proposal() {
     }
 
-    // Constructor
-    public Proposal(Float price, String quantity) {
-        this.price = price;
-        this.quantity = quantity;
-    }
+   
 }

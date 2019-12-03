@@ -1,15 +1,13 @@
 <mat-card class="proposal-card"  fxLayout="column"
 fxLayoutGap="10px" fxLayoutAlign="space-around">
 <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-  <!-- <div mat-card-avatar class="example-header-image"></div> -->
   <mat-card-title>{{proposal.productName}} </mat-card-title>
-  <mat-card-subtitle style="color: antiquewhite;">{{6}}</mat-card-subtitle>
+  <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
 </mat-card-header>
 <div fxLayout="row" fxLayoutAlign="space-between">
   <app-timer></app-timer>
 </div>
 
-<!-- <img mat-card-image class="image" src="https://picsum.photos/200" alt="Photo of a Sub-domain"> -->
 <mat-card-content>
   <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
@@ -20,7 +18,7 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
     </div>
     <div fxLayoutAlign="space-between">
       <mat-chip color="primary" selected="true">Quantity </mat-chip>
-      <mat-chip>{{proposal.quantity}}</mat-chip>
+      <mat-chip>{{proposal.quantityValue + ' ' + proposal.quantityUnit}}</mat-chip>
 
     </div>
     <!-- <div>

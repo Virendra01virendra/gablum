@@ -9,7 +9,8 @@ export interface Proposal {
     businessDomain: string;
     businessSubDomain: string;
     productName: string;
-    quantity: number;
+    quantityValue: number;
+    quantityUnit: string;
     price: number;
     priceWeight: number;
     deliveryDate: Date;
