@@ -11,7 +11,6 @@ import { NavLink } from './interfaces/navlink';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
   public isLoggedIn = false;
   public navLinks: NavLink[];
 

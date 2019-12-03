@@ -18,9 +18,6 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(email);
-//        if (user == null || user.getRole() == null || user.getRole().isEmpty()) {
-//            throw new CustomException("Invalid username or password.", HttpStatus.UNAUTHORIZED);
-//        }
         String[] authorities = new String[user.getRole().size()];
         int count = 0;
         for (Role role : user.getRole()) {
@@ -34,10 +31,6 @@ public class UserService implements UserDetailsService {
         return userDetails;
     }
 
-//    public User getUserById(UUID userId) {
-//        return userRepository.getUserByUserId(userId);
-//    }
-
     public User getUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
@@ -48,6 +41,7 @@ public class UserService implements UserDetailsService {
         editedUser.setAddress(modifiedUser.getAddress());
         editedUser.setCompanyName(modifiedUser.getCompanyName());
         editedUser.setPhone(modifiedUser.getPhone());
+        editedUser.setBusinessLicense(modifiedUser.getBusinessLicense());
         return userRepository.save(editedUser);
     }
 }
