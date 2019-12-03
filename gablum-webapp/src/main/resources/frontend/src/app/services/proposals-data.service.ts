@@ -11,7 +11,7 @@ export class ProposalsDataService {
 
   public proposalsUrl: string;
   public guestProposallistUrl: string;
-  public interestedUserUrl: string;
+
 
   constructor(
     private comms: CommunicatorService,
@@ -19,7 +19,6 @@ export class ProposalsDataService {
     ) {
       this.proposalsUrl = environment.proposalUrl;
       this.guestProposallistUrl = environment.guestProposallistUrl;
-      this.interestedUserUrl = environment.interestedUserUrl;
     }
 
     saveProposal(dest, data, key) {
@@ -34,6 +33,6 @@ export class ProposalsDataService {
       this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
     }
     postInterestedSeller(dest, data, key) {
-      this.networking.patchData<Proposal>(this.interestedUserUrl, dest, data, key);
+      this.networking.patchData<Proposal>(this.guestProposallistUrl, dest, data, key);
     }
 }

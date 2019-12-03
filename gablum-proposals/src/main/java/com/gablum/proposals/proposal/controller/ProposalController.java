@@ -71,4 +71,10 @@ public class ProposalController {
                 HttpStatus.OK
         );
     }
+
+    @PatchMapping("/proposals/browse")
+    public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request ){
+        String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
+    }
 }

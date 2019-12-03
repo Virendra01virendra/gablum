@@ -39,9 +39,9 @@ export class GuestProposalListComponent implements OnInit {
     this.proposalDataService.getAllProposalForGuest(GuestProposalListComponent.messageKey, 'proposals');
   }
   shownInterest(element) {
-    const proposalId = element.proposalId;
-    this.logger.log('proposal id in which we have to store the data' , proposalId );
-    this.alreadyRegistered = true;
-    this.proposalDataService.postInterestedSeller(GuestProposalListComponent.messageKey, proposalId , 'interestedSellers');
+    // const proposalId = element.proposalId;
+    this.logger.log('some data which we are publishing ' , element );
+    // this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(GuestProposalListComponent.messageKey, element , 'interestedSellers');
   }
 }

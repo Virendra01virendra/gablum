@@ -96,4 +96,11 @@ public class ProposalService implements IProposalService {
                 getPageable(queryMap), new Date()
         ).getContent();
     }
+
+    public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
+        Proposal updatedProposal = proposalInWhichAdditionIsDone;
+        updatedProposal.setInterestedUsersEmail(currentLoggedUserEmail);
+        updatedProposal.setInterested(updatedProposal.getInterestedUsersEmail().size());
+        return proposalRepo.save(updatedProposal);
+    }
 }
