@@ -3,7 +3,7 @@
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
       <div *ngIf="section.label=='Ongoing Auctions'">
-        <p>Auction list</p>
+        <app-button class=""></app-button>
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-between center" >
         <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card" fxLayout="column" fxLayoutAlign="space-between center">

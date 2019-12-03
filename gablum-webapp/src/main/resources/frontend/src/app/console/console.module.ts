@@ -13,6 +13,9 @@ import { MatTableModule } from '@angular/material/table';
     ConsoleRoutingModule,
     PortalModule,
     MatTableModule,
+  ],
+  exports: [ButtonComponent,
+    WindowComponent
   ]
 })
 export class ConsoleModule { }

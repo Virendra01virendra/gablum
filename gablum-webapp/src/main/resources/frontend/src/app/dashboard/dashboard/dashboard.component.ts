@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
