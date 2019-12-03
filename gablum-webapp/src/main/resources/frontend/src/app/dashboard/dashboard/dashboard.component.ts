@@ -124,10 +124,16 @@ export class DashboardComponent implements OnInit {
       });
   }
   openDialog(proposal: Proposal) {
-    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
-
+    this.dialog.open(ProposalCardDialogComponent, {
+      width: '60%',
+      height: '60%',
+      data: {proposal}
+    });
   }
 
+  // doStuff(proposal: Proposal) {
+  //   this.dialog.open(DetailsDialogComponent, {data: proposal});
+  // }
   startAuction(proposal1: Proposal) {
     const auction = {
       auctionName: proposal1.productName,

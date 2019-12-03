@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatOptionModule } from '@angular/material';
+import { MatOptionModule, MatTableModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
@@ -25,6 +25,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { NavbarMaterialModule } from '../common/navbar/navbar-material.module';
 
 
 const modules = [
@@ -45,7 +46,6 @@ const modules = [
   MatNativeDateModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatToolbarModule,
   MatSelectModule,
   MatRadioModule,
   MatSliderModule,
@@ -68,7 +68,9 @@ const modules = [
   MatDividerModule,
   FlexLayoutModule,
   MatListModule,
-  MatMenuModule
+  MatMenuModule,
+  NavbarMaterialModule,
+  MatTableModule
 ];
 
 @NgModule({

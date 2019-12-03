@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 @ExtendWith(SpringExtension.class)
 class ProposalServiceTest {
@@ -73,16 +71,4 @@ class ProposalServiceTest {
         Assertions.assertEquals(testProposal1.getProposalId(), proposalService.addProposals
                 (testProposal1).getProposalId(),"the proposal is added");
     }
-
-//    @Test
-//    void extendProposal() {
-//        Mockito.when(proposalRepository.save(testProposal1)).thenReturn(testProposal1);
-//        Assertions.assertEquals(testProposal1.getRegStartDate(), testProposal1);
-//    }
-//
-//    private Date dateAddition(Date dateToIncrement, int daysToBeAdded){
-//        Long x = daysToBeAdded*86400000L;
-//        Date newDate = new Date(dateToIncrement.getTime() + x);
-//        return newDate;
-//    }
 }
