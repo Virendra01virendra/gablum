@@ -18,6 +18,7 @@ import java.util.UUID;
 @Document(collection = "proposals")
 public class Proposal {
     @Id
+    private String _id;
     private String proposalId = UUID.randomUUID().toString();
     private UUID productId;
     private String createdBy;
@@ -40,11 +41,11 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
-    @Setter private List<String> interestedUsersEmail = new ArrayList<>();
+    private List<String> interestedUsersEmail = new ArrayList<>();
 
-    public void setInterestedUsersEmail(String interestedUsersEmail) {
-        this.interestedUsersEmail.add(interestedUsersEmail);
-    }
+//    public void setInterestedUsersEmail(String interestedUsersEmail) {
+//        this.interestedUsersEmail.add(interestedUsersEmail);
+//    }
 
     private int weightPrice;
     private int weightCreditPeriod;
