@@ -33,6 +33,6 @@ export class ProposalsDataService {
       this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
     }
     postInterestedSeller(dest, data, key) {
-      this.networking.patchData<Proposal>(this.guestProposallistUrl, dest, data, key);
+      this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key);
     }
 }
