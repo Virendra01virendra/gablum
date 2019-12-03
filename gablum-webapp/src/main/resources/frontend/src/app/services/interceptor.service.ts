@@ -17,6 +17,12 @@ export class InterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError(err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this.logger.log(this);
+            this.auth.clearProfile();
+          }
+        }
         return of(err);
       })
     );

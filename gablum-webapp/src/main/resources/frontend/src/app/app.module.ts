@@ -1,9 +1,9 @@
 // import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NavbarMaterialModule } from './common/navbar/navbar-material.module';
 import { AppCommonModule } from './common/common.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HistoryModule } from './history/history.module';
@@ -12,6 +12,10 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { NewProposalModule } from './new-proposal/new-proposal.module';
+import { CommonModule } from '@angular/common';
+import { PortalModule } from '@angular/cdk/portal';
+import { ConsoleModule } from './console/console.module';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +25,7 @@ import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
+import {FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { FormConfirmDialogComponent } from './new-proposal/form-confirm-dialog/form-confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -36,6 +41,7 @@ import { InterceptorService } from './services/interceptor.service';
     // BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    DashboardModule,
     AppCommonModule,
     HistoryModule,
     InboxModule,
@@ -43,11 +49,18 @@ import { InterceptorService } from './services/interceptor.service';
     ProfileModule,
     RegisterModule,
     NewProposalModule,
+    CommonModule,
+    PortalModule,
+    ConsoleModule,
+    MatTableModule,
     HttpClientModule,
     AuctionModule,
     MaterialModule,
+    NavbarMaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule,
     ContractsModule,
     SchedulerModule,
     RouterModule,
@@ -62,7 +75,6 @@ import { InterceptorService } from './services/interceptor.service';
     MatIconModule,
     MatButtonModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],

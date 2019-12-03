@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-// import { MatListModule } from '@angular/material';
 import { ContractComponent } from './contract.component';
 import { MatListModule, MatButtonModule, MatCardModule, MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

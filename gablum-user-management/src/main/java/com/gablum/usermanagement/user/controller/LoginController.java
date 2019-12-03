@@ -65,7 +65,6 @@ public class LoginController {
     @ResponseBody
     public ResponseEntity<AuthResponse> logout (HttpServletResponse response, HttpServletRequest request) {
         HttpHeaders headers = new HttpHeaders();
-        System.out.println("\n\n" + request.getCookies() + "\n\n");
         if (iLoginService.logout(jwtTokenProvider.resolveToken(request))) {
             Cookie cookie = new Cookie("Authorization", "");
             cookie.setHttpOnly(true);
@@ -91,7 +90,6 @@ public class LoginController {
 
 
     @PostMapping("/signin/token")
-    @CrossOrigin("*")
     @ResponseBody
     public ResponseEntity<AuthResponse> createNewToken (@RequestHeader(value="Authorization") String token) {
         String newToken = iLoginService.createNewToken(token);

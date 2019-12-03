@@ -3,6 +3,8 @@ import { EventEmitter } from '@angular/core';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { Profile } from 'src/app/interfaces/profile';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +14,15 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 export class NavbarComponent implements OnInit {
 
   public isLoggedIn = false;
+  public userProfile: Profile;
 
   @Output() public menuToggled = new EventEmitter();
 
   constructor(
     private comms: CommunicatorService,
     private auth: AuthenticationService,
-    private profile: ProfileDataService
+    private profile: ProfileDataService,
+    private logger: LoggerService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     this.comms.getMessages().subscribe( message => {
@@ -26,6 +30,8 @@ export class NavbarComponent implements OnInit {
         const data = message.data;
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(auth.getProfileData());
+          this.userProfile = auth.getProfileData();
         }
       }
     });
@@ -36,6 +42,10 @@ export class NavbarComponent implements OnInit {
 
   menuClicked(event) {
     this.menuToggled.emit(event);
+  }
+
+  logout() {
+
   }
 
 }

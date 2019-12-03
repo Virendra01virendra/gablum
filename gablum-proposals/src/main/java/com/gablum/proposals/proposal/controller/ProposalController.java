@@ -37,6 +37,7 @@ public class ProposalController {
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id
     public Proposal getProposalById(@PathVariable("proposalId") UUID proposalId) {
+        //FIXME: only seller can view another proposal
         return proposalService.getProposalById(proposalId);
     }
 
@@ -46,12 +47,6 @@ public class ProposalController {
         return proposalService.getAllProposals(queryMap, email);
     }
 
-//    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
-//    public Proposal editProposal(@PathVariable("proposalId") UUID proposalId) {
-//      Proposal proposal = proposalService.getProposalById(proposalId);
-//      return proposal;
-//    }
-
     @DeleteMapping("/proposals/{proposalId}")                                      //Delete Proposal
     public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
         proposalService.deleteProposalbyID(proposalId);
@@ -60,13 +55,20 @@ public class ProposalController {
     //Extending the proposal
     @PatchMapping("proposals/{proposalId}")
     public ResponseEntity<Proposal> extendedProposal (
-            @RequestBody Proposal currentProposal, @PathVariable("proposalId") UUID proposalId) {
+            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") UUID proposalId) {
         Proposal proposal = proposalService.getProposalById(proposalId);
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
         }
-        proposalService.extendProposal(currentProposal, proposalId);
+        proposalService.extendProposal(modifiedProposal, proposalId);
         return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
     }
 
+    @GetMapping("/proposals/browse")
+    public ResponseEntity<List<Proposal>> browseProposals(@RequestParam Map<String, String> queryMap) {
+        return new ResponseEntity<List<Proposal>>(
+                proposalService.getAllProposals(queryMap),
+                HttpStatus.OK
+        );
+    }
 }

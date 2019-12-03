@@ -24,12 +24,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 const modules = [
   CommonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatRadioModule,
   MatButtonModule,
   MatOptionModule,
   MatSelectModule,
@@ -65,7 +67,8 @@ const modules = [
   MatGridListModule,
   MatDividerModule,
   FlexLayoutModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule
 ];
 
 @NgModule({

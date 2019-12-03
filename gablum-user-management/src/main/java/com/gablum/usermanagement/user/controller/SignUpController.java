@@ -18,7 +18,6 @@ public class SignUpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CrossOrigin("*")
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<SignupResult> newRegistration(@RequestBody User user)  {
@@ -29,7 +28,6 @@ public class SignUpController {
                     new SignupResult("There is an account with that email address", false), HttpStatus.NOT_ACCEPTABLE);
         }
 
-        System.out.println(user);
         user.setName(user.getName());
         // FIXME: delete the admin role if the request came
 //        user.setRole(user.getRole().);

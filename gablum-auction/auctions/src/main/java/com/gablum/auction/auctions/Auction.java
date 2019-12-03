@@ -22,9 +22,9 @@ public class Auction {
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
     private String auctionId = UUID.randomUUID().toString();
-    private String proposalId;
+//    private UUID proposalId;
     private String auctionName;
-
+    private Proposal proposal;
     boolean isAuctionActive;
 
     private String participantsVerificationId;

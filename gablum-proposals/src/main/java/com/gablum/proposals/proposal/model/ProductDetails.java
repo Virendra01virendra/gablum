@@ -13,10 +13,10 @@ import java.util.UUID;
 @Setter
 @Document("ProductDetail")
 public class ProductDetails {
-
     private UUID productId;
     private String productName;
     private List <String> productSpecList;
     private UUID userID;
-
+    private String domain;
+    private String subDomain;
 }
