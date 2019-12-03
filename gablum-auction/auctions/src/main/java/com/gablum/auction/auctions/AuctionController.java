@@ -4,7 +4,6 @@ import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,16 +22,13 @@ public class AuctionController {
     Claims claims;
 
     @Autowired
-    private SimpMessageSendingOperations messageSendingOperations;
-
-    @Autowired
     private UserService userService;
 
-    @GetMapping("/echo")
-    public String getEcho() {
-        messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
-        return "auctions";
-    }
+//    @GetMapping("/echo")
+//    public String getEcho() {
+//        messageSendingOperations.convertAndSend("/topic/newbid", "hello from the other side");
+//        return "auctions";
+//    }
     //FIXME: check roles before returning auction
     //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
@@ -42,8 +38,8 @@ public class AuctionController {
             HttpServletRequest request
     ) {
         String email = userService.getEmail(request);
-        log.debug(email);
-        return auctionService.getAllAuctions(queryMap);
+//        log.debug(email);
+        return auctionService.getAllAuctionsBuyer(queryMap, email);
     }
 
     @GetMapping("/auctions/{id}")
@@ -55,6 +51,7 @@ public class AuctionController {
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd) {
         return auctionService.addAuctions(auctionsToAdd);
     }
+
 
 
 }

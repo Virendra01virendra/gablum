@@ -114,18 +114,12 @@ public class BidController {
                 bid.isTypeOfSupply(),
                 pricespec, timeOfDeliverySpec, creditPeriodSpec, qaqcCertificateSpec, typeOfSupplySpec,
                 weightPrice, weightTimeOfDelivery, weightCreditPeriod, weightQaqc, weightTypeOfSupply);
-        String message1 = "Bid score is " + scorecnt;
-        messageSendingOperations.convertAndSend(
-                "/topic/getscore",
-                message1
-        );
 
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
         bidDataEntity.setScore(scorecnt);
-
-
-//        BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
+        
+        bidService.addBid(bidDataEntity);
 
 
         String message2 = "Bid is stored, and score is " + scorecnt;
