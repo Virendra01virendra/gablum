@@ -21,15 +21,12 @@ public class AuctionController {
 
 
     Claims claims;
-
-    @Autowired
-    private SimpMessageSendingOperations messageSendingOperations;
-
+    
     @Autowired
     private UserService userService;
 
 
-   
+
     //FIXME: check roles before returning auction
     //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
