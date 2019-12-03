@@ -78,24 +78,21 @@ export class NewProposalForm1Component implements OnInit {
   //   return d > this.timeForm.value.auctionStartDate ;
   // }
 
-  myFilter2 = (d: Date): boolean => {
-    // Prevent dates before auction start date
-    // this.logger.log(this.paramForm.value);
-    // this.logger.log('del-date--' + this.paramForm.value.deliveryDate +
-    // 'price--' + this.paramForm.value.price );
+  RegStartDateFilter = (d: Date): boolean => {
+    // Prevent dates after delivery date
     return d < this.paramForm.value.deliveryDate ;
     // return true;
   }
 
-  myFilter3 = (d: Date): boolean => {
-    // Prevent dates before auction start date
+  RegEndDateFilter = (d: Date): boolean => {
+    // Prevent dates before registration start date
     return d > this.timeForm.value.regStartDate ;
   }
-  myFilter4 = (d: Date): boolean => {
-    // Prevent dates before auction start date
+  AuctionStartDateFilter = (d: Date): boolean => {
+    // Prevent dates before registration end date
     return d > this.timeForm.value.regEndDate ;
   }
-  myFilter5 = (d: Date): boolean => {
+  AuctionEndDateFilter = (d: Date): boolean => {
     // Prevent dates before auction start date
     this.logger.log('Auc-start-date---' + this.timeForm.value.auctionStartDate);
     return d > this.timeForm.value.auctionStartDate ;
