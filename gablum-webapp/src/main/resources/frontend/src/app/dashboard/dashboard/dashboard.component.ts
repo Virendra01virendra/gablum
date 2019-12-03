@@ -101,22 +101,22 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  // startAuction(proposal1: Proposal) {
-  //   const auction = {
-  //     auctionName: proposal1.productName,
-  //     proposal: proposal1,
-  //     isAuctionActive: true
-  //   };
-  //   const auctionList = [];
-  //   auctionList.push(auction);
+  startAuction(proposal1: Proposal) {
+    const auction = {
+      auctionName: proposal1.productName,
+      proposal: proposal1,
+      isAuctionActive: true
+    };
+    const auctionList = [];
+    auctionList.push(auction);
 
-  //   this.data = JSON.parse(JSON.stringify(auctionList));
+    this.data = JSON.parse(JSON.stringify(auctionList));
 
-  // //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
-  // //   console.log('response ::', response);
-  // // });
+  //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
+  //   console.log('response ::', response);
+  // });
 
-  //   this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
+    this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
-  // }
+  }
 }

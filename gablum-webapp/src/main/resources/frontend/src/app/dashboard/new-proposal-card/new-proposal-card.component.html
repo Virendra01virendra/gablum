@@ -49,8 +49,12 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
 
 
   <mat-icon matTooltip="Delete Proposal" class="material-icons">delete</mat-icon>
+  <mat-icon matTooltip="Start Auction" class="material-icons" (click) = "startAuction(proposal)" >
+      play_arrow
+    </mat-icon>
+
   <mat-icon matTooltip="See Details" class="material-icons">visibility</mat-icon>
-  <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
+  <button mat-raisedbutton (click)="startAuction()">Start Auction</button>
 </mat-card-actions>
 </mat-card>
 

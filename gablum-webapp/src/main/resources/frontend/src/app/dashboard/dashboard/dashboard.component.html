@@ -3,8 +3,8 @@
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
       <div *ngIf="section.label=='Ongoing Auctions'">
-          <!-- <app-auction-card  *ngFor="let auction of auctions"
-          [auction]="auction"></app-auction-card> -->
+          <app-auction-card  *ngFor="let auction of auctions"
+          [auction]="auction"></app-auction-card>
     
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
