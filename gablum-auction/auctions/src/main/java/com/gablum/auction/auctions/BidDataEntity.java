@@ -1,13 +1,9 @@
 package com.gablum.auction.auctions;
 
-import org.springframework.data.annotation.Id;
-
-import java.util.UUID;
-
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Document("Bids")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor

@@ -22,7 +22,7 @@ export class AuctionsDataService {
       this.networking.getData<Auction>(this.auctionsUrl, dest, key);
     }
 
-    saveAuction(dest, data, key){
+    saveAuction(dest, data, key) {
       this.networking.postData(this.auctionsUrl, dest, data, key);
     }
 }
