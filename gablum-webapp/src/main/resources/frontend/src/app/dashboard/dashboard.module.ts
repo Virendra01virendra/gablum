@@ -12,6 +12,7 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
 import { ConsoleModule } from '../console/console.module';
 import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
 import { AuctionModule } from '../auction/auction.module';
+import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuctionModule } from '../auction/auction.module';
     AuctionsListComponent,
     ProposalsListComponent,
     NewProposalCardComponent,
-    ProposalCardDialogComponent
+    ProposalCardDialogComponent,
+    SellersListDialogComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { AuctionModule } from '../auction/auction.module';
     SchedulerModule,
     MaterialModule,
     ConsoleModule,
-    AuctionModule
+    AuctionModule,
+    AuctionCardComponent
   ],
   entryComponents: [ProposalCardDialogComponent]
 })

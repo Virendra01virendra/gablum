@@ -14,24 +14,22 @@ export class AuctionCardComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService
     ) {
-      comms.getMessages().subscribe(msg => {
-        if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
-          const data = msg.data;
+      // comms.getMessages().subscribe(msg => {
+      //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
+      //     const data = msg.data;
 
-          if ('auctions' in data) {
-            this.auctions = data.auctions;
-            console.log(this.auctions);
-          }
-        }
-      });
+      //     if ('auctions' in data) {
+      //       this.auctions = data.auctions;
+      //       console.log(this.auctions);
+      //     }
+      //   }
+      // });
     }
 
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
 
-  ngOnInit() {
-    this.auctionDataService.getAllAuctions(AuctionCardComponent.messageKey, 'auctions');
-  }
+  ngOnInit() {  }
 
 }
