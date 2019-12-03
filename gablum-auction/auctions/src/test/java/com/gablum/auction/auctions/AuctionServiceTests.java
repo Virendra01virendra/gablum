@@ -61,16 +61,16 @@ public class AuctionServiceTests {
         );
     }
 
-//    @Test
-//    public void serviceCanGetById() {
-//        Mockito.when(auctionRepo.findByAuctionId(Mockito.any(UUID.class))).thenReturn(
-//                Optional.of(testAuction1)
-//        );
-//
-//        Assertions.assertEquals(
-//                testAuction1.getAuctionId(),
-//                auctionService.getAuctionById(UUID.randomUUID()).getAuctionId(),
-//                "service should be able to get auction by id"
-//        );
-//    }
+    @Test
+    public void serviceCanGetById() {
+        Mockito.when(auctionRepo.findByAuctionId(Mockito.any(String.class))).thenReturn(
+                Optional.of(testAuction1)
+        );
+
+        Assertions.assertEquals(
+                testAuction1.getAuctionId(),
+                auctionService.getAuctionById(UUID.randomUUID().toString()).getAuctionId(),
+                "service should be able to get auction by id"
+        );
+    }
 }
