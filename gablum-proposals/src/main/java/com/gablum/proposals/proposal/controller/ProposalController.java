@@ -72,6 +72,7 @@ public class ProposalController {
     }
 
     @PatchMapping("/proposals")
+    //FIXME: Duplicate enteries are possible
     public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request ){
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
