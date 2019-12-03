@@ -4,40 +4,6 @@ mat-card {
     font-family: monospace;
 }
 
-
-/* 
-#contract-card {
-    width: 60%;
-    float: center;
-    justify-content: space-around;
-    box-shadow: 10px 10px 10px grey;
-    font-size: 20px;
-    margin: 10% 10% 0% 20%;
-}
-
-#compact-contract-card {
-    background-color: lightgray;
-    padding: 1% 1% 1% 1%;
-} */
-
-
-/* mat-accordion {
-    width: 60%;
-    margin: 1em 10% 1em 10%;
-} */
-
-
-/* .contract-headers-align .mat-expansion-panel-header-title,
-.contract-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
-} */
-
-
-/* .contract-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
-} */
-
 mat-form-field {
     margin-right: 12px;
 }

@@ -26,18 +26,13 @@ public class UserController {
     private Claims tokenClaims;
 
     @GetMapping
-    public String getUsers() {
-        return "user: yay";
+    public void getUsers() {
+        // TODO implement get all users for admin.
     }
 
-    @GetMapping("/echo") 
-    public String getEcho() {
-        return "users";
-    }
 
     @GetMapping("/menuitems")
     public List<NavLink> getMenuItems(HttpServletRequest request) {
-        // FIXME: don't return hardcoded list
         boolean isBuyer = false;
         boolean isSeller = false;
 //        boolean isAdmin = false;
@@ -45,13 +40,13 @@ public class UserController {
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
         List<String> roles = tokenClaims.get("auth", List.class);
         for(String role: roles) {
-            if (role.equals("buyer")) {
+            if (role.contains("buyer")) {
                 isBuyer = true;
             }
-            if (role.equals("seller")) {
+            if (role.contains("seller")) {
                 isSeller = true;
             }
-//            if (role.equals("admin")) {
+//            if (role.contains("admin")) {
 //                isAdmin = true;
 //            }
         }

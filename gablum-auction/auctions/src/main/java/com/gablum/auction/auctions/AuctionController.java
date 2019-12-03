@@ -14,7 +14,6 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "*")
 public class AuctionController {
 
     @Autowired
@@ -28,7 +27,6 @@ public class AuctionController {
 
     @Autowired
     private UserService userService;
-
 
     @GetMapping("/echo")
     public String getEcho() {
