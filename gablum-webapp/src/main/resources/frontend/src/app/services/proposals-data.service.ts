@@ -10,12 +10,14 @@ import { environment } from 'src/environments/environment';
 export class ProposalsDataService {
 
   public proposalsUrl: string;
+  public guestProposallistUrl: string;
 
   constructor(
     private comms: CommunicatorService,
     private networking: NetworkingService
     ) {
       this.proposalsUrl = environment.proposalUrl;
+      this.guestProposallistUrl = environment.guestProposallistUrl;
     }
 
     saveProposal(dest, data, key) {
@@ -24,5 +26,9 @@ export class ProposalsDataService {
 
     getAllProposals(dest, key) {
       this.networking.getData<Proposal>(this.proposalsUrl, dest, key);
+    }
+
+    getAllProposalForGuest(dest, key) {
+      this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
     }
 }
