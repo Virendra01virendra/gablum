@@ -8,8 +8,8 @@
         <div class="spacer"></div>
         <div class="nav-links" *ngIf="!isLoggedIn" fxLayout="row" fxHide.xs>
             <a [routerLink]="['.']" fragment="login" class="nav-link nav-icon">Login</a>
-            <a [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
-            <a [routerLink]="['/']" class="nav-link nav-icon">Contact</a>
+            <a [routerLink]="['/']" fragment="box1" class="nav-link nav-icon">About Us</a>
+            <a [routerLink]="['/']" fragment="box1" class="nav-link nav-icon">Contact</a>
         </div>
         <button class="menu-link nav-icon" nav-link nav-icon *ngIf="isLoggedIn" mat-button color="primary" [matMenuTriggerFor]="appMenu">
             <mat-icon>person</mat-icon>
