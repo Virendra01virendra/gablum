@@ -94,6 +94,12 @@ export class DashboardComponent implements OnInit {
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
         }
+
+        if ('auctions' in data) {
+          this.auctions = data.auctions;
+          this.logger.log(this.auctions);
+          this.dashboardSections[0].data = this.auctions;
+        }
       }
     });
   }
@@ -101,6 +107,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
+    this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
 
   }
 

@@ -1,16 +1,15 @@
 <mat-card class="auction-card">
     <mat-card-header>
-      <mat-card-title [style.color]="'red'">Auction Name</mat-card-title>
-      <mat-card-subtitle>Auction Domain</mat-card-subtitle>
+      <mat-card-title [style.color]="'red'">{{auction.auctionName}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src="https://picsum.photos/300">
     <mat-card-content>
       <p>
-        Auction detail 1
+       Price: {{auction.proposal.price}}
         <br>
-        Auction detail 2
+        Credit Period: {{auction.proposal.creditPeriod}}
         <br>
-        Auction detail 3
       </p>
     </mat-card-content>
     <mat-card-actions>

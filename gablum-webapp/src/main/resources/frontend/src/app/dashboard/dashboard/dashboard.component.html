@@ -3,7 +3,6 @@
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
       <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px" fxLayout.sm="column" >
-      <app-auction-card></app-auction-card>
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px" fxLayout.sm="column">
         <mat-card class="proposal-card" *ngFor="let proposal of dashboardSections[1].data" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
@@ -81,7 +80,7 @@
 
       </mat-expansion-panel-header>
       <div *ngIf="section.label=='Ongoing Auctions'">
-        <p>Auction list</p>
+          <app-auction-card></app-auction-card>
       </div>
       <div *ngIf="section.label=='Active Proposals'">
         <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card">
@@ -90,8 +89,6 @@
             <mat-card-title>Product: {{proposal.productName}} </mat-card-title>
             <mat-card-subtitle>{{proposal.businessSubDomain}}</mat-card-subtitle>
           </mat-card-header>
-          <!-- <app-timer></app-timer> -->
-          <!-- <img mat-card-image src="https://picsum.photos/200" alt="Photo of a Shiba Inu"> -->
           <mat-card-content>
             <div fxLayout="column" fxLayoutAlign="space-between stretch">
              <div>Price: {{proposal.price}}</div> 
