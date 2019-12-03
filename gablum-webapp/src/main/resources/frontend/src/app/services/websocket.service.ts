@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stomp, CompatClient } from '@stomp/stompjs';
+import { Stomp, CompatClient, StompHeaders } from '@stomp/stompjs';
 import * as sockjs from 'sockjs-client';
 import { Bid } from '../interfaces/bid';
 import { CommunicatorService } from './communicator.service';
@@ -14,6 +14,8 @@ export class WebsocketService {
 
   private socket: any;
   private stompClient: CompatClient;
+
+  private stompHeaders: StompHeaders;
 
   private storedSubcriptions = connectMessage => {};
 
@@ -35,7 +37,10 @@ export class WebsocketService {
   constructor(
     private comms: CommunicatorService,
     private logger: LoggerService) {
-    this.socketReconnect(false);
+    this.stompHeaders = {
+      auth: 'hello'
+    };
+      this.socketReconnect(false);
   }
 
   connect(connectCb = connectMessage => { console.log(connectMessage); }) {
@@ -73,7 +78,8 @@ export class WebsocketService {
     }
     this.stompClient.subscribe(topic, message => {
       this.comms.postMessage(this, dest, {[key]: message});
-    });
+    },
+    this.stompHeaders);
     return this.comms.getMessages();
   }
 }

@@ -46,12 +46,16 @@ export class AuthenticationService {
     this.isAuthenticated = isAuthenticated;
   }
 
-  setRoles(roles: string[]) {
-    this.roles = roles;
-  }
-
   hasRole(role: string) {
     return (this.roles.indexOf(role) > -1);
+  }
+
+  isBuyer() {
+    return this.hasRole('buyer');
+  }
+
+  isSeller() {
+    return this.hasRole('seller');
   }
 
   getAuthenticated() {
@@ -69,16 +73,30 @@ export class AuthenticationService {
     if (profileStr !== undefined && profileStr !== null) {
       this.isAuthenticated = true;
       this.authChanged();
-      return JSON.parse(profileStr);
+      try {
+        this.profileData = JSON.parse(profileStr);
+      } catch(err) {
+        this.logger.log(err);
+      }
+      return this.profileData;
     }
     this.authChanged();
     this.isAuthenticated = false;
     return null;
   }
 
+  refreshRoles() {
+    try {
+      this.roles = this.profileData.role.map(r => r.role);
+    } catch (error) {
+      this.logger.log(error);
+    }
+  }
+
   clearProfile() {
     localStorage.removeItem('profile');
     this.isAuthenticated = false;
+    this.profileData = null;
     this.authChanged();
   }
 
