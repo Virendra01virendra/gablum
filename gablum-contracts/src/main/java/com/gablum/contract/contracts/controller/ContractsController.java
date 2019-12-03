@@ -8,16 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-@CrossOrigin("*")
+
 @RestController
 public class ContractsController {
     @Autowired
     private ContractService contractService;
-
-    @GetMapping("/echo")
-    public String getEcho() {
-        return "contracts";
-    }
 
     @GetMapping("/contracts/{contractsId}")
     public Contracts getContract(@PathVariable UUID contractId){
