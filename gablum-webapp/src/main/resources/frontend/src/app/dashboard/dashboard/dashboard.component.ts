@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
   ];
 
   public bids: NewBid[] = [];
+  data;
   // public testBid: NewBid = {
   //   seller: {
   //     name: 'A glorious seller',
@@ -70,6 +72,7 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog,
     private ws: WebsocketService,
     private proposalDataService: ProposalsDataService,
+    private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService
@@ -114,6 +117,19 @@ export class DashboardComponent implements OnInit {
   }
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, { data: proposal});
+
+  }
+
+  startAuction(proposal1: Proposal) {
+    const auction = {
+      auctionName: proposal1.productName,
+      proposal: proposal1,
+      isAuctionActive: true
+    };
+
+    this.data = JSON.stringify(auction);
+
+    this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
   }
 }

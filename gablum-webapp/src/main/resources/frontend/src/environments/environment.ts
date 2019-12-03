@@ -10,7 +10,8 @@ export const environment = {
   contractUrl: 'http://localhost:8080/api/contracts',
   profileUrl: 'http://localhost:8080/api/users/profile',
   proposalUrl: 'http://localhost:8080/api/proposals/proposals',
-  navlinkUrl: 'http://localhost:8080/api/users/menuitems'
+  navlinkUrl: 'http://localhost:8080/api/users/menuitems',
+  auctionUrl: 'http://localhost:8080/auctions'
 };
 
 /*

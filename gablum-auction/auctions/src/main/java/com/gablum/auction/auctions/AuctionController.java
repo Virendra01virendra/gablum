@@ -21,7 +21,7 @@ public class AuctionController {
 
 
     Claims claims;
-    
+
     @Autowired
     private UserService userService;
 
