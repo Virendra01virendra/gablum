@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <mat-card-content>
-    <form class="regForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <form class="regForm" [formGroup]="registrationForm">
         <mat-form-field class="fullWidth" appearance="outline">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" required />
