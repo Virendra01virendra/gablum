@@ -10,6 +10,8 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { ConsoleModule } from '../console/console.module';
+import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
+import { AuctionModule } from '../auction/auction.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ConsoleModule } from '../console/console.module';
     DashboardRoutingModule,
     SchedulerModule,
     MaterialModule,
-    ConsoleModule
+    ConsoleModule,
+    AuctionModule
   ],
   entryComponents: [ProposalCardDialogComponent]
 })

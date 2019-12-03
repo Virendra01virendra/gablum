@@ -1,9 +1,9 @@
-<mat-card class="auction-card" [style.backgroundColor]="'transparent'">
+<mat-card class="auction-card">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title [style.color]="'red'">Product Name</mat-card-title>
+      <mat-card-title [style.color]="'red'">Auction Name</mat-card-title>
       <mat-card-subtitle>Auction Domain</mat-card-subtitle>
     </mat-card-header>
+    <img mat-card-image src="https://picsum.photos/300">
     <mat-card-content>
       <p>
         Auction detail 1
@@ -14,7 +14,8 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Show Details</button>
+      <app-button></app-button>
+
     </mat-card-actions>
   </mat-card>
   
