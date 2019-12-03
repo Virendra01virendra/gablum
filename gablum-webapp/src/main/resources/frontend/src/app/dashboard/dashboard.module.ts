@@ -9,6 +9,8 @@ import { ProposalsListComponent } from './proposals-list/proposals-list.componen
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
+import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -17,6 +19,7 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
     ProposalsListComponent,
     NewProposalCardComponent,
     ProposalCardDialogComponent,
+    GuestProposalListComponent
   ],
   imports: [
     CommonModule,
