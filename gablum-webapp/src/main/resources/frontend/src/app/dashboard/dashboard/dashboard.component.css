@@ -1,0 +1,44 @@
+.add-proposal-button {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 2;
+}
+
+.dashboard-container {
+    width: 90%;
+    /* background-color: lightgray; */
+    margin: 2em auto;
+}
+.proposal-card {
+    background-color: light rgba(6, 56, 97, 0.829);
+    width: 350px;
+    padding: 1em 1em 1em 1em;
+  }
+
+  .image 
+  {
+      padding: 1%;
+      max-width: 270px;
+      max-height: 200px;
+  }
+/* .image
+{
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+ background-size: cover;
+ }  */
+
+.heead
+{
+    background-color: #ad1457;
+   color: antiquewhite;
+   text-align: center; 
+}
+
+.timer {
+    align-content: center ;
+}
+
+.product-specs {
+    padding: 3em;
+}

@@ -1,0 +1,119 @@
+<div class="dashboard-container">
+  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
+    <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
+
+      <div *ngIf="section.label=='Ongoing Auctions'">
+        <p>Auction list</p>
+      </div>
+      <div *ngIf="section.label=='Active Proposals'" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px" fxLayout.sm="column">
+        <mat-card class="proposal-card" *ngFor="let proposal of dashboardSections[1].data" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+          <mat-card-header class="heead" fxLayout="column" fxLayoutAlign="space-between" >
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title>{{proposal.productName}} </mat-card-title>
+            <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
+          </mat-card-header>
+          <div fxLayout="row" fxLayoutAlign="space-between">
+              <app-timer></app-timer>
+          </div>
+          
+          <!-- <img mat-card-image class="image" src="https://picsum.photos/200" alt="Photo of a Sub-domain"> -->
+          <mat-card-content>
+            <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+    
+            <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Price </mat-chip><mat-chip>{{proposal.price}} </mat-chip>
+               
+              </div>
+              <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Quantity </mat-chip><mat-chip>{{proposal.quantity}}</mat-chip>
+                
+              </div>
+              <!-- <div>
+                <span>Delivery Date: </span>
+                <span>{{proposal.deliveryDate}}</span>
+              </div> -->
+              <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Views</mat-chip>
+                <mat-chip>{{25}}</mat-chip>
+              </div>
+
+            </div>
+
+          
+          </mat-card-content>
+
+          <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+        
+              
+              
+                <mat-icon matBadge="10" matBadgePosition="before"
+                matBadgeColor="warm" (click)="openDialog(proposal)"
+                class="material-icons" matTooltip="Interested Sellers">
+                    list
+                  </mat-icon > 
+          
+                    <mat-icon matTooltip="Extend Registration" class="material-icons">
+                      hourglass_empty
+                    </mat-icon>
+                    
+        
+                  <mat-icon matTooltip="Delete Proposal" class="material-icons">delete</mat-icon>
+
+                  <mat-icon matTooltip="Start Auction" class="material-icons" (click) = "startAuction(proposal)" >
+                    play_arrow
+                  </mat-icon>
+            <mat-icon matTooltip="See Details" class="material-icons">visibility</mat-icon>
+          
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'">
+        <p>Past Auctions</p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel *ngFor="let section of dashboardSections" [expanded]="section.isActive">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{section.label}}</mat-panel-title>
+        <mat-panel-description>{{section.desc}}</mat-panel-description>
+
+      </mat-expansion-panel-header>
+      <div *ngIf="section.label=='Ongoing Auctions'">
+        <p>Auction list</p>
+      </div>
+      <div *ngIf="section.label=='Active Proposals'">
+        <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Product: {{proposal.productName}} </mat-card-title>
+            <mat-card-subtitle>{{proposal.businessSubDomain}}</mat-card-subtitle>
+          </mat-card-header>
+          <!-- <app-timer></app-timer> -->
+          <!-- <img mat-card-image src="https://picsum.photos/200" alt="Photo of a Shiba Inu"> -->
+          <mat-card-content>
+            <div fxLayout="column" fxLayoutAlign="space-between stretch">
+             <div>Price: {{proposal.price}}</div> 
+             <div>Delivery Date: {{proposal.deliveryDate}}</div>  
+             <div>Quantity: {{proposal.quantity}} </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button>Extend Registration</button>
+            <button mat-raised-button>Interested Sellers</button>
+            <button mat-raised-button>Remove</button>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'">
+        <p>Past Auctions</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+
+<a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/new']">
+  <mat-icon>add</mat-icon>
+</a>

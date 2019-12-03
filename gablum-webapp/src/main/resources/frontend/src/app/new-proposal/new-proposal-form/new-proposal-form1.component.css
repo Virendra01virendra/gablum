@@ -1,0 +1,27 @@
+.body {
+  /* background: 100%; */
+  background-color: antiquewhite;
+  /* background-image: url('/assets/night.jpg'); */
+  /* background-repeat: no-repeat; */
+  text-align: center;
+}
+
+.stepper {
+  background-color: rgb(245, 244, 252);
+}
+
+.prod-details {
+  width: 80%;
+}
+
+.grid-container {
+  margin: 2em 0;
+}
+
+.radio-btn {
+  padding: 0 1em;
+}
+
+.padded-btn {
+  margin: 0.5em 1em;
+}

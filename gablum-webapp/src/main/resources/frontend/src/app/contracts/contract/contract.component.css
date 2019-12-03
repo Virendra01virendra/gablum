@@ -1,0 +1,19 @@
+mat-card {
+    background-color: rgb(245, 245, 245);
+    padding: 4px;
+    font-family: monospace;
+}
+
+mat-form-field {
+    margin-right: 12px;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+article {
+    text-align: justify;
+    font-family: monospace;
+}

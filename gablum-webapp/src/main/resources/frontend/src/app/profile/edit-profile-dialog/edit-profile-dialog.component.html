@@ -1,0 +1,81 @@
+<h1 mat-dialog-title>Edit Profile</h1>
+<div mat-dialog-content>
+        <form class="editForm" fxLayout="column" fxLayoutAlign="center center" [formGroup]="editProfileForm">
+                <mat-form-field class="fullWidth" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" [value]="data.name" readonly="true" />
+                </mat-form-field>
+
+                <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input  matInput formControlName="email" [value]="data.email" readonly="true" />
+                </mat-form-field>
+        
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Address</mat-label>
+                        <input  matInput formControlName="address" [value]="data.address" />
+                    </mat-form-field>
+        
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Phone</mat-label>
+                        <input  matInput formControlName="phone" placeholder="+91" required [value]="data.phone" />
+                        <mat-error *ngIf="phone.touched || phone.invalid">{{getErrorMessage3()}}</mat-error>
+                    </mat-form-field>
+        
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Company Name</mat-label>
+                        <input  matInput formControlName="companyName" required [value]="data.companyName">
+                        <mat-error *ngIf="companyName.touched || companyName.invalid">{{getErrorMessage4()}}</mat-error>
+                    </mat-form-field>
+        
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input  matInput formControlName="userName" [value]="data.userName" readonly="true" />
+                    </mat-form-field>
+        
+                    <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Business License No.</mat-label>
+                        <input  matInput formControlName="businessLicense" required [value]="data.businessLicense">
+                        <!-- <mat-hint align="start">*GSTIN Egs: 27AASCS2460H1Z0</mat-hint> -->
+                        <mat-error *ngIf="businessLicense.touched || businessLicense.invalid">{{getErrorMessage7()}}</mat-error>
+                    </mat-form-field>
+        
+                    <!-- <mat-form-field class="fullWidth" appearance="outline">
+                        <mat-label>Role</mat-label>
+                        <input  matInput formControlName="role" required>
+                        <mat-error *ngIf="role.touched || role.invalid">{{getErrorMessage8()}}</mat-error>
+                    </mat-form-field> -->
+        
+                    <mat-form-field appearance="outline" class="fullWidth">
+                        <mat-label class="form-label">Business Domain:</mat-label>
+                        <input matInput type="text" value="Agriculture" formControName="businessDomain" readonly="true" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" class="fullWidth" >
+                        <mat-label class="form-label" >Business Sub-domain:</mat-label>
+                        <mat-select id="subDomain-select" formControlName="businessSubDomain">
+                        <mat-option value="" disabled>Choose your Sub-domain</mat-option>
+                        <mat-option *ngFor="let subs of subDomains" [value]="data.businessSubDomain">{{subs}}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+            <!-- <mat-list fxLayout="column" fxLayoutAlign="space-evenly center" >
+                <mat-list-item>Business Sub-Domain: {{ data.form1.value.businessSubDomain}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Product Name: {{ data.form1.value.productName}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Price: {{ data.form2.value.price}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Quantity: {{ data.form1.value.quantity}} </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Delivery Date: {{ data.form2.value.deliveryDate}} </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>Registration Start Date: {{ data.form3.value.regStartDate}} </mat-list-item>
+         </mat-list> -->
+         <mat-dialog-actions>
+         <button mat-raised-button mat-dialog-close>Cancel</button>
+         <button mat-raised-button color="primary" mat-dialog-close (click)="onConfirm()">Confirm</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+

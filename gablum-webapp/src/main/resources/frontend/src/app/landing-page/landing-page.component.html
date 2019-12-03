@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
+    <div class="hero-text-container">
+        <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
+    </div>
+</div>
+
+<app-login id="login" class="login-container"></app-login>
+
+<div class="completer">
+        <div class="boxes" fxLayout="row wrap">
+                <div class="box1" fxFlex>
+                    <h1><b>GABLUM</b></h1>
+                    <p><b>
+                        Built with the aim to connect <br>
+                        business supply and demand requirements <br>
+                        with a refined reverse auction online platform
+                    </b>
+                    </p>
+                </div>
+                <div class="box1" fxFlex>
+                    <h1><b>RESOURCES</b></h1>
+                   <b>
+                        <li>Reverse Auction</li>
+                        <li>Smart Contracts</li>
+                        <li>Developers Team</li>
+                    </b>
+                </div>
+                <div class="box1" fxFlex>
+                    <h1><b>CONTACT US</b></h1>
+                    <form class="example-form">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Name">
+                            </mat-form-field><br>
+                          
+                            <mat-form-field class="example-full-width">
+                              <textarea matInput placeholder="Leave a comment"></textarea>
+                            </mat-form-field>
+                          </form>
+                          <button mat-button mat-raised-button color='primary'>Submit</button>
+                </div>
+            </div>
+            <div class="connect"><h3><b>FIND US ON</b></h3></div>
+            <div class="socialmediaicons" fxLayout="row wrap" fxLayoutAlign="space-around center">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                    <a href=""><i class="fa fa-github"></i></a>
+                </div>
+</div>
+
+<footer>
+	<p>
+		Created with <i class="fa fa-heart"></i> by
+		<a target="_blank" href="#">SLEEPY CATS__Copyright &copy; 2019 </a>
+		
+	</p>
+</footer>
