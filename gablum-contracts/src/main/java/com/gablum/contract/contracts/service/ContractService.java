@@ -1,6 +1,5 @@
 package com.gablum.contract.contracts.service;
 
-import com.gablum.contract.contracts.model.ContractStatusEditable;
 import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.repository.ContractDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
