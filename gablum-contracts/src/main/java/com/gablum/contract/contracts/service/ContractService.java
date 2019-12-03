@@ -28,9 +28,8 @@ public class ContractService {
     }
     @Transactional
 
-    public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,ContractStatusEditable contractUpdate){
+    public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,Contracts contractUpdate){
         Contracts updatedContract = contractDetails.findByContractId(contractWhichNeedsTobeInvalidated);
-        updatedContract.setContractId(contractWhichNeedsTobeInvalidated);
         updatedContract.setContractStatus(contractUpdate.getContractStatus());
         return contractDetails.save(updatedContract);
         }

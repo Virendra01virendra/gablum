@@ -12,8 +12,10 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class GuestProposalListComponent implements OnInit {
   public static messageKey = 'GuestProposalListComponent';
-
   proposals: Proposal[];
+  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'quantity'];
+  dataSource;
+
   constructor(
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
@@ -22,10 +24,11 @@ export class GuestProposalListComponent implements OnInit {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === GuestProposalListComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
-
+          logger.log('Response from api', msg);
           if ('proposals' in data) {
             this.proposals = data.proposals;
-            this.logger.log(this.proposals);
+            this.logger.log(this.proposals.toString);
+            this.dataSource = this.proposals;
           }
         }
       });

@@ -27,8 +27,8 @@ public class ContractsController {
         return contractService.saveContract(contracts);
     }
 
-    @PutMapping("/contracts/{contractsId}")
-    public Contracts updateContractStatus(@PathVariable UUID contractsId, @RequestBody ContractStatusEditable contractToEdit){
+    @PatchMapping("/contracts/{contractsId}")
+    public Contracts updateContractStatus(@PathVariable UUID contractsId, @RequestBody Contracts contractToEdit){
         return contractService.updateContract(contractsId, contractToEdit);
     }
 }

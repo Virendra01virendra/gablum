@@ -25,6 +25,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 
 
 const modules = [
@@ -68,6 +69,7 @@ const modules = [
   MatDividerModule,
   FlexLayoutModule,
   MatListModule,
+  MatTableModule,
   MatMenuModule
 ];
 
