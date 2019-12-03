@@ -118,8 +118,7 @@ public class BidController {
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
         bidDataEntity.setScore(scorecnt);
-
-
+        
         BidDataEntity bidDataEntity1 = bidService.addBid(bidDataEntity);
 
 

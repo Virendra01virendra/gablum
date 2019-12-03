@@ -13,16 +13,12 @@ import javax.validation.constraints.NotNull;
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class BidDataEntity {
 
-    @NotNull
     private String bidId = UUID.randomUUID().toString();
 
-    @NotNull
-    private UUID auctionId;
+    private String auctionId;
 
-    @NotNull
-    private UUID userId;
+    private String userId;
 
-    @NotNull
     private Bid bid;
 
     private float score;
