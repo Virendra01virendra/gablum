@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
