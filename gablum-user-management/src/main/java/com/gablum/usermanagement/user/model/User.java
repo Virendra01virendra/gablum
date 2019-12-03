@@ -1,12 +1,12 @@
 package com.gablum.usermanagement.user.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +16,8 @@ import java.util.UUID;
 @Document("user")
 public class User {
 
-    private UUID userId;
+    @Id
+    private String _id;
     @NotEmpty(message = "*Please provide your name")
     private String name;
     @Email(message = "*Please provide a valid email")

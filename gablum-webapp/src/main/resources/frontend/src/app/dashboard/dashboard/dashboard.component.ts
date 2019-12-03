@@ -116,4 +116,8 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(ProposalCardDialogComponent, { data: proposal});
 
   }
+
+  // doStuff(proposal: Proposal) {
+  //   this.dialog.open(DetailsDialogComponent, {data: proposal});
+  // }
 }

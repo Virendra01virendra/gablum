@@ -6,7 +6,8 @@
         <p>Auction list</p>
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-between center" >
-        <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card" fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card" fxLayout="column"
+        fxLayoutAlign="space-between center">
           <mat-card-header class="heead">
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <mat-card-title fxLayout="row" style="color: antiquewhite;">Product: {{proposal.productName}} </mat-card-title>
