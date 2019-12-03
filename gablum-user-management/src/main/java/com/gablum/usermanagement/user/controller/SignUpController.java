@@ -18,7 +18,6 @@ public class SignUpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CrossOrigin("*")
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<SignupResult> newRegistration(@RequestBody User user)  {
