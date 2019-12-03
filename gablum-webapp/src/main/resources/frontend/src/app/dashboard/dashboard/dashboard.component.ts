@@ -82,6 +82,7 @@ export class DashboardComponent implements OnInit {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
+
         }
       }
     });
@@ -112,7 +113,7 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-  openDialog(proposal: Proposal) {
+  sellersListDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, { data: proposal});
 
   }

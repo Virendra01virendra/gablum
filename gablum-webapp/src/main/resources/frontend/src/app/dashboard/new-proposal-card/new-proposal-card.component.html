@@ -1,19 +1,62 @@
-<mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Product name: {{productName}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Price:{{price}}  , Delivery Date:{{deliveryDate}}  <br>
-        Quantity:  {{quantity}}                 <br>
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button>Extend Registration</button>
-      <button mat-raised-button>Interested Sellers</button>
-    </mat-card-actions>
-  </mat-card> 
+<mat-card class="proposal-card"  fxLayout="column"
+fxLayoutGap="10px" fxLayoutAlign="space-around">
+<mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+  <!-- <div mat-card-avatar class="example-header-image"></div> -->
+  <mat-card-title>{{proposal.productName}} </mat-card-title>
+  <mat-card-subtitle style="color: antiquewhite;">{{6}}</mat-card-subtitle>
+</mat-card-header>
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <app-timer></app-timer>
+</div>
+
+<!-- <img mat-card-image class="image" src="https://picsum.photos/200" alt="Photo of a Sub-domain"> -->
+<mat-card-content>
+  <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+
+    <div fxLayoutAlign="space-between">
+      <mat-chip color="primary" selected="true">Price </mat-chip>
+      <mat-chip>{{proposal.price}} </mat-chip>
+
+    </div>
+    <div fxLayoutAlign="space-between">
+      <mat-chip color="primary" selected="true">Quantity </mat-chip>
+      <mat-chip>{{proposal.quantity}}</mat-chip>
+
+    </div>
+    <!-- <div>
+      <span>Delivery Date: </span>
+      <span>{{proposal.deliveryDate}}</span>
+    </div> -->
+    <div fxLayoutAlign="space-between">
+      <mat-chip color="primary" selected="true">Views</mat-chip>
+      <mat-chip>{{25}}</mat-chip>
+    </div>
+
+  </div>
+
+</mat-card-content>
+
+<mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+
+
+
+  <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)"
+    class="material-icons" matTooltip="Interested Sellers">
+    list
+  </mat-icon>
+
+  <mat-icon matTooltip="Extend Registration" class="material-icons">
+    hourglass_empty
+  </mat-icon>
+
+
+  <mat-icon matTooltip="Delete Proposal" class="material-icons">delete</mat-icon>
+  <mat-icon matTooltip="See Details" class="material-icons">visibility</mat-icon>
+
+</mat-card-actions>
+</mat-card>
+
+
+
 
   

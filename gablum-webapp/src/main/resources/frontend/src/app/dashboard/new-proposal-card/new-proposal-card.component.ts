@@ -3,6 +3,8 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { ProposalsListComponent } from 'src/app/dashboard/proposals-list/proposals-list.component';
+import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -13,30 +15,21 @@ export class NewProposalCardComponent implements OnInit {
 
   constructor(
     private proposalDataService: ProposalsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private dialog: MatDialog
     ) {
-      comms.getMessages().subscribe(msg => {
-        if (msg.dest === NewProposalCardComponent.messageKey || msg.dest === '@all') {
-          const data = msg.data;
 
-          if ('proposals' in data) {
-            this.proposals = data.proposals;
-            console.log(this.proposals);
-          }
-        }
-      });
     }
 
   public static messageKey = 'new-proposal-card-component';
 
-  @Input() productName: string;
-  @Input() price: number;
-  @Input() deliveryDate: Date;
-  @Input() quantity: number;
-
-  public proposals: Proposal[];
+  @Input() proposal: Proposal;
 
   ngOnInit() {
-    this.proposalDataService.getAllProposals(NewProposalCardComponent.messageKey, 'proposals');
   }
+
+  sellersListDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
+  }
+
 }
