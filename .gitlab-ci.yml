@@ -82,7 +82,7 @@ release_deploy:
         url: http://gablum-dev.stackroute.io
     when: on_success
     only:
-        - release_v010
+        - release_v040
 
 production_deploy:
     image: ubuntu:latest
