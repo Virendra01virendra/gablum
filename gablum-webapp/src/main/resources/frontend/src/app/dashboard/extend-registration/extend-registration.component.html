@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Extend Registration</h1>
+<div mat-dialog-content>
+    <h3 styles="text-align: center;">Extend Registration</h3>
+    <form>
+        <mat-form-field>
+            <mat-label class="form-label">Registration End date: {{data.regEndDate}}</mat-label>
+            <input matInput [matDatepickerFilter]="myFilter3" [matDatepicker]="picker3" placeholder="End date"
+                formControlName="regEndDate">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3 disabled="false"></mat-datepicker>
+        </mat-form-field>
+    </form>
+</div>

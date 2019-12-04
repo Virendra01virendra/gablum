@@ -131,9 +131,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // doStuff(proposal: Proposal) {
-  //   this.dialog.open(DetailsDialogComponent, {data: proposal});
-  // }
   startAuction(proposal1: Proposal) {
     const auction = {
       auctionName: proposal1.productName,
