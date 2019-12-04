@@ -1,12 +1,15 @@
 <mat-toolbar class="header">
   <div class="head">Bid Submission</div>
 </mat-toolbar>
-<div fxLayout="row" class="wrapper">
+<div fxLayout="row wrap"  class="wrapper" fxLayoutAlign="space-between"
+ fxLayout.xs="column wrap">
 
-  <div class="left">
+  <div class="left" fxFlex="30">
     <app-auction-card></app-auction-card>
   </div>
-<div class="right">
+
+
+<div class="right" fxFlex="60" >
   <form [formGroup]="bidForm">
       
       <!-- <h3> Bid Submission</h3> -->

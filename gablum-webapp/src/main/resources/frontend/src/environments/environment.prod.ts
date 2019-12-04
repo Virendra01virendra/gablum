@@ -7,5 +7,7 @@ export const environment = {
   contractUrl: 'https://gablum-dev.stackroute.io/api/contracts',
   profileUrl: 'https://gablum-dev.stackroute.io/api/users/profile',
   proposalUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals',
-  navlinkUrl: 'https://gablum-dev.stackroute.io/api/users/menuitems'
+  guestProposallistUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals/browse',
+  navlinkUrl: 'https://gablum-dev.stackroute.io/api/users/menuitems',
+  auctionUrl: 'https://gablum-dev.stackroute.io/api/auctions/auctions'
 };

@@ -164,26 +164,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-<!--			<plugin>-->
-<!--				<groupId>com.github.joelittlejohn.embedmongo</groupId>-->
-<!--				<artifactId>embedmongo-maven-plugin</artifactId>-->
-<!--				<version>0.4.1</version>-->
-<!--				<executions>-->
-<!--					<execution>-->
-<!--						<phase>test</phase>-->
-<!--						<id>start</id>-->
-<!--						<goals>-->
-<!--							<goal>start</goal>-->
-<!--						</goals>-->
-<!--						<configuration>-->
-<!--							<port>27017</port>-->
-<!--							<bindIp>127.0.0.1</bindIp>-->
-<!--							<version>3.5.3</version>-->
-<!--						</configuration>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
 		</plugins>
 	</build>
 
