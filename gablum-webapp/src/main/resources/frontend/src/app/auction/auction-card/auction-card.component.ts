@@ -1,8 +1,8 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Auction } from 'src/app/interfaces/auction';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-list.component';
+// import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-list.component';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -25,11 +25,9 @@ export class AuctionCardComponent implements OnInit {
       //   }
       // });
     }
-
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
 
   ngOnInit() {  }
-
 }

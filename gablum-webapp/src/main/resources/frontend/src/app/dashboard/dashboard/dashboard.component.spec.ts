@@ -9,6 +9,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProposalCardComponent } from 'src/app/dashboard/new-proposal-card/new-proposal-card.component';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
+import { AuctionCardComponent } from 'src/app/auction/auction-card/auction-card.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -27,7 +28,8 @@ describe('DashboardComponent', () => {
         AuctionsListComponent,
         BidCardComponent,
         NewProposalCardComponent,
-        TimerComponent
+        TimerComponent,
+        AuctionCardComponent
       ]
     })
     .compileComponents();

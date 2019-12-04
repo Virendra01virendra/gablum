@@ -8,8 +8,8 @@ import { MaterialModule } from '../../material/material.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
-
 import { AuctionCardComponent } from '../auction-card/auction-card.component';
+
 
 describe('BidFormComponent', () => {
   let component: BidFormComponent;
