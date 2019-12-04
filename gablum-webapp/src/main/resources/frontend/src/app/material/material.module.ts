@@ -26,7 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
-import { NavbarMaterialModule } from '../common/navbar/navbar-material.module';
+// import { NavbarMaterialModule } from '../common/navbar/navbar-material.module';
 
 
 const modules = [
@@ -70,7 +70,7 @@ const modules = [
   FlexLayoutModule,
   MatListModule,
   MatMenuModule,
-  NavbarMaterialModule,
+  // NavbarMaterialModule,
   MatTableModule
 ];
 
