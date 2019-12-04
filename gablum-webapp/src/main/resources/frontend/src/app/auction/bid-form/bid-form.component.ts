@@ -6,6 +6,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -25,6 +26,7 @@ export class BidFormComponent implements OnInit {
   result2;
   result3;
   auctionId: String;
+  auctionDataService: AuctionsDataService;
 
   constructor(
     public http: HttpClient,
@@ -74,6 +76,8 @@ export class BidFormComponent implements OnInit {
     // });
 
     //this.ws.sendBid(bid);
+
+    this.http.post('http://localhost:8080/api/auctions/auctions' + this.auctionId + '/bid', bid, httpOptions);
 
 
 
@@ -126,6 +130,9 @@ export class BidFormComponent implements OnInit {
           }
         }
       });
+
+
+      
 
   }
 
