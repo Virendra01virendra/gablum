@@ -1,4 +1,5 @@
 package com.gablum.usermanagement.user.services;
+
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,4 +14,5 @@ public class UserManagementService {
     public User getUser(String email) {
         return userRepository.findUserByEmail(email);
     }
+
 }

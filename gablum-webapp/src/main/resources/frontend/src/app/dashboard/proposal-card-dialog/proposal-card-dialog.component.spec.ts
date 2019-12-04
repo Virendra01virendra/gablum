@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ProposalCardDialogComponent } from './proposal-card-dialog.component';
-import { MaterialModule } from '../../material/material.module';
-import { Component, OnInit, Input } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatToolbarModule, MatCardModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MatExpansionModule } from '@angular/material';
 
 describe('ProposalCardDialogComponent', () => {
   let component: ProposalCardDialogComponent;
@@ -12,11 +14,11 @@ describe('ProposalCardDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProposalCardDialogComponent ],
-      imports: [MaterialModule, BrowserAnimationsModule],
-      providers: [{
-        provide: MAT_DIALOG_DATA,
-        useValue: {},
-      }]
+      imports: [MatDialogModule, MatToolbarModule, MatCardModule, BrowserAnimationsModule,
+        HttpClientModule, MatExpansionModule, MatListModule],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
     })
     .compileComponents();
   }));
