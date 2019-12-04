@@ -3,10 +3,7 @@ package com.gablum.scheduler.proposalschedule.Controller;
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Service.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,14 +17,24 @@ public class SchedulesController {
         return "schedules";
     }
 
-    @PostMapping("/proposaldetails")
+    @PostMapping("/schedulejob")
     public TimerModel saveSchedules(@RequestBody TimerModel timerModel){
         return schedulerService.saveSchedulerDetail(timerModel);
     }
 
-    @GetMapping("/proposaldetails")
+    @DeleteMapping("/schedulejob/{jobId}")
+    public void deleteSchedule(@PathVariable("jobId") String jobId){
+        schedulerService.cancelEvent(jobId);
+    }
+
+    @PatchMapping("/schedulejob")
+    public TimerModel refactorSchedule(@RequestBody TimerModel updatedTimerModel){
+        return schedulerService.rescheduleEvent(updatedTimerModel);
+    }
+
+    @GetMapping("/schedulejob")
     public List<TimerModel> getSchedules(){
         return schedulerService.findAllTimerDetails();
     }
-}
+    }
 
