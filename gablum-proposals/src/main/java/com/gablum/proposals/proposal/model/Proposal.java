@@ -3,9 +3,12 @@ package com.gablum.proposals.proposal.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -14,8 +17,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Document(collection = "proposals")
 public class Proposal {
-
-    private UUID proposalId = UUID.randomUUID();
+    @Id
+    private String _id;
+    private String proposalId = UUID.randomUUID().toString();
     private UUID productId;
     private String createdBy;
     private String updatedBy;
@@ -38,11 +42,13 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private List<String> interestedUsersEmail = new ArrayList<>();
     private int priceWeight;
     private int creditPeriodWeight;
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
+
 
     //Empty constructor
     public Proposal() {

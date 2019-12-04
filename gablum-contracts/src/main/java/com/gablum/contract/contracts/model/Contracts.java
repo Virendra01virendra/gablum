@@ -10,6 +10,7 @@ import java.util.UUID;
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class Contracts {
     @Id
+    private String _id;
     @NotNull
     private UUID contractId;
 

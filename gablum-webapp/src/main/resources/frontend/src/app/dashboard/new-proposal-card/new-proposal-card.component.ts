@@ -4,6 +4,8 @@ import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { MatDialog } from '@angular/material';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
+import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -29,6 +31,14 @@ export class NewProposalCardComponent implements OnInit {
 
   sellersListDialog(proposal: Proposal) {
     this.dialog.open(SellersListDialogComponent, { data: proposal});
+  }
+
+  openDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, {
+      width: '60%',
+      height: '60%',
+      data: proposal
+    });
   }
 
 }

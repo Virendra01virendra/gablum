@@ -25,7 +25,7 @@ export class WebsocketService {
     this.stompClient.heartbeatOutgoing = 2000;
     this.stompClient.onWebSocketClose = () => {
       this.logger.log('rip');
-      setTimeout(this.socketReconnect, 5000);
+      setTimeout(this.socketReconnect, 10000);
     };
     if (isReconnect) {
       this.stompClient.connect({}, this.storedSubcriptions);

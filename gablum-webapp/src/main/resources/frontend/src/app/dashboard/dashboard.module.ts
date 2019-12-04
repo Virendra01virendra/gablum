@@ -10,6 +10,7 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
+import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-d
     ProposalsListComponent,
     NewProposalCardComponent,
     ProposalCardDialogComponent,
-    SellersListDialogComponent
+    SellersListDialogComponent,
+    GuestProposalListComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,7 @@ import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-d
     SchedulerModule,
     MaterialModule,
   ],
-  entryComponents: [ProposalCardDialogComponent]
+  entryComponents: [ProposalCardDialogComponent,
+  SellersListDialogComponent]
 })
 export class DashboardModule { }

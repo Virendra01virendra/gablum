@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
@@ -25,6 +25,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
 
 
 const modules = [
@@ -45,7 +46,6 @@ const modules = [
   MatNativeDateModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatToolbarModule,
   MatSelectModule,
   MatRadioModule,
   MatSliderModule,
@@ -68,7 +68,8 @@ const modules = [
   MatDividerModule,
   FlexLayoutModule,
   MatListModule,
-  MatMenuModule
+  MatMenuModule,
+  MatTableModule
 ];
 
 @NgModule({
