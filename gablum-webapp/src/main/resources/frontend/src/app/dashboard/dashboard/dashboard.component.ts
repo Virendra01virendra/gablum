@@ -112,10 +112,6 @@ export class DashboardComponent implements OnInit {
 
     this.data = JSON.parse(JSON.stringify(auctionList));
 
-  //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
-  //   console.log('response ::', response);
-  // });
-
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
   }
