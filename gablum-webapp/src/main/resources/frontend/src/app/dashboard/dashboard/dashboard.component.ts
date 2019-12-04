@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
 
   public bids: NewBid[] = [];
   data;
-  url = 'http://localhost:8080/auctions/auctions';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -74,6 +73,7 @@ export class DashboardComponent implements OnInit {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
+    // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
   }
 
