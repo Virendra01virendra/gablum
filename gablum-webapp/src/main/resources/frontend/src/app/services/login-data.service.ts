@@ -50,7 +50,7 @@ export class LoginDataService {
         'Content-Type':  'application/json'
       })};
     this.http.post<LoginToken>(
-      environment.loginApi,
+      environment.logoutApi,
       '',
       httpOptions
       )

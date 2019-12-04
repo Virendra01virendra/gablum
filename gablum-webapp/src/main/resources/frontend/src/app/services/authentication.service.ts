@@ -46,10 +46,15 @@ export class AuthenticationService {
 
   setAuthenticated(isAuthenticated: boolean) {
     this.isAuthenticated = isAuthenticated;
+    this.authChanged();
   }
 
   hasRole(role: string) {
-    return (this.roles.indexOf(role) > -1);
+    try {
+      return (this.roles.indexOf(role) > -1);
+    } catch (err) {
+      return false;
+    }
   }
 
   isBuyer() {
