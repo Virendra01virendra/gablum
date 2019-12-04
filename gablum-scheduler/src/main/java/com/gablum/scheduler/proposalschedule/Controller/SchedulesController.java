@@ -18,7 +18,7 @@ public class SchedulesController {
     }
 
     @PostMapping("/schedulejob")
-    public TimerModel saveSchedules(@RequestBody TimerModel timerModel){
+    public TimerModel saveSchedules(@RequestBody TimerModel timerModel) throws Exception{
         return schedulerService.saveSchedulerDetail(timerModel);
     }
 

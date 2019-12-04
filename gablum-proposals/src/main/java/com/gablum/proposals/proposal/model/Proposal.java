@@ -43,10 +43,6 @@ public class Proposal {
     private int interested;
     private List<String> interestedUsersEmail = new ArrayList<>();
 
-//    public void setInterestedUsersEmail(String interestedUsersEmail) {
-//        this.interestedUsersEmail.add(interestedUsersEmail);
-//    }
-
     private int weightPrice;
     private int weightCreditPeriod;
     private int weightTimeOfDelivery;

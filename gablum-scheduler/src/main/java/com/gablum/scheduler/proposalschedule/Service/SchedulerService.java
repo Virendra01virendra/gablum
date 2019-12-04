@@ -1,8 +1,10 @@
 package com.gablum.scheduler.proposalschedule.Service;
 
+import com.gablum.scheduler.proposalschedule.Scheduler.QuartzScheduling.QuartzJobConfig;
 import com.gablum.scheduler.proposalschedule.Scheduler.Task.TimerJob;
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Repository.SchedulerRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,8 +13,11 @@ import java.util.Timer;
 
 @Service
 public class SchedulerService {
- SchedulerRepo schedulerRepo;
- TimerJob timerJob = new TimerJob("Auction Start Event");
+    SchedulerRepo schedulerRepo;
+// TimerJob timerJob = new TimerJob("Auction Start Event");
+//    @Autowired
+    QuartzJobConfig quartzJobConfig = new QuartzJobConfig();
+
 
     public TimerModel findTimerDetailsByAuctionId(String id){
      return schedulerRepo.findByJobId(id);
@@ -22,8 +27,8 @@ public class SchedulerService {
         return schedulerRepo.findAll();
     }
 
-    public TimerModel saveSchedulerDetail(TimerModel timerModelToBeSaved){
-        executeTimer(timerModelToBeSaved.getEventStartDate());
+    public TimerModel saveSchedulerDetail(TimerModel timerModelToBeSaved) throws Exception{
+        quartzJobConfig.executeTimer();
         return schedulerRepo.save(timerModelToBeSaved);
     }
 
@@ -31,16 +36,18 @@ public class SchedulerService {
         schedulerRepo.deleteByJobId(jobId);
     }
 
-    public void executeTimer(Date eventStartDate) {
-        Timer timer = new Timer();
-        timer.schedule(timerJob,eventStartDate);
-    }
-
-
     public TimerModel rescheduleEvent(TimerModel updatedTimerModel) {
-    TimerModel updatedTimer = schedulerRepo.findByJobId(updatedTimerModel.getJobId());
-    updatedTimer.setEventStartDate(updatedTimerModel.getEventStartDate());
-    updatedTimer.setEventEndDate(updatedTimerModel.getEventEndDate());
-    return schedulerRepo.save(updatedTimer);
+        TimerModel updatedTimer = schedulerRepo.findByJobId(updatedTimerModel.getJobId());
+        updatedTimer.setEventStartDate(updatedTimerModel.getEventStartDate());
+        updatedTimer.setEventEndDate(updatedTimerModel.getEventEndDate());
+        return schedulerRepo.save(updatedTimer);
     }
+//
+//    public void executeTimer(Date eventStartDate) {
+//        Timer timer = new Timer();
+//        timer.schedule(timerJob,eventStartDate);
+//    }
+
+
+
 }

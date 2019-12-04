@@ -3,7 +3,7 @@ package com.gablum.scheduler.proposalschedule.Service;
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Repository.SchedulerRepo;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,15 +28,15 @@ class SchedulerServiceTest {
 
     @BeforeEach
     public void setUp(){
-        timerModel.setProposalId("a");
+        timerModel.setJobId("a");
         timerModel.setEventStartDate(new Date(2019-12-3));
         timerModel.setEventEndDate(new Date(2019-12-4));
-        timerModel2.setProposalId("b");
+        timerModel2.setJobId("b");
         timerModel2.setEventStartDate(new Date(2019-12-3));
         timerModel2.setEventEndDate(new Date(2019-12-4));
-        Mockito.when(schedulerRepo.save(new TimerModel("a",new Date(2019-12-3), new Date(2019-12-4)))).thenReturn(timerModel);
+        Mockito.when(schedulerRepo.save(new TimerModel("c","a",new Date(2019-12-3), new Date(2019-12-4)))).thenReturn(timerModel);
         Mockito.when(schedulerRepo.findAll()).thenReturn(List.of(timerModel,timerModel2));
-        Mockito.when((schedulerRepo.findByProposalId("a"))).thenReturn(timerModel);
+        Mockito.when((schedulerRepo.findByJobId("a"))).thenReturn(timerModel);
     }
 
     @Test
@@ -52,6 +52,6 @@ class SchedulerServiceTest {
 
     @Test
     public void saveSchedulerDetail() {
-        Assertions.assertEquals(timerModel.getProposalId(),"a");
+        Assertions.assertEquals(timerModel.getJobId(),"a");
     }
 }

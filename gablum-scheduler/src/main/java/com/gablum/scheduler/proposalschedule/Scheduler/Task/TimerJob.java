@@ -1,6 +1,8 @@
 package com.gablum.scheduler.proposalschedule.Scheduler.Task;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.support.CronSequenceGenerator;
 
 import java.util.Date;
 import java.util.TimerTask;
@@ -9,12 +11,14 @@ import java.util.TimerTask;
 public class TimerJob extends TimerTask {
 
     private String taskName;
-
+//    private String cronExpression = "";
+//    private String someExpression= new CronSequenceGenerator(cronExpression);
     public TimerJob(String taskName) {
         this.taskName = taskName;
     }
 
     @Override
+//    @Scheduled(cron = "")
     public void run() {
         log.info(Thread.currentThread().getName()+" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" +taskName+ " event has been triggered at " +new Date());
 
