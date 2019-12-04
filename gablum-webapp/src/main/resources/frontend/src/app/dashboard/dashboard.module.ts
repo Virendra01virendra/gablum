@@ -11,7 +11,7 @@ import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-car
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
-import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
+// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-d
     NewProposalCardComponent,
     ProposalCardDialogComponent,
     SellersListDialogComponent,
-    GuestProposalListComponent,
-    AuctionCardDialogComponent
+    GuestProposalListComponent
+    // AuctionCardDialogComponent
   ],
   imports: [
     CommonModule,
