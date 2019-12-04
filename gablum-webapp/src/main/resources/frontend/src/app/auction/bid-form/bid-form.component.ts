@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
+import { Auction } from '../../interfaces/auction';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -16,6 +17,7 @@ const httpOptions = {
   templateUrl: './bid-form.component.html',
   styleUrls: ['./bid-form.component.css']
 })
+
 export class BidFormComponent implements OnInit {
   public static messageKey = 'BidFormComponent';
   bidForm: FormGroup;
@@ -30,6 +32,8 @@ export class BidFormComponent implements OnInit {
     private logger: LoggerService,
     private dialog: MatDialog,
     ) { }
+
+  @Input() auction: Auction;
   ngOnInit() {
 
     this.ws.connect(message => this.subscribe());
@@ -67,6 +71,7 @@ export class BidFormComponent implements OnInit {
     this.ws.sendBid(bid);
 
   }
+
 
   seeScore(form: FormGroup) {
     const bid = {
