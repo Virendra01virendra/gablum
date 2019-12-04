@@ -53,4 +53,8 @@ public class AuctionService implements IAuctionService{
         return auctionRepo.saveAll(auctionToAdd);
     }
 
+    public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
+        return auctionRepo.findAllBySelectedParticipantListContaining(getPageable(queryMap), email).getContent();
+    }
+
 }

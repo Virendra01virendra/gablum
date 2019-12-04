@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.net.ContentHandler;
 import java.util.Optional;
 
 public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
@@ -13,4 +14,6 @@ public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
     void deleteByAuctionId(String auctionId);
     Page<Auction> findAll(Pageable pageable);
     Page<Auction> findAllByCreatedBy(Pageable pageable, String email);
+
+    Page<Auction> findAllBySelectedParticipantListContaining(Pageable pageable, String email);
 }

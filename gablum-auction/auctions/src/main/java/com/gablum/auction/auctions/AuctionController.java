@@ -39,7 +39,7 @@ public class AuctionController {
     ) {
         String email = userService.getEmail(request);
         log.debug(email);
-        return auctionService.getAllAuctions(queryMap);
+        return auctionService.getAllAuctionsBuyer(queryMap, email);
     }
 
     @GetMapping("/auctions/{id}")
@@ -50,6 +50,16 @@ public class AuctionController {
     @PostMapping("/auctions")
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd) {
         return auctionService.addAuctions(auctionsToAdd);
+    }
+
+    @GetMapping("auctions/seller")
+    public List<Auction> getAllAuctionSeller( @RequestParam Map<String, String> queryMap,
+                                             HttpServletRequest request){
+        String email = userService.getEmail(request);
+        log.debug(email);
+
+        return auctionService.getAuctionSeller(queryMap, email);
+
     }
 
 
