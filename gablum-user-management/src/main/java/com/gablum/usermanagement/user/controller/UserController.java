@@ -3,10 +3,13 @@ package com.gablum.usermanagement.user.controller;
 import com.gablum.usermanagement.user.model.NavLink;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.security.JwtTokenProvider;
+import com.gablum.usermanagement.user.security.UserService;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +26,16 @@ public class UserController {
     @Autowired
     private UserManagementService managementService;
 
+    @Autowired
+    private UserService userService;
+
     private Claims tokenClaims;
 
     @GetMapping
-    public String getUsers() {
-        return "user: yay";
+    public void getUsers() {
+        // TODO implement get all users for admin.
     }
 
-    @GetMapping("/echo") 
-    public String getEcho() {
-        return "users";
-    }
 
     @GetMapping("/menuitems")
     public List<NavLink> getMenuItems(HttpServletRequest request) {
@@ -88,9 +90,17 @@ public class UserController {
     }
 
     @PatchMapping("/profile")
-    public User editUserProfile(@RequestBody User user, HttpServletRequest request) {
+    public ResponseEntity<User> editUserProfile(@RequestBody User modifiedUser, HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
-        return user;
+//        UUID userIdUUID = UUID.fromString(userId);
+        String email = tokenClaims.get("sub", String.class);
+        User user = managementService.getUser(email);
+        if (user == null) {
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<User> (
+                userService.editUserDetail(modifiedUser, email), HttpStatus.OK
+        );
     }
 }

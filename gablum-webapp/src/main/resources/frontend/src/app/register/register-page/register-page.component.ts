@@ -6,6 +6,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
 import { RegisterRequest } from 'src/app/interfaces/register-request';
 import { UserRole } from 'src/app/interfaces/user-role';
+import { LoggerService } from 'src/app/services/logger.service';
 
 
 @Component({
@@ -86,12 +87,14 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private router: Router,
     private registrationService: RegisterDataService,
+    private logger: LoggerService,
     private comms: CommunicatorService) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
           const data = message.data;
           if ('registrationResult' in data) {
             const registrationToken: RegisterToken = data.registrationResult;
+            this.logger.log(registrationToken);
             if (registrationToken === undefined ||
               registrationToken === null ||
               !registrationToken.isOk) {
@@ -175,5 +178,6 @@ export class RegisterPageComponent implements OnInit {
       registerProfile.role = [roleBuyer, roleSeller];
     }
     this.registrationService.register(registerProfile);
+    this.router.navigate(['']);
   }
 }

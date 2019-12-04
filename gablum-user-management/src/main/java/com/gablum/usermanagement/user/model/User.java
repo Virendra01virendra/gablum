@@ -1,12 +1,14 @@
 package com.gablum.usermanagement.user.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +18,8 @@ import java.util.UUID;
 @Document("user")
 public class User {
 
-    private UUID userId;
+    @Id
+    private String _id;
     @NotEmpty(message = "*Please provide your name")
     private String name;
     @Email(message = "*Please provide a valid email")
@@ -30,14 +33,10 @@ public class User {
     private String businessLicense;
 
     public enum role {
-        ADMIN, BUYER, SELLER
+        BUYER, SELLER, BOTH, ADMIN
     }
-    public enum domain {
-        Agriculture, Textile, Others
-    }
-    public enum subDomain {
-        RawMaterial, Equipments, Produce
-    }
+    private List<Map<String, List<String>>> userDomainDetails;
+    // TODO: add methods to add userDomainDetails
     private Set<Role> role = Set.of(new Role(1, "buyer"));
     // TODO: remove hard coded role
     private Integer active=1;
