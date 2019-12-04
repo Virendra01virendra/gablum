@@ -17,3 +17,7 @@ mat-sidenav-content {
 mat-sidenav {
     width: 15em;
 }
+
+.sidenav-list-icon {
+    margin-right: 1em;
+}

@@ -35,11 +35,13 @@ export class AuthenticationService {
             } else {
               this.logger.log(this.profile);
               this.setProfile(this.profileData);
+              this.refreshRoles();
             }
           }
         }
       });
       this.refreshProfile();
+      this.refreshRoles();
   }
 
   setAuthenticated(isAuthenticated: boolean) {
@@ -71,14 +73,17 @@ export class AuthenticationService {
   refreshProfile() {
     const profileStr = localStorage.getItem('profile');
     if (profileStr !== undefined && profileStr !== null) {
-      this.isAuthenticated = true;
-      this.authChanged();
       try {
         this.profileData = JSON.parse(profileStr);
-      } catch(err) {
+        this.isAuthenticated = true;
+        this.authChanged();
+        return this.profileData;
+      } catch (err) {
         this.logger.log(err);
+        this.authChanged();
+        this.isAuthenticated = false;
+        return null;
       }
-      return this.profileData;
     }
     this.authChanged();
     this.isAuthenticated = false;
@@ -88,6 +93,7 @@ export class AuthenticationService {
   refreshRoles() {
     try {
       this.roles = this.profileData.role.map(r => r.role);
+      this.logger.log(this.roles);
     } catch (error) {
       this.logger.log(error);
     }

@@ -6,11 +6,12 @@ export const environment = {
   production: false,
   wsURL: 'http://localhost:8080/api/auctions/ws',
   loginApi: 'http://localhost:8080/api/users/signin',
+  logoutApi: 'http://localhost:8080/api/users/signout',
   registerApi: 'http://localhost:8080/api/users/signup',
   contractUrl: 'http://localhost:8080/api/contracts',
   profileUrl: 'http://localhost:8080/api/users/profile',
   proposalUrl: 'http://localhost:8080/api/proposals/proposals',
-  navlinkUrl: 'http://localhost:8080/api/users/menuitems'
+  navlinkUrl: 'http://localhost:8080/api/users/menuitems',
 };
 
 /*

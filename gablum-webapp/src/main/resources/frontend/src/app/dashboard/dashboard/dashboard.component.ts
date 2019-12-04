@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,6 +23,10 @@ import { TimerComponent } from './../../scheduler/timer/timer.component';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
+
+  public isLoggedIn = false;
+  public isBuyer = false;
+  public isSeller = false;
 
   proposals: Proposal[];
   auctions: Auction[];
@@ -72,7 +77,8 @@ export class DashboardComponent implements OnInit {
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private auth: AuthenticationService
     ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
@@ -82,6 +88,12 @@ export class DashboardComponent implements OnInit {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
+        }
+        if ('authChanged' in data) {
+          this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(auth.getProfileData());
+          this.isBuyer = auth.isBuyer();
+          this.isSeller = auth.isSeller();
         }
       }
     });

@@ -43,4 +43,31 @@ export class LoginDataService {
         );
       });
   }
+
+  logout() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
+    this.http.post<LoginToken>(
+      environment.loginApi,
+      '',
+      httpOptions
+      )
+      .pipe(
+        catchError(err => {
+          this.comms.postMessage(
+            this,
+            '@all',
+            {logoutResult: {accessToken: null}});
+          return throwError(err);
+        })
+      ).subscribe(res => {
+        this.comms.postMessage(
+          this,
+          '@all',
+          {logoutResult: {accessToken: res}}
+        );
+      });
+  }
 }
