@@ -4,7 +4,7 @@ import { BidFormComponent } from './bid-form/bid-form.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id/new/bid',
     component: BidFormComponent,
     pathMatch: 'full'
   }

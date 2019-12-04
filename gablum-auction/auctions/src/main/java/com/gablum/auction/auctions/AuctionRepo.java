@@ -15,5 +15,5 @@ public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
     Page<Auction> findAll(Pageable pageable);
     Page<Auction> findAllByCreatedBy(Pageable pageable, String email);
 
-    Page<Auction> findAllBySelectedParticipantListContaining(Pageable pageable, String email);
+    Page<Auction> findAllByInterestedUsersEmailContaining(Pageable pageable, String email);
 }

@@ -54,7 +54,7 @@ public class AuctionService implements IAuctionService{
     }
 
     public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
-        return auctionRepo.findAllBySelectedParticipantListContaining(getPageable(queryMap), email).getContent();
+        return auctionRepo.findAllByInterestedUsersEmailContaining(getPageable(queryMap), email).getContent();
     }
 
 }
