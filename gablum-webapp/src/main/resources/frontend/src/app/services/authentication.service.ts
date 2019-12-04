@@ -35,23 +35,34 @@ export class AuthenticationService {
             } else {
               this.logger.log(this.profile);
               this.setProfile(this.profileData);
+              this.refreshRoles();
             }
           }
         }
       });
       this.refreshProfile();
+      this.refreshRoles();
   }
 
   setAuthenticated(isAuthenticated: boolean) {
     this.isAuthenticated = isAuthenticated;
-  }
-
-  setRoles(roles: string[]) {
-    this.roles = roles;
+    this.authChanged();
   }
 
   hasRole(role: string) {
-    return (this.roles.indexOf(role) > -1);
+    try {
+      return (this.roles.indexOf(role) > -1);
+    } catch (err) {
+      return false;
+    }
+  }
+
+  isBuyer() {
+    return this.hasRole('buyer');
+  }
+
+  isSeller() {
+    return this.hasRole('seller');
   }
 
   getAuthenticated() {
@@ -60,25 +71,44 @@ export class AuthenticationService {
 
   setProfile(profile: Profile) {
     localStorage.setItem('profile', JSON.stringify(profile));
-    this.authChanged();
     this.isAuthenticated = true;
+    this.authChanged();
   }
 
   refreshProfile() {
     const profileStr = localStorage.getItem('profile');
     if (profileStr !== undefined && profileStr !== null) {
-      this.isAuthenticated = true;
-      this.authChanged();
-      return JSON.parse(profileStr);
+      try {
+        this.profileData = JSON.parse(profileStr);
+        this.isAuthenticated = true;
+        this.authChanged();
+        return this.profileData;
+      } catch (err) {
+        this.logger.log(err);
+        this.isAuthenticated = false;
+        this.authChanged();
+        return null;
+      }
     }
-    this.authChanged();
     this.isAuthenticated = false;
+    this.authChanged();
     return null;
+  }
+
+  refreshRoles() {
+    try {
+      this.roles = this.profileData.role.map(r => r.role);
+      this.logger.log(this.roles);
+    } catch (error) {
+      this.logger.log(error);
+    }
   }
 
   clearProfile() {
     localStorage.removeItem('profile');
     this.isAuthenticated = false;
+    this.profileData = null;
+    this.roles = [];
     this.authChanged();
   }
 
