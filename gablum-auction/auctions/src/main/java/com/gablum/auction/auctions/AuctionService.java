@@ -56,13 +56,14 @@ public class AuctionService implements IAuctionService{
     }
 
     @Override
-    public Auction startAuction(String auctionId) {
+    public Auction startAuction(String auctionId, String uniqueLink) {
         Auction auctionToStart = auctionRepo.findByAuctionId(auctionId).orElse(null);
         if (auctionToStart == null) {
             log.error("can't find auction with id: " + auctionId);
             return null;
         }
         auctionToStart.setAuctionActive(true);
+        auctionToStart.setUniqueLink(uniqueLink);
         return auctionRepo.save(auctionToStart);
     }
 

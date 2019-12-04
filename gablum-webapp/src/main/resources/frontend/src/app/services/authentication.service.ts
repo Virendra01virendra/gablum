@@ -71,8 +71,8 @@ export class AuthenticationService {
 
   setProfile(profile: Profile) {
     localStorage.setItem('profile', JSON.stringify(profile));
-    this.authChanged();
     this.isAuthenticated = true;
+    this.authChanged();
   }
 
   refreshProfile() {
@@ -85,13 +85,13 @@ export class AuthenticationService {
         return this.profileData;
       } catch (err) {
         this.logger.log(err);
-        this.authChanged();
         this.isAuthenticated = false;
+        this.authChanged();
         return null;
       }
     }
-    this.authChanged();
     this.isAuthenticated = false;
+    this.authChanged();
     return null;
   }
 
@@ -108,6 +108,7 @@ export class AuthenticationService {
     localStorage.removeItem('profile');
     this.isAuthenticated = false;
     this.profileData = null;
+    this.roles = [];
     this.authChanged();
   }
 

@@ -40,7 +40,7 @@ export class WebsocketService {
     this.stompHeaders = {
       auth: 'hello'
     };
-      this.socketReconnect(false);
+    this.socketReconnect(false);
   }
 
   connect(connectCb = connectMessage => { console.log(connectMessage); }) {

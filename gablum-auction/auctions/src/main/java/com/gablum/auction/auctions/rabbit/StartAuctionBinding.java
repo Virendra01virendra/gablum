@@ -6,6 +6,6 @@ import org.springframework.messaging.SubscribableChannel;
 public interface StartAuctionBinding {
 
     @Input("startAuction")
-    public SubscribableChannel getChannel();
+    SubscribableChannel getChannel();
 
 }

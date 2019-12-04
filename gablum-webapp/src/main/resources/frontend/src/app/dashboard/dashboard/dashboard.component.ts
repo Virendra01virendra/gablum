@@ -111,7 +111,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-
+    this.isLoggedIn = this.auth.getAuthenticated();
+    this.logger.log(this.auth.getProfileData());
+    this.isBuyer = this.auth.isBuyer();
+    this.isSeller = this.auth.isSeller();
   }
 
 

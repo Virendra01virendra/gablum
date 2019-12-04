@@ -45,6 +45,7 @@ export class NavbarComponent implements OnInit {
 
           } else {
             auth.setAuthenticated(false);
+            auth.clearProfile();
             this.router.navigate(['/']);
             logger.log(logoutResult);
           }
