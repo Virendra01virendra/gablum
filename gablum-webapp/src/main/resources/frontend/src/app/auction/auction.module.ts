@@ -10,6 +10,7 @@ import { BidDialogComponent } from './bid-form/bid-dialog/bid-dialog.component';
 // import {FlexL  ayoutModule} from '@angular/flex-layout';
 import { ConsoleModule } from '../console/console.module';
 
+
 @NgModule({
   declarations: [BidFormComponent, AuctionCardComponent, BidDialogComponent],
   imports: [
@@ -22,6 +23,7 @@ import { ConsoleModule } from '../console/console.module';
     // BrowserAnimationsModule,
     // NoopAnimationsModule
   ],
-  exports:[AuctionCardComponent]
+  exports: [
+    AuctionCardComponent]
 })
 export class AuctionModule { }

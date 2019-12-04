@@ -50,18 +50,12 @@ import { InterceptorService } from './services/interceptor.service';
     HttpClientModule,
     AuctionModule,
     MaterialModule,
-    HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
     FlexLayoutModule,
     ContractsModule,
     SchedulerModule,
     RouterModule,
-    AppRoutingModule,
-    AppCommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
