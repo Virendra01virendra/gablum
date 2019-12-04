@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { Auction } from 'src/app/interfaces/auction';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 
 @Component({
   selector: 'app-proposal-card-dialog',
@@ -9,10 +10,14 @@ import { Auction } from 'src/app/interfaces/auction';
   styleUrls: ['./proposal-card-dialog.component.css']
 })
 export class ProposalCardDialogComponent implements OnInit {
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private auctionDataService: AuctionsDataService,
+    ) { }
+  public static messageKey = 'ProposalCardDialog';
   auctions: Auction[];
   data1;
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
@@ -33,7 +38,7 @@ export class ProposalCardDialogComponent implements OnInit {
   //   console.log('response ::', response);
   // });
 
-    this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
+    this.auctionDataService.saveAuction(ProposalCardDialogComponent.messageKey, this.data, 'save-auction');
 
   }
 
