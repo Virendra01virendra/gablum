@@ -11,9 +11,4 @@ export class PageTitleComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  // setLink(navLink: NavLink) {
-  //   this.navDetail = navLink;
-  // }
-
 }

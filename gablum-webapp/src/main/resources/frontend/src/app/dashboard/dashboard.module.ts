@@ -13,6 +13,7 @@ import { ConsoleModule } from '../console/console.module';
 import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
 import { AuctionModule } from '../auction/auction.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
+import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-d
     ProposalsListComponent,
     NewProposalCardComponent,
     ProposalCardDialogComponent,
-    SellersListDialogComponent
+    SellersListDialogComponent,
+    GuestProposalListComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
+import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 
 const routes: Routes = [
   {path: '',
@@ -17,6 +18,11 @@ const routes: Routes = [
   {
     path: 'modal',
     component: ProposalCardDialogComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'guestproposallist',
+    component: GuestProposalListComponent,
     pathMatch: 'full'
   }
 ];
