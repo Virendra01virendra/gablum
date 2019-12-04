@@ -91,7 +91,7 @@ export class NewProposalForm1Component implements OnInit {
 
   RegEndDateFilter = (d: Date): boolean => {
     // Prevent dates before registration start date
-    return d > this.timeForm.value.regStartDate;
+    return d > this.timeForm.value.regStartDate && d < this.paramForm.value.deliveryDate;
   }
   AuctionStartDateFilter = (d: Date): boolean => {
     // Prevent dates before registration end date

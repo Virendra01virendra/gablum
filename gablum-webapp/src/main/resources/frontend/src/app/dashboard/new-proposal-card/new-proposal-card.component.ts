@@ -2,9 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { ProposalsListComponent } from 'src/app/dashboard/proposals-list/proposals-list.component';
-import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { MatDialog } from '@angular/material';
+import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -29,7 +28,7 @@ export class NewProposalCardComponent implements OnInit {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
+    this.dialog.open(SellersListDialogComponent, { data: proposal});
   }
 
 }

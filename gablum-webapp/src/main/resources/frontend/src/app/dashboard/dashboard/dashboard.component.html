@@ -36,28 +36,10 @@
         <p>Auction list</p>
       </div>
       <div *ngIf="section.label=='Active Proposals'">
-        <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Product: {{proposal.productName}} </mat-card-title>
-            <mat-card-subtitle>{{proposal.businessSubDomain}}</mat-card-subtitle>
-          </mat-card-header>
-          <!-- <app-timer></app-timer> -->
-          <!-- <img mat-card-image src="https://picsum.photos/200" alt="Photo of a Shiba Inu"> -->
-          <mat-card-content>
-            <div fxLayout="column" fxLayoutAlign="space-between stretch">
-              <div>Price: {{proposal.price}}</div>
-              <div>Delivery Date: {{proposal.deliveryDate}}</div>
-              <div>Quantity: {{proposal.quantity}} </div>
-            </div>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button>Extend Registration</button>
-            <button mat-raised-button>Interested Sellers</button>
-            <button mat-raised-button>Remove</button>
-
-          </mat-card-actions>
-        </mat-card>
+          <app-new-proposal-card *ngFor="let proposal of proposals"
+          [proposal]="proposal">
+  
+          </app-new-proposal-card>
       </div>
       <div *ngIf="section.label=='Past Auctions'">
         <p>Past Auctions</p>
