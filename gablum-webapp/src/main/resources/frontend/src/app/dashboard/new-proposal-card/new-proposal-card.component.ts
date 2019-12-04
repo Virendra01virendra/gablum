@@ -47,6 +47,6 @@ export class NewProposalCardComponent implements OnInit {
     console.log('delete function is getting called');
     this.proposalDataService.deleteProposal(proposal.proposalId, NewProposalCardComponent.messageKey, 'form-delete');
     this.router.navigate(['/dashboard']);
-    this.proposalDataService.getAllProposals('DashboardComponent','proposals');
+    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }
 }
