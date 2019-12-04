@@ -63,7 +63,6 @@ export class DashboardComponent implements OnInit {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
-
         }
 
         if ('auctions' in data) {
@@ -77,8 +76,9 @@ export class DashboardComponent implements OnInit {
           this.isSeller = auth.isSeller();
         }
       }
-    });
-  }
+    }
+  });
+}
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
