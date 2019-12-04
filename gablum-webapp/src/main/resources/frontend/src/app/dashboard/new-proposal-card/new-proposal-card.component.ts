@@ -26,7 +26,7 @@ export class NewProposalCardComponent implements OnInit {
 
   public static messageKey = 'new-proposal-card-component';
 
-  @Input() proposrouter: any;al: Proposal;
+  @Input() proposal: Proposal;
 
   ngOnInit() {
   }
@@ -43,9 +43,9 @@ export class NewProposalCardComponent implements OnInit {
     });
   }
 
-  delete(proposal: Proposal){
-    this.router.navigate(['/dashboard']);
-    const proposalJSON = JSON.parse(JSON.stringify(proposal));
+  delete(proposal: Proposal) {
+    console.log('delete function is getting called');
     this.proposalDataService.deleteProposal(proposal.proposalId, NewProposalCardComponent.messageKey, 'form-delete');
+    this.router.navigate(['/dashboard']);
   }
 }

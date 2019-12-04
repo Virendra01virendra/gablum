@@ -3,7 +3,7 @@ import { CommunicatorService } from './communicator.service';
 import { NetworkingService } from './networking.service';
 import { Proposal } from '../interfaces/proposal';
 import { environment } from 'src/environments/environment';
-import { timingSafeEqual } from 'crypto';
+// import { timingSafeEqual } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
