@@ -26,7 +26,7 @@
                 <span *ngIf="userProfile">{{userProfile.name}}</span>
             </a>
             <mat-divider></mat-divider>
-            <button mat-button class="logout">
+            <button mat-button class="logout" (click)="logout()">
                 Logout
                 <mat-icon [ngStyle]="{'color': 'black'}">exit_to_app</mat-icon>
             </button>

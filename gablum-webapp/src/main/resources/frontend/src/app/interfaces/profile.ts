@@ -1,3 +1,5 @@
+import { UserRole } from './user-role';
+
 export interface Profile {
     name: string;
     email: string;
@@ -7,7 +9,7 @@ export interface Profile {
     userName: string;
     businessLicense: string;
     password: string;
-    role: string;
+    role: UserRole[];
     businessDomain: string;
     businessSubDomain: string;
 }
