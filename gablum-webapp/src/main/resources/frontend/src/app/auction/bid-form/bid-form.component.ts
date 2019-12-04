@@ -5,6 +5,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
+import { ActivatedRoute, Params } from '@angular/router';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -23,14 +24,22 @@ export class BidFormComponent implements OnInit {
   result1;
   result2;
   result3;
+  auctionId: String;
 
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
     private dialog: MatDialog,
+    private route: ActivatedRoute
     ) { }
   ngOnInit() {
+    this.route.paramMap
+      .subscribe((params: Params) => {
+        this.auctionId = params.get('id');
+        console.log("aucuccuctioniiidd ---------->", this.auctionId);
+      });
+      
 
     this.ws.connect(message => this.subscribe());
 
@@ -64,7 +73,9 @@ export class BidFormComponent implements OnInit {
     //   console.log('response ::', response);
     // });
 
-    this.ws.sendBid(bid);
+    //this.ws.sendBid(bid);
+
+
 
   }
 
@@ -102,11 +113,6 @@ export class BidFormComponent implements OnInit {
           if ('getscore' in data) {
             this.result1 = data.getscore.body;
             this.logger.log('message received is ::', data.getscore.body);
-            // this.bids.push(this.testBid);
-            this.dialog.open(BidDialogComponent, {
-              height: '400px',
-              width: '600px',
-            data: this.result1});
           }
           if ('newbid' in data) {
             this.result2 = data.newbid.body;
