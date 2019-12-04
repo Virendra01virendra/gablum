@@ -29,7 +29,9 @@ public class Auction {
 
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
+    private List<String> interestedUsersEmail;
     private List<String> bidIdList;
+
 
     private Date createdOn;
     private Date updatedOn;

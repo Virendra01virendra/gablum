@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,10 @@ public class AuctionController {
     ) {
         String email = userService.getEmail(request);
         log.debug(email);
-        return auctionService.getAllAuctionsBuyer(queryMap, email);
+        List<Auction> auctionList = new ArrayList<Auction>();
+        auctionList.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
+        auctionList.addAll(auctionService.getAuctionSeller(queryMap, email));
+        return auctionList;
     }
 
     @GetMapping("/auctions/{id}")
@@ -60,7 +64,15 @@ public class AuctionController {
     }
 
     @PostMapping("/auctions")
-    public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd) {
+    public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd, HttpServletRequest request) {
+        int i = 0;
+        String email = userService.getEmail(request);
+        Auction a;
+        while (i < auctionsToAdd.size()){
+            auctionsToAdd.get(i).setCreatedBy(email);
+            i = i+1;
+            System.out.println("email---------->" + email);
+        }
         return auctionService.addAuctions(auctionsToAdd);
     }
 
@@ -75,10 +87,10 @@ public class AuctionController {
     }
 
 
-    @PostMapping("bids/score")
-    public String getBidScore(@RequestBody Bid bid) throws JsonProcessingException, ParseException {
+    @PostMapping("auctions/{id}/bid/score")
+    public String getBidScore(@RequestBody Bid bid, @PathVariable String id) throws JsonProcessingException, ParseException {
 
-        String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
+        //String id = "3d5cb199-cc73-4831-8ce9-2894ee640472";
         Auction auction = auctionService.getAuctionById(id);
 
         DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -143,6 +155,7 @@ public class AuctionController {
         bidDataEntity.setBid(bid);
         bidDataEntity.setScore(scorecnt);
         bidDataEntity.setCreatedBy(email);
+        bidDataEntity.setAuctionId(id);
 
         bidService.addBid(bidDataEntity);
 
