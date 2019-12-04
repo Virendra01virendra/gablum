@@ -25,7 +25,6 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     GuestProposalListComponent
-
   ],
   imports: [
     CommonModule,
@@ -35,6 +34,7 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
     ConsoleModule,
     AuctionModule,
   ],
-  entryComponents: [ProposalCardDialogComponent]
+  entryComponents: [ProposalCardDialogComponent,
+  SellersListDialogComponent]
 })
 export class DashboardModule { }

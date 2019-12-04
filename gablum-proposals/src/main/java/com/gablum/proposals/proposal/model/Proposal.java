@@ -42,12 +42,12 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private List<String> interestedUsersEmail = new ArrayList<>();
     private int priceWeight;
     private int creditPeriodWeight;
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
-    private List<String> interestedUsersEmail = new ArrayList<>();
 
     //Empty constructor
     public Proposal() {

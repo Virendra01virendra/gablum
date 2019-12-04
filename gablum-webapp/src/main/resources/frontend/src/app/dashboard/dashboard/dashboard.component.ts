@@ -10,7 +10,7 @@ import { Auction } from 'src/app/interfaces/auction';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
-// import { TimerComponent } from './../../scheduler/timer/timer.component';
+import { TimerComponent } from './../../scheduler/timer/timer.component';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
@@ -96,16 +96,7 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-  sellersListDialog(proposal: Proposal) {
-    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
 
-  // openDialog(proposal: Proposal) {
-  //   this.dialog.open(ProposalCardDialogComponent, {
-  //     width: '60%',
-  //     height: '60%',
-  //     data: {proposal}
-  //   });
-  }
 
   // doStuff(proposal: Proposal) {
   //   this.dialog.open(DetailsDialogComponent, {data: proposal});

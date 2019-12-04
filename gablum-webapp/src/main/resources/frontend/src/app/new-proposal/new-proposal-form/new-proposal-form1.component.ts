@@ -32,7 +32,7 @@ export class NewProposalForm1Component implements OnInit {
   productSpecsForm = new FormGroup({
     businessDomain: new FormControl(''),
     businessSubDomain: new FormControl('', [Validators.required]),
-    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$'), Validators.minLength(3),
+    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$ '), Validators.minLength(3),
     Validators.maxLength(25)]),
     quantityValue: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
     quantityUnit: new FormControl('')
@@ -91,7 +91,7 @@ export class NewProposalForm1Component implements OnInit {
 
   RegEndDateFilter = (d: Date): boolean => {
     // Prevent dates before registration start date
-    return d > this.timeForm.value.regStartDate;
+    return d > this.timeForm.value.regStartDate && d < this.paramForm.value.deliveryDate;
   }
   AuctionStartDateFilter = (d: Date): boolean => {
     // Prevent dates before registration end date
