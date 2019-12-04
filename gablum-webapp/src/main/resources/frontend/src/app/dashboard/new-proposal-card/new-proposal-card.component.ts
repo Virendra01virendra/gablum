@@ -3,6 +3,11 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { ProposalsListComponent } from 'src/app/dashboard/proposals-list/proposals-list.component';
+import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { MatDialog } from '@angular/material';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
+
+
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -13,30 +18,36 @@ export class NewProposalCardComponent implements OnInit {
 
   constructor(
     private proposalDataService: ProposalsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private dialog: MatDialog,
+    private auctionDataService: AuctionsDataService
     ) {
-      comms.getMessages().subscribe(msg => {
-        if (msg.dest === NewProposalCardComponent.messageKey || msg.dest === '@all') {
-          const data = msg.data;
 
-          if ('proposals' in data) {
-            this.proposals = data.proposals;
-            console.log(this.proposals);
-          }
-        }
-      });
     }
 
   public static messageKey = 'new-proposal-card-component';
 
-  @Input() productName: string;
-  @Input() price: number;
-  @Input() deliveryDate: Date;
-  @Input() quantity: number;
-
-  public proposals: Proposal[];
+  @Input() proposal: Proposal;
 
   ngOnInit() {
-    this.proposalDataService.getAllProposals(NewProposalCardComponent.messageKey, 'proposals');
   }
+
+  sellersListDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, { data: proposal});
+  }
+  startAuction(proposal1: Proposal) {
+    const auction = {
+      auctionName: proposal1.productName,
+      proposal: proposal1,
+      isAuctionActive: true
+    };
+    const auctionList = [];
+    auctionList.push(auction);
+
+    const data = JSON.parse(JSON.stringify(auctionList));
+
+    this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
+
+  }
+
 }

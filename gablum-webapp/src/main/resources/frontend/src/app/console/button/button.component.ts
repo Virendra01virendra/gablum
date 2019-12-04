@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface PeriodicElement {
   name: string;
@@ -29,6 +30,7 @@ export class ButtonComponent {
   displayedColumns: string[] = ['rank', 'name', 'bids', 'xfactor'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  constructor() { }
+  constructor() {
+     }
 
 }

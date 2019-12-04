@@ -25,11 +25,23 @@
               <input matInput type="text" placeholder="Product Name" formControlName="productName" required>
             </mat-form-field>
             
+            <div>
+                <mat-form-field appearance="outline" class="prod-details">
+                    <mat-label class="form-label">Quantity:</mat-label>
+                    <input matInput type="text" placeholder="Quantity Value" formControlName="quantityValue" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                      <mat-select id="subDomain-select" formControlName="quantityUnit" required>
+                          <mat-option value="" disabled>Choose Unit</mat-option>
+                          <mat-option *ngFor="let unit of units" [value]="unit">{{unit}}
+                          </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+            </div>
             
-            <mat-form-field appearance="outline" class="prod-details">
-              <mat-label class="form-label">Quantity:</mat-label>
-              <input matInput type="text" placeholder="Quantity" formControlName="quantity" required>
-            </mat-form-field>
+             
+          
+          
             <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
               <div></div>
               <button mat-raised-button color= "primary" [disabled]="!productSpecsForm.valid" matStepperNext class="padded-btn">Next</button>
@@ -126,28 +138,28 @@
     <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
       <mat-form-field>
         <mat-label class="form-label">Registration Start date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter2" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate">
+        <input matInput [matDatepickerFilter]="RegStartDateFilter" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2 disabled="false"></mat-datepicker>
       </mat-form-field>
       
       <mat-form-field>
         <mat-label class="form-label">Registration End date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter3" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate">
+        <input matInput [matDatepickerFilter]="RegEndDateFilter" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate">
         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
         <mat-datepicker #picker3 disabled="false"></mat-datepicker>
       </mat-form-field>
     
       <mat-form-field>
         <mat-label class="form-label">Auction Start date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter4" [matDatepicker]="picker4" placeholder="Start date" formControlName="auctionStartDate">
+        <input matInput [matDatepickerFilter]="AuctionStartDateFilter" [matDatepicker]="picker4" placeholder="Start date" formControlName="auctionStartDate">
         <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
         <mat-datepicker #picker4 disabled="false"></mat-datepicker>
       </mat-form-field>
       
       <mat-form-field>
         <mat-label class="form-label">Auction End date:</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter5" [matDatepicker]="picker5" placeholder="End date" formControlName="auctionEndDate">
+        <input matInput [matDatepickerFilter]="AuctionEndDateFilter" [matDatepicker]="picker5" placeholder="End date" formControlName="auctionEndDate">
         <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
         <mat-datepicker #picker5 disabled="false"></mat-datepicker>
       </mat-form-field>

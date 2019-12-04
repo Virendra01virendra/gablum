@@ -9,6 +9,10 @@ import { ProposalsListComponent } from './proposals-list/proposals-list.componen
 import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.component';
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
+import { ConsoleModule } from '../console/console.module';
+import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
+import { AuctionModule } from '../auction/auction.module';
+import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 
 @NgModule({
@@ -19,13 +23,17 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
     ProposalsListComponent,
     NewProposalCardComponent,
     ProposalCardDialogComponent,
+    SellersListDialogComponent,
     GuestProposalListComponent
+
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SchedulerModule,
     MaterialModule,
+    ConsoleModule,
+    AuctionModule,
   ],
   entryComponents: [ProposalCardDialogComponent]
 })
