@@ -38,12 +38,14 @@ export class ProposalsDataService {
     deleteProposal(proposalId, dest, key) {
        const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
        this.networking.deleteData<Proposal>(proposalUrlDel, dest, key).subscribe(
-         res => {
-           this.getAllProposals(dest, key);
-         }
+        res => {
+          this.getAllProposals(dest, key);
+        }
        );
     }
-// extendProposal(dest, data, key) {
-//   this.networking.patchData<Proposal>(this.proposalsUrl)
-// }
+    extendProposal(dest, data, key) {
+      const proposalExtend = this.proposalsUrl + '/' + data.proposalId;
+      console.log('extendProposal------', data);
+      this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
+    }
 }
