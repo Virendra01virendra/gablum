@@ -1,17 +1,12 @@
 .proposal-card {
-  background-image: url("../../../assets/Images/wheat.png") ;
+  background-image: url("../../../assets/Images/agri_crop.jpg") ;
   background-position: center; /* Center the image */
   background-repeat: no-repeat;
-  background-size: 20%;
+  background-size: 30%;
   
     /* margin:1%;
     padding: 1%;
     max-width: 450px; */
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
   }
 
   .head

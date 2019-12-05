@@ -25,7 +25,7 @@ export class NewProposalCardComponent implements OnInit {
     }
 
   public static messageKey = 'new-proposal-card-component';
-
+  alreadyRegistered = false;
   @Input() proposal: Proposal;
 
   ngOnInit() {
@@ -33,6 +33,13 @@ export class NewProposalCardComponent implements OnInit {
 
   sellersListDialog(proposal: Proposal) {
     this.dialog.open(SellersListDialogComponent, { data: proposal});
+  }
+
+  shownInterest(proposal: Proposal) {
+    // const proposalId = element.proposalId;
+    // this.logger.log('some data which we are publishing ' , element );
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal , 'interestedSellers');
   }
 
   openDialog(proposal: Proposal) {
@@ -47,6 +54,6 @@ export class NewProposalCardComponent implements OnInit {
     console.log('delete function is getting called');
     this.proposalDataService.deleteProposal(proposal.proposalId, NewProposalCardComponent.messageKey, 'form-delete');
     this.router.navigate(['/dashboard']);
-    this.proposalDataService.getAllProposals('DashboardComponent','proposals');
+    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }
 }

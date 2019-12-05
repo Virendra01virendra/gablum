@@ -51,6 +51,7 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
   <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
   <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
 
+  <button mat-raised-button [disabled]="alreadyRegistered" color="primary" (click)="shownInterest(proposal)">Interested ?</button>
 </mat-card-actions>
 </mat-card>
 

@@ -39,4 +39,7 @@ export class ProposalsDataService {
        const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
        this.networking.deleteData<Proposal>(proposalUrlDel, dest, key);
     }
+// extendProposal(dest, data, key) {
+//   this.networking.patchData<Proposal>(this.proposalsUrl)
+// }
 }
