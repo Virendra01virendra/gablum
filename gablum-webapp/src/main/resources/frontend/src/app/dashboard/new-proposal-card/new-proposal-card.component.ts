@@ -7,6 +7,7 @@ import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
 import { Router } from '@angular/router';
+import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -41,6 +42,9 @@ export class NewProposalCardComponent implements OnInit {
       height: '60%',
       data: proposal
     });
+  }
+  extendProposal(proposal: Proposal) {
+    this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
   }
 
   delete(proposal: Proposal) {

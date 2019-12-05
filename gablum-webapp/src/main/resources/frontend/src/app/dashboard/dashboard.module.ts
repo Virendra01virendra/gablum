@@ -11,6 +11,8 @@ import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-car
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
+import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,15 +23,18 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
     NewProposalCardComponent,
     ProposalCardDialogComponent,
     SellersListDialogComponent,
-    GuestProposalListComponent
+    GuestProposalListComponent,
+    ExtendProposalDialogComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SchedulerModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   entryComponents: [ProposalCardDialogComponent,
-  SellersListDialogComponent]
+  SellersListDialogComponent, ExtendProposalDialogComponent]
 })
 export class DashboardModule { }
