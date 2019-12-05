@@ -8,7 +8,7 @@ import { CommunicatorService } from '../services/communicator.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoggerService } from '../services/logger.service';
 import { ProfileDataService } from '../services/profile-data.service';
-import { checkServerIdentity } from 'tls';
+
 // import { MatError } from '@angular/material';
 
 @Component({
