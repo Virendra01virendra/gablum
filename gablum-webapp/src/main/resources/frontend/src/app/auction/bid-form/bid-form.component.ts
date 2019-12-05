@@ -76,7 +76,8 @@ export class BidFormComponent implements OnInit {
 
     // this.ws.sendBid(bid);
 
-    this.http.post('http://localhost:8080/api/auctions/auctions' + this.auctionId + '/bid', bid, httpOptions);
+    this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
+    .subscribe(Response => {console.log(Response); });
 
 
 
