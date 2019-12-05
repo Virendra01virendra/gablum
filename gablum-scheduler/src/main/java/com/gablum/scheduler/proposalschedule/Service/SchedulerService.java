@@ -1,15 +1,11 @@
 package com.gablum.scheduler.proposalschedule.Service;
 
 import com.gablum.scheduler.proposalschedule.Scheduler.QuartzScheduling.QuartzJobConfig;
-import com.gablum.scheduler.proposalschedule.Scheduler.Task.TimerJob;
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Repository.SchedulerRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-import java.util.Timer;
 
 @Service
 public class SchedulerService {
@@ -28,7 +24,7 @@ public class SchedulerService {
     }
 
     public TimerModel saveSchedulerDetail(TimerModel timerModelToBeSaved) throws Exception{
-        quartzJobConfig.executeTimer();
+//        quartzJobConfig.executeTimer();
         return schedulerRepo.save(timerModelToBeSaved);
     }
 

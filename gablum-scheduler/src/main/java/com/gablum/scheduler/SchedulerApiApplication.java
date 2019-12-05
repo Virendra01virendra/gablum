@@ -17,7 +17,8 @@ public class SchedulerApiApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SchedulerApiApplication.class, args);
-
+		QuartzJobConfig j = new QuartzJobConfig();
+		j.executeTimer();
 	}
 
 }
