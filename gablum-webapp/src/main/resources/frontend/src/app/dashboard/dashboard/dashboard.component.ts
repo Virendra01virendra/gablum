@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { TimerComponent } from './../../scheduler/timer/timer.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
@@ -21,6 +22,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
+
+  public isLoggedIn = false;
+  public isBuyer = false;
+  public isSeller = false;
 
   proposals: Proposal[];
   auctions: Auction[];
@@ -80,6 +85,7 @@ export class DashboardComponent implements OnInit {
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
+    private auth: AuthenticationService,
     public http: HttpClient,
     ) {
     comms.getMessages().subscribe(msg => {
@@ -92,6 +98,12 @@ export class DashboardComponent implements OnInit {
           this.dashboardSections[1].data = this.proposals;
 
         }
+        if ('authChanged' in data) {
+          this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(auth.getProfileData());
+          this.isBuyer = auth.isBuyer();
+          this.isSeller = auth.isSeller();
+        }
       }
     });
   }
@@ -99,7 +111,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-
+    this.isLoggedIn = this.auth.getAuthenticated();
+    this.logger.log(this.auth.getProfileData());
+    this.isBuyer = this.auth.isBuyer();
+    this.isSeller = this.auth.isSeller();
   }
 
 

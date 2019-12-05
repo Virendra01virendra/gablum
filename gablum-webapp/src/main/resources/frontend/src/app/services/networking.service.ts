@@ -73,4 +73,23 @@ export class NetworkingService {
         this.logger.log(err);
       });
   }
+  deleteData<T>(url: string, dest: string, key = 'inventory') {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
+    return this.http.delete<T>(url, httpOptions)
+      .pipe(
+        retry(3),
+        catchError(err => {
+          return throwError(err);
+        })
+      );
+      // .subscribe(res => {
+      //   this.comms.postMessage(this, dest, {[key]: res});
+      // },
+      // err => {
+      //   this.logger.log(err);
+      // });
+  }
 }

@@ -3,6 +3,7 @@ import { CommunicatorService } from './communicator.service';
 import { NetworkingService } from './networking.service';
 import { Proposal } from '../interfaces/proposal';
 import { environment } from 'src/environments/environment';
+// import { timingSafeEqual } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ export class ProposalsDataService {
 
   public proposalsUrl: string;
   public guestProposallistUrl: string;
-
 
   constructor(
     private comms: CommunicatorService,
@@ -34,5 +34,13 @@ export class ProposalsDataService {
     }
     postInterestedSeller(dest, data, key) {
       this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key);
+    }
+    deleteProposal(proposalId, dest, key) {
+       const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
+       this.networking.deleteData<Proposal>(proposalUrlDel, dest, key).subscribe(
+         res => {
+           this.getAllProposals(dest, key);
+         }
+       );
     }
 }
