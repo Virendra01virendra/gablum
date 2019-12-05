@@ -5,9 +5,8 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { MatDialog } from '@angular/material';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 
-
-import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
 
 @Component({

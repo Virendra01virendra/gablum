@@ -63,17 +63,22 @@ export class DashboardComponent implements OnInit {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
-
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
           this.logger.log(this.auctions);
           this.dashboardSections[0].data = this.auctions;
+          if ('authChanged' in data) {
+          this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(auth.getProfileData());
+          this.isBuyer = auth.isBuyer();
+          this.isSeller = auth.isSeller();
         }
       }
-    });
-  }
+    }
+  });
+}
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
@@ -81,6 +86,10 @@ export class DashboardComponent implements OnInit {
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
+    this.isLoggedIn = this.auth.getAuthenticated();
+    this.logger.log(this.auth.getProfileData());
+    this.isBuyer = this.auth.isBuyer();
+    this.isSeller = this.auth.isSeller();
   }
 
 
