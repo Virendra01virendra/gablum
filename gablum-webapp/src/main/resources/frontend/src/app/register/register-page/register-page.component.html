@@ -18,11 +18,13 @@
             <mat-error *ngIf="email.touched || email.invalid">{{getErrorMessage2()}}</mat-error>
         </mat-form-field>
 
-      <mat-card-actions>
-        <div class="email-btn">
-          <button mat-raised-button color="primary" [disabled]='!email.valid' type="submit" (click)="sendMail()">Verify Email</button>
-        </div>
-      </mat-card-actions>
+<!--      <mat-card-actions>-->
+<!--        <div class="email-btn">-->
+<!--          <button mat-raised-button color="primary" [disabled]='!email.valid' type="submit" (click)="sendMail()">Verify Email</button>-->
+<!--        </div>-->
+<!--      </mat-card-actions>-->
+
+<!--      Will use when we are verifying just after the user enter a valid email exist by sending a mail-->
 
         <mat-form-field class="fullWidth" appearance="outline">
             <mat-label>Address</mat-label>
