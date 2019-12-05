@@ -1,12 +1,11 @@
 package com.gablum.gateway.config;
 
-import com.gablum.gateway.jwt.JwtToken;
 import com.gablum.gateway.jwt.JwtTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +19,8 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
+
+@Slf4j
 @Component
 public class JwtTokenProvider {
     private static final String AUTH="auth";
@@ -28,11 +29,9 @@ public class JwtTokenProvider {
     private String secretKey;
     private long validityInMilliseconds = 3600000; // 1h
 
-    @Autowired
-    private JwtTokenRepository jwtTokenRepository;
 
     public JwtTokenProvider(JwtTokenRepository jwtTokenRepository) {
-        this.jwtTokenRepository = jwtTokenRepository;
+        log.info(jwtTokenRepository.toString());
     }
 
     @PostConstruct

@@ -1,10 +1,8 @@
 package com.gablum.usermanagement.user.services;
 
 import com.gablum.usermanagement.user.exception.CustomException;
-import com.gablum.usermanagement.user.model.JwtToken;
 import com.gablum.usermanagement.user.model.Role;
 import com.gablum.usermanagement.user.model.User;
-import com.gablum.usermanagement.user.repository.JwtTokenRepository;
 import com.gablum.usermanagement.user.repository.UserRepository;
 import com.gablum.usermanagement.user.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +27,6 @@ public class LoginService implements ILoginService {
     private AuthenticationManager authenticationManager;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private JwtTokenRepository jwtTokenRepository;
 
     @Override
     public String login(String username, String password) {
