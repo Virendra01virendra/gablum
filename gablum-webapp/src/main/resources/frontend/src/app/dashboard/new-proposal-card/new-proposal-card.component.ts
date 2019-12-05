@@ -7,6 +7,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -19,7 +20,8 @@ export class NewProposalCardComponent implements OnInit {
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
     private dialog: MatDialog,
-    private auctionDataService: AuctionsDataService
+    private auctionDataService: AuctionsDataService,
+    private router: Router,
     ) {
 
     }
@@ -57,4 +59,10 @@ export class NewProposalCardComponent implements OnInit {
 
   }
 
+  delete(proposal: Proposal) {
+    console.log('delete function is getting called');
+    this.proposalDataService.deleteProposal(proposal.proposalId, NewProposalCardComponent.messageKey, 'form-delete');
+    this.router.navigate(['/dashboard']);
+    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
+  }
 }
