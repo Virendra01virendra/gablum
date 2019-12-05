@@ -30,12 +30,11 @@ public class SignUpController {
 
         user.setName(user.getName());
         // FIXME: delete the admin role if the request came
-//        user.setRole(user.getRole().);
+//        user.setRole(user.getRole());
         user.setEmail(user.getEmail());
         user.setAddress(user.getAddress());
         user.setCompanyName(user.getCompanyName());
-        user.setUserName(user.getUserName()
-        );
+        user.setUserName(user.getUserName());
         user.setBusinessLicense(user.getBusinessLicense());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
