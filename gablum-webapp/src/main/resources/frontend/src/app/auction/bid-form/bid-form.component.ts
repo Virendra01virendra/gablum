@@ -1,14 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Auction } from '../../interfaces/auction';
+import { BidResponseDialogComponent } from '../bid-response-dialog/bid-response-dialog.component';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -37,10 +39,10 @@ export class BidFormComponent implements OnInit {
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
-    private dialog: MatDialog,
     private route: ActivatedRoute,
     private auctionDataService: AuctionsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private matDialog: MatDialog
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
@@ -54,12 +56,17 @@ export class BidFormComponent implements OnInit {
             console.log('insde key data -->', data);
             this.scoreObject = data.saveBids;
             console.log('bid stored and score is', this.scoreObject.score);
+            this.result1 = 'Bid is stored, and your score is' + this.scoreObject.score;
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.data = this.result1;
+            let dialogRef = this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
           if ('scoreBids' in data) {
             console.log('insde key data -->', data);
             this.scoreObject = data.scoreBids;
             console.log('bid score is', this.scoreObject.score);
+            this.result2 = 'Your bid score is' + this.scoreObject.score;
           }
 
         }

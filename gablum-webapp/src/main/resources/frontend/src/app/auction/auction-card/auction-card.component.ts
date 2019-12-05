@@ -37,4 +37,8 @@ export class AuctionCardComponent implements OnInit {
     this.router.navigate(['auctions/' + this.auction.auctionId + '/new/bid']);
   }
 
+  public seeBids() {
+    this.router.navigate(['auctions/' + this.auction.auctionId + '/see/bids']);
+  }
+
 }
