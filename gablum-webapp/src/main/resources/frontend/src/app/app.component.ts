@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
           this.isLoggedIn = auth.getAuthenticated();
           if (!this.isLoggedIn) {
             this.navLinks = undefined;
+            this.router.navigate(['/']);
           } else {
             profile.getNavLinks('@all', 'navlinks');
           }
