@@ -5,6 +5,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { LoggerService } from 'src/app/services/logger.service';
+import { LoginToken } from 'src/app/interfaces/login-token';
+import { Router } from '@angular/router';
+import { LoginDataService } from 'src/app/services/login-data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +25,9 @@ export class NavbarComponent implements OnInit {
     private comms: CommunicatorService,
     private auth: AuthenticationService,
     private profile: ProfileDataService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private router: Router,
+    private login: LoginDataService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     this.comms.getMessages().subscribe( message => {
@@ -30,8 +35,20 @@ export class NavbarComponent implements OnInit {
         const data = message.data;
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(auth.getProfileData());
+          // this.logger.log(auth.getProfileData());
           this.userProfile = auth.getProfileData();
+        }
+
+        if ('logoutResult' in data) {
+          const logoutResult: LoginToken = data.logoutResult.accessToken;
+          if (logoutResult === undefined || logoutResult === null) {
+
+          } else {
+            auth.setAuthenticated(false);
+            auth.clearProfile();
+            this.router.navigate(['/']);
+            logger.log(logoutResult);
+          }
         }
       }
     });
@@ -45,7 +62,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-
+    this.login.logout();
   }
 
 }

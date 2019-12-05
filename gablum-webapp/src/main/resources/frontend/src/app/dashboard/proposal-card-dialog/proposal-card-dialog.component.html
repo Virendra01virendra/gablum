@@ -10,7 +10,7 @@
       </mat-expansion-panel-header>
       <mat-list role="list">
         <mat-list-item role="listitem">Product Price: {{data.price}}</mat-list-item>
-        <mat-list-item role="listitem">Quantity: {{data.quantity}}</mat-list-item>
+        <mat-list-item role="listitem">Quantity: {{data.quantityValue + ' ' + data.quantityUnit}}</mat-list-item>
         <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate}}</mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
@@ -23,7 +23,7 @@
       </mat-expansion-panel-header>
       <mat-list role="list">
         <mat-list-item role="listitem">Price Weight: {{data.priceWeight}}</mat-list-item>
-        <mat-list-item role="listitem">Quantity Weight: {{data.quantityWeight}}</mat-list-item>
+        <mat-list-item role="listitem">Credit Period Weight: {{data.creditPeriodWeight}}</mat-list-item>
         <mat-list-item role="listitem">Delivery Date Weight: {{data.deliveryDataWeight}}</mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
@@ -43,13 +43,14 @@
     </mat-expansion-panel><br>
   </mat-accordion>
 </div>
-<div mat-dialog-actions>
-  <mat-dialog-actions>
+<div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
+  
     <button mat-raised-button mat-dialog-close color="secondary">Close</button>
     <button mat-raised-button color="primary" mat-dialog-close >Bidder's List</button>
     <button mat-raised-button color="primary" mat-dialog-close >Extend Registration</button>
     <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
   </mat-dialog-actions>
+  
 </div>
 
 

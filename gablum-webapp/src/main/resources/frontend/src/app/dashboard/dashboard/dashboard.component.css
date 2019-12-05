@@ -1,20 +1,12 @@
-.add-proposal-button {
-    position: fixed;
-    bottom: 2em;
-    right: 2em;
-    z-index: 2;
-}
-
 .dashboard-container {
     width: 90%;
-    /* background-color: lightgray; */
     margin: 2em auto;
 }
 .proposal-card {
     background-color: light rgba(6, 56, 97, 0.829);
     width: 350px;
-    padding: 1em 1em 1em 1em;
-  }
+    padding: 1em;
+}
 
 .timer {
     align-content: center ;
@@ -22,4 +14,15 @@
 
 .product-specs {
     padding: 3em;
+}
+
+.fab-container {
+    position: fixed;
+    bottom: 1.5em;
+    right: 1.5em;
+    z-index: 2;
+}
+
+.add-proposal-button {
+    margin: 0.5em 0;
 }

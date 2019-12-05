@@ -1,5 +1,6 @@
 package com.gablum.auction.auctions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@Slf4j
 public class AuctionService implements IAuctionService{
 
     @Autowired
@@ -55,6 +57,16 @@ public class AuctionService implements IAuctionService{
 
     public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
         return auctionRepo.findAllByInterestedUsersEmailContaining(getPageable(queryMap), email).getContent();
+    @Override
+    public Auction startAuction(String auctionId, String uniqueLink) {
+        Auction auctionToStart = auctionRepo.findByAuctionId(auctionId).orElse(null);
+        if (auctionToStart == null) {
+            log.error("can't find auction with id: " + auctionId);
+            return null;
+        }
+        auctionToStart.setAuctionActive(true);
+        auctionToStart.setUniqueLink(uniqueLink);
+        return auctionRepo.save(auctionToStart);
     }
 
 }
