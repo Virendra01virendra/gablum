@@ -2,6 +2,7 @@ package com.gablum.scheduler.proposalschedule.Service;
 
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Repository.SchedulerRepo;
+import com.gablum.scheduler.proposalschedule.Scheduler.QuartzScheduling.QuartzJobConfig;
 import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,16 +11,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
+@DataMongoTest
 class SchedulerServiceTest {
 
     @Mock
     SchedulerRepo schedulerRepo;
+
+    QuartzJobConfig quartzJobConfig = new QuartzJobConfig();
 
     @InjectMocks
     SchedulerService schedulerService;
@@ -27,7 +32,7 @@ class SchedulerServiceTest {
     private TimerModel timerModel2 = new TimerModel();
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() throws Exception {
         timerModel.setJobId("a");
         timerModel.setEventStartDate(new Date(2019-12-3));
         timerModel.setEventEndDate(new Date(2019-12-4));

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetect
 import { EventEmitter } from 'events';
 import { Observable, Subscription, timer, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Proposal } from 'src/app/interfaces/proposal';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-timer',
@@ -12,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class TimerComponent implements OnInit {
 
   @Input()
-  startAt ; /** the time period of the auction/ registeration is defined here */
+  timerDetails: Proposal  ; /** the time period of the auction/ registeration is defined here */
 
   @Output()
   counterState = new EventEmitter();
@@ -28,9 +30,13 @@ export class TimerComponent implements OnInit {
   timerEventTime: number;
   currentSubscription: Subscription;
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private logger: LoggerService
+    ) { }
 
   ngOnInit() {
+    this.logger.log('app timer component--------------', this.timerDetails );
     // this.startAt = this.currentTime; /** Here we set the timer to Client system time so that the timer can be bound to this value */
     this.timerLogic(this.startDate, this.endDate, this.currentTime);
     this.start();
