@@ -22,7 +22,7 @@ import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
-import {FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 

@@ -48,7 +48,7 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
   </mat-icon>
 
 
-  <mat-icon matTooltip="Delete Proposal" class="material-icons">delete</mat-icon>
+  <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
   <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
 
 </mat-card-actions>

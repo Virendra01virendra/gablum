@@ -4,6 +4,9 @@ import { NewProposalCardComponent } from './new-proposal-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NewProposalCardComponent', () => {
   let component: NewProposalCardComponent;
@@ -12,7 +15,7 @@ describe('NewProposalCardComponent', () => {
   beforeEach(async(() => {
   TestBed.configureTestingModule({
     declarations: [NewProposalCardComponent, TimerComponent],
-    imports: [MaterialModule, HttpClientModule],
+    imports: [MaterialModule, HttpClientModule, RouterTestingModule],
     // providers: [{ provide: DashboardComponent,
     //    useValue: proposal}]
   })
