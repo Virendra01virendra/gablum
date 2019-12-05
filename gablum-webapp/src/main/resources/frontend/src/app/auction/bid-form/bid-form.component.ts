@@ -42,7 +42,7 @@ export class BidFormComponent implements OnInit {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
-          if ('auctionSingle' in data){
+          if ('auctionSingle' in data) {
               this.auction = data.auctionSingle;
               this.logger.log(this.auction);
           }
