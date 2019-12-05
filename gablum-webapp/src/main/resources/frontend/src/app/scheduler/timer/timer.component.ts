@@ -14,12 +14,12 @@ import { LoggerService } from 'src/app/services/logger.service';
 export class TimerComponent implements OnInit {
 
   @Input()
-  timerDetails: Proposal  ; /** the time period of the auction/ registeration is defined here */
+  timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
 
   @Output()
   counterState = new EventEmitter();
-  private startDate = new Date('11/22/2019 10:53:30');
-  private endDate = new Date('2019/12/17 10:53:30');
+  public auctionStartDate: Date;
+  public auctionEndDate: Date;
   public currentTime = new Date();
   public days = 0;
   public hours = 0;
@@ -36,9 +36,11 @@ export class TimerComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.logger.log('app timer component--------------', this.timerDetails );
-    // this.startAt = this.currentTime; /** Here we set the timer to Client system time so that the timer can be bound to this value */
-    this.timerLogic(this.startDate, this.endDate, this.currentTime);
+    this.logger.log('timer component message ----------------', this.timerDetails, 'typeOF :::', typeof this.timerDetails.auctionEndDate);
+    const timerObject = Object.assign({}, this.timerDetails);
+    this.auctionStartDate = new Date(timerObject.auctionStartDate);
+    this.auctionEndDate = new Date(timerObject.auctionEndDate);
+    this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
     this.start();
   }
     public start() {
@@ -84,7 +86,8 @@ export class TimerComponent implements OnInit {
 
   public timerLogic(timetoStart: Date, timeToEnd: Date, localTime: Date) {
     if (localTime.getTime() < timetoStart.getTime()) {
-      this.toStartMsg = 'The Event is yet to Begin';
+      this.toStartMsg = 'Auction Begins in -->';
+      this.timerEventTime = timetoStart.getTime() - localTime.getTime();
     } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
       this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
       this.formatValue(this.timerEventTime);
