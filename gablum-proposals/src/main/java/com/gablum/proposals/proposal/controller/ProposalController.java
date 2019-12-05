@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -59,8 +58,10 @@ public class ProposalController {
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
         }
-        proposalService.extendProposal(modifiedProposal, proposalId);
-        return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
+        return new ResponseEntity<Proposal>(
+                proposalService.extendProposal(modifiedProposal, proposalId),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/proposals/browse")
