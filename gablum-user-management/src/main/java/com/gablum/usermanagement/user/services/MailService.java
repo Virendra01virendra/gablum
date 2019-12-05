@@ -7,7 +7,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-public class MailingService {
+public class MailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -17,8 +17,7 @@ public class MailingService {
         if (type == "registering"){
             msg.setTo(user.getEmail());
             msg.setSubject("Registered at Gablum");
-            msg.setText("Thank You for registering with us.\n " +
-                    "your account details are :" + user.toString());
+            msg.setText("Thank You for registering with us.");
             try
             {
                 javaMailSender.send(msg);

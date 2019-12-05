@@ -109,7 +109,9 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit() {
   }
+  sendMail(){
 
+  }
   getErrorMessage1() {
     return this.name.hasError('required') ? '*You must enter a name' :
     this.name.hasError('maxlength') ? '*More than 30 characters not allowed' :
