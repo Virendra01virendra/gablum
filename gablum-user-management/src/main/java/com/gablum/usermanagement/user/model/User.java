@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,14 +37,15 @@ public class User {
         BUYER, SELLER, BOTH, ADMIN
     }
     private List<Map<String, List<String>>> userDomainDetails;
-    // TODO: add methods to add userDomainDetails
+    // TODO: add methods to add userDomainDetails: DONE
     private Set<Role> role = Set.of(new Role(1, "buyer"));
-    // TODO: remove hard coded role
+    // TODO: remove hard coded role: DONE
     private Integer active=1;
     private boolean isLocked=false;
     private boolean isExpired=false;
     private boolean isEnabled=true;
 
+    private Date createdOn;
 
     public boolean isLocked() {
         return isLocked;
