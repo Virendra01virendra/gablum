@@ -15,4 +15,8 @@ public class UserManagementService {
         return userRepository.findUserByEmail(email);
     }
 
+    public long getUserCount() {
+        return userRepository.count();
+    }
+
 }

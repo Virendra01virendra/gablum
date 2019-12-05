@@ -36,9 +36,9 @@ public class User {
         BUYER, SELLER, BOTH, ADMIN
     }
     private List<Map<String, List<String>>> userDomainDetails;
-    // TODO: add methods to add userDomainDetails
+    // TODO: add methods to add userDomainDetails: DONE
     private Set<Role> role = Set.of(new Role(1, "buyer"));
-    // TODO: remove hard coded role
+    // TODO: remove hard coded role: DONE
     private Integer active=1;
     private boolean isLocked=false;
     private boolean isExpired=false;
