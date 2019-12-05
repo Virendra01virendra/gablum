@@ -26,14 +26,13 @@ export class BidFormComponent implements OnInit {
   result2;
   result3;
   auctionId: string;
-  auctionDataService: AuctionsDataService;
-
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
     private dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auctionDataService: AuctionsDataService
     ) { }
   ngOnInit() {
     this.route.paramMap
@@ -76,9 +75,10 @@ export class BidFormComponent implements OnInit {
 
     // this.ws.sendBid(bid);
 
-    this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
-    .subscribe(Response => {console.log(Response); });
+    // this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
+    // .subscribe(Response => {console.log(Response); });
 
+    this.auctionDataService.saveBid(BidFormComponent.messageKey, bid, 'save-bid', this.auctionId);
 
 
   }
