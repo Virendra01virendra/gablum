@@ -49,7 +49,6 @@ const modules = [
   MatSelectModule,
   MatRadioModule,
   MatSliderModule,
-  MatCardModule,
   MatStepperModule,
   MatDividerModule,
   MatListModule,

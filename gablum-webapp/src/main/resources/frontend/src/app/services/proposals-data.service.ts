@@ -37,7 +37,11 @@ export class ProposalsDataService {
     }
     deleteProposal(proposalId, dest, key) {
        const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
-       this.networking.deleteData<Proposal>(proposalUrlDel, dest, key);
+       this.networking.deleteData<Proposal>(proposalUrlDel, dest, key).subscribe(
+         res => {
+           this.getAllProposals(dest, key);
+         }
+       );
     }
 // extendProposal(dest, data, key) {
 //   this.networking.patchData<Proposal>(this.proposalsUrl)

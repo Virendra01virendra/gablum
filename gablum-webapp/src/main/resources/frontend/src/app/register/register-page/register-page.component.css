@@ -1,11 +1,11 @@
-.header{
-    background:lightgray;
+.title {
+  margin-left: 2em;
 }
 
-.head{
-    font-size: 2rem;
-    /* margin: 40%; */
+.title-icon {
+  margin-left: 1em;
 }
+
 .regForm{
     display: flex;
     flex-direction: column;

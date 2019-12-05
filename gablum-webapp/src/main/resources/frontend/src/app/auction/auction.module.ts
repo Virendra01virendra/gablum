@@ -6,6 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { BidDialogComponent } from './bid-form/bid-dialog/bid-dialog.component';
+// import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+// import {FlexL  ayoutModule} from '@angular/flex-layout';
+import { ConsoleModule } from '../console/console.module';
 
 
 @NgModule({
@@ -14,7 +17,13 @@ import { BidDialogComponent } from './bid-form/bid-dialog/bid-dialog.component';
     CommonModule,
     AuctionRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    ConsoleModule
+    // FlexLayoutModule
+    // BrowserAnimationsModule,
+    // NoopAnimationsModule
+  ],
+  exports: [
+    AuctionCardComponent]
 })
 export class AuctionModule { }
