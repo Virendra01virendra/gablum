@@ -56,6 +56,12 @@ export class BidFormComponent implements OnInit {
             console.log('bid stored and score is', this.scoreObject.score);
           }
 
+          if ('scoreBids' in data) {
+            console.log('insde key data -->', data);
+            this.scoreObject = data.scoreBids;
+            console.log('bid score is', this.scoreObject.score);
+          }
+
         }
       });
 
@@ -121,7 +127,9 @@ export class BidFormComponent implements OnInit {
       timeOfDelivery: form.value.newTimeOfDelivery,
       };
 
-    this.ws.getBidScore(bid);
+    // this.ws.getBidScore(bid);
+
+    this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
 
 
     console.log('dataaaaaaaaaa', this.result1);

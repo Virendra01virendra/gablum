@@ -83,10 +83,10 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid/score")
-    public String getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
-        String message1 = "Bid score is " + bidService.getBidScore(bid, id);
-
-        return message1;
+    public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(bidService.getBidScore(bid, id));
+        return scoreObject;
     }
 
 
