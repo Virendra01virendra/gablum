@@ -22,7 +22,20 @@ describe('AuctionCardComponent', () => {
       providers: [
         BrowserAnimationsModule,
         NoopAnimationsModule,
-        Router
+      {
+        provide: Router,
+        useValue: {
+          snapshot: {
+            queryParamMap: {
+              get(): number {
+                return 6;
+              }
+            }
+          }
+        }
+      }
+
+
       ]
     })
     .compileComponents();
