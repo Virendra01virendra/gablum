@@ -1,21 +1,38 @@
-<mat-card class="auction-card" *ngIf="auction">
-    <mat-card-header>
-      <mat-card-title [style.color]="'red'">{{auction.auctionName}}</mat-card-title>
+<mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+      <mat-card-title [style.color]="'black'">{{auction.auctionName}}</mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="https://picsum.photos/300">
+    <!-- <img mat-card-image src="https://picsum.photos/300"> -->
     <mat-card-content>
-      <p>
-       Price: {{auction.proposal.price}}
-        <br>
-        Credit Period: {{auction.proposal.creditPeriod}}
-        <br>
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <app-button></app-button>
+      <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
-      <button mat-raised-button (click) = "placeBid()">Place Bid</button>
+      <div fxLayoutAlign="space-between">
+       <mat-chip color="primary">Price </mat-chip> 
+       <mat-chip>{{auction.proposal.price}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Credit Period</mat-chip> 
+          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Quality Certification</mat-chip> 
+          <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Method Of Supply</mat-chip> 
+          <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
+        </div>
+        
+        
+      </div>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+
+      <button color="primary" mat-raised-button (click) = "placeBid()">Place Bid</button>
 
     </mat-card-actions>
   </mat-card>
