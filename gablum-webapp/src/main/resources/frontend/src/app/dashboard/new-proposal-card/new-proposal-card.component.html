@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <mat-card class="proposal-card"  fxLayout="column"
 fxLayoutGap="10px" fxLayoutAlign="space-around">
 <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
@@ -24,37 +25,62 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
     <!-- <div>
       <span>Delivery Date: </span>
       <span>{{proposal.deliveryDate}}</span>
+=======
+<mat-card class="proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-card-title>{{proposal.productName}} </mat-card-title>
+        <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- <div fxLayout="row" fxLayoutAlign="space-between">
+        <app-timer></app-timer>
+>>>>>>> ca06fa42db17fe687b0c3ce4f1cb85af784ea9a9
     </div> -->
-    <div fxLayoutAlign="space-between">
-      <mat-chip color="primary" selected="true">Views</mat-chip>
-      <mat-chip>{{25}}</mat-chip>
-    </div>
 
-  </div>
+    <!-- Will uncomment app-timer when the hard-code is changed -->
 
-</mat-card-content>
+    <mat-card-content>
+        <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
-<mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+            <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Price </mat-chip>
+                <mat-chip>{{proposal.price}} </mat-chip>
 
+            </div>
+            <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Quantity </mat-chip>
+                <mat-chip>{{proposal.quantityValue + ' ' + proposal.quantityUnit}}</mat-chip>
 
+            </div>
+            <!-- <div>
+      <span>Delivery Date: </span>
+      <span>{{proposal.deliveryDate}}</span>
+    </div> -->
+            <div fxLayoutAlign="space-between">
+                <mat-chip color="primary" selected="true">Views</mat-chip>
+                <mat-chip>{{25}}</mat-chip>
+            </div>
 
-  <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)"
-    class="material-icons" matTooltip="Interested Sellers">
-    list
-  </mat-icon>
+        </div>
 
-  <mat-icon matTooltip="Extend Registration" class="material-icons">
-    hourglass_empty
-  </mat-icon>
+    </mat-card-content>
 
-
-  <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
-  <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
-
-</mat-card-actions>
-</mat-card>
-
-
-
-
+    <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
   
+
+  <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
+
+
+        <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers">
+            list
+        </mat-icon>
+        <mat-icon matTooltip="Extend Registration" class="material-icons">
+            hourglass_empty
+        </mat-icon>
+        <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
+        <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
+        <mat-icon matTooltip="Start Auction" class="material-icons" (click) = "startAuction(proposal)" >
+            play_arrow
+          </mat-icon>
+    </mat-card-actions>
+</mat-card>

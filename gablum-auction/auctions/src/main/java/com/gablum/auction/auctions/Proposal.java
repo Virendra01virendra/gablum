@@ -5,7 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Setter
@@ -35,6 +37,7 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private List<String> interestedUsersEmail = new ArrayList<>();
     private int weightPrice;
     private int weightCreditPeriod;
     private int weightTimeOfDelivery;
