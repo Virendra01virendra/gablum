@@ -1,26 +1,24 @@
 package com.gablum.scheduler.proposalschedule.Scheduler.QuartzScheduling;
 
-import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import lombok.extern.slf4j.Slf4j;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 @Slf4j
-@Async
+@Component
 public class QuartzJobConfig {
-    @Autowired
-    TimerModel timerModel;
+
+    private int i =1;
     private String cronSchedule = "0 0/1 * 1/1 * ? *";
 
-    JobKey renewableJobKey = JobKey.jobKey("job"+timerModel.getJobId() ,"my-auction"+timerModel.getJobId());
+    JobKey renewableJobKey = JobKey.jobKey("job"+i ,"my-auction"+i);
     JobDetail job = JobBuilder.newJob(SchedulerJob.class)
             .withIdentity(renewableJobKey)
             .storeDurably(true)
             .build();
-    TriggerKey renewableTriggerKey = TriggerKey.triggerKey("trigger"+timerModel.getJobId(), "my-auction"+timerModel.getJobId());
+    TriggerKey renewableTriggerKey = TriggerKey.triggerKey("trigger"+i, "my-auction"+i);
     Trigger trigger = TriggerBuilder
             .newTrigger()
             .withIdentity(renewableTriggerKey)
@@ -37,6 +35,7 @@ public class QuartzJobConfig {
             scheduler.deleteJob(job.getKey());
         }
         scheduler.scheduleJob(job,trigger);
+        i++;
     }
 
 //    public String convertIncomingDate

@@ -36,7 +36,6 @@ export class TimerComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.logger.log('timer component message ----------------', this.timerDetails, 'typeOF :::', typeof this.timerDetails.auctionEndDate);
     const timerObject = Object.assign({}, this.timerDetails);
     this.auctionStartDate = new Date(timerObject.auctionStartDate);
     this.auctionEndDate = new Date(timerObject.auctionEndDate);

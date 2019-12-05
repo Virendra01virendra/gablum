@@ -13,7 +13,9 @@ public class SchedulerService {
 
     @Autowired
     SchedulerRepo schedulerRepo;
-        QuartzJobConfig quartzJobConfig = new QuartzJobConfig();
+
+    @Autowired
+    QuartzJobConfig quartzJobConfig;
 
 
     public TimerModel findTimerDetailsByAuctionId(String id){
