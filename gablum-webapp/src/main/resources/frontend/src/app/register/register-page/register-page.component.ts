@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { noConflict } from 'q';
 import { RegisterToken } from '../../interfaces/register-token';
 import { RegisterDataService } from '../../services/register-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
-import { componentFactoryName } from '@angular/compiler';
+import { RegisterRequest } from 'src/app/interfaces/register-request';
+import { UserRole } from 'src/app/interfaces/user-role';
+import { LoggerService } from 'src/app/services/logger.service';
 
 
 @Component({
@@ -62,35 +63,41 @@ export class RegisterPageComponent implements OnInit {
   }
 
   subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+  roles = ['Buyer', 'Seller', 'Both'];
 
   registrationForm = new FormGroup({
-    name : new FormControl('', Validators.required),
-    email : new FormControl('', Validators.compose([Validators.required, Validators.email])),
+    name : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(30)])),
+    email : new FormControl('', Validators.compose([Validators.required, Validators.email, Validators.maxLength(50)])),
     address : new FormControl(''),
-    phone : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(14),
-      Validators.pattern('^[0-9-.+]*$')])),
-    companyName : new FormControl(''),
-    userName : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
-    Validators.minLength(8)])),
+    phone : new FormControl('', Validators.compose([Validators.required,
+      Validators.pattern('^[6-9]{1}[0-9]{9}$')])),
+    companyName : new FormControl('', Validators.maxLength(80)),
+    // userName : new FormControl('', Validators.compose([Validators.required,
+    //   Validators.pattern('/^[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}$/'),
+    //   Validators.maxLength(30)])),
     businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
-    Validators.minLength(8)])),
-    // role : new FormControl('', Validators.required),
+      password : new FormControl('', Validators.compose([Validators.required,
+      Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
+      Validators.minLength(5)])),
+    role : new FormControl('', Validators.required),
     businessDomain : new FormControl(''),
-    businessSubDomain : new FormControl('')
+    businessSubDomain : new FormControl('', Validators.required)
   });
   constructor(
     private router: Router,
     private registrationService: RegisterDataService,
+    private logger: LoggerService,
     private comms: CommunicatorService) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
           const data = message.data;
           if ('registrationResult' in data) {
             const registrationToken: RegisterToken = data.registrationResult;
-            // console.log(loginToken.accessToken);
-            if (registrationToken === undefined || registrationToken === null) {
+            this.logger.log(registrationToken);
+            if (registrationToken === undefined ||
+              registrationToken === null ||
+              !registrationToken.isOk) {
 
             } else {
               this.router.navigate(['/']);
@@ -105,6 +112,7 @@ export class RegisterPageComponent implements OnInit {
 
   getErrorMessage1() {
     return this.name.hasError('required') ? '*You must enter a name' :
+    this.name.hasError('maxlength') ? '*More than 30 characters not allowed' :
             '';
   }
 
@@ -117,8 +125,6 @@ export class RegisterPageComponent implements OnInit {
   getErrorMessage3() {
     return this.phone.hasError('required') ? '*Required' :
         this.phone.hasError('pattern') ? '*Not a valid phone no' :
-        this.phone.hasError('minlength') ? '*Minimum 10 characters' :
-        this.phone.hasError('maxlength') ? '*Invalid Phone no.' :
             '';
   }
 
@@ -130,14 +136,14 @@ export class RegisterPageComponent implements OnInit {
   getErrorMessage5() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
         this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('minlength') ? '*Minimum 8 characters' :
+        this.userName.hasError('maxlength') ? '*Maximum 30 characters only' :
             '';
   }
 
   getErrorMessage6() {
     return this.password.hasError('required') ? '*You must enter a Password' :
         this.password.hasError('pattern') ? '*Not a valid Password' :
-        this.password.hasError('minlength') ? '*Minimum 8 characters' :
+        this.password.hasError('minlength') ? '*Minimum 5 characters' :
             '';
   }
 
@@ -153,6 +159,25 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registrationService.register(this.registrationForm.value);
+    const roleBuyer: UserRole = {
+      role: 'buyer',
+      id: 1
+    };
+    const roleSeller: UserRole = {
+      role: 'seller',
+      id: 2
+    };
+    const registerProfile: RegisterRequest = this.registrationForm.value;
+    if (this.registrationForm.value.role === 'buyer') {
+      registerProfile.role = [roleBuyer];
+    }
+    if (this.registrationForm.value.role === 'seller') {
+      registerProfile.role = [roleSeller];
+    }
+    if (this.registrationForm.value.role === 'both') {
+      registerProfile.role = [roleBuyer, roleSeller];
+    }
+    this.registrationService.register(registerProfile);
+    this.router.navigate(['']);
   }
 }

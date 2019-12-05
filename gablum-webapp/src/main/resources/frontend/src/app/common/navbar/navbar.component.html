@@ -1,7 +1,10 @@
 <mat-toolbar class="mat-elevation-z8" color="primary">
     <nav class="navbar-base" >
-        <button class="menu-link nav-icon" mat-icon-button (click)="menuClicked($event)" fxHide.gt-xs>
+        <button class="menu-link nav-icon" mat-icon-button (click)="menuClicked($event)" fxHide.gt-xs *ngIf="!isLoggedIn">
                 <mat-icon>menu</mat-icon>
+        </button>
+        <button class="menu-link nav-icon" mat-icon-button (click)="menuClicked($event)" *ngIf="isLoggedIn">
+            <mat-icon>menu</mat-icon>
         </button>
         <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs>Gablum</a>
         <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs>b</a>
@@ -11,5 +14,22 @@
             <a [routerLink]="['/']" class="nav-link nav-icon">About Us</a>
             <a [routerLink]="['/']" class="nav-link nav-icon">Contact</a>
         </div>
+        <button class="menu-link nav-icon" nav-link nav-icon *ngIf="isLoggedIn" mat-button color="primary" [matMenuTriggerFor]="appMenu">
+            <mat-icon>person</mat-icon>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #appMenu="matMenu">
+            <a [routerLink]="['/profile']" routerLinkActive="router-link-active"  class="profile-short-container" fxLayout="column nowrap" fxLayoutAlign="space-around center" matTooltip="view your profile">
+                <div class="profile-short-image">
+                    <img src="https://picsum.photos/400/400">
+                </div>
+                <span *ngIf="userProfile">{{userProfile.name}}</span>
+            </a>
+            <mat-divider></mat-divider>
+            <button mat-button class="logout" (click)="logout()">
+                Logout
+                <mat-icon [ngStyle]="{'color': 'black'}">exit_to_app</mat-icon>
+            </button>
+        </mat-menu>
     </nav>
 </mat-toolbar>

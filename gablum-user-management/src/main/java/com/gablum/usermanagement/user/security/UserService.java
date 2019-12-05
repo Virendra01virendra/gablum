@@ -18,21 +18,30 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(email);
-//        if (user == null || user.getRole() == null || user.getRole().isEmpty()) {
-//            throw new CustomException("Invalid username or password.", HttpStatus.UNAUTHORIZED);
-//        }
-        String [] authorities = new String[user.getRole().size()];
-        int count=0;
+        String[] authorities = new String[user.getRole().size()];
+        int count = 0;
         for (Role role : user.getRole()) {
 //            //NOTE: normally we dont need to add "ROLE_" prefix. Spring does automatically for us.
 //            //Since we are using custom token using JWT we should add ROLE_ prefix
-            authorities[count] = "ROLE_"+role.getRole();
+            authorities[count] = "ROLE_" + role.getRole();
             count++;
         }
-        MongoUserDetails userDetails = new MongoUserDetails(user.getEmail(),user.getPassword(),user.getActive(),
-                user.isLocked(), user.isExpired(),user.isEnabled(),authorities);
-//        System.out.println("ffff\n\n\n\n\n");
-        System.out.println(userDetails);
+        MongoUserDetails userDetails = new MongoUserDetails(user.getEmail(), user.getPassword(), user.getActive(),
+                user.isLocked(), user.isExpired(), user.isEnabled(), authorities);
         return userDetails;
+    }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
+    //edit profile
+    public User editUserDetail(User modifiedUser, String email) {
+        User editedUser = getUserByEmail(email);
+        editedUser.setAddress(modifiedUser.getAddress());
+        editedUser.setCompanyName(modifiedUser.getCompanyName());
+        editedUser.setPhone(modifiedUser.getPhone());
+        editedUser.setBusinessLicense(modifiedUser.getBusinessLicense());
+        return userRepository.save(editedUser);
     }
 }

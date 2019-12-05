@@ -2,7 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { ProposalsListComponent } from 'src/app/dashboard/proposals-list/proposals-list.component';
+import { MatDialog } from '@angular/material';
+import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
+import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -13,30 +17,36 @@ export class NewProposalCardComponent implements OnInit {
 
   constructor(
     private proposalDataService: ProposalsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private dialog: MatDialog,
+    private router: Router,
     ) {
-      comms.getMessages().subscribe(msg => {
-        if (msg.dest === NewProposalCardComponent.messageKey || msg.dest === '@all') {
-          const data = msg.data;
 
-          if ('proposals' in data) {
-            this.proposals = data.proposals;
-            console.log(this.proposals);
-          }
-        }
-      });
     }
 
   public static messageKey = 'new-proposal-card-component';
 
-  @Input() productName: string;
-  @Input() price: number;
-  @Input() deliveryDate: Date;
-  @Input() quantity: number;
-
-  public proposals: Proposal[];
+  @Input() proposal: Proposal;
 
   ngOnInit() {
-    this.proposalDataService.getAllProposals(NewProposalCardComponent.messageKey, 'proposals');
+  }
+
+  sellersListDialog(proposal: Proposal) {
+    this.dialog.open(SellersListDialogComponent, { data: proposal});
+  }
+
+  openDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, {
+      width: '60%',
+      height: '60%',
+      data: proposal
+    });
+  }
+
+  delete(proposal: Proposal) {
+    console.log('delete function is getting called');
+    this.proposalDataService.deleteProposal(proposal.proposalId, NewProposalCardComponent.messageKey, 'form-delete');
+    this.router.navigate(['/dashboard']);
+    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }
 }

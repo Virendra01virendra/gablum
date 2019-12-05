@@ -11,9 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
@@ -55,7 +55,7 @@ public class ProposalService implements IProposalService {
 
     // get proposal by ID
     @Override
-    public Proposal getProposalById(UUID proposalId) {
+    public Proposal getProposalById(String proposalId) {
         return proposalRepo.findByProposalId(proposalId).orElse(null);
     }
 
@@ -65,19 +65,34 @@ public class ProposalService implements IProposalService {
         return proposalRepo.save(proposalToAdd);
     }
 
-    public void deleteProposalbyID(UUID proposalId) {
+    public void deleteProposalbyID(String proposalId) {
         proposalRepo.deleteByProposalId(proposalId);
     }
 
     // extend Proposal
-    public Proposal extendProposal(Proposal currentProposal, UUID proposalId) {
-        Proposal proposal = getProposalById(proposalId);
-        proposal.setRegEndDate(currentProposal.getRegEndDate());
-        proposal.setRegStartDate(currentProposal.getRegStartDate());
-        return proposalRepo.save(proposal);
+    public Proposal extendProposal(Proposal modifiedProposal, String proposalId) {
+        Proposal proposalToChange = getProposalById(proposalId);
+        proposalToChange.setRegStartDate(modifiedProposal.getRegStartDate());
+        proposalToChange.setRegEndDate(modifiedProposal.getRegEndDate());
+        return proposalRepo.save(proposalToChange);
     }
 
+    @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
         return proposalRepo.getAllProposalsByCreatedBy(email, getPageable(queryMap)).getContent();
+    }
+
+    @Override
+    public List<Proposal> getAllProposals(Map<String, String> queryMap) {
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThan(
+                getPageable(queryMap), new Date()
+        ).getContent();
+    }
+
+    public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
+        Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
+        updatedProposal.getInterestedUsersEmail().add(currentLoggedUserEmail);
+        updatedProposal.setInterested(updatedProposal.getInterestedUsersEmail().size());
+        return proposalRepo.save(updatedProposal);
     }
 }

@@ -1,7 +1,6 @@
 package com.gablum.auction.auctions;
 
 
-import com.gablum.auction.auctions.Auction;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +25,6 @@ public class AuctionRepoTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(UUID.randomUUID().toString());
-        testAuction2.setProposalId(UUID.randomUUID().toString());
     }
 
     @AfterEach

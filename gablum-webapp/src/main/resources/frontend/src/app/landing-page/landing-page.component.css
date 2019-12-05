@@ -17,3 +17,55 @@
     text-align: center;
     font-weight: lighter;
 }
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+
+.completer
+{
+    background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2));
+}
+.boxes
+{
+    height: calc(100vh-25px);
+     border-style: solid;
+}
+.box1
+{
+   text-align: center;
+   border: 1px solid black; 
+}
+.connect
+{
+    text-align: center;
+}
+
+.socialmediaicons
+{
+    text-align: center;
+    height: 60px;
+    margin-bottom: 30px;
+    /* background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2));*/
+}

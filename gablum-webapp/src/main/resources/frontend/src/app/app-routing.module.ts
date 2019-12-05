@@ -4,12 +4,15 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TimerComponent } from './scheduler/timer/timer.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
-
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
     canLoad: [AuthGuardService]
+  },
+  {
+    path: 'console',
+    loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
   },
   {
     path: 'history',
@@ -49,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: 'timer',
-    loadChildren: () => import('./scheduler/scheduler.module').then(m => m.SchedulerModule)
+    loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
   },
   {
     path: '',

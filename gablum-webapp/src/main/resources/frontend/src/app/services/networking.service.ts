@@ -4,13 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { pipe, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NetworkingService {
 
-  constructor(private comms: CommunicatorService, private http: HttpClient) { }
+  constructor(
+    private comms: CommunicatorService,
+    private http: HttpClient,
+    private logger: LoggerService) { }
 
   getData<T>(url: string, dest: string, key = 'inventory') {
     this.http.get<T>(url)
@@ -22,6 +26,9 @@ export class NetworkingService {
       )
       .subscribe(res => {
         this.comms.postMessage(this, dest, {[key]: res});
+      },
+      err => {
+        this.logger.log(err);
       });
   }
 
@@ -40,6 +47,9 @@ export class NetworkingService {
       )
       .subscribe(res => {
         this.comms.postMessage(this, dest, {[key]: res});
+      },
+      err => {
+        this.logger.log(err);
       });
   }
 
@@ -58,6 +68,28 @@ export class NetworkingService {
       )
       .subscribe(res => {
         this.comms.postMessage(this, dest, {[key]: res});
+      },
+      err => {
+        this.logger.log(err);
+      });
+  }
+  deleteData<T>(url: string, dest: string, key = 'inventory') {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
+    this.http.delete<T>(url, httpOptions)
+      .pipe(
+        retry(3),
+        catchError(err => {
+          return throwError(err);
+        })
+      )
+      .subscribe(res => {
+        this.comms.postMessage(this, dest, {[key]: res});
+      },
+      err => {
+        this.logger.log(err);
       });
   }
 }

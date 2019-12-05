@@ -7,6 +7,7 @@ import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoggerService } from '../services/logger.service';
+import { ProfileDataService } from '../services/profile-data.service';
 // import { MatError } from '@angular/material';
 
 @Component({
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     username : new FormControl('', Validators.compose([Validators.required,
       Validators.minLength(3)])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
+    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
     Validators.minLength(3)]))
   });
   constructor(
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginDataService,
     private comms: CommunicatorService,
     private logger: LoggerService,
-    private auth: AuthenticationService) {
+    private auth: AuthenticationService,
+    private profile: ProfileDataService) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
 
             } else {
               auth.setAuthenticated(true);
+              this.profile.getUserProfileByEmail('@all', 'profile');
               this.router.navigate(['/dashboard']);
             }
           }
@@ -59,19 +62,22 @@ export class LoginComponent implements OnInit {
   getErrorMessage1() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
         // this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('minlength') ? '*Minimum 8 characters' :
+        this.userName.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
 
   getErrorMessage2() {
     return this.password.hasError('required') ? '*You must enter a Password' :
         this.password.hasError('pattern') ? '*Not a valid Password' :
-        this.password.hasError('minlength') ? '*Minimum 8 characters' :
+        this.password.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
 
   onSubmit() {
     this.loginService.login(this.loginForm.value);
+  }
+  OnSignUp() {
+    this.router.navigate(['/register']);
   }
 
 }

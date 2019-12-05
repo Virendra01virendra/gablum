@@ -31,8 +31,8 @@ public class AuctionServiceTests {
 
     @BeforeEach
     public void setupEntities() {
-        testAuction1.setProposalId(UUID.randomUUID().toString());
-        testAuction2.setProposalId(UUID.randomUUID().toString());
+//        testAuction1.setProposalId(UUID.randomUUID());
+//        testAuction2.setProposalId(UUID.randomUUID());
     }
 
     @Test

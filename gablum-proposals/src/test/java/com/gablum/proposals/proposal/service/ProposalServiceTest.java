@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 @ExtendWith(SpringExtension.class)
 class ProposalServiceTest {
@@ -33,8 +31,8 @@ class ProposalServiceTest {
 
     @BeforeEach
     public void setUp() {
-        testProposal1.setProposalId(UUID.randomUUID());
-        testProposal2.setProposalId(UUID.randomUUID());
+        testProposal1.setProposalId(UUID.randomUUID().toString());
+        testProposal2.setProposalId(UUID.randomUUID().toString());
 
         //test Proposal1 details
         testProposal1.setRegStartDate(new Date(2019-06-12));
@@ -70,19 +68,7 @@ class ProposalServiceTest {
     void addProposals() {
         Mockito.when(proposalRepository.save(testProposal1)).thenReturn(testProposal1);
 
-        Assertions.assertEquals(testProposal1.getProposalId(), proposalService.addProposals(testProposal1).
-                getProposalId(), "the proposal is added");
+        Assertions.assertEquals(testProposal1.getProposalId(), proposalService.addProposals
+                (testProposal1).getProposalId(),"the proposal is added");
     }
-
-//    @Test
-//    void extendProposal() {
-//        Mockito.when(proposalRepository.save(testProposal1)).thenReturn(testProposal1);
-//        Assertions.assertEquals(testProposal1.getRegStartDate(), testProposal1);
-//    }
-//
-//    private Date dateAddition(Date dateToIncrement, int daysToBeAdded){
-//        Long x = daysToBeAdded*86400000L;
-//        Date newDate = new Date(dateToIncrement.getTime() + x);
-//        return newDate;
-//    }
 }

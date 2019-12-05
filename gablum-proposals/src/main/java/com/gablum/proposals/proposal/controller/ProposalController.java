@@ -7,12 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 public class ProposalController {
@@ -25,6 +23,7 @@ public class ProposalController {
 
     @PostMapping("/proposals")                                 // Add proposal details
     public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
+        //FIXME: ensure it is a buyer floating a proposal
         String email = userService.getEmail(request);
         proposalData.setCreatedBy(email);
         proposalData.setUpdatedBy(email);
@@ -35,7 +34,8 @@ public class ProposalController {
     }
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id
-    public Proposal getProposalById(@PathVariable("proposalId") UUID proposalId) {
+    public Proposal getProposalById(@PathVariable("proposalId") String proposalId) {
+        //FIXME: only seller can view another proposal
         return proposalService.getProposalById(proposalId);
     }
 
@@ -45,27 +45,37 @@ public class ProposalController {
         return proposalService.getAllProposals(queryMap, email);
     }
 
-//    @GetMapping("/proposals/{proposalId}")                    // Edit proposal details
-//    public Proposal editProposal(@PathVariable("proposalId") UUID proposalId) {
-//      Proposal proposal = proposalService.getProposalById(proposalId);
-//      return proposal;
-//    }
-
     @DeleteMapping("/proposals/{proposalId}")                                      //Delete Proposal
-    public void deleteProposalbyID(@PathVariable("proposalId") UUID proposalId) {
+    public void deleteProposalbyID(@PathVariable("proposalId") String proposalId) {
         proposalService.deleteProposalbyID(proposalId);
     }
 
     //Extending the proposal
     @PatchMapping("proposals/{proposalId}")
     public ResponseEntity<Proposal> extendedProposal (
-            @RequestBody Proposal currentProposal, @PathVariable("proposalId") UUID proposalId) {
+            @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") String proposalId) {
         Proposal proposal = proposalService.getProposalById(proposalId);
         if (proposal == null) {
             return new ResponseEntity<Proposal>(HttpStatus.NOT_FOUND);
         }
-        proposalService.extendProposal(currentProposal, proposalId);
-        return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
+        return new ResponseEntity<Proposal>(
+                proposalService.extendProposal(modifiedProposal, proposalId),
+                HttpStatus.OK
+        );
     }
 
+    @GetMapping("/proposals/browse")
+    public ResponseEntity<List<Proposal>> browseProposals(@RequestParam Map<String, String> queryMap) {
+        return new ResponseEntity<List<Proposal>>(
+                proposalService.getAllProposals(queryMap),
+                HttpStatus.OK
+        );
+    }
+
+    @PatchMapping("/proposals")
+    //FIXME: Duplicate enteries are possible
+    public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request ){
+        String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
+    }
 }
