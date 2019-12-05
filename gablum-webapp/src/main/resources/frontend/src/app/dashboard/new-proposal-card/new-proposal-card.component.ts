@@ -30,19 +30,26 @@ export class NewProposalCardComponent implements OnInit {
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    private loggger: LoggerService
-    ) {
+    private logger: LoggerService
+  ) {
 
-    }
+  }
 
-
+  alreadyRegistered = false;
   @Input() proposal: Proposal;
 
   ngOnInit() {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal});
+    this.dialog.open(SellersListDialogComponent, { data: proposal });
+  }
+
+  shownInterest(proposal: Proposal) {
+    // const proposalId = element.proposalId;
+    this.logger.log('some data which we are publishing ');
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
   }
 
   openDialog(proposal: Proposal) {

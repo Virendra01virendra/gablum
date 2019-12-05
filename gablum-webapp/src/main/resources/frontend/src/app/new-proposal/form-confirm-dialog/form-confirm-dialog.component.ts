@@ -49,6 +49,7 @@ export class FormConfirmDialogComponent implements OnInit {
     auctionEndDate: data.form3.value.auctionEndDate
     };
     const proposalJSON = JSON.parse(JSON.stringify(proposalFormDetails));
-    this.proposalService.saveProposal(FormConfirmDialogComponent.messageKey, proposalJSON, 'form-confirm');
+    this.proposalService.saveProposal(
+      FormConfirmDialogComponent.messageKey, proposalJSON, 'form-confirm');
   }
 }

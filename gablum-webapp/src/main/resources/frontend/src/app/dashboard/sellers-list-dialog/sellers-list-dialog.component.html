@@ -1,14 +1,14 @@
-<h1 mat-dialog-title>{{data.productName}}</h1>
+<h1 mat-dialog-title>Interested sellers</h1>
 <div mat-dialog-content>
   
 
     <mat-list role="list">
-        <mat-list-item role="listitem">
-            <div>Seller 1</div>
-            <button mat-raised-button color="primary">Invite</button>
+        <mat-list-item role="listitem" *ngFor="let seller of data.interestedUsersEmail">
+          {{seller}}
+            <button mat-raised-button color="primary" (click)="onClick()">Invite</button>
         </mat-list-item>
-        <mat-list-item role="listitem">seller 2</mat-list-item>
-        <mat-list-item role="listitem">seller 3</mat-list-item>
+      
+  
       </mat-list>
 
 </div>

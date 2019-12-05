@@ -43,4 +43,7 @@ export class ProposalsDataService {
          }
        );
     }
+// extendProposal(dest, data, key) {
+//   this.networking.patchData<Proposal>(this.proposalsUrl)
+// }
 }
