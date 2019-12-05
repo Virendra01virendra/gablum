@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuctionCardComponent } from '../auction-card/auction-card.component';
 import { ButtonComponent } from '../../console/button/button.component';
 import { WindowComponent } from '../../console/window/window.component';
+import { ActivatedRoute } from '@angular/router';
 
 
 describe('BidFormComponent', () => {
@@ -22,7 +23,8 @@ describe('BidFormComponent', () => {
       imports: [ReactiveFormsModule, MaterialModule, HttpClientModule, BrowserAnimationsModule, NoopAnimationsModule],
       providers: [
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        ActivatedRoute
       ]
     })
     .compileComponents();

@@ -57,6 +57,7 @@ public class AuctionService implements IAuctionService{
 
     public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
         return auctionRepo.findAllByInterestedUsersEmailContaining(getPageable(queryMap), email).getContent();
+    }
     @Override
     public Auction startAuction(String auctionId, String uniqueLink) {
         Auction auctionToStart = auctionRepo.findByAuctionId(auctionId).orElse(null);

@@ -30,5 +30,5 @@ export interface Proposal {
     thresholdParticipants: number;
     views: number;
     interested: number;
-    interestedUsersEmail: [];
+    interestedUsersEmail: string[];
 }
