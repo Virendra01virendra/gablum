@@ -15,18 +15,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 public class Proposal {
-    private UUID proposalId=UUID.randomUUID();
+    private String _id;
+    private String proposalId = UUID.randomUUID().toString();
     private UUID productId;
     private String createdBy;
     private String updatedBy;
     private String businessDomain;
     private String businessSubDomain;
     private String productName;
-    private int quantity;
-    private Float price;
+    private int quantityValue;
+    private String quantityUnit;
+    private float price;
     private String deliveryDate;
     private int creditPeriod;
-    private boolean qualityCertificate;
+    private boolean qualityCertification;
     private boolean methodOfSupply;
     private Date regStartDate;
     private Date regEndDate;
@@ -38,11 +40,9 @@ public class Proposal {
     private int views;
     private int interested;
     private List<String> interestedUsersEmail = new ArrayList<>();
-    private int weightPrice;
-    private int weightCreditPeriod;
-    private int weightTimeOfDelivery;
-    private int weightTypeOfDelivery;
-    private int weightQaqcCertificate;
-
-
+    private int priceWeight;
+    private int creditPeriodWeight;
+    private int deliveryDateWeight;
+    private int methodOfSupplyWeight;
+    private int qualityCertificationWeight;
 }

@@ -41,13 +41,13 @@ public class BidService implements IBidService {
         float pricespec = auction.getProposal().getPrice();
         Date timeOfDeliverySpec = d1;
         int creditPeriodSpec = auction.getProposal().getCreditPeriod();
-        boolean qaqcCertificateSpec = auction.getProposal().isQualityCertificate();
+        boolean qaqcCertificateSpec = auction.getProposal().isQualityCertification();
         boolean typeOfSupplySpec = auction.getProposal().isMethodOfSupply();
-        int weightPrice = auction.getProposal().getWeightPrice();
-        int weightTimeOfDelivery = auction.getProposal().getWeightTimeOfDelivery();
-        int weightCreditPeriod = auction.getProposal().getWeightCreditPeriod();
-        int weightQaqc = auction.getProposal().getWeightQaqcCertificate();
-        int weightTypeOfSupply = auction.getProposal().getWeightTypeOfDelivery();
+        int weightPrice = auction.getProposal().getPriceWeight();
+        int weightTimeOfDelivery = auction.getProposal().getDeliveryDateWeight();
+        int weightCreditPeriod = auction.getProposal().getCreditPeriodWeight();
+        int weightQaqc = auction.getProposal().getQualityCertificationWeight();
+        int weightTypeOfSupply = auction.getProposal().getMethodOfSupplyWeight();
 
         return score(bid.getPrice(), bid.getTimeOfDelivery(), bid.getCreditPeriod(),
                 bid.isQaqcCertificate(),

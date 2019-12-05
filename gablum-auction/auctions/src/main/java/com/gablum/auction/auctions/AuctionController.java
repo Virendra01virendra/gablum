@@ -83,15 +83,15 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid/score")
-    public String getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
-        String message1 = "Bid score is " + bidService.getBidScore(bid, id);
-
-        return message1;
+    public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(bidService.getBidScore(bid, id));
+        return scoreObject;
     }
 
 
     @PostMapping("auctions/{id}/bid")
-    public String addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         float scorecnt = bidService.getBidScore(bid, id);
@@ -103,15 +103,15 @@ public class AuctionController {
 
         bidService.addBid(bidDataEntity);
 
-        String message2 = "Bid is stored, and score is " + scorecnt;
-
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bid, InetAddress.getLocalHost().getHostAddress())
         ).build();
 
         messageChannel.send(message);
 
-        return message2;
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(scorecnt);
+        return scoreObject;
     }
 
 }

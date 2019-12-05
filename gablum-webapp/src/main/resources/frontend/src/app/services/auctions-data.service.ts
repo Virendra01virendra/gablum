@@ -34,8 +34,12 @@ export class AuctionsDataService {
     }
 
     saveBid(dest, data, key, auctionId) {
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid/score';
+      this.networking.postData(this.bidUrl, dest, data, key);
+    }
+
+    getScore(dest, data, key, auctionId) {
       this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
-      console.log('biiiiddddd', this.bidUrl);
       this.networking.postData(this.bidUrl, dest, data, key);
     }
 }

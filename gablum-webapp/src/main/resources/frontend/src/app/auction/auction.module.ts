@@ -9,10 +9,11 @@ import { BidDialogComponent } from './bid-form/bid-dialog/bid-dialog.component';
 // import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 // import {FlexL  ayoutModule} from '@angular/flex-layout';
 import { ConsoleModule } from '../console/console.module';
+import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-dialog.component';
 
 
 @NgModule({
-  declarations: [BidFormComponent, AuctionCardComponent, BidDialogComponent],
+  declarations: [BidFormComponent, AuctionCardComponent, BidDialogComponent, BidResponseDialogComponent],
   imports: [
     CommonModule,
     AuctionRoutingModule,
