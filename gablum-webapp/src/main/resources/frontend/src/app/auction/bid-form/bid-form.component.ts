@@ -25,7 +25,7 @@ export class BidFormComponent implements OnInit {
   result1;
   result2;
   result3;
-  auctionId: String;
+  auctionId: string;
   auctionDataService: AuctionsDataService;
 
   constructor(
@@ -39,9 +39,8 @@ export class BidFormComponent implements OnInit {
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
-        console.log("aucuccuctioniiidd ---------->", this.auctionId);
+        console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
-      
 
     this.ws.connect(message => this.subscribe());
 
@@ -75,7 +74,7 @@ export class BidFormComponent implements OnInit {
     //   console.log('response ::', response);
     // });
 
-    //this.ws.sendBid(bid);
+    // this.ws.sendBid(bid);
 
     this.http.post('http://localhost:8080/api/auctions/auctions' + this.auctionId + '/bid', bid, httpOptions);
 
@@ -131,8 +130,6 @@ export class BidFormComponent implements OnInit {
         }
       });
 
-
-      
 
   }
 

@@ -1,12 +1,10 @@
 package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +65,6 @@ public class AuctionController {
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd, HttpServletRequest request) {
         int i = 0;
         String email = userService.getEmail(request);
-        Auction a;
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
             i = i+1;
