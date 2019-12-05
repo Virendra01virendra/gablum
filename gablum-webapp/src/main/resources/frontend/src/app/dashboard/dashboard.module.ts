@@ -10,16 +10,11 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { ConsoleModule } from '../console/console.module';
-import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
 import { AuctionModule } from '../auction/auction.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
-<<<<<<< HEAD
 import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-=======
-// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
->>>>>>> bfb0073ded1af606262884c03fb4d42a67a0de13
 
 @NgModule({
   declarations: [
