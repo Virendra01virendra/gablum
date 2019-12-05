@@ -51,7 +51,8 @@ class SchedulerServiceTest {
     }
 
     @Test
-    public void saveSchedulerDetail() {
+    public void saveSchedulerDetail() throws Exception {
+        Assertions.assertEquals(schedulerService.saveSchedulerDetail(new TimerModel("c","a",new Date(2019-12-3), new Date(2019-12-4))),null);
         Assertions.assertEquals(timerModel.getJobId(),"a");
     }
 }

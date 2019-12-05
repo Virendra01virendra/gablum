@@ -3,16 +3,17 @@ package com.gablum.scheduler.proposalschedule.Service;
 import com.gablum.scheduler.proposalschedule.Scheduler.QuartzScheduling.QuartzJobConfig;
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Repository.SchedulerRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SchedulerService {
+
+    @Autowired
     SchedulerRepo schedulerRepo;
-// TimerJob timerJob = new TimerJob("Auction Start Event");
-//    @Autowired
-    QuartzJobConfig quartzJobConfig = new QuartzJobConfig();
+        QuartzJobConfig quartzJobConfig = new QuartzJobConfig();
 
 
     public TimerModel findTimerDetailsByAuctionId(String id){
@@ -24,7 +25,7 @@ public class SchedulerService {
     }
 
     public TimerModel saveSchedulerDetail(TimerModel timerModelToBeSaved) throws Exception{
-//        quartzJobConfig.executeTimer();
+        quartzJobConfig.executeTimer();
         return schedulerRepo.save(timerModelToBeSaved);
     }
 
