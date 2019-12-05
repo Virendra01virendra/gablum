@@ -78,4 +78,13 @@ public class ProposalController {
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
     }
+
+    @GetMapping("/proposals/browse/{businessSubDomain}")
+    public ResponseEntity<List<Proposal>> getProposalsBySubDomain(@RequestParam Map<String, String> queryMap, @PathVariable("businessSubDomain") String businessSubDomain ) {
+        return new ResponseEntity<List<Proposal>>(
+                proposalService.getAllProposalsByBusinessSubDomain(queryMap, businessSubDomain),
+                HttpStatus.OK
+        );
+    }
+
 }
