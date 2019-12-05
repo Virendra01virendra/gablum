@@ -57,10 +57,9 @@ export class NewProposalCardComponent implements OnInit {
       data: proposal
     });
   }
-<<<<<<< HEAD
   extendDialog(proposal: Proposal) {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
-=======
+  }
   startAuction(proposal1: Proposal) {
     const auction = {
       auctionName: proposal1.productName,
@@ -75,7 +74,6 @@ export class NewProposalCardComponent implements OnInit {
 
     this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
 
->>>>>>> bfb0073ded1af606262884c03fb4d42a67a0de13
   }
 
   delete(proposal: Proposal) {
