@@ -13,7 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 public class QuartzJobConfig {
     @Autowired
     TimerModel timerModel;
-    private int i = 0;
     private String cronSchedule = "0 0/1 * 1/1 * ? *";
 
     JobKey renewableJobKey = JobKey.jobKey("job"+timerModel.getJobId() ,"my-auction"+timerModel.getJobId());

@@ -1,8 +1,6 @@
 package com.gablum.scheduler.proposalschedule.Scheduler.Task;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.support.CronSequenceGenerator;
 
 import java.util.Date;
 import java.util.TimerTask;
