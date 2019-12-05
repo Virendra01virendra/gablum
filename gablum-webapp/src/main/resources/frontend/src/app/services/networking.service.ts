@@ -78,18 +78,18 @@ export class NetworkingService {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })};
-    this.http.delete<T>(url, httpOptions)
+    return this.http.delete<T>(url, httpOptions)
       .pipe(
         retry(3),
         catchError(err => {
           return throwError(err);
         })
-      )
-      .subscribe(res => {
-        this.comms.postMessage(this, dest, {[key]: res});
-      },
-      err => {
-        this.logger.log(err);
-      });
+      );
+      // .subscribe(res => {
+      //   this.comms.postMessage(this, dest, {[key]: res});
+      // },
+      // err => {
+      //   this.logger.log(err);
+      // });
   }
 }
