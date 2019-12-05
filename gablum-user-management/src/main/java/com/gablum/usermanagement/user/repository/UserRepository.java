@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends MongoRepository<User,String> {
     User findUserByEmail(String email);
+
+    long count();
+    long countByIsLocked(boolean locked);
+    long countByIsEnabled(boolean enabled);
 }

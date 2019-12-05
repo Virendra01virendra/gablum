@@ -8,7 +8,7 @@
             <mat-card-content>
                 <mat-form-field class="fullWidth" appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input  matInput formControlName="username" required/>
+                    <input  matInput formControlName="username" required type="email"/>
                     <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
                 </mat-form-field>
         
