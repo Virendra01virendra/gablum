@@ -41,7 +41,7 @@ public class AuctionListener {
         auctionService.startAuction(auctionId, link);
     }
 
-    @StreamListener
+    @StreamListener("newBid")
     public void newBid(BidMessage message) {
         if (!message.getInstanceId().equals(instanceId)) {
             log.info("adding bids");
