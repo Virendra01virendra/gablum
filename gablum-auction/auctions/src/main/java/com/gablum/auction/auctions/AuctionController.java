@@ -91,7 +91,7 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid")
-    public String addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         float scorecnt = bidService.getBidScore(bid, id);
@@ -111,7 +111,9 @@ public class AuctionController {
 
         messageChannel.send(message);
 
-        return message2;
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(scorecnt);
+        return scoreObject;
     }
 
 }

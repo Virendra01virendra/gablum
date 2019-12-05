@@ -30,6 +30,9 @@ export class BidFormComponent implements OnInit {
   result3;
   auctionId: string;
   auction;
+  scoreObject: {
+    score: number;
+  }
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
@@ -45,6 +48,12 @@ export class BidFormComponent implements OnInit {
           if ('auctionSingle' in data) {
               this.auction = data.auctionSingle;
               this.logger.log(this.auction);
+          }
+
+          if ('saveBids' in data) {
+            console.log('insde key data -->', data);
+            this.scoreObject = data.saveBids;
+            console.log('bid stored and score is', this.scoreObject.score);
           }
 
         }
@@ -97,7 +106,7 @@ export class BidFormComponent implements OnInit {
     // this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
     // .subscribe(Response => {console.log(Response); });
 
-    this.auctionDataService.saveBid(BidFormComponent.messageKey, bid, 'save-bid', this.auctionId);
+    this.auctionDataService.saveBid(BidFormComponent.messageKey, bid, 'saveBids', this.auctionId);
 
 
   }
