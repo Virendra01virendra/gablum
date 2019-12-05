@@ -38,7 +38,7 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
 
 
 
-  <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)"
+  <mat-icon matBadge={{proposal.interested}} matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)"
     class="material-icons" matTooltip="Interested Sellers">
     list
   </mat-icon>

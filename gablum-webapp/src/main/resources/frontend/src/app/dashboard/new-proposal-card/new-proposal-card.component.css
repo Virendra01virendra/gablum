@@ -1,6 +1,6 @@
 .proposal-card {
   background-image: url("../../../assets/Images/agri_crop.jpg") ;
-  background-position: center; /* Center the image */
+  background-position: 130px 110px; /* Center the image */
   background-repeat: no-repeat;
   background-size: 30%;
   
