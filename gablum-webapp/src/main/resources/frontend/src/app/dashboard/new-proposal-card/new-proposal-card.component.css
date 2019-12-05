@@ -1,7 +1,9 @@
 .proposal-card {
-  background-image: url("../../../assets/Images/wheat.png");
+  background-image: url("../../../assets/Images/wheat.png") ;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
   background-size: 20%;
-  opacity: 0.4;
+  
     /* margin:1%;
     padding: 1%;
     max-width: 450px; */
@@ -18,4 +20,5 @@
    color: antiquewhite;
    text-align: center; 
 }
+
   
