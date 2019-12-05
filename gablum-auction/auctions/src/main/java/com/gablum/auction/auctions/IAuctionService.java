@@ -11,4 +11,6 @@ public interface IAuctionService {
 
     List<Auction> addAuctions(List<Auction> auctionToAdd);
 
+    Auction startAuction(String auctionId, String uniqueLink);
+
 }

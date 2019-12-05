@@ -183,14 +183,14 @@ services:
     ports:
       - '27017:27017'
 
-  # rabbitmq:
-  #   image: rabbitmq:management
-  #   restart: always
-  #   ports:
-  #     - "5672:5672"
-  #     - "15672:15672"
-  #   volumes:
-  #     - $HOME/rabbitmq_data/gablumMQ:/data/db
-  #   environment:
-  #     RABBITMQ_DEFAULT_USER: "gablum"
-  #     RABBITMQ_DEFAULT_PASS: "GaB1uM"
+  rabbitmq:
+    image: rabbitmq:management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - $HOME/rabbitmq_data/gablumMQ:/data/db
+    environment:
+      RABBITMQ_DEFAULT_USER: "gablum"
+      RABBITMQ_DEFAULT_PASS: "GaB1uM"
