@@ -11,6 +11,7 @@ export class AuctionsDataService {
 
   public auctionsUrl: string;
   bidUrl;
+  auctionUrlForSingle;
 
   constructor(
     private comms: CommunicatorService,
@@ -21,6 +22,11 @@ export class AuctionsDataService {
 
     getAllAuctions(dest, key) {
       this.networking.getData<Auction>(this.auctionsUrl, dest, key);
+    }
+
+    getAuctionById(dest, key, auctionId) {
+      this.auctionUrlForSingle = this.auctionsUrl + '/' + auctionId;
+      this.networking.getData<Auction>(this.auctionUrlForSingle, dest, key);
     }
 
     saveAuction(dest, data, key) {

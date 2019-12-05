@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -26,14 +27,28 @@ export class BidFormComponent implements OnInit {
   result2;
   result3;
   auctionId: string;
+  auction;
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private auctionDataService: AuctionsDataService
-    ) { }
+    private auctionDataService: AuctionsDataService,
+    private comms: CommunicatorService
+    ) {
+      comms.getMessages().subscribe(msg => {
+        if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
+          const data = msg.data;
+          if ('auctionSingle' in data){
+              this.auction = data.auctionSingle;
+              this.logger.log(this.auction);
+          }
+
+        }
+      });
+
+    }
   ngOnInit() {
     this.route.paramMap
       .subscribe((params: Params) => {
@@ -54,6 +69,8 @@ export class BidFormComponent implements OnInit {
       newTypeOfDelivery: new FormControl('false'),
       newTimeOfDelivery: new FormControl(''),
       });
+
+    this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
 
   }
 
