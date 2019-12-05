@@ -8,7 +8,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { LoginToken } from 'src/app/interfaces/login-token';
 import { Router } from '@angular/router';
 import { LoginDataService } from 'src/app/services/login-data.service';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -27,7 +27,8 @@ export class NavbarComponent implements OnInit {
     private profile: ProfileDataService,
     private logger: LoggerService,
     private router: Router,
-    private login: LoginDataService
+    private login: LoginDataService,
+    public dialog: MatDialog
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     this.comms.getMessages().subscribe( message => {
@@ -64,5 +65,4 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.login.logout();
   }
-
 }

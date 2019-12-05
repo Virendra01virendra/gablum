@@ -14,6 +14,7 @@ import { AuctionCardComponent } from '../auction/auction-card/auction-card.compo
 import { AuctionModule } from '../auction/auction.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
+// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     GuestProposalListComponent
+    // AuctionCardDialogComponent
   ],
   imports: [
     CommonModule,
