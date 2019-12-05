@@ -1,8 +1,8 @@
 package com.gablum.usermanagement.user.services;
 
 import com.gablum.usermanagement.user.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailService {
 
-    @Autowired
     private JavaMailSender javaMailSender;
 
     SimpleMailMessage msg = new SimpleMailMessage();

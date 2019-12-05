@@ -4,7 +4,7 @@ import com.gablum.usermanagement.user.model.NavLink;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.security.JwtTokenProvider;
 import com.gablum.usermanagement.user.security.UserService;
-import com.gablum.usermanagement.user.services.MailService;
+//import com.gablum.usermanagement.user.services.MailService;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -30,8 +30,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private MailService mailService;
+//    @Autowired
+//    private MailService mailService;
 
     private Claims tokenClaims;
 
