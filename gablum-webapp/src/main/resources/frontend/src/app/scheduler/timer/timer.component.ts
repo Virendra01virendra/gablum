@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { EventEmitter } from 'events';
 import { Observable, Subscription, timer, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { LoggerService } from 'src/app/services/logger.service';
   styleUrls: ['./timer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnInit, OnDestroy {
 
   @Input()
   timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
@@ -42,6 +42,9 @@ export class TimerComponent implements OnInit {
     this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
     this.start();
   }
+  ngOnDestroy() {
+    this.stop();
+  }
     public start() {
     const t: Observable<number> = interval(1000);
     this.currentSubscription = t.pipe(map(v => this.timerEventTime - v)).subscribe(v => {
@@ -57,10 +60,7 @@ export class TimerComponent implements OnInit {
     this.changeDetector.detectChanges();
   });
   }
-  public stop() {
-    this.currentSubscription.unsubscribe();
-    this.counterState.emit('ABORTED');
-  }
+
 
   private day(t: number) {
     return Math.floor(t / (1000 * 60 * 60 * 24));
@@ -73,6 +73,10 @@ export class TimerComponent implements OnInit {
   }
   private second(t: number) {
     return Math.floor(((t % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) % (1000 * 60) / (1000)) ;
+  }
+  public stop() {
+    this.currentSubscription.unsubscribe();
+    this.counterState.emit('ABORTED');
   }
 
 
@@ -94,5 +98,6 @@ export class TimerComponent implements OnInit {
       this.endedMsg = 'Event has ended';
     }
   }
+
 
 }
