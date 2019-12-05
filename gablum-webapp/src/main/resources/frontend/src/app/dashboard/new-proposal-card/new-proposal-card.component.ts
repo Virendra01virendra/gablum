@@ -9,6 +9,7 @@ import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-ca
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
 import { Router } from '@angular/router';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -23,19 +24,27 @@ export class NewProposalCardComponent implements OnInit {
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    ) {
+    private logger: LoggerService
+  ) {
 
-    }
+  }
 
   public static messageKey = 'new-proposal-card-component';
-
+  alreadyRegistered = false;
   @Input() proposal: Proposal;
 
   ngOnInit() {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal});
+    this.dialog.open(SellersListDialogComponent, { data: proposal });
+  }
+
+  shownInterest(proposal: Proposal) {
+    // const proposalId = element.proposalId;
+    this.logger.log('some data which we are publishing ');
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
   }
 
   openDialog(proposal: Proposal) {
