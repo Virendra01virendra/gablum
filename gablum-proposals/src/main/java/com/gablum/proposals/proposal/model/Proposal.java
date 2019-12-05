@@ -49,7 +49,6 @@ public class Proposal {
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
 
-
     //Empty constructor
     public Proposal() {
     }

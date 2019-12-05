@@ -38,44 +38,11 @@ export class DashboardComponent implements OnInit {
 
   public bids: NewBid[] = [];
   data;
-  url = 'http://localhost:8080/auctions/auctions';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
     })
   };
-  // public testBid: NewBid = {
-  //   seller: {
-  //     name: 'A glorious seller',
-  //     company: 'Company ye',
-  //     rating: 4.4,
-  //     username: 'aGloriousSeller',
-  //     profileUrl: 'https://picsum.photos/400/400'
-  //   },
-  //   price: 100,
-  //   unitPrice: 12.5,
-  //   rank: 2,
-  //   scores: [
-  //     {
-  //       scoreIdentifier: 'abc',
-  //       scoreName: 'def',
-  //       scoreCalculated: 12,
-  //       scoreWeight: 2,
-  //       scoreRawValue: 6
-  //     },
-  //     {
-  //       scoreIdentifier: 'khi',
-  //       scoreName: 'kli',
-  //       scoreCalculated: 15,
-  //       scoreWeight: 3,
-  //       scoreRawValue: 5
-  //     }
-  //   ],
-  //   totalScore: 17,
-  //   certifications: ['CE'],
-  //   creditPeriodInDays: 30,
-  //   estimatedDispatchDate: new Date()
-  // };
 
   constructor(
     public dialog: MatDialog,
@@ -96,21 +63,29 @@ export class DashboardComponent implements OnInit {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
           this.dashboardSections[1].data = this.proposals;
-
         }
-        if ('authChanged' in data) {
+
+        if ('auctions' in data) {
+          this.auctions = data.auctions;
+          this.logger.log(this.auctions);
+          this.dashboardSections[0].data = this.auctions;
+          if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
           this.logger.log(auth.getProfileData());
           this.isBuyer = auth.isBuyer();
           this.isSeller = auth.isSeller();
         }
       }
-    });
-  }
+    }
+  });
+}
 
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
+    this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
+    // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
+
     this.isLoggedIn = this.auth.getAuthenticated();
     this.logger.log(this.auth.getProfileData());
     this.isBuyer = this.auth.isBuyer();
@@ -151,16 +126,13 @@ export class DashboardComponent implements OnInit {
     const auction = {
       auctionName: proposal1.productName,
       proposal: proposal1,
-      isAuctionActive: true
+      isAuctionActive: true,
+      interestedUsersEmail: proposal1.interestedUsersEmail,
     };
     const auctionList = [];
     auctionList.push(auction);
 
     this.data = JSON.parse(JSON.stringify(auctionList));
-
-  //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
-  //   console.log('response ::', response);
-  // });
 
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
