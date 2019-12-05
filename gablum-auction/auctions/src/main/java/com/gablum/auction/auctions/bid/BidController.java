@@ -3,17 +3,17 @@ package com.gablum.auction.auctions.bid;
 //import com.fasterxml.jackson.core.JsonProcessingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.gablum.auction.auctions.BidService;
+//import com.gablum.auction.auctions.BidService;
 //import com.gablum.auction.auctions.Bid;
-import com.gablum.auction.auctions.AuctionService;
+//import com.gablum.auction.auctions.AuctionService;
 //import com.gablum.auction.auctions.Auction;
 //import com.gablum.auction.auctions.BidDataEntity;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.messaging.handler.annotation.MessageMapping;
 //import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.stereotype.Controller;
+//import org.springframework.messaging.simp.SimpMessageSendingOperations;
+//import org.springframework.stereotype.Controller;
 
 //import java.text.DateFormat;
 //import java.text.ParseException;
@@ -23,18 +23,18 @@ import org.springframework.stereotype.Controller;
 //
 //import static com.gablum.auction.auctions.BidEvaluation.score;
 
-@Slf4j
-@Controller
-public class BidController {
-
-    @Autowired
-    private SimpMessageSendingOperations messageSendingOperations;
-
-    @Autowired
-    private BidService bidService;
-
-    @Autowired
-    private AuctionService auctionService;
+//@Slf4j
+//@Controller
+//public class BidController {
+//
+//    @Autowired
+//    private SimpMessageSendingOperations messageSendingOperations;
+//
+//    @Autowired
+//    private BidService bidService;
+//
+//    @Autowired
+//    private AuctionService auctionService;
 
 
     // Getting score
@@ -153,4 +153,4 @@ public class BidController {
 //
 //
 //
-}
+//}
