@@ -5,6 +5,8 @@ import { WindowComponent } from './window/window.component';
 import { ConsoleRoutingModule } from './console-routing.module';
 import { PortalModule } from '@angular/cdk/portal';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [ButtonComponent, WindowComponent],
@@ -13,6 +15,10 @@ import { MatTableModule } from '@angular/material/table';
     ConsoleRoutingModule,
     PortalModule,
     MatTableModule,
+    MatButtonModule
+  ],
+  exports: [ButtonComponent,
+    WindowComponent
   ]
 })
 export class ConsoleModule { }
