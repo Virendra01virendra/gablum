@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -44,6 +45,7 @@ public class User {
     private boolean isExpired=false;
     private boolean isEnabled=true;
 
+    private Date createdOn;
 
     public boolean isLocked() {
         return isLocked;

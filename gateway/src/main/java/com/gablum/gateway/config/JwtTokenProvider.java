@@ -54,7 +54,7 @@ public class JwtTokenProvider {
                 .setExpiration(validity)//
                 .signWith(SignatureAlgorithm.HS256, secretKey)//
                 .compact();
-        jwtTokenRepository.save(new JwtToken(token));
+        //jwtTokenRepository.save(new JwtToken(token));
         return token;
     }
 
@@ -85,7 +85,8 @@ public class JwtTokenProvider {
         return true;
     }
     public boolean isTokenPresentInDB (String token) {
-        return jwtTokenRepository.findById(token).isPresent();
+        return true;
+        //        return jwtTokenRepository.findById(token).isPresent();
     }
     //user details with out database hit
     public UserDetails getUserDetails(String token) {

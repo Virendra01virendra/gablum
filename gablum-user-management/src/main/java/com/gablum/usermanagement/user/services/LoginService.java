@@ -61,7 +61,7 @@ public class LoginService implements ILoginService {
 
     @Override
     public boolean logout(String token) {
-        jwtTokenRepository.delete(new JwtToken(token));
+        //jwtTokenRepository.delete(new JwtToken(token));
         return true;
     }
 

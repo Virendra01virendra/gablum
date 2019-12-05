@@ -24,8 +24,7 @@ public class TopicSubscriptionInterceptor implements ChannelInterceptor {
 //    @Autowired
 //    private AuctionService auctionService;
 
-    @Value("${spring.security.secret}")
-    private String secretKey;
+    private String secretKey = "super-secret";
 
     private final String AUTH = "auth";
 

@@ -1,7 +1,7 @@
 package com.gablum.usermanagement.user.controller;
 
 
-import com.gablum.usermanagement.user.model.Counts;
+import com.gablum.usermanagement.user.model.UserCounts;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +18,7 @@ public class AdminController {
     private UserManagementService managementService;
 
     @GetMapping("/count")
-    public Counts getUserCounts(HttpServletRequest request) {
-        Counts userCount = new Counts();
-        userCount.setCount(managementService.getUserCount());
-        return userCount;
+    public UserCounts getUserCounts(HttpServletRequest request) {
+        return managementService.getUserCount();
     }
 }

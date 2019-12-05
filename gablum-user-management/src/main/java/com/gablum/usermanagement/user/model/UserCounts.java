@@ -9,6 +9,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Counts {
-    long count;
+public class UserCounts {
+    long active;
+    long locked;
+    long disabled;
 }
