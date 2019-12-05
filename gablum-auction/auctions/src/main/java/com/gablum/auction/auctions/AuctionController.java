@@ -103,8 +103,6 @@ public class AuctionController {
 
         bidService.addBid(bidDataEntity);
 
-        String message2 = "Bid is stored, and score is " + scorecnt;
-
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bid, InetAddress.getLocalHost().getHostAddress())
         ).build();

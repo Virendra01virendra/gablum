@@ -32,7 +32,7 @@ export class BidFormComponent implements OnInit {
   auction;
   scoreObject: {
     score: number;
-  }
+  };
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
