@@ -5,13 +5,13 @@
             <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
                     <mat-form-field>
                       <mat-label class="form-label">Registration Start date:</mat-label>
-                      <input matInput [matDatepickerFilter]="RegStartDateFilter" value="data.regStartDate" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate">
+                      <input matInput [matDatepickerFilter]="RegStartDateFilter" [matDatepicker]="picker2" placeholder="Start date" formControlName="regStartDate">
                       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                       <mat-datepicker #picker2 disabled="false"></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field>
                       <mat-label class="form-label">Registration End date:</mat-label>
-                      <input matInput [matDatepickerFilter]="RegEndDateFilter" value="data.regEndDate" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate">
+                      <input matInput [matDatepickerFilter]="RegEndDateFilter" [matDatepicker]="picker3" placeholder="End date" formControlName="regEndDate">
                       <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                       <mat-datepicker #picker3 disabled="false"></mat-datepicker>
                     </mat-form-field>

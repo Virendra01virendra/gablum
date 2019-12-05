@@ -43,7 +43,7 @@ export class NewProposalCardComponent implements OnInit {
       data: proposal
     });
   }
-  extendProposal(proposal: Proposal) {
+  extendDialog(proposal: Proposal) {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
   }
 
