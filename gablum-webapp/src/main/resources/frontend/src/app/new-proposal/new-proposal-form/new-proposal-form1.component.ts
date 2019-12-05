@@ -32,18 +32,17 @@ export class NewProposalForm1Component implements OnInit {
   productSpecsForm = new FormGroup({
     businessDomain: new FormControl(''),
     businessSubDomain: new FormControl('', [Validators.required]),
-    productName: new FormControl('', [Validators.required, Validators.pattern('^[0-9a-zA-Z]*$ '), Validators.minLength(3),
-    Validators.maxLength(25)]),
-    quantityValue: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
+    productName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(40)])),
+    quantityValue: new FormControl('', [Validators.required, Validators.min(1)]),
     quantityUnit: new FormControl('')
   });
 
   paramForm = new FormGroup({
-    price: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1), Validators.minLength(2)]),
+    price: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.maxLength(10)])),
     priceWeight: new FormControl(''),
     deliveryDate: new FormControl({ value: '' }, Validators.required),
     deliveryDateWeight: new FormControl(''),
-    creditPeriod: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.min(1)]),
+    creditPeriod: new FormControl('', [Validators.required, Validators.min(1)]),
     creditPeriodWeight: new FormControl(''),
     qualityCertification: new FormControl('', [Validators.required]),
     qualityCertificationWeight: new FormControl(''),
@@ -78,11 +77,6 @@ export class NewProposalForm1Component implements OnInit {
       });
   }
 
-  // myFilter1 = (d: Date): boolean => {
-  //   // Prevent dates before auction start date
-  //   return d > this.timeForm.value.auctionStartDate ;
-  // }
-
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
     return d < this.paramForm.value.deliveryDate;
@@ -95,12 +89,50 @@ export class NewProposalForm1Component implements OnInit {
   }
   AuctionStartDateFilter = (d: Date): boolean => {
     // Prevent dates before registration end date
-    return d > this.timeForm.value.regEndDate;
+    return d > this.timeForm.value.regEndDate && d < this.paramForm.value.deliveryDate;
   }
   AuctionEndDateFilter = (d: Date): boolean => {
     // Prevent dates before auction start date
-    this.logger.log('Auc-start-date---' + this.timeForm.value.auctionStartDate);
-    return d > this.timeForm.value.auctionStartDate;
+    return d > this.timeForm.value.auctionStartDate && d < this.paramForm.value.deliveryDate;
   }
 
+  get productName() {
+    return this.productSpecsForm.get('productName');
+  }
+
+  get quantityValue() {
+    return this.productSpecsForm.get('quantityValue');
+  }
+
+  get price() {
+    return this.paramForm.get('price');
+  }
+
+  get creditPeriod() {
+    return this.paramForm.get('creditPeriod');
+  }
+
+  productNameError() {
+  return this.productName.hasError('required') ? '*You must enter a product name' :
+    this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
+            '';
+  }
+
+  quantityValueError() {
+    return this.quantityValue.hasError('required') ? '*You must enter quantity value' :
+    this.quantityValue.hasError('min') ? '* Enter positive quantity' :
+            '';
+  }
+
+  priceError() {
+    return this.price.hasError('required') ? '*You must enter price' :
+    this.price.hasError('min') ? '* Enter positive price' :
+    this.price.hasError('maxLength') ? '* enter reasonable price' : '';
+  }
+
+  creditPeriodError() {
+    return this.creditPeriod.hasError('required') ? '*You must enter Credit Period' :
+    this.creditPeriod.hasError('min') ? '* Enter positive credit period' :
+            '';
+  }
 }

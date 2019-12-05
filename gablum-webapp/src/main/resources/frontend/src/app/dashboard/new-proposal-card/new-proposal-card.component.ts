@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -9,6 +9,8 @@ import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-ca
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
 import { Router } from '@angular/router';
+import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -17,25 +19,37 @@ import { Router } from '@angular/router';
 })
 export class NewProposalCardComponent implements OnInit {
 
+  public static messageKey = 'new-proposal-card-component';
+
+  // @ViewChild('timer', {read: TimerComponent, static: true})
+  // public timer: TimerComponent;
+
   constructor(
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    ) {
+    private logger: LoggerService
+  ) {
 
-    }
+  }
 
-  public static messageKey = 'new-proposal-card-component';
-
+  alreadyRegistered = false;
   @Input() proposal: Proposal;
 
   ngOnInit() {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal});
+    this.dialog.open(SellersListDialogComponent, { data: proposal });
+  }
+
+  shownInterest(proposal: Proposal) {
+    // const proposalId = element.proposalId;
+    this.logger.log('some data which we are publishing ');
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
   }
 
   openDialog(proposal: Proposal) {
