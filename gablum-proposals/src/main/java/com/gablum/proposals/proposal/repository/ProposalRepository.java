@@ -21,7 +21,7 @@ public interface ProposalRepository extends MongoRepository<Proposal, String> {
 
     Page<Proposal> getAllProposalsByRegEndDateGreaterThan(Pageable page, Date currentDate);
 
-    List<Proposal> getAllProposalsByRegEndDateGreaterThanAndByBusinessSubDomain(
+    List<Proposal> getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(
             Pageable page,
             Date currentDate,
             String businessSubDomain

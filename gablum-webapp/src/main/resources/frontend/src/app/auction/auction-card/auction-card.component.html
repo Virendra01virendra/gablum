@@ -1,6 +1,6 @@
 <mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
     <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-      <mat-card-title [style.color]="'red'">{{auction.auctionName}}</mat-card-title>
+      <mat-card-title [style.color]="'black'">{{auction.auctionName}}</mat-card-title>
       <mat-card-subtitle></mat-card-subtitle>
     </mat-card-header>
     <!-- <img mat-card-image src="https://picsum.photos/300"> -->
@@ -8,13 +8,13 @@
       <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
       <div fxLayoutAlign="space-between">
-       <mat-chip>Price </mat-chip> 
+       <mat-chip color="primary">Price </mat-chip> 
        <mat-chip>{{auction.proposal.price}}</mat-chip>
         </div>
 
         <div fxLayoutAlign="space-between">
-          <mat-chip>Period</mat-chip> 
-          <mat-chip>{{auction.proposal.creditPeriod}}</mat-chip>
+          <mat-chip color="primary">Period</mat-chip> 
+          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
         </div>
         
         
