@@ -48,12 +48,13 @@ footer a {
 .boxes
 {
     height: calc(100vh-25px);
-     border-style: solid;
+    
+  
 }
 .box1
 {
    text-align: center;
-   border: 1px solid black; 
+   border-left: 6px solid green;
 }
 .connect
 {

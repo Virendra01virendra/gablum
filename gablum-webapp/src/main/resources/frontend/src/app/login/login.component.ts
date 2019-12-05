@@ -8,6 +8,7 @@ import { CommunicatorService } from '../services/communicator.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoggerService } from '../services/logger.service';
 import { ProfileDataService } from '../services/profile-data.service';
+import { checkServerIdentity } from 'tls';
 // import { MatError } from '@angular/material';
 
 @Component({
@@ -17,21 +18,12 @@ import { ProfileDataService } from '../services/profile-data.service';
 })
 export class LoginComponent implements OnInit {
 
-  public static messageKey = 'login-component';
-
   get password() {
     return this.loginForm.get('password');
   }
   get userName() {
     return this.loginForm.get('username');
   }
-
-  loginForm = new FormGroup({
-    username : new FormControl('', Validators.compose([Validators.required,
-      Validators.minLength(3)])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
-    Validators.minLength(3)]))
-  });
   constructor(
     private router: Router,
     private loginService: LoginDataService,
@@ -55,6 +47,16 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+  public static messageKey = 'login-component';
+
+  check = true;
+
+  loginForm = new FormGroup({
+    username : new FormControl('', Validators.compose([Validators.required,
+      Validators.minLength(3)])),
+    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
+    Validators.minLength(3)]))
+  });
 
   ngOnInit() {
   }
