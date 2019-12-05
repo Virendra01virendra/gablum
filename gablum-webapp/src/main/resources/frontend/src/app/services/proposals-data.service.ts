@@ -45,6 +45,11 @@ export class ProposalsDataService {
       }
     );
   }
+  extendProposal(dest, data, key) {
+    const proposalExtend = this.proposalsUrl + '/' + data.proposalId;
+    console.log('extendProposal------', data);
+    this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
+  }
 
   getProposalsBySubDomain(dest, key) {
     this.networking.getData<Proposal>(this.sellerProposalsUrl, dest, key);

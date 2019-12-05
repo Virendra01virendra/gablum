@@ -28,10 +28,11 @@ public class JwtTokenProvider {
     @Value("${spring.security.secret}")
     private String secretKey;
     private long validityInMilliseconds = 3600000; // 1h
+    private JwtTokenRepository jwtTokenRepository;
 
 
     public JwtTokenProvider(JwtTokenRepository jwtTokenRepository) {
-        log.info(jwtTokenRepository.toString());
+        this.jwtTokenRepository = jwtTokenRepository;
     }
 
     @PostConstruct
@@ -84,6 +85,7 @@ public class JwtTokenProvider {
         return true;
     }
     public boolean isTokenPresentInDB (String token) {
+        log.info(jwtTokenRepository.toString());
         return true;
         //        return jwtTokenRepository.findById(token).isPresent();
     }

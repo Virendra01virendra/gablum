@@ -75,8 +75,15 @@ export class RegisterPageComponent implements OnInit {
     // userName : new FormControl('', Validators.compose([Validators.required,
     //   Validators.pattern('/^[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}[a-zA-Z0-9]+[&@$_.#!]{0,1}$/'),
     //   Validators.maxLength(30)])),
-    businessLicense : new FormControl('', Validators.compose([Validators.required,
+
+
+    businessLicense : new FormControl('',
+    Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
+
+// avoid validation for the time being. its irritating everytime to register.
+
+//       businessLicense : new FormControl(''),
       password : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^[&@$_.#!a-zA-Z0-9]{0,20}$'),
       Validators.minLength(5)])),
@@ -98,7 +105,6 @@ export class RegisterPageComponent implements OnInit {
             if (registrationToken === undefined ||
               registrationToken === null ||
               !registrationToken.isOk) {
-
             } else {
               this.router.navigate(['/']);
             }
@@ -109,7 +115,9 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit() {
   }
+  // sendMail(){
 
+  // }
   getErrorMessage1() {
     return this.name.hasError('required') ? '*You must enter a name' :
     this.name.hasError('maxlength') ? '*More than 30 characters not allowed' :

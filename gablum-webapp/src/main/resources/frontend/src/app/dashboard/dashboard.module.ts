@@ -10,12 +10,13 @@ import { NewProposalCardComponent } from './new-proposal-card/new-proposal-card.
 import { ProposalCardDialogComponent } from './proposal-card-dialog/proposal-card-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { ConsoleModule } from '../console/console.module';
-import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
 import { AuctionModule } from '../auction/auction.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
+import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,18 +28,20 @@ import { SellerProposalCardComponent } from './seller-proposal-card/seller-propo
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     GuestProposalListComponent,
-    SellerProposalCardComponent
-    // AuctionCardDialogComponent
-  ],
+    SellerProposalCardComponent,
+    ExtendProposalDialogComponent
+    ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SchedulerModule,
     MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
     ConsoleModule,
     AuctionModule,
   ],
   entryComponents: [ProposalCardDialogComponent,
-  SellersListDialogComponent]
+  SellersListDialogComponent, ExtendProposalDialogComponent]
 })
 export class DashboardModule { }
