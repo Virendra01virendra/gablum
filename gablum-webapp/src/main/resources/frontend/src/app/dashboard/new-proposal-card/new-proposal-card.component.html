@@ -37,21 +37,21 @@
     </mat-card-content>
 
     <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
-
-  <mat-icon matTooltip="Start Auction" class="material-icons" (click) = "startAuction(proposal)" >
-      play_arrow
-    </mat-icon>
-  <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
-  <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
+  
 
   <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
+
 
         <mat-icon matBadge="10" matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers">
             list
         </mat-icon>
-
         <mat-icon matTooltip="Extend Registration" class="material-icons">
             hourglass_empty
         </mat-icon>
+        <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
+        <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
+        <mat-icon matTooltip="Start Auction" class="material-icons" (click) = "startAuction(proposal)" >
+            play_arrow
+          </mat-icon>
     </mat-card-actions>
 </mat-card>

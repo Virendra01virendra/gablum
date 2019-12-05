@@ -19,6 +19,8 @@ public class BidDataEntity {
 
     private float score;
 
+    private String createdBy;
+
 
 
 }

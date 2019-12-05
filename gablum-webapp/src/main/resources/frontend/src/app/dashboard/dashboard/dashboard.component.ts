@@ -111,7 +111,13 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
-
+  openDialog(proposal: Proposal) {
+    this.dialog.open(ProposalCardDialogComponent, {
+      width: '60%',
+      height: '60%',
+      data: {proposal}
+    });
+  }
 
   // doStuff(proposal: Proposal) {
   //   this.dialog.open(DetailsDialogComponent, {data: proposal});
@@ -120,7 +126,8 @@ export class DashboardComponent implements OnInit {
     const auction = {
       auctionName: proposal1.productName,
       proposal: proposal1,
-      isAuctionActive: true
+      isAuctionActive: true,
+      interestedUsersEmail: proposal1.interestedUsersEmail,
     };
     const auctionList = [];
     auctionList.push(auction);

@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuctionCardComponent } from '../auction-card/auction-card.component';
 import { ButtonComponent } from '../../console/button/button.component';
 import { WindowComponent } from '../../console/window/window.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('BidFormComponent', () => {
@@ -19,10 +23,23 @@ describe('BidFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ BidFormComponent, AuctionCardComponent, ButtonComponent, WindowComponent ],
-      imports: [ReactiveFormsModule, MaterialModule, HttpClientModule, BrowserAnimationsModule, NoopAnimationsModule],
+      imports: [ReactiveFormsModule, MaterialModule, HttpClientModule, BrowserAnimationsModule, NoopAnimationsModule,
+         RouterTestingModule, HttpClientTestingModule],
       providers: [
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        AuctionsDataService,
+      // {
+      //   provide: ActivatedRoute,
+      //   useValue: {
+      //     // params: of({id: 'f2d7bc7a-a435-45df-a860-67209af6a03a'})
+      //   }
+      // },
+      // { provide: Router,
+      //   useValue: {
+      //     // params: of({id: 'f2d7bc7a-a435-45df-a860-67209af6a03a'})
+      //   }
+      // },
       ]
     })
     .compileComponents();
@@ -31,7 +48,7 @@ describe('BidFormComponent', () => {
     fixture = TestBed.createComponent(BidFormComponent);
     component = fixture.componentInstance;
     const auction = {
-      auctionId: '',
+      auctionId: 'f2d7bc7a-a435-45df-a860-67209af6a03a',
       auctionName: '',
       proposal: {
         proposalId: '',
@@ -77,7 +94,7 @@ describe('BidFormComponent', () => {
     component.auction = auction;
     fixture.detectChanges();
   });
-  it('should create', () => {
+  xit('should create', (router) => {
     expect(component).toBeTruthy();
   });
 });

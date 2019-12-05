@@ -7,6 +7,7 @@ import { MaterialModule } from '../../material/material.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConsoleModule } from '../../console/console.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 
 
 describe('AuctionCardComponent', () => {
@@ -20,7 +21,21 @@ describe('AuctionCardComponent', () => {
         HttpClientTestingModule],
       providers: [
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+      {
+        provide: Router,
+        useValue: {
+          snapshot: {
+            queryParamMap: {
+              get(): number {
+                return 6;
+              }
+            }
+          }
+        }
+      }
+
+
       ]
     })
     .compileComponents();
@@ -33,45 +48,46 @@ describe('AuctionCardComponent', () => {
       auctionId: '',
       auctionName: '',
       proposal: {
-        proposalId: '',
-    productId: '',
-    createdBy: '',
-    updatedBy: '',
-    businessDomain: '',
-    businessSubDomain: '',
-    productName: '',
-    quantityValue: 1,
-    quantityUnit: '',
-    price: 1,
-    priceWeight: 1,
-    deliveryDate: new Date(),
-    deliveryDateWeight: 1,
-    creditPeriod: 1,
-    creditPeriodWeight: 1,
-    qualityCertification: true,
-    qualityCertificationWeight: 1,
-    methodOfSupply: true,
-    methodOfSupplyWeight: 1,
-    regStartDate: new Date(),
-    regEndDate: new Date(),
-    auctionStartDate: new Date(),
-    auctionEndDate: new Date(),
+        proposalId: ' ',
+        productId: ' ',
+        createdBy: ' ',
+        updatedBy: ' ',
+        businessDomain: ' ',
+        businessSubDomain: ' ',
+        productName: ' ',
+        quantityValue: 2,
+        quantityUnit: ' ',
+        price: 2,
+        priceWeight: 2,
+        deliveryDate: new Date(),
+        deliveryDateWeight: 2,
+        creditPeriod: 2,
+        creditPeriodWeight: 2,
+        qualityCertification: false,
+        qualityCertificationWeight: 2,
+        methodOfSupply: false,
+        methodOfSupplyWeight: 2,
+        regStartDate: new Date(),
+        regEndDate: new Date(),
+        auctionStartDate: new Date(),
+        auctionEndDate: new Date(),
+        createdOn: new Date(),
+        updatedOn: new Date(),
+        thresholdParticipants: 2,
+        views: 2,
+        interested: 2,
+        interestedUsersEmail: []
+    },
+    isAuctionActive: false,
+    participantsVerificationId: '',
+    selectedParticipantList: [],
+    bidIdList: [],
     createdOn: new Date(),
     updatedOn: new Date(),
-    thresholdParticipants: 1,
-    views: 1,
-    interested: 1,
-      },
-      isAuctionActive: true,
-      participantsVerificationId: '',
-      selectedParticipantList: [],
-      bidIdList: [],
-      createdOn: new Date(),
-      updatedOn: new Date(),
-      createdBy: '',
-      updatedBy: '',
-      auctionStartDate: new Date(),
-      auctionEndDate: new Date()
+    createdBy: '',
+    updatedBy: '',
+    auctionStartDate: new Date(),
+    auctionEndDate: new Date(),
     };
     component.auction = auction;
     fixture.detectChanges();

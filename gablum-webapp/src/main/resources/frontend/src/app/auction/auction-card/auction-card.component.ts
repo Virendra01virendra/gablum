@@ -2,7 +2,8 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Auction } from 'src/app/interfaces/auction';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-// import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-list.component';
+import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-list.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -12,7 +13,8 @@ export class AuctionCardComponent implements OnInit {
 
   constructor(
     private auctionDataService: AuctionsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private router: Router,
     ) {
       // comms.getMessages().subscribe(msg => {
       //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
@@ -30,4 +32,9 @@ export class AuctionCardComponent implements OnInit {
   @Input() public auction: Auction;
 
   ngOnInit() {  }
+
+  public placeBid() {
+    this.router.navigate(['auctions/' + this.auction.auctionId + '/new/bid']);
+  }
+
 }

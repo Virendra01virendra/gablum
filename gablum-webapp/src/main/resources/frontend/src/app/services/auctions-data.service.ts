@@ -10,6 +10,8 @@ import { environment } from 'src/environments/environment';
 export class AuctionsDataService {
 
   public auctionsUrl: string;
+  bidUrl;
+  auctionUrlForSingle;
 
   constructor(
     private comms: CommunicatorService,
@@ -22,7 +24,18 @@ export class AuctionsDataService {
       this.networking.getData<Auction>(this.auctionsUrl, dest, key);
     }
 
+    getAuctionById(dest, key, auctionId) {
+      this.auctionUrlForSingle = this.auctionsUrl + '/' + auctionId;
+      this.networking.getData<Auction>(this.auctionUrlForSingle, dest, key);
+    }
+
     saveAuction(dest, data, key) {
       this.networking.postData(this.auctionsUrl, dest, data, key);
+    }
+
+    saveBid(dest, data, key, auctionId) {
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
+      console.log('biiiiddddd', this.bidUrl);
+      this.networking.postData(this.bidUrl, dest, data, key);
     }
 }
