@@ -13,11 +13,11 @@ public class MailService {
     private JavaMailSender javaMailSender;
 
     SimpleMailMessage msg = new SimpleMailMessage();
-    public void sendEmail(String type, User user){
+    public void sendEmail(String type, String email){
         if (type == "registering"){
-            msg.setTo(user.getEmail());
-            msg.setSubject("Registered at Gablum");
-            msg.setText("Thank You for registering with us.");
+            msg.setTo(email);
+            msg.setSubject("Verification of Email");
+            msg.setText("All the mails form Gablum will be sent here.");
             try
             {
                 javaMailSender.send(msg);
