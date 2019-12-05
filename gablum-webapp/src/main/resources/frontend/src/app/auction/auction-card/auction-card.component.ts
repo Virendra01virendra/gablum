@@ -34,7 +34,7 @@ export class AuctionCardComponent implements OnInit {
 
   ngOnInit() {  }
 
-  public placeBid(){
+  public placeBid() {
     this.router.navigate(['auctions/' + this.auction.auctionId + '/new/bid']);
   }
 
