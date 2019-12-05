@@ -8,9 +8,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class SellersListDialogComponent implements OnInit {
 
+  disabled = false;
+
   constructor( @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
 
+  onClick() {
+    this.disabled = true;
+  }
 }

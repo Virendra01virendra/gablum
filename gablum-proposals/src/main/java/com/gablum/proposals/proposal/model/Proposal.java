@@ -2,6 +2,7 @@ package com.gablum.proposals.proposal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "proposals")
 public class Proposal {
     @Id
@@ -48,11 +50,6 @@ public class Proposal {
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
-
-
-    //Empty constructor
-    public Proposal() {
-    }
 
    
 }

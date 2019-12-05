@@ -1,13 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { MatDialog } from '@angular/material';
-import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
-import { GuestProposalListComponent } from '../guest-proposal-list/guest-proposal-list.component';
+import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -16,24 +17,37 @@ import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-
 })
 export class NewProposalCardComponent implements OnInit {
 
+  public static messageKey = 'new-proposal-card-component';
+
+  // @ViewChild('timer', {read: TimerComponent, static: true})
+  // public timer: TimerComponent;
+
   constructor(
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
     private dialog: MatDialog,
+    private auctionDataService: AuctionsDataService,
     private router: Router,
-    ) {
+    private logger: LoggerService
+  ) {
 
-    }
+  }
 
-  public static messageKey = 'new-proposal-card-component';
-
+  alreadyRegistered = false;
   @Input() proposal: Proposal;
 
   ngOnInit() {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal});
+    this.dialog.open(SellersListDialogComponent, { data: proposal });
+  }
+
+  shownInterest(proposal: Proposal) {
+    // const proposalId = element.proposalId;
+    this.logger.log('some data which we are publishing ');
+    this.alreadyRegistered = true;
+    this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
   }
 
   openDialog(proposal: Proposal) {
@@ -43,8 +57,25 @@ export class NewProposalCardComponent implements OnInit {
       data: proposal
     });
   }
+<<<<<<< HEAD
   extendDialog(proposal: Proposal) {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
+=======
+  startAuction(proposal1: Proposal) {
+    const auction = {
+      auctionName: proposal1.productName,
+      proposal: proposal1,
+      isAuctionActive: true,
+      interestedUsersEmail: proposal1.interestedUsersEmail
+    };
+    const auctionList = [];
+    auctionList.push(auction);
+
+    const data = JSON.parse(JSON.stringify(auctionList));
+
+    this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
+
+>>>>>>> bfb0073ded1af606262884c03fb4d42a67a0de13
   }
 
   delete(proposal: Proposal) {
