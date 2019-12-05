@@ -1,6 +1,9 @@
 package com.gablum.auction.auctions;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,6 @@ public interface IAuctionService {
 
     List<Auction> addAuctions(List<Auction> auctionToAdd);
 
-    Auction startAuction(String auctionId, String uniqueLink);
+    Auction startAuction (String auctionId, String uniqueLink) throws ParseException;
 
 }

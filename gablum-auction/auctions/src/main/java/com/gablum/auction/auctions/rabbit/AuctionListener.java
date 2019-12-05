@@ -1,9 +1,9 @@
 package com.gablum.auction.auctions.rabbit;
 
-
 import com.gablum.auction.auctions.AuctionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 
@@ -14,6 +14,9 @@ import java.security.SecureRandom;
 @Slf4j
 @EnableBinding(StartAuctionBinding.class)
 public class AuctionListener {
+
+    @Value("${eureka.instance.metadataMap.instanceId}")
+    private String instanceId;
 
     private final SecureRandom random = new SecureRandom();
     private MessageDigest digest;
@@ -36,6 +39,14 @@ public class AuctionListener {
             log.error("cant generate hash, using link as: " + link);
         }
         auctionService.startAuction(auctionId, link);
+    }
+
+    @StreamListener
+    public void newBid(BidMessage message) {
+        if (!message.getInstanceId().equals(instanceId)) {
+            log.info("adding bids");
+            //FIXME: send bids down the ws
+        }
     }
 
 }
