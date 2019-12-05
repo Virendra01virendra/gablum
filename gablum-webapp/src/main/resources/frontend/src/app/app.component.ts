@@ -4,6 +4,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { CommunicatorService } from './services/communicator.service';
 import { LoggerService } from './services/logger.service';
 import { NavLink } from './interfaces/navlink';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
     private profile: ProfileDataService,
     private auth: AuthenticationService,
     private comms: CommunicatorService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private router: Router
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     this.comms.getMessages().subscribe( message => {
@@ -52,6 +54,9 @@ export class AppComponent implements OnInit {
 
         if ('navlinks' in data) {
           this.navLinks = data.navlinks;
+          if (this.router.url === '/') {
+            router.navigate(['/dashboard']);
+          }
         }
       }
     });
