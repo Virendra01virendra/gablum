@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'guestproposallist',
     component: GuestProposalListComponent,
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

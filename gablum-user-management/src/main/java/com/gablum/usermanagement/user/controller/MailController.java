@@ -12,7 +12,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class MailController {
     @Autowired
     MailService mailService;
+
     public void sendingRegistrationMail(@RequestBody User user){
         mailService.sendEmail("registering", user);
     }
+
+
+//    public void sendingProposalFloatingMail(@RequestBody User user){
+//
+//    }
+
 }

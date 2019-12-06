@@ -3,13 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SellerProposalCardComponent } from './seller-proposal-card.component';
 import { MaterialModule} from '../../material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { TimerComponent } from '../../scheduler/timer/timer.component';
+
 describe('SellerProposalCardComponent', () => {
   let component: SellerProposalCardComponent;
   let fixture: ComponentFixture<SellerProposalCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellerProposalCardComponent ],
+      declarations: [ SellerProposalCardComponent, TimerComponent ],
       imports: [ MaterialModule, HttpClientModule ]
     })
     .compileComponents();
@@ -50,7 +52,7 @@ describe('SellerProposalCardComponent', () => {
   interestedUsersEmail: [] };
 
 // simulate the parent setting the input property with that hero
-    component.proposal = proposal;
+    component.allProposal = proposal;
     fixture.detectChanges();
   });
 

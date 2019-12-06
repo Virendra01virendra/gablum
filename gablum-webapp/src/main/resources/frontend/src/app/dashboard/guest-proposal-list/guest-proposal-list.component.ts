@@ -36,7 +36,7 @@ export class GuestProposalListComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.proposalDataService.getAllProposalForGuest(GuestProposalListComponent.messageKey, 'proposals');
+    this.proposalDataService.getAllProposalForSeller(GuestProposalListComponent.messageKey, 'proposals');
   }
   shownInterest(element) {
     // const proposalId = element.proposalId;
