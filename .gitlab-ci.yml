@@ -13,7 +13,7 @@ java-build:
     script:
         - mvn -B package -PskipAngular -DskipTests
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 # java-tests:
 #     image: tastycats/gablumdeps:not-alpine
@@ -21,7 +21,7 @@ java-build:
 #     script:
 #         - mvn -B test -PskipAngular
 #     tags:
-#         - gablum-ci-jobs
+#         - immersive-runner-cgi
 
 java-lint:
     image: tastycats/gablumdeps:latest
@@ -29,7 +29,7 @@ java-lint:
     script:
         - mvn -B pmd:check
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 java-tests:
     image: tastycats/gablumdeps:not-alpine
@@ -37,7 +37,7 @@ java-tests:
     script:
         - mvn -B jacoco:prepare-agent install jacoco:report -PskipAngular
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 angular-build:
     image: node:12-alpine
@@ -45,7 +45,7 @@ angular-build:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run build -- --prod
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 angular-lint:
     image: node:12-alpine
@@ -53,7 +53,7 @@ angular-lint:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run lint
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 angular-tests:
     image: circleci/node:12-browsers
@@ -61,14 +61,14 @@ angular-tests:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run test
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
 
 # CD stage
 release_deploy:
     image: ubuntu:latest
     stage: release
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
     before_script:
         - mkdir -p ~/.ssh
         - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
@@ -88,7 +88,7 @@ production_deploy:
     image: ubuntu:latest
     stage: production
     tags:
-        - gablum-ci-jobs
+        - immersive-runner-cgi
     before_script:
         #generate ssh key
         - mkdir -p ~/.ssh
