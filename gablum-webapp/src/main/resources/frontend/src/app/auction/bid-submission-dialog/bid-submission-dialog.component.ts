@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ɵɵpipeBind2 } from '@angular/core';
 
 import {
   MAT_DIALOG_DATA, MatDialogRef
@@ -18,6 +18,15 @@ export class BidSubmissionDialogComponent implements OnInit {
   scoreObject: {
     score: number;
   };
+  bid2 = {
+    price: this.data.bid.price,
+    creditPeriod: this.data.bid.creditPeriod,
+    qaqcCertificate: this.data.bid.qaqcCertificate,
+    typeOfSupply: this.data.bid.typeOfSupply,
+    timeOfDelivery: this.data.bid.timeOfDelivery,
+    };
+
+  auctionIdn = this.data.auctionID;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<BidSubmissionDialogComponent>,
               private router: Router,
@@ -37,7 +46,7 @@ export class BidSubmissionDialogComponent implements OnInit {
 
   ngOnInit() {
     console.log(' Dialog data ::', this.data);
-    this.auctionDataService.getScore(BidSubmissionDialogComponent.messageKey, this.data.bid, 'scoreBids', this.data.auctionID);
+    this.auctionDataService.getScore(BidSubmissionDialogComponent.messageKey, this.bid2, 'scoreBids', this.auctionIdn);
     console.log('aaaaaaaaaaaafffffftttttttterrrr api');
   }
 
@@ -46,8 +55,9 @@ export class BidSubmissionDialogComponent implements OnInit {
   }
 
   save() {
-    this.auctionDataService.saveBid(BidSubmissionDialogComponent.messageKey, this.data.bid, 'saveBids', this.data.auctionID);
+    this.auctionDataService.saveBid(BidSubmissionDialogComponent.messageKey, this.bid2, 'saveBids', this.auctionIdn);
     this.router.navigate(['dashboard']);
+    this.close();
   }
 
 
