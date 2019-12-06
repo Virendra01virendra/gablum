@@ -32,7 +32,7 @@ public class Proposal {
     private String quantityUnit;
     private float price;
     private Date deliveryDate;
-    private String creditPeriod;
+    private int creditPeriod;
     private boolean qualityCertification;
     private boolean methodOfSupply;
     private Date regStartDate;

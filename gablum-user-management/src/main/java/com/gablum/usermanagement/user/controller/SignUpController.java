@@ -3,7 +3,7 @@ package com.gablum.usermanagement.user.controller;
 import com.gablum.usermanagement.user.model.SignupResult;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.repository.UserRepository;
-import com.gablum.usermanagement.user.services.MailService;
+//import com.gablum.usermanagement.user.services.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +22,8 @@ public class SignUpController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private MailService mailService;
+//    @Autowired
+//    private MailService mailService;
 
 
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,10 +35,18 @@ public class SignUpController {
         }
 
         // FIXME: delete the admin role if the request came
-
+        user.setAddress(user.getAddress());
+        user.setBusinessLicense(user.getBusinessLicense());
+        user.setRole(user.getRole());
+        user.setCompanyName(user.getCompanyName());
+        user.setEmail(user.getEmail());
+        user.setPhone(user.getPhone());
         user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        mailService.sendEmail("registering", user);
+//        System.out.println(user.toString());
+//        System.out.println("before mailService.sendEmail is called()");
+//        mailService.sendEmail("registering", user);
+//        System.out.println("after mailservice");
         userRepository.save(user);
         return new ResponseEntity<SignupResult>(new SignupResult("Registered", true), HttpStatus.CREATED );
     }

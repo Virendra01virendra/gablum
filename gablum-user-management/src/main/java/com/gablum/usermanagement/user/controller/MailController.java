@@ -18,7 +18,7 @@ public class MailController {
     }
 
 
-    public void sendingProposalFloatingMail(@RequestBody User user){
-
-    }
+//    public void sendingProposalFloatingMail(@RequestBody User user){
+//
+//    }
 }
