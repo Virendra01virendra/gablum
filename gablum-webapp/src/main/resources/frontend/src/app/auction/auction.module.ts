@@ -25,6 +25,7 @@ import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-d
     // NoopAnimationsModule
   ],
   exports: [
-    AuctionCardComponent]
+    AuctionCardComponent],
+    entryComponents:[BidResponseDialogComponent]
 })
 export class AuctionModule { }

@@ -53,21 +53,21 @@ export class BidFormComponent implements OnInit {
           }
 
           if ('saveBids' in data) {
-            console.log('insde key data -->', data);
             this.scoreObject = data.saveBids;
-            console.log('bid stored and score is', this.scoreObject.score);
-            this.result1 = 'Bid is stored, and your score is' + this.scoreObject.score;
+            this.result1 = 'Your bid has submiited, and your score is ' + this.scoreObject.score;
             const dialogConfig = new MatDialogConfig();
             dialogConfig.data = this.result1;
-            // dialogConfig.;
+            dialogConfig.width = '50%';
             this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
           if ('scoreBids' in data) {
-            console.log('insde key data -->', data);
             this.scoreObject = data.scoreBids;
-            console.log('bid score is', this.scoreObject.score);
-            this.result2 = 'Your bid score is' + this.scoreObject.score;
+            this.result2 = 'Your bid score is ' + this.scoreObject.score;
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.data = this.result2;
+            dialogConfig.width = '50%';
+            this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
         }
