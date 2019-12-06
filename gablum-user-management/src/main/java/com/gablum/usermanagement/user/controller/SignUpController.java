@@ -43,10 +43,7 @@ public class SignUpController {
         user.setPhone(user.getPhone());
         user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.toString());
-        System.out.println("before mailService.sendEmail is called()");
         mailService.sendEmail("registering", user);
-        System.out.println("after mailservice");
         userRepository.save(user);
         return new ResponseEntity<SignupResult>(new SignupResult("Registered", true), HttpStatus.CREATED );
     }
