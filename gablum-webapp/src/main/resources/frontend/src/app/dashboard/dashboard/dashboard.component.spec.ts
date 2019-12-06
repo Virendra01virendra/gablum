@@ -12,6 +12,7 @@ import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 import { AuctionCardComponent } from 'src/app/auction/auction-card/auction-card.component';
 import { ButtonComponent } from '../../console/button/button.component';
 import { WindowComponent } from '../../console/window/window.component';
+import { SellerProposalCardComponent } from '../seller-proposal-card/seller-proposal-card.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -33,7 +34,8 @@ describe('DashboardComponent', () => {
         TimerComponent,
         WindowComponent,
         AuctionCardComponent,
-        ButtonComponent
+        ButtonComponent,
+        SellerProposalCardComponent
       ]
     })
     .compileComponents();
