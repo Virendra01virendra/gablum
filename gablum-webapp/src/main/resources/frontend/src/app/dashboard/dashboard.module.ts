@@ -13,10 +13,10 @@ import { ConsoleModule } from '../console/console.module';
 import { AuctionModule } from '../auction/auction.module';
 import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-dialog.component';
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
-import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
-// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
+// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     GuestProposalListComponent,
-    SellerProposalCardComponent,
-    ExtendProposalDialogComponent
-    ],
+    ExtendProposalDialogComponent,
+    SellerProposalCardComponent
+    // AuctionCardDialogComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,

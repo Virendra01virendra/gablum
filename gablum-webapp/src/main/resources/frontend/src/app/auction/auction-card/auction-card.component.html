@@ -8,28 +8,36 @@
     <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
       <div fxLayoutAlign="space-between">
-        <mat-chip color="primary" selected>Price </mat-chip>
-        <mat-chip>{{auction.proposal.price}}</mat-chip>
+       <mat-chip color="primary">Price </mat-chip> 
+       <mat-chip>{{auction.proposal.price}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Credit Period</mat-chip> 
+          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Quality Certification</mat-chip> 
+          <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Method Of Supply</mat-chip> 
+          <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
+        </div>
+        
+        
       </div>
-
-      <div fxLayoutAlign="space-between">
-        <mat-chip color="primary" selected="true">Quantity </mat-chip>
-        <mat-chip>{{auction.proposal.quantityValue + ' ' + auction.proposal.quantityUnit}}</mat-chip>
-
-      </div>
-
-      <div fxLayoutAlign="space-between">
-        <mat-chip color="primary" selected>Period</mat-chip>
-        <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
-      </div>
-
-
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+    
   <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
     <app-button></app-button>
 
     <button color="primary" mat-raised-button (click)="placeBid()">Place Bid</button>
 
-  </mat-card-actions>
-</mat-card>
+      <!-- <button color="primary" mat-raised-button (click) = "seeBids()">Place Bid</button> -->
+
+    </mat-card-actions>
+  </mat-card>
+  
