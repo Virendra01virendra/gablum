@@ -1,11 +1,11 @@
 <mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-      <mat-card-title [style.color]="'black'">{{auction.auctionName}}</mat-card-title>
-      <mat-card-subtitle></mat-card-subtitle>
-    </mat-card-header>
-    <!-- <img mat-card-image src="https://picsum.photos/300"> -->
-    <mat-card-content>
-      <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+  <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+    <mat-card-title [style.color]="'black'">{{auction.auctionName}}</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://picsum.photos/300"> -->
+  <mat-card-content>
+    <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
       <div fxLayoutAlign="space-between">
        <mat-chip color="primary">Price </mat-chip> 
@@ -30,9 +30,10 @@
         
       </div>
     </mat-card-content>
-    <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
-
-      <button color="primary" mat-raised-button (click) = "placeBid()">Place Bid</button>
+    
+  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+    
+    <button color="primary" mat-raised-button (click)="placeBid()">Place Bid</button>
 
       <!-- <button color="primary" mat-raised-button (click) = "seeBids()">Place Bid</button> -->
 

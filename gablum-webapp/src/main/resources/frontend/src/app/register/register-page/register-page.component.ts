@@ -57,7 +57,6 @@ export class RegisterPageComponent implements OnInit {
   get businessDomain() {
     return this.registrationForm.get('businessDomain');
   }
-
   get businessSubDomain() {
     return this.registrationForm.get('businessSubDomain');
   }
@@ -77,8 +76,7 @@ export class RegisterPageComponent implements OnInit {
     //   Validators.maxLength(30)])),
 
 
-    businessLicense : new FormControl('',
-    Validators.compose([Validators.required,
+    businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
 
 // avoid validation for the time being. its irritating everytime to register.
