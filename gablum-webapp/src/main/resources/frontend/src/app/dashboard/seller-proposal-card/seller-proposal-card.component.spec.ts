@@ -52,7 +52,7 @@ describe('SellerProposalCardComponent', () => {
   interestedUsersEmail: [] };
 
 // simulate the parent setting the input property with that hero
-    component.proposal = proposal;
+    component.allProposal = proposal;
     fixture.detectChanges();
   });
 
