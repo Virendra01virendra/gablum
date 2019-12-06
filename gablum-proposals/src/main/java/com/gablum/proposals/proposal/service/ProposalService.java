@@ -90,7 +90,7 @@ public class ProposalService implements IProposalService {
     }
 
     public List<Proposal> getAllProposalsByBusinessSubDomain (Map<String, String> queryMap, String businessSubDomain) {
-        return proposalRepo.getAllProposalsRegEndDateGreaterThanAndBusinessSubDomain(getPageable(queryMap),new Date(),businessSubDomain);
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(getPageable(queryMap),new Date(),businessSubDomain);
        }
 
 
