@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   public isBuyer = false;
   public isSeller = false;
 
+  allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
   pastAuctions: Proposal[];
@@ -65,6 +66,11 @@ export class DashboardComponent implements OnInit {
           this.dashboardSections[1].data = this.proposals;
         }
 
+        if ('sellerProposals' in data) {
+          this.allProposals = data.sellerProposals ;
+          this.logger.log(this.proposals);
+        }
+
         if ('auctions' in data) {
           this.auctions = data.auctions;
           this.logger.log(this.auctions);
@@ -83,6 +89,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
+    this.proposalDataService.getAllProposalForSeller(DashboardComponent.messageKey, 'sellerProposals');
+
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
