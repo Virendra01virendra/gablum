@@ -65,8 +65,8 @@ public class UserController {
             menuItems.addAll(List.of(
                     new NavLink("Dashboard", "/dashboard", "dashboard"),
 //                    new NavLink("Calendar", "/calendar", "calendar_today"),
-                    new NavLink("Contracts", "/contracts", "book")
-//                    new NavLink("Inbox", "/inbox", "email"))
+                    new NavLink("Contracts", "/contracts", "book"),
+                    new NavLink("Inbox", "/inbox", "email")
             ));
         }
 
