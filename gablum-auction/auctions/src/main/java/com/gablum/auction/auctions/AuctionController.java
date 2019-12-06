@@ -6,13 +6,14 @@ import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,6 @@ public class AuctionController {
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannel = auctionBinding.getNewBidTransmitChannel();
     }
-
-    @Value("${eureka.instance.metadataMap.instanceId}")
-    private String instanceId;
 
     //FIXME: check roles before returning auction
     //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
@@ -85,16 +83,16 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid/score")
-    public String getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
-        String message1 = "Bid score is " + bidService.getBidScore(bid, id);
-
-        return message1;
+    public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(bidService.getBidScore(bid, id));
+        return scoreObject;
     }
 
 
     @PostMapping("auctions/{id}/bid")
-    public String addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
-            ParseException {
+    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+            ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         float scorecnt = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
@@ -105,15 +103,15 @@ public class AuctionController {
 
         bidService.addBid(bidDataEntity);
 
-        String message2 = "Bid is stored, and score is " + scorecnt;
-
         Message<BidMessage> message = MessageBuilder.withPayload(
-                new BidMessage(bid, instanceId)
+                new BidMessage(bid, InetAddress.getLocalHost().getHostAddress())
         ).build();
 
         messageChannel.send(message);
 
-        return message2;
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject.setScore(scorecnt);
+        return scoreObject;
     }
 
 }

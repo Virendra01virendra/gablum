@@ -7,7 +7,8 @@
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
-      <div *ngIf="section.label=='Ongoing Auctions'">
+      <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+      fxLayout.sm="column"  fxLayoutAlign.sm="space-around center">
 
           <div class="auctions-cont" *ngIf="auctions">
             <app-auction-card  *ngFor="let auction of auctions"

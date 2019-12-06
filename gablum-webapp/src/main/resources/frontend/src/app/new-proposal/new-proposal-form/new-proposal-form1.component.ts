@@ -39,15 +39,15 @@ export class NewProposalForm1Component implements OnInit {
 
   paramForm = new FormGroup({
     price: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.maxLength(10)])),
-    priceWeight: new FormControl(''),
+    priceWeight: new FormControl(1),
     deliveryDate: new FormControl({ value: '' }, Validators.required),
-    deliveryDateWeight: new FormControl(''),
+    deliveryDateWeight: new FormControl(1),
     creditPeriod: new FormControl('', [Validators.required, Validators.min(1)]),
-    creditPeriodWeight: new FormControl(''),
+    creditPeriodWeight: new FormControl(1),
     qualityCertification: new FormControl('', [Validators.required]),
-    qualityCertificationWeight: new FormControl(''),
+    qualityCertificationWeight: new FormControl(1),
     methodOfSupply: new FormControl('', [Validators.required]),
-    methodOfSupplyWeight: new FormControl('')
+    methodOfSupplyWeight: new FormControl(1)
   });
 
   timeForm = new FormGroup({

@@ -55,7 +55,7 @@ import { InterceptorService } from './services/interceptor.service';
     ContractsModule,
     SchedulerModule,
     RouterModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

@@ -20,11 +20,11 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
         <mat-chip color="primary" selected="true">Quantity </mat-chip>
         <mat-chip>{{proposal.quantityValue + ' ' + proposal.quantityUnit}}</mat-chip>
 
-            </div>
-            <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Views</mat-chip>
-                <mat-chip>{{25}}</mat-chip>
-            </div>
+      </div>
+      <!-- <div>
+      <span>Delivery Date: </span>
+      <span>{{proposal.deliveryDate}}</span>
+    </div> -->
 
     </div>
 
@@ -32,6 +32,9 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
 
   <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
 
+        <mat-icon matTooltip="Extend Registration" class="material-icons" (click)="extendDialog(proposal)">
+            hourglass_empty
+        </mat-icon>
 
     <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
 
