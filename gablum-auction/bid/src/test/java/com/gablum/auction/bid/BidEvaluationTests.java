@@ -1,16 +1,17 @@
 package com.gablum.auction.bid;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 
 import java.util.Date;
 
 import static com.gablum.auction.bid.BidEvaluation.score;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import org.junit.jupiter.api.Assertions;
 
-@SpringBootTest
+import org.junit.jupiter.api.Assertions;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+@ExtendWith(SpringExtension.class)
 public class BidEvaluationTests {
 
     float price = 400;

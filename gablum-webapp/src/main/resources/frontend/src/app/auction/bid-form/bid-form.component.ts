@@ -57,9 +57,10 @@ export class BidFormComponent implements OnInit {
             this.scoreObject = data.saveBids;
             console.log('bid stored and score is', this.scoreObject.score);
             this.result1 = 'Bid is stored, and your score is' + this.scoreObject.score;
-            // const dialogConfig = new MatDialogConfig();
-            // dialogConfig.data = this.result1;
-            // let dialogRef = this.matDialog.open(BidResponseDialogComponent, dialogConfig);
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.data = this.result1;
+            // dialogConfig.;
+            this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
           if ('scoreBids' in data) {
