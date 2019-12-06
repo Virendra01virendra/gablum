@@ -18,13 +18,16 @@
       </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
         fxLayout.sm="column"  fxLayoutAlign.sm="space-around center">
-
+<div *ngIf="isBuyer; else elseBlock">
         <app-new-proposal-card *ngFor="let proposal of proposals"
         [proposal]="proposal"></app-new-proposal-card>
-  
+  </div>
         
-       
-
+      <ng-template #elseBlock>
+       <app-seller-proposal-card *ngFor="let proposal of proposals"
+       [proposal]="proposal">
+       </app-seller-proposal-card>
+      </ng-template>
       </div>
       <div *ngIf="section.label=='Past Auctions'" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px" fxLayout.sm="column">
         <p>Past Auctions</p>

@@ -55,15 +55,15 @@ export class ExtendProposalDialogComponent implements OnInit {
     this.router.navigate(['/dashboard']);
     this.proposalService.extendProposal(ExtendProposalDialogComponent.messageKey, this.extendProposalForm.value, 'proposal');
   }
-  RegStartDateFilter = (d: Date): boolean => {
-    // Prevent dates after delivery date
-    return d < this.data.deliveryDate;
-    // return true;
-  }
+  // RegStartDateFilter = (d: Date): boolean => {
+  //   // Prevent dates after delivery date
+  //   return d < this.data.deliveryDate;
+  //   // return true;
+  // }
 
-  RegEndDateFilter = (d: Date): boolean => {
-    // Prevent dates before registration start date
-    return d > this.extendProposalForm.value.regStartDate && d < this.data.deliveryDate;
-  }
+  // RegEndDateFilter = (d: Date): boolean => {
+  //   // Prevent dates before registration start date
+  //   return d > this.extendProposalForm.value.regStartDate && d < this.data.deliveryDate;
+  // }
 
 }

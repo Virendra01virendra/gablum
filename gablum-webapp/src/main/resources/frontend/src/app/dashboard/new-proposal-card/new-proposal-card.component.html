@@ -21,10 +21,6 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
         <mat-chip>{{proposal.quantityValue + ' ' + proposal.quantityUnit}}</mat-chip>
 
       </div>
-      <!-- <div>
-      <span>Delivery Date: </span>
-      <span>{{proposal.deliveryDate}}</span>
-    </div> -->
 
     </div>
 
@@ -35,13 +31,14 @@ fxLayoutGap="10px" fxLayoutAlign="space-around">
 
     <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
 
-    <button mat-raised-button [disabled]="alreadyRegistered" color="primary"
-      (click)="shownInterest(proposal)">Interested ?</button>
+    <!-- <button mat-raised-button [disabled]="alreadyRegistered" color="primary"
+      (click)="shownInterest(proposal)">Interested ?</button> -->
 
     <mat-icon matBadge={{proposal.interested}} matBadgePosition="before" matBadgeColor="warm"
       (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers">
       list
-    </mat-icon>    
+    </mat-icon>
+
     <mat-icon matTooltip="Extend Registration" class="material-icons" (click)="extendDialog(proposal)">
         hourglass_empty
     </mat-icon>
