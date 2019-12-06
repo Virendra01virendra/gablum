@@ -31,7 +31,7 @@ export class ProposalsDataService {
     this.networking.getData<Proposal>(this.proposalsUrl, dest, key);
   }
 
-  getAllProposalForGuest(dest, key) {
+  getAllProposalForSeller(dest, key) {
     this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
   }
   postInterestedSeller(dest, data, key) {
