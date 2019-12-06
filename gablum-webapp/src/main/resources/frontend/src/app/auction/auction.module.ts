@@ -5,7 +5,6 @@ import { AuctionRoutingModule } from './auction-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
-import { BidDialogComponent } from './bid-form/bid-dialog/bid-dialog.component';
 // import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 // import {FlexL  ayoutModule} from '@angular/flex-layout';
 import { ConsoleModule } from '../console/console.module';
@@ -13,7 +12,7 @@ import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-d
 
 
 @NgModule({
-  declarations: [BidFormComponent, AuctionCardComponent, BidDialogComponent, BidResponseDialogComponent],
+  declarations: [BidFormComponent, AuctionCardComponent, BidResponseDialogComponent],
   imports: [
     CommonModule,
     AuctionRoutingModule,

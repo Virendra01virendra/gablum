@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -29,7 +28,6 @@ export class BidFormComponent implements OnInit {
   url = 'localhost:8080/api/auctions/auctions/bid';
   result1;
   result2;
-  result3;
   auctionId: string;
   auction;
   scoreObject: {
