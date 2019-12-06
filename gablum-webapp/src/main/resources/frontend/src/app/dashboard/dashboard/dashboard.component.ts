@@ -63,18 +63,28 @@ export class DashboardComponent implements OnInit {
         if ('proposals' in data) {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
-          this.dashboardSections[1].data = this.proposals;
+          if ('authChanged' in data) {
+            this.isLoggedIn = auth.getAuthenticated();
+            this.logger.log(auth.getProfileData());
+            this.isBuyer = auth.isBuyer();
+            this.isSeller = auth.isSeller();
+          }
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals ;
           this.logger.log(this.proposals);
+          if ('authChanged' in data) {
+            this.isLoggedIn = auth.getAuthenticated();
+            this.logger.log(auth.getProfileData());
+            this.isBuyer = auth.isBuyer();
+            this.isSeller = auth.isSeller();
+          }
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
           this.logger.log(this.auctions);
-          this.dashboardSections[0].data = this.auctions;
           if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
           this.logger.log(auth.getProfileData());
@@ -90,7 +100,6 @@ export class DashboardComponent implements OnInit {
     this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
     this.proposalDataService.getAllProposalForSeller(DashboardComponent.messageKey, 'sellerProposals');
-
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
