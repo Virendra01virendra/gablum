@@ -9,10 +9,11 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
 // import {FlexL  ayoutModule} from '@angular/flex-layout';
 import { ConsoleModule } from '../console/console.module';
 import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-dialog.component';
+import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submission-dialog.component';
 
 
 @NgModule({
-  declarations: [BidFormComponent, AuctionCardComponent, BidResponseDialogComponent],
+  declarations: [BidFormComponent, AuctionCardComponent, BidResponseDialogComponent, BidSubmissionDialogComponent],
   imports: [
     CommonModule,
     AuctionRoutingModule,
@@ -25,6 +26,6 @@ import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-d
   ],
   exports: [
     AuctionCardComponent],
-    entryComponents:[BidResponseDialogComponent]
+    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent]
 })
 export class AuctionModule { }
