@@ -93,17 +93,6 @@ public class ProposalService implements IProposalService {
         return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(getPageable(queryMap),new Date(),businessSubDomain);
        }
 
-
-    //    public List<Proposal> getAllProposalsByBusinessSubDomain (Map<String, String> queryMap, String businessSubDomain) {
-//        List<Proposal> listOfProp = getAllProposals(queryMap);
-//        List<Proposal> listOfSubD = new ArrayList<>();
-//        for(int i=0; i< listOfProp.size();i++) {
-//            if(listOfProp.get(i).getBusinessSubDomain() == businessSubDomain) {
-//                listOfSubD.add(listOfProp.get(i));
-//            }
-//        }
-//        return listOfProp;
-//    }
     public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
         Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
         updatedProposal.getInterestedUsersEmail().add(currentLoggedUserEmail);
