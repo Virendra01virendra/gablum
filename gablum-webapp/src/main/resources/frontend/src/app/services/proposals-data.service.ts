@@ -20,7 +20,6 @@ export class ProposalsDataService {
   ) {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
-    this.sellerProposalsUrl = environment.proposalsBySubDomainUrl;
   }
 
   saveProposal(dest, data, key) {
@@ -51,8 +50,9 @@ export class ProposalsDataService {
     this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
   }
 
-  getProposalsBySubDomain(dest, key) {
-    this.networking.getData<Proposal>(this.sellerProposalsUrl, dest, key);
+  getProposalsBySubDomain(businessSubDomain, dest, key) {
+    const proposalUrlSubDomain = this.guestProposallistUrl + '/' + businessSubDomain;
+    this.networking.getData<Proposal>(proposalUrlSubDomain, dest, key);
   }
   // extendProposal(dest, data, key) {
   //   this.networking.patchData<Proposal>(this.proposalsUrl)
