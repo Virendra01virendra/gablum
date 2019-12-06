@@ -35,10 +35,18 @@ public class SignUpController {
         }
 
         // FIXME: delete the admin role if the request came
-
+        user.setAddress(user.getAddress());
+        user.setBusinessLicense(user.getBusinessLicense());
+        user.setRole(user.getRole());
+        user.setCompanyName(user.getCompanyName());
+        user.setEmail(user.getEmail());
+        user.setPhone(user.getPhone());
         user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.toString());
+        System.out.println("before mailService.sendEmail is called()");
         mailService.sendEmail("registering", user);
+        System.out.println("after mailservice");
         userRepository.save(user);
         return new ResponseEntity<SignupResult>(new SignupResult("Registered", true), HttpStatus.CREATED );
     }
