@@ -6,5 +6,5 @@ import org.springframework.messaging.MessageChannel;
 public interface RabbitBinding {
 
     @Output("buyer")
-    public MessageChannel getChannel();
+    MessageChannel getChannel();
 }

@@ -6,10 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -32,12 +29,22 @@ public class User {
     private String companyName;
     private String userName;
     private String businessLicense;
-
+    private String subDomain;
     public enum role {
         BUYER, SELLER, BOTH, ADMIN
     }
     private List<Map<String, List<String>>> userDomainDetails;
-    // TODO: add methods to add userDomainDetails: DONE
+
+    public void addDomainDetails(String domain, String subDomain){
+        if(domain == null){
+            domain = "Agriculture";
+        }
+        List<String> newDetails = new ArrayList<String>();
+        newDetails.add(subDomain);
+        Map<String, List<String>> singleDomainDetails = new HashMap<>();
+        singleDomainDetails.put(domain, newDetails);
+        userDomainDetails.add(singleDomainDetails);
+    }
     private Set<Role> role = Set.of(new Role(1, "buyer"));
     // TODO: remove hard coded role: DONE
     private Integer active=1;
@@ -78,6 +85,4 @@ public class User {
     public void setRole(Set<Role> role) {
         this.role = role;
     }
-
-
 }

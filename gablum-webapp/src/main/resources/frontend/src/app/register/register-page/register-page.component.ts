@@ -57,24 +57,6 @@ export class RegisterPageComponent implements OnInit {
   get businessDomain() {
     return this.registrationForm.get('businessDomain');
   }
-  ublic void sendEmail(String type, User[] userList){
-    if (type == "registering"){
-
-//            msg.setTo(for( int i=0; i< userList.length; i++){
-//                userList[i].getEmail();
-//                });
-
-        msg.setSubject("Verification of Email");
-        msg.setText("All the mails form Gablum will be sent here.");
-        try
-        {
-            javaMailSender.send(msg);
-        } catch (MailException e){
-            System.out.println("Wrong email provided");
-            e.printStackTrace();
-        }
-    }
-}
   get businessSubDomain() {
     return this.registrationForm.get('businessSubDomain');
   }
