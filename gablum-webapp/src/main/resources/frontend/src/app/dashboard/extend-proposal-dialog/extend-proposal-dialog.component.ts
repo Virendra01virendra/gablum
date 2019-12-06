@@ -39,7 +39,7 @@ export class ExtendProposalDialogComponent implements OnInit {
     private logger: LoggerService,
     public dialogRef: MatDialogRef<ExtendProposalDialogComponent>
   ) {
-    console.log("this is sparta :::", this.data.deliveryDate);
+    console.log('this is sparta::', this.data.deliveryDate);
    }
   // console.log('type of date --------------- ', typeof(data.regStartDate));
   // this.startDate = (data.regStartDate);
@@ -69,7 +69,7 @@ export class ExtendProposalDialogComponent implements OnInit {
 
   RegEndDateFilter = (d: Date): boolean => {
     // Prevent dates before registration start date
-    return d > this.data.regStartDate && d < this.data.deliveryDate;
+    return d > new Date(this.data.regStartDate) && d < new Date(this.data.deliveryDate);
   }
 
 }
