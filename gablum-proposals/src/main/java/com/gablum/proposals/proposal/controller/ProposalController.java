@@ -1,13 +1,13 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.gablum.proposals.proposal.interfaces.RabbitBinding;
+//import com.gablum.proposals.proposal.interfaces.RabbitBinding;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.MessageChannel;
+//import org.springframework.messaging.MessageChannel;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -17,11 +17,11 @@ import java.util.Map;
 @RestController
 public class ProposalController {
 
-    public MessageChannel messageChannel;
+//    public MessageChannel messageChannel;
 
-    public ProposalController(RabbitBinding rabbitBinding) {
-        messageChannel = rabbitBinding.getChannel();
-    }
+//    public ProposalController(RabbitBinding rabbitBinding) {
+//        messageChannel = rabbitBinding.getChannel();
+//    }
 
     @Autowired
     private ProposalService proposalService;

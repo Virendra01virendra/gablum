@@ -29,7 +29,8 @@ public class User {
     private String companyName;
     private String userName;
     private String businessLicense;
-    private String subDomain;
+    private String businessDomain;
+    private String businessSubDomain;
     public enum role {
         BUYER, SELLER, BOTH, ADMIN
     }
