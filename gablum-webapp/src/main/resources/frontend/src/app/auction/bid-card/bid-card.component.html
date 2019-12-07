@@ -1,19 +1,19 @@
-<mat-expansion-panel *ngIf="bid" >
+<mat-expansion-panel>
     <mat-expansion-panel-header [collapsedHeight]="'8em'" [expandedHeight]="'11em'" fxLayout="row" class="mat-elevation-z4">
         <div class="profile-image" fxFlex="0 0 auto">
-            <img src="{{bid.seller.profileUrl}}" alt="">
+            <img src="https://picsum.photos/100" alt="">
         </div>
         <div class="bid-primary-container" fxLayout="column" fxLayoutAlign="space-around">
-            <span >{{bid.seller.name}}</span>
+            <span >{{bidDataEntity.createdBy}}</span>
             <mat-divider></mat-divider>
             <mat-chip-list>
-                <mat-chip matTooltip="Unit price">{{bid.price}}</mat-chip>
-                <mat-chip matTooltip="Score">{{bid.score}}</mat-chip>
+                <mat-chip matTooltip="Price">{{bidDataEntity.bid.price}}</mat-chip>
+                <mat-chip matTooltip="Score">{{bidDataEntity.score}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
     <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
-        <span matTooltip="Delivery Date">{{bid.timeOfdelivery | date}}</span>
-        <span matTooltip="Credit period (Months)">{{bid.creditPeriod}}</span>
+        <span matTooltip="Delivery Date">{{bidDataEntity.bid.timeOfdelivery | date}}</span>
+        <span matTooltip="Credit period (Months)">{{bidDataEntity.bid.creditPeriod}}</span>
     </div>
 </mat-expansion-panel>

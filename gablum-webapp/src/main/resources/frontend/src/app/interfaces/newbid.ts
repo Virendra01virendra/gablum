@@ -17,11 +17,16 @@ import { BidScore } from './bid-score';
 import { UserProfile } from './user';
 
 export interface NewBid {
-    seller: UserProfile;
-    price: number;
-    creditPeriod: number;
-    qaqcCertificate: boolean;
-    typeOfSupply: boolean;
-    timeOfdelivery: Date;
+    bidId: string;
+    auctionId: string;
+    bid: {
+        price: number;
+        creditPeriod: number;
+        qaqcCertificate: boolean;
+        typeOfSupply: boolean;
+        timeOfdelivery: Date;
+        score: number;
+        };
     score: number;
+    createdBy: string;
 }
