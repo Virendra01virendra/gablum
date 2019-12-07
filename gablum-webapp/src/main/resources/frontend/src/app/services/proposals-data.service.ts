@@ -24,14 +24,14 @@ export class ProposalsDataService {
 
   saveProposal(dest, data, key) {
     this.networking.postData<Proposal>(this.proposalsUrl, dest, data, key);
-    this.networking.getData<Proposal>(this.proposalsUrl, dest , key);
+    // this.networking.getData<Proposal>(this.proposalsUrl, dest , key);
   }
 
   getAllProposals(dest, key) {
     this.networking.getData<Proposal>(this.proposalsUrl, dest, key);
   }
 
-  getAllProposalForGuest(dest, key) {
+  getAllProposalForSeller(dest, key) {
     this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
   }
   postInterestedSeller(dest, data, key) {
@@ -47,7 +47,7 @@ export class ProposalsDataService {
   }
   extendProposal(dest, data, key) {
     const proposalExtend = this.proposalsUrl + '/' + data.proposalId;
-    console.log('extendProposal------', data);
+    // console.log('extendProposal------', data);
     this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
   }
 
