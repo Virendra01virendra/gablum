@@ -114,4 +114,10 @@ public class AuctionController {
         return scoreObject;
     }
 
+
+//    @GetMapping("auctions/{id}/bid")
+//    public List<BidDataEntity>  getBids(@PathVariable String id) {
+//        List<BidDataEntity> bidDataEntityList = auct
+//    }
+
 }
