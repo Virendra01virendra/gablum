@@ -25,7 +25,6 @@ export interface NewBid {
         qaqcCertificate: boolean;
         typeOfSupply: boolean;
         timeOfdelivery: Date;
-        score: number;
         };
     score: number;
     createdBy: string;

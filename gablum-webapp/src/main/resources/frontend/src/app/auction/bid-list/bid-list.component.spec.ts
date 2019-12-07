@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidListComponent } from './bid-list.component';
+import { BidCardComponent } from '../bid-card/bid-card.component';
 
 describe('BidListComponent', () => {
   let component: BidListComponent;
@@ -8,7 +9,8 @@ describe('BidListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidListComponent ]
+      declarations: [ BidListComponent,
+      BidCardComponent ]
     })
     .compileComponents();
   }));
