@@ -26,6 +26,11 @@
           <mat-chip color="primary">Method Of Supply</mat-chip> 
           <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
         </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary">Delivery Date</mat-chip> 
+          <mat-chip>{{auction.proposal.deliveryDate | date}}</mat-chip>
+        </div>
         
         
       </div>
@@ -35,7 +40,7 @@
     
     <button color="primary" mat-raised-button (click)="placeBid()" [hidden]= buttonShow>Place Bid</button>
 
-      <!-- <button color="primary" mat-raised-button (click) = "seeBids()">Place Bid</button> -->
+      <button color="primary" mat-raised-button (click) = "seeBids()">See Bids</button>
 
     </mat-card-actions>
   </mat-card>

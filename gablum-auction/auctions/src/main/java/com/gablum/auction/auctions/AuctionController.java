@@ -6,6 +6,8 @@ import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
@@ -51,12 +53,17 @@ public class AuctionController {
         List<Auction> auctionList = new ArrayList<Auction>();
         auctionList.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
         auctionList.addAll(auctionService.getAuctionSeller(queryMap, email));
+        for(Auction auction: auctionList)  {
+            auction.setSocketTokens(null);
+        }
         return auctionList;
     }
 
     @GetMapping("/auctions/{id}")
     public Auction getAuctionById(@PathVariable("id") String auctionId) {
-        return auctionService.getAuctionById(auctionId);
+        Auction auction = auctionService.getAuctionById(auctionId);
+        auction.setSocketTokens(null);
+        return auction;
     }
 
     @PostMapping("/auctions")
@@ -66,7 +73,25 @@ public class AuctionController {
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
             i = i+1;
-            System.out.println("email---------->" + email);
+            log.info("email---------->" + email);
+            auctionsToAdd.get(i).getSocketTokens().put(
+                    email,
+                    userService.generateToken(
+                            email,
+                            auctionsToAdd.get(i).getAuctionId(),
+                            auctionsToAdd.get(i).getAuctionEndDate(),
+                            true)
+            );
+            for (String sellerEmail: auctionsToAdd.get(i).getSelectedParticipantList()) {
+                auctionsToAdd.get(i).getSocketTokens().put(
+                        sellerEmail,
+                        userService.generateToken(
+                                sellerEmail,
+                                auctionsToAdd.get(i).getAuctionId(),
+                                auctionsToAdd.get(i).getAuctionEndDate(),
+                                false)
+                );
+            }
         }
         return auctionService.addAuctions(auctionsToAdd);
     }
@@ -77,8 +102,11 @@ public class AuctionController {
         String email = userService.getEmail(request);
         log.debug(email);
 
-        return auctionService.getAuctionSeller(queryMap, email);
-
+        List<Auction> auctions =  auctionService.getAuctionSeller(queryMap, email);
+        for(Auction auction: auctions)  {
+            auction.setSocketTokens(null);
+        }
+        return auctions;
     }
 
 
@@ -114,10 +142,23 @@ public class AuctionController {
         return scoreObject;
     }
 
-
-//    @GetMapping("auctions/{id}/bid")
-//    public List<BidDataEntity>  getBids(@PathVariable String id) {
-//        List<BidDataEntity> bidDataEntityList = auct
-//    }
+    @GetMapping("/tokens/{auctionId}")
+    public ResponseEntity<SocketToken> getAuctionSocketToken(
+            HttpServletRequest request,
+            @PathVariable("auctionId") String auctionId) {
+        String email = userService.getEmail(request);
+        Auction currentAuction = auctionService.getAuctionById(auctionId);
+        String socketToken = currentAuction.getSocketTokens().get(email);
+        if (socketToken == null) {
+            return new ResponseEntity<SocketToken>(
+                    new SocketToken(""),
+                    HttpStatus.FORBIDDEN
+            );
+        }
+        return new ResponseEntity<SocketToken>(
+                new SocketToken(socketToken),
+                HttpStatus.OK
+        );
+    }
 
 }

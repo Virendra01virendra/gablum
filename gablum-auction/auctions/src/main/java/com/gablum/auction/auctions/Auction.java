@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +33,8 @@ public class Auction {
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
     private List<String> bidIdList;
+
+    private HashMap<String, String> socketTokens;
 
 
     private Date createdOn;
