@@ -61,26 +61,30 @@ export class EditProfileDialogComponent implements OnInit {
     return this.editProfileForm.get('businessSubDomain');
   }
 
-  subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+  public subDomains = ['Raw Materials', 'Crops', 'Machinery'];
 
-  editProfileForm = new FormGroup({
-    name : new FormControl(''),
-    email : new FormControl(''),
-    address : new FormControl(''),
-    phone : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(14),
-      Validators.pattern('^[0-9-.+]*$')])),
-    companyName : new FormControl(''),
-    businessLicense : new FormControl('', Validators.compose([Validators.required,
-      Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
-    password : new FormControl(''),
-    role : new FormControl(''),
-    businessDomain : new FormControl(''),
-    businessSubDomain : new FormControl('')
-  });
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private profileService: ProfileDataService) { }
+  public editProfileForm: FormGroup;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Profile,
+    private profileService: ProfileDataService,
+    private logger: LoggerService) {
+    this.editProfileForm = new FormGroup({
+      name : new FormControl(data.name),
+      email : new FormControl(data.email),
+      address : new FormControl(data.address),
+      phone : new FormControl(data.phone, Validators.compose([Validators.required, Validators.maxLength(14),
+        Validators.pattern('^[0-9-.+]*$')])),
+      companyName : new FormControl(data.companyName),
+      businessLicense : new FormControl(data.businessLicense, Validators.compose([Validators.required,
+        Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
+      businessDomain : new FormControl(data.businessDomain),
+      businessSubDomain : new FormControl(data.businessSubDomain)
+    });
+  }
 
   ngOnInit() {
-    console.log('dailog data::', this.data);
+    this.logger.log('dialog data::', this.data);
   }
 
   phoneErrorMessage() {
@@ -103,6 +107,8 @@ export class EditProfileDialogComponent implements OnInit {
   }
 
   onConfirm() {
-    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, this.editProfileForm.value,  'profile');
+    const profileValue: Profile = this.editProfileForm.value;
+    profileValue.role = this.data.role;
+    this.profileService.editUserProfile('@all', profileValue, 'profile');
   }
 }

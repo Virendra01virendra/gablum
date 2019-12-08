@@ -63,6 +63,11 @@ export class NewProposalForm1Component implements OnInit {
   ngOnInit() {
   }
 
+  deliveryDate = (d: Date): boolean => {
+    const currentDate = new Date();
+    return (d.getDate() > currentDate.getDate() + 4) && (d > currentDate);
+  }
+
   onNext1(form: FormGroup) {
     this.logger.log('name' + form.value.productName);
   }
@@ -79,7 +84,9 @@ export class NewProposalForm1Component implements OnInit {
 
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
-    return d < this.paramForm.value.deliveryDate;
+    const currentDate = new Date();
+    return (d.getDate() < this.paramForm.value.deliveryDate.getDate() - 4) && (d > currentDate)
+    && (d < this.paramForm.value.deliveryDate);
     // return true;
   }
 

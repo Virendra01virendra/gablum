@@ -5,6 +5,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -17,17 +18,21 @@ export class ProfilePageComponent implements OnInit {
 
   @Input() profile: Profile;
 
+  public roles: string;
+
   constructor(
     private dialog: MatDialog,
     private profileDataService: ProfileDataService,
     private comms: CommunicatorService,
-    private logger: LoggerService) {
+    private logger: LoggerService,
+    private auth: AuthenticationService) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === ProfilePageComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
 
           if ('profile' in data) {
             this.profile = data.profile;
+            this.roles = this.profile.role.map(r => r.role).join(', ');
             this.logger.log(this.profile);
           }
         }
@@ -42,6 +47,11 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.closeOnNavigation = true;
-    this.dialog.open(EditProfileDialogComponent, {data: this.profile});
+    this.dialog.open(EditProfileDialogComponent,
+      {
+        width: '80%',
+        data: this.profile
+      }
+    );
   }
 }
