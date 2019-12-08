@@ -67,34 +67,23 @@ export class DashboardComponent implements OnInit {
         if ('proposals' in data) {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
-          if ('authChanged' in data) {
-            this.isLoggedIn = auth.getAuthenticated();
-            this.logger.log(auth.getProfileData());
-            this.isBuyer = auth.isBuyer();
-            this.isSeller = auth.isSeller();
-          }
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals;
           this.logger.log(this.proposals);
-          if ('authChanged' in data) {
-            this.isLoggedIn = auth.getAuthenticated();
-            this.logger.log(auth.getProfileData());
-            this.isBuyer = auth.isBuyer();
-            this.isSeller = auth.isSeller();
-          }
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
           this.logger.log(this.auctions);
-          if ('authChanged' in data) {
-            this.isLoggedIn = auth.getAuthenticated();
-            this.logger.log(auth.getProfileData());
-            this.isBuyer = auth.isBuyer();
-            this.isSeller = auth.isSeller();
-          }
+        }
+
+        if ('authChanged' in data) {
+          this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(this, auth.getProfileData());
+          this.isBuyer = auth.isBuyer();
+          this.isSeller = auth.isSeller();
         }
 
         if ('userProfile' in data) {             // getting user profile for subDomain
@@ -108,7 +97,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ws.connect(message => this.subscribe());
+    // this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
     this.user.getUserProfileByEmail(DashboardComponent.messageKey, 'userProfile');
     this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
