@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { Profile } from 'src/app/interfaces/profile';
 
 @Component({
   selector: 'app-edit-profile-dialog',
@@ -13,6 +14,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 export class EditProfileDialogComponent implements OnInit {
 
   public static messageKey = 'edit-profile-dialog-component';
+
+  public profile: Profile;
 
   get name() {
     return this.editProfileForm.get('name');
@@ -67,7 +70,6 @@ export class EditProfileDialogComponent implements OnInit {
     phone : new FormControl('', Validators.compose([Validators.required, Validators.maxLength(14),
       Validators.pattern('^[0-9-.+]*$')])),
     companyName : new FormControl(''),
-    userName : new FormControl(''),
     businessLicense : new FormControl('', Validators.compose([Validators.required,
       Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
     password : new FormControl(''),
@@ -101,6 +103,6 @@ export class EditProfileDialogComponent implements OnInit {
   }
 
   onConfirm() {
-    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, this.editProfileForm.value, 'profile');
+    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, this.editProfileForm.value,  'profile');
   }
 }
