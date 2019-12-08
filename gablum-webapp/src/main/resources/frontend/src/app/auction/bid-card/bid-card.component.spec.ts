@@ -31,10 +31,11 @@ describe('BidCardComponent', () => {
         creditPeriod: 0,
         qaqcCertificate: true,
         typeOfSupply: true,
-        timeOfdelivery: ''
+        timeOfdelivery: new Date()
       },
       score: 0
     };
+    component.bidDataEntity = bidDataEntity;
     fixture.detectChanges();
   });
 
