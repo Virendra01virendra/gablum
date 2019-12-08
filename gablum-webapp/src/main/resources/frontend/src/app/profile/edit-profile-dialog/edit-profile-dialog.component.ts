@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { Profile } from 'src/app/interfaces/profile';
 
 @Component({
   selector: 'app-edit-profile-dialog',
@@ -75,7 +76,7 @@ export class EditProfileDialogComponent implements OnInit {
     businessDomain : new FormControl(''),
     businessSubDomain : new FormControl('')
   });
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private profileService: ProfileDataService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Profile, private profileService: ProfileDataService) { }
 
   ngOnInit() {
     console.log('dailog data::', this.data);
@@ -101,6 +102,8 @@ export class EditProfileDialogComponent implements OnInit {
   }
 
   onConfirm() {
-    this.profileService.editUserProfile(EditProfileDialogComponent.messageKey, this.editProfileForm.value, 'profile');
+    const profileValue: Profile = this.editProfileForm.value;
+    profileValue.role = this.data.role;
+    this.profileService.editUserProfile('@all', profileValue, 'profile');
   }
 }

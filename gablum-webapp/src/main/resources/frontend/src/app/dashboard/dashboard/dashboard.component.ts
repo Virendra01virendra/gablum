@@ -97,7 +97,7 @@ export class DashboardComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.ws.connect(message => this.subscribe());
+    // this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
     this.proposalDataService.getAllProposalForSeller(DashboardComponent.messageKey, 'sellerProposals');
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
