@@ -15,7 +15,7 @@ export class SellerProposalCardComponent implements OnInit {
 
   public static messageKey = 'seller-proposal-card-component';
  alreadyRegistered = false;
-  @Input() proposal: Proposal;
+  @Input() allProposal: Proposal;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,
               private dialog: MatDialog,
@@ -24,18 +24,18 @@ export class SellerProposalCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  shownInterest(proposal: Proposal) {
+  shownInterest(allProposal: Proposal) {
     // const proposalId = element.proposalId;
     this.logger.log('some data which we are publishing ');
     this.alreadyRegistered = true;
-    this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, proposal, 'interestedSellers');
+    this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, allProposal, 'interestedSellers');
   }
 
-  openDialog(proposal: Proposal) {
+  openDialog(allProposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
       width: '60%',
       height: '60%',
-      data: proposal
+      data: allProposal
     });
   }
 }

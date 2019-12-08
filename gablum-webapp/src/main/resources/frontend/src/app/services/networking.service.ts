@@ -47,6 +47,7 @@ export class NetworkingService {
       )
       .subscribe(res => {
         this.comms.postMessage(this, dest, {[key]: res});
+        this.getData<T>(url, dest, key);
       },
       err => {
         this.logger.log(err);
@@ -68,6 +69,7 @@ export class NetworkingService {
       )
       .subscribe(res => {
         this.comms.postMessage(this, dest, {[key]: res});
+        this.getData<T>(url, dest, key);
       },
       err => {
         this.logger.log(err);
