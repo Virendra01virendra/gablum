@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
 
   public static messageKey = 'login-component';
 
+  public loginError = false;
+  public loginErrorMesage = '';
+
   get password() {
     return this.loginForm.get('password');
   }
@@ -43,11 +46,22 @@ export class LoginComponent implements OnInit {
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
           if ('loginResult' in data) {
-            const loginToken: LoginToken = data.loginResult.accessToken;
+            const loginToken = data.loginResult.accessToken;
+            this.logger.log(loginToken);
             if (loginToken === undefined || loginToken === null) {
 
+            } else if (loginToken === 401) {
+              auth.setAuthenticated(false);
+              this.loginError = true;
+              this.loginErrorMesage = 'Invalid Credentials';
+              this.logger.log(this.loginErrorMesage);
+            } else if (loginToken === 401) {
+              auth.setAuthenticated(false);
+              this.loginError = true;
+              this.loginErrorMesage = 'Unknown Error, try again later';
             } else {
               auth.setAuthenticated(true);
+              this.loginError = false;
               this.profile.getUserProfileByEmail('@all', 'profile');
               this.router.navigate(['/dashboard']);
             }

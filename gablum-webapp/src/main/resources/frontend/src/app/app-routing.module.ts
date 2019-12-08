@@ -3,32 +3,35 @@ import { Routes, RouterModule } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TimerComponent } from './scheduler/timer/timer.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { BuyerGuardService } from './services/buyer-guard.service';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
-    // canLoad: [AuthGuardService]
+    canLoad: [AuthGuardService]
   },
-  {
-    path: 'console',
-    loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
-  },
-  {
-    path: 'history',
-    loadChildren: () => import('./history/history.module').then(module => module.HistoryModule)
-  },
+  // {
+  //   path: 'console',
+  //   loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
+  // },
+  // {
+  //   path: 'history',
+  //   loadChildren: () => import('./history/history.module').then(module => module.HistoryModule)
+  // },
   {
     path: 'inbox',
-    loadChildren: () => import('./inbox/inbox.module').then(module => module.InboxModule)
+    loadChildren: () => import('./inbox/inbox.module').then(module => module.InboxModule),
+    canLoad: [AuthGuardService]
   },
-  {
-    path: 'calendar',
-    loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
-  },
+  // {
+  //   path: 'calendar',
+  //   loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
+  // },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+    canLoad: [AuthGuardService]
   },
   {
     path: 'register',
@@ -36,19 +39,21 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule)
+    loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule),
+    canLoad: [AuthGuardService, BuyerGuardService]
   },
-  {
-    path: 'auctions',
-    loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./app.module').then(m => m.AppModule)
-  },
+  // {
+  //   path: 'auctions',
+  //   loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
+  // },
+  // {
+  //   path: 'login',
+  //   loadChildren: () => import('./app.module').then(m => m.AppModule)
+  // },
   {
     path: 'contracts',
-    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule)
+    loadChildren: () => import('./contracts/contracts.module').then(m => m.ContractsModule),
+    canLoad: [AuthGuardService]
   },
   {
     path: 'timer',
