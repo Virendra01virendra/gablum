@@ -1,28 +1,31 @@
 <mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
   <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-    <mat-card-title [style.color]="'black'">{{auction.auctionName}}</mat-card-title>
-    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-title>{{auction.auctionName}}</mat-card-title>
+    <mat-card-subtitle style="color: antiquewhite;">{{auction.proposal.businessSubDomain}}</mat-card-subtitle>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+    <!-- <app-timer></app-timer> -->
+    </div>
   </mat-card-header>
   <!-- <img mat-card-image src="https://picsum.photos/300"> -->
   <mat-card-content>
     <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
       <div fxLayoutAlign="space-between">
-       <mat-chip color="primary">Price </mat-chip> 
+       <mat-chip color="primary" selected>Price </mat-chip> 
        <mat-chip>{{auction.proposal.price}}</mat-chip>
         </div>
 
         <div fxLayoutAlign="space-between">
-          <mat-chip color="primary">Credit Period</mat-chip> 
+          <mat-chip color="primary" selected>Credit Period</mat-chip> 
           <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
         </div>
 
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary">Quality Certification</mat-chip> 
+        <div fxLayoutAlign="space-between" selected>
+          <mat-chip color="primary" selected>Quality Certification</mat-chip> 
           <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
         </div>
 
-        <div fxLayoutAlign="space-between">
+        <div fxLayoutAlign="space-between" selected>
           <mat-chip color="primary">Method Of Supply</mat-chip> 
           <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
         </div>

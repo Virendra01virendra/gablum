@@ -10,6 +10,7 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { ConsoleModule } from '../console/console.module';
 import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-dialog.component';
 import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submission-dialog.component';
+import { TimerComponent } from '../scheduler/timer/timer.component';
 
 
 @NgModule({
