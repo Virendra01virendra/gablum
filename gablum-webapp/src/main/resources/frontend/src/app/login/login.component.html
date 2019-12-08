@@ -17,14 +17,15 @@
                     <input  matInput formControlName="password" required type="password">
                     <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage2()}}</mat-error>
                 </mat-form-field>
+                <mat-error *ngIf="loginError">{{loginErrorMesage}}</mat-error>
             </mat-card-content>  
-            <mat-card-actions>
-                <div class="btn">
-                    <button mat-raised-button color="primary" [disabled]='!loginForm.valid'
-                    type="submit">Login</button>
-                    &nbsp; &nbsp; <u>Forgot Password?</u>
-                </div>
-            </mat-card-actions>      
+                <mat-card-actions>
+                    <div class="btn">
+                        <button mat-raised-button color="primary" [disabled]='!loginForm.valid'
+                        type="submit">Login</button>
+                        <!-- &nbsp; &nbsp; <u>Forgot Password?</u> -->
+                    </div>
+                </mat-card-actions>      
         </form>
     </mat-card>
     <mat-card fxFlex="0 0 45%">

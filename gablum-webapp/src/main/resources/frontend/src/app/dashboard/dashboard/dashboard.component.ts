@@ -63,38 +63,27 @@ export class DashboardComponent implements OnInit {
         if ('proposals' in data) {
           this.proposals = data.proposals;
           this.logger.log(this.proposals);
-          if ('authChanged' in data) {
-            this.isLoggedIn = auth.getAuthenticated();
-            this.logger.log(auth.getProfileData());
-            this.isBuyer = auth.isBuyer();
-            this.isSeller = auth.isSeller();
-          }
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals ;
           this.logger.log(this.proposals);
-          if ('authChanged' in data) {
-            this.isLoggedIn = auth.getAuthenticated();
-            this.logger.log(auth.getProfileData());
-            this.isBuyer = auth.isBuyer();
-            this.isSeller = auth.isSeller();
-          }
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
           this.logger.log(this.auctions);
-          if ('authChanged' in data) {
+        }
+
+        if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(auth.getProfileData());
+          this.logger.log(this, auth.getProfileData());
           this.isBuyer = auth.isBuyer();
           this.isSeller = auth.isSeller();
         }
       }
-    }
-  });
-}
+    });
+  }
 
   ngOnInit() {
     // this.ws.connect(message => this.subscribe());
