@@ -47,6 +47,11 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.closeOnNavigation = true;
-    this.dialog.open(EditProfileDialogComponent, {data: this.profile});
+    this.dialog.open(EditProfileDialogComponent,
+      {
+        width: '80%',
+        data: this.profile
+      }
+    );
   }
 }
