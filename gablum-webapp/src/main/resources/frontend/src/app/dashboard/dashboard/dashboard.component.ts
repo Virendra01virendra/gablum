@@ -100,7 +100,7 @@ export class DashboardComponent implements OnInit {
         if ('userProfile' in data) {             // getting user profile for subDomain
           this.userProfile = data.userProfile;
           this.logger.log(this.userProfile);
-          this.businessSubdomain = this.userProfile.businessSubDomain;
+          // this.businessSubdomain = this.userProfile.businessSubDomain;
         }
 
       }
