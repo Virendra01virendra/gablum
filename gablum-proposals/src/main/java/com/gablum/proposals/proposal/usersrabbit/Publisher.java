@@ -5,6 +5,6 @@ import org.springframework.messaging.MessageChannel;
 
 public interface Publisher {
     @Output("proposalToUser")
-    public MessageChannel getChannel();
+    MessageChannel getChannel();
 }
 
