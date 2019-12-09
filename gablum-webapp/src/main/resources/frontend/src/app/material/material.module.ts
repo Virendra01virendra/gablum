@@ -28,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 
 
+
 const modules = [
   CommonModule,
   MatFormFieldModule,
@@ -68,7 +69,7 @@ const modules = [
   FlexLayoutModule,
   MatListModule,
   MatMenuModule,
-  MatTableModule
+  MatTableModule,
 ];
 
 @NgModule({

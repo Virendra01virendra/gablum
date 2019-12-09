@@ -13,6 +13,7 @@ import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submis
 import { TimerComponent } from '../scheduler/timer/timer.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
+import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { BidCardComponent } from './bid-card/bid-card.component';
     BidResponseDialogComponent,
     BidSubmissionDialogComponent,
     BidListComponent,
-    BidCardComponent
+    BidCardComponent,
+    AuctionStartDialogComponent
   ],
   imports: [
     CommonModule,
