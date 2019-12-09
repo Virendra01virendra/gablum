@@ -1,5 +1,8 @@
 package com.gablum.contract.contracts.model;
 
+import com.gablum.contract.contracts.model.othermodels.Auction;
+import com.gablum.contract.contracts.model.othermodels.Bid;
+import com.gablum.contract.contracts.model.othermodels.User;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,20 +14,27 @@ import java.util.UUID;
 public class Contracts {
     @Id
     private String _id;
-    @NotNull
-    private UUID contractId;
 
     @NotNull
-    private Object auctionDetails;
+    private String contractId;
 
     @NotNull
-    private Object BidDetails;
+    private Auction auctionDetails;
 
     @NotNull
-    private UUID buyerId;
+    private Bid BidDetails;
 
     @NotNull
-    private UUID sellerId;
+    private User buyer;
+
+    @NotNull
+    private String buyerESign;
+
+    @NotNull
+    private String sellerESign;
+
+    @NotNull
+    private User sellerId;
 
     @NotNull
     private Boolean contractStatus = true;

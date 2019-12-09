@@ -1,4 +1,4 @@
-package com.gablum.auction.auctions;
+package com.gablum.contract.contracts.model.othermodels;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +28,7 @@ public class Proposal {
     private int quantityValue;
     private String quantityUnit;
     private float price;
-    private String deliveryDate;
+    private Date deliveryDate;
     private int creditPeriod;
     private boolean qualityCertification;
     private boolean methodOfSupply;
