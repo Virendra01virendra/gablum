@@ -1,6 +1,7 @@
 package com.gablum.usermanagement.user.services;
 
 import com.gablum.usermanagement.user.model.User;
+import com.gablum.usermanagement.user.model.othermodels.Auction;
 import com.gablum.usermanagement.user.model.othermodels.Proposal;
 //import com.gablum.usermanagement.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,24 @@ public class MailService {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void sendAuctionEmail(String type, Auction auction) {
+        if (type == "newAuction"){
+            msg.setTo(auction.getCreatedBy());
+            msg.setSubject("New Auction Floated");
+            String text = "You have added a new Auction";
+            msg.setText(text);
+            try
+            {
+                javaMailSender.send(msg);
+            } catch (MailException e){
+                System.out.println("Wrong email provided");
+                e.printStackTrace();
+            }
+
+//            for (int i=0)
         }
     }
 

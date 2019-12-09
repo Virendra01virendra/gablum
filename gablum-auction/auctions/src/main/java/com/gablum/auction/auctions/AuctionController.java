@@ -67,6 +67,14 @@ public class AuctionController {
         return auction;
     }
 
+    // FIXME add web Socket Tokens
+    @PostMapping("/auctions")
+    public Auction addAuction(@RequestBody Auction auction){
+        Message<Auction> msg = MessageBuilder.withPayload(auction).build();
+        messageChannel.send(msg);
+        return auctionService.addAuction(auction);
+    }
+
     @PostMapping("/auctions")
     public List<Auction> addAuctions(@RequestBody List<Auction> auctionsToAdd, HttpServletRequest request) {
         int i = 0;
