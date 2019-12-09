@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgxData } from 'src/app/interfaces/ngx-data';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -23,8 +24,15 @@ export class BidCardComponent implements OnInit {
 
   @Input() public bidDataEntity: NewBid;
 
+  public data: NgxData[];
+
 
   ngOnInit() {
+    this.data = Object.keys(this.bidDataEntity.scoreObject).map(key => {
+      // if (key !== 'total') {
+        return {name: key, value: this.bidDataEntity.scoreObject[key]};
+      // }
+    }).filter(item => item.name !== 'total');
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
