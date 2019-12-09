@@ -47,4 +47,9 @@ export class AuctionsDataService {
       this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
       this.networking.getData(this.bidUrl, dest, key);
     }
+
+    saveWinningBid(dest, data, key, auctionId) {
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + 'bid/end';
+      this.networking.patchData(this.bidUrl, dest, data, key);
+    }
 }
