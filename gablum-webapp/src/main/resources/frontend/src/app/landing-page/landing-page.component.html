@@ -1,92 +1,89 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
-    <div class="hero-text-container">
-        <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
-    </div>
+  <div class="hero-text-container">
+    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
+  </div>
 </div>
 
-<hr>
+<mat-divider></mat-divider>
+
+
+
+<!-- <mat-list>
+            <mat-list-item><h3><b>Built with the aim to connect <br>
+                business supply and demand requirements <br>
+                with a refined reverse auction online platform</b></h3></mat-list-item>
+            <mat-divider></mat-divider>                  
+    </mat-list> -->
 
 <div class="completer">
-        <div class="boxes" fxLayout="row wrap">
-                <div class="box1" fxFlex>
-                    <h2><b>CONTACT US AT</b></h2>
-                    
-                    <!-- <mat-list>
-                            <mat-list-item><h3><b>Built with the aim to connect <br>
-                                business supply and demand requirements <br>
-                                with a refined reverse auction online platform</b></h3></mat-list-item>
-                            <mat-divider></mat-divider>                  
-                    </mat-list> -->
+  <div class="boxes" fxLayout="row wrap" style="padding: 5%;">
+    <div class="box1" fxFlex>
+      <section class="mat-h1">Contact Us</section>
+      <br>
+      <div>
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <section class="mat-title">123-456-789</section>
+      </div>
 
-                    <mat-card style="background-color: rgb(172, 166, 166); border-style: 5px solid black;">
-                            <i class="fa fa-phone" aria-hidden="true"></i><h3><b>123-456-789</b></h3>
-                    </mat-card>
-                    <br>
-                    
-                    <mat-card style="background-color: rgb(172, 166, 166); border-style: 5px solid #000;">
-                            <i class="fa fa-envelope" aria-hidden="true"></i><h3><b>babu.apte@gmail.com</b></h3>
-                    </mat-card>
-                        
-                
-                    
-                   
+      <div>
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <section class="mat-title">babu.apte@gmail.com</section>
+      </div>
 
-                </div>
-                <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div>
-                <div class="box1" fxFlex>
-                    <h2><b>QUICK LINKS</b></h2>
-                    <br>
-                    <mat-list>
-                            <mat-list-item><h3><b>REVERSE AUCTIONS</b></h3></mat-list-item>
-                            <mat-divider></mat-divider>
+    </div>
+    <!-- <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div> -->
+    <mat-divider vertical></mat-divider>
+    <div class="box1" fxFlex>
+      <section class="mat-h1">Quick Links</section>
+      <div>
+        <section class="mat-title">REVERSE AUCTIONS</section>
+        <mat-divider></mat-divider>
 
-                            <mat-list-item><h3><b>DEVELOPING TECHNOLOGY</b></h3></mat-list-item>
-                            <mat-divider></mat-divider>
+        <section class="mat-title">DEVELOPING TECHNOLOGY</section>
+        <mat-divider></mat-divider>
 
-                            <mat-list-item><h3><b>SMART CONTRACTS</b></h3></mat-list-item>
-                            <mat-divider></mat-divider>
+        <section class="mat-title">SMART CONTRACTS</section>
+        <mat-divider></mat-divider>
 
-                            <mat-list-item><h3><b>OUR TEAM MEMBERS</b></h3></mat-list-item>
-                            <mat-divider></mat-divider>
-                          </mat-list>
-                  
-                    <br>    
-                </div>
-               
-                <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div>
-                <div class="box1"  id="box1" fxFlex>
-                    <h2><b>REACH OUT TO US</b></h2>
-                    <form class="example-form">
-                            <mat-form-field class="example-full-width">
-                              <input matInput placeholder="Name">
-                            </mat-form-field><br>
-                          
-                            <mat-form-field class="example-full-width">
-                              <textarea matInput placeholder="Leave a comment"></textarea>
-                            </mat-form-field>
-                          </form>
-                          <br>
-                          <button mat-button mat-raised-button color='primary'>Submit</button>
-                </div>
-            </div>
-            <hr>            
-            <div class="connect"><h3><b>FIND US ON</b></h3>
-                <hr>
-            <div class="socialmediaicons" fxLayout="row wrap" fxLayoutAlign="space-around center">
-                    <mat-icon><a href=""><i class="fa fa-facebook"></i></a></mat-icon>
-                    <mat-icon><a href=""><i class="fa fa-twitter"></i></a></mat-icon>
-                    <mat-icon><a href=""><i class="fa fa-linkedin"></i></a></mat-icon>
-                    <mat-icon><a href=""><i class="fa fa-instagram"></i></a></mat-icon>
-                    <mat-icon><a href=""><i class="fa fa-github"></i></a></mat-icon>
-                </div>
-            </div>
-                <footer>
-                    <p>
-                        Created with <i class="fa fa-heart"></i> by
-                        <a target="_blank" href="#">SLEEPY CATS__Copyright &copy; 2019 </a>
-                        
-                    </p>
-                </footer>
+        <section class="mat-title">OUR TEAM MEMBERS</section>
+        <!-- <mat-divider></mat-divider> -->
+      </div>
+    </div>
+
+    <!-- <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div> -->
+    <mat-divider vertical></mat-divider>
+    <div class="box1" id="box1" fxFlex>
+      <section class="mat-h1">Reach Out</section>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name">
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+      </form>
+      <br>
+      <button mat-button mat-raised-button color='primary'>Submit</button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="connect">
+    <h3>FIND US ON</h3>
+    <div class="socialmediaicons" fxLayout="row wrap" fxLayoutAlign="space-around center">
+      <mat-icon><a href=""><i class="fa fa-facebook"></i></a></mat-icon>
+      <mat-icon><a href=""><i class="fa fa-twitter"></i></a></mat-icon>
+      <mat-icon><a href=""><i class="fa fa-linkedin"></i></a></mat-icon>
+      <mat-icon><a href=""><i class="fa fa-instagram"></i></a></mat-icon>
+      <mat-icon><a href=""><i class="fa fa-github"></i></a></mat-icon>
+    </div>
+  </div>
+  <footer>
+    <p>
+      Created with <i class="fa fa-heart"></i> by
+      <a target="_blank" href="#">SLEEPY CATS__Copyright &copy; 2019 </a>
+
+    </p>
+  </footer>
 </div>
-

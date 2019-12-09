@@ -40,6 +40,10 @@ footer a {
     text-decoration: none;
 }
 
+.abc {
+    justify-content: center;
+}
+
 .completer
 {
     background-color: rgb(214, 209, 209);
