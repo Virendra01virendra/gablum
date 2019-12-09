@@ -22,9 +22,12 @@ public class Proposal {
     @Id
     private String _id;
     private String proposalId = UUID.randomUUID().toString();
-    private ProductDetails productDetails;
+    private String productId;
     private String createdBy;
     private String updatedBy;
+    private String businessDomain;
+    private String businessSubDomain;
+    private String productName;
     private int quantityValue;
     private String quantityUnit;
     private float price;
