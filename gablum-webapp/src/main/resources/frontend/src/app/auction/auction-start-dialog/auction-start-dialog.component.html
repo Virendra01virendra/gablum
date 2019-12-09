@@ -1,0 +1,63 @@
+<div class="wrapper" fxLayoutAlign="space-around center">
+    <mat-dialog-content>
+        <div> Auction Details:</div>
+        <div fxLayoutAlign="space-between">
+                <mat-chip color="primary">Price </mat-chip> 
+                <mat-chip>{{data.price}}</mat-chip>
+                 </div>
+         
+                 <div fxLayoutAlign="space-between">
+                   <mat-chip color="primary">Credit Period</mat-chip> 
+                   <mat-chip>{{data.creditPeriod + ' months'}}</mat-chip>
+                 </div>
+         
+                 <div fxLayoutAlign="space-between">
+                   <mat-chip color="primary">Quality Certification</mat-chip> 
+                   <mat-chip>{{data.qualityCertification}}</mat-chip>
+                 </div>
+         
+                 <div fxLayoutAlign="space-between">
+                   <mat-chip color="primary">Method Of Supply</mat-chip> 
+                   <mat-chip>{{data.methodOfSupply}}</mat-chip>
+                 </div>
+
+                 <div fxLayoutAlign="space-between">
+                  <mat-chip color="primary">Delivery Date</mat-chip> 
+                  <mat-chip>{{data.deliveryDate | date}}</mat-chip>
+                </div>
+               
+        <!-- <div> Your score is <div [ngClass]="{
+                  'positive' : data >= 90,
+                  'medium' : data < 90 && data >= 70,
+                  'negative': data < 70
+              }">
+          {{result1}}
+          </div>
+      </div> -->
+    </mat-dialog-content>
+  </div>
+  <br>
+
+  <h1 mat-dialog-title>Interested sellers</h1>
+<div mat-dialog-content>
+  
+
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let seller of data.interestedUsersEmail">
+          {{seller}}
+            <button mat-raised-button color="primary" (click)="onClick()">Invite</button>
+        </mat-list-item>
+      
+  
+      </mat-list>
+
+</div>
+<br>
+
+  <div class="wrapper" fxLayoutAlign="space-around center">
+    <mat-dialog-actions>
+      <button color="primary" mat-raised-button (click)="close()">Back to Dashboard</button>
+      <button color="primary" mat-raised-button (click)="startAuction(data)">Start Auction</button>
+    </mat-dialog-actions>
+  </div>
+  
