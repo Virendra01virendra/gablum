@@ -8,6 +8,7 @@ import com.gablum.usermanagement.user.security.UserService;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequestMapping
 @RestController
 public class UserController {
