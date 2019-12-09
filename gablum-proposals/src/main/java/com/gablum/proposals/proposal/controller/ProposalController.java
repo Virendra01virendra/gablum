@@ -51,8 +51,8 @@ public class ProposalController {
 
     @GetMapping("/proposals")
     public List<Proposal> getProposals(@RequestParam Map<String, String> queryMap, HttpServletRequest request) {
-        Message<String> msg = MessageBuilder.withPayload("helloo world from proposal's rabbit").build();
-        messageChannel.send(msg);
+        // Message<Proposal> msg = MessageBuilder.withPayload("helloo world from proposal's rabbit").build();
+        // messageChannel.send(msg);
         String email = userService.getEmail(request);
         return proposalService.getAllProposals(queryMap, email);
     }

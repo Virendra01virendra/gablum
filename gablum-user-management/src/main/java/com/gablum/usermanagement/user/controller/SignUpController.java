@@ -33,14 +33,6 @@ public class SignUpController {
             return new ResponseEntity<SignupResult>(
                     new SignupResult("There is an account with that email address", false), HttpStatus.NOT_ACCEPTABLE);
         }
-
-        // FIXME: delete the admin role if the request came
-        user.setAddress(user.getAddress());
-        user.setBusinessLicense(user.getBusinessLicense());
-        user.setRole(user.getRole());
-        user.setCompanyName(user.getCompanyName());
-        user.setEmail(user.getEmail());
-        user.setPhone(user.getPhone());
         user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         mailService.sendEmail("registering", user);

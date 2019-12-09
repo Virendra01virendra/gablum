@@ -31,9 +31,6 @@ public class User {
     private String businessLicense;
     private String businessDomain;
     private String businessSubDomain;
-    public enum role {
-        BUYER, SELLER, BOTH, ADMIN
-    }
     private List<Map<String, List<String>>> userDomainDetails;
 
     public void addDomainDetails(String domain, String subDomain){
