@@ -8,7 +8,7 @@
     <mat-tab *ngFor="let section of dashboardSections1" [label]="section.label">
 
       <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
-        fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
+        fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="proposal-card">
 
         <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
@@ -22,12 +22,12 @@
         </div>
       </div>
       <div *ngIf="section.label=='Past Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
-        fxLayout.sm="column">
+        fxLayout.sm="column" class="proposal-card">
         <p>Past Auctions</p>
       </div>
 
       <div *ngIf="section.label=='Active Proposals(Seller)'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
-        fxLayout.sm="column">
+        fxLayout.sm="column" class="proposal-card">
         <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
         <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
         </app-seller-proposal-card>
@@ -66,7 +66,7 @@
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
-      <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+      <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px" class="proposal-card"
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
 
         <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -85,7 +85,7 @@
           </app-seller-proposal-card>
         </div>
       </div>
-      <div *ngIf="section.label=='Past Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+      <div *ngIf="section.label=='Past Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px" class="proposal-card"
         fxLayout.sm="column">
         <p>Past Auctions</p>
       </div>
