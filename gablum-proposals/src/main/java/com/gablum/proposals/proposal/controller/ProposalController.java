@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class ProposalController {
+public class    ProposalController {
 
     @Autowired
     private ProposalService proposalService;
