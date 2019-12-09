@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
+  disabled = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
@@ -43,6 +44,10 @@ export class AuctionStartDialogComponent {
     this.router.navigate(['dashboard']);
     this.close();
 
+  }
+
+  onClick() {
+    this.disabled = true;
   }
 
 }
