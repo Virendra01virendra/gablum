@@ -37,8 +37,29 @@ public class MailService {
     public void sendProposalEmail(String type, Proposal proposal) {
         if(type == "newProposal"){
             msg.setTo(proposal.getCreatedBy());
+
             msg.setSubject("New Proposal Added");
-            msg.setText("You floated a new Proposal.\n" + proposal.toString());
+
+            String text = "You floated a new Proposal.\n";
+            
+            text += "\nProposal Details are : \n";
+            text += "\nProduct Name : " + proposal.getProductName();
+            text += "\nDomain : " + proposal.getBusinessDomain();
+            text += "\nSubDomain : " + proposal.getBusinessSubDomain();
+            text += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
+            text += "\nQuality Certification Weight : " + proposal.getQualityCertificationWeight() ;
+            text += "\nPrice: " + proposal.getPrice() ;
+            text += "\nPrice Weight : " + proposal.getPriceWeight() ;
+            text += "\nCredit Period : " + proposal.getCreditPeriod() + "months" ;
+            text += "\nCredit Period Weight : " + proposal.getCreditPeriodWeight() ;
+            text += "\nDelivery : " + proposal.getDeliveryDate() ;
+            text += "\nDelivery Date : " + proposal.getDeliveryDateWeight() ;
+            text += "\nMethod of Supply Weight : " + proposal.getMethodOfSupplyWeight() ;
+            text += "\nRegistration Start Date : " + proposal.getRegStartDate() ;
+            text += "\nRegistration End Date : " + proposal.getRegEndDate() ;
+            text += "\nAuction Start Date : " + proposal.getAuctionStartDate() ;
+            text += "\nAuction End Date : " + proposal.getAuctionEndDate() ;
+            msg.setText(text);
             try
             {
                 javaMailSender.send(msg);

@@ -4,11 +4,9 @@ import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
-// import com.gablum.proposals.proposal.usersrabbit.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
@@ -28,6 +26,10 @@ public class ProposalController {
 
     @Autowired
     private UserService userService;
+
+    public ProposalController(ProposalInterfaceRabbit proposalInterface){
+        messageChannel = proposalInterface.newProposalMessageChannel();
+    }
 
     @PostMapping("/proposals")                                 // Add proposal details
     public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
@@ -98,7 +100,5 @@ public class ProposalController {
                 HttpStatus.OK
         );
     }
-    public ProposalController(ProposalInterfaceRabbit proposalInterface){
-        messageChannel = proposalInterface.newProposalMessageChannel();
-    }
+
 }

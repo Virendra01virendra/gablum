@@ -21,6 +21,11 @@ public class Proposal {
     private String _id;
     private String proposalId = UUID.randomUUID().toString();
     private ProductDetails productDetails;
+    private String productName;
+    private List <String> productSpecList;
+    private String userID;
+    private String businessDomain;
+    private String businessSubDomain;
     private String createdBy;
     private String updatedBy;
     private int quantityValue;
