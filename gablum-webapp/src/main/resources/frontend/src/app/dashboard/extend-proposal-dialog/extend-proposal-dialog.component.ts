@@ -15,16 +15,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ExtendProposalDialogComponent implements OnInit {
 
   public static messageKey = 'extend-proposal-dialog-component';
-  // startDate: string;
-  // endDate: string;
-
-  // get regStartDate() {
-  //   return this.extendProposalForm.get('regStartDate');
-  // }
-
-  // get regEndDate() {
-  //   return this.extendProposalForm.get('regEndDate');
-  // }
 
   extendProposalForm = new FormGroup({
     regStartDate: new FormControl({ value: '' }, [Validators.required]),
@@ -38,31 +28,28 @@ export class ExtendProposalDialogComponent implements OnInit {
     private proposalService: ProposalsDataService,
     private logger: LoggerService,
     public dialogRef: MatDialogRef<ExtendProposalDialogComponent>
-  ) {
-    console.log('this is sparta::', this.data.deliveryDate);
-   }
-  // console.log('type of date --------------- ', typeof(data.regStartDate));
-  // this.startDate = (data.regStartDate);
-  // this.endDate = data.regEndDate;
-  ngOnInit() {
-  }
-  onSubmit(proposal: Proposal) {
+  ) {}
+
+  ngOnInit() {}
+
+  onSubmit(proposal: Proposal, extendProposalForm) {
     proposal.regStartDate = this.extendProposalForm.value.regStartDate;
     proposal.regEndDate = this.extendProposalForm.value.regEndDate;
     this.logger.log('extending the registration period for a proposal.');
     this.logger.log(proposal);
-    // this.proposalService.extendProposal('@all', proposal, 'proposals');
     this.router.navigate(['/dashboard']);
     const extendRegistrationDate = {
       regStartDate: proposal.regStartDate,
-      regEndDate: proposal.regEndDate
+      regEndDate: proposal.regEndDate,
+      proposalId: proposal.proposalId
     };
     const extendRegistrationJSON = JSON.parse(JSON.stringify(extendRegistrationDate));
+    console.log('Patch Data :::', extendRegistrationJSON);
     this.proposalService.extendProposal(ExtendProposalDialogComponent.messageKey, extendRegistrationJSON, 'proposals')
-      // .subscribe((response) => {
-      //   this.proposalService.getAllProposals(ExtendProposalDialogComponent.messageKey, 'proposals');
-      //   this.dialogRef.close(ExtendProposalDialogComponent);
-      // });
+      .subscribe((response) => {
+        this.proposalService.getAllProposals(ExtendProposalDialogComponent.messageKey, 'proposals');
+        this.dialogRef.close(ExtendProposalDialogComponent);
+      });
   }
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
@@ -72,7 +59,7 @@ export class ExtendProposalDialogComponent implements OnInit {
 
   RegEndDateFilter = (d: Date): boolean => {
     // Prevent dates before registration start date
-    return d > new Date(this.extendProposalForm.value.regStartDate) && d < new Date(this.data.deliveryDate);
+    return d >= new Date(this.extendProposalForm.value.regStartDate) && d < new Date(this.data.deliveryDate);
   }
 
 }
