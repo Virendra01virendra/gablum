@@ -40,6 +40,12 @@ export class DashboardComponent implements OnInit {
     { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
   ];
 
+  public dashboardSections1: DashboardSection[] = [
+    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+    { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
+    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+    { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
+
   public bids: NewBid[] = [];
   data;
   httpOptions = {
