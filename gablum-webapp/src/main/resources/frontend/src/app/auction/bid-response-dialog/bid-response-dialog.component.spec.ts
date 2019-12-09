@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidResponseDialogComponent } from './bid-response-dialog.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('BidResponseDialogComponent', () => {
   let component: BidResponseDialogComponent;
@@ -8,7 +10,14 @@ describe('BidResponseDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidResponseDialogComponent ]
+      imports: [
+        MaterialModule
+      ],
+      declarations: [ BidResponseDialogComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {}}
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +28,7 @@ describe('BidResponseDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
