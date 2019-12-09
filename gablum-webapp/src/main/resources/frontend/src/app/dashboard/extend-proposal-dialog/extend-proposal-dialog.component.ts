@@ -15,6 +15,20 @@ export class ExtendProposalDialogComponent implements OnInit {
 
   public extendProposalForm: FormGroup;
 
+  public proposal: Proposal;
+
+  get regStartDate() {
+    return this.extendProposalForm.get('regStartDate');
+  }
+
+  get regEndDate() {
+    return this.extendProposalForm.get('regEndDate');
+  }
+
+  get deliveryDate() {
+    return this.extendProposalForm.get('deliveryDate');
+  }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router,
@@ -30,13 +44,18 @@ export class ExtendProposalDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('dialog data::::', this.data);
   }
-  onSubmit(proposal: Proposal) {
-    proposal.regStartDate = this.extendProposalForm.value.regStartDate;
-    proposal.regEndDate = this.extendProposalForm.value.regEndDate;
+  onSubmit() {
+    // this.proposal.regStartDate = this.extendProposalForm.value.regStartDate;
+    // this.proposal.regEndDate = this.extendProposalForm.value.regEndDate;
     this.logger.log('extending the registration period for a proposal.');
-    this.logger.log(proposal);
-    this.proposalService.extendProposal('@all', proposal, 'proposals');
+    // console.log('dialog data::::', this.data);
+    this.logger.log(this.proposal);
+    const proposalValue: Proposal = this.extendProposalForm.value;
+    proposalValue.regStartDate = this.data.regStartDate;
+    proposalValue.regEndDate = this.data.regEndDate;
+    this.proposalService.extendProposal('@all', proposalValue, 'proposal');
     this.router.navigate(['/dashboard']);
   }
   RegStartDateFilter = (d: Date): boolean => {
