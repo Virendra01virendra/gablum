@@ -40,7 +40,7 @@
     
     <button color="primary" mat-raised-button (click)="placeBid()" *ngIf= buttonShow>Place Bid</button>
 
-      <button color="primary" mat-raised-button (click) = "seeBids()">See Bids</button>
+      <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf= buttonShow>See Bids</button>
 
     </mat-card-actions>
   </mat-card>
