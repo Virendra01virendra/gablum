@@ -8,10 +8,7 @@ import com.gablum.proposals.proposal.usersrabbit.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-=======
 //import org.springframework.messaging.MessageChannel;
->>>>>>> bcd505ec8c333f325614b183dce02a04182f969f
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
@@ -24,11 +21,8 @@ import java.util.Map;
 @RestController
 public class ProposalController {
 
-<<<<<<< HEAD
     public MessageChannel messageChannel;
 
-=======
->>>>>>> bcd505ec8c333f325614b183dce02a04182f969f
     @Autowired
     private ProposalService proposalService;
 
@@ -104,31 +98,7 @@ public class ProposalController {
                 HttpStatus.OK
         );
     }
-<<<<<<< HEAD
     public ProposalController(ProposalInterfaceRabbit proposalInterface){
         messageChannel = proposalInterface.newProposalMessageChannel();
     }
-=======
-    public MessageChannel messageChannel;
-
-    public ProposalController(Publisher publish) {
-        messageChannel = publish.getChannel();
-    }
-//    @GetMapping("/rabbitMq")
-//    public String msgGone(){
-//        Message<String> msg = new Message<String>() {
-//            @Override
-//            public String getPayload() {
-//                return "hello World from Proposal MicroService";
-//            }
-//
-//            @Override
-//            public MessageHeaders getHeaders() {
-//                return null;
-//            }
-//        };
-//        messageChannel.send(msg);
-//        return "hello";
-//    }
->>>>>>> bcd505ec8c333f325614b183dce02a04182f969f
 }
