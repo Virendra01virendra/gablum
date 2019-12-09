@@ -2,13 +2,11 @@ package com.gablum.contract.contracts.controller;
 
 import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.service.ContractService;
-import org.apache.http.annotation.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.UUID;
 
 @RestController
 public class ContractsController {
@@ -33,10 +31,6 @@ public class ContractsController {
         return totalContracts;
     }
 
-//    @GetMapping("/contracts")
-//    public List<Contracts> getContractBySellerId(@RequestParam String sellerId){
-//        return contractService.
-//    }
     @PostMapping("/contracts")
     public Contracts saveContract(@RequestBody Contracts contracts){
         return contractService.saveContract(contracts);
