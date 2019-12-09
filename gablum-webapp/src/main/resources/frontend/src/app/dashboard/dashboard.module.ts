@@ -29,8 +29,7 @@ import { MatDatepickerModule } from '@angular/material';
     SellersListDialogComponent,
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
-    SellerProposalCardComponent,
-    // AuctionCardDialogComponent
+    SellerProposalCardComponent    // AuctionCardDialogComponent
   ],
   imports: [
     CommonModule,

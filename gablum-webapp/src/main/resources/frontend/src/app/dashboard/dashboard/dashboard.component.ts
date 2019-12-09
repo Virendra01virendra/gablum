@@ -10,10 +10,11 @@ import { Auction } from 'src/app/interfaces/auction';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
-import { TimerComponent } from './../../scheduler/timer/timer.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { Profile } from 'src/app/interfaces/profile';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -27,27 +28,36 @@ export class DashboardComponent implements OnInit {
   public isBuyer = false;
   public isSeller = false;
 
+  public userProfile: any;
   allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
   pastAuctions: Proposal[];
+  public businessSubdomain: string;
   public dashboardSections: DashboardSection[] = [
     { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
     { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
     { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
   ];
 
+  public dashboardSections1: DashboardSection[] = [
+    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+    { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
+    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+    { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
+
   public bids: NewBid[] = [];
   data;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
+      'Content-Type': 'application/json',
     })
   };
 
   constructor(
     public dialog: MatDialog,
     private ws: WebsocketService,
+    private user: ProfileDataService,
     private proposalDataService: ProposalsDataService,
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
@@ -55,24 +65,24 @@ export class DashboardComponent implements OnInit {
     private logger: LoggerService,
     private auth: AuthenticationService,
     public http: HttpClient,
-    ) {
+  ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
-          this.logger.log(this.proposals);
+          // this.logger.log(this.proposals);
         }
 
         if ('sellerProposals' in data) {
-          this.allProposals = data.sellerProposals ;
-          this.logger.log(this.proposals);
+          this.allProposals = data.sellerProposals;
+          // this.logger.log(this.allProposals);
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
-          this.logger.log(this.auctions);
+          // this.logger.log(this.auctions);
         }
 
         if ('authChanged' in data) {
@@ -81,6 +91,13 @@ export class DashboardComponent implements OnInit {
           this.isBuyer = auth.isBuyer();
           this.isSeller = auth.isSeller();
         }
+
+        if ('userProfile' in data) {             // getting user profile for subDomain
+          this.userProfile = data.userProfile;
+          this.businessSubdomain = this.userProfile.businessSubDomain;
+          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
+        }
+
       }
     });
   }
@@ -88,7 +105,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-    this.proposalDataService.getAllProposalForSeller(DashboardComponent.messageKey, 'sellerProposals');
+    this.user.getUserProfileByEmail(DashboardComponent.messageKey, 'userProfile');
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
@@ -121,7 +138,7 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(ProposalCardDialogComponent, {
       width: '60%',
       height: '60%',
-      data: {proposal}
+      data: { proposal }
     });
   }
 

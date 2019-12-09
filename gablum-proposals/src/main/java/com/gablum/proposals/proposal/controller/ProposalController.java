@@ -78,7 +78,7 @@ public class ProposalController {
         );
     }
 
-    @GetMapping("/proposals/browse")
+    @GetMapping("/proposals/browse")                   // All proposals irrespective of createdBy
     public ResponseEntity<List<Proposal>> browseProposals(@RequestParam Map<String, String> queryMap) {
         return new ResponseEntity<List<Proposal>>(
                 proposalService.getAllProposals(queryMap),
@@ -100,5 +100,4 @@ public class ProposalController {
                 HttpStatus.OK
         );
     }
-
 }

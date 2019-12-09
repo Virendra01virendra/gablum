@@ -41,7 +41,7 @@ public class MailService {
             msg.setSubject("New Proposal Added");
 
             String text = "You floated a new Proposal.\n";
-            
+
             text += "\nProposal Details are : \n";
             text += "\nProduct Name : " + proposal.getProductName();
             text += "\nDomain : " + proposal.getBusinessDomain();

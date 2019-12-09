@@ -4,6 +4,7 @@ import { Observable, Subscription, timer, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { LoggerService } from 'src/app/services/logger.service';
+import { Auction } from 'src/app/interfaces/auction';
 
 @Component({
   selector: 'app-timer',
@@ -15,6 +16,8 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   @Input()
   timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
+  // @Input()
+  // timerDetails1: Auction['proposal'];
 
   @Output()
   counterState = new EventEmitter();

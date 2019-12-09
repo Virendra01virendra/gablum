@@ -24,6 +24,7 @@ public class Proposal {
     private String productName;
     private List <String> productSpecList;
     private String userID;
+    private String productId;
     private String businessDomain;
     private String businessSubDomain;
     private String createdBy;
