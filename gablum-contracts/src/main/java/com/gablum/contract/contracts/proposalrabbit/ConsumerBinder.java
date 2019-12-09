@@ -5,5 +5,5 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface ConsumerBinder {
     @Input("proposalToUser")
-    public SubscribableChannel getChannel();
+    SubscribableChannel getChannel();
 }
