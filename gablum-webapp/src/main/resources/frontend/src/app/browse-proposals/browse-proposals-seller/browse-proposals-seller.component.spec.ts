@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BrowseProposalsSellerComponent } from './browse-proposals-seller.component';
+import { MaterialModule } from 'src/app/material/material.module';
 
 describe('BrowseProposalsSellerComponent', () => {
   let component: BrowseProposalsSellerComponent;
@@ -8,7 +9,10 @@ describe('BrowseProposalsSellerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BrowseProposalsSellerComponent ]
+      declarations: [ BrowseProposalsSellerComponent ],
+      imports: [
+        MaterialModule
+      ]
     })
     .compileComponents();
   }));
