@@ -36,8 +36,7 @@ public class MailService {
 
     public void sendProposalEmail(String type, Proposal proposal) {
         if(type == "newProposal"){
-            String email = userRepository.findById(proposal.getCreatedBy()).orElse(null).getEmail();
-            msg.setTo(email);
+            msg.setTo(proposal.getCreatedBy());
             msg.setSubject("New Proposal Added");
             msg.setText("You floated a new Proposal.\n" + proposal.toString());
             try
