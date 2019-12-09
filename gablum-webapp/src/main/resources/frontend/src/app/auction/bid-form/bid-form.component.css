@@ -4,6 +4,14 @@ form {
     padding-right: 5%;
     margin: 2%;
   }
+
+.wrapper {
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 2%;
+
+}
+
 mat-toolbar {
     display: flex;
     flex-direction: row;

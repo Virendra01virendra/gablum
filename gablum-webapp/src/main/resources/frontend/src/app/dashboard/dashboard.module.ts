@@ -15,6 +15,8 @@ import { SellersListDialogComponent } from './sellers-list-dialog/sellers-list-d
 import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal-list.component';
 import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
+// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     GuestProposalListComponent,
-    ExtendProposalDialogComponent
-    ],
+    ExtendProposalDialogComponent,
+    SellerProposalCardComponent
+    // AuctionCardDialogComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,

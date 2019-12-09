@@ -1,11 +1,13 @@
 package com.gablum.proposals.proposal.controller;
 
+//import com.gablum.proposals.proposal.interfaces.RabbitBinding;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.messaging.MessageChannel;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -15,11 +17,18 @@ import java.util.Map;
 @RestController
 public class ProposalController {
 
+//    public MessageChannel messageChannel;
+
+//    public ProposalController(RabbitBinding rabbitBinding) {
+//        messageChannel = rabbitBinding.getChannel();
+//    }
+
     @Autowired
     private ProposalService proposalService;
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping("/proposals")                                 // Add proposal details
     public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
@@ -77,5 +86,13 @@ public class ProposalController {
     public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request ){
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
+    }
+
+    @GetMapping("/proposals/browse/{businessSubDomain}")
+    public ResponseEntity<List<Proposal>> getProposalsBySubDomain(@RequestParam Map<String, String> queryMap, @PathVariable("businessSubDomain") String businessSubDomain ) {
+        return new ResponseEntity<List<Proposal>>(
+                proposalService.getAllProposalsByBusinessSubDomain(queryMap, businessSubDomain),
+                HttpStatus.OK
+        );
     }
 }

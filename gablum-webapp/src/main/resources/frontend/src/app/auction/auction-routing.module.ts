@@ -7,6 +7,11 @@ const routes: Routes = [
     path: ':id/new/bid',
     component: BidFormComponent,
     pathMatch: 'full'
+  },
+  {
+    path: ':id/see/bids',
+    component: BidFormComponent,
+    pathMatch: 'full'
   }
 ];
 

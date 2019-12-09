@@ -1,3 +1,4 @@
 export interface LoginToken {
-    accessToken: string;
+    accessToken?: string;
+    loginResult?: number;
 }

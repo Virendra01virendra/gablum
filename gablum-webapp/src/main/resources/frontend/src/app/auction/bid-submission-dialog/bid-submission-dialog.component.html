@@ -1,0 +1,41 @@
+<div class="wrapper" fxLayoutAlign="space-around center">
+        <mat-dialog-content>
+            <div> Bid Details:</div>
+            <div fxLayoutAlign="space-between">
+                    <mat-chip color="primary">Price </mat-chip> 
+                    <mat-chip>{{data.bid.price}}</mat-chip>
+                     </div>
+             
+                     <div fxLayoutAlign="space-between">
+                       <mat-chip color="primary">Credit Period</mat-chip> 
+                       <mat-chip>{{data.bid.creditPeriod + ' months'}}</mat-chip>
+                     </div>
+             
+                     <div fxLayoutAlign="space-between">
+                       <mat-chip color="primary">Quality Certification</mat-chip> 
+                       <mat-chip>{{data.bid.qaqcCertificate}}</mat-chip>
+                     </div>
+             
+                     <div fxLayoutAlign="space-between">
+                       <mat-chip color="primary">Method Of Supply</mat-chip> 
+                       <mat-chip>{{data.bid.typeOfSupply}}</mat-chip>
+                     </div>
+                   
+            <!-- <div> Your score is <div [ngClass]="{
+                      'positive' : data >= 90,
+                      'medium' : data < 90 && data >= 70,
+                      'negative': data < 70
+                  }">
+              {{result1}}
+              </div>
+          </div> -->
+        </mat-dialog-content>
+      </div>
+      <br>
+      <div class="wrapper" fxLayoutAlign="space-around center">
+        <mat-dialog-actions>
+          <button color="primary" mat-raised-button (click)="close()">Back to Form</button>
+          <button color="primary" mat-raised-button (click)="save()">Submit Bid</button>
+        </mat-dialog-actions>
+      </div>
+      

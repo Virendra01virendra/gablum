@@ -89,6 +89,10 @@ public class ProposalService implements IProposalService {
         ).getContent();
     }
 
+    public List<Proposal> getAllProposalsByBusinessSubDomain (Map<String, String> queryMap, String businessSubDomain) {
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(getPageable(queryMap),new Date(),businessSubDomain);
+       }
+
     public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
         Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
         updatedProposal.getInterestedUsersEmail().add(currentLoggedUserEmail);

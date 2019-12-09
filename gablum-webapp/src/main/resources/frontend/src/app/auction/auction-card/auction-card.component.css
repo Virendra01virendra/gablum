@@ -1,6 +1,12 @@
 .auction-card {
     max-width: 400px;
-    border-style: solid;
 
+  }
+
+  .head
+  {
+      background-color: #ad1457;
+     color: antiquewhite;
+     text-align: center; 
   }
   

@@ -39,15 +39,15 @@ export class NewProposalForm1Component implements OnInit {
 
   paramForm = new FormGroup({
     price: new FormControl('', Validators.compose([Validators.required, Validators.min(1), Validators.maxLength(10)])),
-    priceWeight: new FormControl(''),
+    priceWeight: new FormControl(1),
     deliveryDate: new FormControl({ value: '' }, Validators.required),
-    deliveryDateWeight: new FormControl(''),
+    deliveryDateWeight: new FormControl(1),
     creditPeriod: new FormControl('', [Validators.required, Validators.min(1)]),
-    creditPeriodWeight: new FormControl(''),
+    creditPeriodWeight: new FormControl(1),
     qualityCertification: new FormControl('', [Validators.required]),
-    qualityCertificationWeight: new FormControl(''),
+    qualityCertificationWeight: new FormControl(1),
     methodOfSupply: new FormControl('', [Validators.required]),
-    methodOfSupplyWeight: new FormControl('')
+    methodOfSupplyWeight: new FormControl(1)
   });
 
   timeForm = new FormGroup({
@@ -61,6 +61,11 @@ export class NewProposalForm1Component implements OnInit {
     return value;
   }
   ngOnInit() {
+  }
+
+  deliveryDate = (d: Date): boolean => {
+    const currentDate = new Date();
+    return (d.getDate() > currentDate.getDate() + 4) && (d > currentDate);
   }
 
   onNext1(form: FormGroup) {
@@ -79,7 +84,9 @@ export class NewProposalForm1Component implements OnInit {
 
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
-    return d < this.paramForm.value.deliveryDate;
+    const currentDate = new Date();
+    return (d.getDate() < this.paramForm.value.deliveryDate.getDate() - 4) && (d > currentDate)
+    && (d < this.paramForm.value.deliveryDate);
     // return true;
   }
 

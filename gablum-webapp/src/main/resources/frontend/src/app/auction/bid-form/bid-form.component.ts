@@ -1,14 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { MatDialog } from '@angular/material';
-import { BidDialogComponent } from './bid-dialog/bid-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Auction } from '../../interfaces/auction';
+import { BidResponseDialogComponent } from '../bid-response-dialog/bid-response-dialog.component';
+import { BidSubmissionDialogComponent } from '../bid-submission-dialog/bid-submission-dialog.component';
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -27,17 +29,19 @@ export class BidFormComponent implements OnInit {
   url = 'localhost:8080/api/auctions/auctions/bid';
   result1;
   result2;
-  result3;
   auctionId: string;
   auction;
+  scoreObject: {
+    score: number;
+  };
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
     private logger: LoggerService,
-    private dialog: MatDialog,
     private route: ActivatedRoute,
     private auctionDataService: AuctionsDataService,
-    private comms: CommunicatorService
+    private comms: CommunicatorService,
+    private matDialog: MatDialog
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
@@ -45,6 +49,20 @@ export class BidFormComponent implements OnInit {
           if ('auctionSingle' in data) {
               this.auction = data.auctionSingle;
               this.logger.log(this.auction);
+          }
+
+          if ('saveBids' in data) {
+            this.scoreObject = data.saveBids;
+            this.result1 = this.scoreObject.score;
+            }
+
+          if ('scoreBids' in data) {
+            this.scoreObject = data.scoreBids;
+            this.result2 = this.scoreObject.score;
+            const dialogConfig = new MatDialogConfig();
+            dialogConfig.data = this.result2;
+            dialogConfig.width = '50%';
+            this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
         }
@@ -77,8 +95,7 @@ export class BidFormComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    // console.log('price----->', form.value.newTimeOfDelivery);
-    const bid = {
+    const bid1 = {
     price: form.value.newPrice,
     creditPeriod: form.value.newCreditPeriod,
     qaqcCertificate: form.value.newQaqcCertificate,
@@ -86,7 +103,12 @@ export class BidFormComponent implements OnInit {
     timeOfDelivery: form.value.newTimeOfDelivery,
     };
 
-    this.logger.log('making api call', bid);
+    const bidData = {
+      bid: bid1,
+      auctionID: this.auctionId
+    };
+
+    this.logger.log('making api call', bid1);
 
     // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
     //   console.log('response ::', response);
@@ -97,8 +119,10 @@ export class BidFormComponent implements OnInit {
     // this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
     // .subscribe(Response => {console.log(Response); });
 
-    this.auctionDataService.saveBid(BidFormComponent.messageKey, bid, 'save-bid', this.auctionId);
-
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = bidData;
+    dialogConfig.width = '50%';
+    this.matDialog.open(BidSubmissionDialogComponent, dialogConfig);
 
   }
 
@@ -112,14 +136,10 @@ export class BidFormComponent implements OnInit {
       timeOfDelivery: form.value.newTimeOfDelivery,
       };
 
-    this.ws.getBidScore(bid);
+    // this.ws.getBidScore(bid);
 
+    this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
 
-    console.log('dataaaaaaaaaa', this.result1);
-    // this.dialog.open(BidDialogComponent, {
-    //   height: '400px',
-    //   width: '600px',
-    // data: this.result1});
   }
 
   bidList() {
@@ -144,8 +164,8 @@ export class BidFormComponent implements OnInit {
             // this.bids.push(this.testBid);
           }
           if ('fetchbid' in data) {
-            this.result3 = data.fetchbid.body;
-            this.logger.log('message received is ::', data.newbid.body);
+            // this.result3 = data.fetchbid.body;
+            // this.logger.log('message received is ::', data.newbid.body);
             // this.bids.push(this.testBid);
           }
         }
