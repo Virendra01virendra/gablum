@@ -10,11 +10,11 @@
       <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
 
-        <div class="auctions-cont" *ngIf="auctions" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+        <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
 
         </div>
-      </div>
+     </div>
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px" class="proposal-card"
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center">
         <div *ngIf="isBuyer" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">

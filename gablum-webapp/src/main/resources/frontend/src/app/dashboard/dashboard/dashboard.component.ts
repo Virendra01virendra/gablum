@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   public isBuyer = false;
   public isSeller = false;
 
-  public userProfile: Profile[];
+  public userProfile: any;
   allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
@@ -66,17 +66,17 @@ export class DashboardComponent implements OnInit {
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
-          this.logger.log(this.proposals);
+          // this.logger.log(this.proposals);
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals;
-          this.logger.log(this.proposals);
+          // this.logger.log(this.allProposals);
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
-          this.logger.log(this.auctions);
+          // this.logger.log(this.auctions);
         }
 
         if ('authChanged' in data) {
@@ -88,8 +88,8 @@ export class DashboardComponent implements OnInit {
 
         if ('userProfile' in data) {             // getting user profile for subDomain
           this.userProfile = data.userProfile;
-          this.logger.log(this.userProfile);
-          // this.businessSubdomain = this.userProfile.businessSubDomain;
+          this.businessSubdomain = this.userProfile.businessSubDomain;
+          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
         }
 
       }
@@ -100,7 +100,6 @@ export class DashboardComponent implements OnInit {
     // this.ws.connect(message => this.subscribe());
     this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
     this.user.getUserProfileByEmail(DashboardComponent.messageKey, 'userProfile');
-    this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
