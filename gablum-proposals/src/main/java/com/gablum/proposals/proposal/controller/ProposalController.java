@@ -1,12 +1,15 @@
 package com.gablum.proposals.proposal.controller;
 
+import com.gablum.proposals.proposal.interfaces.ProposalInterface;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -15,17 +18,13 @@ import java.util.Map;
 
 @RestController
 public class ProposalController {
-
     public MessageChannel messageChannel;
-
-
 
     @Autowired
     private ProposalService proposalService;
 
     @Autowired
     private UserService userService;
-
 
     @PostMapping("/proposals")                                 // Add proposal details
     public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
@@ -91,5 +90,15 @@ public class ProposalController {
                 proposalService.getAllProposalsByBusinessSubDomain(queryMap, businessSubDomain),
                 HttpStatus.OK
         );
+    }
+    public ProposalController(ProposalInterface proposalInterface){
+        messageChannel = proposalInterface.parsingProposal();
+    }
+
+    @GetMapping
+    public String parsingProposal(){
+        Message<String> msg = MessageBuilder.withPayload("yolo").build();
+        messageChannel.send(msg);
+        return "one";
     }
 }

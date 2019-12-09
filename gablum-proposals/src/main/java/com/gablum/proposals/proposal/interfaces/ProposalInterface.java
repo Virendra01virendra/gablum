@@ -6,6 +6,7 @@ import org.springframework.messaging.MessageChannel;
 //import org.springframework.messaging.SubscribableChannel;
 
 public interface ProposalInterface {
+
     @Output("parsingProposal")
-    MessageChannel parsingNewProposal();
+    MessageChannel parsingProposal();
 }
