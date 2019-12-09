@@ -72,7 +72,7 @@ public class AuctionController {
         String email = userService.getEmail(request);
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
-            i = i+1;
+
             log.info("email---------->" + email);
             auctionsToAdd.get(i).getSocketTokens().put(
                     email,
@@ -92,6 +92,7 @@ public class AuctionController {
                                 false)
                 );
             }
+            i = i+1;
         }
         return auctionService.addAuctions(auctionsToAdd);
     }
