@@ -33,8 +33,8 @@ export class SellerProposalCardComponent implements OnInit {
 
   openDialog(allProposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
-      width: '60%',
-      height: '60%',
+      // width: '60%',
+      // height: '60%',
       data: allProposal
     });
   }
