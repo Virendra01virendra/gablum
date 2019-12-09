@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { LoggerService } from './logger.service';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class InterceptorService implements HttpInterceptor {
             this.auth.clearProfile();
           }
         }
-        return of(err);
+        return throwError(err);
       })
     );
   }

@@ -29,11 +29,6 @@
         </mat-form-field>
 
         <mat-form-field class="fullWidth" appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="userName" [value]="data.userName" readonly="true" />
-        </mat-form-field>
-
-        <mat-form-field class="fullWidth" appearance="outline">
             <mat-label>Business License No.</mat-label>
             <input matInput formControlName="businessLicense" required [value]="data.businessLicense">
             <mat-error *ngIf="businessLicense.touched || businessLicense.invalid">{{businessLicenseErrorMessage()}}
