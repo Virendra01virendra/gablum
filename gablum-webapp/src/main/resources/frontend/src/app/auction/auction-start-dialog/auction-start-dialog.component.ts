@@ -40,7 +40,8 @@ export class AuctionStartDialogComponent {
 
     this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
     // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
-    this.router.navigate(['']);
+    this.router.navigate(['dashboard']);
+    this.close();
 
   }
 
