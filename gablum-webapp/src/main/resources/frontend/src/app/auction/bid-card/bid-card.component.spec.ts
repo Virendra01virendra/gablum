@@ -31,7 +31,7 @@ describe('BidCardComponent', () => {
         creditPeriod: 0,
         qaqcCertificate: true,
         typeOfSupply: true,
-        timeOfdelivery: new Date()
+        timeOfDelivery: new Date()
       },
       score: 0
     };
