@@ -6,6 +6,7 @@ import {
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
+import { Score } from 'src/app/interfaces/score';
 
 @Component({
   selector: 'app-bid-submission-dialog',
@@ -15,9 +16,7 @@ import { Router } from '@angular/router';
 export class BidSubmissionDialogComponent implements OnInit {
   public static messageKey = 'BidSubmissionDialogComponent';
   result1;
-  scoreObject: {
-    score: number;
-  };
+  scoreObject: Score;
   bid2 = {
     price: this.data.bid.price,
     creditPeriod: this.data.bid.creditPeriod,
@@ -37,7 +36,7 @@ export class BidSubmissionDialogComponent implements OnInit {
                   if (msg.dest === BidSubmissionDialogComponent.messageKey || msg.dest === '@all') {
                     if ('scoreBids' in data) {
                         this.scoreObject = data.scoreBids;
-                        this.result1 = this.scoreObject.score;
+                        this.result1 = this.scoreObject.total;
                         console.log('score thru dialog---------->', this.result1);
                     }
                   }

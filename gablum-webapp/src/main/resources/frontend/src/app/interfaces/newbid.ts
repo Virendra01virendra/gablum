@@ -26,6 +26,13 @@ export interface NewBid {
         typeOfSupply: boolean;
         timeOfDelivery: Date;
         };
-    score: number;
+    scoreObject: {
+        total: number;
+        deliveryScore: number;
+        priceScore: number;
+        creditScore: number;
+        qaqcScore: number;
+        typeScore: number;
+    };
     createdBy: string;
 }
