@@ -175,7 +175,6 @@ public class AuctionController {
     @PutMapping("auction/{id}/bid/end")
     public Auction saveWinningBid(@PathVariable String id, @RequestBody BidDataEntity bidDataEntity,
                                    HttpServletRequest request){
-        String bidId = bidDataEntity.getBidId();
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
