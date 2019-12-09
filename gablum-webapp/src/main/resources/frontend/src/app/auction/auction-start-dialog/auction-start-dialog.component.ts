@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class AuctionStartDialogComponent {
 
+  public static messageKey = 'AuctionStartDialogComponent';
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
               private auctionDataService: AuctionsDataService,
@@ -38,7 +40,7 @@ export class AuctionStartDialogComponent {
 
     this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
     // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['']);
 
   }
 
