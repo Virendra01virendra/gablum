@@ -4,7 +4,7 @@ import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.repository.ContractDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 @Service
 public class ContractService {
