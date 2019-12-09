@@ -1,12 +1,9 @@
 .auction-card {
-    max-width: 400px;
+  max-width: 450px;
+}
 
-  }
-
-  .head
-  {
-      background-color: #ad1457;
-     color: antiquewhite;
-     text-align: center; 
-  }
-  
+.head {
+  background-color: #ad1457;
+  color: antiquewhite;
+  text-align: center;
+}
