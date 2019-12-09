@@ -10,11 +10,12 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class BidCardComponent implements OnInit {
 
-  @Input()bid: NewBid;
-
   constructor() {
 
   }
+
+  @Input() public bidDataEntity: NewBid;
+
 
   ngOnInit() {
   }

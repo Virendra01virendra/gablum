@@ -161,4 +161,10 @@ public class AuctionController {
         );
     }
 
+    @GetMapping("auctions/{id}/bid")
+    public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
+            , HttpServletRequest request) {
+        return bidService.getbidsAuction(queryMap, id);
+    }
+
 }

@@ -59,10 +59,10 @@ export class ExtendProposalDialogComponent implements OnInit {
     };
     const extendRegistrationJSON = JSON.parse(JSON.stringify(extendRegistrationDate));
     this.proposalService.extendProposal(ExtendProposalDialogComponent.messageKey, extendRegistrationJSON, 'proposals')
-      .subscribe((response) => {
-        this.proposalService.getAllProposals(ExtendProposalDialogComponent.messageKey, 'proposals');
-        this.dialogRef.close(ExtendProposalDialogComponent);
-      });
+      // .subscribe((response) => {
+      //   this.proposalService.getAllProposals(ExtendProposalDialogComponent.messageKey, 'proposals');
+      //   this.dialogRef.close(ExtendProposalDialogComponent);
+      // });
   }
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
