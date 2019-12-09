@@ -61,7 +61,7 @@ export class BidFormComponent implements OnInit {
             this.result2 = this.scoreObject.score;
             const dialogConfig = new MatDialogConfig();
             dialogConfig.data = this.result2;
-            dialogConfig.width = '50%';
+            dialogConfig.width = '30%';
             this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
@@ -121,7 +121,7 @@ export class BidFormComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = bidData;
-    dialogConfig.width = '50%';
+    dialogConfig.width = '40%';
     this.matDialog.open(BidSubmissionDialogComponent, dialogConfig);
 
   }

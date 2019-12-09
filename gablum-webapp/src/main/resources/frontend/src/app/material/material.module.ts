@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
+
 const modules = [
   CommonModule,
   MatFormFieldModule,

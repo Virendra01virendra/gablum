@@ -28,11 +28,12 @@ public class Auction {
     private String auctionName;
     private Proposal proposal;
     boolean isAuctionActive;
+    boolean isAuctionFinished;
 
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
-    private List<String> bidIdList;
+    private String winningBid;
 
     private HashMap<String, String> socketTokens;
 
