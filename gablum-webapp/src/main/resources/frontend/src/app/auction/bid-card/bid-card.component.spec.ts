@@ -22,6 +22,20 @@ describe('BidCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BidCardComponent);
     component = fixture.componentInstance;
+    const bidDataEntity = {
+      bidId: '',
+      auctionId: '',
+      createdBy: '',
+      bid: {
+        price: 0,
+        creditPeriod: 0,
+        qaqcCertificate: true,
+        typeOfSupply: true,
+        timeOfDelivery: new Date()
+      },
+      score: 0
+    };
+    component.bidDataEntity = bidDataEntity;
     fixture.detectChanges();
   });
 
