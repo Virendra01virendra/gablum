@@ -21,12 +21,6 @@ import java.util.Map;
 @RestController
 public class ProposalController {
 
-//    public MessageChannel messageChannel;
-
-//    public ProposalController(RabbitBinding rabbitBinding) {
-//        messageChannel = rabbitBinding.getChannel();
-//    }
-
     @Autowired
     private ProposalService proposalService;
 
