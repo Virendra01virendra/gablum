@@ -8,12 +8,17 @@
             <mat-divider></mat-divider>
             <mat-chip-list>
                 <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price}}</mat-chip>
-                <mat-chip matTooltip="Score">Score: {{bidDataEntity.score}}</mat-chip>
+                <mat-chip matTooltip="Score">Score: {{bidDataEntity.score.total}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
     <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
         <span matTooltip="Delivery Date">Time of Delivery: {{bidDataEntity.bid.timeOfDelivery | date}}</span>
         <span matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}}</span>
+    </div>
+    <div class="graph-container">
+        <ngx-charts-bar-horizontal>
+            
+        </ngx-charts-bar-horizontal>
     </div>
 </mat-expansion-panel>

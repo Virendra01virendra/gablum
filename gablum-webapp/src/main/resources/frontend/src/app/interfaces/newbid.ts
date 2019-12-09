@@ -25,7 +25,14 @@ export interface NewBid {
         qaqcCertificate: boolean;
         typeOfSupply: boolean;
         timeOfDelivery: Date;
-        };
-    score: number;
+    };
+    score: {
+        deliveryScore: number;
+        priceScore: number;
+        creditScore: number;
+        qaqcScore: number;
+        typeScore: number;
+        total: number;
+    };
     createdBy: string;
 }
