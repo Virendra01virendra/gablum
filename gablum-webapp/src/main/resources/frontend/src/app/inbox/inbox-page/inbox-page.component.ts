@@ -28,11 +28,15 @@ export class InboxPageComponent implements OnInit {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === InboxPageComponent.messageKey || msg.dest === '@all' ) {
           const data = msg.data;
-          this.userProfile = auth.getProfileData();
-          logger.log('user profile data --------->' , JSON.stringify(this.userProfile));
-          this.currentSubDomain = this.userProfile.businessSubDomain;
-          logger.log('current sub domain ------>', this.currentSubDomain);
-          this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'proposals');
+          if ('authChanged' in data) {
+            this.currentSubDomain = auth.getProfileData().businessSubDomain;
+            this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'proposals');
+
+          }
+          // this.userProfile = auth.getProfileData();
+          // logger.log('user profile data --------->' , JSON.stringify(this.userProfile));
+          // this.currentSubDomain = this.userProfile.businessSubDomain;
+          // logger.log('current sub domain ------>', this.currentSubDomain);
           if ('proposals' in data) {
             this.proposals = data.proposals;
             logger.log('data from get api call for filtered data ---->' , this.proposals );

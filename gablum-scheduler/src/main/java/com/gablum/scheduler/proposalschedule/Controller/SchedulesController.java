@@ -21,7 +21,7 @@ public class SchedulesController {
     public TimerModel saveSchedules(@RequestBody TimerModel timerModel) throws Exception{
         return schedulerService.saveSchedulerDetail(timerModel);
     }
-    
+
     @DeleteMapping("/schedulejob/{jobId}")
     public void deleteSchedule(@PathVariable("jobId") String jobId){
         schedulerService.cancelEvent(jobId);
