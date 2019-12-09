@@ -1,37 +1,41 @@
-<div class="login-signup-container" fxLayout="row nowrap" fxLayout.xs="column nowrap" fxLayoutGap="4%" fxLayoutAlign="space-around center">
+<div class="login-signup-container" fxLayout="row" fxLayout.xs="column nowrap" fxLayoutGap="4%" fxLayoutAlign="space-around center">
     <mat-card fxFlex="0 0 45%" fxFlex.xs="0 0 90%">
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
-            <mat-card-subtitle>login to your account</mat-card-subtitle>
+            <mat-card-subtitle>Enter your credentials</mat-card-subtitle>
         </mat-card-header>
         <form class="logForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-card-content>
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Email</mat-label>
+                        
+                    <mat-label><i class="fa fa-envelope" aria-hidden="true"></i></mat-label>
                     <input  matInput formControlName="username" required type="email"/>
                     <mat-error *ngIf="userName.touched || userName.invalid">{{getErrorMessage1()}}</mat-error>
                 </mat-form-field>
         
                 <mat-form-field class="fullWidth" appearance="outline">
-                    <mat-label>Password</mat-label>
+                    <mat-label><i class="fa fa-unlock-alt" aria-hidden="true"></i></mat-label>
                     <input  matInput formControlName="password" required type="password">
                     <mat-error *ngIf="password.touched || password.invalid">{{getErrorMessage2()}}</mat-error>
                 </mat-form-field>
+                <mat-error *ngIf="loginError">{{loginErrorMesage}}</mat-error>
             </mat-card-content>  
-            <mat-card-actions>
+            <mat-dialog-actions>
                 <div class="btn">
-                    <button mat-raised-button color="primary" [disabled]='!loginForm.valid'
-                    type="submit">Login</button>
-                    &nbsp; &nbsp; <u>Forgot Password?</u>
+                    <button mat-raised-button color="primary" [disabled]='!loginForm.valid' 
+                    type="submit" mat-dialog-close="check">Login</button>
+                    <br>
                 </div>
-            </mat-card-actions>      
+            </mat-dialog-actions>      
         </form>
     </mat-card>
     <mat-card fxFlex="0 0 45%">
-        <p>
-            Not a user yet ? Register with us.
-        </p> <br>
-        <button mat-raised-button color="primary" (click)="OnSignUp()">
+        <h2 mat-dialog-title> NOT A USER YET?
+            <br>
+            REGISTER WITH US
+        </h2>
+         <br>
+        <button mat-raised-button color="primary" (click)="OnSignUp()" mat-dialog-close>
             Sign Up
         </button>
     </mat-card>
