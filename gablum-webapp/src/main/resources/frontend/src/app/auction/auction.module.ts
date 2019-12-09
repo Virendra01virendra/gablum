@@ -12,6 +12,7 @@ import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-d
 import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submission-dialog.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
+import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BidCardComponent } from './bid-card/bid-card.component';
     BidResponseDialogComponent,
     BidSubmissionDialogComponent,
     BidListComponent,
-    BidCardComponent
+    BidCardComponent,
+    AuctionStartDialogComponent
   ],
   imports: [
     CommonModule,

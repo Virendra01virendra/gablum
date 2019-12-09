@@ -18,6 +18,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,8 +73,11 @@ public class AuctionController {
         String email = userService.getEmail(request);
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
-            i = i+1;
+
             log.info("email---------->" + email);
+            if (auctionsToAdd.get(i).getSocketTokens() == null) {
+                auctionsToAdd.get(i).setSocketTokens(new HashMap<String, String>());
+            }
             auctionsToAdd.get(i).getSocketTokens().put(
                     email,
                     userService.generateToken(
@@ -82,7 +86,7 @@ public class AuctionController {
                             auctionsToAdd.get(i).getAuctionEndDate(),
                             true)
             );
-            for (String sellerEmail: auctionsToAdd.get(i).getSelectedParticipantList()) {
+            for (String sellerEmail: auctionsToAdd.get(i).getInterestedUsersEmail()) {
                 auctionsToAdd.get(i).getSocketTokens().put(
                         sellerEmail,
                         userService.generateToken(
@@ -92,6 +96,7 @@ public class AuctionController {
                                 false)
                 );
             }
+            i = i+1;
         }
         return auctionService.addAuctions(auctionsToAdd);
     }
@@ -165,6 +170,16 @@ public class AuctionController {
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
         return bidService.getbidsAuction(queryMap, id);
+    }
+
+    @PutMapping("auction/{id}/bid/end")
+    public Auction saveWinningBid(@PathVariable String id, @RequestBody BidDataEntity bidDataEntity,
+                                   HttpServletRequest request){
+        Auction auction = auctionService.getAuctionById(id);
+        auction.setWinningBid(bidDataEntity.getBidId());
+        auction.isAuctionFinished = true;
+
+        return auctionService.updateAuction(auction);
     }
 
 }
