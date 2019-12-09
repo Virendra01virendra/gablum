@@ -15,6 +15,7 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
 import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
+import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
@@ -28,8 +29,7 @@ import { MatDatepickerModule } from '@angular/material';
     SellersListDialogComponent,
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
-    SellerProposalCardComponent,
-    // AuctionCardDialogComponent
+    SellerProposalCardComponent    // AuctionCardDialogComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +42,11 @@ import { MatDatepickerModule } from '@angular/material';
     AuctionModule,
     MatDatepickerModule
   ],
-  entryComponents: [ProposalCardDialogComponent,
-  SellersListDialogComponent, ExtendProposalDialogComponent]
+  entryComponents: [
+    ProposalCardDialogComponent,
+    SellersListDialogComponent,
+    ExtendProposalDialogComponent,
+    AuctionStartDialogComponent
+  ]
 })
 export class DashboardModule { }

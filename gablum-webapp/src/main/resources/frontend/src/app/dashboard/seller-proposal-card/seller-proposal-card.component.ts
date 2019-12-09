@@ -14,7 +14,7 @@ import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-ca
 export class SellerProposalCardComponent implements OnInit {
 
   public static messageKey = 'seller-proposal-card-component';
- alreadyRegistered = false;
+ alreadyRegistered: boolean;
   @Input() allProposal: Proposal;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,
