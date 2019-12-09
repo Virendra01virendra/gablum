@@ -49,8 +49,7 @@ export class ProposalsDataService {
   }
   extendProposal(dest, data, key) {
     const proposalExtend = this.proposalsUrl + '/' + data.proposalId;
-    // console.log('extendProposal------', data);
-    this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
+    return this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
   }
 
   getProposalsBySubDomain(businessSubDomain: string, dest, key) {
@@ -60,7 +59,5 @@ export class ProposalsDataService {
     this.logger.log('while hitting the api entire URL --> --------------->=>' + proposalUrlSubDomain);
     this.networking.getData<Proposal>(proposalUrlSubDomain, dest, key);
   }
-  // extendProposal(dest, data, key) {
-  //   this.networking.patchData<Proposal>(this.proposalsUrl)
-  // }
+
 }

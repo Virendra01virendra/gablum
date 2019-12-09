@@ -38,20 +38,20 @@ export class NetworkingService {
         'Content-Type': 'application/json'
       })};
     console.log( 'datata :::', data);
-    this.http.patch<T>(url, data, httpOptions)
+    return this.http.patch<T>(url, data, httpOptions)
       .pipe(
         retry(3),
         catchError(err => {
           return throwError(err);
         })
-      )
-      .subscribe(res => {
-        this.comms.postMessage(this, dest, {[key]: res});
-        this.getData<T>(url, dest, key);
-      },
-      err => {
-        this.logger.log(err);
-      });
+      );
+      // .subscribe(res => {
+      //   this.comms.postMessage(this, dest, {[key]: res});
+      //   this.getData<T>(url, dest, key);
+      // },
+      // err => {
+      //   this.logger.log(err);
+      // });
   }
 
   postData<T>(url: string, dest: string, data, key = 'inventory') {

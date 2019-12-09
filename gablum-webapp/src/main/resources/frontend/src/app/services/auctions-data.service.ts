@@ -34,12 +34,17 @@ export class AuctionsDataService {
     }
 
     saveBid(dest, data, key, auctionId) {
-      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid/score';
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
       this.networking.postData(this.bidUrl, dest, data, key);
     }
 
     getScore(dest, data, key, auctionId) {
-      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid/score';
       this.networking.postData(this.bidUrl, dest, data, key);
+    }
+
+    getBidsAuction(dest, key, auctionId) {
+      this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid';
+      this.networking.getData(this.bidUrl, dest, key);
     }
 }

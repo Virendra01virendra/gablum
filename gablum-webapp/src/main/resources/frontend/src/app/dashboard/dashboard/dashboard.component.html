@@ -41,9 +41,10 @@
 
       </mat-expansion-panel-header>
       <div *ngIf="section.label=='Ongoing Auctions'">
-        <div class="auctions-cont" *ngIf="auctions">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
-        </div>
+          <div class="auctions-cont" *ngIf="auctions">
+          <app-auction-card  *ngFor="let auction of auctions"
+          [auction]="auction"></app-auction-card>
+          </div>
       </div>
       <div *ngIf="section.label=='Active Proposals'">
         <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal">

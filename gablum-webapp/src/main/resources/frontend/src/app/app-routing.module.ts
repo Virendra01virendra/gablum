@@ -42,10 +42,10 @@ const routes: Routes = [
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule),
     canLoad: [AuthGuardService, BuyerGuardService]
   },
-  // {
-  //   path: 'auctions',
-  //   loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
-  // },
+  {
+    path: 'auctions',
+    loadChildren: () => import('./auction/auction.module').then(m => m.AuctionModule)
+  },
   // {
   //   path: 'login',
   //   loadChildren: () => import('./app.module').then(m => m.AppModule)
