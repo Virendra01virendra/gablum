@@ -18,6 +18,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,6 +75,9 @@ public class AuctionController {
             auctionsToAdd.get(i).setCreatedBy(email);
 
             log.info("email---------->" + email);
+            if (auctionsToAdd.get(i).getSocketTokens() == null) {
+                auctionsToAdd.get(i).setSocketTokens(new HashMap<String, String>());
+            }
             auctionsToAdd.get(i).getSocketTokens().put(
                     email,
                     userService.generateToken(
@@ -82,7 +86,7 @@ public class AuctionController {
                             auctionsToAdd.get(i).getAuctionEndDate(),
                             true)
             );
-            for (String sellerEmail: auctionsToAdd.get(i).getSelectedParticipantList()) {
+            for (String sellerEmail: auctionsToAdd.get(i).getInterestedUsersEmail()) {
                 auctionsToAdd.get(i).getSocketTokens().put(
                         sellerEmail,
                         userService.generateToken(
