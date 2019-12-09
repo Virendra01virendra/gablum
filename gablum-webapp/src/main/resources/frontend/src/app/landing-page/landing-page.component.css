@@ -1,8 +1,8 @@
 .hero-container {
     width: 100%;
     height: calc(100vh - 56px);
-    background-image: url("https://picsum.photos/1600/1200");
-    background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2)), url("https://picsum.photos/1600/1200");
+    background-image: url("src/assets/front.webp");
+    background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2)), url("src/assets/front.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,6 +16,43 @@
 .hero-text-container > h2 {
     text-align: center;
     font-weight: lighter;
+}
+
+.about-section {
+    width: 80%;
+    margin: 2em auto;
+    padding: 2em;
+    border-radius: 0.3em;
+    background: #fff;
+    text-align: justify;
+}
+
+.contact-section {
+    width: 100%;
+    margin: 2em auto 0 auto;
+    padding: 1em 0;
+    background: #fff;
+}
+
+.contact-section > h2 {
+    padding: 2em 0 0 2em;
+    font-family: 'Montserrat', Helvetica, sans-serif;
+}
+
+.contact-form {
+    width: 80%;
+    margin: 1em auto;
+}
+
+.map-container {
+    width: 100%;
+    height: 20em;
+}
+
+.subdomains-about {
+    width: 100%;
+    min-height: 10em;
+    background: orange;
 }
 
 footer {

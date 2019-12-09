@@ -6,6 +6,9 @@ import { NetworkingService } from '../services/networking.service';
 import { LoginToken } from '../interfaces/login-token';
 import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
+
+declare const H: any;
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -53,6 +56,36 @@ export class LandingPageComponent implements OnInit {
 
 
   ngOnInit() {
+    const platform = new H.service.Platform({
+      apikey: '4_7vNvF5vudZJukEqr_3ofdYEDJnqQWx1etfR53nj-k'
+    });
+
+    const maptypes = platform.createDefaultLayers();
+    const coords = { lat: 12.93363, lng: 77.61469 };
+
+    const map = new H.Map(
+      document.getElementById('mapContainer'),
+      maptypes.vector.normal.map,
+      {
+        zoom: 16,
+        center: coords,
+        pixelRatio: window.devicePixelRatio || 1
+      });
+
+    window.addEventListener('resize', () => map.getViewPort().resize());
+
+    const svgMarkup = '<svg width="24" height="24" ' +
+        'xmlns="http://www.w3.org/2000/svg">' +
+        '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+        'height="22" /><text x="12" y="18" font-size="12pt" ' +
+        'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+        'fill="white">b</text></svg>';
+
+// Create an icon, an object holding the latitude and longitude, and a marker:
+    const icon = new H.map.Icon(svgMarkup);
+    const marker = new H.map.Marker(coords, {icon});
+    map.addObject(marker);
+    map.setCenter(coords);
   }
   getErrorMessage1() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
