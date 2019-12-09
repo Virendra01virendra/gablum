@@ -27,7 +27,7 @@ public class ProposalService implements IProposalService {
     private List<Proposal> proposals;
 
     private Pageable getPageable(Map<String, String> queryMap) {
-        String sortKey = "auctionName";
+        String sortKey = "createdOn";
         int pageLength = 10;
         int page = 0;
         if (queryMap.containsKey("sort")) {
