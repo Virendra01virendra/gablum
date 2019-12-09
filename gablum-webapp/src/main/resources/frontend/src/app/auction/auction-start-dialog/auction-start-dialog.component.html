@@ -20,6 +20,11 @@
                    <mat-chip color="primary">Method Of Supply</mat-chip> 
                    <mat-chip>{{data.methodOfSupply}}</mat-chip>
                  </div>
+
+                 <div fxLayoutAlign="space-between">
+                  <mat-chip color="primary">Delivery Date</mat-chip> 
+                  <mat-chip>{{data.deliveryDate | date}}</mat-chip>
+                </div>
                
         <!-- <div> Your score is <div [ngClass]="{
                   'positive' : data >= 90,
