@@ -11,7 +11,7 @@
       <mat-list role="list">
         <mat-list-item role="listitem">Product Price: {{data.price}}</mat-list-item>
         <mat-list-item role="listitem">Quantity: {{data.quantityValue + ' ' + data.quantityUnit}}</mat-list-item>
-        <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate}}</mat-list-item>
+        <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate | date}}</mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
     <mat-expansion-panel>
@@ -35,10 +35,10 @@
         <mat-panel-description>Details about various Dates</mat-panel-description>
       </mat-expansion-panel-header>
       <mat-list role="list">
-        <mat-list-item role="listitem">Registartion starts on: {{data.regStartDate}}</mat-list-item>
-        <mat-list-item role="listitem">Registration ends on: {{data.regEndDate}}</mat-list-item>
-        <mat-list-item role="listitem">Auction starts on: {{data.auctionStartDate}}</mat-list-item>
-        <mat-list-item role="listitem">Auction ends on: {{data.auctionEndDate}}</mat-list-item>
+        <mat-list-item role="listitem">Registartion starts on: {{data.regStartDate | date}}</mat-list-item>
+        <mat-list-item role="listitem">Registration ends on: {{data.regEndDate | date}}</mat-list-item>
+        <mat-list-item role="listitem">Auction starts on: {{data.auctionStartDate | date}}</mat-list-item>
+        <mat-list-item role="listitem">Auction ends on: {{data.auctionEndDate | date}}</mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
   </mat-accordion>
