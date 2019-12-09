@@ -22,7 +22,7 @@ public class Proposal {
     @Id
     private String _id;
     private String proposalId = UUID.randomUUID().toString();
-    private UUID productId;
+    private String productId;
     private String createdBy;
     private String updatedBy;
     private String businessDomain;
