@@ -67,6 +67,8 @@ export class NavbarComponent implements OnInit {
     this.login.logout();
   }
   opDialog() {
-    this.dialog.open(LoginComponent);
+    this.dialog.open(LoginComponent, {
+      width: '60%',
+    });
   }
 }

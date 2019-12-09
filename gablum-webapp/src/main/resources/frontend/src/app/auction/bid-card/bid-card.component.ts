@@ -20,8 +20,8 @@ export class BidCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectBid(){
+  // selectBid(){
     
-  }
+  // }
 
 }

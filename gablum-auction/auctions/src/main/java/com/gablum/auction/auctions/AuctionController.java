@@ -180,7 +180,7 @@ public class AuctionController {
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
 
-        return auction;
+        return auctionService.updateAuction(auction);
     }
 
 }

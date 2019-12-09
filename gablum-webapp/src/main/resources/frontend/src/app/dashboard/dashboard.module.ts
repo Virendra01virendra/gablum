@@ -16,6 +16,7 @@ import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-p
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
+import { MatDatepickerModule } from '@angular/material';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
@@ -28,7 +29,7 @@ import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auc
     SellersListDialogComponent,
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
-    SellerProposalCardComponent
+    SellerProposalCardComponent,
     // AuctionCardDialogComponent
   ],
   imports: [
@@ -40,6 +41,7 @@ import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auc
     FormsModule,
     ConsoleModule,
     AuctionModule,
+    MatDatepickerModule
   ],
   entryComponents: [
     ProposalCardDialogComponent,
