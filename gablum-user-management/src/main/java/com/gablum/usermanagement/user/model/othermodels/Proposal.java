@@ -1,4 +1,4 @@
-package com.gablum.proposals.proposal.model;
+package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
