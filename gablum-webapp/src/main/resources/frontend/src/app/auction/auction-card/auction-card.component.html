@@ -38,7 +38,7 @@
     
   <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
     
-    <button color="primary" mat-raised-button (click)="placeBid()" [hidden]= buttonShow>Place Bid</button>
+    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf= buttonShow>Place Bid</button>
 
       <button color="primary" mat-raised-button (click) = "seeBids()">See Bids</button>
 

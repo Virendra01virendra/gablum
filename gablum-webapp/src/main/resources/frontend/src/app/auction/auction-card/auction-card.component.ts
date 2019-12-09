@@ -30,7 +30,7 @@ export class AuctionCardComponent implements OnInit {
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
-  @Input() public buttonShow: string;
+  @Input() public buttonShow: boolean;
 
   ngOnInit() {  }
 

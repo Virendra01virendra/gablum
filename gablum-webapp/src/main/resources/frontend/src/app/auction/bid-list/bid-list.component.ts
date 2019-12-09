@@ -21,7 +21,7 @@ export class BidListComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    private auth: AuthenticationService,
+    // private auth: AuthenticationService,
     private route: ActivatedRoute
   ) {
     comms.getMessages().subscribe(msg => {

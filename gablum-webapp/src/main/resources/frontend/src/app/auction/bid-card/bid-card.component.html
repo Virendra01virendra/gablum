@@ -7,13 +7,13 @@
             <span >{{bidDataEntity.createdBy}}</span>
             <mat-divider></mat-divider>
             <mat-chip-list>
-                <mat-chip matTooltip="Price">{{bidDataEntity.bid.price}}</mat-chip>
-                <mat-chip matTooltip="Score">{{bidDataEntity.score}}</mat-chip>
+                <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price}}</mat-chip>
+                <mat-chip matTooltip="Score">Score: {{bidDataEntity.score}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
     <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
-        <span matTooltip="Delivery Date">{{bidDataEntity.bid.timeOfdelivery | date}}</span>
-        <span matTooltip="Credit period (Months)">{{bidDataEntity.bid.creditPeriod}}</span>
+        <span matTooltip="Delivery Date">Time of Delivery: {{bidDataEntity.bid.timeOfDelivery | date}}</span>
+        <span matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}}</span>
     </div>
 </mat-expansion-panel>

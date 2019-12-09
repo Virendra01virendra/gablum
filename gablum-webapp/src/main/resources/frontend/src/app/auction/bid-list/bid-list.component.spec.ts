@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BidListComponent } from './bid-list.component';
 import { BidCardComponent } from '../bid-card/bid-card.component';
+import { MaterialModule } from 'src/app/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BidListComponent', () => {
   let component: BidListComponent;
@@ -9,8 +12,15 @@ describe('BidListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidListComponent,
-      BidCardComponent ]
+      imports: [
+        MaterialModule,
+        HttpClientModule,
+        RouterTestingModule
+      ],
+      declarations: [
+        BidListComponent,
+      BidCardComponent
+     ]
     })
     .compileComponents();
   }));

@@ -11,7 +11,7 @@
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
 
         <div class="auctions-cont" *ngIf="auctions" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow] = true></app-auction-card>
 
         </div>
       </div>
