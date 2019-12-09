@@ -1,12 +1,11 @@
 package com.gablum.contract.contracts.repository;
 
 import com.gablum.contract.contracts.model.Contracts;
-import com.gablum.contract.contracts.model.othermodels.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @Repository
 public interface ContractDetailsRepository extends MongoRepository<Contracts, Integer> {

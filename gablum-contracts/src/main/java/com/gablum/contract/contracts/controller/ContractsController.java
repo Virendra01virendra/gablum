@@ -36,8 +36,8 @@ public class ContractsController {
         return contractService.saveContract(contracts);
     }
 
-    @PatchMapping("/contracts/{contractsId}")
-    public Contracts updateContractStatus(@PathVariable String contractId, @RequestBody Contracts contractToEdit){
-        return contractService.updateContract(contractId, contractToEdit);
-    }
+//    @PatchMapping("/contracts/{contractsId}")
+//    public Contracts updateContractStatus(@PathVariable String contractId, @RequestBody Contracts contractToEdit){
+//        return contractService.updateContract(contractId, contractToEdit);
+//    }
 }

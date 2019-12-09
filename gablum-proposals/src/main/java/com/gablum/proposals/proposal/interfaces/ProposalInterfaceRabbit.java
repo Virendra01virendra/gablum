@@ -9,5 +9,5 @@ import org.springframework.messaging.MessageChannel;
 public interface ProposalInterfaceRabbit {
 
     @Output("newProposal")
-    public MessageChannel newProposalMessageChannel();
+    MessageChannel newProposalMessageChannel();
 }
