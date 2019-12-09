@@ -10,10 +10,19 @@ import { AuctionCardComponent } from './auction-card/auction-card.component';
 import { ConsoleModule } from '../console/console.module';
 import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-dialog.component';
 import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submission-dialog.component';
+import { BidListComponent } from './bid-list/bid-list.component';
+import { BidCardComponent } from './bid-card/bid-card.component';
 
 
 @NgModule({
-  declarations: [BidFormComponent, AuctionCardComponent, BidResponseDialogComponent, BidSubmissionDialogComponent],
+  declarations: [
+    BidFormComponent,
+    AuctionCardComponent,
+    BidResponseDialogComponent,
+    BidSubmissionDialogComponent,
+    BidListComponent,
+    BidCardComponent
+  ],
   imports: [
     CommonModule,
     AuctionRoutingModule,
@@ -25,7 +34,9 @@ import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submis
     // NoopAnimationsModule
   ],
   exports: [
-    AuctionCardComponent],
+    AuctionCardComponent,
+    BidCardComponent
+  ],
     entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent]
 })
 export class AuctionModule { }

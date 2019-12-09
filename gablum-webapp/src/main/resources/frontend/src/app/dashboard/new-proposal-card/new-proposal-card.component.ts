@@ -73,7 +73,8 @@ export class NewProposalCardComponent implements OnInit {
     const data = JSON.parse(JSON.stringify(auctionList));
 
     this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
-    this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+    // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+    this.router.navigate(['dashboard']);
 
   }
 
