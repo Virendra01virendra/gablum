@@ -2,13 +2,14 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 import { LoggerService } from 'src/app/services/logger.service';
+import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -28,7 +29,7 @@ export class NewProposalCardComponent implements OnInit {
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    private logger: LoggerService
+    private logger: LoggerService,
   ) {
 
   }
@@ -61,20 +62,25 @@ export class NewProposalCardComponent implements OnInit {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
   }
   startAuction(proposal1: Proposal) {
-    const auction = {
-      auctionName: proposal1.productName,
-      proposal: proposal1,
-      isAuctionActive: true,
-      interestedUsersEmail: proposal1.interestedUsersEmail
-    };
-    const auctionList = [];
-    auctionList.push(auction);
+    // const auction = {
+    //   auctionName: proposal1.productName,
+    //   proposal: proposal1,
+    //   isAuctionActive: true,
+    //   interestedUsersEmail: proposal1.interestedUsersEmail
+    // };
+    // const auctionList = [];
+    // auctionList.push(auction);
 
-    const data = JSON.parse(JSON.stringify(auctionList));
+    // const data = JSON.parse(JSON.stringify(auctionList));
 
-    this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
-    // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
-    this.router.navigate(['dashboard']);
+    // this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
+    // // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+    // this.router.navigate(['dashboard']);
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = proposal1;
+    dialogConfig.width = '40%';
+    this.dialog.open(AuctionStartDialogComponent, dialogConfig);
 
   }
 

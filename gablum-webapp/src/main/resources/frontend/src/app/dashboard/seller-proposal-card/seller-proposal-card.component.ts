@@ -17,10 +17,14 @@ import { all } from 'q';
 export class SellerProposalCardComponent implements OnInit {
 
   public static messageKey = 'seller-proposal-card-component';
+<<<<<<< HEAD
   public isLoggedIn = false;
   public isBuyer = false;
   public isSeller = false;
   public profile: Profile;
+=======
+ alreadyRegistered: boolean;
+>>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
   @Input() allProposal: Proposal;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,

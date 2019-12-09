@@ -2,6 +2,7 @@
 <div mat-dialog-content class="mat-dialog" fxLayout="column nowrap" fxLayoutAlign="space-around center">
   <div class="form-container">
     <form [formGroup]="extendProposalForm">
+<<<<<<< HEAD
       <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
         <mat-form-field>
           <mat-label class="form-label">Registration Start date:</mat-label>
@@ -22,6 +23,26 @@
             class="padded-btn">Submit</button>
         </div>
       </div>
+=======
+            <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
+                    <mat-form-field>
+                      <mat-label class="form-label">Registration Start date:</mat-label>
+                      <input matInput [matDatepickerFilter]="RegStartDateFilter" [matDatepicker]="picker2" placeholder={{data.regStartDate}} formControlName="regStartDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label class="form-label">Registration End date:</mat-label>
+                      <input matInput [matDatepickerFilter]="RegEndDateFilter" [matDatepicker]="picker3" placeholder={{data.regEndDate}} formControlName="regEndDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3 disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                    <div style="float: right;">
+                        <button mat-raised-button color="primary" (click)="onSubmit(data,extendProposalForm)" [disabled]="!extendProposalForm.valid" class="padded-btn" style="align: right;">Submit</button>
+                    </div>
+            </div>
+                    
+>>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
     </form>
   </div>
 </div>

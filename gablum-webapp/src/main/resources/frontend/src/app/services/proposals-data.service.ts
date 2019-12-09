@@ -3,6 +3,7 @@ import { CommunicatorService } from './communicator.service';
 import { NetworkingService } from './networking.service';
 import { Proposal } from '../interfaces/proposal';
 import { environment } from 'src/environments/environment';
+import { LoggerService } from './logger.service';
 // import { timingSafeEqual } from 'crypto';
 
 @Injectable({
@@ -16,7 +17,8 @@ export class ProposalsDataService {
 
   constructor(
     private comms: CommunicatorService,
-    private networking: NetworkingService
+    private networking: NetworkingService,
+    private logger: LoggerService
   ) {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
@@ -47,15 +49,15 @@ export class ProposalsDataService {
   }
   extendProposal(dest, data, key) {
     const proposalExtend = this.proposalsUrl + '/' + data.proposalId;
-    // console.log('extendProposal------', data);
-    this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
+    return this.networking.patchData<Proposal>(proposalExtend, dest, data, key);
   }
 
-  getProposalsBySubDomain(businessSubDomain, dest, key) {
+  getProposalsBySubDomain(businessSubDomain: string, dest, key) {
     const proposalUrlSubDomain = this.guestProposallistUrl + '/' + businessSubDomain;
+    this.logger.log('Type of business Subdomain hitting the api --------------->=>' + typeof(businessSubDomain));
+    this.logger.log('while hitting the api --------------->=>' + businessSubDomain);
+    this.logger.log('while hitting the api entire URL --> --------------->=>' + proposalUrlSubDomain);
     this.networking.getData<Proposal>(proposalUrlSubDomain, dest, key);
   }
-  // extendProposal(dest, data, key) {
-  //   this.networking.patchData<Proposal>(this.proposalsUrl)
-  // }
+
 }

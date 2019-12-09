@@ -8,6 +8,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { ConsoleModule } from '../../console/console.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
+import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 
 
 describe('AuctionCardComponent', () => {
@@ -16,7 +17,7 @@ describe('AuctionCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuctionCardComponent ],
+      declarations: [ AuctionCardComponent, TimerComponent ],
       imports: [  MaterialModule, BrowserAnimationsModule, NoopAnimationsModule, ConsoleModule,
         HttpClientTestingModule],
       providers: [
