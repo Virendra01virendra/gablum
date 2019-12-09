@@ -19,10 +19,19 @@ public class Contracts {
     private String contractId;
 
     @NotNull
+    private String auctionId;
+
+    @NotNull
+    private String bidId;
+
+    @NotNull
     private Auction auctionDetails;
 
     @NotNull
     private Bid BidDetails;
+
+    @NotNull
+    private String buyerId;
 
     @NotNull
     private User buyer;
@@ -34,7 +43,10 @@ public class Contracts {
     private String sellerESign;
 
     @NotNull
-    private User sellerId;
+    private String sellerId;
+
+    @NotNull
+    private User seller;
 
     @NotNull
     private Boolean contractStatus = true;

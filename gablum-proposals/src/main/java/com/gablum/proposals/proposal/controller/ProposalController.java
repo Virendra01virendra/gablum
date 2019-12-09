@@ -4,7 +4,7 @@ import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
-import com.gablum.proposals.proposal.usersrabbit.Publisher;
+// import com.gablum.proposals.proposal.usersrabbit.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

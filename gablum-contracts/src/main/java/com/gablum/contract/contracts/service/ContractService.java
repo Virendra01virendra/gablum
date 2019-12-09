@@ -1,6 +1,7 @@
 package com.gablum.contract.contracts.service;
 
 import com.gablum.contract.contracts.model.Contracts;
+import com.gablum.contract.contracts.model.othermodels.User;
 import com.gablum.contract.contracts.repository.ContractDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class ContractService {
     @Autowired
     private ContractDetailsRepository contractDetails;
 
-    public Contracts getContractById(UUID contractsId){
+    public Contracts getContractById(String contractsId){
         return contractDetails.findByContractId(contractsId);
     }
 
@@ -22,12 +23,14 @@ public class ContractService {
         return contractDetails.save(contractToBeSaved);
     }
 
-    public List<Contracts> getContractByBuyerId(UUID buyerId) {
+    public List<Contracts> getContractByBuyerId(String buyerId) {
         return contractDetails.findByBuyerId(buyerId);
     }
+    public List<Contracts> getContractBySellerId(String sellerId){
+        return contractDetails.findBySellerId(sellerId);
+    }
     @Transactional
-
-    public Contracts updateContract (UUID contractWhichNeedsTobeInvalidated ,Contracts contractUpdate){
+    public Contracts updateContract (String contractWhichNeedsTobeInvalidated ,Contracts contractUpdate){
         Contracts updatedContract = contractDetails.findByContractId(contractWhichNeedsTobeInvalidated);
         updatedContract.setContractStatus(contractUpdate.getContractStatus());
         return contractDetails.save(updatedContract);
