@@ -1,6 +1,6 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.gablum.proposals.proposal.interfaces.ProposalInterface;
+import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
@@ -18,6 +18,7 @@ import java.util.Map;
 
 @RestController
 public class ProposalController {
+
     public MessageChannel messageChannel;
 
     @Autowired
@@ -35,6 +36,8 @@ public class ProposalController {
         proposalData.setCreatedOn(new Date());
         proposalData.setUpdatedOn(new Date());
         Proposal savedProposal = proposalService.addProposals(proposalData);
+        Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
+        messageChannel.send(msg);
         return savedProposal;
     }
 
@@ -91,14 +94,7 @@ public class ProposalController {
                 HttpStatus.OK
         );
     }
-    public ProposalController(ProposalInterface proposalInterface){
-        messageChannel = proposalInterface.parsingProposal();
-    }
-
-    @GetMapping
-    public String parsingProposal(){
-        Message<String> msg = MessageBuilder.withPayload("yolo").build();
-        messageChannel.send(msg);
-        return "one";
+    public ProposalController(ProposalInterfaceRabbit proposalInterface){
+        messageChannel = proposalInterface.newProposalMessageChannel();
     }
 }
