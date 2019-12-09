@@ -73,7 +73,7 @@ export class BidFormComponent implements OnInit {
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
-        console.log('aucuccuctioniiidd ---------->', this.auctionId);
+        // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
     this.ws.connect(message => this.subscribe());

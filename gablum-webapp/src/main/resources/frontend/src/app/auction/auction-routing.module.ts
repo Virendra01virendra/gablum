@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BidFormComponent } from './bid-form/bid-form.component';
+import { BidListComponent } from './bid-list/bid-list.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: ':id/see/bids',
-    component: BidFormComponent,
+    component: BidListComponent,
     pathMatch: 'full'
   }
 ];
