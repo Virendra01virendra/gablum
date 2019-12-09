@@ -49,7 +49,7 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(EditProfileDialogComponent,
       {
-        width: '80%',
+        width: '60%',
         data: this.profile
       }
     );

@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Proposal} from '../../interfaces/proposal';
+import { Proposal } from '../../interfaces/proposal';
 import { MatDialog } from '@angular/material/dialog';
 import { LoggerService } from '../../services/logger.service';
 import { ProposalsDataService } from '../../services/proposals-data.service';
 import { CommunicatorService } from '../../services/communicator.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Profile } from 'src/app/interfaces/profile';
+import { all } from 'q';
 
 @Component({
   selector: 'app-seller-proposal-card',
@@ -14,12 +17,31 @@ import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-ca
 export class SellerProposalCardComponent implements OnInit {
 
   public static messageKey = 'seller-proposal-card-component';
- alreadyRegistered = false;
+  public isLoggedIn = false;
+  public isBuyer = false;
+  public isSeller = false;
+  public profile: Profile;
   @Input() allProposal: Proposal;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,
               private dialog: MatDialog,
-              private logger: LoggerService) { }
+              private logger: LoggerService,
+              private auth: AuthenticationService
+             ) {
+              comms.getMessages().subscribe(msg => {
+                if (msg.dest === SellerProposalCardComponent.messageKey || msg.dest === '@all') {
+                  const data = msg.data;
+
+                  if ('authChanged' in data) {
+                    this.isLoggedIn = auth.getAuthenticated();
+                    this.logger.log('maakivhiooo--->' + auth.getProfileData());
+                    this.profile = auth.getProfileData();
+                    this.isBuyer = auth.isBuyer();
+                    this.isSeller = auth.isSeller();
+                  }
+              }
+            });
+          }
 
   ngOnInit() {
   }
@@ -27,7 +49,6 @@ export class SellerProposalCardComponent implements OnInit {
   shownInterest(allProposal: Proposal) {
     // const proposalId = element.proposalId;
     this.logger.log('some data which we are publishing ');
-    this.alreadyRegistered = true;
     this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, allProposal, 'interestedSellers');
   }
 
