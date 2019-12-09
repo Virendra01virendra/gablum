@@ -52,8 +52,8 @@ export class NewProposalCardComponent implements OnInit {
 
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
-      width: '60%',
-      height: '60%',
+      // width: '60%',
+      // height: '60%',
       data: proposal
     });
   }
