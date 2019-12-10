@@ -66,15 +66,15 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient,
   ) {
+    this.isLoggedIn = auth.getAuthenticated();
+    if (this.isLoggedIn) {
+      this.logger.log(this, auth.getProfileData());
+      this.isBuyer = auth.isBuyer();
+      this.isSeller = auth.isSeller();
+    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
-        this.isLoggedIn = auth.getAuthenticated();
-        if (this.isLoggedIn) {
-          this.logger.log(this, auth.getProfileData());
-          this.isBuyer = auth.isBuyer();
-          this.isSeller = auth.isSeller();
-        }
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
@@ -120,12 +120,6 @@ export class DashboardComponent implements OnInit {
     this.isBuyer = this.auth.isBuyer();
     this.isSeller = this.auth.isSeller();
   }
-
-  // ngAfterViewChecked() {
-    // this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-
-  // }
-
 
   send() {
     this.ws.sendBid({ price: 100 });
