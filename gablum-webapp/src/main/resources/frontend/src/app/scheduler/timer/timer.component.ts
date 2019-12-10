@@ -30,6 +30,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   public seconds = 0;
   public toStartMsg: string;
   public endedMsg: string;
+  public liveMsg: string;
   timerEventTime: number;
   currentSubscription: Subscription;
 
@@ -95,6 +96,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.toStartMsg = 'Auction Begins in -->';
       this.timerEventTime = timetoStart.getTime() - localTime.getTime();
     } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
+      this.liveMsg = 'You are now live! Place your bids.';
       this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
       this.formatValue(this.timerEventTime);
     } else if (localTime.getTime() > timeToEnd.getTime()) {
