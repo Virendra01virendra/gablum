@@ -18,11 +18,12 @@ export class AuctionStartDialogComponent {
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
-              private auctionDataService: AuctionsDataService,
-              private router: Router,
-              private comms: CommunicatorService,
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
+    private auctionDataService: AuctionsDataService,
+    private router: Router,
+    private comms: CommunicatorService,
               ) {
                 comms.getMessages().subscribe(msg => {
                   if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {

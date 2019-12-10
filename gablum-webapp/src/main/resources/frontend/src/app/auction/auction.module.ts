@@ -42,6 +42,6 @@ import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dial
     AuctionCardComponent,
     BidCardComponent
   ],
-    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent]
+    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent, WinningBidDialogComponent]
 })
 export class AuctionModule { }
