@@ -1,7 +1,7 @@
-package com.gablum.auction.auctions.rabbit;
+package com.gablum.usermanagement.user.model.othermodels;
 
 //import com.gablum.auction.auctions.Bid;
-import com.gablum.auction.auctions.BidDataEntity;
+
 import lombok.*;
 
 @Setter

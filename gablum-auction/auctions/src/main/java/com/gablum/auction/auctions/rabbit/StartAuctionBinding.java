@@ -13,6 +13,9 @@ public interface StartAuctionBinding {
     @Input("newBid")
     SubscribableChannel getNewbidChannel();
 
+    @Output("newAuction")
+    MessageChannel floatingNewAuctionMessageChannel();
+
     @Output("newBid")
     MessageChannel getNewBidTransmitChannel();
 
