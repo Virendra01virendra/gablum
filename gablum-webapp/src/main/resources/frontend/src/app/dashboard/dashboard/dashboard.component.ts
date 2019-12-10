@@ -66,6 +66,12 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient,
   ) {
+    this.isLoggedIn = auth.getAuthenticated();
+    if (this.isLoggedIn) {
+      this.logger.log(this, auth.getProfileData());
+      this.isBuyer = auth.isBuyer();
+      this.isSeller = auth.isSeller();
+    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -115,12 +121,6 @@ export class DashboardComponent implements OnInit {
     this.isSeller = this.auth.isSeller();
   }
 
-  // ngAfterViewChecked() {
-    // this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-
-  // }
-
-
   send() {
     this.ws.sendBid({ price: 100 });
   }
@@ -156,8 +156,6 @@ export class DashboardComponent implements OnInit {
       proposal: proposal1,
       isAuctionActive: true,
       interestedUsersEmail: proposal1.interestedUsersEmail,
-      // auctionStartDate: proposal1.auctionStartDate,
-      // auctionEndDate: proposal1.auctionEndDate,
     };
     const auctionList = [];
     auctionList.push(auction);
