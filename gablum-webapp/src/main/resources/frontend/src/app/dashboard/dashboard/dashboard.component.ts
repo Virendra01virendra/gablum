@@ -24,8 +24,8 @@ import { Profile } from 'src/app/interfaces/profile';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
-  public switcher = true;
-
+  public show = false;
+  public buttonName = 'Buyer';
   public isLoggedIn = false;
   public isBuyer = false;
   public isSeller = false;
@@ -163,15 +163,12 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  // toggleSwitch()
-  // {
-  //   if(this.switcher == true)
-  //   {
-  //     this.switcher = false;
-  //   }
-  //   else
-  //   {
-  //     this.switcher =true;
-  //   }
-  
+  toggle() {
+    this.show = !this.show;
+    if (this.show) {
+      this.buttonName = 'Buyer';
+    } else {
+      this.buttonName = 'Seller';
+    }
+  }
 }
