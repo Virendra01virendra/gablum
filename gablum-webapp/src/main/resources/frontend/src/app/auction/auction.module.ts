@@ -14,6 +14,8 @@ import { TimerComponent } from '../scheduler/timer/timer.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
+import { Scheduler } from 'rxjs';
+import { SchedulerModule } from '../scheduler/scheduler.module';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { AuctionStartDialogComponent } from './auction-start-dialog/auction-star
     AuctionRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    ConsoleModule
+    ConsoleModule,
+    SchedulerModule
     // FlexLayoutModule
     // BrowserAnimationsModule,
     // NoopAnimationsModule
