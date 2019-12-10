@@ -122,7 +122,7 @@ public class AuctionController {
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
         ScoreObject scoreObject = new ScoreObject();
-        scoreObject.setScore(bidService.getBidScore(bid, id));
+        scoreObject = bidService.getBidScore(bid, id);
         return scoreObject;
     }
 
@@ -131,10 +131,11 @@ public class AuctionController {
     public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
-        float scorecnt = bidService.getBidScore(bid, id);
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
-        bidDataEntity.setScore(scorecnt);
+        bidDataEntity.setScoreObject(scoreObject);
         bidDataEntity.setCreatedBy(email);
         bidDataEntity.setAuctionId(id);
 
@@ -146,8 +147,7 @@ public class AuctionController {
 
         messageChannelBid.send(message);
 
-        ScoreObject scoreObject = new ScoreObject();
-        scoreObject.setScore(scorecnt);
+
         return scoreObject;
     }
 
@@ -178,7 +178,7 @@ public class AuctionController {
         return bidService.getbidsAuction(queryMap, id);
     }
 
-    @PutMapping("auction/{id}/bid/end")
+    @PatchMapping("auctions/{id}/bid/end")
     public Auction saveWinningBid(@PathVariable String id, @RequestBody BidDataEntity bidDataEntity,
                                    HttpServletRequest request){
         Auction auction = auctionService.getAuctionById(id);
