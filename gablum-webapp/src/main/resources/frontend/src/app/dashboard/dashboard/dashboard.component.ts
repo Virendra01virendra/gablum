@@ -34,17 +34,17 @@ export class DashboardComponent implements OnInit {
   auctions: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
-  public dashboardSections: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-  ];
+  // public dashboardSections: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  // ];
 
-  public dashboardSections1: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-    { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
+  // public dashboardSections1: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  //   { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
 
   public bids: NewBid[] = [];
   data;
@@ -109,10 +109,6 @@ export class DashboardComponent implements OnInit {
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
-    this.isLoggedIn = this.auth.getAuthenticated();
-    this.logger.log(this.auth.getProfileData());
-    this.isBuyer = this.auth.isBuyer();
-    this.isSeller = this.auth.isSeller();
   }
 
   // ngAfterViewChecked() {
