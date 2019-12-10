@@ -53,7 +53,7 @@ public class BidService implements IBidService {
     }
 
     @Override
-    public float getBidScore(Bid bid, String auctionId) throws ParseException {
+    public ScoreObject getBidScore(Bid bid, String auctionId) throws ParseException {
         Auction auction = auctionService.getAuctionById(auctionId);
 
         DateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");

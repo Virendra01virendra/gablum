@@ -5,6 +5,7 @@ import {
 import { Proposal } from 'src/app/interfaces/proposal';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { Router } from '@angular/router';
+import { CommunicatorService } from 'src/app/services/communicator.service';
 
 
 @Component({
@@ -17,11 +18,25 @@ export class AuctionStartDialogComponent {
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
-              private auctionDataService: AuctionsDataService,
-              private router: Router
-              ) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<AuctionStartDialogComponent>,
+    private auctionDataService: AuctionsDataService,
+    private router: Router,
+    private comms: CommunicatorService,
+              ) {
+                comms.getMessages().subscribe(msg => {
+                  if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
+                    const data1 = msg.data;
+
+                    if ('save-auction' in data1) {
+                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+                    }
+
+                  }
+                });
+              }
+
 
   close() {
     this.dialogRef.close();
@@ -39,8 +54,7 @@ export class AuctionStartDialogComponent {
 
     const data = JSON.parse(JSON.stringify(auctionList));
 
-    this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
-    this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+    this.auctionDataService.saveAuction(AuctionStartDialogComponent.messageKey, data, 'save-auction');
     this.router.navigate(['dashboard']);
     this.close();
 

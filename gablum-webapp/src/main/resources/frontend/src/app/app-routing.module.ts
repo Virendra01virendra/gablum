@@ -4,6 +4,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { TimerComponent } from './scheduler/timer/timer.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BuyerGuardService } from './services/buyer-guard.service';
+import { SellerGuardService } from './services/seller-guard.service';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'timer',
     loadChildren: () => import( './scheduler/scheduler.module').then(m => m.SchedulerModule)
+  },
+  {
+    path: 'browse',
+    loadChildren: () => import( './browse-proposals/browse-proposals.module').then(m => m.BrowseProposalsModule),
+    canLoad: [SellerGuardService]
   },
   {
     path: '',
