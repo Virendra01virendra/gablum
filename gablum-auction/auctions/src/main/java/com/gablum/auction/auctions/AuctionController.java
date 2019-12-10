@@ -35,10 +35,13 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
-    private MessageChannel messageChannel;
+    private MessageChannel messageChannelBid;
+    private MessageChannel messageChannelAuction;
+//    private MessageChannel messageChannelBid;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
-        this.messageChannel = auctionBinding.getNewBidTransmitChannel();
+        this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
+        this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
     }
 
     //FIXME: check roles before returning auction
@@ -65,14 +68,6 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(auctionId);
         auction.setSocketTokens(null);
         return auction;
-    }
-
-    // FIXME add web Socket Tokens
-    @PostMapping("/auctions")
-    public Auction addAuction(@RequestBody Auction auction){
-        Message<Auction> msg = MessageBuilder.withPayload(auction).build();
-        messageChannel.send(msg);
-        return auctionService.addAuction(auction);
     }
 
     @PostMapping("/auctions")
@@ -105,6 +100,10 @@ public class AuctionController {
                 );
             }
             i = i+1;
+        }
+        for(int j =0; j<auctionsToAdd.size(); j++){
+            Message<Auction> msg = MessageBuilder.withPayload(auctionsToAdd.get(j)).build();
+            messageChannelAuction.send(msg);
         }
         return auctionService.addAuctions(auctionsToAdd);
     }
@@ -145,10 +144,10 @@ public class AuctionController {
         bidService.addBid(bidDataEntity);
 
         Message<BidMessage> message = MessageBuilder.withPayload(
-                new BidMessage(bid, InetAddress.getLocalHost().getHostAddress())
+                new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
         ).build();
 
-        messageChannel.send(message);
+        messageChannelBid.send(message);
 
         ScoreObject scoreObject = new ScoreObject();
         scoreObject.setScore(scorecnt);
