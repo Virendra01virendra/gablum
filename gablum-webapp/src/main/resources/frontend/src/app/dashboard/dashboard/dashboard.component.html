@@ -2,7 +2,7 @@
 <mat-toolbar color="primary">
   <mat-icon class="title-icon">dashboard</mat-icon>
   <span class="title" fxHide.xs>Dashboard</span>
-  <div class="hider" fxFlex="row" fxLayoutAlign=" space-around end" [hidden]="!isSeller && !isBuyer">
+  <div class="hider" fxFlex="row" fxLayoutAlign=" space-around end" [hidden]="!isBuyer && !isSeller">
   <button mat-raised-button (click)=toggle() matTooltip="Toggle between both views">{{buttonName}}</button>
 </div>
 </mat-toolbar>
