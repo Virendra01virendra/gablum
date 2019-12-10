@@ -17,7 +17,7 @@
      </div>
       <div *ngIf="section.label=='Active Proposals(Buyer)'" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px" class="proposal-card"
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center">
-        <div  fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+        <div  fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="15px">
           <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
         </div>
       </div>
@@ -77,6 +77,7 @@
       <div *ngIf="section.label=='Active Proposals'" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px" class="proposal-card"
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center">
         <div *ngIf="isBuyer" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+          <p>hello world</p>
           <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
         </div>
 

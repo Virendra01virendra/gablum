@@ -115,6 +115,11 @@ export class DashboardComponent implements OnInit {
     this.isSeller = this.auth.isSeller();
   }
 
+  // ngAfterViewChecked() {
+    // this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
+
+  // }
+
 
   send() {
     this.ws.sendBid({ price: 100 });
