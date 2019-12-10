@@ -1,4 +1,4 @@
-package com.gablum.proposals.proposal.model;
+package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -24,7 +24,6 @@ public class Proposal {
     private String productName;
     private List <String> productSpecList;
     private String userID;
-    private String productId;
     private String businessDomain;
     private String businessSubDomain;
     private String createdBy;

@@ -23,5 +23,4 @@ public class UserManagementService {
         counts.setLocked(userRepository.countByIsLocked(true));
         return counts;
     }
-
 }
