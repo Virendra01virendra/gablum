@@ -1,6 +1,9 @@
-package com.gablum.proposals.proposal.model;
+package com.gablum.contract.contracts.model.othermodels;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,21 +17,17 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Document(collection = "proposals")
 public class Proposal {
     @Id
     private String _id;
     private String proposalId = UUID.randomUUID().toString();
-    private ProductDetails productDetails;
-    private String productName;
-    private List <String> productSpecList;
-    private String userID;
     private String productId;
-    private String businessDomain;
-    private String businessSubDomain;
     private String createdBy;
     private String updatedBy;
+    private String businessDomain;
+    private String businessSubDomain;
+    private String productName;
     private int quantityValue;
     private String quantityUnit;
     private float price;

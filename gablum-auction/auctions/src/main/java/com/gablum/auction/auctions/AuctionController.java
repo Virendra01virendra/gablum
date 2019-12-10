@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -79,7 +76,7 @@ public class AuctionController {
                 auctionsToAdd.get(i).setSocketTokens(new HashMap<String, String>());
             }
             auctionsToAdd.get(i).getSocketTokens().put(
-                    email,
+                    new String(Base64.getEncoder().encode(email.getBytes())),
                     userService.generateToken(
                             email,
                             auctionsToAdd.get(i).getAuctionId(),
@@ -88,7 +85,7 @@ public class AuctionController {
             );
             for (String sellerEmail: auctionsToAdd.get(i).getInterestedUsersEmail()) {
                 auctionsToAdd.get(i).getSocketTokens().put(
-                        sellerEmail,
+                        new String(Base64.getEncoder().encode(sellerEmail.getBytes())),
                         userService.generateToken(
                                 sellerEmail,
                                 auctionsToAdd.get(i).getAuctionId(),
@@ -153,7 +150,9 @@ public class AuctionController {
             @PathVariable("auctionId") String auctionId) {
         String email = userService.getEmail(request);
         Auction currentAuction = auctionService.getAuctionById(auctionId);
-        String socketToken = currentAuction.getSocketTokens().get(email);
+        String socketToken = currentAuction.getSocketTokens().get(
+                new String(Base64.getEncoder().encode(email.getBytes()))
+        );
         if (socketToken == null) {
             return new ResponseEntity<SocketToken>(
                     new SocketToken(""),
