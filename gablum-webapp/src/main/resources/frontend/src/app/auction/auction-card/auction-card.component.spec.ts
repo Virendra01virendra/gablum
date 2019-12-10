@@ -1,9 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AuctionCardComponent } from './auction-card.component';
-
 import { MaterialModule } from '../../material/material.module';
-
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ConsoleModule } from '../../console/console.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
