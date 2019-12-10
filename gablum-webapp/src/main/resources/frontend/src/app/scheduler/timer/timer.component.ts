@@ -15,7 +15,7 @@ import { Auction } from 'src/app/interfaces/auction';
 export class TimerComponent implements OnInit, OnDestroy {
 
   @Input()
-  timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
+  timerDetails; /** the time period of the auction/ registeration is defined here */
   // @Input()
   // timerDetails1: Auction['proposal'];
 
