@@ -15,6 +15,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -162,15 +163,15 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  toggleSwitch()
-  {
-    if(this.switcher == true)
-    {
-      this.switcher = false;
-    }
-    else
-    {
-      this.switcher =true;
-    }
-  }
+  // toggleSwitch()
+  // {
+  //   if(this.switcher == true)
+  //   {
+  //     this.switcher = false;
+  //   }
+  //   else
+  //   {
+  //     this.switcher =true;
+  //   }
+  
 }

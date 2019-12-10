@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatOptionModule } from '@angular/material';
+import { MatOptionModule, MatButtonToggleGroup } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -70,6 +70,7 @@ const modules = [
   MatListModule,
   MatMenuModule,
   MatTableModule,
+  MatButtonToggleGroup
 ];
 
 @NgModule({
