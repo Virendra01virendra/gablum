@@ -23,7 +23,7 @@ export class ExtendProposalDialogComponent implements OnInit {
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Proposal,
     private router: Router,
     private proposalService: ProposalsDataService,
     private logger: LoggerService,

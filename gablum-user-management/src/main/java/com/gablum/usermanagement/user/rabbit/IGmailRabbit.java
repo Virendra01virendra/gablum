@@ -8,6 +8,9 @@ public interface IGmailRabbit {
     @Input("newProposal")
     SubscribableChannel newProposal();
 
-//    @Input("")
-//    public SubscribableChannel newBidPlaced();
+    @Input("newAuction")
+    SubscribableChannel newAuction();
+
+    @Input("newBid")
+    SubscribableChannel newBid();
 }

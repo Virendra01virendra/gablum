@@ -32,10 +32,13 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
-    private MessageChannel messageChannel;
+    private MessageChannel messageChannelBid;
+    private MessageChannel messageChannelAuction;
+//    private MessageChannel messageChannelBid;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
-        this.messageChannel = auctionBinding.getNewBidTransmitChannel();
+        this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
+        this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
     }
 
     //FIXME: check roles before returning auction
@@ -95,6 +98,10 @@ public class AuctionController {
             }
             i = i+1;
         }
+        for(int j =0; j<auctionsToAdd.size(); j++){
+            Message<Auction> msg = MessageBuilder.withPayload(auctionsToAdd.get(j)).build();
+            messageChannelAuction.send(msg);
+        }
         return auctionService.addAuctions(auctionsToAdd);
     }
 
@@ -115,7 +122,7 @@ public class AuctionController {
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
         ScoreObject scoreObject = new ScoreObject();
-        scoreObject.setScore(bidService.getBidScore(bid, id));
+        scoreObject = bidService.getBidScore(bid, id);
         return scoreObject;
     }
 
@@ -124,23 +131,23 @@ public class AuctionController {
     public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
-        float scorecnt = bidService.getBidScore(bid, id);
+        ScoreObject scoreObject = new ScoreObject();
+        scoreObject = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
-        bidDataEntity.setScore(scorecnt);
+        bidDataEntity.setScoreObject(scoreObject);
         bidDataEntity.setCreatedBy(email);
         bidDataEntity.setAuctionId(id);
 
         bidService.addBid(bidDataEntity);
 
         Message<BidMessage> message = MessageBuilder.withPayload(
-                new BidMessage(bid, InetAddress.getLocalHost().getHostAddress())
+                new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
         ).build();
 
-        messageChannel.send(message);
+        messageChannelBid.send(message);
 
-        ScoreObject scoreObject = new ScoreObject();
-        scoreObject.setScore(scorecnt);
+
         return scoreObject;
     }
 
@@ -171,7 +178,7 @@ public class AuctionController {
         return bidService.getbidsAuction(queryMap, id);
     }
 
-    @PutMapping("auction/{id}/bid/end")
+    @PatchMapping("auctions/{id}/bid/end")
     public Auction saveWinningBid(@PathVariable String id, @RequestBody BidDataEntity bidDataEntity,
                                    HttpServletRequest request){
         Auction auction = auctionService.getAuctionById(id);

@@ -61,10 +61,10 @@
   </mat-radio-group>
       <br>
       <br>
-      <button (click)="seeScore(bidForm)" mat-raised-button> See my score! </button>
+      <button (click)="seeScore(bidForm)" mat-raised-button [disabled]='!bidForm.valid'> See my score! </button>
       <br>
       <br>
-      <button (click)="onSubmit(bidForm)" mat-raised-button>Submit</button>
+      <button (click)="onSubmit(bidForm)" mat-raised-button [disabled]='!bidForm.valid'>Submit</button>
       <br>
       <br>
 
