@@ -75,8 +75,13 @@ export class BidListComponent implements OnInit {
     this.auctionDataService.getAuctionById(BidListComponent.messageKey, 'auctionSingle', this.auctionId);
   }
 
-  sortBids(){
-    this.bids = $filter('orderBy')(this.bidsData, 'scoreObject.total')
+  sortBids() {
+    // this.bids = $filter('orderBy')(this.bidsData, 'scoreObject.total');
+    // this.bids = this.bidsData.sort(function(a,b) {
+    //   return a.scoreObject.total > b.scoreObject.total ? 1 : a.scoreObject.total < b.scoreObject.total ? -1 : 0;
+    // });
+    this.bids = this.bidsData.sort((a, b) => a.scoreObject.total > b.scoreObject.total ? -1
+    : a.scoreObject.total < b.scoreObject.total ? 1 : 0);
   }
 
 

@@ -2,6 +2,8 @@
 
 <h2 *ngIf="auction">{{auction.auctionName}}</h2>
 
+<button mat-raised-button (click)="sortBids()"> Sort </button>
+
 <div class="bids-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
     <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity"></app-bid-card>
 

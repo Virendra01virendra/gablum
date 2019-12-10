@@ -137,7 +137,7 @@
     <mat-tab label="Active Proposals">
 
       <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+        <app-seller-proposal-card *ngFor="let allProposal of proposals" [allProposal]="allProposal">
         </app-seller-proposal-card>
       </div>
 
@@ -168,7 +168,7 @@
       </mat-expansion-panel-header>
 
       <div class="expansion-proposal-card" fxLayout="column">
-        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+        <app-seller-proposal-card *ngFor="let allProposal of proposals" [allProposal]="allProposal">
         </app-seller-proposal-card>
       </div>
     </mat-expansion-panel>
@@ -209,7 +209,7 @@
   </mat-tab-group>
 
   expansion panel for buyer-->
-  <mat-accordion class="tab-container" fxHide.gt-xs>
+  <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>Active Auctions</mat-panel-title>
@@ -245,7 +245,7 @@
         <p>past auctions</p>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
 
 
 </div>
