@@ -14,6 +14,7 @@ import { TimerComponent } from '../scheduler/timer/timer.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
+import { SchedulerModule } from '../scheduler/scheduler.module';
 import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
 
 
@@ -33,7 +34,8 @@ import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dial
     AuctionRoutingModule,
     ReactiveFormsModule,
     MaterialModule,
-    ConsoleModule
+    ConsoleModule,
+    SchedulerModule
     // FlexLayoutModule
     // BrowserAnimationsModule,
     // NoopAnimationsModule
