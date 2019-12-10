@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormConfirmDialogComponent } from '../form-confirm-dialog/form-confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { LoggerService } from 'src/app/services/logger.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-new-proposal-form1',
   templateUrl: './new-proposal-form1.component.html',
@@ -13,6 +13,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 
 export class NewProposalForm1Component implements OnInit {
 
+  newMoment = moment();
   showTicks = false;
 
   constructor(

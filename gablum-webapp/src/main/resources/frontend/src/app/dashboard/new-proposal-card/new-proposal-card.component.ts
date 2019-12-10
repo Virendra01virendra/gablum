@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
+// import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-proposal-card',
@@ -17,9 +18,8 @@ import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialo
   styleUrls: ['./new-proposal-card.component.css']
 })
 export class NewProposalCardComponent implements OnInit {
-
   public static messageKey = 'new-proposal-card-component';
-
+  // registrationDate: string;
   // @ViewChild('timer', {read: TimerComponent, static: true})
   // public timer: TimerComponent;
 
@@ -31,6 +31,7 @@ export class NewProposalCardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
   ) {
+    // this.registrationDate = this.proposal.regStartDate;
 
   }
 
