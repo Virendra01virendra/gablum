@@ -10,6 +10,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Auction } from '../../interfaces/auction';
 import { BidResponseDialogComponent } from '../bid-response-dialog/bid-response-dialog.component';
 import { BidSubmissionDialogComponent } from '../bid-submission-dialog/bid-submission-dialog.component';
+import { Score } from 'src/app/interfaces/score';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,9 +32,7 @@ export class BidFormComponent implements OnInit {
   result2;
   auctionId: string;
   auction;
-  scoreObject: {
-    score: number;
-  };
+  scoreObject: Score;
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
@@ -53,12 +52,12 @@ export class BidFormComponent implements OnInit {
 
           if ('saveBids' in data) {
             this.scoreObject = data.saveBids;
-            this.result1 = this.scoreObject.score;
+            this.result1 = this.scoreObject.total;
             }
 
           if ('scoreBids' in data) {
             this.scoreObject = data.scoreBids;
-            this.result2 = this.scoreObject.score;
+            this.result2 = this.scoreObject.total;
             const dialogConfig = new MatDialogConfig();
             dialogConfig.data = this.result2;
             dialogConfig.width = '30%';

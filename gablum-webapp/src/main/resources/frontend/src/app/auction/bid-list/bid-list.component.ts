@@ -41,6 +41,28 @@ export class BidListComponent implements OnInit {
 }
 
   ngOnInit() {
+    // this.bids = [
+    //   {
+    //     bidId: '123',
+    //     auctionId: '345',
+    //     bid: {
+    //       price: 12345,
+    //       creditPeriod: 2,
+    //       qaqcCertificate: true,
+    //       timeOfDelivery: new Date(),
+    //       typeOfSupply: true
+    //     },
+    //     createdBy: 'a@b.c',
+    //     score: {
+    //       creditScore: 123,
+    //       deliveryScore: 23,
+    //       priceScore: 56,
+    //       qaqcScore: 3,
+    //       typeScore: 4,
+    //       total: 209
+    //     }
+    //   }
+    // ];
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
