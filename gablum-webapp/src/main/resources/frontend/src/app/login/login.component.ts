@@ -8,6 +8,8 @@ import { CommunicatorService } from '../services/communicator.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoggerService } from '../services/logger.service';
 import { ProfileDataService } from '../services/profile-data.service';
+import { MatDialogRef } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 // import { MatError } from '@angular/material';
 
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
     private comms: CommunicatorService,
     private logger: LoggerService,
     private auth: AuthenticationService,
-    private profile: ProfileDataService) {
+    private profile: ProfileDataService,
+    public dialogRef: MatDialogRef<LoginComponent>,) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
@@ -91,7 +94,33 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loginService.login(this.loginForm.value);
+    this.loginService.login(this.loginForm.value)
+    .subscribe(res => {
+      this.dialogRef.close();
+      this.comms.postMessage(
+        this,
+        '@all',
+        {loginResult: {accessToken: res}}
+      );
+    },
+    err => {
+      this.logger.log(err);
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          this.comms.postMessage(
+            this,
+            '@all',
+            {loginResult: {accessToken: err.status}}
+          );
+        } else {
+          this.comms.postMessage(
+            this,
+            '@all',
+            {loginResult: {accessToken: 500}}
+          );
+        }
+      }
+    });
   }
   OnSignUp() {
     this.router.navigate(['/register']);
