@@ -1,11 +1,10 @@
-package com.gablum.contract.contracts.model;
+package com.gablum.usermanagement.user.model.othermodels;
 
-import com.gablum.contract.contracts.model.othermodels.Auction;
-import com.gablum.contract.contracts.model.othermodels.Bid;
-import com.gablum.contract.contracts.model.othermodels.User;
+import com.gablum.usermanagement.user.model.User;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ public class Contracts {
     private String _id;
 
     @NotNull
-    private String contractId = UUID.randomUUID().toString();;
+    private String contractId = UUID.randomUUID().toString();
 
     @NotNull
     private String auctionId;

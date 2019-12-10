@@ -1,28 +1,30 @@
 package com.gablum.auction.auctions;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Setter
+
 @Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Document(collection = "proposals")
 public class Proposal {
+    @Id
     private String _id;
     private String proposalId = UUID.randomUUID().toString();
-    private UUID productId;
+    private ProductDetails productDetails;
     private String createdBy;
     private String updatedBy;
-    private String businessDomain;
-    private String businessSubDomain;
-    private String productName;
     private int quantityValue;
     private String quantityUnit;
     private float price;
