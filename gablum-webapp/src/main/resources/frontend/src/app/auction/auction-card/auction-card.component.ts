@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { environment } from 'src/environments/environment';
 import { LoggerService } from 'src/app/services/logger.service';
+import { HttpClient } from '@angular/common/http';
+import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -18,7 +20,8 @@ export class AuctionCardComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private http: HttpClient
     ) {
       // comms.getMessages().subscribe(msg => {
       //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
@@ -37,7 +40,15 @@ export class AuctionCardComponent implements OnInit {
   @Input() public buttonShow: boolean;
 
   ngOnInit() {
-    const auctionUrl = environment.auctionUrl;
+    const auctionUrl = environment.tokenUrl;
+    this.http.get<AuctionSocketToken>(auctionUrl + '/' + this.auction.auctionId)
+    .subscribe(token => {
+      this.auction.socketToken = token.token;
+      this.logger.log(this.auction);
+    },
+    err => {
+      this.logger.log(err);
+    });
     this.logger.log(auctionUrl);
   }
 

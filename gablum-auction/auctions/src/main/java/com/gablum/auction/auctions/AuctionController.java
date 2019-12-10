@@ -102,7 +102,11 @@ public class AuctionController {
             Message<Auction> msg = MessageBuilder.withPayload(auctionsToAdd.get(j)).build();
             messageChannelAuction.send(msg);
         }
-        return auctionService.addAuctions(auctionsToAdd);
+        List<Auction> auctionsAdded = auctionService.addAuctions(auctionsToAdd);
+        for (Auction auction: auctionsAdded) {
+            auction.setSocketTokens(null);
+        }
+        return auctionsAdded;
     }
 
     @GetMapping("auctions/seller")
@@ -184,8 +188,10 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
-
-        return auctionService.updateAuction(auction);
+        //FIXME: check if auction actually ended
+        Auction auctionToEnd =  auctionService.updateAuction(auction);
+        auctionToEnd.setSocketTokens(null);
+        return auctionToEnd;
     }
 
 }
