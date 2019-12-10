@@ -1,6 +1,6 @@
 <mat-chip-list aria-label="Timer Display"> 
     <mat-chip *ngIf="toStartMsg!= null" color ="warn">{{toStartMsg}}</mat-chip><br>
-    <mat-chip *ngIf="toliveMsg!= null" color ="warn">{{toliveMsg}}</mat-chip><br>   
+    <mat-chip *ngIf="toliveMsg!= null" color ="warn">{{liveMsg}}</mat-chip><br>   
     <mat-chip matTooltip="Days::hours:minutes.seconds" color= "primary" *ngIf="seconds!=null" selected>
         <span mat-fab *ngIf="days!=null" >{{days}}</span>::
         <span mat-fab *ngIf="hours!=null" >{{hours}}</span>:
