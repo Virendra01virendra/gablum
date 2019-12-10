@@ -130,7 +130,7 @@
     <mat-tab label="Active Auctions">
       <p>active auctions</p>
       <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
 
       </div>
     </mat-tab>
@@ -159,7 +159,7 @@
       </mat-expansion-panel-header>
 
       <div class="expansion-auction-card" fxLayout="column">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
       </div>
 
     </mat-expansion-panel>
@@ -196,7 +196,7 @@
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow] =true></app-auction-card>
 
       </div>
     </mat-tab>
@@ -221,7 +221,7 @@
       </mat-expansion-panel-header>
 
       <div class="expansion-auction-card" fxLayout="column">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
       </div>
 
     </mat-expansion-panel>
