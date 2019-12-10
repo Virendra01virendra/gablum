@@ -33,7 +33,14 @@ describe('BidCardComponent', () => {
         typeOfSupply: true,
         timeOfDelivery: new Date()
       },
-      score: 0
+      scoreObject: {
+        creditScore: 123,
+        deliveryScore: 23,
+        priceScore: 56,
+        qaqcScore: 3,
+        typeScore: 4,
+        total: 209
+      }
     };
     component.bidDataEntity = bidDataEntity;
     fixture.detectChanges();
