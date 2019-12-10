@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Auction } from 'src/app/interfaces/auction';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -24,19 +24,20 @@ export class AuctionCardComponent implements OnInit {
       //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
       //     const data = msg.data;
 
-      //     if ('auctions' in data) {
-      //       this.auctions = data.auctions;
-      //       console.log(this.auctions);
-      //     }
-      //   }
-      // });
-    }
+    //     if ('auctions' in data) {
+    //       this.auctions = data.auctions;
+    //       console.log(this.auctions);
+    //     }
+    //   }
+    // });
+  }
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
 
   ngOnInit() {
+    console.log('auction details ::::', this.auction);
     const auctionUrl = environment.auctionUrl;
     this.logger.log(auctionUrl);
   }
