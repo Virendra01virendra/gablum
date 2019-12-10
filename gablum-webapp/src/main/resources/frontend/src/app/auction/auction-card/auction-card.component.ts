@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Auction } from 'src/app/interfaces/auction';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -16,24 +16,26 @@ export class AuctionCardComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    ) {
-      // comms.getMessages().subscribe(msg => {
-      //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
-      //     const data = msg.data;
+  ) {
+    // comms.getMessages().subscribe(msg => {
+    //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
+    //     const data = msg.data;
 
-      //     if ('auctions' in data) {
-      //       this.auctions = data.auctions;
-      //       console.log(this.auctions);
-      //     }
-      //   }
-      // });
-    }
+    //     if ('auctions' in data) {
+    //       this.auctions = data.auctions;
+    //       console.log(this.auctions);
+    //     }
+    //   }
+    // });
+  }
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
 
-  ngOnInit() {  }
+  ngOnInit() {
+    console.log('auction details ::::', this.auction);
+  }
 
   public placeBid() {
     this.router.navigate(['auctions/' + this.auction.auctionId + '/new/bid']);
