@@ -1,6 +1,8 @@
 package com.gablum.usermanagement.user.model;
 
+import com.gablum.usermanagement.user.model.othermodels.Block;
 import lombok.*;
+import org.apache.http.annotation.Contract;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -32,7 +34,9 @@ public class User {
     private String businessDomain;
     private String businessSubDomain;
     private List<Map<String, List<String>>> userDomainDetails;
-
+    private Map<String, String> hashEncryptionKeyList;
+    private List<Block> blockchain;
+    private List<Contract> contractList;
     public void addDomainDetails(String domain, String subDomain){
         if(domain == null){
             domain = "Agriculture";
@@ -44,6 +48,7 @@ public class User {
         userDomainDetails.add(singleDomainDetails);
     }
     private Set<Role> role = Set.of(new Role(1, "buyer"));
+
     // TODO: remove hard coded role: DONE
     private Integer active=1;
     private boolean isLocked=false;

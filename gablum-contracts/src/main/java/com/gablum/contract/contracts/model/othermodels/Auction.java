@@ -15,7 +15,6 @@ import java.util.UUID;
 @ToString
 @Document(collection = "auctions")
 public class Auction {
-
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
     private String auctionId = UUID.randomUUID().toString();
@@ -23,23 +22,19 @@ public class Auction {
 //    private UUID proposalId;
     private String auctionName;
     private Proposal proposal;
-    boolean isAuctionActive;
-
+    private boolean isAuctionActive;
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
     private List<String> bidIdList;
-
     private HashMap<String, String> socketTokens;
-
-
     private Date createdOn;
     private Date updatedOn;
-
     private String createdBy; // username
     private String updatedBy; // username
-
     private Date auctionStartDate;
     private Date auctionEndDate;
-
+    public String toStringContract(){
+        return auctionId + auctionName + proposal.toStringContract();
+    }
 }

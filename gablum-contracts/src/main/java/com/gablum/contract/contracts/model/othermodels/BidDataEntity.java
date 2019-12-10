@@ -21,6 +21,9 @@ public class BidDataEntity {
 
     private String createdBy;
 
-
+    public String toStringContract(){
+        return this.getBidId() + this.getAuctionId() + this.getCreatedBy() +
+                this.getBid().toString()+ String.valueOf(this.score);
+    }
 
 }

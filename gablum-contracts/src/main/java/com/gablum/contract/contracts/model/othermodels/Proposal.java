@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -50,4 +51,11 @@ public class Proposal {
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
+
+    public String toStringContract(){
+        return _id + productName + String.valueOf(quantityValue) + quantityUnit
+                + String.valueOf(price) + String.valueOf(priceWeight)
+                + String.valueOf(deliveryDateWeight) + String.valueOf(qualityCertification) + String.valueOf(qualityCertificationWeight)
+                + String.valueOf(methodOfSupply) + String.valueOf(methodOfSupplyWeight);
+    }
 }
