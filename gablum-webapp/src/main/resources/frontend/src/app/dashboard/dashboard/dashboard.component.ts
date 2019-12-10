@@ -69,6 +69,12 @@ export class DashboardComponent implements OnInit {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
+        this.isLoggedIn = auth.getAuthenticated();
+        if (this.isLoggedIn) {
+          this.logger.log(this, auth.getProfileData());
+          this.isBuyer = auth.isBuyer();
+          this.isSeller = auth.isSeller();
+        }
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
