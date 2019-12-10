@@ -8,7 +8,7 @@
 </div>
 </mat-toolbar>
 <!--tab for seller-->
-<ng-container *ngIf="isSeller" class="dashboard-container">
+<ng-container *ngIf="isSeller && !show" class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <p>active auctions</p>
@@ -60,7 +60,7 @@
   </mat-accordion>
 </ng-container>
 <!--Tab for buyer-->
-<ng-container *ngIf="isBuyer" class="dashboard-container">
+<ng-container *ngIf="isBuyer && show" class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
