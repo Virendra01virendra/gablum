@@ -2,7 +2,9 @@ package com.gablum.scheduler.proposalschedule.Controller;
 
 import com.gablum.scheduler.proposalschedule.Model.TimerModel;
 import com.gablum.scheduler.proposalschedule.Service.SchedulerService;
+import com.gablum.scheduler.proposalschedule.rabbit.SchedulerPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +13,12 @@ import java.util.List;
 public class SchedulesController {
     @Autowired
     SchedulerService schedulerService;
+
+    public static MessageChannel messageChannel;
+
+    public SchedulesController(SchedulerPublisher publisher) {
+        SchedulesController.messageChannel = publisher.getchannel();
+    }
 
     @GetMapping("/echo")
     public String getEcho() {
