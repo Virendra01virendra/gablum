@@ -18,6 +18,7 @@ public class QuartzJobConfig {
             .withIdentity(renewableJobKey)
             .storeDurably(true)
             .build();
+
     TriggerKey renewableTriggerKey = TriggerKey.triggerKey("trigger"+i, "my-auction"+i);
     Trigger trigger = TriggerBuilder
             .newTrigger()
