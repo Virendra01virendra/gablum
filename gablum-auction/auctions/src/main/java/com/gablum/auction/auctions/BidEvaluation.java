@@ -8,7 +8,7 @@ public class BidEvaluation {
 
     }
 
-    public static float score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
+    public static ScoreObject score(float price, Date timeOfDelivery, int creditPeriod, boolean qaqcCertificate,
                               boolean typeOfSupply,
                               float priceSpec, Date timeOfDeliverySpec, int creditPeriodSpec,
                               boolean qaqcCertificateSpec,
@@ -16,8 +16,8 @@ public class BidEvaluation {
                               float weightPriceSpec, float weightTimeOfDeliverySpec, float weightCreditPeriodSpec,
                               float weightQaqcCertificateSpec,
                               float weightTypeOfSupplySpec) {
-        float score;
 
+        ScoreObject scoreObject = new ScoreObject();
 
 //        Converting weights to out of 100
 
@@ -61,13 +61,21 @@ public class BidEvaluation {
             typeOfSupplyNorm = 0;
         }
 
-        score = 100 -  percentWeightPriceSpec * priceNorm
+        scoreObject.total = 100 -  percentWeightPriceSpec * priceNorm
                         + percentWeightTimeOfDeliverySpec * timeOfDeliveryNorm
                         + percentWeightCreditPeriodSpec * creditPeriodNorm
                         + percentWeightQaqcCertificationSpec * certificationNorm
                         + percentWeightTypeOfSupplySpec*typeOfSupplyNorm;
 
-        return score;
+        scoreObject.priceScore = percentWeightPriceSpec - percentWeightPriceSpec * priceNorm;
+        scoreObject.deliveryScore =
+                percentWeightTimeOfDeliverySpec + percentWeightTimeOfDeliverySpec * timeOfDeliveryNorm;
+        scoreObject.creditScore = percentWeightCreditPeriodSpec + percentWeightCreditPeriodSpec * creditPeriodNorm;
+        scoreObject.qaqcScore =
+                percentWeightQaqcCertificationSpec + percentWeightQaqcCertificationSpec * certificationNorm;
+        scoreObject.typeScore = percentWeightTypeOfSupplySpec + percentWeightTypeOfSupplySpec*typeOfSupplyNorm;
+
+        return scoreObject;
     }
 
     // The score will be a perfect 100, if the bid parameters exactly match proposal paramters.

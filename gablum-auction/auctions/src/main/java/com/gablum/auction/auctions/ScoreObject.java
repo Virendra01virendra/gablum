@@ -6,5 +6,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ScoreObject {
-    float score;
+    float total;
+    float deliveryScore;
+    float priceScore;
+    float creditScore;
+    float qaqcScore;
+    float typeScore;
 }

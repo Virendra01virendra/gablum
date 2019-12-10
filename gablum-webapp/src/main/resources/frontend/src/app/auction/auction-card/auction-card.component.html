@@ -19,18 +19,18 @@
           <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
         </div>
 
-        <div fxLayoutAlign="space-between" selected>
+        <div fxLayoutAlign="space-between" >
           <mat-chip color="primary" selected>Quality Certification</mat-chip> 
           <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
         </div>
 
-        <div fxLayoutAlign="space-between" selected>
-          <mat-chip color="primary">Method Of Supply</mat-chip> 
+        <div fxLayoutAlign="space-between" >
+          <mat-chip color="primary" selected> Method Of Supply</mat-chip> 
           <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
         </div>
 
         <div fxLayoutAlign="space-between">
-          <mat-chip color="primary">Delivery Date</mat-chip> 
+          <mat-chip color="primary" selected>Delivery Date</mat-chip> 
           <mat-chip>{{auction.proposal.deliveryDate | date}}</mat-chip>
         </div>
         

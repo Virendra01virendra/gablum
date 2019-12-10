@@ -7,5 +7,5 @@ public interface IBidService {
 
     BidDataEntity addBid(BidDataEntity bidDataEntity);
     List<BidDataEntity> getBids();
-    float getBidScore(Bid bid, String auctionId) throws ParseException;
+    ScoreObject getBidScore(Bid bid, String auctionId) throws ParseException;
 }

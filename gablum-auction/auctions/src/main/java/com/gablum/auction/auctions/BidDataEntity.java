@@ -17,7 +17,7 @@ public class BidDataEntity {
 
     private Bid bid;
 
-    private float score;
+    private ScoreObject scoreObject;
 
     private String createdBy;
 

@@ -14,8 +14,8 @@ import { TimerComponent } from '../scheduler/timer/timer.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
-import { Scheduler } from 'rxjs';
 import { SchedulerModule } from '../scheduler/scheduler.module';
+import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
     BidSubmissionDialogComponent,
     BidListComponent,
     BidCardComponent,
-    AuctionStartDialogComponent
+    AuctionStartDialogComponent,
+    WinningBidDialogComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +44,6 @@ import { SchedulerModule } from '../scheduler/scheduler.module';
     AuctionCardComponent,
     BidCardComponent
   ],
-    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent]
+    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent, WinningBidDialogComponent]
 })
 export class AuctionModule { }
