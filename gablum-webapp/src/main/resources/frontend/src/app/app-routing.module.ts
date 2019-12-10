@@ -39,7 +39,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
   },
   {
-    path: 'new',
+    path: 'floatProposal',
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule),
     canLoad: [AuthGuardService, BuyerGuardService]
   },
