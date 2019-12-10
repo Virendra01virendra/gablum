@@ -19,20 +19,19 @@
         <div fxLayoutAlign="space-between">
           <mat-chip color="primary" selected="true">Quantity </mat-chip>
           <mat-chip>{{allProposal.quantityValue + ' ' + allProposal.quantityUnit}}</mat-chip>
-  
         </div>
         <!-- <div>
         <span>Delivery Date: </span>
         <span>{{proposal.deliveryDate}}</span>
       </div> -->
-  
       </div>
   
     </mat-card-content>
   
     <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center" style="padding: 10px 10px 10px 10px;">
   
-      <button mat-raised-button color="primary" [disabled]="alreadyRegistered"
+      <button mat-raised-button color="primary"
+      [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
         (click)="shownInterest(allProposal)">Interested ?</button>
       <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
     </mat-card-actions>

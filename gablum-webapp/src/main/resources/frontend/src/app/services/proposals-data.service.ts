@@ -37,7 +37,13 @@ export class ProposalsDataService {
     this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
   }
   postInterestedSeller(dest, data, key) {
-    this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key);
+    this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key)
+    .subscribe(res => {
+        this.comms.postMessage(this, dest, { [key]: res });
+      },
+      err => {
+        this.logger.log(err);
+      });
   }
   deleteProposal(proposalId, dest, key) {
     const proposalUrlDel = this.proposalsUrl + '/' + proposalId;

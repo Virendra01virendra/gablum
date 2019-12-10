@@ -44,12 +44,13 @@ export class LoginComponent implements OnInit {
               this.loginError = true;
               this.loginErrorMesage = 'Invalid Credentials';
               this.logger.log(this.loginErrorMesage);
-            } else if (loginToken === 401) {
+            } else if (loginToken === 500) {
               auth.setAuthenticated(false);
               this.loginError = true;
               this.loginErrorMesage = 'Unknown Error, try again later';
             } else {
               auth.setAuthenticated(true);
+              auth.authChanged();
               this.loginError = false;
               this.profile.getUserProfileByEmail('@all', 'profile');
               this.router.navigate(['/dashboard']);

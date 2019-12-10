@@ -22,13 +22,22 @@ export class SellerProposalCardComponent implements OnInit {
   public isSeller = false;
   public profile: Profile;
   alreadyRegistered: boolean;
+  public userEmail = '';
   @Input() allProposal: Proposal;
+  public buttonClicked = false;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,
               private dialog: MatDialog,
               private logger: LoggerService,
               private auth: AuthenticationService
              ) {
+              if (auth.getAuthenticated()) {
+                this.isLoggedIn = true;
+                this.profile = auth.getProfileData();
+                this.isBuyer = auth.isBuyer();
+                this.isSeller = auth.isSeller();
+                this.userEmail = this.profile.email;
+              }
               comms.getMessages().subscribe(msg => {
                 if (msg.dest === SellerProposalCardComponent.messageKey || msg.dest === '@all') {
                   const data = msg.data;
@@ -38,6 +47,11 @@ export class SellerProposalCardComponent implements OnInit {
                     this.profile = auth.getProfileData();
                     this.isBuyer = auth.isBuyer();
                     this.isSeller = auth.isSeller();
+                    this.userEmail = this.profile.email;
+                  }
+
+                  if ('interestedSellers' in data) {
+                    this.buttonClicked = true;
                   }
               }
             });
