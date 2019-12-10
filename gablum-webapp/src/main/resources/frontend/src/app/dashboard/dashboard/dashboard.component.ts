@@ -156,6 +156,8 @@ export class DashboardComponent implements OnInit {
       proposal: proposal1,
       isAuctionActive: true,
       interestedUsersEmail: proposal1.interestedUsersEmail,
+      // auctionStartDate: proposal1.auctionStartDate,
+      // auctionEndDate: proposal1.auctionEndDate,
     };
     const auctionList = [];
     auctionList.push(auction);
