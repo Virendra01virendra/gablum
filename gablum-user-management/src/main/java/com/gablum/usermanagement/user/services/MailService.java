@@ -1,8 +1,10 @@
 package com.gablum.usermanagement.user.services;
 
 import com.gablum.usermanagement.user.model.User;
-import com.gablum.usermanagement.user.model.othermodels.*;
-//import com.gablum.usermanagement.user.repository.UserRepository;
+import com.gablum.usermanagement.user.model.othermodels.Auction;
+import com.gablum.usermanagement.user.model.othermodels.Proposal;
+import com.gablum.usermanagement.user.model.othermodels.BidMessage;
+import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -16,11 +18,6 @@ import java.util.List;
 public class MailService {
     @Autowired
     private JavaMailSender javaMailSender;
-
-//    @Autowired
-//    private UserRepository userRepository;
-
-
 
     public void sendEmail(String type, User user){
         SimpleMailMessage msg = new SimpleMailMessage();
@@ -126,22 +123,4 @@ public class MailService {
         }
     }
 
-//    public void sendEmail(String type, User[] userList){
-//        if (type == "registering"){
-//
-////            msg.setTo(for( int i=0; i< userList.length; i++){
-////                userList[i].getEmail();
-////                });
-//
-//            msg.setSubject("Verification of Email");
-//            msg.setText("All the mails form Gablum will be sent here.");
-//            try
-//            {
-//                javaMailSender.send(msg);
-//            } catch (MailException e){
-//                System.out.println("Wrong email provided");
-//                e.printStackTrace();
-//            }
-//        }
-//    }
 }
