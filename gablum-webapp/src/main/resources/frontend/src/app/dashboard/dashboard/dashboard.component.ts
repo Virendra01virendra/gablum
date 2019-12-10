@@ -23,6 +23,7 @@ import { Profile } from 'src/app/interfaces/profile';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
+  public switcher = true;
 
   public isLoggedIn = false;
   public isBuyer = false;
@@ -159,5 +160,17 @@ export class DashboardComponent implements OnInit {
 
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
+  }
+
+  toggleSwitch()
+  {
+    if(this.switcher == true)
+    {
+      this.switcher = false;
+    }
+    else
+    {
+      this.switcher =true;
+    }
   }
 }

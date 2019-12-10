@@ -1,10 +1,17 @@
 <mat-toolbar color="primary">
   <mat-icon class="title-icon">dashboard</mat-icon>
   <span class="title" fxHide.xs>Dashboard</span>
+  <div class="switch">
+    <a mat-fab class="switch" matTooltip="switch between accounts" *ngIf="isBuyer && isSeller" (click)="toggleSwitch()">
+    
+      <!-- <mat-icon>toggle_off</mat-icon> -->
+      <mat-icon>toggle_on</mat-icon>
+    </a>
+  </div>
 </mat-toolbar>
 
 
-<div class="dashboard-container" *ngIf="isBuyer && isSeller; else elseBlock">
+<!-- <div class="dashboard-container" *ngIf="isBuyer && isSeller; else elseBlock">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
     <mat-tab *ngFor="let section of dashboardSections1" [label]="section.label">
 
@@ -60,10 +67,10 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
+</div> -->
 
 
-<ng-template class="dashboard-container" #elseBlock>
+<div class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
     <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
 
@@ -116,7 +123,7 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-</ng-template>
+</div>
 
 
 
@@ -130,9 +137,4 @@
   </a>
 </div>
 
-<div class="switch">
-  <a mat-fab class="switch" matTooltip="switch between accounts" [routerLink]="['/new']" *ngIf="isBuyer && isSeller" >
-    <mat-icon>toggle_off</mat-icon>
-    <mat-icon>toggle_on</mat-icon>
-  </a>
-</div>
+
