@@ -30,6 +30,7 @@ java-lint:
     stage: test
     script:
         - mvn -B pmd:check
+        - cat /builds/project-0/gablum-user-management/target/pmd.xml
     tags:
         - gablum-ci-jobs
 
