@@ -68,7 +68,7 @@ services:
       - -jar
       - /usr/app/app.jar
     restart: on-failure
-#
+
 #  webapp:
 #    build:
 #      context: ./gablum-webapp

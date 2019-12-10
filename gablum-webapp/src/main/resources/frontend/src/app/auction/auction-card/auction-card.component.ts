@@ -4,6 +4,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-list.component';
 import { Router } from '@angular/router';
+import { Proposal } from 'src/app/interfaces/proposal';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',

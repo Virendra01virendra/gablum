@@ -8,7 +8,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { LoginToken } from 'src/app/interfaces/login-token';
 import { Router } from '@angular/router';
 import { LoginDataService } from 'src/app/services/login-data.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
 @Component({
   selector: 'app-navbar',
@@ -67,6 +67,8 @@ export class NavbarComponent implements OnInit {
     this.login.logout();
   }
   opDialog() {
-    this.dialog.open(LoginComponent);
+    this.dialog.open(LoginComponent, {
+      width: '60%',
+    });
   }
 }

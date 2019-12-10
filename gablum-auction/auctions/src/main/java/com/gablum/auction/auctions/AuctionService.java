@@ -69,4 +69,9 @@ public class AuctionService implements IAuctionService{
         auctionToStart.setUniqueLink(uniqueLink);
         return auctionRepo.save(auctionToStart);
     }
+
+
+    public Auction updateAuction(Auction auction) {
+        return auctionRepo.save(auction);
+    }
 }
