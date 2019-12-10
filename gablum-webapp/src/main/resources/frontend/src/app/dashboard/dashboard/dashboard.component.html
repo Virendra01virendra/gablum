@@ -11,7 +11,7 @@
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="proposal-card">
 
         <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
 
         </div>
      </div>
@@ -70,7 +70,7 @@
         fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
 
         <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
 
         </div>
      </div>
@@ -102,7 +102,7 @@
       <div *ngIf="section.label=='Ongoing Auctions'">
           <div class="auctions-cont" *ngIf="auctions">
           <app-auction-card  *ngFor="let auction of auctions"
-          [auction]="auction"></app-auction-card>
+          [auction]="auction" [buttonShow]=true></app-auction-card>
           </div>
       </div>
       <div *ngIf="section.label=='Active Proposals'">
