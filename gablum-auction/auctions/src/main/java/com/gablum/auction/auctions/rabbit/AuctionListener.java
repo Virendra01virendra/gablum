@@ -1,5 +1,6 @@
 package com.gablum.auction.auctions.rabbit;
 
+import com.gablum.auction.auctions.Auction;
 import com.gablum.auction.auctions.AuctionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class AuctionListener {
 
     @Autowired
     private AuctionService auctionService;
+
+    @StreamListener("newAuction")
+    public void newAuction(Auction auction){
+    }
 
     @StreamListener("startAuction")
     public void startAuction(String auctionId) {

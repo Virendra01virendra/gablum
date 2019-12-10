@@ -29,7 +29,7 @@ java-lint:
     image: tastycats/gablumdeps:latest
     stage: test
     script:
-        - mvn -B pmd:check
+        - mvn -B pmd:check -Dpmd.printFailingErrors=true
     tags:
         - gablum-ci-jobs
 
