@@ -90,8 +90,7 @@ export class NewProposalForm1Component implements OnInit {
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
     const currentDate = new Date();
-    return (d.getDate() < this.paramForm.value.deliveryDate.getDate() - 4) && (d > currentDate)
-      && (d < this.paramForm.value.deliveryDate);
+    return d > currentDate && d < this.paramForm.value.deliveryDate;
     // return true;
   }
 

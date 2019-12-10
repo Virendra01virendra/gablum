@@ -44,21 +44,6 @@ export class ExtendProposalDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<ExtendProposalDialogComponent>
   ) {}
 
-<<<<<<< HEAD
-  ngOnInit() {
-    console.log('dialog data::::', this.data);
-  }
-  onSubmit() {
-    // this.proposal.regStartDate = this.extendProposalForm.value.regStartDate;
-    // this.proposal.regEndDate = this.extendProposalForm.value.regEndDate;
-    this.logger.log('extending the registration period for a proposal.');
-    // console.log('dialog data::::', this.data);
-    this.logger.log(this.proposal);
-    const proposalValue: Proposal = this.extendProposalForm.value;
-    proposalValue.regStartDate = this.data.regStartDate;
-    proposalValue.regEndDate = this.data.regEndDate;
-    this.proposalService.extendProposal('@all', proposalValue, 'proposal');
-=======
   ngOnInit() {}
 
   onSubmit(proposal: Proposal, extendProposalForm) {
@@ -66,7 +51,6 @@ export class ExtendProposalDialogComponent implements OnInit {
     proposal.regEndDate = this.extendProposalForm.value.regEndDate;
     this.logger.log('extending the registration period for a proposal.');
     this.logger.log(proposal);
->>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
     this.router.navigate(['/dashboard']);
     const extendRegistrationDate = {
       regStartDate: proposal.regStartDate,
@@ -89,11 +73,7 @@ export class ExtendProposalDialogComponent implements OnInit {
 
   RegEndDateFilter = (d: Date): boolean => {
     // Prevent dates before registration start date
-<<<<<<< HEAD
-    return d > new Date(this.data.regStartDate) && d < new Date(this.data.deliveryDate);
-=======
     return d >= new Date(this.extendProposalForm.value.regStartDate) && d < new Date(this.data.deliveryDate);
->>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
   }
 
 }

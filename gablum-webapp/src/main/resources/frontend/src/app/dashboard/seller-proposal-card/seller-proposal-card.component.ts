@@ -17,14 +17,11 @@ import { all } from 'q';
 export class SellerProposalCardComponent implements OnInit {
 
   public static messageKey = 'seller-proposal-card-component';
-<<<<<<< HEAD
   public isLoggedIn = false;
   public isBuyer = false;
   public isSeller = false;
   public profile: Profile;
-=======
- alreadyRegistered: boolean;
->>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
+  alreadyRegistered: boolean;
   @Input() allProposal: Proposal;
 
   constructor(private proposalDataService: ProposalsDataService, private comms: CommunicatorService,
@@ -38,7 +35,6 @@ export class SellerProposalCardComponent implements OnInit {
 
                   if ('authChanged' in data) {
                     this.isLoggedIn = auth.getAuthenticated();
-                    this.logger.log('maakivhiooo--->' + auth.getProfileData());
                     this.profile = auth.getProfileData();
                     this.isBuyer = auth.isBuyer();
                     this.isSeller = auth.isSeller();
@@ -54,6 +50,7 @@ export class SellerProposalCardComponent implements OnInit {
     // const proposalId = element.proposalId;
     this.logger.log('some data which we are publishing ');
     this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, allProposal, 'interestedSellers');
+    this.logger.log('maakivhiooo--->' + this.auth.getProfileData());
   }
 
   openDialog(allProposal: Proposal) {

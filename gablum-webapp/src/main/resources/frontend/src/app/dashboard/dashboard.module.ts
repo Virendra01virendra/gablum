@@ -15,10 +15,7 @@ import { GuestProposalListComponent } from './guest-proposal-list/guest-proposal
 import { ExtendProposalDialogComponent } from './extend-proposal-dialog/extend-proposal-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
-<<<<<<< HEAD
-=======
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
->>>>>>> d42e517a283e477a1e8a8501a2a996d1f1df660b
 import { MatDatepickerModule } from '@angular/material';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
