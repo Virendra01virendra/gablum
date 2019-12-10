@@ -37,9 +37,9 @@ public class JwtTokenFilter extends GenericFilterBean {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Invalid JWT token");
                 throw new CustomException("Invalid JWT token",HttpStatus.UNAUTHORIZED);
             }
-            Authentication auth = token != null ? jwtTokenProvider.getAuthentication(token) : null;
+//            Authentication auth = token != null ? jwtTokenProvider.getAuthentication(token) : null;
             //setting auth in the context.
-            SecurityContextHolder.getContext().setAuthentication(auth);
+//            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         filterChain.doFilter(req, res);
     }
