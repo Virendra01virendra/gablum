@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     private logger: LoggerService,
     private auth: AuthenticationService,
     private profile: ProfileDataService,
-    public dialogRef: MatDialogRef<LoginComponent>,) {
+    public dialogRef: MatDialogRef<LoginComponent>, ) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === LoginComponent.messageKey) {
           const data = message.data;
