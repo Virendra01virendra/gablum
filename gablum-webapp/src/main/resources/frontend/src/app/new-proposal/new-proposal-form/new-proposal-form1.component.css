@@ -1,8 +1,13 @@
+.title {
+  margin-left: 2em;
+}
+
+.title-icon {
+  margin-left: 1em;
+}
+
 .body {
-  /* background: 100%; */
   background-color: antiquewhite;
-  /* background-image: url('/assets/night.jpg'); */
-  /* background-repeat: no-repeat; */
   text-align: center;
 }
 

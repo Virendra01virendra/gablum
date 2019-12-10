@@ -3,11 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { AuctionsListComponent } from '../auctions-list/auctions-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BidCardComponent } from '../bid-card/bid-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProposalCardComponent } from 'src/app/dashboard/new-proposal-card/new-proposal-card.component';
+import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
+import { AuctionCardComponent } from 'src/app/auction/auction-card/auction-card.component';
+import { ButtonComponent } from '../../console/button/button.component';
+import { WindowComponent } from '../../console/window/window.component';
+import { SellerProposalCardComponent } from '../seller-proposal-card/seller-proposal-card.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -24,8 +28,12 @@ describe('DashboardComponent', () => {
       declarations: [
         DashboardComponent,
         AuctionsListComponent,
-        BidCardComponent,
-        NewProposalCardComponent
+        NewProposalCardComponent,
+        TimerComponent,
+        WindowComponent,
+        AuctionCardComponent,
+        ButtonComponent,
+        SellerProposalCardComponent
       ]
     })
     .compileComponents();

@@ -1,10 +1,17 @@
 form {
-    display: flex;
-    flex-direction: column;
-    padding-left: 30%;
-    padding-right: 30%;
-    margin: 3%;
+  width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 2%;
   }
+
+.wrapper {
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 2%;
+
+}
+
 mat-toolbar {
     display: flex;
     flex-direction: row;
@@ -42,18 +49,18 @@ mat-radio-group{
     margin: 3%;
 }
 
-.wrapper {
+/* .wrapper {
   display: flex;
   margin: 2em;
-}
+} */
 
-.left {
+/* .left {
   flex: 0 0 20%;
-}
+} */
 
-.right {
+/* .right {
   flex: 1;
-}
+} */
 
 app-auction-card{
   background-color: transparent;
@@ -75,4 +82,8 @@ mat-toolbar{
   position: absolute;
   font-size: 75%;
   bottom: -2em;
+}
+
+.form-element {
+  width: 50%;
 }

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Interested sellers</h1>
+<div mat-dialog-content>
+  
+
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let seller of data.interestedUsersEmail">
+          {{seller}}
+            <button mat-raised-button color="primary" (click)="onClick()">Invite</button>
+        </mat-list-item>
+      
+  
+      </mat-list>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close] >close</button>
+</div>

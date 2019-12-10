@@ -1,7 +1,10 @@
-import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { EventEmitter } from 'events';
 import { Observable, Subscription, timer, interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Proposal } from 'src/app/interfaces/proposal';
+import { LoggerService } from 'src/app/services/logger.service';
+import { Auction } from 'src/app/interfaces/auction';
 
 @Component({
   selector: 'app-timer',
@@ -9,15 +12,17 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./timer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements OnInit, OnDestroy {
 
   @Input()
-  startAt ; /** the time period of the auction/ registeration is defined here */
+  timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
+  // @Input()
+  // timerDetails1: Auction['proposal'];
 
   @Output()
   counterState = new EventEmitter();
-  private startDate = new Date('11/22/2019 10:53:30');
-  private endDate = new Date('2019/12/17 10:53:30');
+  public auctionStartDate: Date;
+  public auctionEndDate: Date;
   public currentTime = new Date();
   public days = 0;
   public hours = 0;
@@ -28,12 +33,20 @@ export class TimerComponent implements OnInit {
   timerEventTime: number;
   currentSubscription: Subscription;
 
-  constructor(private changeDetector: ChangeDetectorRef) { }
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private logger: LoggerService
+    ) { }
 
   ngOnInit() {
-    // this.startAt = this.currentTime; /** Here we set the timer to Client system time so that the timer can be bound to this value */
-    this.timerLogic(this.startDate, this.endDate, this.currentTime);
+    const timerObject = Object.assign({}, this.timerDetails);
+    this.auctionStartDate = new Date(timerObject.auctionStartDate);
+    this.auctionEndDate = new Date(timerObject.auctionEndDate);
+    this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
     this.start();
+  }
+  ngOnDestroy() {
+    this.stop();
   }
     public start() {
     const t: Observable<number> = interval(1000);
@@ -50,10 +63,7 @@ export class TimerComponent implements OnInit {
     this.changeDetector.detectChanges();
   });
   }
-  public stop() {
-    this.currentSubscription.unsubscribe();
-    this.counterState.emit('ABORTED');
-  }
+
 
   private day(t: number) {
     return Math.floor(t / (1000 * 60 * 60 * 24));
@@ -67,6 +77,10 @@ export class TimerComponent implements OnInit {
   private second(t: number) {
     return Math.floor(((t % (1000 * 60 * 60 * 24)) % (1000 * 60 * 60)) % (1000 * 60) / (1000)) ;
   }
+  public stop() {
+    this.currentSubscription.unsubscribe();
+    this.counterState.emit('ABORTED');
+  }
 
 
   private formatValue(timePeriod: number) {
@@ -78,7 +92,8 @@ export class TimerComponent implements OnInit {
 
   public timerLogic(timetoStart: Date, timeToEnd: Date, localTime: Date) {
     if (localTime.getTime() < timetoStart.getTime()) {
-      this.toStartMsg = 'The Event is yet to Begin';
+      this.toStartMsg = 'Auction Begins in -->';
+      this.timerEventTime = timetoStart.getTime() - localTime.getTime();
     } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
       this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
       this.formatValue(this.timerEventTime);
@@ -86,5 +101,6 @@ export class TimerComponent implements OnInit {
       this.endedMsg = 'Event has ended';
     }
   }
+
 
 }

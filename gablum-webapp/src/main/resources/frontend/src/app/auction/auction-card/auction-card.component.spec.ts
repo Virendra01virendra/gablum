@@ -5,6 +5,10 @@ import { AuctionCardComponent } from './auction-card.component';
 import { MaterialModule } from '../../material/material.module';
 
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ConsoleModule } from '../../console/console.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
+import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 
 
 describe('AuctionCardComponent', () => {
@@ -13,11 +17,26 @@ describe('AuctionCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuctionCardComponent ],
-      imports: [  MaterialModule, BrowserAnimationsModule, NoopAnimationsModule],
+      declarations: [ AuctionCardComponent, TimerComponent ],
+      imports: [  MaterialModule, BrowserAnimationsModule, NoopAnimationsModule, ConsoleModule,
+        HttpClientTestingModule],
       providers: [
         BrowserAnimationsModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
+      {
+        provide: Router,
+        useValue: {
+          snapshot: {
+            queryParamMap: {
+              get(): number {
+                return 6;
+              }
+            }
+          }
+        }
+      }
+
+
       ]
     })
     .compileComponents();
@@ -26,6 +45,52 @@ describe('AuctionCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuctionCardComponent);
     component = fixture.componentInstance;
+    const auction = {
+      auctionId: '',
+      auctionName: '',
+      proposal: {
+        proposalId: ' ',
+        productId: ' ',
+        createdBy: ' ',
+        updatedBy: ' ',
+        businessDomain: ' ',
+        businessSubDomain: ' ',
+        productName: ' ',
+        quantityValue: 2,
+        quantityUnit: ' ',
+        price: 2,
+        priceWeight: 2,
+        deliveryDate: new Date(),
+        deliveryDateWeight: 2,
+        creditPeriod: 2,
+        creditPeriodWeight: 2,
+        qualityCertification: false,
+        qualityCertificationWeight: 2,
+        methodOfSupply: false,
+        methodOfSupplyWeight: 2,
+        regStartDate: new Date(),
+        regEndDate: new Date(),
+        auctionStartDate: new Date(),
+        auctionEndDate: new Date(),
+        createdOn: new Date(),
+        updatedOn: new Date(),
+        thresholdParticipants: 2,
+        views: 2,
+        interested: 2,
+        interestedUsersEmail: []
+    },
+    isAuctionActive: false,
+    participantsVerificationId: '',
+    selectedParticipantList: [],
+    bidIdList: [],
+    createdOn: new Date(),
+    updatedOn: new Date(),
+    createdBy: '',
+    updatedBy: '',
+    auctionStartDate: new Date(),
+    auctionEndDate: new Date(),
+    };
+    component.auction = auction;
     fixture.detectChanges();
   });
 

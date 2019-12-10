@@ -1,6 +1,5 @@
 package com.gablum.proposals.proposal.repository;
 
-
 import com.gablum.proposals.proposal.model.Proposal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

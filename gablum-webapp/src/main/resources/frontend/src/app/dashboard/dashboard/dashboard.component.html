@@ -1,71 +1,268 @@
-<div class="dashboard-container">
-    <mat-tab-group class="tab-container" fxHide.xs [selectedIndex]="0">
-        <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
-                <div *ngIf="section.label=='Ongoing Auctions'">
-                        <p>Auction list</p>
-                    </div>
-                    <div *ngIf="section.label=='Active Proposals'">
-                    <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card">
-                        <mat-card-header>
-                          <div mat-card-avatar class="example-header-image"></div>
-                          <mat-card-title>Product name: {{proposal.productName}} </mat-card-title>
-                          <mat-card-subtitle></mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                          <p>
-                            Price: {{proposal.price}}, Delivery Date: {{proposal.deliveryDate}} <br>
-                            Quantity: {{proposal.quantity}}   <br>
-                          </p>
-                        </mat-card-content>
-                        <mat-card-actions>
-                          <button mat-raised-button>Extend Registration</button>
-                          <button mat-raised-button>Interested Sellers</button>
-                        </mat-card-actions>
-                      </mat-card> 
-                    </div>
-                    <div *ngIf="section.label=='Past Auctions'">
-                        <p>Past Auctions</p>
-                    </div>
-        </mat-tab>
-    </mat-tab-group>
-    <!-- TODO: retain position -->
-    <mat-accordion  class="tab-container" fxHide.gt-xs>
-        <mat-expansion-panel *ngFor="let section of dashboardSections" [expanded]="section.isActive">
-            <mat-expansion-panel-header>
-                <mat-panel-title>{{section.label}}</mat-panel-title>
-                <mat-panel-description>{{section.desc}}</mat-panel-description>
+<!-- <mat-toolbar color="primary">
+  <mat-icon class="title-icon">dashboard</mat-icon>
+  <span class="title" fxHide.xs>Dashboard</span>
+</mat-toolbar>
 
-            </mat-expansion-panel-header>
-            <div *ngIf="section.label=='Ongoing Auctions'">
-                <p>Auction list</p>
-            </div>
-            <div *ngIf="section.label=='Active Proposals'">
-            <mat-card *ngFor="let proposal of dashboardSections[1].data" class="example-card">
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"></div>
-                  <mat-card-title>Product name: {{proposal.productName}} </mat-card-title>
-                  <mat-card-subtitle></mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                  <p>
-                    Price: {{proposal.price}}, Delivery Date: {{proposal.deliveryDate}} <br>
-                    Quantity: {{proposal.quantity}}   <br>
-                  </p>
-                </mat-card-content>
-                <mat-card-actions>
-                  <button mat-raised-button>Extend Registration</button>
-                  <button mat-raised-button>Interested Sellers</button>
-                </mat-card-actions>
-              </mat-card> 
-            </div>
-            <div *ngIf="section.label=='Past Auctions'">
-                <p>Past Auctions</p>
-            </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+<div class="dashboard-container" *ngIf="isBuyer && isSeller; else elseBlock">
+  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
+    <mat-tab *ngFor="let section of dashboardSections1" [label]="section.label">
+
+      <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+        fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="proposal-card">
+
+        <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
+
+        </div>
+     </div>
+      <div *ngIf="section.label=='Active Proposals(Buyer)'" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px" class="proposal-card"
+        fxLayout.sm="column" fxLayoutAlign.sm="space-around center">
+        <div  fxLayout="row wrap" fxLayoutAlign="space-between" fxLayoutGap="15px">
+          <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
+        </div>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+        fxLayout.sm="column" class="proposal-card">
+        <p>Past Auctions</p>
+      </div>
+
+      <div *ngIf="section.label=='Active Proposals(Seller)'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px"
+        fxLayout.sm="column" class="proposal-card">
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+        </app-seller-proposal-card>
+      </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel *ngFor="let section of dashboardSections" [expanded]="section.isActive">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{section.label}}</mat-panel-title>
+        <mat-panel-description>{{section.desc}}</mat-panel-description>
+
+      </mat-expansion-panel-header>
+      <div *ngIf="section.label=='Ongoing Auctions'">
+          <div class="auctions-cont" *ngIf="auctions">
+          <app-auction-card  *ngFor="let auction of auctions"
+          [auction]="auction"></app-auction-card>
+          </div>
+      </div>
+      <div *ngIf="section.label=='Active Proposals'">
+        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal">
+
+        </app-new-proposal-card>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'">
+        <p>Past Auctions</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
 
-<a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/new']">
-    <mat-icon>add</mat-icon>
-</a>
 
+<ng-template class="dashboard-container" #elseBlock>
+  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
+    <mat-tab *ngFor="let section of dashboardSections" [label]="section.label">
+
+      <div *ngIf="section.label=='Ongoing Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px" class="proposal-card"
+        fxLayout.sm="column" fxLayoutAlign.sm="space-around center" class="auction-card">
+
+        <div class="auctions-cont"  fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]=true></app-auction-card>
+
+        </div>
+     </div>
+      <div *ngIf="section.label=='Active Proposals'" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px" class="proposal-card"
+        fxLayout.sm="column" fxLayoutAlign.sm="space-around center">
+        <div *ngIf="isBuyer" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="15px">
+          <p>hello world</p>
+          <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
+        </div>
+
+        <div *ngIf="isSeller" fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px">
+          <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+          </app-seller-proposal-card>
+        </div>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px" class="proposal-card"
+        fxLayout.sm="column">
+        <p>Past Auctions</p>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel *ngFor="let section of dashboardSections" [expanded]="section.isActive">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{section.label}}</mat-panel-title>
+        <mat-panel-description>{{section.desc}}</mat-panel-description>
+
+      </mat-expansion-panel-header>
+      <div *ngIf="section.label=='Ongoing Auctions'">
+          <div class="auctions-cont" *ngIf="auctions">
+          <app-auction-card  *ngFor="let auction of auctions"
+          [auction]="auction" [buttonShow]=true></app-auction-card>
+          </div>
+      </div>
+      <div *ngIf="section.label=='Active Proposals'">
+        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal">
+
+        </app-new-proposal-card>
+      </div>
+      <div *ngIf="section.label=='Past Auctions'">
+        <p>Past Auctions</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>   -->
+
+<mat-toolbar color="primary">
+  <mat-icon class="title-icon">dashboard</mat-icon>
+  <span class="title" fxHide.xs>Dashboard</span>
+</mat-toolbar> 
+
+<!--tab for seller-->
+
+<div *ngIf="isSeller" class="dashboard-container">
+  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+    <mat-tab label="Active Auctions">
+      <p>active auctions</p>
+      <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Active Proposals">
+      <p>active proposals(seller)</p>
+
+      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px">
+        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+        </app-seller-proposal-card>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label="Past Auctions">
+      <p>past auctions</p>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!--expansion panel for seller-->
+  <mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel [expanded]=true>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Active Auctions</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="expansion-auction-card" fxLayout="column">
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Active Proposals</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="expansion-proposal-card" fxLayout="column">
+        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
+        </app-seller-proposal-card>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Past Auctions</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <p>past auctions</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+
+<!--Tab for buyer-->
+
+<div *ngIf="isBuyer" class="dashboard-container">
+  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+    <mat-tab label="Active Auctions">
+      <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Active Proposals">
+      <div class="proposal-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Past Auctions">
+      <p>past auctions</p>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!--expansion panel for buyer-->
+  <mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Active Auctions</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="expansion-auction-card" fxLayout="column">
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+      </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Active Proposals</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="expansion-proposal-card" fxLayout="column">
+        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal">
+
+        </app-new-proposal-card>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Past Auctions</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div>
+        <p>past auctions</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>
+
+<!--add and browse buttons-->
+
+<div class="fab-container" fxLayout="column nowrap">
+  <a mat-fab class="add-proposal-button" matTooltip="browse all active proposals" [routerLink]="['/browse']"
+    *ngIf="isSeller">
+    <mat-icon>list</mat-icon>
+  </a>
+  <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/floatProposal']"
+    *ngIf="isBuyer">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>

@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatFormFieldModule, MatFormFieldControl} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
@@ -24,12 +24,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 
 const modules = [
   CommonModule,
   MatFormFieldModule,
   MatInputModule,
+  MatRadioModule,
   MatButtonModule,
   MatOptionModule,
   MatSelectModule,
@@ -43,16 +48,13 @@ const modules = [
   MatNativeDateModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatToolbarModule,
   MatSelectModule,
   MatRadioModule,
   MatSliderModule,
-  MatCardModule,
   MatStepperModule,
   MatDividerModule,
   MatListModule,
   MatOptionModule,
-  MatButtonModule,
   MatExpansionModule,
   MatTooltipModule,
   MatChipsModule,
@@ -66,7 +68,10 @@ const modules = [
   MatGridListModule,
   MatDividerModule,
   FlexLayoutModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule,
+  MatTableModule,
+  NgxChartsModule
 ];
 
 @NgModule({

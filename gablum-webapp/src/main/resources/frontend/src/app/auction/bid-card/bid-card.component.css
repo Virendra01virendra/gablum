@@ -1,0 +1,34 @@
+mat-expansion-panel {
+    width: 30em;
+    margin-bottom: 0.5em;
+}
+
+.bid-primary-container {
+    padding: 0 1em;
+    height: 5em;
+}
+.profile-image {
+    width: 5em;
+    height: 5em;
+    border-radius: 2.5em;
+    overflow: hidden;
+}
+
+.profile-image > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.bid-body {
+    width: 100%;
+    padding: 0.5em;
+}
+.bid-body > span {
+    padding: 1em 1em 0 1em;
+}
+
+.graph-container {
+    width: 100%;
+    height: 20em;
+}

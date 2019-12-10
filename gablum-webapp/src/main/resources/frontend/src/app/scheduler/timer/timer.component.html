@@ -1,7 +1,11 @@
-<mat-chip-list aria-label="Timer Display">    
-    <mat-chip color= "primary" selected>Days: <span>{{days}}</span></mat-chip>
-    <mat-chip color = "warn">Hours: <span>{{hours}}</span></mat-chip>
-    <mat-chip color ="warn" >Minutes: <span>{{minutes}}</span></mat-chip>    
-    <mat-chip *ngIf="toStartMsg!= null" color ="primary">{{toStartMsg}}</mat-chip>    
+<mat-chip-list aria-label="Timer Display"> 
+    <mat-chip *ngIf="toStartMsg!= null" color ="warn">{{toStartMsg}}</mat-chip><br>   
+    <mat-chip matTooltip="Days::hours:minutes.seconds" color= "primary" *ngIf="seconds!=null" selected>
+        <span mat-fab *ngIf="days!=null" >{{days}}</span>::
+        <span mat-fab *ngIf="hours!=null" >{{hours}}</span>:
+        <span mat-fab *ngIf="minutes!=null" >{{minutes}}</span>.
+        <span>{{seconds}}</span>
+    </mat-chip>
     <mat-chip *ngIf="endedMsg!= null" color ="warn">{{endedMsg}}</mat-chip>     
 </mat-chip-list>
+<!-- fixme:: days when ended should be shown as 00 istead of NAN -->

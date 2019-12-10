@@ -1,20 +1,50 @@
-<mat-card class="auction-card" [style.backgroundColor]="'transparent'">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title [style.color]="'red'">Auction Title</mat-card-title>
-      <mat-card-subtitle>Auction Domain</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        Auction detail 1
-        <br>
-        Auction detail 2
-        <br>
-        Auction detail 3
-      </p>
+<mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+  <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+    <mat-card-title>{{auction.auctionName}}</mat-card-title>
+    <mat-card-subtitle style="color: antiquewhite;">{{auction.proposal.businessSubDomain}}</mat-card-subtitle>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+    <!-- <app-timer></app-timer> -->
+    </div>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://picsum.photos/300"> -->
+  <mat-card-content>
+    <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+
+      <div fxLayoutAlign="space-between">
+       <mat-chip color="primary" selected>Price </mat-chip> 
+       <mat-chip>{{auction.proposal.price}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary" selected>Credit Period</mat-chip> 
+          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between" >
+          <mat-chip color="primary" selected>Quality Certification</mat-chip> 
+          <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between" >
+          <mat-chip color="primary" selected> Method Of Supply</mat-chip> 
+          <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
+        </div>
+
+        <div fxLayoutAlign="space-between">
+          <mat-chip color="primary" selected>Delivery Date</mat-chip> 
+          <mat-chip>{{auction.proposal.deliveryDate | date}}</mat-chip>
+        </div>
+        
+        
+      </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Show Details</button>
+    
+  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+    
+    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf= buttonShow>Place Bid</button>
+
+      <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf= buttonShow>See Bids</button>
+
     </mat-card-actions>
   </mat-card>
   

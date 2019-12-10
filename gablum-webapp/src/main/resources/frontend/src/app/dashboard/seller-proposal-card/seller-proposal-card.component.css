@@ -1,0 +1,17 @@
+.seller-proposal-card {
+    background-image: url("../../../assets/Images/agri_crop.jpg") ;
+    background-position: 102px 110px; /* Center the image */
+    background-repeat: no-repeat;
+    background-size: 30%;
+    
+      /* margin:1%;
+      padding: 1%;
+      max-width: 450px; */
+    }
+  
+    .head
+  {
+      background-color: #ad1457;
+     color: antiquewhite;
+     text-align: center; 
+  }

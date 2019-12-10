@@ -1,34 +1,22 @@
-.header{
-    background:lightgray;
+.title {
+  margin-left: 2em;
 }
 
-.head{
-    font-size: 2rem;
-    /* margin: 40%; */
-}
-.regForm{
-    display: flex;
-    flex-direction: column;
-    /* padding-left: 35%; */
-    padding-right: 60%;
-  }
-   
-.fullWidth{
-    margin-left: 4%;
-  }
-
-.regForm{
-    /* margin-left: 30%; */
-    margin-top: 1.0%;
-}
-
-.form-label{
-    margin-left: 4%;
+.title-icon {
+  margin-left: 1em;
 }
 
 .btn{
   /* display: flex;
     flex-direction: column; */
-    margin-left: 4%;
-    margin-bottom: 5%;
+    /* margin-left: 4%;
+    margin-bottom: 5%; */
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
+
+form > mat-form-field {
+  width: 80%;
+  margin: 0 auto;
 }

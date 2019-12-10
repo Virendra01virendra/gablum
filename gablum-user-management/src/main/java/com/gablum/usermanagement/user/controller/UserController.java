@@ -3,15 +3,22 @@ package com.gablum.usermanagement.user.controller;
 import com.gablum.usermanagement.user.model.NavLink;
 import com.gablum.usermanagement.user.model.User;
 import com.gablum.usermanagement.user.security.JwtTokenProvider;
+import com.gablum.usermanagement.user.security.UserService;
+//import com.gablum.usermanagement.user.services.MailService;
 import com.gablum.usermanagement.user.services.UserManagementService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RequestMapping
 @RestController
 public class UserController {
@@ -22,27 +29,62 @@ public class UserController {
     @Autowired
     private UserManagementService managementService;
 
+    @Autowired
+    private UserService userService;
+
+//    @Autowired
+//    private MailService mailService;
+
     private Claims tokenClaims;
 
     @GetMapping
-    public String getUsers() {
-        return "user: yay";
+    public void getUsers() {
+        // TODO implement get all users for admin.
     }
 
-    @GetMapping("/echo") 
-    public String getEcho() {
-        return "users";
-    }
 
     @GetMapping("/menuitems")
-    public List<NavLink> getMenuItems(@RequestHeader("Authorization") String token) {
-        // FIXME: don't return hardcoded list
+    public List<NavLink> getMenuItems(HttpServletRequest request) {
+        boolean isBuyer = false;
+        boolean isSeller = false;
+//        boolean isAdmin = false;
+        String token = tokenProvider.resolveToken(request);
+        tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
+        List<String> roles = tokenClaims.get("auth", List.class);
+        for(String role: roles) {
+            if (role.contains("buyer")) {
+                isBuyer = true;
+            }
+            if (role.contains("seller")) {
+                isSeller = true;
+            }
+//            if (role.contains("admin")) {
+//                isAdmin = true;
+//            }
+        }
+        List<NavLink> menuItems = new ArrayList<NavLink>();
+        if (isSeller || isBuyer) {
+            menuItems.addAll(List.of(
+                    new NavLink("Dashboard", "/dashboard", "dashboard"),
+//                    new NavLink("Calendar", "/calendar", "calendar_today"),
+                    new NavLink("Contracts", "/contracts", "book"),
+//                    new NavLink("Inbox", "/inbox", "email"))
+                    new NavLink("Support", "/support", "contact_support"),
+                    new NavLink("Inbox", "/inbox", "email")
+            ));
+        }
 
-        return List.of(
-                new NavLink("Dashboard", "/dashboard", "dashboard"),
-                new NavLink("About Us", "#about", "device_hub"),
-                new NavLink("Contact", "#contact", "contact_support")
-        );
+        if(isBuyer) {
+            menuItems.add(new NavLink("New Proposal", "/new", "add"));
+        }
+
+        if (isSeller) {
+            menuItems.add(
+                    new NavLink("Browse Proposals", "/browse", "list")
+            );
+        }
+
+        return menuItems;
     }
 
     @GetMapping("/profile")
@@ -56,10 +98,17 @@ public class UserController {
     }
 
     @PatchMapping("/profile")
-    public User editUserProfile(@RequestBody User user, HttpServletRequest request) {
+    public ResponseEntity<User> editUserProfile(@RequestBody User modifiedUser, HttpServletRequest request) {
         String token = tokenProvider.resolveToken(request);
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
-        return user;
+//        UUID userIdUUID = UUID.fromString(userId);
+        String email = tokenClaims.get("sub", String.class);
+        User user = managementService.getUser(email);
+        if (user == null) {
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<User> (
+                userService.editUserDetail(modifiedUser, email), HttpStatus.OK
+        );
     }
-
 }

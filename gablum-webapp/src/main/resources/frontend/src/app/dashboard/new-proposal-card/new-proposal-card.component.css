@@ -1,11 +1,19 @@
-.example-card {
-    margin:5%;
-    padding: 1%;
-    max-width: 400px;
-  }
+.proposal-card {
+  background-image: url("../../../assets/Images/agri_crop.jpg") ;
+  background-position: 105px 110px; /* Center the image */
+  background-repeat: no-repeat;
+  background-size: 30%;
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+    /* margin:1%;
+    padding: 1%;
+    max-width: 450px; */
   }
+
+  .head
+{
+    background-color: #ad1457;
+   color: antiquewhite;
+   text-align: center; 
+}
+
   

@@ -1,20 +1,23 @@
 <h1 mat-dialog-title>Confirm Proposal Details</h1>
 <div mat-dialog-content class="mat-dialog">
-        <mat-list fxLayout="column" fxLayoutAlign="center center" >
-                <mat-list-item fxLayout="row"><div fxFlex=70%>Business Sub-Domain:</div><div fxFlex=30%>{{ data.form1.value.businessSubDomain}}</div></mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Product Name: {{ data.form1.value.productName}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Price: {{ data.form2.value.price}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Quantity: {{ data.form1.value.quantity}} </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Delivery Date: {{ data.form2.value.deliveryDate.toLocaleDateString()}} </mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item>Registration Start Date: {{ data.form3.value.regStartDate.toLocaleDateString()}} </mat-list-item>
-         </mat-list>
-         <mat-dialog-actions>
-         <button mat-raised-button mat-dialog-close>Edit</button>
-         <button mat-raised-button color="primary" mat-dialog-close (click)="onConfirm(data)">Confirm</button>
-        </mat-dialog-actions>
+    <mat-list fxLayout="column" fxLayoutAlign="center center">
+        <mat-list-item fxLayout="row">
+            <div fxFlex=70%>Business Sub-Domain:</div>
+            <div fxFlex=30%>{{ data.form1.value.businessSubDomain}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Product Name: {{ data.form1.value.productName}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Price: {{ data.form2.value.price}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Quantity: {{ data.form1.value.quantityValue + ' ' + data.form1.value.quantityUnit}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Delivery Date: {{ data.form2.value.deliveryDate | date: 'mediumDate'}} </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Registration Start Date: {{ data.form3.value.regStartDate | date: 'mediumDate'}} </mat-list-item>
+    </mat-list>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close>Edit</button>
+        <button mat-raised-button color="primary" mat-dialog-close (click)="onConfirm(data)">Confirm</button>
+    </mat-dialog-actions>
 </div>

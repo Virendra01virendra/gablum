@@ -32,10 +32,6 @@ export class ContractComponent implements OnInit {
   }
 
   constructor(
-    // private router: Router,
-    // private route: ActivatedRoute,
-    // private communicator: CommunicatorService,
-    // private networking: NetworkingService
   ) { }
 
   ngOnInit() {
