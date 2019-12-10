@@ -5,7 +5,7 @@
   <span class="title" fxHide.xs>Dashboard</span>
   <button mat-raised-button (click)=toggle()>{{buttonName}}</button>
 </mat-toolbar>
-<div *ngIf="isSeller && !show" class="dashboard-container">
+<ng-container *ngIf="isSeller && !show" class="dashboard-container">
 <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
   <mat-tab label="Active Auctions">
     <p>active auctions</p>
@@ -54,8 +54,8 @@
      </div>
   </mat-expansion-panel>
 </mat-accordion>
-</div>
-<div *ngIf="isBuyer && show" class="dashboard-container">
+</ng-container>
+<ng-container *ngIf="isBuyer && show" class="dashboard-container">
 <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs [selectedIndex]="0">
   <mat-tab label="Active Auctions">
     <p>active auctions</p>
@@ -103,7 +103,7 @@
        </div>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
+</ng-container>
 <div>
 <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/floatProposal']"
   *ngIf="isBuyer && show">
