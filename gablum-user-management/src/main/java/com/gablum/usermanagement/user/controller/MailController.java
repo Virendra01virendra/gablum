@@ -1,7 +1,7 @@
 package com.gablum.usermanagement.user.controller;
 
 import com.gablum.usermanagement.user.model.User;
-import com.gablum.usermanagement.user.model.othermodels.Proposal;
+import com.gablum.usermanagement.user.model.othermodels.*;
 import com.gablum.usermanagement.user.services.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,4 +22,11 @@ public class MailController {
         mailService.sendProposalEmail("newProposal", proposal);
     }
 
+    public void sendingAuctionMail(Auction auction) {
+        mailService.sendAuctionEmail("newAuction", auction);
+    }
+
+    public void sendingBidMail(BidMessage bidMessage) {
+        mailService.sendBidEmail("newBid", bidMessage);
+    }
 }
