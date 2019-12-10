@@ -29,9 +29,7 @@ export class BidCardComponent implements OnInit {
 
   ngOnInit() {
     this.data = Object.keys(this.bidDataEntity.scoreObject).map(key => {
-      // if (key !== 'total') {
         return {name: key, value: this.bidDataEntity.scoreObject[key]};
-      // }
     }).filter(item => item.name !== 'total');
     this.route.paramMap
       .subscribe((params: Params) => {

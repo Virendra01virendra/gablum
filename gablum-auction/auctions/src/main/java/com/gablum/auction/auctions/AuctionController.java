@@ -172,7 +172,7 @@ public class AuctionController {
         return bidService.getbidsAuction(queryMap, id);
     }
 
-    @PutMapping("auction/{id}/bid/end")
+    @PatchMapping("auctions/{id}/bid/end")
     public Auction saveWinningBid(@PathVariable String id, @RequestBody BidDataEntity bidDataEntity,
                                    HttpServletRequest request){
         Auction auction = auctionService.getAuctionById(id);
