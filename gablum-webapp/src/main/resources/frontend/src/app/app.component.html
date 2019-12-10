@@ -1,4 +1,4 @@
-<app-navbar (menuToggled)="sideNav.toggle()" ></app-navbar>
+<app-navbar (menuToggled)="sideNav.toggle()"></app-navbar>
 <mat-sidenav-container>
     <mat-sidenav #sideNav (click)="sideNav.toggle()" [mode]="'over'" [fixedInViewport]="true" [position]="'start'" color="primary" [disableClose]="false" [fixedTopGap]="56">
         <mat-nav-list *ngIf="!isLoggedIn" fxHide.gt-xs>
