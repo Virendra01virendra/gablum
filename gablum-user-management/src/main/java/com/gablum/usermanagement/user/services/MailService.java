@@ -1,7 +1,10 @@
 package com.gablum.usermanagement.user.services;
 
 import com.gablum.usermanagement.user.model.User;
-import com.gablum.usermanagement.user.model.othermodels.*;
+import com.gablum.usermanagement.user.model.othermodels.Auction;
+import com.gablum.usermanagement.user.model.othermodels.Proposal;
+import com.gablum.usermanagement.user.model.othermodels.BidMessage;
+import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -120,7 +123,4 @@ public class MailService {
         }
     }
 
-    public void sendContract(String type, Contracts contract) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-    }
 }

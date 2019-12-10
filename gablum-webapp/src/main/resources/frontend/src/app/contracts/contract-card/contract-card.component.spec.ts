@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContractCardComponent } from './contract-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/app/material/material.module';
 
 describe('ContractCardComponent', () => {
   let component: ContractCardComponent;
@@ -8,7 +9,11 @@ describe('ContractCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractCardComponent ]
+      declarations: [ ContractCardComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        MaterialModule
+      ]
     })
     .compileComponents();
   }));

@@ -1,7 +1,6 @@
 package com.gablum.usermanagement.user.controller;
 
 import com.gablum.usermanagement.user.model.othermodels.Auction;
-import com.gablum.usermanagement.user.model.othermodels.Contracts;
 import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.services.MailService;
@@ -23,9 +22,5 @@ public class MailController {
 
     public void sendingBidMail(BidMessage bidMessage) {
         mailService.sendBidEmail("newBid", bidMessage);
-    }
-
-    public void sendingContract(Contracts contract){
-        mailService.sendContract("newContract", contract);
     }
 }
