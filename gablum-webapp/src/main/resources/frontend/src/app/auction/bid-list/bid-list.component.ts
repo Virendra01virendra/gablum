@@ -15,6 +15,7 @@ export class BidListComponent implements OnInit {
   public static messageKey = 'BidListComponent';
   auctionId;
   bids: NewBid[];
+  bidsData: NewBid[];
   auction: Auction;
 
   constructor(
@@ -29,7 +30,8 @@ export class BidListComponent implements OnInit {
         const data = msg.data;
         // console.log('bidddddddd-------------->', data);
         if ('bidsAuction' in data) {
-          this.bids = data.bidsAuction;
+          this.bidsData = data.bidsAuction;
+          this.bids = this.bidsData;
         }
 
         if ('auctionSingle' in data) {
@@ -71,6 +73,10 @@ export class BidListComponent implements OnInit {
 
     this.auctionDataService.getBidsAuction(BidListComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidListComponent.messageKey, 'auctionSingle', this.auctionId);
+  }
+
+  sortBids(){
+    this.bids = $filter('orderBy')(this.bidsData, 'scoreObject.total')
   }
 
 
