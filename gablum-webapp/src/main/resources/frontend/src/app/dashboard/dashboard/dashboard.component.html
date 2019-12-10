@@ -125,18 +125,16 @@
 
 <!--tab for seller-->
 
-<div *ngIf="isSeller" class="dashboard-container">
+<div class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
-      <p>active auctions</p>
       <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
 
       </div>
     </mat-tab>
 
     <mat-tab label="Active Proposals">
-      <p>active proposals(seller)</p>
 
       <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px">
         <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
@@ -146,7 +144,6 @@
     </mat-tab>
 
     <mat-tab label="Past Auctions">
-      <p>past auctions</p>
     </mat-tab>
   </mat-tab-group>
 
@@ -159,7 +156,7 @@
       </mat-expansion-panel-header>
 
       <div class="expansion-auction-card" fxLayout="column">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
       </div>
 
     </mat-expansion-panel>
@@ -188,11 +185,10 @@
     </mat-expansion-panel>
   </mat-accordion>
 
-</div>
 
 <!--Tab for buyer-->
 
-<div *ngIf="isBuyer" class="dashboard-container">
+<!-- <div class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -212,7 +208,7 @@
     </mat-tab>
   </mat-tab-group>
 
-  <!--expansion panel for buyer-->
+  expansion panel for buyer-->
   <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
