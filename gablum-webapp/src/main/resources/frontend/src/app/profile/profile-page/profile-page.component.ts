@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { EditProfileDialogComponent} from '../edit-profile-dialog/edit-profile-dialog.component';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -16,7 +16,7 @@ export class ProfilePageComponent implements OnInit {
 
   public static messageKey = 'proposals-list-component';
 
-  public profile: Profile;
+  @Input() profile: Profile;
 
   public roles: string;
 
@@ -49,7 +49,7 @@ export class ProfilePageComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     this.dialog.open(EditProfileDialogComponent,
       {
-        width: '80%',
+        width: '60%',
         data: this.profile
       }
     );
