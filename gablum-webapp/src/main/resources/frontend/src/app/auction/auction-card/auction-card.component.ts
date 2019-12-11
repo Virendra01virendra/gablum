@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { LoggerService } from 'src/app/services/logger.service';
 import { HttpClient } from '@angular/common/http';
 import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
+import { WebsocketService } from 'src/app/services/websocket.service';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -21,23 +22,18 @@ export class AuctionCardComponent implements OnInit {
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private ws: WebsocketService
     ) {
-      // comms.getMessages().subscribe(msg => {
-      //   if (msg.dest === AuctionCardComponent.messageKey || msg.dest === '@all') {
-      //     const data = msg.data;
 
-      //     if ('auctions' in data) {
-      //       this.auctions = data.auctions;
-      //       console.log(this.auctions);
-      //     }
-      //   }
-      // });
     }
   public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
+
+  public isOwner = false;
+  private tokenBody: any;
 
   ngOnInit() {
     const auctionUrl = environment.tokenUrl;
@@ -45,6 +41,10 @@ export class AuctionCardComponent implements OnInit {
     .subscribe(token => {
       this.auction.socketToken = token.token;
       this.logger.log(this.auction);
+      this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
+      this.logger.log(this.tokenBody);
+      this.isOwner = this.tokenBody.isOwner;
+      this.ws.connect(message => this.subscribe());
     },
     err => {
       this.logger.log(err);
@@ -58,6 +58,38 @@ export class AuctionCardComponent implements OnInit {
 
   public seeBids() {
     this.router.navigate(['auctions/' + this.auction.auctionId + '/see/bids']);
+  }
+
+  subscribe() {
+    if (this.isOwner) {
+      this.ws.subscribe(
+        '/topic/admin/' + this.auction.auctionId,
+        AuctionCardComponent.messageKey,
+        'newbid', this.auction.socketToken).subscribe(message => {
+          if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
+            const data = message.data;
+            if ('newbid' in data) {
+              this.logger.log(data.newbid.body);
+              // this.bids.push(this.testBid);
+            }
+          }
+        }
+      );
+    } else {
+      this.ws.subscribe(
+        '/topic/supplier/' + this.auction.auctionId + '/' + this.tokenBody.sub,
+        AuctionCardComponent.messageKey,
+        'newbid', this.auction.socketToken).subscribe(message => {
+          if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
+            const data = message.data;
+            if ('newbid' in data) {
+              this.logger.log(data.newbid.body);
+              // this.bids.push(this.testBid);
+            }
+          }
+        }
+      );
+    }
   }
 
 }

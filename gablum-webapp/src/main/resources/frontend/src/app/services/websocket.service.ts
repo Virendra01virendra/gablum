@@ -15,8 +15,6 @@ export class WebsocketService {
   private socket: any;
   private stompClient: CompatClient;
 
-  private stompHeaders: StompHeaders;
-
   private storedSubcriptions = connectMessage => {};
 
   private socketReconnect = (isReconnect = true) => {
@@ -37,9 +35,6 @@ export class WebsocketService {
   constructor(
     private comms: CommunicatorService,
     private logger: LoggerService) {
-    this.stompHeaders = {
-      auth: 'hello'
-    };
     this.socketReconnect(false);
   }
 
@@ -72,14 +67,17 @@ export class WebsocketService {
     this.stompClient.send('/bids.fetchbid', {}, 'fetch');
   }
 
-  subscribe(topic: string, dest: string, key: string) {
+  subscribe(topic: string, dest: string, key: string, auth: string) {
     if (!this.stompClient.connected) {
       throw new Error('connection not yet open');
     }
+    const stompHeaders = {
+      auth
+    };
     this.stompClient.subscribe(topic, message => {
       this.comms.postMessage(this, dest, {[key]: message});
     },
-    this.stompHeaders);
+    stompHeaders);
     return this.comms.getMessages();
   }
 }

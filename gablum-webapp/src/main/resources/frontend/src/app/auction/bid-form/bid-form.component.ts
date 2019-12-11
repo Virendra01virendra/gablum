@@ -75,7 +75,7 @@ export class BidFormComponent implements OnInit {
         // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
-    this.ws.connect(message => this.subscribe());
+    // this.ws.connect(message => this.subscribe());
 
     this.bidForm = new FormGroup({
       newPrice: new FormControl('', [
@@ -146,29 +146,29 @@ export class BidFormComponent implements OnInit {
   }
 
   subscribe() {
-    this.ws.subscribe(
-      '/topic/*',
-      BidFormComponent.messageKey,
-      'newbid').subscribe(message => {
-        this.logger.log('message received is ::', message);
-        if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
-          const data = message.data;
-          if ('getscore' in data) {
-            this.result1 = data.getscore.body;
-            this.logger.log('message received is ::', data.getscore.body);
-          }
-          if ('newbid' in data) {
-            this.result2 = data.newbid.body;
-            this.logger.log('message received is ::', data.newbid.body);
-            // this.bids.push(this.testBid);
-          }
-          if ('fetchbid' in data) {
-            // this.result3 = data.fetchbid.body;
-            // this.logger.log('message received is ::', data.newbid.body);
-            // this.bids.push(this.testBid);
-          }
-        }
-      });
+    // this.ws.subscribe(
+    //   '/topic/*',
+    //   BidFormComponent.messageKey,
+    //   'newbid').subscribe(message => {
+    //     this.logger.log('message received is ::', message);
+    //     if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
+    //       const data = message.data;
+    //       if ('getscore' in data) {
+    //         this.result1 = data.getscore.body;
+    //         this.logger.log('message received is ::', data.getscore.body);
+    //       }
+    //       if ('newbid' in data) {
+    //         this.result2 = data.newbid.body;
+    //         this.logger.log('message received is ::', data.newbid.body);
+    //         // this.bids.push(this.testBid);
+    //       }
+    //       if ('fetchbid' in data) {
+    //         // this.result3 = data.fetchbid.body;
+    //         // this.logger.log('message received is ::', data.newbid.body);
+    //         // this.bids.push(this.testBid);
+    //       }
+    //     }
+    //   });
 
 
   }
