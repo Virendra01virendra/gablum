@@ -121,17 +121,15 @@
 <mat-toolbar color="primary">
   <mat-icon class="title-icon">dashboard</mat-icon>
   <span class="title" fxHide.xs>Dashboard</span>
-  <span>{{isSeller}}</span>
 </mat-toolbar> 
 
 <!--tab for seller-->
 
-<div *ngIf="isSeller" class="dashboard-container">
+<div *ngIf="isSeller; else elseBlock" class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
-      <p>active auctions</p>
       <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
 
       </div>
     </mat-tab>
@@ -145,7 +143,6 @@
     </mat-tab>
 
     <mat-tab label="Past Auctions">
-      <p>past auctions</p>
     </mat-tab>
   </mat-tab-group>
 
@@ -158,7 +155,7 @@
       </mat-expansion-panel-header>
 
       <div class="expansion-auction-card" fxLayout="column">
-        <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+        <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
       </div>
 
     </mat-expansion-panel>
@@ -188,10 +185,9 @@
   </mat-accordion>
 
 </div>
-
 <!--Tab for buyer-->
 
-<!-- <ng-template  #elseBlock class="dashboard-container">
+<ng-template #elseBlock>
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -211,8 +207,8 @@
     </mat-tab>
   </mat-tab-group>
 
-  expansion panel for buyer-->
-  <!--
+  <!--expansion panel for buyer-->
+  
   <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
@@ -252,17 +248,17 @@
   </mat-accordion>
 
 
-</ng-template> -->
+</ng-template> 
 
 <!--add and browse buttons-->
 
 <div class="fab-container" fxLayout="column nowrap">
   <a mat-fab class="add-proposal-button" matTooltip="browse all active proposals" [routerLink]="['/browse']"
-    *ngIf="isSeller">
+  *ngIf="isSeller">
     <mat-icon>list</mat-icon>
   </a>
   <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/floatProposal']"
-    *ngIf="isBuyer">
+  *ngIf="isBuyer">
     <mat-icon>add</mat-icon>
   </a>
 </div>

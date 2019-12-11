@@ -101,9 +101,9 @@ public class ProposalController {
         );
     }
 
-    @PatchMapping("/proposals")
-    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
-        String currentLoggedUserEmail = userService.getEmail(request);
-        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
-    }
+//    @PatchMapping("/proposals")
+//    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
+//        String currentLoggedUserEmail = userService.getEmail(request);
+//        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
+//    }
 }
