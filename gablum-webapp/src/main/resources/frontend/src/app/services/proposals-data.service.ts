@@ -36,6 +36,7 @@ export class ProposalsDataService {
   getAllProposalForSeller(dest, key) {
     this.networking.getData<Proposal>(this.guestProposallistUrl, dest, key);
   }
+
   postInterestedSeller(dest, data, key) {
     this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key)
     .subscribe(res => {
@@ -45,6 +46,11 @@ export class ProposalsDataService {
         this.logger.log(err);
       });
   }
+
+  postInvitedSeller(dest, data, key) {
+    this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key);
+  }
+
   deleteProposal(proposalId, dest, key) {
     const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
     this.networking.deleteData<Proposal>(proposalUrlDel, dest, key).subscribe(
@@ -60,10 +66,9 @@ export class ProposalsDataService {
 
   getProposalsBySubDomain(businessSubDomain: string, dest, key) {
     const proposalUrlSubDomain = this.guestProposallistUrl + '/' + businessSubDomain;
-    this.logger.log('Type of business Subdomain hitting the api --------------->=>' + typeof(businessSubDomain));
-    this.logger.log('while hitting the api --------------->=>' + businessSubDomain);
-    this.logger.log('while hitting the api entire URL --> --------------->=>' + proposalUrlSubDomain);
     this.networking.getData<Proposal>(proposalUrlSubDomain, dest, key);
   }
+
+
 
 }

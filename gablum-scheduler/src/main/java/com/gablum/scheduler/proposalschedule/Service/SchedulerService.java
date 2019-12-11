@@ -41,12 +41,6 @@ public class SchedulerService {
         updatedTimer.setEventEndDate(updatedTimerModel.getEventEndDate());
         return schedulerRepo.save(updatedTimer);
     }
-//
-//    public void executeTimer(Date eventStartDate) {
-//        Timer timer = new Timer();
-//        timer.schedule(timerJob,eventStartDate);
-//    }
-
 
 
 }

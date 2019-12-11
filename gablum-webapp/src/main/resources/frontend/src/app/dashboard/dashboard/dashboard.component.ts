@@ -25,8 +25,9 @@ export class DashboardComponent implements OnInit {
   public static messageKey = 'DashboardComponent';
 
   public isLoggedIn = false;
-  public isBuyer = false;
-  public isSeller = false;
+  public isBuyer;
+  public isSeller;
+  public userRole = new Array();
 
   public userProfile: Profile;
   allProposals: Proposal[];
@@ -34,17 +35,17 @@ export class DashboardComponent implements OnInit {
   auctions: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
-  public dashboardSections: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-  ];
+  // public dashboardSections: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  // ];
 
-  public dashboardSections1: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-    { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
+  // public dashboardSections1: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  //   { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
 
   public bids: NewBid[] = [];
   data;
@@ -66,36 +67,42 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient,
   ) {
+    this.isLoggedIn = auth.getAuthenticated();
+    if (this.isLoggedIn) {
+      this.logger.log(this, auth.getProfileData());
+    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
-          // this.logger.log(this.proposals);
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals;
-          // this.logger.log(this.allProposals);
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
-          // this.logger.log(this.auctions);
         }
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
           this.logger.log(this, auth.getProfileData());
-          this.isBuyer = auth.isBuyer();
-          this.isSeller = auth.isSeller();
         }
 
         if ('userProfile' in data) {             // getting user profile for subDomain
           this.userProfile = data.userProfile;
           this.businessSubdomain = this.userProfile.businessSubDomain;
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
+          this.userRole = this.userProfile.role;
+          if (this.userProfile.role[0].role === 'buyer') {
+            this.isBuyer = true;
+            this.isSeller = false;
+          } else { this.isSeller = true;
+                   this.isBuyer = false;
+          }
         }
 
       }
@@ -109,10 +116,6 @@ export class DashboardComponent implements OnInit {
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
-    this.isLoggedIn = this.auth.getAuthenticated();
-    this.logger.log(this.auth.getProfileData());
-    this.isBuyer = this.auth.isBuyer();
-    this.isSeller = this.auth.isSeller();
   }
 
 
