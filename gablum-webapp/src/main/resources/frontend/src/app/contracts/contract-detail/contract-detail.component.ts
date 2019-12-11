@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ContractDetail } from 'src/app/interfaces/contract-detail';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
 
 @Component({
   selector: 'app-contract-detail',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contract-detail.component.css']
 })
 export class ContractDetailComponent implements OnInit {
-
-  constructor() { }
+  public contract: ContractDetail;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private contractService: ContractsDataService
+  ) { }
 
   ngOnInit() {
+    this.contract = this.contractService.retrieveContract();
   }
-
+  
 }
