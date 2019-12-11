@@ -1,1 +1,55 @@
-<p>contract-page works!</p>
+<mat-toolbar color="primary">
+    <mat-icon class="title-icon">assignment</mat-icon>
+    <span class="title" fxHide.xs>Contracts</span>
+</mat-toolbar>
+
+<!--Tab of Seller-->
+<div *ngIf="isSeller; else elseBlock" class="dashboard-container">
+    <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+        <mat-tab label="Recieved">
+            <div class="contract-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+                <app-contract-card *ngFor="let contract of contracts" [contract]="contract" [buttonShow]="true">
+                </app-contract-card>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <!--Expansion panel for Seller-->
+    <mat-accordion class="tab-container" fxHide.gt-xs>
+        <mat-expansion-panel [expanded]=true>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Recieved</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+    
+          <div class="expansion-contract" fxLayout="column">
+            <app-contract-card *ngFor="let contract of contracts" [contract]="contract" [buttonShow]="true"></app-contract-card>
+          </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+<!--Tab for Buyer-->
+<ng-template #elseBlock>
+    <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+        <mat-tab label="Recieved">
+            <div class="contract-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+                <app-contract-card *ngFor="let contract of contracts" [contract]="contract" [buttonShow]="true">
+                </app-contract-card>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <!--Expansion panel for Buyer-->
+    <mat-accordion class="tab-container" fxHide.gt-xs>
+        <mat-expansion-panel [expanded]=true>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Recieved</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+          </mat-expansion-panel-header>
+    
+          <div class="expansion-contract" fxLayout="column">
+            <app-contract-card *ngFor="let contract of contracts" [contract]="contract" [buttonShow]="true"></app-contract-card>
+          </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</ng-template>
+
+        

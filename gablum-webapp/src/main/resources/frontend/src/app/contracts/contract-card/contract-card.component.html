@@ -1,155 +1,84 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<mat-card class="proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-        <mat-card-title>ProductName</mat-card-title>
-        <mat-card-subtitle style="color: antiquewhite;">businessSubDomain</mat-card-subtitle>
-    </mat-card-header>
-    
+<div mat-card class="proposal-card" fxLayout="column">
+    <div mat-card-header class="head" style= "color: primary;">
+        <mat-card-title matTooltip="Product Name">Product</mat-card-title>
+        <mat-card-subtitle style="color: white;" fxLayout="row" fxLayoutAlign="space-around center">
+            <div>
+                <h2 class="mat-subheading-1" matTooltip="Belongs to  Business Sub-Domain">
+                    SubDomain
+                </h2>
+            </div>
+        </mat-card-subtitle>
+    </div>
     <mat-card-content>
-        <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-
-            <div fxLayoutAlign="space-between">
-                <i class="fa fa-money" aria-hidden="true" matTooltip="Price"></i>
-                <p class="mat-body-2">Price</p>
-            </div>
-
-            <div fxLayoutAlign="space-between">
-                <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity"></i>
-                <p class="mat-body-2">Quantity</p>
-            </div>
-
-            <div fxLayoutAlign="space-between">
-                <i class="material-icons">date_range</i>
-                <p class="mat-body-2">Delivery Date</p>
-            </div>
-
-            <div fxLayoutAlign="space-between">
-                <i class="material-icons" matTooltip="Credit Period">calendar_today</i>
-                <p class="mat-body-2">Credit Period</p>
-            </div>
-
+        <div fxLayoutAlign="space-between">
+            <i class="fa fa-money" aria-hidden="true" matTooltip="Price"></i>
+            <p class="mat-body-2">Price</p>
+        </div>
+        <div fxLayoutAlign="space-between">
+            <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity"></i>
+            <p class="mat-body-2">Quantity Unit</p>
+            <!-- <mat-chip color="primary" selected="true">Quantity </mat-chip>
+      <mat-chip>{{
+        proposal.quantityValue + " " + proposal.quantityUnit
+      }}</mat-chip> -->
+        </div>
+        <div fxLayoutAlign="space-between">
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date"></i>
+            <p class="mat-body-2">DeliveryDate</p>
+            <!-- <mat-chip color="primary" selected="true"
+        >Registration End Date
+      </mat-chip>
+      <mat-chip>{{ proposal.regEndDate | date: "mediumDate" }}</mat-chip> -->
+        </div>
+        <div fxLayoutAlign="space-between">
+            <i class="fa fa-calendar" aria-hidden="true" matTooltip="Registeration End-Date"></i>
+            <p class="mat-body-2">Credit Period</p>
+            <!-- <mat-chip color="primary" selected="true">Auction End Date </mat-chip>
+      <mat-chip>{{ proposal.auctionEndDate | date: "mediumDate" }}</mat-chip> -->
         </div>
     </mat-card-content>
 
+    <!-- <mat-card-actions>
+    <div fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+      <mat-icon
+        matBadge="{{ proposal.interested }}"
+        matBadgePosition="before"
+        matBadgeColor="warm"
+        (click)="sellersListDialog(proposal)"
+        class="material-icons"
+        matTooltip="Interested Sellers"
+      >
+        list
+      </mat-icon>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <mat-toolbar color="primary">
-    <mat-icon class="title-icon">book</mat-icon>
-    <span class="title" fxHide.xs>Past Contracts</span>
-    <span class="title" fxHide.gt-xs>Contracts</span>
-</mat-toolbar>
-<mat-accordion class="contract-headers-align">
-    <section>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Contract No
-                </mat-panel-title>
-                <mat-panel-description>
-                    Product Description, Seller Name, Delivery Date, Credit Period
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <h1>
-                Contract
-            </h1>
-            <mat-card>
-                <mat-card-content>
-                    <section>
-                        <ul>
-                            <li>Product Name /*productName*/ </li>
-                            <li>Seller Name /*sellerName*/; Company Name /*companyName*/</li>
-                            <li>Delivery Date /*deliveryDate*/</li>
-                            <li>Credit Period /*creditPeriod*/</li>
-                        </ul>
-                    </section>
-                </mat-card-content>
-            </mat-card>
-            <article>
-                <p>
-                    This Tripartite Contract is between /*BuyerName*/ of /*CompanyName*/ hereinafter called Buyer, /*SellerName*/ of /*CompanyName*/ hereinafter called Seller and Gablum Private Litmited hereinafter called GPL and is effective starting on /*Today */ till
-                    the contract is fulfilled.
-                </p>
-                <p>
-                    The Contract binds the Buyer and Seller to perform the required duties as agreed in the auction process, which are as following
-                </p>
-                <ul>
-                    <li>The Seller and Buyer participated fairly in the auction process held on Gablum platform during /*AuctionStartDate*/ and /*AuctionEndDate*/ for /*ProductName*/ with Specification /*ProductSpecs*/ </li>
-                    <li>The Seller will provide above mentioned product to the buyer on or before /*DeliveryDate*/ to the address /*Address*/ </li>
-                    <li>The Buyer will have have credit period of /*CreditPeriod*/ months from /*Today*/ to provide the agreed amount of /*TotalPrice*/. The details, of breakup or installments can be worked between Buyer and Seller at their discretion.
-                    </li>
-                </ul>
-                <p>
-                    In case of default of the Buyer or Seller parties, GPL will not be liable for any legal action ensuing from the said default. In such cases, suitable actions like blacklist of at-fault party from GPL's platforms can be taken, at sole discretion of GPL.
-                </p>
-                <p>
-                    Legal Team,
-                </p>
-                <p>
-                    Gablum Private Limited
-                </p>
-            </article>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Contract No
-                </mat-panel-title>
-                <mat-panel-description>
-                    Product Description, Seller Name, Delivery Date, Credit Period
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <h1>
-                Contract
-            </h1>
-            <mat-card>
-                <mat-card-content>
-                    <section>
-                        <ul>
-                            <li>Product Name /*productName*/ </li>
-                            <li>Seller Name /*sellerName*/; Company Name /*companyName*/</li>
-                            <li>Delivery Date /*deliveryDate*/</li>
-                            <li>Credit Period /*creditPeriod*/</li>
-                        </ul>
-                    </section>
-                </mat-card-content>
-            </mat-card>
-            <article>
-                <p>
-                    This Tripartite Contract is between /*BuyerName*/ of /*CompanyName*/ hereinafter called Buyer, /*SellerName*/ of /*CompanyName*/ hereinafter called Seller and Gablum Private Litmited hereinafter called GPL and is effective starting on /*Today */ till
-                    the contract is fulfilled.
-                </p>
-                <p>
-                    The Contract binds the Buyer and Seller to perform the required duties as agreed in the auction process, which are as following
-                </p>
-                <ul>
-                    <li>The Seller and Buyer participated fairly in the auction process held on Gablum platform during /*AuctionStartDate*/ and /*AuctionEndDate*/ for /*ProductName*/ with Specification /*ProductSpecs*/ </li>
-                    <li>The Seller will provide above mentioned product to the buyer on or before /*DeliveryDate*/ to the address /*Address*/ </li>
-                    <li>The Buyer will have have credit period of /*CreditPeriod*/ months from /*Today*/ to provide the agreed amount of /*TotalPrice*/. The details, of breakup or installments can be worked between Buyer and Seller at their discretion.
-                    </li>
-                </ul>
-                <p>
-                    In case of default of the Buyer or Seller parties, GPL will not be liable for any legal action ensuing from the said default. In such cases, suitable actions like blacklist of at-fault party from GPL's platforms can be taken, at sole discretion of GPL.
-                </p>
-                <p>
-                    Legal Team,
-                </p>
-                <p>
-                    Gablum Private Limited
-                </p>
-            </article>
-        </mat-expansion-panel>
-    </section>
-</mat-accordion> -->
+      <mat-icon
+        matTooltip="Extend Registration"
+        class="material-icons"
+        (click)="extendDialog(proposal)"
+      >
+        hourglass_empty
+      </mat-icon>
+      <mat-icon
+        matTooltip="Delete Proposal"
+        class="material-icons"
+        (click)="delete(proposal)"
+        >delete</mat-icon
+      >
+      <mat-icon
+        matTooltip="See Details"
+        class="material-icons"
+        (click)="openDialog(proposal)"
+        >visibility</mat-icon
+      >
+      <mat-icon
+        matTooltip="Start Auction"
+        class="material-icons"
+        (click)="startAuction(proposal)"
+      >
+        play_arrow
+      </mat-icon>
+    </div>
+  </mat-card-actions>
+  <!-- </div> -->
+</div>
