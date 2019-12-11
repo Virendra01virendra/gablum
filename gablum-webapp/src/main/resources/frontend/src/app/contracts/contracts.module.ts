@@ -5,11 +5,13 @@ import { MatCardModule, MatButtonModule, MatListModule, MatExpansionModule } fro
 import { MaterialModule } from '../material/material.module';
 import { ContractCardComponent } from './contract-card/contract-card.component';
 import { ContractDetailComponent } from './contract-detail/contract-detail.component';
+import { ContractPageComponent } from './contract-page/contract-page.component';
 
 @NgModule({
   declarations: [
     ContractCardComponent,
-    ContractDetailComponent],
+    ContractDetailComponent,
+    ContractPageComponent],
   imports: [
     CommonModule,
     ContractRoutingModule,
