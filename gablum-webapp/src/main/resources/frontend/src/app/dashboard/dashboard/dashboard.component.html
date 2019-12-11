@@ -197,8 +197,8 @@
     </mat-tab>
 
     <mat-tab label="Active Proposals">
-      <div class="proposal-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"></app-new-proposal-card>
+      <div class="proposal-card" fxLayout="row wrap" fxLayoutAlign="space-around">
+        <app-new-proposal-card *ngFor="let proposal of proposals" [proposal]="proposal"  fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-new-proposal-card>
       </div>
     </mat-tab>
 

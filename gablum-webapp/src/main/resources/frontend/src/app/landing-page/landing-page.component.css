@@ -2,7 +2,7 @@
     width: 100%;
     height: calc(100vh - 56px);
     background-image: url("src/assets/front.webp");
-    background-image:  linear-gradient(to bottom, rgba(173, 20, 87, 1.0), rgba(173, 20, 87, 0.2)), url("src/assets/front.webp");
+    background-image:  linear-gradient(to bottom, rgb(27, 94, 32, 1.0) , rgb(27, 94, 32, 0.2)), url("src/assets/front.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
