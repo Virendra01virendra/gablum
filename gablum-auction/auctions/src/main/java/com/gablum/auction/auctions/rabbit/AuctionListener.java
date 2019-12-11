@@ -29,6 +29,7 @@ public class AuctionListener {
 
     @StreamListener("startAuction")
     public void startAuction(String auctionId) {
+        log.info("message from scheduler ----> " + auctionId );
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String link = auctionId;

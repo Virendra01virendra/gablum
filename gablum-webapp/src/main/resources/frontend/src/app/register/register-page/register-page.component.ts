@@ -61,7 +61,7 @@ export class RegisterPageComponent implements OnInit {
     return this.registrationForm.get('businessSubDomain');
   }
 
-  subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+  subDomains = ['Raw material', 'Crops', 'Machinery'];
   roles = ['Buyer', 'Seller', 'Both'];
 
   registrationForm = new FormGroup({
