@@ -23,10 +23,10 @@ export class ContractsDataService {
     this.networking.getData<ContractDetail>(this.sellerUrl, dest, key);
   }
 
-  saveContract(contractDetail: ContractDetail){
+  saveContract(contractDetail: ContractDetail) {
     this.contract = contractDetail;
   }
-  retrieveContract(){
+  retrieveContract() {
     return this.contract;
   }
 }
