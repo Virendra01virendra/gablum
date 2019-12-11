@@ -30,8 +30,8 @@ export class DashboardComponent implements OnInit {
   public userRole = new Array();
 
   public userProfile: Profile;
-  allProposals: Proposal[];
   proposals: Proposal[];
+  allProposals: Proposal[];
   auctions: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
@@ -100,8 +100,9 @@ export class DashboardComponent implements OnInit {
           if (this.userProfile.role[0].role === 'buyer') {
             this.isBuyer = true;
             this.isSeller = false;
-          } else { this.isSeller = true;
-                   this.isBuyer = false;
+          } else {
+            this.isSeller = true;
+            this.isBuyer = false;
           }
         }
 
