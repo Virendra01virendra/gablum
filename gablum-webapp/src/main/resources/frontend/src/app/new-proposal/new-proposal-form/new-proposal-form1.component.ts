@@ -66,7 +66,12 @@ export class NewProposalForm1Component implements OnInit {
 
   deliveryDate = (d: Date): boolean => {
     const currentDate = new Date();
-    return (d.getDate() > currentDate.getDate() + 4) && (d > currentDate);
+    if (d.getMonth() === currentDate.getMonth()
+      && d.getFullYear() === currentDate.getFullYear()) {
+      return ((d.getDate() > currentDate.getDate() + 4));
+    } else if (d.getMonth() > currentDate.getMonth() || d.getFullYear() > currentDate.getFullYear()) {
+      return true;
+    }
   }
 
   onNext1(form: FormGroup) {
@@ -86,8 +91,7 @@ export class NewProposalForm1Component implements OnInit {
   RegStartDateFilter = (d: Date): boolean => {
     // Prevent dates after delivery date
     const currentDate = new Date();
-    return (d.getDate() < this.paramForm.value.deliveryDate.getDate() - 4) && (d > currentDate)
-    && (d < this.paramForm.value.deliveryDate);
+    return d > currentDate && d < this.paramForm.value.deliveryDate;
     // return true;
   }
 
@@ -121,26 +125,26 @@ export class NewProposalForm1Component implements OnInit {
   }
 
   productNameError() {
-  return this.productName.hasError('required') ? '*You must enter a product name' :
-    this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
-            '';
+    return this.productName.hasError('required') ? '*You must enter a product name' :
+      this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
+        '';
   }
 
   quantityValueError() {
     return this.quantityValue.hasError('required') ? '*You must enter quantity value' :
-    this.quantityValue.hasError('min') ? '* Enter positive quantity' :
-            '';
+      this.quantityValue.hasError('min') ? '* Enter positive quantity' :
+        '';
   }
 
   priceError() {
     return this.price.hasError('required') ? '*You must enter price' :
-    this.price.hasError('min') ? '* Enter positive price' :
-    this.price.hasError('maxLength') ? '* enter reasonable price' : '';
+      this.price.hasError('min') ? '* Enter positive price' :
+        this.price.hasError('maxLength') ? '* enter reasonable price' : '';
   }
 
   creditPeriodError() {
     return this.creditPeriod.hasError('required') ? '*You must enter Credit Period' :
-    this.creditPeriod.hasError('min') ? '* Enter positive credit period' :
-            '';
+      this.creditPeriod.hasError('min') ? '* Enter positive credit period' :
+        '';
   }
 }
