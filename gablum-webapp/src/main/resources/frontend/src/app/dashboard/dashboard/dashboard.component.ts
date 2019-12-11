@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   public isBuyer = false;
   public isSeller = false;
 
-  public userProfile: any;
+  public userProfile: Profile;
   allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
@@ -66,12 +66,6 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient,
   ) {
-    this.isLoggedIn = auth.getAuthenticated();
-    if (this.isLoggedIn) {
-      this.logger.log(this, auth.getProfileData());
-      this.isBuyer = auth.isBuyer();
-      this.isSeller = auth.isSeller();
-    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -120,6 +114,7 @@ export class DashboardComponent implements OnInit {
     this.isBuyer = this.auth.isBuyer();
     this.isSeller = this.auth.isSeller();
   }
+
 
   send() {
     this.ws.sendBid({ price: 100 });
