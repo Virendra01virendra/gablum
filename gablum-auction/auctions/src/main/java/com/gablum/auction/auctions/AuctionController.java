@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +33,9 @@ public class AuctionController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SimpMessageSendingOperations sendingOperations;
 
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
@@ -148,8 +153,12 @@ public class AuctionController {
         bidDataEntity.setCreatedBy(email);
         bidDataEntity.setAuctionId(id);
 
-        bidService.addBid(bidDataEntity);
-
+        BidDataEntity savedBid = bidService.addBid(bidDataEntity);
+        sendingOperations.convertAndSend(
+                "/topic/admin/" + id,
+                savedBid
+        );
+        
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
         ).build();

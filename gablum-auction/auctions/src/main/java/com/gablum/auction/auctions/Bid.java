@@ -1,7 +1,14 @@
 package com.gablum.auction.auctions;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
 
+
+@ToString
+@NoArgsConstructor
 public class Bid {
     private float price;
     private int creditPeriod;
