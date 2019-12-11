@@ -1,16 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContractComponent } from './contract.component';
-import { MatListModule, MatButtonModule, MatCardModule, MatExpansionModule } from '@angular/material';
+
+import { ContractDetailComponent } from './contract-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/app/material/material.module';
 
-describe('ContractComponent', () => {
-  let component: ContractComponent;
-  let fixture: ComponentFixture<ContractComponent>;
+describe('ContractDetailComponent', () => {
+  let component: ContractDetailComponent;
+  let fixture: ComponentFixture<ContractDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractComponent],
+      declarations: [ ContractDetailComponent ],
       imports: [
         BrowserAnimationsModule,
         MaterialModule
@@ -20,12 +20,12 @@ describe('ContractComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContractComponent);
+    fixture = TestBed.createComponent(ContractDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
