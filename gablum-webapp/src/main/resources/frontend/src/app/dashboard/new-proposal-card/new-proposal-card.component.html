@@ -1,56 +1,103 @@
-<mat-card class="proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-        <mat-card-title>{{proposal.productName}} </mat-card-title>
-        <mat-card-subtitle style="color: antiquewhite;">{{proposal.businessSubDomain}}</mat-card-subtitle>
-    </mat-card-header>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-        <app-timer [timerDetails]='proposal'></app-timer>
-    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<mat-card class="proposal-card">
 
-    <mat-card-content>
-        <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-
-            <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Price </mat-chip>
-                <mat-chip>{{proposal.price}} </mat-chip>
-
-            </div>
-            <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Quantity </mat-chip>
-                <mat-chip>{{proposal.quantityValue + ' ' + proposal.quantityUnit}}</mat-chip>
-            </div>
-            <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Registration End Date </mat-chip>
-                <mat-chip>{{proposal.regEndDate | date: 'mediumDate'}}</mat-chip>
-            </div>
-            <div fxLayoutAlign="space-between">
-                <mat-chip color="primary" selected="true">Auction End Date </mat-chip>
-                <mat-chip>{{proposal.auctionEndDate | date: 'mediumDate'}}</mat-chip>
-            </div>
-
+  <mat-card-header class="head">
+    <mat-card-title matTooltip="Product Name">{{
+      proposal.productName
+    }}</mat-card-title>
+    <mat-card-subtitle style="color: white;" fxLayout="row" fxLayoutAlign="space-between center">
+      <!-- <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+                        <div matTooltip = "Belongs to  Business Sub-Domain" fxFlex="30">
+                            <p>{{proposal.businessSubDomain}}</p></div>
+                        <div fxFlex="70">
+                            <div fxLayout="row" fxLayoutAlign="space-between">
+                            <app-timer [timerDetails]='proposal'></app-timer>
+                            </div>
+                        </div>
+                    </div> -->
+        <div>
+            <h2 class="mat-subheading-1" matTooltip="Belongs to  Business Sub-Domain">
+                {{ proposal.businessSubDomain }}
+            </h2>
         </div>
+        <div>
+            <h2 class="mat-subheading-1">
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                        <app-timer [timerDetails]='proposal'></app-timer>
+                </div>
+            </h2>
+        </div>      
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content >
+    <div fxLayoutAlign="space-between">
+        <i class="fa fa-money" aria-hidden="true" matTooltip="Price"></i>
+        <p class="mat-body-2">{{ proposal.price }}</p>
+    </div>
+    <div fxLayoutAlign="space-between">
+        <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity"></i>
+        <p class="mat-body-2">{{proposal.quantityValue + " " + proposal.quantityUnit}}</p>
+        <!-- <mat-chip color="primary" selected="true">Quantity </mat-chip>
+      <mat-chip>{{
+        proposal.quantityValue + " " + proposal.quantityUnit
+      }}</mat-chip> -->
+    </div>
+    <div fxLayoutAlign="space-between">
+        <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date"></i>
+        <p class="mat-body-2">{{ proposal.regEndDate | date: "mediumDate" }}</p>
+      <!-- <mat-chip color="primary" selected="true"
+        >Registration End Date
+      </mat-chip>
+      <mat-chip>{{ proposal.regEndDate | date: "mediumDate" }}</mat-chip> -->
+    </div>
+    <div fxLayoutAlign="space-between">
+        <i class="fa fa-calendar" aria-hidden="true" matTooltip="Registeration End-Date"></i>
+        <p class="mat-body-2">{{ proposal.regEndDate | date: "mediumDate" }}</p>
+        <!-- <mat-chip color="primary" selected="true">Auction End Date </mat-chip>
+      <mat-chip>{{ proposal.auctionEndDate | date: "mediumDate" }}</mat-chip> -->
+    </div>
+  </mat-card-content>
 
-    </mat-card-content>
+  <mat-card-actions>
+    <div fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
+      <mat-icon
+        matBadge="{{ proposal.interested }}"
+        matBadgePosition="before"
+        matBadgeColor="warm"
+        (click)="sellersListDialog(proposal)"
+        class="material-icons"
+        matTooltip="Interested Sellers"
+      >
+        list
+      </mat-icon>
 
-    <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
-
-
-        <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
-
-        <!-- <button mat-raised-button [disabled]="alreadyRegistered" color="primary"
-      (click)="shownInterest(proposal)">Interested ?</button> -->
-
-        <mat-icon matBadge={{proposal.interested}} matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers">
-            list
-        </mat-icon>
-
-        <mat-icon matTooltip="Extend Registration" class="material-icons" (click)="extendDialog(proposal)">
-            hourglass_empty
-        </mat-icon>
-        <mat-icon matTooltip="Delete Proposal" class="material-icons" (click)="delete(proposal)">delete</mat-icon>
-        <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)">visibility</mat-icon>
-        <mat-icon matTooltip="Start Auction" class="material-icons" (click)="startAuction(proposal)">
-            play_arrow
-        </mat-icon>
-    </mat-card-actions>
+      <mat-icon
+        matTooltip="Extend Registration"
+        class="material-icons"
+        (click)="extendDialog(proposal)"
+      >
+        hourglass_empty
+      </mat-icon>
+      <mat-icon
+        matTooltip="Delete Proposal"
+        class="material-icons"
+        (click)="delete(proposal)"
+        >delete</mat-icon
+      >
+      <mat-icon
+        matTooltip="See Details"
+        class="material-icons"
+        (click)="openDialog(proposal)"
+        >visibility</mat-icon
+      >
+      <mat-icon
+        matTooltip="Start Auction"
+        class="material-icons"
+        (click)="startAuction(proposal)"
+      >
+        play_arrow
+      </mat-icon>
+    </div>
+  </mat-card-actions>
+  <!-- </div> -->
 </mat-card>

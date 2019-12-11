@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +16,6 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "proposals")
 public class Proposal {
     @Id
     private String _id;
@@ -50,4 +48,49 @@ public class Proposal {
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
+    private String productDescription;
+
+    public String toStringContract(){
+        return _id + productName + String.valueOf(quantityValue) + quantityUnit
+                + String.valueOf(price) + String.valueOf(priceWeight)
+                + String.valueOf(deliveryDateWeight) + String.valueOf(qualityCertification) + String.valueOf(qualityCertificationWeight)
+                + String.valueOf(methodOfSupply) + String.valueOf(methodOfSupplyWeight);
+    }
+
+    @Override
+    public String toString() {
+        return "Proposal{" +
+                "proposalId='" + proposalId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", createdBy='" + createdBy + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
+                ", businessDomain='" + businessDomain + '\'' +
+                ", businessSubDomain='" + businessSubDomain + '\'' +
+                ", productName='" + productName + '\'' +
+                ", quantityValue=" + String.valueOf(quantityValue) +
+                ", quantityUnit='" + quantityUnit + '\'' +
+                ", price=" + String.valueOf(price) +
+                ", deliveryDate=" + String.valueOf(deliveryDate) +
+                ", creditPeriod=" + String.valueOf(creditPeriod) + "months" +
+                ", qualityCertification=" + qualityCertification +
+                ", methodOfSupply=" + methodOfSupply +
+                ", regStartDate=" + regStartDate +
+                ", regEndDate=" + regEndDate +
+                ", auctionStartDate=" + auctionStartDate +
+                ", auctionEndDate=" + auctionEndDate +
+                ", createdOn=" + createdOn +
+                ", updatedOn=" + updatedOn +
+                ", priceWeight=" + priceWeight +
+                ", creditPeriodWeight=" + creditPeriodWeight +
+                ", deliveryDateWeight=" + deliveryDateWeight +
+                ", methodOfSupplyWeight=" + methodOfSupplyWeight +
+                ", qualityCertificationWeight=" + qualityCertificationWeight +
+                '}';
+    }
+
+    public String toBeEncrypted() {
+        return createdBy + String.valueOf(createdOn) + businessDomain + businessSubDomain + productName
+                + String.valueOf(quantityValue) + quantityUnit + String.valueOf(price) + String.valueOf(priceWeight)
+                + String.valueOf(deliveryDate) + String.valueOf(deliveryDateWeight) + String.valueOf(creditPeriod);
+    }
 }
