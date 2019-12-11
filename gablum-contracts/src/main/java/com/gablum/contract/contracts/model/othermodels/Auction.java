@@ -2,7 +2,6 @@ package com.gablum.contract.contracts.model.othermodels;
 
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -13,7 +12,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @ToString
-@Document(collection = "auctions")
 public class Auction {
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
@@ -36,5 +34,9 @@ public class Auction {
     private Date auctionEndDate;
     public String toStringContract(){
         return auctionId + auctionName + proposal.toStringContract();
+    }
+    public String toBeEncrypted(){
+        return auctionName + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate)
+                +proposal.toBeEncrypted() + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate);
     }
 }

@@ -1,11 +1,8 @@
 package com.gablum.contract.contracts.model.othermodels;
 
+import com.gablum.contract.contracts.model.Block;
+import com.gablum.contract.contracts.model.Contracts;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.*;
 
 @Getter
@@ -13,15 +10,9 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Document("user")
 public class User {
-
-    @Id
     private String _id;
-    @NotEmpty(message = "*Please provide your name")
     private String name;
-    @Email(message = "*Please provide a valid email")
-    @NotEmpty(message = "*Please provide an email")
     private String email;
     private String password;
     private String address;
@@ -31,11 +22,10 @@ public class User {
     private String businessLicense;
     private String businessDomain;
     private String businessSubDomain;
-    public enum role {
-        BUYER, SELLER, BOTH, ADMIN
-    }
     private List<Map<String, List<String>>> userDomainDetails;
-
+    private Map<String, String> hashEncryptionKeyList;
+    private List<Block> blockchain;
+    private List<Contracts> contractList;
     public void addDomainDetails(String domain, String subDomain){
         if(domain == null){
             domain = "Agriculture";
@@ -47,7 +37,6 @@ public class User {
         userDomainDetails.add(singleDomainDetails);
     }
     private Set<Role> role = Set.of(new Role(1, "buyer"));
-    // TODO: remove hard coded role: DONE
     private Integer active=1;
     private boolean isLocked=false;
     private boolean isExpired=false;

@@ -1,13 +1,11 @@
 package com.gablum.contract.contracts.model;
 
 import com.gablum.contract.contracts.model.othermodels.Auction;
-import com.gablum.contract.contracts.model.othermodels.Bid;
 import com.gablum.contract.contracts.model.othermodels.BidDataEntity;
 import com.gablum.contract.contracts.model.othermodels.User;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import javax.validation.constraints.NotNull;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,11 +13,11 @@ import java.util.Random;
 import java.util.UUID;
 
 @Document("contracts")
-@Getter @Setter @AllArgsConstructor @ToString
+@Getter @Setter @ToString
 public class Contracts {
     @Id
     private String _id;
-    private String contractId = UUID.randomUUID().toString();;
+    private String contractId;
     private String auctionId;
     private String bidId;
     private Auction auctionDetails;
@@ -33,20 +31,23 @@ public class Contracts {
     private Boolean contractStatus = true;
     private String currentHash;
     private String previousHash;
-    private String key;
     private int nonce;
 
-    public void generatingKey(){
-        int leftLimit = 97, rightLimit = 122;
-        int targetStringLength = 32;
-
-        Random random = new Random();
-        StringBuilder buffer = new StringBuilder(targetStringLength);
-        for(int i=0; i<targetStringLength; i++){
-            int randomLimitedInt = leftLimit + (int)(random.nextFloat()*(rightLimit-leftLimit+1));
-            buffer.append((char) randomLimitedInt);
-        }
-        this.key = buffer.toString();
+    public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, User buyer, String sellerEmail, User seller, Boolean contractStatus, String previousHash) {
+        this.contractId = UUID.randomUUID().toString();
+        this.auctionId = auctionId;
+        this.bidId = bidId;
+        this.auctionDetails = auctionDetails;
+        this.bidDetails = bidDetails;
+        this.buyerEmail = buyerEmail;
+        this.buyer = buyer;
+        this.sellerEmail = sellerEmail;
+        this.seller = seller;
+        this.contractStatus = contractStatus;
+        this.previousHash = previousHash;
+        this.generatingBuyerESign();
+        this.generatingSellerESign();
+        this.generatingCurrentHash();
     }
 
     public void generatingBuyerESign(){
@@ -112,4 +113,9 @@ public class Contracts {
         }
     }
 
+    public String toBeEncrypted(){
+        return _id + contractId + auctionId + bidId + auctionDetails.toStringContract()
+                + bidDetails.toStringContract() + buyer.getName() + buyerEmail + buyer.getCompanyName()
+                + seller.getName() + sellerEmail + seller.getCompanyName();
+    }
 }
