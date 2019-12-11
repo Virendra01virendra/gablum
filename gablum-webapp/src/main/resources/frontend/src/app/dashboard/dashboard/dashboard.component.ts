@@ -23,6 +23,8 @@ import { Profile } from 'src/app/interfaces/profile';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
+  public buttonName = 'BUYER';
+  public show = true;
 
   public isLoggedIn = false;
   public isBuyer;
@@ -162,5 +164,15 @@ export class DashboardComponent implements OnInit {
 
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
+  }
+  switch() {
+    this.show = !this.show;
+
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.show) {
+      this.buttonName = 'BUYER';
+    } else {
+      this.buttonName = 'SELLER';
+    }
   }
 }
