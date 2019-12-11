@@ -15,6 +15,8 @@ export class EditProfileDialogComponent implements OnInit {
 
   public static messageKey = 'edit-profile-dialog-component';
 
+  public profile: Profile;
+
   get name() {
     return this.editProfileForm.get('name');
   }

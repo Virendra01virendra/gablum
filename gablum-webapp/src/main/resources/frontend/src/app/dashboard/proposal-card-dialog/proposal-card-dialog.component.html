@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Product Name: {{data.productName}}</h1>
-<div mat-dialog-content>
+<div mat-dialog-content style="overflow : hidden;">
     <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     Product Specs
@@ -44,12 +44,12 @@
     </mat-accordion>
 </div>
 <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
-
+  
     <button mat-raised-button mat-dialog-close color="secondary">Close</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Bidder's List</button>
-    <button mat-raised-button color="primary" mat-dialog-close>Extend Registration</button>
-    <button mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
-
+    <button mat-raised-button color="primary" mat-dialog-close >Bidder's List</button>
+    <button mat-raised-button color="primary" mat-dialog-close >Extend Registration</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
+  
 </div>
 
 
