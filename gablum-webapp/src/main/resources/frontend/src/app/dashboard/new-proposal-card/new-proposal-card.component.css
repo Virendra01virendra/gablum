@@ -1,19 +1,17 @@
-.proposal-card {
+/* .proposal-card {
   background-image: url("../../../assets/Images/agri_crop.jpg") ;
-  background-position: 105px 110px; /* Center the image */
+  box-shadow: 0 18px 45px 0 ; */
+  /* Center the image */
+  /* background-position: 105px 110px; 
   background-repeat: no-repeat;
   background-size: 30%;
-  
-    /* margin:1%;
-    padding: 1%;
-    max-width: 450px; */
-  }
+  } */
 
   .head
 {
-    background-color: #ad1457;
-   color: antiquewhite;
-   text-align: center; 
+   background-color: #1976D2;
+   color: white;
+   /* text-align: left;  */
 }
 
   
