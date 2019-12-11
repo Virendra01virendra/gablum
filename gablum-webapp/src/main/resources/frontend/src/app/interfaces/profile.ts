@@ -6,7 +6,6 @@ export interface Profile {
     address: string;
     phone: number;
     companyName: string;
-    userName: string;
     businessLicense: string;
     password: string;
     role: UserRole[];
