@@ -9,7 +9,7 @@ export interface Auction {
     isAuctionActive: boolean;
     participantsVerificationId: string;
     selectedParticipantList: string[];
-    bidIdList: uuid[];
+    bidIdList: string[];
     createdOn: Date;
     updatedOn: Date;
     createdBy: string;
