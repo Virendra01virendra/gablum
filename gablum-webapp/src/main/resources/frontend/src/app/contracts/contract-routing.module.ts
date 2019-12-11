@@ -6,7 +6,7 @@ import { ContractDetailComponent } from './contract-detail/contract-detail.compo
 
 const routes: Routes = [
   {
-    path: '/:id',
+    path: ':id',
     component: ContractDetailComponent,
     pathMatch: 'full'
   },
