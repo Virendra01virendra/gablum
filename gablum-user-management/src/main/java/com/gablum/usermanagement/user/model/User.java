@@ -2,7 +2,6 @@ package com.gablum.usermanagement.user.model;
 
 import com.gablum.usermanagement.user.model.othermodels.Block;
 import lombok.*;
-import org.apache.http.annotation.Contract;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

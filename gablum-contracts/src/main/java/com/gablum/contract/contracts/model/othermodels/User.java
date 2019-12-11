@@ -1,7 +1,6 @@
 package com.gablum.contract.contracts.model.othermodels;
 
 import com.gablum.contract.contracts.model.Block;
-import com.gablum.contract.contracts.model.Contracts;
 import lombok.*;
 import java.util.*;
 
