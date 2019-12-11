@@ -10,6 +10,7 @@
     width: 90%;
     margin: 2em auto;
     overflow-x: hidden;
+    background-image: url("../../../assets/Images/background.jpg");
 }
 .proposal-card {
     /* background-color: light rgba(6, 56, 97, 0.829);

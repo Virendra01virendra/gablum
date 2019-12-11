@@ -67,10 +67,10 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient,
   ) {
-    this.isLoggedIn = auth.getAuthenticated();
-    if (this.isLoggedIn) {
-      this.logger.log(this, auth.getProfileData());
-    }
+    // this.isLoggedIn = auth.getAuthenticated();
+    // if (this.isLoggedIn) {
+    //   this.logger.log(this, auth.getProfileData());
+    // }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(this, auth.getProfileData());
+          // this.logger.log(this, auth.getProfileData());
         }
 
         if ('userProfile' in data) {             // getting user profile for subDomain
@@ -97,7 +97,7 @@ export class DashboardComponent implements OnInit {
           this.businessSubdomain = this.userProfile.businessSubDomain;
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
           this.userRole = this.userProfile.role;
-          if (this.userProfile.role[0].role === 'buyer') {
+          if (this.userRole[0].role === 'buyer') {
             this.isBuyer = true;
             this.isSeller = false;
           } else { this.isSeller = true;
@@ -131,7 +131,7 @@ export class DashboardComponent implements OnInit {
         if (message.dest === '@all' || message.dest === DashboardComponent.messageKey) {
           const data = message.data;
           if ('newbid' in data) {
-            this.logger.log(data.newbid.body);
+            // this.logger.log(data.newbid.body);
             // this.bids.push(this.testBid);
           }
         }

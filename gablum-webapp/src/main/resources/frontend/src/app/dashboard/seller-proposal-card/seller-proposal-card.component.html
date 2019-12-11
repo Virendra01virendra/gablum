@@ -1,38 +1,38 @@
 <mat-card class="seller-proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-      <mat-card-title>{{allProposal.productName}} </mat-card-title>
-      <mat-card-subtitle style="color: antiquewhite;">{{allProposal.businessSubDomain}}</mat-card-subtitle>
-    </mat-card-header>
-  
-    <div fxLayout="row" fxLayoutAlign="space-between">
-            <app-timer [timerDetails] = "allProposal"></app-timer>
-          </div>
+  <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+    <mat-card-title>{{allProposal.productName}} </mat-card-title>
+    <mat-card-subtitle style="color: antiquewhite;">{{allProposal.businessSubDomain}}</mat-card-subtitle>
+  </mat-card-header>
 
-    <mat-card-content>
-      <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-  
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected="true">Price </mat-chip>
-          <mat-chip>{{allProposal.price}} </mat-chip>
-  
-        </div>
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected="true">Quantity </mat-chip>
-          <mat-chip>{{allProposal.quantityValue + ' ' + allProposal.quantityUnit}}</mat-chip>
-        </div>
-        <!-- <div>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <app-timer [timerDetails]="allProposal"></app-timer>
+  </div>
+
+  <mat-card-content>
+    <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+
+      <div fxLayoutAlign="space-between">
+        <mat-chip color="primary" selected="true">Price </mat-chip>
+        <mat-chip>{{allProposal.price}} </mat-chip>
+
+      </div>
+      <div fxLayoutAlign="space-between">
+        <mat-chip color="primary" selected="true">Quantity </mat-chip>
+        <mat-chip>{{allProposal.quantityValue + ' ' + allProposal.quantityUnit}}</mat-chip>
+      </div>
+      <!-- <div>
         <span>Delivery Date: </span>
         <span>{{proposal.deliveryDate}}</span>
       </div> -->
-      </div>
-  
-    </mat-card-content>
-  
-    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center" style="padding: 10px 10px 10px 10px;">
-  
-      <button mat-raised-button color="primary"
-      [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
-        (click)="shownInterest(allProposal)">Interested ?</button>
-      <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
-    </mat-card-actions>
-  </mat-card>
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center" style="padding: 10px 10px 10px 10px;">
+
+    <button mat-raised-button color="primary" [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
+      (click)="shownInterest(allProposal)">Interested ?</button>
+    <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">
+      visibility</mat-icon>
+  </mat-card-actions>
+</mat-card>

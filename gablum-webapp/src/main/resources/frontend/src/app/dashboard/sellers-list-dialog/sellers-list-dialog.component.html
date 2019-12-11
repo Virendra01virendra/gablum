@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Interested sellers</h1>
+<!-- <h1 mat-dialog-title>Interested sellers</h1>
 <div mat-dialog-content>
   
 
@@ -14,4 +14,35 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close] >close</button>
-</div>
+</div> -->
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+   
+  
+  
+    <!-- <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.get}} </td>
+    </ng-container> -->
+  
+  
+    <ng-container matColumnDef="sellerEmail">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.interestedUsersEmail}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell>
+         <button>Invite</button></td>
+    </ng-container>
+  
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>  
+  

@@ -14,16 +14,19 @@ export class SellersListDialogComponent implements OnInit {
 
   public static messageKey = 'sellers-list-dialog-component';
   disabled = false;
-  buttonClicked =  false;
+  buttonClicked = false;
   public isLoggedIn = false;
   public isBuyer = false;
   public isSeller = false;
   public profile: Profile;
   alreadyRegistered: boolean;
   public userEmail = '';
+  displayedColumns: string[] = ['sellerEmail', 'action'];
+  dataSource;
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: any, private proposalService: ProposalsDataService, comms: CommunicatorService,
-               private auth: AuthenticationService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private proposalService: ProposalsDataService, private comms: CommunicatorService,
+              private auth: AuthenticationService) {
+    this.dataSource = data;
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
@@ -39,9 +42,9 @@ export class SellersListDialogComponent implements OnInit {
         if ('invite-seller' in Data) {
           this.buttonClicked = true;
         }
-    }
-  });
-   }
+      }
+    });
+  }
 
   ngOnInit() {
   }
