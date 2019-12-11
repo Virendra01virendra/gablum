@@ -23,7 +23,7 @@ import { Profile } from 'src/app/interfaces/profile';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
-  public buttonName = '';
+  public buttonName = 'BUYERS VIEW';
   public show = true;
 
   public isLoggedIn = false;
@@ -100,20 +100,23 @@ export class DashboardComponent implements OnInit {
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
           this.userRole = this.userProfile.role;
           console.log(this.userProfile.role[0]);
-          if (this.userProfile.role[0].role === 'seller') {
+          console.log(this.userProfile.role[1]);
+          if (this.userProfile.role.length === 1 ) {
+            if (this.userProfile.role[0].role === 'seller') {
             this.isSeller = true;
             this.isBuyer = false;
+            } else {
+              this.isSeller = false;
+              this.isBuyer = true;
+            }
 
           } else {
             this.isBuyer = true;
-            if (this.userProfile.role[1].role === 'seller') {
-              this.isSeller = true;
-             } else {
-               this.isSeller = false;
-             }
+            this.isSeller = true;
           }
         }
-
+        console.log(this.isBuyer);
+        console.log(this.isSeller);
       }
     });
   }
@@ -174,12 +177,11 @@ export class DashboardComponent implements OnInit {
   }
   switch() {
     this.show = !this.show;
-
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show) {
-      this.buttonName = 'SELLERS VIEW';
-    } else {
       this.buttonName = 'BUYERS VIEW';
+    } else {
+      this.buttonName = 'SELLERS VIEW';
     }
-  }
+    }
 }
