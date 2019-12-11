@@ -74,6 +74,11 @@ public class AuctionController {
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
 
+            auctionsToAdd.get(i).setUpdatedBy(email);
+            auctionsToAdd.get(i).setUpdatedOn(new Date());
+            auctionsToAdd.get(i).setCreatedOn(new Date());
+            auctionsToAdd.get(i).setAuctionStartDate(auctionsToAdd.get(i).getProposal().getAuctionStartDate());
+            auctionsToAdd.get(i).setAuctionEndDate(auctionsToAdd.get(i).getProposal().getAuctionEndDate());
             log.info("email---------->" + email);
             if (auctionsToAdd.get(i).getSocketTokens() == null) {
                 auctionsToAdd.get(i).setSocketTokens(new HashMap<String, String>());

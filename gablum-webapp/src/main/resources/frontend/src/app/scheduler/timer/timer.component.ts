@@ -15,7 +15,7 @@ import { Auction } from 'src/app/interfaces/auction';
 export class TimerComponent implements OnInit, OnDestroy {
 
   @Input()
-  timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
+  timerDetails; /** the time period of the auction/ registeration is defined here */
   // @Input()
   // timerDetails1: Auction['proposal'];
 
@@ -30,6 +30,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   public seconds = 0;
   public toStartMsg: string;
   public endedMsg: string;
+  public liveMsg: string;
   timerEventTime: number;
   currentSubscription: Subscription;
 
@@ -40,6 +41,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const timerObject = Object.assign({}, this.timerDetails);
+    console.log('time object :::', timerObject);
     this.auctionStartDate = new Date(timerObject.auctionStartDate);
     this.auctionEndDate = new Date(timerObject.auctionEndDate);
     this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
@@ -95,6 +97,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.toStartMsg = 'Auction Begins in -->';
       this.timerEventTime = timetoStart.getTime() - localTime.getTime();
     } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
+      this.liveMsg = 'You are now live! Place your bids.';
       this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
       this.formatValue(this.timerEventTime);
     } else if (localTime.getTime() > timeToEnd.getTime()) {
