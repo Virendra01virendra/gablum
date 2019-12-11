@@ -22,6 +22,20 @@ export class ExtendProposalDialogComponent implements OnInit {
 
   });
 
+  public proposal: Proposal;
+
+  get regStartDate() {
+    return this.extendProposalForm.get('regStartDate');
+  }
+
+  get regEndDate() {
+    return this.extendProposalForm.get('regEndDate');
+  }
+
+  get deliveryDate() {
+    return this.extendProposalForm.get('deliveryDate');
+  }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Proposal,
     private router: Router,

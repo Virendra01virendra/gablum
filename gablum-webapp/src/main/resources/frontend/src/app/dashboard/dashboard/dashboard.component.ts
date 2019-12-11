@@ -118,6 +118,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
+
   send() {
     this.ws.sendBid({ price: 100 });
   }
