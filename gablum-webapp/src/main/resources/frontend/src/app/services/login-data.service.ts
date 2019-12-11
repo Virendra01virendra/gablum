@@ -24,36 +24,11 @@ export class LoginDataService {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })};
-    this.http.post<LoginToken>(
+    return this.http.post<LoginToken>(
       environment.loginApi,
       JSON.stringify(params),
       httpOptions
-      )
-      .subscribe(res => {
-        this.comms.postMessage(
-          this,
-          '@all',
-          {loginResult: {accessToken: res}}
-        );
-      },
-      err => {
-        this.logger.log(err);
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            this.comms.postMessage(
-              this,
-              '@all',
-              {loginResult: {accessToken: err.status}}
-            );
-          } else {
-            this.comms.postMessage(
-              this,
-              '@all',
-              {loginResult: {accessToken: 500}}
-            );
-          }
-        }
-      });
+      );
   }
 
   logout() {

@@ -15,8 +15,6 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
-import { UserRole } from '../../../../../../../../target/classes/frontend/src/app/interfaces/user-role';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -25,29 +23,29 @@ import { UserRole } from '../../../../../../../../target/classes/frontend/src/ap
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
-  public show = false;
-  public buttonName = 'Buyer';
+
   public isLoggedIn = false;
-  public isBuyer = false;
-  public isSeller = false;
-  public userRole = [];
+  public isBuyer;
+  public isSeller;
+  public userRole = new Array();
+
   public userProfile: Profile;
   allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
-  public dashboardSections: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-  ];
+  // public dashboardSections: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  // ];
 
-  public dashboardSections1: DashboardSection[] = [
-    { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-    { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
-    { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-    { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
+  // public dashboardSections1: DashboardSection[] = [
+  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
+  //   { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
+  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
+  //   { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
 
   public bids: NewBid[] = [];
   data;
@@ -66,15 +64,12 @@ export class DashboardComponent implements OnInit {
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
-    public auth: AuthenticationService,
+    private auth: AuthenticationService,
     public http: HttpClient,
   ) {
-    if (auth.getAuthenticated()) {
-      this.isLoggedIn = true;
-      this.userProfile = auth.getProfileData();
-      this.isBuyer = auth.isBuyer();
-      this.isSeller = auth.isSeller();
-      this.userRole = this.userProfile.role;
+    this.isLoggedIn = auth.getAuthenticated();
+    if (this.isLoggedIn) {
+      this.logger.log(this, auth.getProfileData());
     }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
@@ -82,30 +77,32 @@ export class DashboardComponent implements OnInit {
 
         if ('proposals' in data) {
           this.proposals = data.proposals;
-          // this.logger.log(this.proposals);
         }
 
         if ('sellerProposals' in data) {
           this.allProposals = data.sellerProposals;
-          // this.logger.log(this.allProposals);
         }
 
         if ('auctions' in data) {
           this.auctions = data.auctions;
-          // this.logger.log(this.auctions);
+        }
+
+        if ('authChanged' in data) {
+          this.isLoggedIn = auth.getAuthenticated();
+          this.logger.log(this, auth.getProfileData());
         }
 
         if ('userProfile' in data) {             // getting user profile for subDomain
           this.userProfile = data.userProfile;
           this.businessSubdomain = this.userProfile.businessSubDomain;
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
-        }
-
-        if ('authChanged' in data) {
-          this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(this, auth.getProfileData());
-          this.isBuyer = auth.isBuyer();
-          this.isSeller = auth.isSeller();
+          this.userRole = this.userProfile.role;
+          if (this.userProfile.role[0].role === 'buyer') {
+            this.isBuyer = true;
+            this.isSeller = false;
+          } else { this.isSeller = true;
+                   this.isBuyer = false;
+          }
         }
 
       }
@@ -119,16 +116,7 @@ export class DashboardComponent implements OnInit {
     this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
 
-    this.isLoggedIn = this.auth.getAuthenticated();
-    this.logger.log(this.auth.getProfileData());
-    this.isBuyer = this.auth.isBuyer();
-    this.isSeller = this.auth.isSeller();
   }
-
-  // ngAfterViewChecked() {
-    // this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-
-  // }
 
 
   send() {
@@ -174,14 +162,5 @@ export class DashboardComponent implements OnInit {
 
     this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
 
-  }
-
-  toggle() {
-    this.show = !this.show;
-    if (this.show) {
-      this.buttonName = 'Buyer';
-    } else {
-      this.buttonName = 'Seller';
-    }
   }
 }

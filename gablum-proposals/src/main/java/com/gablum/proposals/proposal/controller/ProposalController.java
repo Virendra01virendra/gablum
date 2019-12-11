@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class ProposalController {
+public class    ProposalController {
 
     public MessageChannel messageChannel;
 
@@ -27,7 +27,7 @@ public class ProposalController {
     @Autowired
     private UserService userService;
 
-    public ProposalController(ProposalInterfaceRabbit proposalInterface){
+    public ProposalController(ProposalInterfaceRabbit proposalInterface) {
         messageChannel = proposalInterface.newProposalMessageChannel();
     }
 
@@ -66,7 +66,7 @@ public class ProposalController {
 
     //Extending the proposal
     @PatchMapping("proposals/{proposalId}")
-    public ResponseEntity<Proposal> extendedProposal (
+    public ResponseEntity<Proposal> extendedProposal(
             @RequestBody Proposal modifiedProposal, @PathVariable("proposalId") String proposalId) {
         Proposal proposal = proposalService.getProposalById(proposalId);
         if (proposal == null) {
@@ -88,16 +88,22 @@ public class ProposalController {
 
     @PatchMapping("/proposals")
     //FIXME: Duplicate enteries are possible
-    public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request ){
+    public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
         String currentLoggedUserEmail = userService.getEmail(request);
-        return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail,proposalInWhichAdditionIsDone),HttpStatus.OK);
+        return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
     }
 
     @GetMapping("/proposals/browse/{businessSubDomain}")
-    public ResponseEntity<List<Proposal>> getProposalsBySubDomain(@RequestParam Map<String, String> queryMap, @PathVariable("businessSubDomain") String businessSubDomain ) {
+    public ResponseEntity<List<Proposal>> getProposalsBySubDomain(@RequestParam Map<String, String> queryMap, @PathVariable("businessSubDomain") String businessSubDomain) {
         return new ResponseEntity<List<Proposal>>(
                 proposalService.getAllProposalsByBusinessSubDomain(queryMap, businessSubDomain),
                 HttpStatus.OK
         );
     }
+
+//    @PatchMapping("/proposals")
+//    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
+//        String currentLoggedUserEmail = userService.getEmail(request);
+//        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
+//    }
 }

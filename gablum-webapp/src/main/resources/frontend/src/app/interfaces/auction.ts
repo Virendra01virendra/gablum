@@ -16,4 +16,5 @@ export interface Auction {
     updatedBy: string;
     auctionStartDate: Date;
     auctionEndDate: Date;
+    socketToken?: string;
 }
