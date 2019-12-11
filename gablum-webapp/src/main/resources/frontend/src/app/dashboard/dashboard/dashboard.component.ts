@@ -99,11 +99,17 @@ export class DashboardComponent implements OnInit {
           this.businessSubdomain = this.userProfile.businessSubDomain;
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
           this.userRole = this.userProfile.role;
-          if (this.userProfile.role[0].role === 'buyer') {
+          if (this.userProfile.role[0].role === 'seller') {
+            this.isSeller = true;
+            this.isBuyer = false;
+
+          } else {
             this.isBuyer = true;
-            this.isSeller = false;
-          } else { this.isSeller = true;
-                   this.isBuyer = false;
+            if (this.userProfile.role[1].role === 'seller') {
+              this.isSeller = true;
+             } else {
+               this.isSeller = false;
+             }
           }
         }
 

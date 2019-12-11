@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
-    // canLoad: [AuthGuardService]
+    canLoad: [AuthGuardService]
   },
   // {
   //   path: 'console',
