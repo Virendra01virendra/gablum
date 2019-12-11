@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
     <mat-icon class="title-icon">dashboard</mat-icon>
     <span class="title" fxHide.xs>Dashboard</span>
-      <button *ngIf="isBuyer && isSeller" mat-raised-button color="accent" (click)="switch()">{{buttonName}}</button>
+    
+      <button class="but1" *ngIf="isBuyer && isSeller" mat-raised-button color="accent" (click)="switch()">{{buttonName}}</button>
     
   </mat-toolbar> 
   

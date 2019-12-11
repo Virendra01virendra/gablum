@@ -3,7 +3,7 @@ package com.gablum.gateway.jwt;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "jwtToken")
+@Document(collection = "JwtTokens")
 public class JwtToken {
     @Id
     private String token;

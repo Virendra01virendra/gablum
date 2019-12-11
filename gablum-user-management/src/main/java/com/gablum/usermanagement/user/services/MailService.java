@@ -10,7 +10,6 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,14 @@ public class MailService {
         if (type == "registering"){
             msg.setTo(user.getEmail());
             msg.setSubject("Verification of Email");
-            msg.setText("All the mails form Gablum will be sent here.");
+
+            String text = "Hello " +user.getName()+ " from"+user.getCompanyName();
+            text += "Welcome to Gablum!!\nThanks for choosing us for your business.";
+            text += "Get started by logging in to your profile";
+            text += "You can now connect with businesses that best suit your expectations.\nIn case of " +
+                    "any query you can connect with our support team once you login.";
+            text += "\n\nSee you online.\nTeam Gablum.";
+            msg.setText(text);
             try
             {
                 javaMailSender.send(msg);
@@ -41,25 +47,21 @@ public class MailService {
             msg.setTo(proposal.getCreatedBy());
 
             msg.setSubject("New Proposal Added");
-            String text = "You added a new Proposal.\n";
-            text += "\nProposal Details are : \n";
-            text += "\nProduct Name : " + proposal.getProductName();
-            text += "\nDomain : " + proposal.getBusinessDomain();
-            text += "\nSubDomain : " + proposal.getBusinessSubDomain();
-            text += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
-            text += "\nQuality Certification Weight : " + proposal.getQualityCertificationWeight() ;
-            text += "\nPrice: " + proposal.getPrice() ;
-            text += "\nPrice Weight : " + proposal.getPriceWeight() ;
-            text += "\nCredit Period : " + proposal.getCreditPeriod() + "months" ;
-            text += "\nCredit Period Weight : " + proposal.getCreditPeriodWeight() ;
-            text += "\nDelivery : " + proposal.getDeliveryDate() ;
-            text += "\nDelivery Date : " + proposal.getDeliveryDateWeight() ;
-            text += "\nMethod of Supply Weight : " + proposal.getMethodOfSupplyWeight() ;
-            text += "\nRegistration Start Date : " + proposal.getRegStartDate() ;
-            text += "\nRegistration End Date : " + proposal.getRegEndDate() ;
-            text += "\nAuction Start Date : " + proposal.getAuctionStartDate() ;
-            text += "\nAuction End Date : " + proposal.getAuctionEndDate() ;
+
+            String text = "Thanks for floating a new proposal on Gablum.";
+            text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
+            text += "\n\n<h1>Proposal Details are</h1> : \n";
+            text += "\n<h3>Product Name : </h3>" + proposal.getProductName();
+            text += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
+            text += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();
+            text += "\n<h3>Quantity : </h3>" + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
+            text += "\n<h3>Delivery : </h3>" + proposal.getDeliveryDate() ;
+            text += "\n<h3>Registration Start Date : </h3>" + proposal.getRegStartDate() ;
+            text += "\n<h3>Auction Start Date : </h3>" + proposal.getAuctionStartDate() ;
+            text += "\n\nSimply visit your account dashboard if you wish to make changes to your floated proposal.";
+            text += "\nTeam Gablum";
             msg.setText(text);
+
             try
             {
                 javaMailSender.send(msg);
@@ -69,6 +71,7 @@ public class MailService {
             }
         }
     }
+
 
     public void sendAuctionEmail(String type, Auction auction) {
         SimpleMailMessage msg = new SimpleMailMessage();

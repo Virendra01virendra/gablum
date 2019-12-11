@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@Document("Bids")
+@Document("bids")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class BidDataEntity {
 
@@ -21,6 +21,9 @@ public class BidDataEntity {
 
     private String createdBy;
 
-
+    public String toStringContract(){
+        return this.getBidId() + this.getAuctionId() + this.getCreatedBy() +
+                this.getBid().toString()+ String.valueOf(this.scoreObject.getTotal());
+    }
 
 }
