@@ -2,11 +2,10 @@
   <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
     <mat-card-title>{{auction.auctionName}}</mat-card-title>
     <mat-card-subtitle style="color: antiquewhite;">{{auction.proposal.businessSubDomain}}</mat-card-subtitle>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-    <!-- <app-timer></app-timer> -->
-    </div>
-  </mat-card-header>
-  <!-- <img mat-card-image src="https://picsum.photos/300"> -->
+</mat-card-header>
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <app-timer [timerDetails]='auction'></app-timer>
+  </div>
   <mat-card-content>
     <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
 
