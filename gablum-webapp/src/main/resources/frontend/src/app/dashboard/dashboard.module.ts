@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
+import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
@@ -47,6 +48,9 @@ import { MatDatepickerModule } from '@angular/material';
     SellersListDialogComponent,
     ExtendProposalDialogComponent,
     AuctionStartDialogComponent
+  ],
+  exports: [
+    SellerProposalCardComponent
   ]
 })
 export class DashboardModule { }

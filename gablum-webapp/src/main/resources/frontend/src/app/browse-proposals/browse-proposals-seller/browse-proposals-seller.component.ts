@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { ProposalsDataService } from 'src/app/services/proposals-data.service';
+import { Proposal } from 'src/app/interfaces/proposal';
 
 @Component({
   selector: 'app-browse-proposals-seller',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowseProposalsSellerComponent implements OnInit {
 
-  constructor() { }
+  public static messageKey = 'browser-proposals-seller-component';
+  public proposals: Proposal[];
 
-  ngOnInit() {
+  constructor(private comms: CommunicatorService,
+              private proposalDataService: ProposalsDataService) {
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === BrowseProposalsSellerComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+
+        if ('proposals' in data) {
+          this.proposals = data.proposals;
+        }
+   }
+  });
+}
+
+      ngOnInit() {
+    this.proposalDataService.getAllProposalForSeller(BrowseProposalsSellerComponent.messageKey, 'proposals');
+
   }
 
 }
