@@ -1,3 +1,35 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<mat-card class="proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+        <mat-card-title>ProductName</mat-card-title>
+        <mat-card-subtitle style="color: antiquewhite;">businessSubDomain</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
+
+            <div fxLayoutAlign="space-between">
+                <i class="fa fa-money" aria-hidden="true" matTooltip="Price"></i>
+                <p class="mat-body-2">Price</p>
+            </div>
+
+            <div fxLayoutAlign="space-between">
+                <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity"></i>
+                <p class="mat-body-2">Quantity</p>
+            </div>
+
+            <div fxLayoutAlign="space-between">
+                <i class="material-icons">date_range</i>
+                <p class="mat-body-2">Delivery Date</p>
+            </div>
+
+            <div fxLayoutAlign="space-between">
+                <i class="material-icons" matTooltip="Credit Period">calendar_today</i>
+                <p class="mat-body-2">Credit Period</p>
+            </div>
+
+        </div>
+    </mat-card-content>
 
 
 
@@ -14,11 +46,7 @@
 
 
 
-
-
-
-
-<!-- <mat-toolbar color="primary">
+        <!-- <mat-toolbar color="primary">
     <mat-icon class="title-icon">book</mat-icon>
     <span class="title" fxHide.xs>Past Contracts</span>
     <span class="title" fxHide.gt-xs>Contracts</span>
