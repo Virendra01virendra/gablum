@@ -24,7 +24,7 @@ public class MailService {
         if (type == "registering"){
             msg.setTo(user.getEmail());
             msg.setSubject("Verification of Email");
-            msg.setText("All the mails form Gablum will be sent here.");
+            msg.setText("All the mails from Gablum will be sent here.");
             try
             {
                 javaMailSender.send(msg);
