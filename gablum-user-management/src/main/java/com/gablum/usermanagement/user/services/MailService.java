@@ -43,26 +43,19 @@ public class MailService {
 
             msg.setSubject("New Proposal Added");
 
-            String text = "You added a new Proposal.";
-            text += "We hope for getting you the best pool of suppliers inline with your proposal.\n"
+            String text = "Thanks for floating a new proposal on your platform.";
+            text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
             text += "\n\nProposal Details are : \n";
             text += "\nProduct Name : " + proposal.getProductName();
             text += "\nDomain : " + proposal.getBusinessDomain();
             text += "\nSubDomain : " + proposal.getBusinessSubDomain();
             text += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
-//            text += "\nQuality Certification Weight : " + proposal.getQualityCertificationWeight() ;
-//            text += "\nPrice: " + proposal.getPrice() ;
-//            text += "\nPrice Weight : " + proposal.getPriceWeight() ;
-//            text += "\nCredit Period : " + proposal.getCreditPeriod() + "months" ;
-//            text += "\nCredit Period Weight : " + proposal.getCreditPeriodWeight() ;
             text += "\nDelivery : " + proposal.getDeliveryDate() ;
             text += "\nDelivery Date : " + proposal.getDeliveryDateWeight() ;
-            text += "\nMethod of Supply Weight : " + proposal.getMethodOfSupplyWeight() ;
             text += "\nRegistration Start Date : " + proposal.getRegStartDate() ;
-            text += "\nRegistration End Date : " + proposal.getRegEndDate() ;
             text += "\nAuction Start Date : " + proposal.getAuctionStartDate() ;
-            text += "\nAuction End Date : " + proposal.getAuctionEndDate() ;
-            text += "\n\n\nTeam Gablum"
+            text += "\n\nSimply visit your acccount dashboard if you wish to make changes to your floated proposal.";
+            text += "\n\n\nRegards,\nTeam Gablum";
             msg.setText(text);
 
             try
