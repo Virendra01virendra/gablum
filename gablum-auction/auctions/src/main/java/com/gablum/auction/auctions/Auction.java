@@ -20,10 +20,8 @@ import java.util.UUID;
 @ToString
 @Document(collection = "auctions")
 public class Auction {
-
     @Id
     private String _id;
-
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
     private String auctionId = UUID.randomUUID().toString();
@@ -33,22 +31,24 @@ public class Auction {
     private Proposal proposal;
     boolean isAuctionActive;
     boolean isAuctionFinished;
-
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
     private String winningBid;
-
     private HashMap<String, String> socketTokens;
-
-
     private Date createdOn;
     private Date updatedOn;
-
     private String createdBy; // username
     private String updatedBy; // username
-
     private Date auctionStartDate;
     private Date auctionEndDate;
+    private List<String> bidIdList;
 
+    public String toStringContract(){
+        return auctionId + auctionName + proposal.toStringContract();
+    }
+    public String toBeEncrypted(){
+        return auctionName + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate)
+                +proposal.toBeEncrypted() + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate);
+    }
 }
