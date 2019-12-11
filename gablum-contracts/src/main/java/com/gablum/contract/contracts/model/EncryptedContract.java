@@ -13,7 +13,7 @@ public class EncryptedContract {
     private String initVector ;
     private IvParameterSpec iv;
     private SecretKeySpec secretKeySpec;
-
+    private int nonce;
     public void generatingKey(){
         int leftLimit = 97, rightLimit = 122;
         int targetStringLength = 32;

@@ -31,7 +31,7 @@ public class Contracts {
     private Boolean contractStatus = true;
     private String currentHash;
     private String previousHash;
-    private int nonce;
+
 
     public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, User buyer, String sellerEmail, User seller, Boolean contractStatus, String previousHash) {
         this.contractId = UUID.randomUUID().toString();

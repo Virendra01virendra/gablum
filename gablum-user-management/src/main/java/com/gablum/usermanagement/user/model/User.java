@@ -36,7 +36,10 @@ public class User {
     private List<Map<String, List<String>>> userDomainDetails;
     private Map<String, String> hashEncryptionKeyList;
     private List<Block> blockchain;
-    private List<Contract> contractList;
+    private List<String> contractIdList;
+    private List<String> proposalIdList;
+    private List<String> auctionIdList;
+    private List<String> bidIdList;
     public void addDomainDetails(String domain, String subDomain){
         if(domain == null){
             domain = "Agriculture";

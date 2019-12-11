@@ -48,6 +48,7 @@ public class Proposal {
     private int deliveryDateWeight;
     private int methodOfSupplyWeight;
     private int qualityCertificationWeight;
+    private String productDescription;
 
     public String toStringContract(){
         return _id + productName + String.valueOf(quantityValue) + quantityUnit

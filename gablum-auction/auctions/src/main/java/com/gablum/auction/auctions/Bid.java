@@ -48,4 +48,5 @@ public class Bid {
     public void setTimeOfDelivery(Date timeOfDelivery) {
         this.timeOfDelivery = timeOfDelivery;
     }
+
 }

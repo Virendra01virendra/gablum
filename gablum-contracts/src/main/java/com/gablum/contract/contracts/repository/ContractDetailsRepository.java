@@ -6,12 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 @Repository
 public interface ContractDetailsRepository extends MongoRepository<Contracts, Integer> {
     Contracts findByContractId(String contractsId);
-    List<Contracts> findByBuyerId(String buyerId);
-    List<Contracts> findBySellerId(String sellerId);
+    List<Contracts> findByBuyerEmail(String buyerEmail);
+    List<Contracts> findBySellerEmail(String sellerEmail);
     Contracts findByAuctionId(String auctionId);
     Contracts findByBidId(String bidId);
 }
