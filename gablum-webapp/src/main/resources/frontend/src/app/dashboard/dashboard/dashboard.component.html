@@ -1,14 +1,14 @@
 <mat-toolbar color="primary">
     <mat-icon class="title-icon">dashboard</mat-icon>
     <span class="title" fxHide.xs>Dashboard</span>
-    <div *ngIf="isBuyer && isSeller">
+    <ng-container *ngIf="isBuyer && isSeller">
       <button mat-raised-button color="primary" (click)="switch()">{{buttonName}}</button>
-    </div>
+    </ng-container>
   </mat-toolbar> 
   
   <!--tab for seller-->
   
-  <ng-template *ngIf="isSeller && !isBuyer" class="dashboard-container">
+  <ng-container *ngIf="isSeller && !isBuyer" class="dashboard-container">
     <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
       <mat-tab label="Active Auctions">
         <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -67,11 +67,11 @@
       </mat-expansion-panel>
     </mat-accordion>
   
-  </ng-template>
+  </ng-container>
   
   <!--Tab for buyer-->
   
-  <ng-template *ngIf="isBuyer && !isSeller" class="dashboard-container">
+  <ng-container *ngIf="isBuyer && !isSeller" class="dashboard-container">
     <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
       <mat-tab label="Active Auctions">
         <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -132,12 +132,12 @@
     </mat-accordion>
   
   
-  </ng-template> 
+  </ng-container> 
 
   <!-- Tab for both buyer and seller -->
 <ng-container *ngIf="isBuyer && isSeller">
   <!-- when view is Seller -->
-  <ng-template *ngIf="show" class="dashboard-container">
+  <ng-container *ngIf="show" class="dashboard-container">
       <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
         <mat-tab label="Active Auctions">
           <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -196,17 +196,16 @@
         </mat-expansion-panel>
       </mat-accordion>
     
-    </ng-template>
-    <ng-container class="fab-container" fxLayout="column nowrap" *ngIf="show">
-        <a mat-fab class="add-proposal-button" matTooltip="browse all active proposals" [routerLink]="['/browse']"
-        >
+    </ng-container>
+    <div class="fab-container" fxLayout="column nowrap" >
+        <a mat-fab class="add-proposal-button" matTooltip="browse all active proposals" [routerLink]="['/browse']" *ngIf="show">
           <mat-icon>list</mat-icon>
         </a>
-      </ng-container>
+      </div>
 
     <!-- when view is Buyer -->
 
-    <ng-template *ngIf="!show" class="dashboard-container">
+    <ng-container *ngIf="!show" class="dashboard-container">
         <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
           <mat-tab label="Active Auctions">
             <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -267,13 +266,13 @@
         </mat-accordion>
       
       
-      </ng-template> 
-      <ng-container class="fab-container" fxLayout="column nowrap" *ngIf="!show">
+      </ng-container> 
+      <div class="fab-container" fxLayout="column nowrap" >
           <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/floatProposal']"
-          >
+          *ngIf="!show">
             <mat-icon>add</mat-icon>
           </a>
-        </ng-container>
+        </div>
         
   </ng-container>
 

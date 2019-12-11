@@ -23,7 +23,7 @@ import { Profile } from 'src/app/interfaces/profile';
 export class DashboardComponent implements OnInit {
 
   public static messageKey = 'DashboardComponent';
-  public buttonName = 'BUYER';
+  public buttonName = '';
   public show = true;
 
   public isLoggedIn = false;
@@ -99,6 +99,7 @@ export class DashboardComponent implements OnInit {
           this.businessSubdomain = this.userProfile.businessSubDomain;
           this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
           this.userRole = this.userProfile.role;
+          console.log(this.userProfile.role[0]);
           if (this.userProfile.role[0].role === 'seller') {
             this.isSeller = true;
             this.isBuyer = false;
@@ -176,9 +177,9 @@ export class DashboardComponent implements OnInit {
 
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show) {
-      this.buttonName = 'BUYER';
+      this.buttonName = 'SELLERS VIEW';
     } else {
-      this.buttonName = 'SELLER';
+      this.buttonName = 'BUYERS VIEW';
     }
   }
 }
