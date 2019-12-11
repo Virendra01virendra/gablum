@@ -1,6 +1,7 @@
 package com.gablum.contract.contracts.model.othermodels;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.Date;
@@ -13,6 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 public class Auction {
+    @Id
+    private String _id;
     @Indexed(unique = true)
     @Setter(AccessLevel.NONE)
     private String auctionId = UUID.randomUUID().toString();
@@ -32,6 +35,8 @@ public class Auction {
     private String updatedBy; // username
     private Date auctionStartDate;
     private Date auctionEndDate;
+    private String winningBid;
+
     public String toStringContract(){
         return auctionId + auctionName + proposal.toStringContract();
     }
@@ -39,4 +44,5 @@ public class Auction {
         return auctionName + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate)
                 +proposal.toBeEncrypted() + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate);
     }
+
 }

@@ -1,7 +1,6 @@
 package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -15,16 +14,13 @@ import java.util.UUID;
 @ToString
 @Document(collection = "auctions")
 public class Auction {
-
-    @Indexed(unique = true)
-    @Setter(AccessLevel.NONE)
+    private String _id;
     private String auctionId = UUID.randomUUID().toString();
     private String uniqueLink;
 //    private UUID proposalId;
     private String auctionName;
     private Proposal proposal;
     boolean isAuctionActive;
-
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
@@ -41,5 +37,14 @@ public class Auction {
 
     private Date auctionStartDate;
     private Date auctionEndDate;
+    private String winningBid;
+
+    public String toStringContract(){
+        return auctionId + auctionName + proposal.toStringContract();
+    }
+    public String toBeEncrypted(){
+        return auctionName + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate)
+                +proposal.toBeEncrypted() + String.valueOf(auctionStartDate) + String.valueOf(auctionEndDate);
+    }
 
 }

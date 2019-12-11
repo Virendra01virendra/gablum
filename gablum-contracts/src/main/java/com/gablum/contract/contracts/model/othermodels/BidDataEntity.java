@@ -17,4 +17,5 @@ public class BidDataEntity {
         return this.getBidId() + this.getAuctionId() + this.getCreatedBy() +
                 this.getBid().toString()+ String.valueOf(this.scoreObject.getTotal());
     }
+
 }
