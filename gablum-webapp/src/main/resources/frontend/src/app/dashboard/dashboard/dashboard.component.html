@@ -2,10 +2,14 @@
 <mat-toolbar color="primary">
   <mat-icon class="title-icon">dashboard</mat-icon>
   <span class="title" fxHide.xs>Dashboard</span>
+  <span> A__ {{userProfile.role[0].role}} </span>
   <div class="hider" fxFlex="row" fxLayoutAlign=" space-around end" [hidden]="!isBuyer && !isSeller">
   <button mat-raised-button (click)=toggle() matTooltip="Toggle between both views">{{buttonName}}</button>
 </div>
 </mat-toolbar>
+<ng-container *ngIf="userProfile.role[0].role=='buyer'">
+  SUCK IT
+</ng-container>
 <!--tab for seller-->
 <ng-container *ngIf="isSeller && !isBuyer" class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>

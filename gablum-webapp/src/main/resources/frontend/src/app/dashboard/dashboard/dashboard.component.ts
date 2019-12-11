@@ -15,6 +15,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
+import { UserRole } from '../../../../../../../../target/classes/frontend/src/app/interfaces/user-role';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,8 +30,8 @@ export class DashboardComponent implements OnInit {
   public isLoggedIn = false;
   public isBuyer = false;
   public isSeller = false;
-
-  public userProfile: any;
+  public userRole = [];
+  public userProfile: Profile;
   allProposals: Proposal[];
   proposals: Proposal[];
   auctions: Auction[];
@@ -65,9 +66,16 @@ export class DashboardComponent implements OnInit {
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
-    private auth: AuthenticationService,
+    public auth: AuthenticationService,
     public http: HttpClient,
   ) {
+    if (auth.getAuthenticated()) {
+      this.isLoggedIn = true;
+      this.userProfile = auth.getProfileData();
+      this.isBuyer = auth.isBuyer();
+      this.isSeller = auth.isSeller();
+      this.userRole = this.userProfile.role;
+    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -87,17 +95,17 @@ export class DashboardComponent implements OnInit {
           // this.logger.log(this.auctions);
         }
 
+        if ('userProfile' in data) {             // getting user profile for subDomain
+          this.userProfile = data.userProfile;
+          this.businessSubdomain = this.userProfile.businessSubDomain;
+          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
+        }
+
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
           this.logger.log(this, auth.getProfileData());
           this.isBuyer = auth.isBuyer();
           this.isSeller = auth.isSeller();
-        }
-
-        if ('userProfile' in data) {             // getting user profile for subDomain
-          this.userProfile = data.userProfile;
-          this.businessSubdomain = this.userProfile.businessSubDomain;
-          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
         }
 
       }
