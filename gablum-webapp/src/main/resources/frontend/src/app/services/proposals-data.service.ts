@@ -14,6 +14,7 @@ export class ProposalsDataService {
   public proposalsUrl: string;
   public guestProposallistUrl: string;
   public sellerProposalsUrl: string;
+  public inviteSellerUrl: string;
 
   constructor(
     private comms: CommunicatorService,
@@ -22,6 +23,7 @@ export class ProposalsDataService {
   ) {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
+    this.inviteSellerUrl = environment.inviteSellerUrl;
   }
 
   saveProposal(dest, data, key) {
