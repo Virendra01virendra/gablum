@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SellersListDialogComponent } from './sellers-list-dialog.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('SellersListDialogComponent', () => {
   let component: SellersListDialogComponent;
@@ -32,7 +33,7 @@ describe('SellersListDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SellersListDialogComponent ],
-      imports: [ MaterialModule],
+      imports: [ MaterialModule, HttpClientModule],
       providers: [{
         provide: MAT_DIALOG_DATA,
         useValue: data
