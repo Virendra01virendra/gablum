@@ -25,19 +25,20 @@ export class NetworkingService {
         })
       )
       .subscribe(res => {
-        this.comms.postMessage(this, dest, {[key]: res});
+        this.comms.postMessage(this, dest, { [key]: res });
       },
-      err => {
-        this.logger.log(err);
-      });
+        err => {
+          this.logger.log(err);
+        });
   }
 
   patchData<T>(url: string, dest: string, data, key = 'inventory') {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
-      })};
-    console.log( 'datata :::', data);
+      })
+    };
+    console.log('datata :::', data);
     return this.http.patch<T>(url, data, httpOptions)
       .pipe(
         retry(3),
@@ -46,20 +47,21 @@ export class NetworkingService {
         })
       );
       // .subscribe(res => {
-      //   this.comms.postMessage(this, dest, {[key]: res});
+      //   this.comms.postMessage(this, dest, { [key]: res });
       //   this.getData<T>(url, dest, key);
       // },
-      // err => {
-      //   this.logger.log(err);
-      // });
+      //   err => {
+      //     this.logger.log(err);
+      //   });
   }
 
   postData<T>(url: string, dest: string, data, key = 'inventory') {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })};
-    console.log( ' datatatatat :::', data);
+        'Content-Type': 'application/json'
+      })
+    };
+    console.log(' datatatatat :::', data);
     this.http.post<T>(url, data, httpOptions)
       .pipe(
         retry(3),
@@ -68,18 +70,19 @@ export class NetworkingService {
         })
       )
       .subscribe(res => {
-        this.comms.postMessage(this, dest, {[key]: res});
+        this.comms.postMessage(this, dest, { [key]: res });
         this.getData<T>(url, dest, key);
       },
-      err => {
-        this.logger.log(err);
-      });
+        err => {
+          this.logger.log(err);
+        });
   }
   deleteData<T>(url: string, dest: string, key = 'inventory') {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })};
+        'Content-Type': 'application/json'
+      })
+    };
     return this.http.delete<T>(url, httpOptions)
       .pipe(
         retry(3),
@@ -87,11 +90,11 @@ export class NetworkingService {
           return throwError(err);
         })
       );
-      // .subscribe(res => {
-      //   this.comms.postMessage(this, dest, {[key]: res});
-      // },
-      // err => {
-      //   this.logger.log(err);
-      // });
+    // .subscribe(res => {
+    //   this.comms.postMessage(this, dest, {[key]: res});
+    // },
+    // err => {
+    //   this.logger.log(err);
+    // });
   }
 }

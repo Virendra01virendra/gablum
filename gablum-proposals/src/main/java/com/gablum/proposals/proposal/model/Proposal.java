@@ -44,6 +44,7 @@ public class Proposal {
     private int thresholdParticipants;
     private int views;
     private int interested;
+    private List<String> invitedUsersEmail = new ArrayList<>();
     private List<String> interestedUsersEmail = new ArrayList<>();
     private int priceWeight;
     private int creditPeriodWeight;
