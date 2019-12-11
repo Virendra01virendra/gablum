@@ -12,15 +12,13 @@
 
 <div class="timer">
     <i class="material-icons" *ngIf="toStartMsg!= null" matTooltip="{{toStartMsg}}">timer_off</i>
-    <div>
     <i class="material-icons" *ngIf="liveMsg!= null" matTooltip="{{liveMsg}}">timer</i>
+    <i class="material-icons" *ngIf="endedMsg!= null" matTooltip="{{endedMsg}}">timer_off</i>
     <h2 class="mat-body-1" *ngIf="endedMsg==null" matTooltip="Days::hours:minutes.seconds">
         <span mat-fab *ngIf="days!=null" >{{days}}::</span>
         <span mat-fab *ngIf="hours!=null" >{{hours}}:</span>
         <span mat-fab *ngIf="minutes!=null" >{{minutes}}.</span>
         <span>{{seconds}}</span>
     </h2>
-    </div>
-    <i class="material-icons" *ngIf="endedMsg!= null" matTooltip="{{endedMsg}}">timer_off</i>
 </div>
 <!-- fixme:: days when ended should be shown as 00 istead of NAN -->
