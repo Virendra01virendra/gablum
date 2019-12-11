@@ -10,8 +10,6 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +79,6 @@ public class MailService {
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
             String text = "You have added a new Auction";
-            text += ""
             msg.setText(text);
             try
             {
