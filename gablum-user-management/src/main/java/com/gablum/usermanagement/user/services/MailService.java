@@ -5,12 +5,15 @@ import com.gablum.usermanagement.user.model.othermodels.Auction;
 import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,8 @@ public class MailService {
             msg.setTo(proposal.getCreatedBy());
 
             msg.setSubject("New Proposal Added");
+            ByteArrayOutputStream outputStream = null;
+
             String text = "You added a new Proposal.\n";
             text += "\nProposal Details are : \n";
             text += "\nProduct Name : " + proposal.getProductName();
@@ -62,6 +67,9 @@ public class MailService {
             msg.setText(text);
             try
             {
+                outputStream = new ByteArrayOutputStream();
+                writePdf(outputStream);
+                byte bytes = outputStream.toByteArray();
                 javaMailSender.send(msg);
             } catch (MailException e){
                 System.out.println("Wrong email provided");
@@ -70,6 +78,15 @@ public class MailService {
         }
     }
 
+    public void writePdf(OutputStream outputStream) throws Exception {
+        Document document = new Document();
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+        Paragraph paragraph = new Paragraph();
+        paragraph.add(new Chunk("hello!"));
+        document.add(paragraph);
+        document.close();
+    }
     public void sendAuctionEmail(String type, Auction auction) {
         SimpleMailMessage msg = new SimpleMailMessage();
         if (type == "newAuction"){
