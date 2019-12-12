@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
-import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ConfirmDialogModel, DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 // import * as moment from 'moment';
 
 @Component({

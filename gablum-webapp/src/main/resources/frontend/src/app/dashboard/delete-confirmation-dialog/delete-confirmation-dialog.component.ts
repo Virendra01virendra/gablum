@@ -12,7 +12,7 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   message: string;
 
   constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) { 
+              @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) {
                 this.title = data.title;
                 this.message = data.message;
               }
@@ -24,5 +24,11 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   }
   onDismiss(): void {
     this.dialogRef.close(false);
+  }
+}
+
+export class ConfirmDialogModel {
+
+  constructor(public title: string, public message: string) {
   }
 }
