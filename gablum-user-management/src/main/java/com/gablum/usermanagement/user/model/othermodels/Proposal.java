@@ -2,7 +2,6 @@ package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Document(collection = "proposals")
 public class Proposal {
     @Id
     private String _id;

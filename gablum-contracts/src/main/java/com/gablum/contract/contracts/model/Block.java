@@ -13,5 +13,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("contractBlockchain")
 public class Block {
     private String encryptedData;
-    private String hash;
+    private String previousHash;
+    private String currentHash;
 }

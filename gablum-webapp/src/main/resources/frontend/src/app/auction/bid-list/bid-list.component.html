@@ -1,12 +1,7 @@
-<div class="bid-list"
-fxLayout="row nowrap"
-fxLayout.xs="column nowrap"
-fxLayoutAlign="space-around flex-start"
-fxLayoutAlign.xs="flex-start center"
->
+<div class="bid-list" fxLayout="row nowrap" fxLayout.xs="column nowrap" fxLayoutAlign="space-around flex-start" fxLayoutAlign.xs="flex-start center">
     <h2 *ngIf="auction">{{auction.auctionName}}</h2>
-    
+
     <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
-        <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity"></app-bid-card>
+        <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
     </div>
 </div>

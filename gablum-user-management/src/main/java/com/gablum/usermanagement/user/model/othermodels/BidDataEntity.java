@@ -2,12 +2,10 @@ package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Document("Bids")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class BidDataEntity {
     @Id
