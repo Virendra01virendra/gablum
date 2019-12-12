@@ -36,9 +36,9 @@ export class ContractCardComponent implements OnInit {
     public profileUrl: string,
     public profile: User
   ) {
-    if(this.contract.buyerEmail != null) {
+    if (this.contract.buyerEmail != null) {
       this.profileUrl = this.profileUrl + 's/' + this.contract.buyerEmail;
-    } else{
+    } else {
       this.profileUrl = this.profileUrl + 's/' + this.contract.sellerEmail;
     }
     comms.getMessages().subscribe(msg => {

@@ -2,7 +2,7 @@ package com.gablum.contract.contracts.controller;
 
 import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.service.ContractService;
-import com.gablum.proposals.proposal.service.UserService;
+import com.gablum.contract.contracts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,10 +42,10 @@ public class ContractsController {
     @GetMapping("/contracts")
     public List<Contracts> getAllContracts(HttpServletRequest request){
         String email = userService.getEmail(request);
-
+        List<Contracts> totalContracts = new ArrayList<Contracts>(contractService.getContractByBuyerEmail(email));
+        totalContracts.addAll(contractService.getContractBySellerEmail(email));
+        return totalContracts;
     }
-
-
 
 //    @PostMapping("/contracts")
 //    public Contracts saveContract(@RequestBody Contracts contracts){

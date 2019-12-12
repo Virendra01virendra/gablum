@@ -74,12 +74,6 @@
 			<artifactId>spring-security-core</artifactId>
 			<scope>compile</scope>
 		</dependency>
-        <dependency>
-            <groupId>com.gablum</groupId>
-            <artifactId>proposals</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
 	<dependencyManagement>
