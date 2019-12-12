@@ -9,6 +9,12 @@ RUN npm install
 
 RUN npm run build
 
+WORKDIR /usr/app/src/main/resources
+
+RUN rm -rf frontend
+
+RUN ls
+
 FROM tastycats/gablumdeps:latest as build
 
 COPY --from=ng_build /usr/app /usr/app
