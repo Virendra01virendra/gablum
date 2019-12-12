@@ -26,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { BrowseProposalsModule } from './browse-proposals/browse-proposals.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { BrowseProposalsModule } from './browse-proposals/browse-proposals.modul
     RouterModule,
     FormsModule,
     BrowseProposalsModule,
+    AdminModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

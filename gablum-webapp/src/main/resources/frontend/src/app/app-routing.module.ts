@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
     canLoad: [AuthGuardService]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule),
+    // canLoad: [AuthGuardService]
+  },
   // {
   //   path: 'console',
   //   loadChildren: () => import('./console/console.module').then(module => module.ConsoleModule)
