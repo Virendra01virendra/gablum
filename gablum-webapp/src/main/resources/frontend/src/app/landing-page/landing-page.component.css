@@ -20,7 +20,7 @@
 
 .about-section {
     width: 95%;
-    margin: 2em auto;
+    margin: 3em auto;
     padding: 0;
     text-align: justify;
 }
@@ -85,7 +85,7 @@ footer a {
 
 .completer
 {
-    background-color: rgb(214, 209, 209);
+    background-color: #E0E0E0;
     
 }
 .boxes
