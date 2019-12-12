@@ -6,6 +6,7 @@ import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
 import com.gablum.usermanagement.user.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class MailService {
     @Autowired
@@ -54,13 +56,13 @@ public class MailService {
             String textBuyer = "Thanks for floating a new proposal on Gablum.";
             textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
             textBuyer += "\n\nProposal Details are : \n";
-            textBuyer += "\n<h3>Product Name : </h3>" + proposal.getProductName();
-            textBuyer += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
-            textBuyer += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();
-            textBuyer += "\n<h3>Quantity : </h3>" + proposal.getQuantityValue() + proposal.getQuantityUnit();
-            textBuyer += "\n<h3>Delivery : </h3>" + proposal.getDeliveryDate();
-            textBuyer += "\n<h3>Registration Start Date : </h3>" + proposal.getRegStartDate();
-            textBuyer += "\n<h3>Auction Start Date : </h3>" + proposal.getAuctionStartDate();
+            textBuyer += "\nProduct Name : " + proposal.getProductName();
+            textBuyer += "\nDomain : " + proposal.getBusinessDomain();
+            textBuyer += "\nSubDomain : " + proposal.getBusinessSubDomain();
+            textBuyer += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit();
+            textBuyer += "\nDelivery : " + proposal.getDeliveryDate();
+            textBuyer += "\nRegistration Start Date : " + proposal.getRegStartDate();
+            textBuyer += "\nAuction Start Date : " + proposal.getAuctionStartDate();
             textBuyer += "\n\nSimply visit your account dashboard if you wish to make changes to your floated proposal.";
             textBuyer += "\nTeam Gablum";
             msg.setText(textBuyer);
@@ -71,9 +73,10 @@ public class MailService {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
             }
-            SimpleMailMessage msgForSeller = new SimpleMailMessage();
+
             List<User> subDomainUsers = new ArrayList<>(userRepository.findUserByBusinessSubDomain(proposal.getBusinessSubDomain()));
             for (int i=0; i<subDomainUsers.size(); i++){
+                SimpleMailMessage msgForSeller = new SimpleMailMessage();
                 msgForSeller.setTo(subDomainUsers.get(i).getEmail());
 
                 msgForSeller.setSubject("New Proposal Added of " + proposal.getBusinessSubDomain() + " Busniess Sub Domain");
@@ -82,13 +85,13 @@ public class MailService {
                 textSeller += "\n A new proposal has been floated which might be of your interest. Please, look at brief of the proposal below." +
                         "You can find more details in 'Active Proposal' in your dashboard and express interest.\n";
                 textSeller += "\n\nProposal Details are : \n";
-                textSeller += "\n<h3>Product Name : </h3>" + proposal.getProductName();
-                textSeller += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
-                textSeller += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();
-                textSeller += "\n<h3>Quantity : </h3>" + proposal.getQuantityValue() + proposal.getQuantityUnit();
-                textSeller += "\n<h3>Delivery : </h3>" + proposal.getDeliveryDate();
-                textSeller += "\n<h3>Registration Start Date : </h3>" + proposal.getRegStartDate();
-                textSeller += "\n<h3>Auction Start Date : </h3>" + proposal.getAuctionStartDate();
+                textSeller += "\nProduct Name : " + proposal.getProductName();
+                textSeller += "\nDomain : " + proposal.getBusinessDomain();
+                textSeller += "\nSubDomain : " + proposal.getBusinessSubDomain();
+                textSeller += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit();
+                textSeller += "\nDelivery : " + proposal.getDeliveryDate();
+                textSeller += "\nRegistration Start Date : " + proposal.getRegStartDate();
+                textSeller += "\nAuction Start Date : " + proposal.getAuctionStartDate();
                 textSeller += "\n\nVisit your account dashboard if you wish to express interest in floated proposal.";
                 textSeller += "\nTeam Gablum";
                 msgForSeller.setText(textSeller);
@@ -109,8 +112,11 @@ public class MailService {
         if (type == "newAuction"){
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
-            String text = "You have added a new Auction";
-            msg.setText(text);
+            String textBuyer = "Thanks for floating auction on Gablum.";
+            textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
+
+
+            msg.setText(textBuyer);
             try
             {
                 javaMailSender.send(msg);
@@ -126,8 +132,8 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-                text = "New Auction of your interested has been floated";
-                msgInterestedUsers.setText(text);
+                textBuyer = "New Auction of your interested has been floated";
+                msgInterestedUsers.setText(textBuyer);
                 try
                 {
                     javaMailSender.send(msgInterestedUsers);
