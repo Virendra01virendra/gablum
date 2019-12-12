@@ -21,8 +21,9 @@ import { Profile } from 'src/app/interfaces/profile';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
   public static messageKey = 'DashboardComponent';
+  public buttonName = 'BUYERS VIEW';
+  public show = true;
 
   public isLoggedIn = false;
   public isBuyer;
@@ -30,8 +31,8 @@ export class DashboardComponent implements OnInit {
   public userRole = new Array();
 
   public userProfile: Profile;
-  allProposals: Proposal[];
   proposals: Proposal[];
+  allProposals: Proposal[];
   auctions: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
   data;
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     })
   };
 
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
     private auth: AuthenticationService,
-    public http: HttpClient,
+    public http: HttpClient
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     if (this.isLoggedIn) {
@@ -92,43 +93,66 @@ export class DashboardComponent implements OnInit {
           this.logger.log(this, auth.getProfileData());
         }
 
-        if ('userProfile' in data) {             // getting user profile for subDomain
+        if ('userProfile' in data) {
+          // getting user profile for subDomain
           this.userProfile = data.userProfile;
           this.businessSubdomain = this.userProfile.businessSubDomain;
-          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
+          this.proposalDataService.getProposalsBySubDomain(
+            this.businessSubdomain,
+            DashboardComponent.messageKey,
+            'sellerProposals'
+          );
           this.userRole = this.userProfile.role;
-          if (this.userProfile.role[0].role === 'buyer') {
+          console.log(this.userProfile.role[0]);
+          console.log(this.userProfile.role[1]);
+          if (this.userProfile.role.length === 1) {
+            if (this.userProfile.role[0].role === 'seller') {
+              this.isSeller = true;
+              this.isBuyer = false;
+            } else {
+              this.isSeller = false;
+              this.isBuyer = true;
+            }
+          } else {
             this.isBuyer = true;
-            this.isSeller = false;
-          } else { this.isSeller = true;
-                   this.isBuyer = false;
+            this.isSeller = true;
           }
         }
-
+        console.log(this.isBuyer);
+        console.log(this.isSeller);
       }
     });
   }
 
   ngOnInit() {
     // this.ws.connect(message => this.subscribe());
-    this.proposalDataService.getAllProposals(DashboardComponent.messageKey, 'proposals');
-    this.user.getUserProfileByEmail(DashboardComponent.messageKey, 'userProfile');
-    this.auctionDataService.getAllAuctions(DashboardComponent.messageKey, 'auctions');
+    this.proposalDataService.getAllProposals(
+      DashboardComponent.messageKey,
+      'proposals'
+    );
+    this.user.getUserProfileByEmail(
+      DashboardComponent.messageKey,
+      'userProfile'
+    );
+    this.auctionDataService.getAllAuctions(
+      DashboardComponent.messageKey,
+      'auctions'
+    );
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
-
   }
-
 
   send() {
     this.ws.sendBid({ price: 100 });
   }
 
   subscribe() {
-    this.ws.subscribe(
-      '/topic/newbid',
-      DashboardComponent.messageKey,
-      'newbid').subscribe(message => {
-        if (message.dest === '@all' || message.dest === DashboardComponent.messageKey) {
+    this.ws
+      .subscribe('/topic/newbid', DashboardComponent.messageKey, 'newbid')
+      .subscribe(message => {
+        if (
+          message.dest === '@all' ||
+          message.dest === DashboardComponent.messageKey
+        ) {
           const data = message.data;
           if ('newbid' in data) {
             this.logger.log(data.newbid.body);
@@ -153,14 +177,26 @@ export class DashboardComponent implements OnInit {
       auctionName: proposal1.productName,
       proposal: proposal1,
       isAuctionActive: true,
-      interestedUsersEmail: proposal1.interestedUsersEmail,
+      interestedUsersEmail: proposal1.interestedUsersEmail
     };
     const auctionList = [];
     auctionList.push(auction);
 
     this.data = JSON.parse(JSON.stringify(auctionList));
 
-    this.auctionDataService.saveAuction(DashboardComponent.messageKey, this.data, 'save-auction');
-
+    this.auctionDataService.saveAuction(
+      DashboardComponent.messageKey,
+      this.data,
+      'save-auction'
+    );
+  }
+  switch() {
+    this.show = !this.show;
+    // CHANGE THE NAME OF THE BUTTON.
+    if (this.show) {
+      this.buttonName = 'BUYERS VIEW';
+    } else {
+      this.buttonName = 'SELLERS VIEW';
+    }
   }
 }
