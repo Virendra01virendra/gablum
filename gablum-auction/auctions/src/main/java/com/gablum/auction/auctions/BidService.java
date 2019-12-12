@@ -1,20 +1,22 @@
 package com.gablum.auction.auctions;
 
+import com.gablum.auction.auctions.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.gablum.auction.auctions.BidEvaluation.score;
 
+@Slf4j
 @Service
 public class BidService implements IBidService {
     @Autowired
@@ -22,6 +24,9 @@ public class BidService implements IBidService {
 
     @Autowired
     private AuctionService auctionService;
+
+    @Autowired
+    private UserService userService;
 
 
     //review
@@ -85,6 +90,42 @@ public class BidService implements IBidService {
 
     public List<BidDataEntity> getBidsAuction(String id) {
         return bidRepo.findAllByAuctionId(id);
+    }
+
+    public List<BidDataEntity> getBidsAuction(String id, HttpServletRequest request) {
+        List<BidDataEntity> allBids = bidRepo.findAllByAuctionId(id);
+        Collections.sort(
+                allBids,
+                (t2, t1) -> {
+                    if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
+                        return 1;
+                    }
+                    else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
+                        return -1;
+                    }
+                    return 0;
+                }
+        );
+
+        for (int _i = 0; _i < allBids.size(); _i++) {
+            log.warn(allBids.get(_i).toString());
+            allBids.get(_i).setRank(_i +1);
+        }
+        JwtPayload payload = userService.getJwtPayload(request);
+        Auction auction = auctionService.getAuctionById(id);
+        String email = userService.getEmail(request);
+        if (auction.getCreatedBy().equals(email)) {
+            return allBids;
+        }
+        else {
+            List<BidDataEntity> bidByThisSeller = new ArrayList<BidDataEntity>();
+            for (BidDataEntity entity: allBids) {
+                if (entity.getCreatedBy().equals(email)) {
+                    bidByThisSeller.add(entity);
+                }
+            }
+            return bidByThisSeller;
+        }
     }
 
 }

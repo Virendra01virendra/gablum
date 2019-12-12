@@ -87,4 +87,32 @@ public class UserService {
         }
         return jwtPayload;
     }
+
+    public JwtPayload getJwtPayload(HttpServletRequest request) {
+        String bearerToken = null;
+        try {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(AUTHORIZATION)) {
+                    bearerToken = cookie.getValue();
+                }
+            }
+        }
+        catch (Exception ex) {
+            return null;
+        }
+        if (bearerToken == null) {
+            return null;
+        }
+        String payloadEncoded = bearerToken.split("\\.")[1];
+        String payload = new String(Base64.getDecoder().decode(payloadEncoded));
+        JwtPayload jwtPayload;
+        try {
+            jwtPayload = new ObjectMapper().readValue(payload, JwtPayload.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return jwtPayload;
+    }
 }
