@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterPageComponent } from './register-page.component';
 import { MatToolbarModule, MatCardModule, MatFormFieldModule,
-        MatButtonModule, MatRadioModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule } from '@angular/material';
+        MatButtonModule, MatRadioModule, MatInputModule,
+        MatOptionModule, MatSelectModule, MatIconModule, MatSnackBarModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -18,7 +19,7 @@ describe('RegisterPageComponent', () => {
       imports: [ MatFormFieldModule, MatInputModule, BrowserAnimationsModule,
         MatCardModule, MatButtonModule, MatRadioModule, MatToolbarModule,
         ReactiveFormsModule, FormsModule, MatOptionModule, MatSelectModule,
-        RouterTestingModule, HttpClientModule, MatIconModule
+        RouterTestingModule, HttpClientModule, MatIconModule, MatSnackBarModule
       ]
     })
     .compileComponents();

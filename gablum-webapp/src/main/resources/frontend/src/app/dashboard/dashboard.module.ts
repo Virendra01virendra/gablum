@@ -17,8 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
-import { AuctionCardComponent } from '../auction/auction-card/auction-card.component';
-// import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,8 @@ import { AuctionCardComponent } from '../auction/auction-card/auction-card.compo
     SellersListDialogComponent,
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
-    SellerProposalCardComponent    // AuctionCardDialogComponent
+    SellerProposalCardComponent,
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +47,8 @@ import { AuctionCardComponent } from '../auction/auction-card/auction-card.compo
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     ExtendProposalDialogComponent,
-    AuctionStartDialogComponent
+    AuctionStartDialogComponent,
+    DeleteConfirmationDialogComponent
   ],
   exports: [
     SellerProposalCardComponent

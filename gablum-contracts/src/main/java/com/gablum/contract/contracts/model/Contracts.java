@@ -2,7 +2,6 @@ package com.gablum.contract.contracts.model;
 
 import com.gablum.contract.contracts.model.othermodels.Auction;
 import com.gablum.contract.contracts.model.othermodels.BidDataEntity;
-import com.gablum.contract.contracts.model.othermodels.User;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,26 +22,22 @@ public class Contracts {
     private Auction auctionDetails;
     private BidDataEntity bidDetails;
     private String buyerEmail;
-    private User buyer;
     private String buyerESign;
     private String sellerESign;
     private String sellerEmail;
-    private User seller;
     private Boolean contractStatus = true;
     private String currentHash;
     private String previousHash;
     private Date createdOn;
 
-    public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, User buyer, String sellerEmail, User seller, Boolean contractStatus, String previousHash) {
+    public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
         this.contractId = UUID.randomUUID().toString();
         this.auctionId = auctionId;
         this.bidId = bidId;
         this.auctionDetails = auctionDetails;
         this.bidDetails = bidDetails;
         this.buyerEmail = buyerEmail;
-        this.buyer = buyer;
         this.sellerEmail = sellerEmail;
-        this.seller = seller;
         this.contractStatus = contractStatus;
         this.generatingBuyerESign();
         this.generatingSellerESign();
@@ -52,8 +47,7 @@ public class Contracts {
     }
 
     public void generatingBuyerESign(){
-        String toBeUsedForHash = buyer.get_id() + buyer.getEmail();
-
+        String toBeUsedForHash = buyerEmail;
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(toBeUsedForHash.getBytes("UTF-8"));
@@ -73,7 +67,7 @@ public class Contracts {
     }
 
     public void generatingSellerESign(){
-        String toBeUsedForHash = seller.get_id() + seller.getEmail();
+        String toBeUsedForHash = sellerEmail;
 
         try{
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -116,7 +110,6 @@ public class Contracts {
 
     public String toBeEncrypted(){
         return _id + contractId + auctionId + bidId + auctionDetails.toStringContract()
-                + bidDetails.toStringContract() + buyer.getName() + buyerEmail + buyer.getCompanyName()
-                + seller.getName() + sellerEmail + seller.getCompanyName();
+                + bidDetails.toStringContract() + buyerEmail + sellerEmail;
     }
 }

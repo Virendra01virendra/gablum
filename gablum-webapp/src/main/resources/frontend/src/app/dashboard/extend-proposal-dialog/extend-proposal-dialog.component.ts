@@ -66,13 +66,10 @@ export class ExtendProposalDialogComponent implements OnInit {
       });
   }
   RegStartDateFilter = (d: Date): boolean => {
-    // Prevent dates after delivery date
     return d < new Date(this.data.deliveryDate);
-    // return true;
   }
 
   RegEndDateFilter = (d: Date): boolean => {
-    // Prevent dates before registration start date
     return d >= new Date(this.extendProposalForm.value.regStartDate) && d < new Date(this.data.deliveryDate);
   }
 

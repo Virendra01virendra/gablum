@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@Document("ProductDetail")
 public class ProductDetails {
     @Id
     private String productId = UUID.randomUUID().toString();

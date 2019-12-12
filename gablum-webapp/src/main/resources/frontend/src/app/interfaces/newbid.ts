@@ -31,4 +31,5 @@ export interface NewBid {
         typeScore: number;
     };
     createdBy: string;
+    rank?: number;
 }

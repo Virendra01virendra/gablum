@@ -6,6 +6,9 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { WinningBidDialogComponent } from '../winning-bid-dialog/winning-bid-dialog.component';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Auction } from 'src/app/interfaces/auction';
+import { User } from 'src/app/interfaces/user';
 
 
 
@@ -15,17 +18,18 @@ import { WinningBidDialogComponent } from '../winning-bid-dialog/winning-bid-dia
   styleUrls: ['./bid-card.component.css']
 })
 export class BidCardComponent implements OnInit {
-
   constructor(
     private auctionDataService: AuctionsDataService,
     private route: ActivatedRoute,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private auth: AuthenticationService,
     ) {
-
   }
   public static messageKey = 'BidCardComponent';
-  auctionId: string;
+  public auctionId: string;
+  public bidRank: number;
 
+  @Input() public auction: Auction;
   @Input() public bidDataEntity: NewBid;
 
   public data: NgxData[];
@@ -42,8 +46,10 @@ export class BidCardComponent implements OnInit {
       });
   }
 
-  openDialog(bidDataEntity1) {
+  openDialog(bidDataEntity1: NewBid) {
     // this.auctionDataService.saveWinningBid(BidCardComponent.messageKey, bidDataEntity, 'winningBid', this.auctionId);
+    const sellerEmail = bidDataEntity1.createdBy;
+    const buyerEmail = this.auction.createdBy;
     const bidData = {
       bidDataEntity: bidDataEntity1,
       auctionID: this.auctionId

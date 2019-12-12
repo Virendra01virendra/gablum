@@ -9,5 +9,6 @@ export const environment = {
   proposalUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals',
   guestProposallistUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals/browse',
   navlinkUrl: 'https://gablum-dev.stackroute.io/api/users/menuitems',
-  auctionUrl: 'https://gablum-dev.stackroute.io/api/auctions/auctions'
+  auctionUrl: 'https://gablum-dev.stackroute.io/api/auctions/auctions',
+  tokenUrl: 'https://gablum-dev.stackroute.io/api/auctions/tokens'
 };

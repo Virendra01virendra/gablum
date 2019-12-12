@@ -1,15 +1,3 @@
-<!-- <mat-chip-list aria-label="Timer Display"> 
-    <mat-chip *ngIf="toStartMsg!= null" color ="warn">{{toStartMsg}}</mat-chip><br>
-    <mat-chip *ngIf="liveMsg!= null" color ="warn">{{liveMsg}}</mat-chip><br>   
-    <mat-chip *ngIf="endedMsg!= null" color ="warn">{{endedMsg}}</mat-chip> 
-    <mat-chip *ngIf="endedMsg==null" matTooltip="Days::hours:minutes.seconds" color= "primary" selected>
-        <strong mat-fab *ngIf="days!=null" >{{days}}</strong>::
-        <strong mat-fab *ngIf="hours!=null" >{{hours}}</strong>:
-        <strong mat-fab *ngIf="minutes!=null" >{{minutes}}</strong>.
-        <strong>{{seconds}}</strong>
-    </mat-chip>
-</mat-chip-list> -->
-
 <div class="timer" fxLayout="row" fxLayoutAlign="space-between center">
   <div>
     <i
@@ -32,12 +20,12 @@
   <p
     class="mat-body-1"
     *ngIf="endedMsg == null"
-    matTooltip="Days::hours:minutes.seconds"
+    matTooltip="{{days}} Days,{{hours}} hours &{{minutes}} minutes remaining"
   >
-    <strong mat-fab *ngIf="days != null">{{ days }}::</strong>
-    <strong mat-fab *ngIf="hours != null">{{ hours }}:</strong>
-    <strong mat-fab *ngIf="minutes != null">{{ minutes }}</strong>
-    <!-- <strong>{{ seconds }}</strong> -->
+    <strong mat-fab *ngIf="days != null">{{ days }}.</strong>
+    <strong mat-fab *ngIf="hours != null">{{ hours }}.</strong>
+    <strong mat-fab *ngIf="minutes != null">{{ minutes }}.</strong>
+    <strong>{{ seconds }}</strong>
   </p>
   </div>
 </div>
