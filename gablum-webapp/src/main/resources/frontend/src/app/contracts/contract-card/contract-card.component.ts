@@ -8,6 +8,7 @@ import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { environment } from 'src/environments/environment';
 import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-contract-card',
@@ -32,13 +33,24 @@ export class ContractCardComponent implements OnInit {
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
-    public profileUrl: string
+    public profileUrl: string,
+    public profile: User
   ) {
-    this.profileUrl = this.profileUrl + '/' + this.contract.buyerEmail;
-    this.profileDataService.getUserProfileByEmail(
-      ContractCardComponent.messageKey,
-      'userProfile'
-    );
+    if(this.contract.buyerEmail != null) {
+      this.profileUrl = this.profileUrl + 's/' + this.contract.buyerEmail;
+    } else{
+      this.profileUrl = this.profileUrl + 's/' + this.contract.sellerEmail;
+    }
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === ContractCardComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+
+        if ('userProfile' in data) {
+          this.profile = data.userProfile;
+        }
+        console.log(this.profile);
+      }
+    });
   }
 
   @Input() public contract: ContractDetail;
@@ -47,6 +59,11 @@ export class ContractCardComponent implements OnInit {
     const contractsUrl = environment.contractsUrl;
     this.profileUrl = environment.profileUrl;
     this.logger.log(contractsUrl);
+    this.profileDataService.getUserProfileByEmailWithUrl(
+      this.profileUrl,
+      ContractCardComponent.messageKey,
+      'userProfile'
+    );
   }
 
   openDialog(contract: ContractDetail) {

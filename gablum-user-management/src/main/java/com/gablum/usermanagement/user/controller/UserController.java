@@ -96,8 +96,8 @@ public class UserController {
         return foundUser;
     }
 
-    @GetMapping("/profile")
-    public User getUserProfileByEmail(@RequestParam String email){
+    @GetMapping("/profiles")
+    public User getUserProfileByEmail(@PathVariable String email){
         return userService.getUserByEmail(email);
     }
 

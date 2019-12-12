@@ -11,11 +11,9 @@ export interface ContractDetail {
     auctionDetails: Auction;
     BidDetails: any;
     buyerEmail: string;
-    buyer: any;
     buyerESign: string;
     sellerESign: string;
     sellerEmail: string;
-    seller: any;
     contractStatus: boolean;
     currentHash: string;
     previousHash: string;
