@@ -125,7 +125,7 @@
 
 <!--tab for seller-->
 
-<div class="dashboard-container">
+<div *ngIf="isSeller; else elseBlock" class="dashboard-container">
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -135,7 +135,6 @@
     </mat-tab>
 
     <mat-tab label="Active Proposals">
-
       <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="15px">
         <app-seller-proposal-card *ngFor="let allProposal of proposals" [allProposal]="allProposal">
         </app-seller-proposal-card>
@@ -185,10 +184,10 @@
     </mat-expansion-panel>
   </mat-accordion>
 
-
+</div>
 <!--Tab for buyer-->
 
-<!-- <div class="dashboard-container">
+<ng-template #elseBlock>
   <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
     <mat-tab label="Active Auctions">
       <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
@@ -208,8 +207,9 @@
     </mat-tab>
   </mat-tab-group>
 
-  expansion panel for buyer-->
-  <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
+  <!--expansion panel for buyer-->
+  
+  <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>Active Auctions</mat-panel-title>
@@ -248,17 +248,17 @@
   </mat-accordion> -->
 
 
-</div>
+</ng-template> 
 
 <!--add and browse buttons-->
 
 <div class="fab-container" fxLayout="column nowrap">
   <a mat-fab class="add-proposal-button" matTooltip="browse all active proposals" [routerLink]="['/browse']"
-    *ngIf="isSeller">
+  *ngIf="isSeller">
     <mat-icon>list</mat-icon>
   </a>
   <a mat-fab class="add-proposal-button" matTooltip="add a new proposal" [routerLink]="['/floatProposal']"
-    *ngIf="isBuyer">
+  *ngIf="isBuyer">
     <mat-icon>add</mat-icon>
   </a>
 </div>

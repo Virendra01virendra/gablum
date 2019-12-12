@@ -9,14 +9,15 @@
             <mat-chip-list>
                 <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price}}</mat-chip>
                 <mat-chip matTooltip="Score">Score: {{bidDataEntity.scoreObject.total}}</mat-chip>
-                <mat-chip matTooltip="Delivery Date">Time of Delivery: {{bidDataEntity.bid.timeOfDelivery | date}}</mat-chip>
-                <mat-chip matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}}</mat-chip>
-                <mat-chip matTooltip="Quality Certification">Quality Certification: {{bidDataEntity.bid.qaqcCertificate}}</mat-chip>
-                <mat-chip matTooltip="Type Of delivery">Type Of supply: {{bidDataEntity.bid.typeOfSupply}}</mat-chip>
+               
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
     <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
+            <span matTooltip="Delivery Date">Time of Delivery: {{bidDataEntity.bid.timeOfDelivery | date}}</span>
+            <span matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}}</span>
+            <span matTooltip="Quality Certification">Quality Certification: {{bidDataEntity.bid.qaqcCertificate}}</span>
+            <span matTooltip="Type Of delivery">Type Of supply: {{bidDataEntity.bid.typeOfSupply}}</span>
         
     </div>
     <div class="graph-container">
