@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-delete-confirmation-dialog',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteConfirmationDialogComponent implements OnInit {
 
-  constructor() { }
+  title: string;
+  message: string;
+
+  constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel) { 
+                this.title = data.title;
+                this.message = data.message;
+              }
 
   ngOnInit() {
   }
-
+  onConfirm(): void {
+    this.dialogRef.close(true);
+  }
+  onDismiss(): void {
+    this.dialogRef.close(false);
+  }
 }
