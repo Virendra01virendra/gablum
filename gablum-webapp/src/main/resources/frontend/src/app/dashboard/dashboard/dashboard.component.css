@@ -46,10 +46,9 @@
 
 .fab-container {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 2em;
+    right: 2em;
     z-index: 10;
-
 }
 
 .add-proposal-button {
