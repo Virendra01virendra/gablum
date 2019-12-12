@@ -23,7 +23,7 @@
                 <div class="profile-short-image">
                     <img src="https://picsum.photos/400/400">
                 </div>
-                <span *ngIf="userProfile">{{userProfile.name}}</span>
+                <span *ngIf="profile">{{profile.name}}<br>{{roles}}</span>
             </a>
             <mat-divider></mat-divider>
             <button mat-button class="logout" (click)="logout()">
