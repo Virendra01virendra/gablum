@@ -77,8 +77,11 @@ public class MailService {
         if (type == "newAuction"){
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
-            String text = "You have initialised a new Auction.";
-            text += "";
+            String text = "You have initialised a new Auction.\n";
+            text += "Stay up to date while the auction runs and choose the bid of your" +
+                    " choice to award the contract to the suitable supplier.\n";
+            text += "Do read the instructions carefully before you award the contract.";
+            text += "\n\nTeam Gablum.";
             msg.setText(text);
             try
             {
@@ -95,7 +98,7 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-                text = "New Auction of your interested has been floated";
+                String text = "New Auction of your interested has been floated";
                 msgInterestedUsers.setText(text);
                 try
                 {
@@ -114,7 +117,7 @@ public class MailService {
             BidDataEntity bidDataEntity = bidMessage.getBidDataEntity();
             msg.setTo(bidDataEntity.getCreatedBy());
             msg.setSubject("New Bid Placed");
-            String text = "you have placed a new bid";
+            String text = "You have placed a new bid. "+bidDataEntity.getCreatedBy();
             msg.setText(text);
             try
             {
