@@ -34,6 +34,8 @@ public class ContractsController {
         return contractService.getContractBySellerEmail(email);
     }
 
+
+
 //    @PostMapping("/contracts")
 //    public Contracts saveContract(@RequestBody Contracts contracts){
 //        return contractService.saveContract(contracts);
