@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProfileDataService } from './profile-data.service';
 import { CommunicatorService } from './communicator.service';
 import { LoggerService } from './logger.service';
-import { UserProfile } from '../interfaces/user';
+import { User } from '../interfaces/user';
 import { Profile } from '../interfaces/profile';
 
 @Injectable({
@@ -23,7 +23,6 @@ export class AuthenticationService {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === '@all') {
           const data = msg.data;
-
           if ('profile' in data) {
             this.profileData = data.profile;
             if (

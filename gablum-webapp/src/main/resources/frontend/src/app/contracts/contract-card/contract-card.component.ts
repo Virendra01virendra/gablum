@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CommunicatorService } from 'src/app/services/communicator.service';
-import { NetworkingService } from 'src/app/services/networking.service';
 
 @Component({
-  selector: 'app-contract',
-  templateUrl: './contract.component.html',
-  styleUrls: ['./contract.component.css']
+  selector: 'app-contract-card',
+  templateUrl: './contract-card.component.html',
+  styleUrls: ['./contract-card.component.css']
 })
-export class ContractComponent implements OnInit {
+export class ContractCardComponent implements OnInit {
   public contractData: any;
   public productName: string;
   public sellerName: string;
@@ -36,5 +33,6 @@ export class ContractComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

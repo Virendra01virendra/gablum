@@ -1,12 +1,12 @@
 package com.gablum.auction.auctions;
 
-import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
+import com.gablum.auction.auctions.rabbit.InputRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 @SpringBootApplication
-@EnableBinding(StartAuctionBinding.class)
+@EnableBinding(InputRabbit.class)
 public class AuctionsApplication {
 
 	public static void main(String[] args) {

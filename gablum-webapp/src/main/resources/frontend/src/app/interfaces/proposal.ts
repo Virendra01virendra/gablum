@@ -1,7 +1,6 @@
 type uuid = string;
 
 export interface Proposal {
-
     proposalId: uuid;
     productId: uuid;
     createdBy: uuid;

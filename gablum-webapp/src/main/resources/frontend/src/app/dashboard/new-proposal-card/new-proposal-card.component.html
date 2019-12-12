@@ -1,77 +1,45 @@
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-        <div class="card-header" fxFlexAlign="center" >{{proposal.productName}}</div>
+        <div class="card-header" fxFlexAlign="center">{{proposal.productName}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
-            <div class="subdomain" fxFlexAlign="center" >{{ proposal.businessSubDomain }}</div>
+            <div class="subdomain" fxFlexAlign="center">{{ proposal.businessSubDomain }}</div>
             <div class="timer">
-                <app-timer
-                style="align-content:flex-end ;"
-                [timerDetails]="proposal"
-                ></app-timer>
+                <app-timer style="align-content:flex-end ;" [timerDetails]="proposal"></app-timer>
             </div>
         </div>
     </div>
-    <div class="info-container"
-    fxLayout="row wrap"
-    fxLayoutAlign="center center"
-    >
-    <div>
-        <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
-            {{ proposal.price }}</i
-            >
+    <div class="info-container" fxLayout="row wrap" fxLayoutAlign="center center">
+        <div>
+            <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
+                {{ proposal.price }}</i>
         </div>
         <div>
             <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
-                {{ proposal.quantityValue + " " + proposal.quantityUnit }}</i
-                >
-            </div>
-            <div>
-                <i
-                class="fa fa-calendar-o"
-                aria-hidden="true"
-                matTooltip="Registeration End-Date"
-                style="transform: scale3d(10);"
-                >
-                {{ proposal.regEndDate | date: "mediumDate" }}</i
-                >
-            </div>
-            <div>
-                <i
-                class="fa fa-calendar"
-                aria-hidden="true"
-                matTooltip="Auction Start-Date"
-                >
-                {{ proposal.auctionStartDate | date: "mediumDate" }}</i
-                >
-            </div>
+                {{ proposal.quantityValue + " " + proposal.quantityUnit }}</i>
         </div>
-        
-        <div style="margin-bottom: 0.5em;">
-            <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
-                <mat-icon
-                matBadge="{{ proposal.interested }}"
-                matBadgePosition="after"
-                (click)="sellersListDialog(proposal)"
-                class="material-icons"
-                matTooltip="Interested Sellers"
-                style="cursor: pointer;"
-                >
+        <div>
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date"
+                style="transform: scale3d(10);">
+                {{ proposal.regEndDate | date: "mediumDate" }}</i>
+        </div>
+        <div>
+            <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction Start-Date">
+                {{ proposal.auctionStartDate | date: "mediumDate" }}</i>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 0.5em;">
+        <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+            <mat-icon matBadge="{{ proposal.interested }}" matBadgePosition="after"
+                (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers"
+                style="cursor: pointer;">
                 list
             </mat-icon>
-            <mat-icon
-            matTooltip="See Details"
-            class="material-icons"
-            (click)="openDialog(proposal)"
-            style="cursor: pointer;"
-            >visibility</mat-icon
-            >
+            <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(proposal)"
+                style="cursor: pointer;">visibility</mat-icon>
             <button mat-button [matMenuTriggerFor]="menu"
-            style="margin: 0; padding: 0; min-width: unset; cursor: pointer;"
-            >
+                style="margin: 0; padding: 0; min-width: unset; cursor: pointer;">
                 <mat-icon>
                     more_vert
                 </mat-icon>
@@ -79,34 +47,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         </div>
     </div>
 </div>
-
 <mat-menu #menu="matMenu">
-    <button mat-menu-item
-    matTooltip="Schedule auction for proposal"
-    class="material-icons"
-    (click)="startAuction(proposal)"
-    >
-    <mat-icon color="primary">
-        play_arrow
-    </mat-icon>
-    Schedule Auction
-</button>
-<button mat-menu-item
-matTooltip="Extend Registration for the proposal"
-class="material-icons"
-(click)="extendDialog(proposal)"
->
-<mat-icon>
-    hourglass_empty
-</mat-icon>
-Extend registration
-</button>
-<button mat-menu-item 
-matTooltip="Delete Proposal"
-class="material-icons"
-(click)="delete(proposal)"
->
-<mat-icon color="warn">delete</mat-icon>
-Delete
-</button>
+    <button mat-menu-item matTooltip="Schedule auction for proposal" class="material-icons"
+        (click)="startAuction(proposal)">
+        <mat-icon color="primary">
+            play_arrow
+        </mat-icon>
+        Schedule Auction
+    </button>
+    <button mat-menu-item matTooltip="Extend Registration for the proposal" class="material-icons"
+        (click)="extendDialog(proposal)">
+        <mat-icon>
+            hourglass_empty
+        </mat-icon>
+        Extend registration
+    </button>
+    <button mat-menu-item matTooltip="Delete Proposal" class="material-icons" (click)="confirmDialog()">
+        <mat-icon color="warn">delete</mat-icon>
+        Delete
+    </button>
 </mat-menu>
