@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Date;
@@ -19,9 +20,9 @@ import java.util.List;
 class SchedulerServiceTest {
     @Mock
     SchedulerRepo schedulerRepo;
-    @Mock
-    QuartzJobConfig jobConfig;
 
+    @Mock
+    QuartzJobConfig quartzJobConfig;
 
     @InjectMocks
     SchedulerService schedulerService;
@@ -54,6 +55,8 @@ class SchedulerServiceTest {
 
     @Test
     void saveSchedulerDetail() throws Exception {
+//        Mockito.when(quartzJobConfig.executeTimer()).thenReturn(void);
+        Mockito.when(schedulerRepo.save(Mockito.any(TimerModel.class))).thenReturn(null);
         Assertions.assertEquals(schedulerService.saveSchedulerDetail(new TimerModel("c","a",new Date(2019-12-3), new Date(2019-12-4))),null);
         Assertions.assertEquals(timerModel.getJobId(),"a");
     }

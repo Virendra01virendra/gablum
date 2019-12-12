@@ -111,7 +111,6 @@ public class BidService implements IBidService {
             log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
         }
-        JwtPayload payload = userService.getJwtPayload(request);
         Auction auction = auctionService.getAuctionById(id);
         String email = userService.getEmail(request);
         if (auction.getCreatedBy().equals(email)) {
