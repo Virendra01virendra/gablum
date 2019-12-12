@@ -17,6 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SellerProposalCardComponent } from './seller-proposal-card/seller-proposal-card.component';
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 // import { AuctionCardDialogComponent } from './auction-card-dialog/auction-card-dialog.component';
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatDatepickerModule } from '@angular/material';
     SellersListDialogComponent,
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
-    SellerProposalCardComponent    // AuctionCardDialogComponent
+    SellerProposalCardComponent,
+    DeleteConfirmationDialogComponent    // AuctionCardDialogComponent
   ],
   imports: [
     CommonModule,

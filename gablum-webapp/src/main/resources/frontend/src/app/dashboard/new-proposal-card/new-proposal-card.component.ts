@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 // import * as moment from 'moment';
 
 @Component({
@@ -19,9 +20,6 @@ import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialo
 })
 export class NewProposalCardComponent implements OnInit {
   public static messageKey = 'new-proposal-card-component';
-  // registrationDate: string;
-  // @ViewChild('timer', {read: TimerComponent, static: true})
-  // public timer: TimerComponent;
 
   constructor(
     private proposalDataService: ProposalsDataService,
@@ -31,10 +29,7 @@ export class NewProposalCardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
     private snackBar: MatSnackBar
-  ) {
-    // this.registrationDate = this.proposal.regStartDate;
-
-  }
+  ) { }
 
   alreadyRegistered = false;
   @Input() proposal: Proposal;
@@ -47,7 +42,6 @@ export class NewProposalCardComponent implements OnInit {
   }
 
   shownInterest(proposal: Proposal) {
-    // const proposalId = element.proposalId;
     this.logger.log('some data which we are publishing ');
     this.alreadyRegistered = true;
     this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
@@ -58,8 +52,23 @@ export class NewProposalCardComponent implements OnInit {
     data: proposal
     });
   }
+
   extendDialog(proposal: Proposal) {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
+  }
+
+  confirmDialog(): void {
+    const message = `Are you sure you want to delete this proposal?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      maxWidth: '400px',
+      data: dialogData
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+    });
   }
   startAuction(proposal1: Proposal) {
     const dialogConfig = new MatDialogConfig();
