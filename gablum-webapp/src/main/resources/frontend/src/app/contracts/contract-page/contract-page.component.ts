@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Profile } from 'src/app/interfaces/profile';
 import { Auction } from 'src/app/interfaces/auction';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
 
 @Component({
   selector: 'app-contract-page',
@@ -31,7 +32,8 @@ export class ContractPageComponent implements OnInit {
     private logger: LoggerService,
     private auth: AuthenticationService,
     public http: HttpClient,
-    private user: ProfileDataService
+    private user: ProfileDataService,
+    private contractsDataService: ContractsDataService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     if (this.isLoggedIn) {
@@ -65,6 +67,10 @@ export class ContractPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contractsDataService.getAllContracts(
+      ContractPageComponent.messageKey,
+      'contracts'
+    );
   }
 }
 

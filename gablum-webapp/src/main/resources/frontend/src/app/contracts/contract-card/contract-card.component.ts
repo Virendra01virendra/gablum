@@ -32,8 +32,8 @@ export class ContractCardComponent implements OnInit {
   @Input() public contract: ContractDetail;
 
   ngOnInit() {
-    const contractUrl = environment.contractUrl;
-    this.logger.log(contractUrl);
+    const contractsUrl = environment.contractsUrl;
+    this.logger.log(contractsUrl);
   }
 
 

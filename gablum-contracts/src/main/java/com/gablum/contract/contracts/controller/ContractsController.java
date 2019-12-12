@@ -16,7 +16,7 @@ public class ContractsController {
     public Contracts getContract(@PathVariable String contractId){
         return contractService.getContractById(contractId);
     }
-    
+
     @GetMapping("/contracts/forBuyer")
     public List<Contracts> getContractByBuyerEmail(@RequestParam String email){
         return contractService.getContractByBuyerEmail(email);
