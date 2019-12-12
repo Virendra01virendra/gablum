@@ -16,6 +16,7 @@ export class ContractDetailComponent implements OnInit {
   public proposal: Proposal;
   public productName: string;
   public sellerName: string;
+  public toBeDisplayed: string;
   constructor(
     private route: ActivatedRoute,
     private router: Router,

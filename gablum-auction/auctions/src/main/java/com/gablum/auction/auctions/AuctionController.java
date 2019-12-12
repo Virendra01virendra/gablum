@@ -189,6 +189,7 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
+
         //TODO create a Rabbit message to create a new Contract and save it and Display.
         return auctionService.updateAuction(auction);
     }
