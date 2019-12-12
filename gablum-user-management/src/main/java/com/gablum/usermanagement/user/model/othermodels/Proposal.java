@@ -15,7 +15,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Document(collection = "proposals")
 public class Proposal {
     @Id
     private String _id;
