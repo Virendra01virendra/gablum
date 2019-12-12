@@ -77,11 +77,10 @@
   <ng-container *ngIf="isBuyer && !isSeller" class="dashboard-container">
     <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
       <mat-tab label="Active Auctions">
-        <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
-  
-        </div>
-      </mat-tab>
+        <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around">
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" ></app-auction-card>
+       </div>
+        </mat-tab>
   
       <mat-tab label="Active Proposals">
           <div class="proposal-card" fxLayout="row wrap" fxLayoutAlign="space-around">
@@ -293,3 +292,8 @@
       <mat-icon>add</mat-icon>
     </a>
   </div>
+
+  <!-- <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around">
+
+  <app-auction-card *ngFor="let auction of auctions" [auction]="auction" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
+  </div> -->

@@ -1,9 +1,38 @@
-.auction-card {
-  max-width: 450px;
+.head
+{
+   background-color: rgb(53, 43, 59);
+   color: white;
+   /* text-align: left;  */
 }
 
-.head {
-  background-color: #ad1457;
-  color: antiquewhite;
-  text-align: center;
+.proposal-card {
+  height: 20em;
+  /* width: 15em; */
+  border-radius: 0.4em;
+  overflow: hidden;
+}
+
+.header-container {
+  background-color: rgb(32, 149, 179);
+  background-image:  linear-gradient(to bottom, rgb(32, 149, 179, 1.0) , rgb(32, 149, 179, 0.5)), url("src/assets/front.webp");
+
+  color: aliceblue;
+}
+
+.card-header  {
+  margin-top: 0.5em;
+  font-size: 1.2em;
+}
+
+.info-container > div {
+  margin: 1em 0.8em;
+}
+.card-actions {
+  background-color: rgb(32, 149, 179, 0.5);
+  color: aliceblue;
+}
+
+.card-actions > div {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }

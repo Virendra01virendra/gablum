@@ -6,14 +6,18 @@ import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-
 import { Router } from '@angular/router';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { environment } from 'src/environments/environment';
-import { LoggerService } from 'src/app/services/logger.service';
+import { LoggerService } from 'src/app/services/logger.service'
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
   styleUrls: ['./auction-card.component.css']
 })
 export class AuctionCardComponent implements OnInit {
-
+  public static messageKey = 'auction-card-component';
+  public qualityMsgTrue = 'Quality Assurance Required';
+  public qualityMsgFalse = 'Quality Certification Optional';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   constructor(
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
@@ -31,7 +35,6 @@ export class AuctionCardComponent implements OnInit {
     //   }
     // });
   }
-  public static messageKey = 'auction-card-component';
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
