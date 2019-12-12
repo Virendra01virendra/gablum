@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
@@ -27,8 +27,7 @@ export class NewProposalCardComponent implements OnInit {
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    private logger: LoggerService,
-    private snackBar: MatSnackBar
+    private logger: LoggerService
   ) { }
 
   alreadyRegistered = false;
@@ -60,15 +59,15 @@ export class NewProposalCardComponent implements OnInit {
   confirmDialog(): void {
     const message = `Are you sure you want to delete this proposal?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel('Confirm Action', message);
 
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       maxWidth: '400px',
       data: dialogData
     });
-    dialogRef.afterClosed().subscribe(dialogResult => {
-      this.result = dialogResult;
-    });
+    // dialogRef.afterClosed().subscribe(dialogResult => {
+    //   this.result = dialogResult;
+    // });
   }
   startAuction(proposal1: Proposal) {
     const dialogConfig = new MatDialogConfig();
