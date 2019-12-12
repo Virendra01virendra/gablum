@@ -3,3 +3,30 @@
     <span class="title" fxHide.xs>Browse all active proposals</span>
     <span class="title" fxHide.gt-xs>Browse proposals</span>
 </mat-toolbar>
+
+<!-- proposal card of all SubDomains for Seller-->
+<div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+    <app-seller-proposal-card *ngFor="let proposal of proposals" [allProposal]="proposal">
+    </app-seller-proposal-card>
+    
+</div>
+
+
+
+
+<!--expansion panel for seller-->
+<mat-accordion class="tab-container" fxHide.gt-xs>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Active Proposals</mat-panel-title>
+            <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="expansion-proposal-card" fxLayout="column">
+            <app-seller-proposal-card *ngFor="let proposal of proposals" [allProposal]="proposal">
+            </app-seller-proposal-card>
+        </div>
+    </mat-expansion-panel>
+
+
+</mat-accordion>

@@ -19,11 +19,11 @@ public class ContractService {
         return contractDetails.save(contractToBeSaved);
     }
 
-    public List<Contracts> getContractByBuyerId(String buyerId) {
-        return contractDetails.findByBuyerId(buyerId);
+    public List<Contracts> getContractByBuyerEmail(String buyerEmail) {
+        return contractDetails.findByBuyerEmail(buyerEmail);
     }
-    public List<Contracts> getContractBySellerId(String sellerId){
-        return contractDetails.findBySellerId(sellerId);
+    public List<Contracts> getContractBySellerEmail(String sellerEmail){
+        return contractDetails.findBySellerEmail(sellerEmail);
     }
 //    @Transactional
 //    public Contracts updateContract (String contractWhichNeedsTobeInvalidated ,Contracts contractUpdate){
