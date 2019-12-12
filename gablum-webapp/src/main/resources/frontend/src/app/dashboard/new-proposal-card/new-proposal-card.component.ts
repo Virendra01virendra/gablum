@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
@@ -30,6 +30,7 @@ export class NewProposalCardComponent implements OnInit {
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private logger: LoggerService,
+    private snackBar: MatSnackBar
   ) {
     // this.registrationDate = this.proposal.regStartDate;
 
@@ -54,39 +55,27 @@ export class NewProposalCardComponent implements OnInit {
 
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
-      // width: '60%',
-      // height: '60%',
-      data: proposal
+    data: proposal
     });
   }
   extendDialog(proposal: Proposal) {
     this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
   }
   startAuction(proposal1: Proposal) {
-    // const auction = {
-    //   auctionName: proposal1.productName,
-    //   proposal: proposal1,
-    //   isAuctionActive: true,
-    //   interestedUsersEmail: proposal1.interestedUsersEmail
-    // };
-    // const auctionList = [];
-    // auctionList.push(auction);
-
-    // const data = JSON.parse(JSON.stringify(auctionList));
-
-    // this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
-    // // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
-    // this.router.navigate(['dashboard']);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = proposal1;
     dialogConfig.width = '40%';
     this.dialog.open(AuctionStartDialogComponent, dialogConfig);
-
   }
-
   delete(proposal: Proposal) {
     console.log('delete function is getting called');
+    this.snackBar.open(
+      'Your proposal has been removed.',
+      '',
+      {
+        duration: 2000
+      }
+    );
     this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
     // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }

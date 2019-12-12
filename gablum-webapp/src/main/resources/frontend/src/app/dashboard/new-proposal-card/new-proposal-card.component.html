@@ -35,11 +35,6 @@
     <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
 
 
-        <!-- <button mat-raisedbutton (click)="startAuction()">Start Auction</button> -->
-
-        <!-- <button mat-raised-button [disabled]="alreadyRegistered" color="primary"
-      (click)="shownInterest(proposal)">Interested ?</button> -->
-
         <mat-icon matBadge={{proposal.interested}} matBadgePosition="before" matBadgeColor="warm" (click)="sellersListDialog(proposal)" class="material-icons" matTooltip="Interested Sellers">
             list
         </mat-icon>
