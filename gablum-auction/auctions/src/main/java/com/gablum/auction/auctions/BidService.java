@@ -83,6 +83,10 @@ public class BidService implements IBidService {
         return bidRepo.findAllByAuctionId(getPageable(queryMap), id).getContent();
     }
 
+    public List<BidDataEntity> getBidsAuction(String id) {
+        return bidRepo.findAllByAuctionId(id);
+    }
+
 }
 
 

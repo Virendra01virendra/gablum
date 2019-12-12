@@ -7,6 +7,7 @@ import com.gablum.auction.auctions.JwtPayload;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 @Service
 public class UserService {
 
+    @Getter
     @Value("${spring.security.secret}")
     private String secretKey;
 
