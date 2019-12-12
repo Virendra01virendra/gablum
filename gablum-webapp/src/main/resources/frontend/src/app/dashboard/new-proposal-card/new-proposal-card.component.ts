@@ -76,16 +76,16 @@ export class NewProposalCardComponent implements OnInit {
     dialogConfig.width = '40%';
     this.dialog.open(AuctionStartDialogComponent, dialogConfig);
   }
-  delete(proposal: Proposal) {
-    console.log('delete function is getting called');
-    this.snackBar.open(
-      'Your proposal has been removed.',
-      '',
-      {
-        duration: 2000
-      }
-    );
-    this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
-    // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
+  // delete(proposal: Proposal) {
+  //   console.log('delete function is getting called');
+  //   this.snackBar.open(
+  //     'Your proposal has been removed.',
+  //     '',
+  //     {
+  //       duration: 2000
+  //     }
+  //   );
+  //   this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
+  //   // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }
-}
+
