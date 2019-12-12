@@ -20,25 +20,41 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
 
    
+  <!--checkbox column -->
+
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? masterToggle() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
   
-  
-    <!-- <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.get}} </td>
-    </ng-container> -->
-  
+      <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
   
     <ng-container matColumnDef="sellerEmail">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
    
-    <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let ele ">
-         <button mat-raised-button color="primary" [disabled]="(data.invitedUsersEmail.indexOf(userEmail)>-1) || buttonClicked" (click)="onInvite(ele)">Invite</button></td>
-    </ng-container>
+         <button mat-raised-button color="primary" [disabled]="(data.invitedUsersEmail.indexOf(userEmail)>-1)" (click)="onInvite(ele)">Invite</button></td>
+    </ng-container> -->
   
     
   

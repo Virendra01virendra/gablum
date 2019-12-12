@@ -89,7 +89,7 @@
     </mat-expansion-panel><br>
   </mat-accordion>
 </div>
-<div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="1em">
+<div mat-dialog-actions *ngIf="isBuyer||(isBuyer&&isSeller)"   fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="1em">
 
   <button mat-raised-button mat-dialog-close color="secondary">Close</button>
   <button mat-raised-button mat-dialog-close>Bidder's List</button>

@@ -6,7 +6,13 @@ import { Profile } from 'src/app/interfaces/profile';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Proposal } from 'src/app/interfaces/proposal';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
 
+export interface InvitedUsersEmail {
+  position: number;
+  email: string;
+}
 @Component({
   selector: 'app-sellers-list-dialog',
   templateUrl: './sellers-list-dialog.component.html',
@@ -23,12 +29,20 @@ export class SellersListDialogComponent implements OnInit {
   public profile: Profile;
   alreadyRegistered: boolean;
   public userEmail = '';
-  displayedColumns: string[] = ['sellerEmail', 'action'];
-  dataSource = [];
+  displayedColumns: string[] = ['select', 'position', 'sellerEmail'];
+  public ELEMENT_DATA;
+  dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
+  selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
               private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService) {
-    this.dataSource = data.interestedUsersEmail;
+    this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
+      return {
+        email: invitedUsersEmail,
+        position: i + 1
+      };
+    });
+    console.log('this.Element_Data ::', JSON.stringify(this.ELEMENT_DATA));
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
@@ -49,8 +63,33 @@ export class SellersListDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logger.log('aaaaaaaa' + this.dataSource);
+    this.logger.log('aaaaaaaa' + JSON.stringify(this.dataSource));
   }
+
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: InvitedUsersEmail): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+
 
   onInvite(ele) {
     console.log('Invite data', ele);

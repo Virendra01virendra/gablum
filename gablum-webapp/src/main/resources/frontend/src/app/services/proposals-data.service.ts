@@ -42,7 +42,7 @@ export class ProposalsDataService {
   postInterestedSeller(dest, data, key) {
     this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key)
     .subscribe(res => {
-        this.comms.postMessage(this, dest, { [key]: res });
+      this.getAllProposalForSeller('DashboardComponent', 'sellerProposals');
       },
       err => {
         this.logger.log(err);
@@ -52,7 +52,7 @@ export class ProposalsDataService {
   postInvitedSeller(dest, data, key) {
     this.networking.patchData<Proposal>(this.inviteSellerUrl, dest, data, key)
     .subscribe(res => {
-      this.comms.postMessage(this, dest, { [key]: res });
+      this.getAllProposals(dest, key);
     },
     err => {
       this.logger.log(err);

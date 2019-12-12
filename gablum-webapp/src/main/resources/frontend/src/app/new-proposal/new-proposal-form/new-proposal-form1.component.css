@@ -1,5 +1,7 @@
 .form-container {
+  background-image: url('../../../assets/Images/leave.jpg');
   margin: 1em;
+
 }
 .title {
   margin-left: 2em;
@@ -11,12 +13,12 @@
 
 .body {
   background-color:white;
-  text-align: center;
+  align-content: center;
 }
 
 .stepper {
-  background-color: antiquewhite;
-  width: 60%;
+  background-color: lightcyan;
+  width: 80%;
   align-content: center;
 }
 
@@ -34,4 +36,11 @@
 
 .padded-btn {
   margin: 0.5em 1em;
+}
+
+.know-weightage {
+  margin: 2em;
+  padding: 1em;
+  border-style: ridge;
+  border-width: 2px;
 }

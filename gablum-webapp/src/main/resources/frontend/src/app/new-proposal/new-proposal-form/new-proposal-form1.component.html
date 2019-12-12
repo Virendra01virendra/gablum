@@ -4,72 +4,84 @@
     <span class="title" fxHide.gt-xs>New proposal</span>
 </mat-toolbar>
 <div class="body">
-    <div class="form-container">
+    <div class="form-container" fxLayoutAlign="space-between center">
 
         <mat-vertical-stepper class="stepper" [linear]="false" #stepper>
             <mat-step [stepControl]="productSpecsForm">
                 <ng-template matStepLabel>Fill product details</ng-template>
-                <form fxLayout="column" fxLayoutAlign="space-around start" [formGroup]="productSpecsForm"
+                <form fxLayout="row" fxLayoutAlign="space-between start" [formGroup]="productSpecsForm"
                     (ngSubmit)="onNext1(productSpecsForm)">
-                    <div fxFlexLayout="row" fxLayoutAlign="space-between">
-                        <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
-                            <mat-label class="form-label">Business Domain:</mat-label>
-                            <input matInput type="text" readonly="true" value="Agriculture"
-                                formControName="businessDomain">
-                        </mat-form-field>
-
-                        <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
-                            <mat-label class="form-label">Business Sub-domain:</mat-label>
-                            <mat-select id="subDomain-select" formControlName="businessSubDomain" required>
-                                <mat-option value="" disabled>Choose Sub-domain</mat-option>
-                                <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                    
+                    <div  fxFlex="50" fxLayout="column" fxLayoutAlign="space-between start">
+                            <div fxFlexLayout="row" fxLayoutAlign="space-between">
+                                    <mat-form-field fxFlex="40" appearance="outline" class="prod-details">
+                                        <mat-label class="form-label">Business Domain:</mat-label>
+                                        <input matInput type="text" readonly="true" value="Agriculture"
+                                            formControName="businessDomain">
+                                    </mat-form-field>
+            
+                                    <mat-form-field fxFlex="40" appearance="outline" class="prod-details">
+                                        <mat-label class="form-label">Business Sub-domain:</mat-label>
+                                        <mat-select id="subDomain-select" formControlName="businessSubDomain" required>
+                                            <mat-option value="" disabled>Choose Sub-domain</mat-option>
+                                            <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                
+                                <div>
+                                    <mat-form-field style="width: '100%';" appearance="outline" class="prod-details">
+                                        <mat-label class="form-label">Product name:</mat-label>
+                                        <input matInput type="text" placeholder="Product Name" formControlName="productName"
+                                            required>
+                                        <mat-error *ngIf="productName.touched || productName.invalid">{{productNameError()}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div fxFlexLayout="row" fxLayoutAlign="space-around center">
+                                    <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
+                                        <mat-label class="form-label">Quantity:</mat-label>
+                                        <input matInput type="number" placeholder="Quantity Value" formControlName="quantityValue"
+                                            required>
+                                        <mat-error *ngIf="quantityValue.touched || quantityValue.invalid">
+                                            {{quantityValueError()}}</mat-error>
+                                    </mat-form-field>
+                                    <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
+                                        <mat-select id="unit-select" formControlName="quantityUnit" required>
+                                            <mat-option value="" disabled>Type of Quantity</mat-option>
+                                            <mat-option *ngFor="let unit of units" [value]="unit">{{unit}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+            
+                                <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
+                                    <button mat-raised-button color="primary" [disabled]="!productSpecsForm.valid" matStepperNext
+                                        class="padded-btn">Next</button>
+                                </div>
                     </div>
-                    <div>
-                        <mat-form-field style="width: '100%';" appearance="outline" class="prod-details">
-                            <mat-label class="form-label">Product name:</mat-label>
-                            <input matInput type="text" placeholder="Product Name" formControlName="productName"
-                                required>
-                            <mat-error *ngIf="productName.touched || productName.invalid">{{productNameError()}}
-                            </mat-error>
-                        </mat-form-field>
+
+                    <div  fxFlex="40" fxLayoutAlign="space-between ">
+                            <mat-form-field appearance="outline" class="prod-details">
+                                    <mat-label class="form-label">Product Description:</mat-label>
+                                        <textarea matTextareaAutosize=true matInput placeholder="Describe your product" formControlName="productDescription" required></textarea>
+                                    <mat-error *ngIf="productDescription.touched || productDescription.invalid">{{productDescriptionError()}}
+                                    </mat-error>
+                                </mat-form-field>
                     </div>
-
-                    <div fxFlexLayout="row" fxLayoutAlign="space-around center">
-                        <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
-                            <mat-label class="form-label">Quantity:</mat-label>
-                            <input matInput type="number" placeholder="Quantity Value" formControlName="quantityValue"
-                                required>
-                            <mat-error *ngIf="quantityValue.touched || quantityValue.invalid">
-                                {{quantityValueError()}}</mat-error>
-                        </mat-form-field>
-                        <mat-form-field fxFlex="50" appearance="outline" class="prod-details">
-                            <mat-select id="unit-select" formControlName="quantityUnit" required>
-                                <mat-option value="" disabled>Type of Quantity</mat-option>
-                                <mat-option *ngFor="let unit of units" [value]="unit">{{unit}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-
-
-
-                    <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
-                        <div></div>
-                        <button mat-raised-button color="primary" [disabled]="!productSpecsForm.valid" matStepperNext
-                            class="padded-btn">Next</button>
-                    </div>
+                   
+                
                 </form>
             </mat-step>
 
 
             <mat-step [stepControl]="paramForm">
-                <form [formGroup]="paramForm">
+                
                     <ng-template matStepLabel>Assign Weightages</ng-template>
-                    <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
+                    <form [formGroup]="paramForm" fxLayout="row" fxLayoutAlign="space-around start">
+                    <div fxLayout="column" fxLayoutAlign="space-around start" gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
                         <div>
                             <mat-form-field appearance="outline" class="prod-details">
                                 <mat-label class="form-label">Price</mat-label>
@@ -153,13 +165,32 @@
                                 class="padded-btn">Next</button>
                         </div>
                     </div>
+                    <div class="know-weightage">
+<mat-list>Q.What is Weightage that is associated with each parameter??
+</mat-list>
+     <mat-list> A.Each of the five parameters would have some importance. 
+            You can decide how much each parameter is important to you. 
+            To measure this, weightage is scaled on a range 1 to 5 in the 
+            ascending order of importance.</mat-list>
+
+        <mat-divider></mat-divider>
+        <mat-list>
+                Q.Why to Quantify importance of each parameter in terms of weightage??
+        </mat-list>
+        <mat-list>
+                A.To ensure the Best Bid tailored for you. The Quantification helps in
+                scoring the bidder's bid. With every bid, the bidder tries to improve 
+                his bid score by focussing on the parameter which has to be improved 
+                according to the weightage given by you.
+        </mat-list>
+                    </div>
                 </form>
             </mat-step>
             <mat-step [stepControl]="timeForm">
                 <form [formGroup]="timeForm">
                     <ng-template matStepLabel>Schedule Registration/Auction</ng-template>
                     <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                             <mat-label class="form-label">Registration Start date:</mat-label>
                             <input matInput [matDatepickerFilter]="RegStartDateFilter" [matDatepicker]="picker2"
                                 placeholder="Start date" formControlName="regStartDate">
@@ -168,7 +199,7 @@
                             <mat-datepicker #picker2 disabled="false"></mat-datepicker>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                             <mat-label class="form-label">Registration End date:</mat-label>
                             <input matInput [matDatepickerFilter]="RegEndDateFilter" [matDatepicker]="picker3"
                                 placeholder="End date" formControlName="regEndDate">
@@ -177,7 +208,7 @@
                             <mat-datepicker #picker3 disabled="false"></mat-datepicker>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                             <mat-label class="form-label">Auction Start date:</mat-label>
                             <input matInput [matDatepickerFilter]="AuctionStartDateFilter" [matDatepicker]="picker4"
                                 placeholder="Start date" formControlName="auctionStartDate">
@@ -186,7 +217,7 @@
                             <mat-datepicker #picker4 disabled="false"></mat-datepicker>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field appearance="outline">
                             <mat-label class="form-label">Auction End date:</mat-label>
                             <input matInput [matDatepickerFilter]="AuctionEndDateFilter" [matDatepicker]="picker5"
                                 placeholder="End date" formControlName="auctionEndDate">
