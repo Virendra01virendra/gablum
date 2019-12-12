@@ -54,8 +54,13 @@ export class ContractPageComponent implements OnInit {
           } else { this.isSeller = true;
                    this.isBuyer = false;
           }
+        } else {
+          this.isBuyer = true;
+          this.isSeller = true;
         }
       }
+      console.log(this.isBuyer);
+      console.log(this.isSeller);
     });
   }
 

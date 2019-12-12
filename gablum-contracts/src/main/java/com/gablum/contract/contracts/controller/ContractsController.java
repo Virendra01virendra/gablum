@@ -16,6 +16,7 @@ public class ContractsController {
     public Contracts getContract(@PathVariable String contractId){
         return contractService.getContractById(contractId);
     }
+    
     @GetMapping("/contracts/forBuyer")
     public List<Contracts> getContractByBuyerEmail(@RequestParam String email){
         return contractService.getContractByBuyerEmail(email);
@@ -25,6 +26,8 @@ public class ContractsController {
     public List<Contracts> getContractBySellerEmail(@RequestParam String email){
         return contractService.getContractBySellerEmail(email);
     }
+
+
 
 //    @PostMapping("/contracts")
 //    public Contracts saveContract(@RequestBody Contracts contracts){
