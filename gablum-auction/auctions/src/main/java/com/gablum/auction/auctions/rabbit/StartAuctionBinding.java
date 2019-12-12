@@ -7,12 +7,6 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface StartAuctionBinding {
 
-    @Input("startAuction")
-    SubscribableChannel getStartChannel();
-
-    @Input("newBid")
-    SubscribableChannel getNewbidChannel();
-
     @Output("newAuction")
     MessageChannel floatingNewAuctionMessageChannel();
 
@@ -20,6 +14,6 @@ public interface StartAuctionBinding {
     MessageChannel getNewBidTransmitChannel();
 
     @Output("newContract")
-    MessageChannel awardtheContract();
+    MessageChannel awardContractChannel();
 
 }

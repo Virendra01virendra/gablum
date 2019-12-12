@@ -24,12 +24,12 @@ public class AuctionListener {
     @Autowired
     private AuctionService auctionService;
 
-    @StreamListener("newContract")
-    public void newContract(Contracts contracts){}
-
-    @StreamListener("newAuction")
-    public void newAuction(Auction auction){
-    }
+//    @StreamListener("newContract")
+//    public void newContract(Contracts contracts){}
+//
+//    @StreamListener("newAuction")
+//    public void newAuction(Auction auction){
+//    }
 
     @StreamListener("startAuction")
     public void startAuction(String auctionId) {

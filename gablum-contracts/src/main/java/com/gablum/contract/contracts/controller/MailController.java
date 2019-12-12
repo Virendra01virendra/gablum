@@ -21,7 +21,7 @@ public class MailController {
     ContractService contractService;
 
     @StreamListener("newContract")
-    public void newContract(Contracts contract){
+    public void awardContractChannel(Contracts contract){
         contractService.saveContract(contract);
     }
 

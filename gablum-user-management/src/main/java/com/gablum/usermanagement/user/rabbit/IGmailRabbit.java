@@ -15,8 +15,4 @@ public interface IGmailRabbit {
 
     @Input("newBid")
     SubscribableChannel newBid();
-
-    @Output("User")
-    MessageChannel parsingUser();
-
 }
