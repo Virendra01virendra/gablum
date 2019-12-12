@@ -8,14 +8,21 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ContractsDataService {
-
-  public url = environment.contractUrl;
+  public contract: ContractDetail;
+  public contractsUrl = environment.contractsUrl;
   constructor(
     private comms: CommunicatorService,
     private networking: NetworkingService
   ) { }
 
   getAllContracts(dest, key) {
-    this.networking.getData<ContractDetail>(this.url, dest, key);
+    this.networking.getData<ContractDetail>(this.contractsUrl, dest, key);
+  }
+
+  saveContract(contractDetail: ContractDetail) {
+    this.contract = contractDetail;
+  }
+  retrieveContract() {
+    return this.contract;
   }
 }

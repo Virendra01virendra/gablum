@@ -95,6 +95,8 @@ public class UserController {
         foundUser.setPassword(null);
         return foundUser;
     }
+//
+//    public
 
     @PatchMapping("/profile")
     public ResponseEntity<User> editUserProfile(@RequestBody User modifiedUser, HttpServletRequest request) {
