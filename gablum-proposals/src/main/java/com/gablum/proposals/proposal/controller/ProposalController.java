@@ -46,9 +46,25 @@ public class    ProposalController {
     }
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id
-    public Proposal getProposalById(@PathVariable("proposalId") String proposalId) {
-        //FIXME: only seller can view another proposal
-        return proposalService.getProposalById(proposalId);
+    public ResponseEntity<Proposal> getProposalById(
+            @PathVariable("proposalId") String proposalId,
+            HttpServletRequest request) {
+        //FIXME: only seller can view another proposal// FIXED
+        List<String> roles = userService.getJwtPayload(request).getAuth();
+        boolean isSeller = false;
+        for(String role: roles) {
+            if (role.contains("seller")) {
+                isSeller = true;
+            }
+        }
+        if (isSeller) {
+            return new ResponseEntity<Proposal>(
+                    proposalService.getProposalById(proposalId),
+                    HttpStatus.OK);
+        }
+        return new ResponseEntity<Proposal>(
+                new Proposal(),
+                HttpStatus.FORBIDDEN);
     }
 
     @GetMapping("/proposals")
@@ -87,7 +103,6 @@ public class    ProposalController {
     }
 
     @PatchMapping("/proposals")
-    //FIXME: Duplicate enteries are possible
     public ResponseEntity<Proposal> saveInterestedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInterestedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
@@ -100,10 +115,4 @@ public class    ProposalController {
                 HttpStatus.OK
         );
     }
-
-//    @PatchMapping("/proposals")
-//    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
-//        String currentLoggedUserEmail = userService.getEmail(request);
-//        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
-//    }
 }

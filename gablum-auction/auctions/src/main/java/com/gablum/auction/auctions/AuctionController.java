@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,15 +38,12 @@ public class AuctionController {
 
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
-//    private MessageChannel messageChannelBid;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
     }
 
-    //FIXME: check roles before returning auction
-    //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
     @ResponseBody
     public List<Auction> getAllAuctions(
@@ -142,10 +138,17 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid")
-    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+    public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         ScoreObject scoreObject = new ScoreObject();
+        Auction auctionParticipated = auctionService.getAuctionById(id);
+        if (!auctionParticipated.getInterestedUsersEmail().contains(email)) {
+            return new ResponseEntity<ScoreObject>(
+                    new ScoreObject(),
+                    HttpStatus.FORBIDDEN
+            );
+        }
         scoreObject = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
@@ -154,11 +157,29 @@ public class AuctionController {
         bidDataEntity.setAuctionId(id);
 
         BidDataEntity savedBid = bidService.addBid(bidDataEntity);
+        List<BidDataEntity> allBids = bidService.getBidsAuction(id);
+
+        Collections.sort(
+                allBids,
+                new Comparator<BidDataEntity>() {
+                    @Override
+                    public int compare(BidDataEntity t2, BidDataEntity t1) {
+                        if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
+                            return -1;
+                        }
+                        else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
+                            return 1;
+                        }
+                        return 0;
+                    }
+                }
+        );
+        
         sendingOperations.convertAndSend(
                 "/topic/admin/" + id,
                 savedBid
         );
-        
+
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
         ).build();
@@ -166,7 +187,10 @@ public class AuctionController {
         messageChannelBid.send(message);
 
 
-        return scoreObject;
+        return new ResponseEntity<ScoreObject>(
+                scoreObject,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/tokens/{auctionId}")
@@ -193,7 +217,7 @@ public class AuctionController {
     @GetMapping("auctions/{id}/bid")
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
-        return bidService.getbidsAuction(queryMap, id);
+        return bidService.getBidsAuction(id);
     }
 
     @PatchMapping("auctions/{id}/bid/end")

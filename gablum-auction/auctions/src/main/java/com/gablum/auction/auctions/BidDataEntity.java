@@ -21,6 +21,6 @@ public class BidDataEntity {
 
     private String createdBy;
 
-
+    private long rank;
 
 }

@@ -44,7 +44,7 @@ export class AuctionCardComponent implements OnInit {
       this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
       this.logger.log(this.tokenBody);
       this.isOwner = this.tokenBody.isOwner;
-      this.ws.connect(message => this.subscribe());
+      // this.ws.connect(message => this.subscribe());
     },
     err => {
       this.logger.log(err);
@@ -61,35 +61,33 @@ export class AuctionCardComponent implements OnInit {
   }
 
   subscribe() {
-    if (this.isOwner) {
-      this.ws.subscribe(
-        '/topic/admin/' + this.auction.auctionId,
-        AuctionCardComponent.messageKey,
-        'newbid', this.auction.socketToken).subscribe(message => {
-          if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
-            const data = message.data;
-            if ('newbid' in data) {
-              this.logger.log(data.newbid.body);
-              // this.bids.push(this.testBid);
-            }
-          }
-        }
-      );
-    } else {
-      this.ws.subscribe(
-        '/topic/supplier/' + this.auction.auctionId + '/' + this.tokenBody.sub,
-        AuctionCardComponent.messageKey,
-        'newbid', this.auction.socketToken).subscribe(message => {
-          if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
-            const data = message.data;
-            if ('newbid' in data) {
-              this.logger.log(data.newbid.body);
-              // this.bids.push(this.testBid);
-            }
-          }
-        }
-      );
-    }
+    // if (this.isOwner) {
+    //   this.ws.subscribe(
+    //     '/topic/admin/' + this.auction.auctionId,
+    //     AuctionCardComponent.messageKey,
+    //     'newbid', this.auction.socketToken).subscribe(message => {
+    //       if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
+    //         const data = message.data;
+    //         if ('newbid' in data) {
+    //           this.logger.log(data.newbid.body);
+    //         }
+    //       }
+    //     }
+    //   );
+    // } else {
+    //   this.ws.subscribe(
+    //     '/topic/supplier/' + this.auction.auctionId + '/' + this.tokenBody.sub,
+    //     AuctionCardComponent.messageKey,
+    //     'newbid', this.auction.socketToken).subscribe(message => {
+    //       if (message.dest === '@all' || message.dest === AuctionCardComponent.messageKey) {
+    //         const data = message.data;
+    //         if ('newbid' in data) {
+    //           this.logger.log(data.newbid.body);
+    //         }
+    //       }
+    //     }
+    //   );
+    // }
   }
 
 }
