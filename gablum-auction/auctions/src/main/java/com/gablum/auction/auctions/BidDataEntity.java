@@ -3,6 +3,7 @@ package com.gablum.auction.auctions;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Document("bids")
@@ -20,6 +21,8 @@ public class BidDataEntity {
     private ScoreObject scoreObject;
 
     private String createdBy;
+
+    private Date createdOn = new Date();
 
     private long rank;
     public String toStringContract(){

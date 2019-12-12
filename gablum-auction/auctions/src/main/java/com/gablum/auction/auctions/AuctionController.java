@@ -161,20 +161,24 @@ public class AuctionController {
 
         Collections.sort(
                 allBids,
-                new Comparator<BidDataEntity>() {
-                    @Override
-                    public int compare(BidDataEntity t2, BidDataEntity t1) {
-                        if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
-                            return -1;
-                        }
-                        else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
-                            return 1;
-                        }
-                        return 0;
+                (t2, t1) -> {
+                    if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
+                        return -1;
                     }
+                    else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
+                        return 1;
+                    }
+                    return 0;
                 }
         );
-        
+
+        for (int _i = 0; _i < allBids.size(); _i++) {
+            allBids.get(_i).setRank(_i +1);
+            if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
+                savedBid = allBids.get(_i);
+            }
+        }
+
         sendingOperations.convertAndSend(
                 "/topic/admin/" + id,
                 savedBid
