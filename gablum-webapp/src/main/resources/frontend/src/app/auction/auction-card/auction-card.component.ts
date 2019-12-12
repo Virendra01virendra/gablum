@@ -16,7 +16,11 @@ import { WebsocketService } from 'src/app/services/websocket.service';
   styleUrls: ['./auction-card.component.css']
 })
 export class AuctionCardComponent implements OnInit {
-
+  public static messageKey = 'auction-card-component';
+  public qualityMsgTrue = 'Quality Assurance Required';
+  public qualityMsgFalse = 'Quality Certification Optional';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   constructor(
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
@@ -26,8 +30,13 @@ export class AuctionCardComponent implements OnInit {
     private ws: WebsocketService
     ) {
 
-    }
-  public static messageKey = 'auction-card-component';
+    //     if ('auctions' in data) {
+    //       this.auctions = data.auctions;
+    //       console.log(this.auctions);
+    //     }
+    //   }
+    // });
+  }
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
