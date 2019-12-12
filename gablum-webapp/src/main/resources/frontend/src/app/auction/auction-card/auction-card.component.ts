@@ -6,7 +6,7 @@ import { AuctionsListComponent } from 'src/app/dashboard/auctions-list/auctions-
 import { Router } from '@angular/router';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { environment } from 'src/environments/environment';
-import { LoggerService } from 'src/app/services/logger.service'
+import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
