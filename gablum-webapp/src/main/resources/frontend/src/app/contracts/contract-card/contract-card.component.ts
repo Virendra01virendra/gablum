@@ -7,6 +7,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { environment } from 'src/environments/environment';
 import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
 @Component({
   selector: 'app-contract-card',
@@ -23,19 +24,28 @@ export class ContractCardComponent implements OnInit {
   public deliveryDate: Date;
   public creditPeriod: number;
   private dialog: MatDialog;
+  private profileDataService: ProfileDataService;
   // panelOpenState = false;
 
   constructor(
     public contractDataService: ContractsDataService,
     private comms: CommunicatorService,
     private router: Router,
-    private logger: LoggerService
-  ) { }
+    private logger: LoggerService,
+    public profileUrl: string
+  ) {
+    this.profileUrl = this.profileUrl + '/' + this.contract.buyerEmail;
+    this.profileDataService.getUserProfileByEmail(
+      ContractCardComponent.messageKey,
+      'userProfile'
+    );
+  }
 
   @Input() public contract: ContractDetail;
 
   ngOnInit() {
     const contractsUrl = environment.contractsUrl;
+    this.profileUrl = environment.profileUrl;
     this.logger.log(contractsUrl);
   }
 
