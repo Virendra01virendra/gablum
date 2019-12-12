@@ -2,7 +2,6 @@ package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gablum.auction.auctions.otherModels.Contracts;
-import com.gablum.auction.auctions.otherModels.User;
 import com.gablum.auction.auctions.rabbit.BidMessage;
 import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
@@ -238,7 +237,7 @@ public class AuctionController {
         auctionToEnd.setSocketTokens(null);
 
 //      public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
-        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), bidDataEntity.getCreatedBy(),true, null );  
+        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), bidDataEntity.getCreatedBy(),true, null );
 
         Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
         messageChannelContract.send(msg);

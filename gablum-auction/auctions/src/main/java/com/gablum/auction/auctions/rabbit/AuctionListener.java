@@ -1,8 +1,6 @@
 package com.gablum.auction.auctions.rabbit;
 
-import com.gablum.auction.auctions.Auction;
 import com.gablum.auction.auctions.AuctionService;
-import com.gablum.auction.auctions.otherModels.Contracts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;

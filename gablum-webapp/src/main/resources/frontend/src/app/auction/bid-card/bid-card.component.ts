@@ -9,7 +9,6 @@ import { WinningBidDialogComponent } from '../winning-bid-dialog/winning-bid-dia
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Auction } from 'src/app/interfaces/auction';
 import { User } from 'src/app/interfaces/user';
-import { userInfo } from 'os';
 
 
 
@@ -51,8 +50,6 @@ export class BidCardComponent implements OnInit {
     // this.auctionDataService.saveWinningBid(BidCardComponent.messageKey, bidDataEntity, 'winningBid', this.auctionId);
     const sellerEmail = bidDataEntity1.createdBy;
     const buyerEmail = this.auction.createdBy;
-    let buyer: User;
-    let seller: User;
     const bidData = {
       bidDataEntity: bidDataEntity1,
       auctionID: this.auctionId
