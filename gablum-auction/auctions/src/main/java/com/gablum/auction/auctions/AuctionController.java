@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,17 +33,17 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SimpMessageSendingOperations sendingOperations;
+
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
-//    private MessageChannel messageChannelBid;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
     }
 
-    //FIXME: check roles before returning auction
-    //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
     @ResponseBody
     public List<Auction> getAllAuctions(
@@ -107,7 +108,11 @@ public class AuctionController {
             Message<Auction> msg = MessageBuilder.withPayload(auctionsToAdd.get(j)).build();
             messageChannelAuction.send(msg);
         }
-        return auctionService.addAuctions(auctionsToAdd);
+        List<Auction> auctionsAdded = auctionService.addAuctions(auctionsToAdd);
+        for (Auction auction: auctionsAdded) {
+            auction.setSocketTokens(null);
+        }
+        return auctionsAdded;
     }
 
     @GetMapping("auctions/seller")
@@ -133,10 +138,17 @@ public class AuctionController {
 
 
     @PostMapping("auctions/{id}/bid")
-    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+    public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         ScoreObject scoreObject = new ScoreObject();
+        Auction auctionParticipated = auctionService.getAuctionById(id);
+        if (!auctionParticipated.getInterestedUsersEmail().contains(email)) {
+            return new ResponseEntity<ScoreObject>(
+                    new ScoreObject(),
+                    HttpStatus.FORBIDDEN
+            );
+        }
         scoreObject = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
@@ -144,7 +156,33 @@ public class AuctionController {
         bidDataEntity.setCreatedBy(email);
         bidDataEntity.setAuctionId(id);
 
-        bidService.addBid(bidDataEntity);
+        BidDataEntity savedBid = bidService.addBid(bidDataEntity);
+        List<BidDataEntity> allBids = bidService.getBidsAuction(id);
+
+        Collections.sort(
+                allBids,
+                (t2, t1) -> {
+                    if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
+                        return -1;
+                    }
+                    else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
+                        return 1;
+                    }
+                    return 0;
+                }
+        );
+
+        for (int _i = 0; _i < allBids.size(); _i++) {
+            allBids.get(_i).setRank(_i +1);
+            if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
+                savedBid = allBids.get(_i);
+            }
+        }
+
+        sendingOperations.convertAndSend(
+                "/topic/admin/" + id,
+                savedBid
+        );
 
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
@@ -153,7 +191,10 @@ public class AuctionController {
         messageChannelBid.send(message);
 
 
-        return scoreObject;
+        return new ResponseEntity<ScoreObject>(
+                scoreObject,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/tokens/{auctionId}")
@@ -180,7 +221,7 @@ public class AuctionController {
     @GetMapping("auctions/{id}/bid")
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
-        return bidService.getbidsAuction(queryMap, id);
+        return bidService.getBidsAuction(id);
     }
 
     @PatchMapping("auctions/{id}/bid/end")
@@ -189,8 +230,10 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
-
-        return auctionService.updateAuction(auction);
+        //FIXME: check if auction actually ended
+        Auction auctionToEnd =  auctionService.updateAuction(auction);
+        auctionToEnd.setSocketTokens(null);
+        return auctionToEnd;
     }
 
 }

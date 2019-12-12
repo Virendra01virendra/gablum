@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatOptionModule, MatSnackBarModule } from '@angular/material';
+<<<<<<< HEAD
+import { MatOptionModule, MatSnackBarModule, MatProgressBarModule } from '@angular/material';
+=======
+import { MatOptionModule, MatProgressBarModule, MatSnackBarModule } from '@angular/material';
+>>>>>>> 1460c733ba3486d00071bd597a9af2d67c54125a
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -71,6 +75,7 @@ const modules = [
   MatListModule,
   MatMenuModule,
   MatTableModule,
+  MatProgressBarModule,
   NgxChartsModule,
   MatSnackBarModule
 ];

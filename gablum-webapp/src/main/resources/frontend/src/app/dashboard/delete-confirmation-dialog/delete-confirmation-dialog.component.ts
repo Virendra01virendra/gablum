@@ -13,22 +13,15 @@ import { Proposal } from 'src/app/interfaces/proposal';
 })
 export class DeleteConfirmationDialogComponent implements OnInit {
 
-  title: string;
-  message: string;
-
   constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogModel,
+              @Inject(MAT_DIALOG_DATA) public data: Proposal,
               private proposalDataService: ProposalsDataService,
               private comms: CommunicatorService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
               private router: Router,
-              private logger: LoggerService) {
-                this.title = data.title;
-                this.message = data.message;
-              }
+              private logger: LoggerService) { }
 
-  @Input() proposal: Proposal;
 
   ngOnInit() {
   }
@@ -43,7 +36,6 @@ export class DeleteConfirmationDialogComponent implements OnInit {
         duration: 2000
       }
     );
-
   }
 
   onDismiss(): void {

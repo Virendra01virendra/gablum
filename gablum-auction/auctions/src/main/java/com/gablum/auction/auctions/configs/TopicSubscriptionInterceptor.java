@@ -1,11 +1,13 @@
 package com.gablum.auction.auctions.configs;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gablum.auction.auctions.AuctionJwtPayload;
-import com.gablum.auction.auctions.services.UserService;
+//import com.gablum.auction.auctions.services.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.stomp.StompCommand;
@@ -17,13 +19,13 @@ import java.util.Base64;
 @Slf4j
 public class TopicSubscriptionInterceptor implements ChannelInterceptor {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
 //    @Autowired
 //    private AuctionService auctionService;
 
-    private String secretKey = "super-secret";
+    private String secretKey = "big-secret";
 
     private final String AUTH = "auth";
 
@@ -53,7 +55,9 @@ public class TopicSubscriptionInterceptor implements ChannelInterceptor {
             log.error("invalid jwt: " + authHeader);
             return false;
         }
-        AuctionJwtPayload payload = userService.getAuctionPayload(authHeader);
+        log.warn("subscription topic: " + subscriptionTopic);
+        AuctionJwtPayload payload = getAuctionPayload(authHeader);
+        log.warn("auctionId: " + payload.getAuctionId());
         if (!subscriptionTopic.contains(payload.getAuctionId())) {
             log.error("tried subscribing to an unauthorized auction: " + subscriptionTopic);
             return false;
@@ -62,9 +66,20 @@ public class TopicSubscriptionInterceptor implements ChannelInterceptor {
             log.error("tried subscribing to buyer stream: " + payload.toString());
             return false;
         }
-//        log.warn(authHeader);
-//        log.warn(subscriptionTopic);
         log.warn("\n\n\n\n");
         return true;
+    }
+
+    public AuctionJwtPayload getAuctionPayload(String token) {
+        String payloadEncoded = token.split("\\.")[1];
+        String payload = new String(Base64.getDecoder().decode(payloadEncoded));
+        AuctionJwtPayload jwtPayload;
+        try {
+            jwtPayload = new ObjectMapper().readValue(payload, AuctionJwtPayload.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return jwtPayload;
     }
 }

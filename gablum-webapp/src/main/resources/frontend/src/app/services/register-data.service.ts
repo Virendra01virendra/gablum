@@ -41,6 +41,13 @@ export class RegisterDataService {
           '@all',
           {registrationResult: res}
         );
+      },
+      err => {
+        this.comms.postMessage(
+          this,
+          '@all',
+          {registrationResult: null}
+        );
       });
   }
 }
