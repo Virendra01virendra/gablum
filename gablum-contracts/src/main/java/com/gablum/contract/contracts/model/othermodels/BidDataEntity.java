@@ -13,6 +13,7 @@ public class BidDataEntity {
     private float score;
     private ScoreObject scoreObject;
     private String createdBy;
+    private long rank;
     public String toStringContract(){
         return this.getBidId() + this.getAuctionId() + this.getCreatedBy() +
                 this.getBid().toString()+ String.valueOf(this.scoreObject.getTotal());

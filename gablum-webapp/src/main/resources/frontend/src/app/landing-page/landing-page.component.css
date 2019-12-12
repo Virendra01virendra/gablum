@@ -19,12 +19,14 @@
 }
 
 .about-section {
-    width: 80%;
+    width: 95%;
     margin: 2em auto;
-    padding: 2em;
-    border-radius: 0.3em;
-    background: #fff;
+    padding: 0;
     text-align: justify;
+}
+
+.feature {
+    width: 100%;
 }
 
 .contact-section {

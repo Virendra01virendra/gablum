@@ -24,7 +24,8 @@ export class BidCardComponent implements OnInit {
 
   }
   public static messageKey = 'BidCardComponent';
-  auctionId: string;
+  public auctionId: string;
+  public bidRank: number;
 
   @Input() public bidDataEntity: NewBid;
 
