@@ -27,12 +27,14 @@ import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { BrowseProposalsModule } from './browse-proposals/browse-proposals.module';
 import { AdminModule } from './admin/admin.module';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    LoginComponent
+    LoginComponent,
+    TeamComponent
   ],
   imports: [
     // BrowserModule,
