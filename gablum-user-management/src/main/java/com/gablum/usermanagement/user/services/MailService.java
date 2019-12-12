@@ -22,14 +22,13 @@ public class MailService {
         SimpleMailMessage msg = new SimpleMailMessage();
         if (type == "registering"){
             msg.setTo(user.getEmail());
-            msg.setSubject("Verification of Email");
-
-            String text = "Hello " +user.getName()+ " from"+user.getCompanyName();
-            text += "Welcome to Gablum!!\nThanks for choosing us for your business.";
-            text += "Get started by logging in to your profile";
-            text += "You can now connect with businesses that best suit your expectations.\nIn case of " +
+            msg.setSubject("User Email verification.");
+            String text = "Hello "+user.getName()+", from "+user.getCompanyName()+".\n";
+            text += "\nWelcome to Gablum!!\nThanks for choosing us for your business.";
+            text += "\nGet started by logging in to your profile";
+            text += "\n\nYou can now connect with businesses that best suit your expectations.\nIn case of " +
                     "any query you can connect with our support team once you login.";
-            text += "\n\nSee you online.\nTeam Gablum.";
+            text += "\n\nSee you online.\n\nTeam Gablum.";
             msg.setText(text);
             try
             {
@@ -50,7 +49,7 @@ public class MailService {
 
             String text = "Thanks for floating a new proposal on Gablum.";
             text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
-            text += "\n\n<h1>Proposal Details are</h1> : \n";
+            text += "\n\nProposal Details are : \n";
             text += "\n<h3>Product Name : </h3>" + proposal.getProductName();
             text += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
             text += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();

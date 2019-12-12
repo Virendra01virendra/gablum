@@ -51,19 +51,17 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.stop();
   }
     public start() {
-    const t: Observable<number> = interval(1000);
-    this.currentSubscription = t.pipe(map(v => this.timerEventTime - v)).subscribe(v => {
-    this.formatValue(v);
-    this.changeDetector.detectChanges();
-    this.timerEventTime = v;
-    this.changeDetector.detectChanges();
-  }, err => {
-    this.counterState.emit('something is up');
-  }, () => {
-    this.timerEventTime = 0;
-    this.counterState.emit('Time is UP');
-    this.changeDetector.detectChanges();
-  });
+    const t = timer(0, 1000);
+    this.currentSubscription = t.pipe(map(v => (this.timerEventTime - v * 1000))).subscribe(v => {
+      this.formatValue(v);
+      this.changeDetector.detectChanges();
+    }, err => {
+      this.counterState.emit('something is up');
+    }, () => {
+      this.timerEventTime = 0;
+      this.counterState.emit('Time is UP');
+      this.changeDetector.detectChanges();
+    });
   }
 
 
