@@ -1,13 +1,23 @@
 // import { Timestamp } from 'rxjs/internal/operators/timestamp';
 import { Time } from '@angular/common';
+import { Auction } from './auction';
+import { Bid } from './bid';
 
 export interface ContractDetail {
+    _id: string;
     contractId: string;
-    auctionDetails: any;
+    auctionId: string;
+    bidId: string;
+    auctionDetails: Auction;
     BidDetails: any;
-    buyerDetails: any;
-    sellerDetails: any;
-    createdTimeStamp: any;
+    buyerEmail: string;
+    buyer: any;
+    buyerESign: string;
+    sellerESign: string;
+    sellerEmail: string;
+    seller: any;
     contractStatus: boolean;
-    hash: string;
+    currentHash: string;
+    previousHash: string;
+    createdOn: Date;
 }

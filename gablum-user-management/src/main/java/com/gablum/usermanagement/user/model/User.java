@@ -50,6 +50,7 @@ public class User {
         userDomainDetails.add(singleDomainDetails);
     }
     private Set<Role> role = Set.of(new Role(1, "buyer"));
+    private float rating;
 
     // TODO: remove hard coded role: DONE
     private Integer active=1;

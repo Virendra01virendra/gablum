@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.UUID;
 
 @Document("contracts")
@@ -30,7 +31,7 @@ public class Contracts {
     private Boolean contractStatus = true;
     private String currentHash;
     private String previousHash;
-
+    private Date createdOn;
 
     public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, User buyer, String sellerEmail, User seller, Boolean contractStatus, String previousHash) {
         this.contractId = UUID.randomUUID().toString();
@@ -43,10 +44,11 @@ public class Contracts {
         this.sellerEmail = sellerEmail;
         this.seller = seller;
         this.contractStatus = contractStatus;
-        this.previousHash = previousHash;
         this.generatingBuyerESign();
         this.generatingSellerESign();
         this.generatingCurrentHash();
+        this.previousHash = previousHash;
+        this.createdOn= new Date();
     }
 
     public void generatingBuyerESign(){

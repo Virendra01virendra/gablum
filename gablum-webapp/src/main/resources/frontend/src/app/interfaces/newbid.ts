@@ -12,10 +12,6 @@
 //     creditPeriodInDays: number;
 //     certifications: string[];
 // }
-
-import { BidScore } from './bid-score';
-import { UserProfile } from './user';
-
 export interface NewBid {
     bidId: string;
     auctionId: string;
