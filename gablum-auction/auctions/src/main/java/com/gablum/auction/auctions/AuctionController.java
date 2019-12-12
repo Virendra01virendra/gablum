@@ -1,6 +1,7 @@
 package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gablum.auction.auctions.otherModels.Contracts;
 import com.gablum.auction.auctions.rabbit.BidMessage;
 import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
@@ -38,10 +39,12 @@ public class AuctionController {
 
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
+    private MessageChannel messageChannelContract;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
+        this.messageChannelContract = auctionBinding.awardContractChannel();
     }
 
     @GetMapping("/auctions")
@@ -128,14 +131,12 @@ public class AuctionController {
         return auctions;
     }
 
-
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
         ScoreObject scoreObject = new ScoreObject();
         scoreObject = bidService.getBidScore(bid, id);
         return scoreObject;
     }
-
 
     @PostMapping("auctions/{id}/bid")
     public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
@@ -231,9 +232,16 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
+
         //FIXME: check if auction actually ended
         Auction auctionToEnd =  auctionService.updateAuction(auction);
         auctionToEnd.setSocketTokens(null);
+
+//      public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
+        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), bidDataEntity.getCreatedBy(),true, null );
+
+        Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
+        messageChannelContract.send(msg);
         return auctionToEnd;
     }
 

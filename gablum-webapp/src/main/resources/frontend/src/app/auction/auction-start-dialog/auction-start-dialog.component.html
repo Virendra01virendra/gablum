@@ -25,15 +25,6 @@
                   <mat-chip color="primary">Delivery Date</mat-chip> 
                   <mat-chip>{{data.deliveryDate | date}}</mat-chip>
                 </div>
-               
-        <!-- <div> Your score is <div [ngClass]="{
-                  'positive' : data >= 90,
-                  'medium' : data < 90 && data >= 70,
-                  'negative': data < 70
-              }">
-          {{result1}}
-          </div>
-      </div> -->
     </mat-dialog-content>
   </div>
   <br>
@@ -55,8 +46,8 @@
 <br>
 
   <div class="wrapper" fxLayoutAlign="space-around center">
-    <mat-dialog-actions>
-      <button color="primary" mat-raised-button (click)="close()">Back to Dashboard</button>
+    <mat-dialog-actions fxLayout="row nowrap" fxLayoutAlign="end center">
+      <button mat-raised-button (click)="close()">Back to Dashboard</button>
       <button color="primary" mat-raised-button (click)="startAuction(data)">Start Auction</button>
     </mat-dialog-actions>
   </div>

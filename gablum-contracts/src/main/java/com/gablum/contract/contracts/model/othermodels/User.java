@@ -43,6 +43,7 @@ public class User {
     private boolean isLocked=false;
     private boolean isExpired=false;
     private boolean isEnabled=true;
+    private float rating;
 
     private Date createdOn;
 
