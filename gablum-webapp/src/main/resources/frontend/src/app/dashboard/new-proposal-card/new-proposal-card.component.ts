@@ -11,14 +11,15 @@ import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
 import { ConfirmDialogModel, DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
-// import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-proposal-card',
   templateUrl: './new-proposal-card.component.html',
   styleUrls: ['./new-proposal-card.component.css']
 })
+
 export class NewProposalCardComponent implements OnInit {
+
   public static messageKey = 'new-proposal-card-component';
 
   constructor(

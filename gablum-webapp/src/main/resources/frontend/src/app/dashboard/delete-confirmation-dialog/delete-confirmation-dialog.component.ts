@@ -32,9 +32,20 @@ export class DeleteConfirmationDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-  deleteOnConfirm(): void {
+
+  deleteOnConfirm(proposal: Proposal): void {
+    this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
     this.dialogRef.close(true);
+    this.snackBar.open(
+      'Your proposal has been removed.',
+      '',
+      {
+        duration: 2000
+      }
+    );
+
   }
+
   onDismiss(): void {
     this.dialogRef.close(false);
   }

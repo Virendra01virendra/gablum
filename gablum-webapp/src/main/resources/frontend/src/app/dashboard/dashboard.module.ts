@@ -30,7 +30,7 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
     SellerProposalCardComponent,
-    DeleteConfirmationDialogComponent    // AuctionCardDialogComponent
+    DeleteConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
