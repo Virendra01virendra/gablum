@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Profile } from 'src/app/interfaces/profile';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-edit-profile-dialog',
@@ -68,7 +70,10 @@ export class EditProfileDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: Profile,
     private profileService: ProfileDataService,
-    private logger: LoggerService) {
+    private logger: LoggerService,
+    private comms: CommunicatorService,
+    private snackbar: MatSnackBar,
+    private dialogRef: MatDialogRef<EditProfileDialogComponent>) {
     this.editProfileForm = new FormGroup({
       name : new FormControl(data.name),
       email : new FormControl(data.email),
@@ -109,6 +114,29 @@ export class EditProfileDialogComponent implements OnInit {
   onConfirm() {
     const profileValue: Profile = this.editProfileForm.value;
     profileValue.role = this.data.role;
-    this.profileService.editUserProfile('@all', profileValue, 'profile');
+    this.profileService.editUserProfile('@all', profileValue, 'profile').subscribe ( msg => {
+      this.snackbar.open(
+        'Profile edited successfully',
+        '',
+        {
+          duration: 3000
+        }
+      );
+      this.dialogRef.close();
+      this.comms.postMessage(
+        this,
+        '@all',
+        {profile: msg}
+      );
+    },
+    err => {
+      this.snackbar.open(
+        'Edit failed',
+        '',
+        {
+          duration: 3000
+        }
+      );
+    });
   }
 }

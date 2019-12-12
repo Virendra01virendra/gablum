@@ -69,7 +69,6 @@ public class UserController {
 //                    new NavLink("Calendar", "/calendar", "calendar_today"),
                     new NavLink("Contracts", "/contracts", "book"),
 //                    new NavLink("Inbox", "/inbox", "email"))
-                    new NavLink("Support", "/support", "contact_support"),
                     new NavLink("Inbox", "/inbox", "email")
             ));
         }
