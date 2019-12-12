@@ -1,6 +1,8 @@
 package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gablum.auction.auctions.otherModels.Contracts;
+import com.gablum.auction.auctions.otherModels.User;
 import com.gablum.auction.auctions.rabbit.BidMessage;
 import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
@@ -34,11 +36,12 @@ public class AuctionController {
 
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
-//    private MessageChannel messageChannelBid;
+    private MessageChannel messageChannelContract;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
+        this.messageChannelContract = auctionBinding.awardtheContract();
     }
 
     //FIXME: check roles before returning auction
@@ -189,7 +192,12 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
-
+        User buyer = new User();
+        User seller = new User();
+//      public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, User buyer, String sellerEmail, User seller, Boolean contractStatus, String previousHash) {
+        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), null, bidDataEntity.getCreatedBy(), null, true, null );
+        Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
+        messageChannelContract.send(msg);
         return auctionService.updateAuction(auction);
     }
 

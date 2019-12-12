@@ -19,4 +19,7 @@ public interface StartAuctionBinding {
     @Output("newBid")
     MessageChannel getNewBidTransmitChannel();
 
+    @Output("newContract")
+    MessageChannel awardtheContract();
+
 }
