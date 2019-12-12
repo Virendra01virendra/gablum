@@ -57,7 +57,7 @@ public class TopicSubscriptionInterceptor implements ChannelInterceptor {
         }
         log.warn("subscription topic: " + subscriptionTopic);
         AuctionJwtPayload payload = getAuctionPayload(authHeader);
-        log.warn(("auctionId: " + payload.getAuctionId()));
+        log.warn("auctionId: " + payload.getAuctionId());
         if (!subscriptionTopic.contains(payload.getAuctionId())) {
             log.error("tried subscribing to an unauthorized auction: " + subscriptionTopic);
             return false;
