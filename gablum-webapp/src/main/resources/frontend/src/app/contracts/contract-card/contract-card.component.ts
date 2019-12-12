@@ -4,6 +4,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contract-card',
@@ -31,6 +32,8 @@ export class ContractCardComponent implements OnInit {
   @Input() public contract: ContractDetail;
 
   ngOnInit() {
+    const contractUrl = environment.contractUrl;
+    this.logger.log(contractUrl);
   }
 
 

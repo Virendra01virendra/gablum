@@ -47,7 +47,6 @@ export class ContractPageComponent implements OnInit {
 
         if ('userProfile' in data) {             // getting user profile for subDomain
           this.userProfile = data.userProfile;
-          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
           this.userRole = this.userProfile.role;
           if (this.userProfile.role[0].role === 'buyer') {
             this.isBuyer = true;
