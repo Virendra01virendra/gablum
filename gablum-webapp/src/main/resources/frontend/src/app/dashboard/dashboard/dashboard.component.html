@@ -235,11 +235,13 @@
               <mat-panel-title>Active Auctions</mat-panel-title>
               <mat-panel-description>
                   <div *ngIf=" auctions && auctions.length === 0">
-                      <p>Nahi Hai Yaar!!!</p>
+                      <h1>Nahi Hai Yaar!!!</h1>
                   </div>
               </mat-panel-description>
             </mat-expansion-panel-header>
-      
+            <div *ngIf="auctions.length === 0">
+                <h1>Nahi Hai Yaar!!!</h1>
+            </div>
             <div class="expansion-auction-card" fxLayout="column">
               <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
             </div>
