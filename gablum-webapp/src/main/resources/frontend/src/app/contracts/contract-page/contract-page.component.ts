@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { Profile } from 'src/app/interfaces/profile';
+import { Auction } from 'src/app/interfaces/auction';
+import { ContractDetail } from 'src/app/interfaces/contract-detail';
 
 @Component({
   selector: 'app-contract-page',
@@ -19,21 +22,45 @@ export class ContractPageComponent implements OnInit {
   public isBuyer;
   public isSeller;
   public userRole = new Array();
+  contracts: ContractDetail[];
+  public userProfile: Profile;
 
   constructor(
-    private user: ProfileDataService,
     private comms: CommunicatorService,
     private router: Router,
     private logger: LoggerService,
     private auth: AuthenticationService,
-    public http: HttpClient
+    public http: HttpClient,
+    private user: ProfileDataService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     if (this.isLoggedIn) {
       this.logger.log(this, auth.getProfileData());
+    }
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === ContractPageComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+
+        if ('contracts' in data) {
+          this.contracts = data.contracts;
+        }
+
+        if ('userProfile' in data) {             // getting user profile for subDomain
+          this.userProfile = data.userProfile;
+          this.proposalDataService.getProposalsBySubDomain(this.businessSubdomain, DashboardComponent.messageKey, 'sellerProposals');
+          this.userRole = this.userProfile.role;
+          if (this.userProfile.role[0].role === 'buyer') {
+            this.isBuyer = true;
+            this.isSeller = false;
+          } else { this.isSeller = true;
+                   this.isBuyer = false;
+          }
+        }
+      }
+    });
   }
 
   ngOnInit() {
   }
-
 }
+
