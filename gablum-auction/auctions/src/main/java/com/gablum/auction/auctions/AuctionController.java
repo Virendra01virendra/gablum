@@ -164,16 +164,17 @@ public class AuctionController {
                 allBids,
                 (t2, t1) -> {
                     if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
-                        return -1;
+                        return 1;
                     }
                     else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
-                        return 1;
+                        return -1;
                     }
                     return 0;
                 }
         );
 
         for (int _i = 0; _i < allBids.size(); _i++) {
+            log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
             if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
                 savedBid = allBids.get(_i);
@@ -222,7 +223,7 @@ public class AuctionController {
     @GetMapping("auctions/{id}/bid")
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
-        return bidService.getBidsAuction(id);
+        return bidService.getBidsAuction(id, request);
     }
 
     @PatchMapping("auctions/{id}/bid/end")
