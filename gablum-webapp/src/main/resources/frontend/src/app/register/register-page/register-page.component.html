@@ -62,7 +62,7 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Business Domain:</mat-label>
-    <input matInput type="text" disabled value="Agriculture" formControName="businessDomain">
+    <input matInput type="text" disabled value={{domain}} formControName="businessDomain">
     <mat-error *ngIf="businessDomain.touched || businessDomain.invalid">{{getErrorMessage8()}}</mat-error>
   </mat-form-field>
 

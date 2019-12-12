@@ -18,6 +18,7 @@ import { MatSnackBar } from '@angular/material';
 export class RegisterPageComponent implements OnInit {
 
   public static msgKey = 'regPage-component';
+  domain = 'Agriculture';
 
   get name() {
     return this.registrationForm.get('name');
@@ -190,6 +191,7 @@ export class RegisterPageComponent implements OnInit {
       role: 'seller',
       id: 2
     };
+    this.logger.log(' Registeration Form Details ' , this.registrationForm.value, this.businessDomain);
     const registerProfile: RegisterRequest = this.registrationForm.value;
     if (this.registrationForm.value.role === 'buyer') {
       registerProfile.role = [roleBuyer];
@@ -201,6 +203,6 @@ export class RegisterPageComponent implements OnInit {
       registerProfile.role = [roleBuyer, roleSeller];
     }
     this.registrationService.register(registerProfile);
-    this.router.navigate(['']);
+    this.router.navigate(['/register']);
   }
 }
