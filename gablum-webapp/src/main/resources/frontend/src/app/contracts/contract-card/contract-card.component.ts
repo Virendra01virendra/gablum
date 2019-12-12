@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Router } from '@angular/router';
+import { LoggerService } from 'src/app/services/logger.service';
+import { ContractDetail } from 'src/app/interfaces/contract-detail';
 
 @Component({
   selector: 'app-contract-card',
@@ -6,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contract-card.component.css']
 })
 export class ContractCardComponent implements OnInit {
+
+  public static messageKey = 'contract-card-component';
   public contractData: any;
   public productName: string;
   public sellerName: string;
@@ -15,7 +22,13 @@ export class ContractCardComponent implements OnInit {
   // panelOpenState = false;
 
   constructor(
+    public contractDataService: ContractsDataService,
+    private comms: CommunicatorService,
+    private router: Router,
+    private logger: LoggerService
   ) { }
+
+  @Input() public contract: ContractDetail;
 
   ngOnInit() {
   }
