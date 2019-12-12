@@ -235,7 +235,9 @@ public class AuctionController {
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
 
-
+        //FIXME: check if auction actually ended
+        Auction auctionToEnd =  auctionService.updateAuction(auction);
+        auctionToEnd.setSocketTokens(null);
         User buyer = new User();
         User seller = new User();
 
@@ -245,10 +247,6 @@ public class AuctionController {
 
         Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
         messageChannelContract.send(msg);
-
-        //FIXME: check if auction actually ended
-        Auction auctionToEnd =  auctionService.updateAuction(auction);
-        auctionToEnd.setSocketTokens(null);
         return auctionToEnd;
     }
 

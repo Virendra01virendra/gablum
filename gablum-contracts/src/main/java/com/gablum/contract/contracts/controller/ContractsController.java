@@ -34,10 +34,10 @@ public class ContractsController {
         return contractService.getContractBySellerEmail(email);
     }
 
-    @PostMapping("/contracts")
-    public Contracts saveContract(@RequestBody Contracts contracts){
-        return contractService.saveContract(contracts);
-    }
+//    @PostMapping("/contracts")
+//    public Contracts saveContract(@RequestBody Contracts contracts){
+//        return contractService.saveContract(contracts);
+//    }
 
 //    @PatchMapping("/contracts/{contractsId}")
 //    public Contracts updateContractStatus(@PathVariable String contractId, @RequestBody Contracts contractToEdit){

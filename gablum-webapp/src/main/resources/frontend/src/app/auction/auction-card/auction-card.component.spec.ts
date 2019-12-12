@@ -45,6 +45,7 @@ describe('AuctionCardComponent', () => {
     component = fixture.componentInstance;
     const auction = {
       auctionId: '',
+      uniqueLink: '',
       auctionName: '',
       proposal: {
         proposalId: ' ',
@@ -78,8 +79,11 @@ describe('AuctionCardComponent', () => {
         interestedUsersEmail: []
     },
     isAuctionActive: false,
+    isAuctionFinished: false,
     participantsVerificationId: '',
     selectedParticipantList: [],
+    interestedUsersEmail: [],
+    winningBid: '',
     bidIdList: [],
     createdOn: new Date(),
     updatedOn: new Date(),
