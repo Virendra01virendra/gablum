@@ -47,8 +47,7 @@ public class MailService {
 
             msg.setSubject("New Proposal Added");
 
-            String text = "Hello "+user.getName(+", from "+user.getCompanyName()+".\n";
-            text += "Thanks for floating a new proposal on Gablum.";
+            String text = "Thanks for floating a new proposal on Gablum.";
             text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
             text += "\n\nProposal Details are : \n";
             text += "\nProduct Name : " + proposal.getProductName();
