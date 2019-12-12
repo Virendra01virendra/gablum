@@ -1,11 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NewProposalCardComponent } from './new-proposal-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NewProposalCardComponent', () => {
