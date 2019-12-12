@@ -108,7 +108,7 @@ public class MailService {
 
     public void sendAuctionEmail(String type, Auction auction) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        if (type == "newAuction"){
+        if (type == "newAuction") {
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
             String textBuyer = "You have initialised a new Auction.\n";
@@ -118,13 +118,13 @@ public class MailService {
             textBuyer += "Do read the instructions carefully before you award the contract.";
             textBuyer += "\n\nTeam Gablum.";
             msg.setText(textBuyer);
-            try
-            {
+            try {
                 javaMailSender.send(msg);
-            } catch (MailException e){
+            } catch (MailException e) {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
             }
+        }
 
             List<String> interestedUsersEmail = new ArrayList<String>();
             interestedUsersEmail = auction.getInterestedUsersEmail();
@@ -133,13 +133,12 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-<<<<<<< HEAD
-                String text = "New Auction of your interested has been floated";
-                msgInterestedUsers.setText(text);
-=======
-                textBuyer = "New Auction of your interested has been floated";
+                String textBuyer = "\nNew Auction of your interested has been floated";
+                textBuyer += "\n\nKeep up to date with the deadlines for the end of registration" +
+                        " as well as the auction start and end dates.";
+                textBuyer += "\n\nPlace your bids wisely.\nAll the best.\n";
+                textBuyer += "\n\nTeam Gablum";
                 msgInterestedUsers.setText(textBuyer);
->>>>>>> e51b22c0d0d6f09497d8ce648e878a029b58fce5
                 try
                 {
                     javaMailSender.send(msgInterestedUsers);
@@ -149,7 +148,6 @@ public class MailService {
                 }
             }
         }
-    }
 
     public void sendBidEmail(String type, BidMessage bidMessage) {
         SimpleMailMessage msg = new SimpleMailMessage();
@@ -157,8 +155,12 @@ public class MailService {
             BidDataEntity bidDataEntity = bidMessage.getBidDataEntity();
             msg.setTo(bidDataEntity.getCreatedBy());
             msg.setSubject("New Bid Placed");
-            String text = "You have placed a new bid. "+bidDataEntity.getCreatedBy();
-            msg.setText(text);
+            String textBidder = "You have placed a new bid. Watch your bid closely as you aim for" +
+                    "the top spot.\nImprovise your bid score and settle yourself in appropriate" +
+                    "bracket.";
+            textBidder += "Make the buyer an offer that's hard to refuse.";
+            textBidder += "\n\nTeam Gablum";
+            msg.setText(textBidder);
             try
             {
                 javaMailSender.send(msg);
@@ -168,5 +170,7 @@ public class MailService {
             }
         }
     }
+
+    public void
 
 }
