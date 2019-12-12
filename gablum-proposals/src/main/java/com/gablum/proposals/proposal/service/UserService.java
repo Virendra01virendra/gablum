@@ -15,6 +15,10 @@ public class UserService {
     private final String AUTHORIZATION = "Authorization";
 
     public String getEmail(HttpServletRequest request) {
+        return getJwtPayload(request).getSub();
+    }
+
+    public JwtPayload getJwtPayload(HttpServletRequest request) {
         String bearerToken = null;
         try {
             Cookie[] cookies = request.getCookies();
@@ -39,6 +43,6 @@ public class UserService {
             e.printStackTrace();
             return null;
         }
-        return jwtPayload.getSub();
+        return jwtPayload;
     }
 }
