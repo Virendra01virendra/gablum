@@ -47,7 +47,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     ProposalCardDialogComponent,
     SellersListDialogComponent,
     ExtendProposalDialogComponent,
-    AuctionStartDialogComponent
+    AuctionStartDialogComponent,
+    DeleteConfirmationDialogComponent
   ],
   exports: [
     SellerProposalCardComponent
