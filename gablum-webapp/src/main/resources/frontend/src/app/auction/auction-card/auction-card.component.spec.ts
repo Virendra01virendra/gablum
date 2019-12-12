@@ -6,6 +6,7 @@ import { ConsoleModule } from '../../console/console.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('AuctionCardComponent', () => {
@@ -16,7 +17,7 @@ describe('AuctionCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AuctionCardComponent, TimerComponent ],
       imports: [  MaterialModule, BrowserAnimationsModule, NoopAnimationsModule, ConsoleModule,
-        HttpClientTestingModule],
+        HttpClientTestingModule, RouterTestingModule],
       providers: [
         BrowserAnimationsModule,
         NoopAnimationsModule,
@@ -74,7 +75,8 @@ describe('AuctionCardComponent', () => {
         thresholdParticipants: 2,
         views: 2,
         interested: 2,
-        interestedUsersEmail: []
+        interestedUsersEmail: [],
+        invitedUsersEmail: []
     },
     isAuctionActive: false,
     participantsVerificationId: '',
