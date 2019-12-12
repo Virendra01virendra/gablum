@@ -9,6 +9,7 @@ import { Profile } from 'src/app/interfaces/profile';
 import { Auction } from 'src/app/interfaces/auction';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { ContractsDataService } from 'src/app/services/contracts-data.service';
+import { ContractCardComponent } from '../contract-card/contract-card.component';
 
 @Component({
   selector: 'app-contract-page',
@@ -54,6 +55,10 @@ export class ContractPageComponent implements OnInit {
     this.contractsDataService.getAllContracts(
       ContractPageComponent.messageKey,
       'contracts'
+    );
+    this.user.getUserProfileByEmail(
+      ContractPageComponent.messageKey,
+      'userProfile'
     );
   }
 }
