@@ -31,7 +31,8 @@ export class BidListComponent implements OnInit {
         // console.log('bidddddddd-------------->', data);
         if ('bidsAuction' in data) {
           this.bidsData = data.bidsAuction;
-          this.bids = this.bidsData;
+          // this.bids = this.bidsData;
+          this.sortBids();
         }
 
         if ('auctionSingle' in data) {

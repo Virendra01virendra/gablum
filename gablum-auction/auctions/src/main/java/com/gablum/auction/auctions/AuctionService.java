@@ -42,7 +42,8 @@ public class AuctionService implements IAuctionService{
     }
 
     public List<Auction> getAllAuctionsBuyer(Map<String, String> queryMap, String email) {
-        return auctionRepo.findAllByCreatedBy(getPageable(queryMap), email).getContent();
+        return auctionRepo.findAllByCreatedByAndIsAuctionActiveAndIsAuctionFinished(getPageable(queryMap), email,
+                true, false).getContent();
     }
 
     @Override
@@ -59,7 +60,8 @@ public class AuctionService implements IAuctionService{
         return auctionRepo.save(auction);
     }
     public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
-        return auctionRepo.findAllByInterestedUsersEmailContaining(getPageable(queryMap), email).getContent();
+        return auctionRepo.findAllByInterestedUsersEmailContainingAndIsAuctionActiveAndIsAuctionFinished(getPageable(queryMap), email,
+                true, false).getContent();
     }
     @Override
     public Auction startAuction(String auctionId, String uniqueLink) {

@@ -5,7 +5,6 @@ import com.gablum.contract.contracts.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,18 +16,14 @@ public class ContractsController {
     public Contracts getContract(@PathVariable String contractId){
         return contractService.getContractById(contractId);
     }
-    @GetMapping("/contracts")
-    public List<Contracts> getContractByBuyerIdOrSellerId(@RequestParam String id){
-        List<Contracts> totalContracts = new ArrayList<Contracts>();
-        List<Contracts> buyerContracts = contractService.getContractByBuyerId(id);
-        for(int i=0; i<buyerContracts.size(); i++){
-            totalContracts.add(buyerContracts.get(i));
-        }
-        List<Contracts> sellerContracts = contractService.getContractBySellerId(id);
-        for(int i =0; i<sellerContracts.size(); i++){
-            totalContracts.add(sellerContracts.get(i));
-        }
-        return totalContracts;
+    @GetMapping("/contracts/forBuyer")
+    public List<Contracts> getContractByBuyerEmail(@RequestParam String email){
+        return contractService.getContractByBuyerEmail(email);
+    }
+
+    @GetMapping("/contracts/forSeller")
+    public List<Contracts> getContractBySellerEmail(@RequestParam String email){
+        return contractService.getContractBySellerEmail(email);
     }
 
     @PostMapping("/contracts")

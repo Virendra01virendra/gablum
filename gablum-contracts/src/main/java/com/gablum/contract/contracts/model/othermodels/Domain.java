@@ -2,7 +2,6 @@ package com.gablum.contract.contracts.model.othermodels;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import java.util.Map;
 
 @Getter
 @Setter
-@Document("domainDetail")
 public class Domain {
     private List<Map<String, List<String>>> domainDetails;
     public Domain(){

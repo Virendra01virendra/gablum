@@ -2,7 +2,7 @@
 
 <button mat-raised-button (click)="sortBids()"> Sort </button>
 
-<div class="bids-cont" fxLayout="column wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+<div class="bids-cont" fxLayout="column wrap" fxLayoutAlign="space-around center" fxLayoutGap="15px">
     <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity"></app-bid-card>
 
 </div>
