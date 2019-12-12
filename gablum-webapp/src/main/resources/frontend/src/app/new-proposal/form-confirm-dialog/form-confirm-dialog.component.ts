@@ -25,7 +25,6 @@ export class FormConfirmDialogComponent implements OnInit {
 
 
   onConfirm(data) {
-    this.router.navigate(['/dashboard']);
     this.logger.log('price---' + data.form2.value.price);
     const proposalFormDetails = {
     businessDomain: data.form1.value.businessDomain,
@@ -51,5 +50,6 @@ export class FormConfirmDialogComponent implements OnInit {
     const proposalJSON = JSON.parse(JSON.stringify(proposalFormDetails));
     this.proposalService.saveProposal(
       FormConfirmDialogComponent.messageKey, proposalJSON, 'form-confirm');
+    this.router.navigate(['/dashboard']);
   }
 }
