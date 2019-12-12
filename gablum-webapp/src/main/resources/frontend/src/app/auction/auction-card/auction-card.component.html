@@ -38,12 +38,9 @@
       </div>
     </mat-card-content>
     
-  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="space-around center">
-    
-    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf= buttonShow>Place Bid</button>
-
-      <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf= buttonShow>See Bids</button>
-
+  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="flex-end center">
+    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf="!isOwner">Place Bid</button>
+    <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf="isOwner">See Bids</button>
     </mat-card-actions>
   </mat-card>
   

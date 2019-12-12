@@ -26,6 +26,16 @@ export class AuctionsDataService {
     this.networking.getData<Auction>(this.auctionsUrl, dest, key);
   }
 
+  getAllAuctionsBuyer(dest, key) {
+    const auctionUrlBuyer = this.auctionsUrl + '/buyer';
+    this.networking.getData<Auction>(auctionUrlBuyer, dest, key);
+  }
+
+  getAllAuctionsSeller(dest, key) {
+    const auctionUrlSeller = this.auctionsUrl + '/seller';
+    this.networking.getData<Auction>(auctionUrlSeller, dest, key);
+  }
+
   getAuctionById(dest, key, auctionId) {
     this.auctionUrlForSingle = this.auctionsUrl + '/' + auctionId;
     this.networking.getData<Auction>(this.auctionUrlForSingle, dest, key);

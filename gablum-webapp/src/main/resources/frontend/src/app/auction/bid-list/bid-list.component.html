@@ -1,8 +1,12 @@
-<h2 *ngIf="auction">{{auction.auctionName}}</h2>
-
-<button mat-raised-button (click)="sortBids()"> Sort </button>
-
-<div class="bids-cont" fxLayout="column wrap" fxLayoutAlign="space-around center" fxLayoutGap="15px">
-    <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity"></app-bid-card>
-
+<div class="bid-list"
+fxLayout="row nowrap"
+fxLayout.xs="column nowrap"
+fxLayoutAlign="space-around flex-start"
+fxLayoutAlign.xs="flex-start center"
+>
+    <h2 *ngIf="auction">{{auction.auctionName}}</h2>
+    
+    <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
+        <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity"></app-bid-card>
+    </div>
 </div>

@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
   proposals: Proposal[];
   allProposals: Proposal[];
   auctions: Auction[];
+  auctionsBuyer: Auction[];
+  auctionSeller: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
   // public dashboardSections: DashboardSection[] = [
@@ -84,9 +86,19 @@ export class DashboardComponent implements OnInit {
           this.allProposals = data.sellerProposals;
         }
 
-        if ('auctions' in data) {
-          this.auctions = data.auctions;
+
+        if ('auctionsSeller' in data) {
+          this.auctionSeller = data.auctionsSeller;
+          console.log('auctionnnnnsellllllllllllre--->', this.auctionSeller);
         }
+
+
+
+        if ('auctionsBuyer' in data) {
+          this.auctionsBuyer = data.auctionsBuyer;
+          console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
+        }
+
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
@@ -134,10 +146,18 @@ export class DashboardComponent implements OnInit {
       DashboardComponent.messageKey,
       'userProfile'
     );
-    this.auctionDataService.getAllAuctions(
+
+
+    this.auctionDataService.getAllAuctionsBuyer(
       DashboardComponent.messageKey,
-      'auctions'
+      'auctionsBuyer'
     );
+
+
+    this.auctionDataService.getAllAuctionsSeller(
+        DashboardComponent.messageKey,
+        'auctionsSeller'
+      );
     // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
   }
 
@@ -145,22 +165,6 @@ export class DashboardComponent implements OnInit {
     this.ws.sendBid({ price: 100 });
   }
 
-  subscribe() {
-    this.ws
-      .subscribe('/topic/newbid', DashboardComponent.messageKey, 'newbid')
-      .subscribe(message => {
-        if (
-          message.dest === '@all' ||
-          message.dest === DashboardComponent.messageKey
-        ) {
-          const data = message.data;
-          if ('newbid' in data) {
-            this.logger.log(data.newbid.body);
-            // this.bids.push(this.testBid);
-          }
-        }
-      });
-  }
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
       width: '60%',
@@ -195,8 +199,11 @@ export class DashboardComponent implements OnInit {
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show) {
       this.buttonName = 'BUYERS VIEW';
+      this.auctions = this.auctionsBuyer;
+
     } else {
       this.buttonName = 'SELLERS VIEW';
+      this.auctions = this.auctionSeller;
     }
   }
 }
