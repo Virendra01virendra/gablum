@@ -69,9 +69,6 @@ export class NewProposalCardComponent implements OnInit {
       maxWidth: '400px',
       data: dialogData
     });
-    // dialogRef.afterClosed().subscribe(dialogResult => {
-    //   this.result = dialogResult;
-    // });
   }
 
   startAuction(proposal1: Proposal) {
@@ -80,16 +77,5 @@ export class NewProposalCardComponent implements OnInit {
     dialogConfig.width = '40%';
     this.dialog.open(AuctionStartDialogComponent, dialogConfig);
   }
-  // delete(proposal: Proposal) {
-  //   console.log('delete function is getting called');
-  //   this.snackBar.open(
-  //     'Your proposal has been removed.',
-  //     '',
-  //     {
-  //       duration: 2000
-  //     }
-  //   );
-  //   this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
-  //   // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
 }
 
