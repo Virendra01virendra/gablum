@@ -13,22 +13,28 @@ import { Proposal } from 'src/app/interfaces/proposal';
 })
 export class DeleteConfirmationDialogComponent implements OnInit {
 
+  title = '';
+  message = '';
   constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Proposal,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               private proposalDataService: ProposalsDataService,
               private comms: CommunicatorService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
               private router: Router,
-              private logger: LoggerService) { }
+              private logger: LoggerService) {
+                this.title = this.data.confirmDia.title;
+                this.message = this.data.confirmDia.message;
+              }
 
 
   ngOnInit() {
   }
 
-  deleteOnConfirm(proposal: Proposal): void {
-    this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
-    this.dialogRef.close(true);
+  deleteOnConfirm(): void {
+    console.log(' Delete proposal :::', this.data.proposalData);
+    this.proposalDataService.deleteProposal(this.data.proposalData.proposalId, '@all', 'proposals');
+    this.dialogRef.close();
     this.snackBar.open(
       'Your proposal has been removed.',
       '',

@@ -49,18 +49,21 @@ export class NewProposalCardComponent implements OnInit {
 
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
-    data: proposal
+      data: proposal
     });
   }
 
   extendDialog(proposal: Proposal) {
-    this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
+    this.dialog.open(ExtendProposalDialogComponent, { data: proposal });
   }
 
   confirmDialog(): void {
     const message = `Are you sure you want to delete this proposal?`;
 
-    const dialogData = new ConfirmDialogModel('Confirm Action', message);
+    const confirmDia = new ConfirmDialogModel('Confirm Action', message);
+    const proposalData = this.proposal;
+
+    const dialogData = Object.assign({}, { confirmDia, proposalData });
 
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       maxWidth: '400px',
@@ -70,6 +73,7 @@ export class NewProposalCardComponent implements OnInit {
     //   this.result = dialogResult;
     // });
   }
+
   startAuction(proposal1: Proposal) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = proposal1;
@@ -87,5 +91,5 @@ export class NewProposalCardComponent implements OnInit {
   //   );
   //   this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
   //   // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
-  }
+}
 
