@@ -145,22 +145,6 @@ export class DashboardComponent implements OnInit {
     this.ws.sendBid({ price: 100 });
   }
 
-  subscribe() {
-    this.ws
-      .subscribe('/topic/newbid', DashboardComponent.messageKey, 'newbid')
-      .subscribe(message => {
-        if (
-          message.dest === '@all' ||
-          message.dest === DashboardComponent.messageKey
-        ) {
-          const data = message.data;
-          if ('newbid' in data) {
-            this.logger.log(data.newbid.body);
-            // this.bids.push(this.testBid);
-          }
-        }
-      });
-  }
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
       width: '60%',

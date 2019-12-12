@@ -9,18 +9,14 @@ import {environment} from '../../environments/environment';
 })
 export class ContractsDataService {
   public contract: ContractDetail;
-  public buyerUrl = environment.contractBuyerUrl;
-  public sellerUrl = environment.contractSellerUrl;
+  public contractsUrl = environment.contractsUrl;
   constructor(
     private comms: CommunicatorService,
     private networking: NetworkingService
   ) { }
 
-  getBuyerContracts(dest, key) {
-    this.networking.getData<ContractDetail>(this.buyerUrl, dest, key);
-  }
-  getSellerContracts(dest, key) {
-    this.networking.getData<ContractDetail>(this.sellerUrl, dest, key);
+  getAllContracts(dest, key) {
+    this.networking.getData<ContractDetail>(this.contractsUrl, dest, key);
   }
 
   saveContract(contractDetail: ContractDetail) {

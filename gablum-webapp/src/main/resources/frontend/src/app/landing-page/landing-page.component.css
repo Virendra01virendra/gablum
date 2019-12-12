@@ -2,7 +2,7 @@
     width: 100%;
     height: calc(100vh - 56px);
     background-image: url("src/assets/front.webp");
-    background-image:  linear-gradient(to bottom, rgb(27, 94, 32, 1.0) , rgb(27, 94, 32, 0.2)), url("src/assets/front.webp");
+    background-image:  linear-gradient(to top, rgba(33, 33, 33, 0.9) , rgba(33, 33, 33, 0.1)), url("src/assets/front.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,12 +19,14 @@
 }
 
 .about-section {
-    width: 80%;
+    width: 95%;
     margin: 2em auto;
-    padding: 2em;
-    border-radius: 0.3em;
-    background: #fff;
+    padding: 0;
     text-align: justify;
+}
+
+.feature {
+    width: 100%;
 }
 
 .contact-section {

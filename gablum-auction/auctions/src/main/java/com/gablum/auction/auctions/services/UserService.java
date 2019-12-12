@@ -7,6 +7,7 @@ import com.gablum.auction.auctions.JwtPayload;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.Date;
 @Service
 public class UserService {
 
+    @Getter
     @Value("${spring.security.secret}")
     private String secretKey;
 
@@ -79,6 +81,34 @@ public class UserService {
         AuctionJwtPayload jwtPayload;
         try {
             jwtPayload = new ObjectMapper().readValue(payload, AuctionJwtPayload.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return jwtPayload;
+    }
+
+    public JwtPayload getJwtPayload(HttpServletRequest request) {
+        String bearerToken = null;
+        try {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(AUTHORIZATION)) {
+                    bearerToken = cookie.getValue();
+                }
+            }
+        }
+        catch (Exception ex) {
+            return null;
+        }
+        if (bearerToken == null) {
+            return null;
+        }
+        String payloadEncoded = bearerToken.split("\\.")[1];
+        String payload = new String(Base64.getDecoder().decode(payloadEncoded));
+        JwtPayload jwtPayload;
+        try {
+            jwtPayload = new ObjectMapper().readValue(payload, JwtPayload.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return null;

@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Router } from '@angular/router';
+import { LoggerService } from 'src/app/services/logger.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { HttpClient } from '@angular/common/http';
+import { Profile } from 'src/app/interfaces/profile';
+import { Auction } from 'src/app/interfaces/auction';
+import { ContractDetail } from 'src/app/interfaces/contract-detail';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
+import { ContractCardComponent } from '../contract-card/contract-card.component';
 
 @Component({
   selector: 'app-contract-page',
@@ -7,9 +18,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractPageComponent implements OnInit {
 
-  constructor() { }
+  public static messageKey = 'ContractPageComponent';
 
-  ngOnInit() {
+  public isLoggedIn = false;
+  public isBuyer;
+  public isSeller;
+  public userRole = new Array();
+  contracts: ContractDetail[];
+  public userProfile: Profile;
+
+  constructor(
+    private comms: CommunicatorService,
+    private router: Router,
+    private logger: LoggerService,
+    private auth: AuthenticationService,
+    public http: HttpClient,
+    private user: ProfileDataService,
+    private contractsDataService: ContractsDataService
+  ) {
+    this.isLoggedIn = auth.getAuthenticated();
+    if (this.isLoggedIn) {
+      this.logger.log(this, auth.getProfileData());
+    }
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === ContractPageComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+
+        if ('contracts' in data) {
+          this.contracts = data.contracts;
+        }
+      }
+    });
   }
 
+  ngOnInit() {
+    this.contractsDataService.getAllContracts(
+      ContractPageComponent.messageKey,
+      'contracts'
+    );
+    this.user.getUserProfileByEmail(
+      ContractPageComponent.messageKey,
+      'userProfile'
+    );
+  }
 }
+

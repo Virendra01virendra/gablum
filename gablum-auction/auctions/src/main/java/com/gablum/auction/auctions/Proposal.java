@@ -50,7 +50,6 @@ public class Proposal {
     private String productName;
     private String productDescription;
 
-
     public String toStringContract(){
         return _id + productName + String.valueOf(quantityValue) + quantityUnit
                 + String.valueOf(price) + String.valueOf(priceWeight)

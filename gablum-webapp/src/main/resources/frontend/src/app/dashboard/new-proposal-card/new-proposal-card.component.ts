@@ -10,18 +10,17 @@ import { Router } from '@angular/router';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
-// import * as moment from 'moment';
+import { ConfirmDialogModel, DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 @Component({
   selector: 'app-new-proposal-card',
   templateUrl: './new-proposal-card.component.html',
   styleUrls: ['./new-proposal-card.component.css']
 })
+
 export class NewProposalCardComponent implements OnInit {
+
   public static messageKey = 'new-proposal-card-component';
-  // registrationDate: string;
-  // @ViewChild('timer', {read: TimerComponent, static: true})
-  // public timer: TimerComponent;
 
   constructor(
     private proposalDataService: ProposalsDataService,
@@ -29,11 +28,8 @@ export class NewProposalCardComponent implements OnInit {
     private dialog: MatDialog,
     private auctionDataService: AuctionsDataService,
     private router: Router,
-    private logger: LoggerService,
-  ) {
-    // this.registrationDate = this.proposal.regStartDate;
-
-  }
+    private logger: LoggerService
+  ) { }
 
   alreadyRegistered = false;
   @Input() proposal: Proposal;
@@ -46,7 +42,6 @@ export class NewProposalCardComponent implements OnInit {
   }
 
   shownInterest(proposal: Proposal) {
-    // const proposalId = element.proposalId;
     this.logger.log('some data which we are publishing ');
     this.alreadyRegistered = true;
     this.proposalDataService.postInterestedSeller(NewProposalCardComponent.messageKey, proposal, 'interestedSellers');
@@ -54,40 +49,33 @@ export class NewProposalCardComponent implements OnInit {
 
   openDialog(proposal: Proposal) {
     this.dialog.open(ProposalCardDialogComponent, {
-      // width: '60%',
-      // height: '60%',
       data: proposal
     });
   }
+
   extendDialog(proposal: Proposal) {
-    this.dialog.open(ExtendProposalDialogComponent, {data: proposal});
+    this.dialog.open(ExtendProposalDialogComponent, { data: proposal });
   }
+
+  confirmDialog(): void {
+    const message = `Are you sure you want to delete this proposal?`;
+
+    const confirmDia = new ConfirmDialogModel('Confirm Action', message);
+    const proposalData = this.proposal;
+
+    const dialogData = Object.assign({}, { confirmDia, proposalData });
+
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+      maxWidth: '400px',
+      data: dialogData
+    });
+  }
+
   startAuction(proposal1: Proposal) {
-    // const auction = {
-    //   auctionName: proposal1.productName,
-    //   proposal: proposal1,
-    //   isAuctionActive: true,
-    //   interestedUsersEmail: proposal1.interestedUsersEmail
-    // };
-    // const auctionList = [];
-    // auctionList.push(auction);
-
-    // const data = JSON.parse(JSON.stringify(auctionList));
-
-    // this.auctionDataService.saveAuction('DashboardComponent', data, 'save-auction');
-    // // this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
-    // this.router.navigate(['dashboard']);
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = proposal1;
     dialogConfig.width = '40%';
     this.dialog.open(AuctionStartDialogComponent, dialogConfig);
-
-  }
-
-  delete(proposal: Proposal) {
-    console.log('delete function is getting called');
-    this.proposalDataService.deleteProposal(proposal.proposalId, '@all', 'proposals');
-    // this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
   }
 }
+

@@ -1,4 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { LoggerService } from 'src/app/services/logger.service';
+import { ContractDetail } from 'src/app/interfaces/contract-detail';
+import { environment } from 'src/environments/environment';
+import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
 
 @Component({
   selector: 'app-contract-card',
@@ -6,33 +14,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contract-card.component.css']
 })
 export class ContractCardComponent implements OnInit {
+
+  public static messageKey = 'contract-card-component';
   public contractData: any;
   public productName: string;
   public sellerName: string;
   public companyName: string;
   public deliveryDate: Date;
   public creditPeriod: number;
+  private dialog: MatDialog;
   // panelOpenState = false;
 
-  step = 0;
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
-
   constructor(
+    public contractDataService: ContractsDataService,
+    private comms: CommunicatorService,
+    private router: Router,
+    private logger: LoggerService
   ) { }
 
+  @Input() public contract: ContractDetail;
+
   ngOnInit() {
+    const contractsUrl = environment.contractsUrl;
+    this.logger.log(contractsUrl);
   }
 
+  openDialog(contract: ContractDetail) {
+    this.dialog.open(ContractDetailComponent, {
+      // width: '60%',
+      // height: '60%',
+      data: contract
+    });
+  }
 
 }

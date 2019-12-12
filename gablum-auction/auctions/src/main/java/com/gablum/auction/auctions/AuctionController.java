@@ -1,6 +1,7 @@
 package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gablum.auction.auctions.otherModels.Contracts;
 import com.gablum.auction.auctions.rabbit.BidMessage;
 import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,17 +34,19 @@ public class AuctionController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private SimpMessageSendingOperations sendingOperations;
+
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
-//    private MessageChannel messageChannelBid;
+    private MessageChannel messageChannelContract;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
+        this.messageChannelContract = auctionBinding.awardContractChannel();
     }
 
-    //FIXME: check roles before returning auction
-    //FIXME: only allowed users (createdBy buyer/participating seller) can view details of auction
     @GetMapping("/auctions")
     @ResponseBody
     public List<Auction> getAllAuctions(
@@ -107,7 +111,11 @@ public class AuctionController {
             Message<Auction> msg = MessageBuilder.withPayload(auctionsToAdd.get(j)).build();
             messageChannelAuction.send(msg);
         }
-        return auctionService.addAuctions(auctionsToAdd);
+        List<Auction> auctionsAdded = auctionService.addAuctions(auctionsToAdd);
+        for (Auction auction: auctionsAdded) {
+            auction.setSocketTokens(null);
+        }
+        return auctionsAdded;
     }
 
     @GetMapping("auctions/seller")
@@ -123,7 +131,6 @@ public class AuctionController {
         return auctions;
     }
 
-
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
         ScoreObject scoreObject = new ScoreObject();
@@ -131,12 +138,18 @@ public class AuctionController {
         return scoreObject;
     }
 
-
     @PostMapping("auctions/{id}/bid")
-    public ScoreObject addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
+    public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
             ParseException, UnknownHostException {
         String email = userService.getEmail(request);
         ScoreObject scoreObject = new ScoreObject();
+        Auction auctionParticipated = auctionService.getAuctionById(id);
+        if (!auctionParticipated.getInterestedUsersEmail().contains(email)) {
+            return new ResponseEntity<ScoreObject>(
+                    new ScoreObject(),
+                    HttpStatus.FORBIDDEN
+            );
+        }
         scoreObject = bidService.getBidScore(bid, id);
         BidDataEntity bidDataEntity = new BidDataEntity();
         bidDataEntity.setBid(bid);
@@ -144,7 +157,34 @@ public class AuctionController {
         bidDataEntity.setCreatedBy(email);
         bidDataEntity.setAuctionId(id);
 
-        bidService.addBid(bidDataEntity);
+        BidDataEntity savedBid = bidService.addBid(bidDataEntity);
+        List<BidDataEntity> allBids = bidService.getBidsAuction(id);
+
+        Collections.sort(
+                allBids,
+                (t2, t1) -> {
+                    if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
+                        return 1;
+                    }
+                    else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
+                        return -1;
+                    }
+                    return 0;
+                }
+        );
+
+        for (int _i = 0; _i < allBids.size(); _i++) {
+            log.warn(allBids.get(_i).toString());
+            allBids.get(_i).setRank(_i +1);
+            if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
+                savedBid = allBids.get(_i);
+            }
+        }
+
+        sendingOperations.convertAndSend(
+                "/topic/admin/" + id,
+                savedBid
+        );
 
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())
@@ -153,7 +193,10 @@ public class AuctionController {
         messageChannelBid.send(message);
 
 
-        return scoreObject;
+        return new ResponseEntity<ScoreObject>(
+                scoreObject,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/tokens/{auctionId}")
@@ -180,7 +223,7 @@ public class AuctionController {
     @GetMapping("auctions/{id}/bid")
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
-        return bidService.getbidsAuction(queryMap, id);
+        return bidService.getBidsAuction(id, request);
     }
 
     @PatchMapping("auctions/{id}/bid/end")
@@ -190,8 +233,16 @@ public class AuctionController {
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
 
-        //TODO create a Rabbit message to create a new Contract and save it and Display.
-        return auctionService.updateAuction(auction);
+        //FIXME: check if auction actually ended
+        Auction auctionToEnd =  auctionService.updateAuction(auction);
+        auctionToEnd.setSocketTokens(null);
+
+//      public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
+        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), bidDataEntity.getCreatedBy(),true, null );
+
+        Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
+        messageChannelContract.send(msg);
+        return auctionToEnd;
     }
 
 }

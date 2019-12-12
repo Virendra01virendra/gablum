@@ -1,38 +1,104 @@
-<mat-card class="seller-proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
+<!-- <div class="seller-proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
+    <div class="head" fxLayout="column" fxLayoutAlign="space-between">
       <mat-card-title>{{allProposal.productName}} </mat-card-title>
       <mat-card-subtitle style="color: antiquewhite;">{{allProposal.businessSubDomain}}</mat-card-subtitle>
-    </mat-card-header>
+    </div>
   
-    <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="row" fxLayoutAlign="space-between">
             <app-timer [timerDetails] = "allProposal"></app-timer>
           </div>
 
-    <mat-card-content>
       <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
   
         <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected="true">Price </mat-chip>
-          <mat-chip>{{allProposal.price}} </mat-chip>
+           <i class="fa fa-money" aria-hidden="true" matTooltip="{{allProposal.createdBy}}'s Expected Price">
+            {{ allProposal.price }}</i
+            >
   
         </div>
         <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected="true">Quantity </mat-chip>
-          <mat-chip>{{allProposal.quantityValue + ' ' + allProposal.quantityUnit}}</mat-chip>
-        </div>
-        <!-- <div>
-        <span>Delivery Date: </span>
-        <span>{{proposal.deliveryDate}}</span>
-      </div> -->
+            <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
+                {{ allProposal.quantityValue + " " + allProposal.quantityUnit }}</i
+                >
+          </div>
+        <div fxLayoutAlign="space-between">
+            <i
+                class="fa fa-calendar"
+                aria-hidden="true"
+                matTooltip="{{allProposal.createdBy}}'s Expected Delivery Date"
+                >
+                {{ allProposal.deliveryDate | date: "mediumDate" }}</i
+                >
+          </div>
       </div>
   
-    </mat-card-content>
+    
   
-    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center" style="padding: 10px 10px 10px 10px;">
-  
+  <div style="margin-bottom: 0.5em;">
+    <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
       <button mat-raised-button color="primary"
-      [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
-        (click)="shownInterest(allProposal)">Interested ?</button>
+        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
+        (click)="shownInterest(allProposal)">
+        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true"></i>
+      </button>
       <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
-    </mat-card-actions>
-  </mat-card>
+    </div>
+    </div>
+</div> -->
+
+<!-- fixme:: instead of auction starts in timer should display registeration ends in  -->
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
+    <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
+        <div class="card-header" fxFlexAlign="center" >{{allProposal.productName}}</div>
+        <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
+            <div class="subdomain" fxFlexAlign="center" >{{ allProposal.businessSubDomain }}</div>
+            <div class="timer">
+                <app-timer
+                style="align-content:flex-end ;"
+                [timerDetails]="allProposal"
+                ></app-timer>
+            </div>
+        </div>
+    </div>
+    <div class="info-container"
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+    >
+    <div>
+        <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
+            {{ allProposal.price }}</i
+            >
+        </div>
+        <div>
+            <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
+                {{ allProposal.quantityValue + " " + allProposal.quantityUnit }}</i
+                >
+            </div>
+            <div>
+                <i
+                class="fa fa-calendar-o"
+                aria-hidden="true"
+                matTooltip="Registeration End-Date"
+                style="transform: scale3d(10);"
+                >
+                {{ allProposal.regEndDate | date: "mediumDate" }}</i
+                >
+            </div>
+            
+        </div>
+        
+        <div style="margin-bottom: 0.5em;">
+            <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+                <button mat-raised-button color="primary"
+        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
+        (click)="shownInterest(allProposal)">
+        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true"></i>
+      </button>
+      <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
+        </div>   
+    </div>
+</div>

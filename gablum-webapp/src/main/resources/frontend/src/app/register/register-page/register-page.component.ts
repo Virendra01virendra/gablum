@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { RegisterRequest } from 'src/app/interfaces/register-request';
 import { UserRole } from 'src/app/interfaces/user-role';
 import { LoggerService } from 'src/app/services/logger.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -93,7 +94,8 @@ export class RegisterPageComponent implements OnInit {
     private router: Router,
     private registrationService: RegisterDataService,
     private logger: LoggerService,
-    private comms: CommunicatorService) {
+    private comms: CommunicatorService,
+    private snackbar: MatSnackBar) {
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
           const data = message.data;
@@ -103,8 +105,23 @@ export class RegisterPageComponent implements OnInit {
             if (registrationToken === undefined ||
               registrationToken === null ||
               !registrationToken.isOk) {
+              this.snackbar.open(
+                'Registration failed',
+                '',
+                {
+                  duration: 5000
+                }
+              );
             } else {
+              this.logger.log('registered');
               this.router.navigate(['/']);
+              this.snackbar.open(
+                'Registered successfully as ' + this.email,
+                '',
+                {
+                  duration: 5000
+                }
+              );
             }
           }
         }
