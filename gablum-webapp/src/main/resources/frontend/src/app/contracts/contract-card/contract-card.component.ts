@@ -2,9 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ContractsDataService } from 'src/app/services/contracts-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { environment } from 'src/environments/environment';
+import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
 
 @Component({
   selector: 'app-contract-card',
@@ -20,6 +22,7 @@ export class ContractCardComponent implements OnInit {
   public companyName: string;
   public deliveryDate: Date;
   public creditPeriod: number;
+  private dialog: MatDialog;
   // panelOpenState = false;
 
   constructor(
@@ -36,5 +39,12 @@ export class ContractCardComponent implements OnInit {
     this.logger.log(contractsUrl);
   }
 
+  openDialog(contract: ContractDetail) {
+    this.dialog.open(ContractDetailComponent, {
+      // width: '60%',
+      // height: '60%',
+      data: contract
+    });
+  }
 
 }

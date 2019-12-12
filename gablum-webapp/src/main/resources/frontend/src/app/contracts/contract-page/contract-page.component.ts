@@ -46,23 +46,7 @@ export class ContractPageComponent implements OnInit {
         if ('contracts' in data) {
           this.contracts = data.contracts;
         }
-
-        if ('userProfile' in data) {             // getting user profile for subDomain
-          this.userProfile = data.userProfile;
-          this.userRole = this.userProfile.role;
-          if (this.userProfile.role[0].role === 'buyer') {
-            this.isBuyer = true;
-            this.isSeller = false;
-          } else { this.isSeller = true;
-                   this.isBuyer = false;
-          }
-        } else {
-          this.isBuyer = true;
-          this.isSeller = true;
-        }
       }
-      console.log(this.isBuyer);
-      console.log(this.isSeller);
     });
   }
 
