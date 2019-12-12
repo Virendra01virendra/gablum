@@ -23,7 +23,6 @@ export class AuthenticationService {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === '@all') {
           const data = msg.data;
-
           if ('profile' in data) {
             this.profileData = data.profile;
             if (

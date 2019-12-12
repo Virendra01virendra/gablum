@@ -132,14 +132,12 @@ public class AuctionController {
         return auctions;
     }
 
-
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
         ScoreObject scoreObject = new ScoreObject();
         scoreObject = bidService.getBidScore(bid, id);
         return scoreObject;
     }
-
 
     @PostMapping("auctions/{id}/bid")
     public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
