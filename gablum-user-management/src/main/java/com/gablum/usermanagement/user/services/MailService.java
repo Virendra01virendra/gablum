@@ -47,18 +47,19 @@ public class MailService {
 
             msg.setSubject("New Proposal Added");
 
-            String text = "Thanks for floating a new proposal on Gablum.";
+            String text = "Hello "+user.getName(+", from "+user.getCompanyName()+".\n";
+            text += "Thanks for floating a new proposal on Gablum.";
             text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
             text += "\n\nProposal Details are : \n";
-            text += "\n<h3>Product Name : </h3>" + proposal.getProductName();
-            text += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
-            text += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();
-            text += "\n<h3>Quantity : </h3>" + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
-            text += "\n<h3>Delivery : </h3>" + proposal.getDeliveryDate() ;
-            text += "\n<h3>Registration Start Date : </h3>" + proposal.getRegStartDate() ;
-            text += "\n<h3>Auction Start Date : </h3>" + proposal.getAuctionStartDate() ;
+            text += "\nProduct Name : " + proposal.getProductName();
+            text += "\nDomain : " + proposal.getBusinessDomain();
+            text += "\nSubDomain : " + proposal.getBusinessSubDomain();
+            text += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
+            text += "\nDelivery : " + proposal.getDeliveryDate() ;
+            text += "\nRegistration Start Date : " + proposal.getRegStartDate() ;
+            text += "\nAuction Start Date : " + proposal.getAuctionStartDate() ;
             text += "\n\nSimply visit your account dashboard if you wish to make changes to your floated proposal.";
-            text += "\nTeam Gablum";
+            text += "\n\nTeam Gablum";
             msg.setText(text);
 
             try
@@ -77,7 +78,8 @@ public class MailService {
         if (type == "newAuction"){
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
-            String text = "You have added a new Auction";
+            String text = "You have initialised a new Auction.";
+            text += "";
             msg.setText(text);
             try
             {
