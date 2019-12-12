@@ -81,6 +81,7 @@ export class NewProposalForm1Component implements OnInit {
   onSubmit() {
     this.dialog.open(FormConfirmDialogComponent,
       {
+        width: '45%',
         data: {
           form2: this.paramForm, form1: this.productSpecsForm,
           form3: this.timeForm

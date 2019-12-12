@@ -1,43 +1,43 @@
-<h1 mat-dialog-title>Confirm Proposal Details!!</h1>
+<h1 align="center" mat-dialog-title>Confirm Proposal Details!!</h1>
 <div mat-dialog-content class="mat-dialog">
     <mat-list fxLayout="column" fxLayoutAlign="space between center">
-        <mat-list-item fxLayout="row">
-            <div fxFlex=70%>Business Sub-Domain:</div>
+        <mat-list-item fxLayout.xs="column">
+            <div fxFlex=70%><strong>Business Sub-Domain</strong></div>
             <div fxFlex=30%>{{ data.form1.value.businessSubDomain}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-            <div fxFlex=70%>Product Name: </div>
+            <div fxFlex=70%><strong>Product Name</strong></div>
             <div fxFlex=30%>{{ data.form1.value.productName}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-                <div fxFlex=70%>Price:</div> 
-                <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.form2.value.price}}</div>
-            </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-                <div fxFlex=70%>Quantity:</div>
-                <div fxFlex=30%>{{ data.form1.value.quantityValue + ' ' + data.form1.value.quantityUnit}}</div>
+            <div fxFlex=70%><strong>Price</strong></div>
+            <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.form2.value.price}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-                <div fxFlex=70%>Delivery Date:</div> 
-                <div fxFlex=30%>{{ data.form2.value.deliveryDate | date: 'mediumDate'}}</div> 
-            </mat-list-item>
+            <div fxFlex=70%><strong>Quantity</strong></div>
+            <div fxFlex=30%>{{ data.form1.value.quantityValue + ' ' + data.form1.value.quantityUnit}}</div>
+        </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-                <div fxFlex=70%>Registration Start Date:</div>
-                <div fxFlex=30%>{{ data.form3.value.regStartDate | date: 'mediumDate'}}</div>
-             </mat-list-item>
+            <div fxFlex=70%><strong>Delivery Date</strong></div>
+            <div fxFlex=30%>{{ data.form2.value.deliveryDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-                <div fxFlex=70%>Auction Start Date:</div> 
-                <div fxFlex=30%>{{ data.form3.value.auctionStartDate | date: 'mediumDate'}}</div>
-             </mat-list-item>
+            <div fxFlex=70%><strong>Registration Start Date</strong></div>
+            <div fxFlex=30%>{{ data.form3.value.regStartDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <div fxFlex=70%><strong>Auction Start Date</strong></div>
+            <div fxFlex=30%>{{ data.form3.value.auctionStartDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
     </mat-list>
-    <mat-dialog-actions>
-        <button mat-raised-button mat-dialog-close>Edit</button>
-        <button mat-raised-button color="primary" mat-dialog-close (click)="onConfirm(data)">Confirm</button>
-    </mat-dialog-actions>
 </div>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button mat-dialog-close>Edit</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="onConfirm(data)">Confirm</button>
+</mat-dialog-actions>

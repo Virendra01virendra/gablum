@@ -1,5 +1,5 @@
 .form-container {
-  margin: 5em;
+  margin: 1em;
 }
 .title {
   margin-left: 2em;
@@ -10,17 +10,19 @@
 }
 
 .body {
-  background-color: antiquewhite;
+  background-color:white;
   text-align: center;
 }
 
 .stepper {
-  background-color: rgb(245, 244, 252);
+  background-color: antiquewhite;
+  width: 60%;
+  align-content: center;
 }
 
-.prod-details {
-  width: 80%;
-}
+/* .prod-details {
+  width: 50%;
+} */
 
 .grid-container {
   margin: 2em 0;

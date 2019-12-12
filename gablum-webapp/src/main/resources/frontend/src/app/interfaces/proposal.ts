@@ -31,4 +31,5 @@ export interface Proposal {
     views: number;
     interested: number;
     interestedUsersEmail: string[];
+    invitedUsersEmail: string[];
 }

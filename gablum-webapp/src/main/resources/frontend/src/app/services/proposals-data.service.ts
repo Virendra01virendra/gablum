@@ -50,7 +50,13 @@ export class ProposalsDataService {
   }
 
   postInvitedSeller(dest, data, key) {
-    this.networking.patchData<Proposal>(this.inviteSellerUrl, dest, data, key);
+    this.networking.patchData<Proposal>(this.inviteSellerUrl, dest, data, key)
+    .subscribe(res => {
+      this.comms.postMessage(this, dest, { [key]: res });
+    },
+    err => {
+      this.logger.log(err);
+    });
   }
 
   deleteProposal(proposalId, dest, key) {
