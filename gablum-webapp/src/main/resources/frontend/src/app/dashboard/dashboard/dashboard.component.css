@@ -12,8 +12,6 @@
     overflow-x: hidden;
 }
 .proposal-card {
-    /* background-color: light rgba(6, 56, 97, 0.829);
-    width: 350px; */
     margin: 1em;
     padding: 1em;
 }
@@ -34,7 +32,6 @@
     margin: 1em;
     padding: 1em;
 }
-
 
 .timer {
     align-content: center ;
@@ -63,9 +60,11 @@ app-auction-card {
     margin: 2em 1em;
 }
 
-.but1
-{
+app-seller-proposal-card {
+    margin: 2em 1em;
+}
+
+.but1 {
     position: fixed;
     right: 1em;
-    
 }
