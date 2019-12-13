@@ -51,8 +51,7 @@ export class ContractCardComponent implements OnInit {
       if (msg.dest === ContractCardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
         if ('otherUser' in data) {
-          this.otherUser = data.userProfile;  // panelOpenState = false;
-
+          this.otherUser = data.otherUser;  // panelOpenState = false;
         }
       }
     });
@@ -73,22 +72,35 @@ export class ContractCardComponent implements OnInit {
     }
 
     this.profileDataService.getUserProfileByEmailWithUrl(
-      this.profileUrl, ContractCardComponent.messageKey, 'otherUser');
+    this.profileUrl, ContractCardComponent.messageKey, 'otherUser');
+    this.contractWithBothUsers = {
+      buyer: this.user,
+      seller: this.user,
+      contract: this.contract
+    };
   }
 
   openDialog() {
-    this.contractWithBothUsers.contract = this.contract;
     if (this.contract.buyerEmail === this.user.email) {
-      this.contractWithBothUsers.buyer = this.user;
-      this.contractWithBothUsers.seller = this.otherUser;
+      this.contractWithBothUsers = {
+        buyer: this.user,
+        seller: this.otherUser,
+        contract: this.contract
+      };
     } else {
-      this.contractWithBothUsers.buyer = this.otherUser;
-      this.contractWithBothUsers.seller = this.user;
+      this.contractWithBothUsers = {
+        buyer: this.otherUser,
+        seller: this.user,
+        contract: this.contract
+      };
     }
+    // console.log(this.contractWithBothUsers.buyer.email);
+    // console.log(this.contractWithBothUsers.contract.buyerEmail);
+    // console.log(this.contractWithBothUsers.seller);
+    // console.log(this.contractWithBothUsers.seller.email);
     this.dialog.open(ContractDetailComponent, {
-      // width: '60%',
-      // height: '60%',
-      data: this.contractWithBothUsers
+      data: this.contractWithBothUsers,
+      width: '80%'
     });
   }
 

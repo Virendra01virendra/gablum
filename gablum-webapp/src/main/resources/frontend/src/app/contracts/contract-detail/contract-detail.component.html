@@ -1,8 +1,7 @@
-<div>
-    <h1>
-        Contract
-    </h1>
-
+<h1 mat-dialog-title>
+    Contract
+</h1>
+<div mat-dialog-content style="overflow: scroll;">
     <h3>
         Product Name - {{productName | titlecase}}
     </h3>
@@ -12,41 +11,36 @@
     <h4>
         Quantity {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}
     </h4>
-    <mat-card>
-        <mat-card-content>
-            <mat-grid-list cols="2">
-                <mat-grid-tile>
-                    <h4>
-                        Auction Details :
-                    </h4>
-                    <section>
-                        <ul>
-                            <li>Method of Supply {{contract.auctionDetails.proposal.methodOfSupply}}</li>
-                            <li>Quality Certification {{contract.auctionDetails.proposal.qualityCertification}}</li>
-                            <li>Delivery Date {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
-                            <li>Price {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
-                            <li>Credit Period {{contract.auctionDetails.proposal.creditPeriod}} days</li>
-                        </ul>
-                    </section>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <h4>
-                        Bid Details :
-                    </h4>
-                    <section>
-                        <ul>
-                            <li>Method of Supply {{contract.bidDetails.bid.typeOfSupply}}</li>
-                            <li>Quality Certification {{contract.bidDetails.bid.qaqcCertificate}}</li>
-                            <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
-                            <li>Price {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
-                            <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>
-                        </ul>
-                    </section>
-                </mat-grid-tile>
-            </mat-grid-list>
-
-        </mat-card-content>
-    </mat-card>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <section>
+                <h4>
+                    Auction Details :
+                </h4>
+                <ul>
+                    <li>Method of Supply {{contract.auctionDetails.proposal.methodOfSupply}}</li>
+                    <li>Quality Certification {{contract.auctionDetails.proposal.qualityCertification}}</li>
+                    <li>Delivery Date {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
+                    <li>Price {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                    <li>Credit Period {{contract.auctionDetails.proposal.creditPeriod}} days</li>
+                </ul>
+            </section>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <section>
+                <h4>
+                    Bid Details :
+                </h4>
+                <ul>
+                    <li>Method of Supply {{contract.bidDetails.bid.typeOfSupply}}</li>
+                    <li>Quality Certification {{contract.bidDetails.bid.qaqcCertificate}}</li>
+                    <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
+                    <li>Price {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                    <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>
+                </ul>
+            </section>
+        </mat-grid-tile>
+    </mat-grid-list>
     <article>
         <p>
             This Tripartite Contract is between {{buyer.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Buyer, {{seller.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Supplier and Gablum Private Litmited
