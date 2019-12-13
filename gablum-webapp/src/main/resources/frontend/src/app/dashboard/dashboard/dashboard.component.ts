@@ -34,10 +34,12 @@ export class DashboardComponent implements OnInit {
   proposals: Proposal[];
   allProposals: Proposal[];
   auctions: Auction[];
+  oldAuctions: Auction[];
   auctionsBuyer: Auction[];
   auctionsSeller: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
+  public auctionsNotEmpty = true;
   // public dashboardSections: DashboardSection[] = [
   //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
   //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
@@ -116,8 +118,8 @@ export class DashboardComponent implements OnInit {
             'sellerProposals'
           );
           this.userRole = this.userProfile.role;
-          console.log(this.userProfile.role[0]);
-          console.log(this.userProfile.role[1]);
+          // console.log(this.userProfile.role[0]);
+          // console.log(this.userProfile.role[1]);
           if (this.userProfile.role.length === 1) {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
@@ -131,8 +133,13 @@ export class DashboardComponent implements OnInit {
             this.isSeller = true;
           }
         }
-        console.log('recursive buyer', this.isBuyer);
-        console.log('recursive buyer', this.isSeller);
+
+        if ('oldAuctions' in data) {
+          this.oldAuctions = data.oldAuctions;
+          console.log('olllddd auctions', this.oldAuctions);
+        }
+        // console.log(this.isBuyer);
+        // console.log(this.isSeller);
       }
     });
   }
@@ -159,7 +166,11 @@ export class DashboardComponent implements OnInit {
         DashboardComponent.messageKey,
         'auctionsSeller'
       );
-    // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
+
+    this.auctionDataService.getOldAuctions(
+      DashboardComponent.messageKey,
+      'oldAuctions'
+      );
   }
 
   send() {
@@ -201,10 +212,20 @@ export class DashboardComponent implements OnInit {
     if (this.show) {
       this.buttonName = 'BUYERS VIEW';
       this.auctions = this.auctionsBuyer;
+      if (this.auctions.length !== 0) {
+        this.auctionsNotEmpty = true;
+      } else {
+        this.auctionsNotEmpty = false;
+      }
 
     } else {
       this.buttonName = 'SELLERS VIEW';
       this.auctions = this.auctionsSeller;
+      if (this.auctions.length !== 0) {
+        this.auctionsNotEmpty = true;
+      } else {
+        this.auctionsNotEmpty = false;
+      }
     }
   }
 }

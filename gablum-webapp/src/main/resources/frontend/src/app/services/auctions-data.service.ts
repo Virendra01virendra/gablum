@@ -13,6 +13,7 @@ export class AuctionsDataService {
   public auctionsUrl: string;
   bidUrl;
   auctionUrlForSingle;
+  oldAuctionUrl
 
   constructor(
     private comms: CommunicatorService,
@@ -63,10 +64,15 @@ export class AuctionsDataService {
   saveWinningBid(dest, data, key, auctionId) {
     this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid/end';
     this.networking.patchData(this.bidUrl, dest, data, key).subscribe((res) => {
-      console.log('We won');
+      // console.log('We won');
     },
     err => {
         this.logger.log(err);
     });
+  }
+
+  getOldAuctions(dest, key) {
+    this.oldAuctionUrl = this.auctionsUrl + '/buyer/old';
+    this.networking.getData(this.oldAuctionUrl, dest, key);
   }
 }
