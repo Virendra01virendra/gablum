@@ -46,7 +46,7 @@ article {
   } */
 
   .proposal-card {
-    height: 20em;
+    /* height: 20em; */
     background: white;
     border-radius: 0.4em;
     overflow: hidden;

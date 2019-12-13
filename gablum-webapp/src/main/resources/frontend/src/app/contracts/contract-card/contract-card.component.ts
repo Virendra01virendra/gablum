@@ -76,7 +76,7 @@ export class ContractCardComponent implements OnInit {
       this.profileUrl, ContractCardComponent.messageKey, 'otherUser');
   }
 
-  openDialog() {
+  openDialog(contract) {
     this.contractWithBothUsers.contract = this.contract;
     if (this.contract.buyerEmail === this.user.email) {
       this.contractWithBothUsers.buyer = this.user;
