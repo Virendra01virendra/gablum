@@ -36,8 +36,8 @@ export class SellersListDialogComponent implements OnInit {
   // selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
-    private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
-    private user: ProfileDataService) {
+              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
+              private user: ProfileDataService) {
     // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
     //   return {
     //     email: invitedUsersEmail,
