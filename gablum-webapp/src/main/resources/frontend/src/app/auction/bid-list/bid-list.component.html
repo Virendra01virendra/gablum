@@ -14,9 +14,27 @@ fxLayout.xs="column nowrap"
 fxLayoutAlign="space-around flex-start"
 fxLayoutAlign.xs="flex-start center"
 >
-    <h2 *ngIf="auction">{{auction.auctionName}}</h2>
-
     <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
     </div>
+    <div class="auction-details" fxLayout="column nowrap">
+        <h2 *ngIf="auction">{{auction.auctionName}}</h2>
+        <h2 *ngIf="timeData && timeData.length === 0">
+            No bids to show
+        </h2>
+        <ngx-charts-bar-vertical
+        style="width: 30em; height: 20em;"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Time'"
+        [yAxisLabel]="'Score'"
+        [results]="timeData"
+        *ngIf="timeData && timeData.length !== 0"
+        >
+        </ngx-charts-bar-vertical>
+    </div>
+
 </div>

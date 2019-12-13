@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.profile.getUserProfileByEmail('@all', 'profile');
-    console.log(this.logo);
+    this.logger.log(this.logo);
   }
 
   openLoginDialog() {

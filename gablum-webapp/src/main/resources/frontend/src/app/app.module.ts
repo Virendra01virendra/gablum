@@ -20,14 +20,23 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { ContractsModule } from './contracts/contracts.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AuctionModule } from './auction/auction.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { BrowseProposalsModule } from './browse-proposals/browse-proposals.module';
+<<<<<<< HEAD
 import { AdminModule } from './admin/admin.module';
 import { TeamComponent } from './team/team.component';
+=======
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+>>>>>>> 1c9057e4a0ecf83b6c1fd50c2d5b94cbddbd10c3
 
 @NgModule({
   declarations: [
@@ -61,7 +70,17 @@ import { TeamComponent } from './team/team.component';
     RouterModule,
     FormsModule,
     BrowseProposalsModule,
+<<<<<<< HEAD
     AdminModule
+=======
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+>>>>>>> 1c9057e4a0ecf83b6c1fd50c2d5b94cbddbd10c3
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
