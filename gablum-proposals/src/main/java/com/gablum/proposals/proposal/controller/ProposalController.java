@@ -1,6 +1,5 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
@@ -12,6 +11,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;

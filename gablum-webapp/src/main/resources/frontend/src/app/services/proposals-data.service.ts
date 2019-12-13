@@ -79,5 +79,10 @@ export class ProposalsDataService {
   }
 
 
+  changeAuctionFlag(proposalId, dest, key){
+    const proposalAuctionStartUrl = this.proposalsUrl + '/' + proposalId + '/auction-started';
+    this.networking.patchData(proposalAuctionStartUrl, dest, '', key);
+  }
+
 
 }

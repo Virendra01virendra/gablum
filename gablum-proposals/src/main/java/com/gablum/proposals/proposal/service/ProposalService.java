@@ -85,7 +85,7 @@ public class ProposalService implements IProposalService {
 
     @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
-        return proposalRepo.getAllProposalsByCreatedBy(email, getPageable(queryMap)).getContent();
+        return proposalRepo.findAllByCreatedByAndIsAuctionStarted(getPageable(queryMap), email, false).getContent();
     }
 
     @Override

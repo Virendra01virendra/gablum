@@ -6,6 +6,7 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { Router } from '@angular/router';
 import { CommunicatorService } from 'src/app/services/communicator.service';
+import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class AuctionStartDialogComponent {
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private comms: CommunicatorService,
+    private proposalDataService: ProposalsDataService
               ) {
                 comms.getMessages().subscribe(msg => {
                   if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
@@ -31,6 +33,10 @@ export class AuctionStartDialogComponent {
 
                     if ('save-auction' in data1) {
                       this.auctionDataService.getAllAuctions('DashboardComponent', 'auctionsBuyer');
+                    }
+
+                    if ('auctionStarted' in data1) {
+                      const data2 = data1.auctionStarted;
                     }
 
                   }
@@ -55,6 +61,8 @@ export class AuctionStartDialogComponent {
     const data = JSON.parse(JSON.stringify(auctionList));
 
     this.auctionDataService.saveAuction(AuctionStartDialogComponent.messageKey, data, 'save-auction');
+    this.proposalDataService.changeAuctionFlag(proposal1.proposalId, AuctionStartDialogComponent.messageKey, 'auctionStarted');
+    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
     this.router.navigate(['dashboard']);
     this.close();
 
