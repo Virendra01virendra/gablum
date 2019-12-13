@@ -26,6 +26,10 @@ export class ProfileDataService {
     this.networking.getData<Profile>(this.profileUrl, dest, key);
   }
 
+  getUserProfileByEmailWithUrl(url: string, dest, key) {
+    this.networking.getData<User>(url, dest, key);
+  }
+
   editUserProfile(dest, data, key) {
     return this.networking.patchData<Profile>(this.profileUrl, dest, data, key);
   }

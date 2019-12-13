@@ -77,7 +77,7 @@ describe('AuctionCardComponent', () => {
         views: 2,
         interested: 2,
         interestedUsersEmail: [],
-        invitedUsersEmail: []
+        productDescription: ' '
     },
     isAuctionActive: false,
     isAuctionFinished: false,

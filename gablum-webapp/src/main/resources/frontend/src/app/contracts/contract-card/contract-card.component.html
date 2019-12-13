@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-        <div class="card-header" fxFlexAlign="center">{{contract.auctionDetails.auctionName}}</div>
+        <div class="card-header" fxFlexAlign="center">{{contract.auctionDetails.auctionName | titlecase}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="subdomain" fxFlexAlign="center">{{ contract.auctionDetails.proposal.businessSubDomain }}</div>
         </div>
@@ -17,12 +17,7 @@
             </i>
         </div>
         <div>
-                <i
-                class="fa fa-calendar-o"
-                aria-hidden="true"
-                matTooltip="Registeration End-Date"
-                style="transform: scale3d(10);"
-                >
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date" style="transform: scale3d(10);">
                 {{ contract.auctionDetails.proposal.regEndDate | date: "mediumDate" }}</i
                 >
             </div>
@@ -32,14 +27,14 @@
                 aria-hidden="true"
                 matTooltip="Auction Start-Date"
                 >
-                {{ contract.auctionDetails.auctionStartDate | date: "mediumDate" }}</i
-                >
-            </div>
+                {{ contract.auctionDetails.auctionStartDate | date: "mediumDate" }}
+                </i>
         </div>
-        
-        <div style="margin-bottom: 0.5em;">
-            <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
-                <!-- <mat-icon
+    </div>
+
+    <div style="margin-bottom: 0.5em;">
+        <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+            <!-- <mat-icon
                 matBadge="{{ proposal.interested }}"
                 matBadgePosition="after"
                 (click)="sellersListDialog(proposal)"
@@ -49,11 +44,7 @@
                 >
                 list
             </mat-icon> -->
-            <mat-icon
-            matTooltip="See Details"
-            class="material-icons"
-            (click)="openDialog(contract)"
-            style="cursor: pointer;">visibility</mat-icon>
+            <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(contract)" style="cursor: pointer;">visibility</mat-icon>
             <!-- <button mat-button [matMenuTriggerFor]="menu"
             style="margin: 0; padding: 0; min-width: unset; cursor: pointer;"
             >
