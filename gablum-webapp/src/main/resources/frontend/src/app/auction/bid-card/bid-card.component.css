@@ -1,12 +1,11 @@
 mat-expansion-panel {
-    width: 80%;
+    width: 30em;
     margin-bottom: 0.5em;
 }
 
 .bid-primary-container {
-    padding: 1em 1em 1em 1em;
-    height: 4em;
-    width: 90%;
+    padding: 0 1em;
+    height: 5em;
 }
 .profile-image {
     width: 5em;
