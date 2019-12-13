@@ -9,11 +9,11 @@
         <mat-vertical-stepper class="stepper" [linear]="false" #stepper>
             <mat-step [stepControl]="productSpecsForm">
                 <ng-template matStepLabel>Fill product details</ng-template>
-                <form fxLayout="row" fxLayoutAlign="space-between start" [formGroup]="productSpecsForm"
+                <form fxLayout="row wrap" fxLayoutAlign="space-between start" [formGroup]="productSpecsForm"
                     (ngSubmit)="onNext1(productSpecsForm)">
 
                     <div fxFlex="55" fxLayout="column" fxLayoutAlign="space-around start">
-                        <div fxLayout="row" fxLayoutAlign="space-between start">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start">
                             <mat-form-field fxFlex="45" appearance="outline" class="prod-details">
                                 <mat-label class="form-label">Business Domain:</mat-label>
                                 <input matInput type="text" readonly="true" value="Agriculture"
@@ -40,7 +40,7 @@
                             </mat-form-field>
                         </div>
 
-                        <div fxLayout="row" fxLayoutAlign="space-between start">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between start">
                             <mat-form-field fxFlex="45" appearance="outline" class="prod-details">
                                 <mat-label class="form-label">Quantity:</mat-label>
                                 <input matInput type="number" placeholder="Quantity Value"
@@ -82,8 +82,8 @@
             <mat-step [stepControl]="paramForm">
 
                 <ng-template matStepLabel>Assign Weightages</ng-template>
-                <form [formGroup]="paramForm" fxLayout="row" fxLayoutAlign="space-around start">
-                    <div fxFlex="65" fxLayout="column" fxLayoutAlign="space-around start" gdColumns="1fr 1fr"
+                <form [formGroup]="paramForm" fxLayout="row wrap" fxLayoutAlign="space-around start">
+                    <div fxFlex="65" fxLayout="column wrap" fxLayoutAlign="space-around start" gdColumns="1fr 1fr"
                         gdColumns.xs="1fr" gdGap="2em" class="grid-container">
                         <div>
                             <mat-form-field appearance="outline" class="prod-details">
@@ -191,7 +191,7 @@
             <mat-step [stepControl]="timeForm">
                 <form [formGroup]="timeForm">
                     <ng-template matStepLabel>Schedule Registration/Auction</ng-template>
-                    <div gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
+                    <div fxLayout="row wrap" gdColumns="1fr 1fr" gdColumns.xs="1fr" gdGap="2em" class="grid-container">
                         <mat-form-field appearance="outline">
                             <mat-label class="form-label">Registration Start date:</mat-label>
                             <input matInput [matDatepickerFilter]="RegStartDateFilter" [matDatepicker]="picker2"

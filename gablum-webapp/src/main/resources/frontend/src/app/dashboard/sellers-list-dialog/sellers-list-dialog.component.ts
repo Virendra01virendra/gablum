@@ -30,14 +30,14 @@ export class SellersListDialogComponent implements OnInit {
   public profile: Profile;
   alreadyRegistered: boolean;
   public userEmail: string;
-  displayedColumns: string[] = [ 'sellerEmail', 'action'];
+  displayedColumns: string[] = ['sellerEmail', 'action'];
   public ELEMENT_DATA;
   // dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
   // selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
-              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
-              private user: ProfileDataService) {
+    private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
+    private user: ProfileDataService) {
     // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
     //   return {
     //     email: invitedUsersEmail,
@@ -95,9 +95,11 @@ export class SellersListDialogComponent implements OnInit {
 
 
 
-  onInvite(ele, sellerEmail) {
-    console.log('Invite data', ele, sellerEmail);
-    this.disabled = true;
+  onInvite(sellerEmail) {
+    this.data.invitedUsersEmail.push(sellerEmail);
+    console.log('Updated data', this.data);
+    // const patchObject = Object.assign({}, { id: this.data.proposalId, patchValue: [sellerEmail] });
+
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
   }
 }
