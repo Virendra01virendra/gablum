@@ -170,8 +170,11 @@ public class MailService {
                     "the top spot.\nImprovise your bid score and settle yourself in appropriate" +
                     "bracket.";
             textBidder += "\nBid details are: ";
-            textBidder += "Make the buyer an offer that's hard to refuse.";
-            textBidder += "\n\nTeam Gablum";
+            textBidder += "\nBid Id: "+bidDataEntity.getBidId();
+            textBidder += "\nBid Score: "+bidDataEntity.getScore();
+            textBidder += "\nCurrent rank: "+bidDataEntity.getRank();
+            textBidder += "\n\nMake the buyer an offer that's hard to refuse.";
+            textBidder += "\n\n\nTeam Gablum";
             msg.setText(textBidder);
             try
             {
@@ -191,6 +194,9 @@ public class MailService {
             msgS.setSubject("New Contract Awarded");
             String textSeller = "Congratulations! You have been awarded the contract with Contract Id " + contracts.getContractId();
             textSeller += "\nKindly abide by the clauses mentioned in the contract manual.";
+            textSeller += "\nContract details:";
+            textSeller += "\nBid Id: "+contracts.getBidId();
+            textSeller += "\nAuction Id: "+contracts.getAuctionId();
             textSeller += "\nStay in touch and expand your outreach by connecting with businesses round the globe.";
             textSeller += "\n\n\n Team Gablum";
             msgS.setText(textSeller);
