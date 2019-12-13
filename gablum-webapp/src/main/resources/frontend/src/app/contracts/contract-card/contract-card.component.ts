@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
 import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { User } from 'src/app/interfaces/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Profile } from 'src/app/interfaces/profile';
+import { ContractWithBothUser } from 'src/app/interfaces/contract-with-both-user';
 
 @Component({
   selector: 'app-contract-card',
@@ -28,9 +31,10 @@ export class ContractCardComponent implements OnInit {
   public SellerEmail: string;
   public BuyerEmail: string;
   @Input() public contract: ContractDetail;
-
+  public user: Profile;
   public profileUrl: string;
-  public profile: User;
+  public otherUser: Profile;
+  public contractWithBothUsers: ContractWithBothUser;
 
   constructor(
     private dialog: MatDialog,
@@ -39,15 +43,17 @@ export class ContractCardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private logger: LoggerService,
-    private profileDataService: ProfileDataService
+    private profileDataService: ProfileDataService,
+    private auth: AuthenticationService,
   ) {
+    this.user = auth.getProfileData();
     comms.getMessages().subscribe(msg => {
       if (msg.dest === ContractCardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
         if ('otherUser' in data) {
-          this.profile = data.userProfile;
+          this.otherUser = data.userProfile;  // panelOpenState = false;
+
         }
-        console.log(this.profile);
       }
     });
   }
@@ -55,12 +61,12 @@ export class ContractCardComponent implements OnInit {
   ngOnInit() {
     const contractsUrl = environment.contractsUrl;
     this.profileUrl = environment.profileUrl;
-    // this.logger.log(contractsUrl);
 
     this.profileUrl = environment.profileUrl;
-    if (this.contract.sellerEmail == null) {
+    if (this.contract.sellerEmail !== this.user.email) {
       this.SellerEmail = this.contract.bidDetails.createdBy;
       this.profileUrl = this.profileUrl + '/' + this.SellerEmail;
+
     } else {
       this.BuyerEmail = this.contract.auctionDetails.createdBy;
       this.profileUrl = this.profileUrl + '/' + this.BuyerEmail;
@@ -70,11 +76,19 @@ export class ContractCardComponent implements OnInit {
       this.profileUrl, ContractCardComponent.messageKey, 'otherUser');
   }
 
-  openDialog(contract: ContractDetail) {
+  openDialog() {
+    this.contractWithBothUsers.contract = this.contract;
+    if (this.contract.buyerEmail === this.user.email) {
+      this.contractWithBothUsers.buyer = this.user;
+      this.contractWithBothUsers.seller = this.otherUser;
+    } else {
+      this.contractWithBothUsers.buyer = this.otherUser;
+      this.contractWithBothUsers.seller = this.user;
+    }
     this.dialog.open(ContractDetailComponent, {
       // width: '60%',
       // height: '60%',
-      data: contract
+      data: this.contractWithBothUsers
     });
   }
 

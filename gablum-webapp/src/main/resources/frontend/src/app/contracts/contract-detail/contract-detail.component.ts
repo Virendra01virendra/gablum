@@ -6,6 +6,8 @@ import { Auction } from 'src/app/interfaces/auction';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { NewBid } from 'src/app/interfaces/newbid';
+import { ContractWithBothUser } from 'src/app/interfaces/contract-with-both-user';
+import { Profile } from 'src/app/interfaces/profile';
 
 @Component({
   selector: 'app-contract-detail',
@@ -16,20 +18,23 @@ export class ContractDetailComponent implements OnInit {
 
   public static messagekey = 'ContractDetail';
   public contract: ContractDetail;
+  public buyer: Profile;
+  public seller: Profile;
   public auctionDetails: Auction;
   public proposal: Proposal;
   public productName: string;
   public sellerName: string;
   public bidDetails: NewBid;
-  public toBeDisplayed: string;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ContractDetail,
+    @Inject(MAT_DIALOG_DATA) public contractWithBothUser: ContractWithBothUser,
     private matDialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
     private contractService: ContractsDataService
   ) {
-    this.contract = data;
+    this.contract = this.contractWithBothUser.contract;
+    this.buyer = this.contractWithBothUser.buyer;
+    this.seller = this.contractWithBothUser.seller;
     this.auctionDetails = this.contract.auctionDetails;
     this.proposal = this.auctionDetails.proposal;
     this.productName = this.proposal.productName;
