@@ -14,6 +14,7 @@ export class ProposalsDataService {
   public proposalsUrl: string;
   public guestProposallistUrl: string;
   public sellerProposalsUrl: string;
+  public inviteSellerUrl: string;
 
   constructor(
     private comms: CommunicatorService,
@@ -22,6 +23,7 @@ export class ProposalsDataService {
   ) {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
+    this.inviteSellerUrl = environment.inviteSellerUrl;
   }
 
   saveProposal(dest, data, key) {
@@ -48,7 +50,13 @@ export class ProposalsDataService {
   }
 
   postInvitedSeller(dest, data, key) {
-    this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key);
+    this.networking.patchData<Proposal>(this.inviteSellerUrl, dest, data, key)
+    .subscribe(res => {
+      this.comms.postMessage(this, dest, { [key]: res });
+    },
+    err => {
+      this.logger.log(err);
+    });
   }
 
   deleteProposal(proposalId, dest, key) {

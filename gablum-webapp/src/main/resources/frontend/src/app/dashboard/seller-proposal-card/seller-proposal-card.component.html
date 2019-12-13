@@ -94,7 +94,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         <div style="margin-bottom: 0.5em;">
             <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
                 <button mat-raised-button color="primary"
-        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
+        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1)"
         (click)="shownInterest(allProposal)">
         <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true"></i>
       </button>

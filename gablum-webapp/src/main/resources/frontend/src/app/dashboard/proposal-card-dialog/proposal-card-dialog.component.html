@@ -1,48 +1,95 @@
-<h1 mat-dialog-title>Product Name: {{data.productName}}</h1>
+<h1 mat-dialog-title align="center">{{data.productName}}</h1>
 <div mat-dialog-content style="overflow : hidden;">
-    <mat-accordion>
-        <mat-expansion-panel [expanded]="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Product Specs
-                </mat-panel-title>
-                <mat-panel-description>You can view Product Specifications here</mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-list role="list">
-                <mat-list-item role="listitem">Product Price: {{data.price}}</mat-list-item>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Product Details
+        </mat-panel-title>
+        <mat-panel-description>View Product Specifications here</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <!-- <mat-list-item role="listitem" >Price: {{data.price}}</mat-list-item>
+                <mat-divider></mat-divider>
                 <mat-list-item role="listitem">Quantity: {{data.quantityValue + ' ' + data.quantityUnit}}</mat-list-item>
-                <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate| date: 'mediumDate'}}</mat-list-item>
-            </mat-list>
-        </mat-expansion-panel><br>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Weights
-                </mat-panel-title>
-                <mat-panel-description>Here are the weights you specified</mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-list role="list">
-                <mat-list-item role="listitem">Price Weight: {{data.priceWeight}}</mat-list-item>
-                <mat-list-item role="listitem">Credit Period Weight: {{data.creditPeriodWeight}}</mat-list-item>
-                <mat-list-item role="listitem">Delivery Date Weight: {{data.deliveryDateWeight}}</mat-list-item>
-            </mat-list>
-        </mat-expansion-panel><br>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Start and End Dates
-                </mat-panel-title>
-                <mat-panel-description>Details about various Dates</mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-list role="list">
-                <mat-list-item role="listitem">Registartion starts on: {{data.regStartDate | date: 'mediumDate'}}</mat-list-item>
-                <mat-list-item role="listitem">Registration ends on: {{data.regEndDate | date: 'mediumDate'}}</mat-list-item>
-                <mat-list-item role="listitem">Auction starts on: {{data.auctionStartDate | date: 'mediumDate'}}</mat-list-item>
-                <mat-list-item role="listitem">Auction ends on: {{data.auctionEndDate | date: 'mediumDate'}}</mat-list-item>
-            </mat-list>
-        </mat-expansion-panel><br>
-    </mat-accordion>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate| date: 'mediumDate'}}</mat-list-item> -->
+
+        <mat-list-item>
+          <div fxFlex=70%><strong>Price</strong></div>
+          <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.price}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div fxFlex=70%><strong>Quantity</strong></div>
+          <div fxFlex=30%>{{ data.quantityValue + ' ' + data.quantityUnit}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div fxFlex=70%><strong>Delivery Date</strong></div>
+          <div fxFlex=30%>{{ data.deliveryDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel><br>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Weights
+        </mat-panel-title>
+        <mat-panel-description>Here are the weights you specified</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Price Weight</div>
+          <div fxFlex=30%>{{data.priceWeight}}</div>
+
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Credit Period Weight </div>
+          <div fxFlex=30%> {{data.creditPeriodWeight}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Delivery Date Weight</div>
+          <div fxFlex=30%> {{data.deliveryDateWeight}}</div>
+
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel><br>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Start and End Dates
+        </mat-panel-title>
+        <mat-panel-description>Details about various Dates</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Registartion starts on </div>
+          <div fxFlex=30%>{{data.regStartDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Registration ends on</div>
+          <div fxFlex=30%> {{data.regEndDate | date: 'mediumDate'}}
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div fxFlex=70%>Auction starts on</div>
+          <div fxFlex=30%>>{{data.auctionStartDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+            <div fxFlex=70%>Auction ends on</div> 
+            <div fxFlex=30%>{{data.auctionEndDate | date: 'mediumDate'}}</div>
+          </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel><br>
+  </mat-accordion>
 </div>
+<<<<<<< HEAD
 <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
   
     <button mat-raised-button mat-dialog-close color="secondary">Close</button>
@@ -54,6 +101,15 @@
     >Extend Registration</button>
     <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
   
+=======
+<div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="1em">
+
+  <button mat-raised-button mat-dialog-close color="secondary">Close</button>
+  <button mat-raised-button mat-dialog-close>Bidder's List</button>
+  <button mat-raised-button mat-dialog-close>Extend Registration</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
+
+>>>>>>> d093db69482f684a671e52d60de87196549286d6
 </div>
 
 
