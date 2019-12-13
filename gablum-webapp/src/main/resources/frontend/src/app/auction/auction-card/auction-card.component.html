@@ -93,40 +93,9 @@
                <i class="fa fa-eye"
                 aria-hidden="true" 
                 (click) = "seeBids()"
-                *ngIf= buttonShow 
+                *ngIf= !buttonShow 
                 style="cursor: pointer;"
                 >View All Bids</i>
            </div>
        </div>
    </div>
-   
-   <!-- <mat-menu #menu="matMenu">
-       <button mat-menu-item
-       matTooltip="Schedule auction for proposal"
-       class="material-icons"
-       (click)="startAuction(proposal)"
-       >
-       <mat-icon color="primary">
-           play_arrow
-       </mat-icon>
-       Schedule Auction
-   </button>
-   <button mat-menu-item
-   matTooltip="Extend Registration for the proposal"
-   class="material-icons"
-   (click)="extendDialog(proposal)"
-   >
-   <mat-icon>
-       hourglass_empty
-   </mat-icon>
-   Extend registration
-   </button>
-   <button mat-menu-item 
-   matTooltip="Delete Proposal"
-   class="material-icons"
-   (click)="delete(proposal)"
-   >
-   <mat-icon color="warn">delete</mat-icon>
-   Delete
-   </button>
-   </mat-menu> -->
