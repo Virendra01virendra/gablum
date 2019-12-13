@@ -103,8 +103,8 @@ export class DashboardComponent implements OnInit {
             'sellerProposals'
           );
           this.userRole = this.userProfile.role;
-          console.log(this.userProfile.role[0]);
-          console.log(this.userProfile.role[1]);
+          // console.log(this.userProfile.role[0]);
+          // console.log(this.userProfile.role[1]);
           if (this.userProfile.role.length === 1) {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
@@ -118,8 +118,8 @@ export class DashboardComponent implements OnInit {
             this.isSeller = true;
           }
         }
-        console.log(this.isBuyer);
-        console.log(this.isSeller);
+        // console.log(this.isBuyer);
+        // console.log(this.isSeller);
       }
     });
   }

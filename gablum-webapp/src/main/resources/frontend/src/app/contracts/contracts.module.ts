@@ -15,7 +15,7 @@ import { ContractPageComponent } from './contract-page/contract-page.component';
   imports: [
     CommonModule,
     ContractRoutingModule,
-    MaterialModule,
+    MaterialModule
   ]
 })
 export class ContractsModule { }

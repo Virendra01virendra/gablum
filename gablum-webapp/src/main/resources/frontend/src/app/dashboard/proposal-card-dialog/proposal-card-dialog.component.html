@@ -93,14 +93,17 @@
     </mat-expansion-panel><br>
   </mat-accordion>
 </div>
-<div mat-dialog-actions *ngIf="isBuyer||(isBuyer&&isSeller)" fxLayout="row wrap" fxLayoutAlign="end center"
-  fxLayoutGap="1em">
-
-  <button mat-raised-button mat-dialog-close color="secondary">Close</button>
-  <button mat-raised-button mat-dialog-close>Bidder's List</button>
-  <button mat-raised-button mat-dialog-close>Extend Registration</button>
-  <button mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
-
+<div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
+  
+    <button mat-raised-button mat-dialog-close color="secondary">Close</button>
+    <button mat-raised-button mat-dialog-close
+    (click)="sellersListDialog()"
+    >Bidder's List</button>
+    <button mat-raised-button mat-dialog-close 
+    (click)="extendDialog()"
+    >Extend Registration</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
+  
 </div>
 
 

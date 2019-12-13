@@ -13,13 +13,13 @@ public class ContractsController {
     @Autowired
     private ContractService contractService;
 
-    @GetMapping("/contracts/{contractsId}")
-    public Contracts getContract(@PathVariable String contractId){
-        return contractService.getContractById(contractId);
-    }
+    // @GetMapping("/contracts/{contractsId}")
+    // public Contracts getContract(@PathVariable String contractId){
+    //     return contractService.getContractById(contractId);
+    // }
 
-    @GetMapping("/contracts")
-    public List<Contracts> getAllContract(@RequestParam String email){
+    @GetMapping("/contracts/{email}")
+    public List<Contracts> getAllContract(@PathVariable String email){
         List<Contracts> totalContracts = new ArrayList<Contracts>(contractService.getContractByBuyerEmail(email));
         totalContracts.addAll(contractService.getContractBySellerEmail(email));
         return totalContracts;
@@ -33,6 +33,8 @@ public class ContractsController {
     public List<Contracts> getContractBySellerEmail(@RequestParam String email){
         return contractService.getContractBySellerEmail(email);
     }
+
+
 
 //    @PostMapping("/contracts")
 //    public Contracts saveContract(@RequestBody Contracts contracts){

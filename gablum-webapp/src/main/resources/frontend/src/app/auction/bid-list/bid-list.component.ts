@@ -12,6 +12,7 @@ import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { MatSnackBar } from '@angular/material';
 import { StompSubscription } from '@stomp/stompjs';
+import { NgxData, NgxDateData } from 'src/app/interfaces/ngx-data';
 
 @Component({
   selector: 'app-bid-list',
@@ -26,6 +27,8 @@ export class BidListComponent implements OnInit, OnDestroy {
   public isOwner = false;
   private socketToken: string;
   private tokenBody: any;
+
+  public timeData: NgxDateData[] = [];
 
   private subscriptionRef: StompSubscription;
   constructor(
@@ -42,9 +45,17 @@ export class BidListComponent implements OnInit, OnDestroy {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === BidListComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
-        // console.log('bidddddddd-------------->', data);
         if ('bidsAuction' in data) {
           this.bids = data.bidsAuction;
+          this.bids.forEach(b => {
+            this.timeData.push(
+              {
+                name: new Date(b.createdOn),
+                value: b.scoreObject.total
+              }
+            );
+          });
+          this.timeData = [...this.timeData];
         }
 
         if ('auctionSingle' in data) {
@@ -141,6 +152,14 @@ export class BidListComponent implements OnInit, OnDestroy {
               const newBid: NewBid = JSON.parse(data.newbid.body);
               if (this.bids.map(b => b.bidId).indexOf(newBid.bidId) < 0) {
                 this.bids.push(newBid);
+                this.timeData.push(
+                  {
+                    name: new Date(newBid.createdOn),
+                    value: newBid.scoreObject.total
+                  }
+                );
+                this.timeData = [...this.timeData];
+                this.sortBids();
               }
             }
           }
@@ -174,5 +193,18 @@ export class BidListComponent implements OnInit, OnDestroy {
     }
   }
 
+  sortBids() {
+    this.bids.sort((b1, b2) => {
+      if (b1.scoreObject.total < b2.scoreObject.total) {
+        return 1;
+      } else if (b1.scoreObject.total > b2.scoreObject.total) {
+        return -1;
+      }
+      return 0;
+    });
 
+    this.bids.forEach((v, i) => {
+      v.rank = i + 1;
+    });
+  }
 }

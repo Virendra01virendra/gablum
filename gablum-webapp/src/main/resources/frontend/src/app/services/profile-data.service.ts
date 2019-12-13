@@ -27,7 +27,7 @@ export class ProfileDataService {
   }
 
   editUserProfile(dest, data, key) {
-    this.networking.patchData<Profile>(this.profileUrl, dest, data, key);
+    return this.networking.patchData<Profile>(this.profileUrl, dest, data, key);
   }
 
   getNavLinks(dest, key) {

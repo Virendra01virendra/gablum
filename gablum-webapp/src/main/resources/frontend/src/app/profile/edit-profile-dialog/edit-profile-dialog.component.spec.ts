@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditProfileDialogComponent } from './edit-profile-dialog.component';
-import { MatDialogModule, MatButtonModule, MatSelectModule, MatOptionModule, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatSelectModule, MatOptionModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProfileRoutingModule } from '../profile-routing.module';
 import { CommonModule } from '@angular/common';
@@ -22,7 +22,8 @@ describe('EditProfileDialogComponent', () => {
         CommonModule, MatSelectModule, MatOptionModule, ReactiveFormsModule, FormsModule,
         MaterialModule, HttpClientModule, MatDialogModule, BrowserAnimationsModule],
         providers: [
-          { provide: MAT_DIALOG_DATA, useValue: {} }
+          { provide: MAT_DIALOG_DATA, useValue: {} },
+          {provide: MatDialogRef, useValue: {}}
       ]
     })
     .compileComponents();
