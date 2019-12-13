@@ -13,7 +13,7 @@ export class AuctionsDataService {
   public auctionsUrl: string;
   bidUrl;
   auctionUrlForSingle;
-  oldAuctionUrl
+  oldAuctionUrl;
 
   constructor(
     private comms: CommunicatorService,

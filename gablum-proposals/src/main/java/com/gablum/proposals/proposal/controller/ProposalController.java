@@ -1,5 +1,6 @@
 package com.gablum.proposals.proposal.controller;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
@@ -39,6 +40,7 @@ public class    ProposalController {
         proposalData.setUpdatedBy(email);
         proposalData.setCreatedOn(new Date());
         proposalData.setUpdatedOn(new Date());
+        proposalData.setAuctionStarted(false);
         Proposal savedProposal = proposalService.addProposals(proposalData);
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
@@ -121,4 +123,14 @@ public class    ProposalController {
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
     }
+
+    @PatchMapping("proposals/{proposalId}/auction-started")
+    public ResponseEntity<Proposal> auctionStarted(@PathVariable("proposalId") String proposalId) {
+        return new ResponseEntity<Proposal>(
+                proposalService.changeAuctionFlag(proposalId),
+                HttpStatus.OK
+        );
+    }
+
+
 }
