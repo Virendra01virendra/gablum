@@ -110,7 +110,14 @@ public class MailService {
             msg.setSubject("New Auction Floated");
             String textBuyer = "You have initialised a new Auction.\n";
             textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
-            textBuyer += "Stay up to date while the auction runs and choose the bid of your" +
+            textBuyer += "\n\nAuction Details are : ";
+            textBuyer += "\nAuction name: "+auction.getAuctionName();
+            textBuyer += "\nAuction ID: "+auction.getAuctionId();
+            textBuyer += "\nAuction Start Date: "+auction.getAuctionStartDate();
+            textBuyer += "\nAuction End Date: "+auction.getAuctionEndDate();
+            textBuyer += "\nProduct Name: "+auction.proposal.getProductName();
+            textBuyer += "\nCreated by: "+auction.getCreatedBy();
+            textBuyer += "\n\nStay up to date while the auction runs and choose the bid of your" +
                     " choice to award the contract to the suitable supplier.\n";
             textBuyer += "Do read the instructions carefully before you award the contract.";
             textBuyer += "\n\nTeam Gablum.";
@@ -129,10 +136,17 @@ public class MailService {
             for (int i=0; i<interestedUsersEmail.size(); i++){
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
-                msgInterestedUsers.setSubject("New Auction Floated");
-                String textSeller = "\nNew Auction of your interested has been floated";
+                msgInterestedUsers.setSubject("New Auction Generated");
+                String textSeller = "\nNew Auction of your sub-domain has been generated";
                 textSeller += "\n\nKeep up to date with the deadlines for the end of registration" +
                         " as well as the auction start and end dates.";
+                textSeller += "\n\nAuction Details are : ";
+                textSeller += "\nAuction name: "+auction.getAuctionName();
+                textSeller += "\nAuction ID: "+auction.getAuctionId();
+                textSeller += "\nAuction Start Date: "+auction.getAuctionStartDate();
+                textSeller += "\nAuction End Date: "+auction.getAuctionEndDate();
+                textSeller += "\nProduct Name: "+auction.proposal.getProductName();
+                textSeller += "\nCreated by: "+auction.getCreatedBy();
                 textSeller += "\n\nPlace your bids wisely.\nAll the best.\n";
                 textSeller += "\n\nTeam Gablum";
                 msgInterestedUsers.setText(textSeller);
@@ -155,6 +169,7 @@ public class MailService {
             String textBidder = "You have placed a new bid. Watch your bid closely as you aim for" +
                     "the top spot.\nImprovise your bid score and settle yourself in appropriate" +
                     "bracket.";
+            textBidder += "\nBid details are: ";
             textBidder += "Make the buyer an offer that's hard to refuse.";
             textBidder += "\n\nTeam Gablum";
             msg.setText(textBidder);
