@@ -5,14 +5,13 @@
     <mat-card-content>
         <section>
             <ul>
-                <li>Product Name {{productName}} </li>
-                <li>Product Description {{toBeDisplayed}}</li>
-                <li>Price {{toBeDisplayed}}</li>
-                <li>Quantity {{toBeDisplayed}}</li>
+                <li>Product Name {{productName | titlecase}} </li>
+                <li>Product Description {{contract.auctionDetails.proposal.productDescription}}</li>
+                <li>Quantity {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}</li>
                 <li>Method of Supply {{toBeDisplayed}}</li>
                 <li>Quality Certification {{toBeDisplayed}}</li>
                 <li>Delivery Date {{toBeDisplayed}}</li>
-                <li> {{toBeDisplayed}}</li>
+                <li>Price {{contract.bidDetails.bid.price}}</li>
                 <li>Credit Period {{toBeDisplayed}}Days</li>
                 <li>Buyer Name {{toBeDisplayed}}; Company Name {{toBeDisplayed}}</li>
                 <li>supplier Name {{sellerName}}; Company Name {{toBeDisplayed}}</li>
@@ -43,4 +42,4 @@
     <p>
         Gablum Private Limited
     </p>
-</article>
+    </article
