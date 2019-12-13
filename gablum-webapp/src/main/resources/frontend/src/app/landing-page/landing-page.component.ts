@@ -6,6 +6,8 @@ import { NetworkingService } from '../services/networking.service';
 import { LoginToken } from '../interfaces/login-token';
 import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
+import { TranslateService } from '@ngx-translate/core';
+import { IntlService } from '../services/intl.service';
 
 declare const H: any;
 
@@ -35,6 +37,7 @@ export class LandingPageComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginDataService,
+<<<<<<< HEAD
     private comms: CommunicatorService) {
     this.comms.getMessages().subscribe(message => {
       if (message.dest === '@all' || message.dest === LandingPageComponent.messageKey) {
@@ -46,6 +49,30 @@ export class LandingPageComponent implements OnInit {
 
           } else {
             this.router.navigate(['dashboard']);
+=======
+    private comms: CommunicatorService,
+    private translate: TranslateService,
+    private intl: IntlService) {
+      translate.addLangs(['en', 'hi']);
+      translate.setDefaultLang('hi');
+      const browserLang = translate.getBrowserLang();
+      translate.use(browserLang.match(/en|hi/) ? browserLang : 'en');
+      this.comms.getMessages().subscribe(message => {
+        if (message.dest === '@all' || message.dest === LandingPageComponent.messageKey) {
+          const data = message.data;
+          if ('loginResult' in data) {
+            const loginToken: LoginToken = data.loginResult.accessToken;
+            // console.log(loginToken.accessToken);
+            if (loginToken === undefined || loginToken === null) {
+
+            } else {
+              this.router.navigate(['dashboard']);
+            }
+>>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
+          }
+
+          if ('langChanged' in data) {
+            translate.use(intl.getLang());
           }
         }
       }

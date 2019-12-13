@@ -8,6 +8,7 @@
   fxLayoutAlign="space-around center"
 >
   <div class="hero-text-container">
+<<<<<<< HEAD
     <h2
       class="hero-text"
       [ngStyle]="{ 'font-size': '2.5em' }"
@@ -15,6 +16,9 @@
     >
       {{ heroText }}
     </h2>
+=======
+    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{'LANDING.HEROTEXT' | translate}}</h2>
+>>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
   </div>
 </div>
 
@@ -48,6 +52,7 @@
       fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
+<<<<<<< HEAD
       style="align-self: center;"
     >
       <p class="section-content">
@@ -61,6 +66,13 @@
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </p>
+=======
+      style="align-self: center;">
+          <p class="section-content">
+              {{'LANDING.ABOUT1' | translate}}
+          </p>
+      </div>
+>>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
     </div>
   </div>
   <mat-divider fxFlex="1 0 100%" style="margin: 1em 0;"></mat-divider>
@@ -88,6 +100,7 @@
       fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
+<<<<<<< HEAD
       style="align-self: center;"
     >
       <p class="section-content">
@@ -101,6 +114,13 @@
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </p>
+=======
+      style="align-self: center;">
+          <p class="section-content">
+              {{'LANDING.ABOUT2' | translate}}
+          </p>
+      </div>
+>>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
     </div>
   </div>
 </section>
@@ -115,6 +135,7 @@
 </section> -->
 
 <section class="contact-section" id="contact">
+<<<<<<< HEAD
   <h2
     class="mat-headline"
     style="display: flex; justify-content: center;"
@@ -134,6 +155,33 @@
       <mat-label>Name</mat-label>
       <input matInput placeholder="Name" type="text" />
     </mat-form-field>
+=======
+    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>{{'LANDING.CONTACT' | translate}}</strong></h2>
+    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.gt-xs><strong>Contact Us</strong></h2>
+    <form class="contact-form" fxLayout="column nowrap">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <input matInput placeholder="Sucject" type="text">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Query</mat-label>
+            <textarea matInput placeholder="Leave a comment" rows="6"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color='primary' type="submit" fxFlexAlign="flex-end">Submit</button>
+    </form>
+</section>
+>>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>

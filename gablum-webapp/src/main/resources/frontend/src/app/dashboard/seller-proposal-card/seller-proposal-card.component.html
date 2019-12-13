@@ -1,51 +1,3 @@
-<!-- <div class="seller-proposal-card" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-    <div class="head" fxLayout="column" fxLayoutAlign="space-between">
-      <mat-card-title>{{allProposal.productName}} </mat-card-title>
-      <mat-card-subtitle style="color: antiquewhite;">{{allProposal.businessSubDomain}}</mat-card-subtitle>
-    </div>
-  
-          <div fxLayout="row" fxLayoutAlign="space-between">
-            <app-timer [timerDetails] = "allProposal"></app-timer>
-          </div>
-
-      <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-  
-        <div fxLayoutAlign="space-between">
-           <i class="fa fa-money" aria-hidden="true" matTooltip="{{allProposal.createdBy}}'s Expected Price">
-            {{ allProposal.price }}</i
-            >
-  
-        </div>
-        <div fxLayoutAlign="space-between">
-            <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
-                {{ allProposal.quantityValue + " " + allProposal.quantityUnit }}</i
-                >
-          </div>
-        <div fxLayoutAlign="space-between">
-            <i
-                class="fa fa-calendar"
-                aria-hidden="true"
-                matTooltip="{{allProposal.createdBy}}'s Expected Delivery Date"
-                >
-                {{ allProposal.deliveryDate | date: "mediumDate" }}</i
-                >
-          </div>
-      </div>
-  
-    
-  
-  <div style="margin-bottom: 0.5em;">
-    <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
-      <button mat-raised-button color="primary"
-        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
-        (click)="shownInterest(allProposal)">
-        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true"></i>
-      </button>
-      <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
-    </div>
-    </div>
-</div> -->
-
 <!-- fixme:: instead of auction starts in timer should display registeration ends in  -->
 <link
 rel="stylesheet"
@@ -70,8 +22,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
     >
     <div>
         <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
-            {{ allProposal.price }}</i
-            >
+            {{ allProposal.price }}</i>
         </div>
         <div>
             <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
@@ -96,7 +47,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
                 <button mat-raised-button color="primary"
         [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1)"
         (click)="shownInterest(allProposal)">
-        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true"></i>
+        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true">Show Interest</i>
       </button>
       <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
         </div>   

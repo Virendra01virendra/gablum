@@ -34,6 +34,7 @@ export class NewProposalForm1Component implements OnInit {
     businessDomain: new FormControl(''),
     businessSubDomain: new FormControl('', [Validators.required]),
     productName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(40)])),
+    productDescription: new FormControl('', Validators.compose([Validators.required, Validators.minLength(40), Validators.maxLength(400)])),
     quantityValue: new FormControl('', [Validators.required, Validators.min(1)]),
     quantityUnit: new FormControl('')
   });
@@ -113,6 +114,10 @@ export class NewProposalForm1Component implements OnInit {
     return this.productSpecsForm.get('productName');
   }
 
+  get productDescription() {
+    return this.productSpecsForm.get('productDescription');
+  }
+
   get quantityValue() {
     return this.productSpecsForm.get('quantityValue');
   }
@@ -127,20 +132,28 @@ export class NewProposalForm1Component implements OnInit {
 
   productNameError() {
     return this.productName.hasError('required') ? '*You must enter a product name' :
-      this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
+    this.productName.hasError('minLength') ? '*Name too short( Atleast 3 characters)' :
+    this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
         '';
+  }
+
+  productDescriptionError() {
+    return this.productDescription.hasError('required') ? '*You must enter product Details' :
+    this.productDescription.hasError('minLength') ? '*Describe little more' :
+    this.productDescription.hasError('maxlength') ? '*More than 300 characters not allowed' :
+      '';
   }
 
   quantityValueError() {
     return this.quantityValue.hasError('required') ? '*You must enter quantity value' :
-      this.quantityValue.hasError('min') ? '* Enter positive quantity' :
+      this.quantityValue.hasError('min') ? '*Enter positive quantity' :
         '';
   }
 
   priceError() {
     return this.price.hasError('required') ? '*You must enter price' :
-      this.price.hasError('min') ? '* Enter positive price' :
-        this.price.hasError('maxLength') ? '* enter reasonable price' : '';
+      this.price.hasError('min') ? '*Enter positive price' :
+        this.price.hasError('maxLength') ? '*Enter reasonable price' : '';
   }
 
   creditPeriodError() {

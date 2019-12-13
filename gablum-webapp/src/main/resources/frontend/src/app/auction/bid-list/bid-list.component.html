@@ -19,6 +19,9 @@ fxLayoutAlign.xs="flex-start center"
     </div>
     <div class="auction-details" fxLayout="column nowrap">
         <h2 *ngIf="auction">{{auction.auctionName}}</h2>
+        <h2 *ngIf="timeData && timeData.length === 0">
+            No bids to show
+        </h2>
         <ngx-charts-bar-vertical
         style="width: 30em; height: 20em;"
         [xAxis]="true"
@@ -29,7 +32,7 @@ fxLayoutAlign.xs="flex-start center"
         [xAxisLabel]="'Time'"
         [yAxisLabel]="'Score'"
         [results]="timeData"
-        *ngIf="timeData"
+        *ngIf="timeData && timeData.length !== 0"
         >
         </ngx-charts-bar-vertical>
     </div>

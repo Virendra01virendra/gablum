@@ -74,7 +74,8 @@ const modules = [
   MatTableModule,
   MatProgressBarModule,
   NgxChartsModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatCheckboxModule
 ];
 
 @NgModule({

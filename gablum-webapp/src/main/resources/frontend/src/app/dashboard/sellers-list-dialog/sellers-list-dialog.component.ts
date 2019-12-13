@@ -6,7 +6,14 @@ import { Profile } from 'src/app/interfaces/profile';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Proposal } from 'src/app/interfaces/proposal';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
+export interface InvitedUsersEmail {
+  position: number;
+  email: string;
+}
 @Component({
   selector: 'app-sellers-list-dialog',
   templateUrl: './sellers-list-dialog.component.html',
@@ -22,22 +29,29 @@ export class SellersListDialogComponent implements OnInit {
   public isSeller = false;
   public profile: Profile;
   alreadyRegistered: boolean;
-  public userEmail = '';
-  displayedColumns: string[] = ['sellerEmail', 'action'];
-  dataSource = [];
+  public userEmail: string;
+  displayedColumns: string[] = [ 'sellerEmail', 'action'];
+  public ELEMENT_DATA;
+  // dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
+  // selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
-              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService) {
-    this.dataSource = data.interestedUsersEmail;
+              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
+              private user: ProfileDataService) {
+    // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
+    //   return {
+    //     email: invitedUsersEmail,
+    //     position: i + 1
+    //   };
+    // });
+    this.ELEMENT_DATA = this.data.interestedUsersEmail;
+    console.log('this.Element_Data ::', this.ELEMENT_DATA);
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
 
-        if ('authChanged' in Data) {
-          this.isLoggedIn = auth.getAuthenticated();
-          this.profile = auth.getProfileData();
-          this.isBuyer = auth.isBuyer();
-          this.isSeller = auth.isSeller();
+        if ('userProfile' in Data) {
+          this.profile = Data.userProfile;
           this.userEmail = this.profile.email;
         }
 
@@ -49,11 +63,40 @@ export class SellersListDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logger.log('aaaaaaaa' + this.dataSource);
+    this.user.getUserProfileByEmail(
+      SellersListDialogComponent.messageKey,
+      'userProfile'
+    );
+    // this.logger.log('aaaaaaaa' + JSON.stringify(this.dataSource));
   }
 
-  onInvite(ele) {
-    console.log('Invite data', ele);
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  // isAllSelected() {
+  //   const numSelected = this.selection.selected.length;
+  //   const numRows = this.dataSource.data.length;
+  //   return numSelected === numRows;
+  // }
+
+  // /** Selects all rows if they are not all selected; otherwise clear selection. */
+  // masterToggle() {
+  //   this.isAllSelected() ?
+  //     this.selection.clear() :
+  //     this.dataSource.data.forEach(row => this.selection.select(row));
+  // }
+
+  // /** The label for the checkbox on the passed row */
+  // checkboxLabel(row?: InvitedUsersEmail): string {
+  //   if (!row) {
+  //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+  //   }
+  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  // }
+
+
+
+  onInvite(ele, sellerEmail) {
+    console.log('Invite data', ele, sellerEmail);
     this.disabled = true;
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
   }
