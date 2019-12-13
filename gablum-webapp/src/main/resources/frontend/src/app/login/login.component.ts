@@ -10,8 +10,8 @@ import { LoggerService } from '../services/logger.service';
 import { ProfileDataService } from '../services/profile-data.service';
 import { MatDialogRef } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
-
 // import { MatError } from '@angular/material';
+// import { UserRole } from '../interfaces/user-role';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginDataService,
     private comms: CommunicatorService,
     private logger: LoggerService,
+    // private user: UserRole,
     private auth: AuthenticationService,
     private profile: ProfileDataService,
     public dialogRef: MatDialogRef<LoginComponent>, ) {

@@ -4,6 +4,7 @@ import { CommunicatorService } from './communicator.service';
 import { LoggerService } from './logger.service';
 import { User } from '../interfaces/user';
 import { Profile } from '../interfaces/profile';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class AuthenticationService {
   constructor(
     private profile: ProfileDataService,
     private comms: CommunicatorService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private router: Router
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === '@all') {
@@ -35,6 +37,9 @@ export class AuthenticationService {
               this.logger.log(this.profile);
               this.setProfile(this.profileData);
               this.refreshRoles();
+              if (this.isAdmin()) {
+                this.router.navigate(['/admin']);
+              }
             }
           }
         }
@@ -64,6 +69,9 @@ export class AuthenticationService {
     return this.hasRole('seller');
   }
 
+  isAdmin() {
+    return this.hasRole('admin');
+  }
   getAuthenticated() {
     return this.isAuthenticated;
   }
