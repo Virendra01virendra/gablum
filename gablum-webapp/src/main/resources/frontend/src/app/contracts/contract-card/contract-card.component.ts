@@ -24,8 +24,6 @@ export class ContractCardComponent implements OnInit {
   public companyName: string;
   public deliveryDate: Date;
   public creditPeriod: number;
-  private dialog: MatDialog;
-  
   // panelOpenState = false;
   public SellerEmail: string;
   public BuyerEmail: string;
@@ -35,6 +33,7 @@ export class ContractCardComponent implements OnInit {
   public profile: User;
 
   constructor(
+    private dialog: MatDialog,
     public contractDataService: ContractsDataService,
     private comms: CommunicatorService,
     private route: ActivatedRoute,
