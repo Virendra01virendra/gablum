@@ -6,6 +6,8 @@ import { NetworkingService } from '../services/networking.service';
 import { LoginToken } from '../interfaces/login-token';
 import { LoginDataService } from '../services/login-data.service';
 import { CommunicatorService } from '../services/communicator.service';
+import { TranslateService } from '@ngx-translate/core';
+import { IntlService } from '../services/intl.service';
 
 declare const H: any;
 
@@ -35,7 +37,13 @@ export class LandingPageComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginDataService,
-    private comms: CommunicatorService) {
+    private comms: CommunicatorService,
+    private translate: TranslateService,
+    private intl: IntlService) {
+      translate.addLangs(['en', 'hi']);
+      translate.setDefaultLang('hi');
+      const browserLang = translate.getBrowserLang();
+      translate.use(browserLang.match(/en|hi/) ? browserLang : 'en');
       this.comms.getMessages().subscribe(message => {
         if (message.dest === '@all' || message.dest === LandingPageComponent.messageKey) {
           const data = message.data;
@@ -47,6 +55,10 @@ export class LandingPageComponent implements OnInit {
             } else {
               this.router.navigate(['dashboard']);
             }
+          }
+
+          if ('langChanged' in data) {
+            translate.use(intl.getLang());
           }
         }
       });
