@@ -9,7 +9,7 @@
             <mat-chip-list>
                 <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price}}</mat-chip>
                 <mat-chip matTooltip="Score">Score: {{bidDataEntity.scoreObject.total}}</mat-chip>
-                <mat-chip matTooltip="Rank" *ngIf="bidRank">#{{bidRank}}</mat-chip>
+                <mat-chip matTooltip="Rank">#{{bidDataEntity.rank}}</mat-chip>
             </mat-chip-list>
        </div>
     </mat-expansion-panel-header>
@@ -32,6 +32,8 @@
         </ngx-charts-bar-horizontal>
     </div>
 
-     <button mat-raised-button color="primary" (click)="openDialog(bidDataEntity)">Select Bid</button>
+     <div style="width: 100%;" fxLayout="row nowrap" style="justify-content: end;">
+         <button mat-raised-button color="primary" (click)="openDialog(bidDataEntity)">Select Bid</button>
+     </div>
 
 </mat-expansion-panel>

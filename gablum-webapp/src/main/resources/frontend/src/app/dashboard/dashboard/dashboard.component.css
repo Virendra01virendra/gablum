@@ -1,16 +1,17 @@
 .title {
     margin-left: 1em;
 }
-  
+
 .title-icon {
     margin-left: 1em;
-}  
+}
 
 .dashboard-container {
     width: 90%;
     margin: 2em auto;
     overflow-x: hidden;
 }
+
 .proposal-card {
     /* background-color: light rgba(6, 56, 97, 0.829);
     width: 350px; */
@@ -35,9 +36,8 @@
     padding: 1em;
 }
 
-
 .timer {
-    align-content: center ;
+    align-content: center;
 }
 
 .product-specs {
@@ -46,10 +46,9 @@
 
 .fab-container {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 2em;
+    right: 2em;
     z-index: 10;
-
 }
 
 .add-proposal-button {
@@ -60,9 +59,7 @@ app-new-proposal-card {
     margin: 2em 1em;
 }
 
-.but1
-{
+.but1 {
     position: fixed;
     right: 1em;
-    
 }

@@ -1,49 +1,3 @@
-<!-- <mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-  <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-    <mat-card-title>{{auction.auctionName}}</mat-card-title>
-    <mat-card-subtitle style="color: antiquewhite;">{{auction.proposal.businessSubDomain}}</mat-card-subtitle>
-</mat-card-header>
-  <div fxLayout="row" fxLayoutAlign="space-between">
-    <app-timer [timerDetails]='auction'></app-timer>
-  </div>
-  <mat-card-content>
-    <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-
-      <div fxLayoutAlign="space-between">
-       <mat-chip color="primary" selected>Price </mat-chip> 
-       <mat-chip>{{auction.proposal.price}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected>Credit Period</mat-chip> 
-          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between" >
-          <mat-chip color="primary" selected>Quality Certification</mat-chip> 
-          <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between" >
-          <mat-chip color="primary" selected> Method Of Supply</mat-chip> 
-          <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected>Delivery Date</mat-chip> 
-          <mat-chip>{{auction.proposal.deliveryDate | date}}</mat-chip>
-        </div>
-        
-        
-      </div>
-    </mat-card-content>
-    
-  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="flex-end center">
-    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf="!isOwner">Place Bid</button>
-    <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf="isOwner">See Bids</button>
-    </mat-card-actions>
-  </mat-card>
-   -->
    <link
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -138,40 +92,9 @@
                <i class="fa fa-eye"
                 aria-hidden="true" 
                 (click) = "seeBids()"
-                *ngIf= buttonShow 
+                *ngIf= !buttonShow 
                 style="cursor: pointer;"
                 >View All Bids</i>
            </div>
        </div>
    </div>
-   
-   <!-- <mat-menu #menu="matMenu">
-       <button mat-menu-item
-       matTooltip="Schedule auction for proposal"
-       class="material-icons"
-       (click)="startAuction(proposal)"
-       >
-       <mat-icon color="primary">
-           play_arrow
-       </mat-icon>
-       Schedule Auction
-   </button>
-   <button mat-menu-item
-   matTooltip="Extend Registration for the proposal"
-   class="material-icons"
-   (click)="extendDialog(proposal)"
-   >
-   <mat-icon>
-       hourglass_empty
-   </mat-icon>
-   Extend registration
-   </button>
-   <button mat-menu-item 
-   matTooltip="Delete Proposal"
-   class="material-icons"
-   (click)="delete(proposal)"
-   >
-   <mat-icon color="warn">delete</mat-icon>
-   Delete
-   </button>
-   </mat-menu> -->

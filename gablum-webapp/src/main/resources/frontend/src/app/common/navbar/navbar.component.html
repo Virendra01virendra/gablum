@@ -6,8 +6,10 @@
         <button class="menu-link nav-icon" mat-icon-button (click)="menuClicked($event)" *ngIf="isLoggedIn">
             <mat-icon>menu</mat-icon>
         </button>
-        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs>Gablum</a>
-        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs>b</a>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs *ngIf="!isLoggedIn">Gablum</a>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs *ngIf="!isLoggedIn">b</a>
+        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.xs *ngIf="isLoggedIn">Gablum</a>
+        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.gt-xs *ngIf="isLoggedIn">b</a>
         <div class="spacer"></div>
         <div class="nav-links" *ngIf="!isLoggedIn" fxLayout="row" fxHide.xs>
             <a [routerLink]="['.']" class="nav-link nav-icon" (click)="opDialog()">Login</a>
@@ -15,6 +17,7 @@
             <a [routerLink]="['/']" fragment="contact" class="nav-link nav-icon">Contact</a>
         </div>
         <button class="menu-link nav-icon" nav-link nav-icon *ngIf="isLoggedIn" mat-button color="primary" [matMenuTriggerFor]="appMenu">
+            <span *ngIf="userProfile && userProfile.name">{{ userProfile.name.split(' ')[0] | titlecase }} </span>
             <mat-icon>person</mat-icon>
             <mat-icon>keyboard_arrow_down</mat-icon>
         </button>

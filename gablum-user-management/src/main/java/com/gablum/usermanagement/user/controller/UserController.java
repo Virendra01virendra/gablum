@@ -69,7 +69,6 @@ public class UserController {
 //                    new NavLink("Calendar", "/calendar", "calendar_today"),
                     new NavLink("Contracts", "/contracts", "book"),
 //                    new NavLink("Inbox", "/inbox", "email"))
-                    new NavLink("Support", "/support", "contact_support"),
                     new NavLink("Inbox", "/inbox", "email")
             ));
         }
@@ -96,8 +95,11 @@ public class UserController {
         foundUser.setPassword(null);
         return foundUser;
     }
-//
-//    public
+
+    @GetMapping("/profile/{email}")
+    public User getUserProfilesByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
+    }
 
     @PatchMapping("/profile")
     public ResponseEntity<User> editUserProfile(@RequestBody User modifiedUser, HttpServletRequest request) {

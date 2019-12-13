@@ -15,7 +15,8 @@
                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                     <mat-datepicker #picker3 disabled="false"></mat-datepicker>
                 </mat-form-field>
-                <div>
+                <div class="spacer"></div>
+                <div style="justify-self: end;">
                     <button mat-raised-button color="primary" (click)="onSubmit(data,extendProposalForm)" [disabled]="!extendProposalForm.valid" class="padded-btn">Submit</button>
                 </div>
             </div>

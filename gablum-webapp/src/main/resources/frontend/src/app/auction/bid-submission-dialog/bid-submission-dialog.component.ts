@@ -7,6 +7,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router } from '@angular/router';
 import { Score } from 'src/app/interfaces/score';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-bid-submission-dialog',
@@ -31,6 +32,7 @@ export class BidSubmissionDialogComponent implements OnInit {
               private router: Router,
               private auctionDataService: AuctionsDataService,
               private comms: CommunicatorService,
+              private logger: LoggerService
               ) {
                 comms.getMessages().subscribe(msg => {
                   if (msg.dest === BidSubmissionDialogComponent.messageKey || msg.dest === '@all') {
@@ -45,9 +47,9 @@ export class BidSubmissionDialogComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(' Dialog data ::', this.data);
+    this.logger.log(' Dialog data ::', this.data);
     this.auctionDataService.getScore(BidSubmissionDialogComponent.messageKey, this.bid2, 'scoreBids', this.auctionIdn);
-    console.log('aaaaaaaaaaaafffffftttttttterrrr api');
+    this.logger.log('aaaaaaaaaaaafffffftttttttterrrr api');
   }
 
   close() {
