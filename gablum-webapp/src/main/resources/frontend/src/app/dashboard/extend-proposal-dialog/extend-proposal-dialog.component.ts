@@ -58,7 +58,7 @@ export class ExtendProposalDialogComponent implements OnInit {
       proposalId: proposal.proposalId
     };
     const extendRegistrationJSON = JSON.parse(JSON.stringify(extendRegistrationDate));
-    console.log('Patch Data :::', extendRegistrationJSON);
+    // console.log('Patch Data :::', extendRegistrationJSON);
     this.proposalService.extendProposal(ExtendProposalDialogComponent.messageKey, extendRegistrationJSON, 'proposals')
       .subscribe((response) => {
         this.proposalService.getAllProposals(ExtendProposalDialogComponent.messageKey, 'proposals');
