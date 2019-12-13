@@ -1,8 +1,6 @@
 package com.gablum.usermanagement.user.model.othermodels;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +10,6 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @ToString
-@Document(collection = "auctions")
 public class Auction {
     private String _id;
     private String auctionId = UUID.randomUUID().toString();

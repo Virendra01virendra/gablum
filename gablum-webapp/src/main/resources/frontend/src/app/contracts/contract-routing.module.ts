@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContractComponent } from './contract/contract.component';
+import { ContractCardComponent } from './contract-card/contract-card.component';
+import { ContractDetailComponent } from './contract-detail/contract-detail.component';
+import { ContractPageComponent } from './contract-page/contract-page.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ContractComponent,
+    component: ContractPageComponent,
     pathMatch: 'full'
-  }
+  },
+  {
+    path: 'card',
+    component: ContractCardComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'modal',
+    component: ContractDetailComponent,
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
-  declarations: [],
   imports: [ RouterModule.forChild(routes)],
   exports: [RouterModule]
 })

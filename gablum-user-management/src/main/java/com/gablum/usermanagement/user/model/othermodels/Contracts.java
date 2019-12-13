@@ -1,52 +1,110 @@
 package com.gablum.usermanagement.user.model.othermodels;
 
-import com.gablum.usermanagement.user.model.User;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.UUID;
 
-@Document("Contracts")
 @Getter @Setter @AllArgsConstructor @ToString @NoArgsConstructor
 public class Contracts {
-    @Id
     private String _id;
-
-    @NotNull
-    private String contractId = UUID.randomUUID().toString();
-
-    @NotNull
+    private String contractId;
     private String auctionId;
-
-    @NotNull
     private String bidId;
-
-    @NotNull
     private Auction auctionDetails;
-
-    @NotNull
-    private Bid BidDetails;
-
-    @NotNull
-    private String buyerId;
-
-    @NotNull
-    private User buyer;
-
-    @NotNull
+    private BidDataEntity bidDetails;
+    private String buyerEmail;
     private String buyerESign;
-
-    @NotNull
     private String sellerESign;
-
-    @NotNull
-    private String sellerId;
-
-    @NotNull
-    private User seller;
-
-    @NotNull
+    private String sellerEmail;
     private Boolean contractStatus = true;
+    private String currentHash;
+    private String previousHash;
+    private Date createdOn;
+
+    public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
+        this.contractId = UUID.randomUUID().toString();
+        this.auctionId = auctionId;
+        this.bidId = bidId;
+        this.auctionDetails = auctionDetails;
+        this.bidDetails = bidDetails;
+        this.buyerEmail = buyerEmail;
+        this.sellerEmail = sellerEmail;
+        this.contractStatus = contractStatus;
+        this.generatingBuyerESign();
+        this.generatingSellerESign();
+        this.generatingCurrentHash();
+        this.previousHash = previousHash;
+        this.createdOn= new Date();
+    }
+
+    public void generatingBuyerESign(){
+        String toBeUsedForHash = buyerEmail;
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(toBeUsedForHash.getBytes("UTF-8"));
+            StringBuffer hexString =new StringBuffer();
+            for (int i=0 ; i<hash.length; i++){
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length()==1){
+                    hexString.append(0);
+                }
+                hexString.append(hex);
+            }
+            this.buyerESign = hexString.toString();
+
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void generatingSellerESign(){
+        String toBeUsedForHash = sellerEmail;
+
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(toBeUsedForHash.getBytes("UTF-8"));
+            StringBuffer hexString =new StringBuffer();
+            for (int i=0 ; i<hash.length; i++){
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length()==1){
+                    hexString.append(0);
+                }
+                hexString.append(hex);
+            }
+            this.sellerESign = hexString.toString();
+
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void generatingCurrentHash(){
+        String toBeUsedForHash = _id + auctionDetails.toStringContract()
+                + bidDetails.toStringContract() + buyerEmail + sellerEmail + buyerESign
+                + sellerESign + previousHash;
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(toBeUsedForHash.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<hash.length; i++){
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length()==1){
+                    hexString.append(0);
+                }
+                hexString.append(hex);
+            }
+            this.currentHash = hexString.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String toBeEncrypted(){
+        return _id + contractId + auctionId + bidId + auctionDetails.toStringContract()
+                + bidDetails.toStringContract() + buyerEmail + sellerEmail;
+    }
 }

@@ -4,7 +4,7 @@ export const environment = {
   loginApi: 'https://gablum-dev.stackroute.io/api/users/signin',
   logoutApi: 'https://gablum-dev.stackroute.io/api/users/signout',
   registerApi: 'https://gablum-dev.stackroute.io/api/users/signup',
-  contractUrl: 'https://gablum-dev.stackroute.io/api/contracts',
+  contractsUrl: 'https://gablum-dev.stackroute.io/api/contracts/contracts',
   profileUrl: 'https://gablum-dev.stackroute.io/api/users/profile',
   proposalUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals',
   guestProposallistUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals/browse',

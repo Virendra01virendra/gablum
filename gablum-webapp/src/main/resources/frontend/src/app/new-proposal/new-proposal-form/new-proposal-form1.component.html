@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar style="background-color: #E0E0E0;">
   <mat-icon class="title-icon">add</mat-icon>
   <span class="title" fxHide.xs>Float a new proposal</span>
   <span class="title" fxHide.gt-xs>New proposal</span>
@@ -131,7 +131,7 @@
                         </div>
                         <div></div>
                         <div>
-                            <button mat-raised-button color="primary" matStepperPrevious class="padded-btn">Back</button>
+                            <button mat-raised-button matStepperPrevious class="padded-btn">Back</button>
                             <button mat-raised-button color="primary" matStepperNext [disabled]="!paramForm.valid" class="padded-btn">Next</button>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                         </mat-form-field>
                         <div></div>
                         <div>
-                            <button mat-raised-button color="primary" matStepperPrevious class="padded-btn">Back</button>
+                            <button mat-raised-button matStepperPrevious class="padded-btn">Back</button>
                             <button mat-raised-button color="primary" matStepperNext (click)="onSubmit()" [disabled]="!timeForm.valid" class="padded-btn">Submit</button>
                         </div>
                     </div>
