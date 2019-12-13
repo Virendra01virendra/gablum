@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContractsDataService } from 'src/app/services/contracts-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
@@ -18,34 +18,34 @@ import { User } from 'src/app/interfaces/user';
 export class ContractCardComponent implements OnInit {
 
   public static messageKey = 'contract-card-component';
-  public contractData: any;
+  public contractData: ContractDetail;
   public productName: string;
   public sellerName: string;
   public companyName: string;
   public deliveryDate: Date;
   public creditPeriod: number;
   private dialog: MatDialog;
-  private profileDataService: ProfileDataService;
+  
   // panelOpenState = false;
+  public SellerEmail: string;
+  public BuyerEmail: string;
+  @Input() public contract: ContractDetail;
+
+  public profileUrl: string;
+  public profile: User;
 
   constructor(
     public contractDataService: ContractsDataService,
     private comms: CommunicatorService,
+    private route: ActivatedRoute,
     private router: Router,
     private logger: LoggerService,
-    public profileUrl: string,
-    public profile: User
+    private profileDataService: ProfileDataService
   ) {
-    if (this.contract.buyerEmail != null) {
-      this.profileUrl = this.profileUrl + 's/' + this.contract.buyerEmail;
-    } else {
-      this.profileUrl = this.profileUrl + 's/' + this.contract.sellerEmail;
-    }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === ContractCardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
-
-        if ('userProfile' in data) {
+        if ('otherUser' in data) {
           this.profile = data.userProfile;
         }
         console.log(this.profile);
@@ -53,17 +53,22 @@ export class ContractCardComponent implements OnInit {
     });
   }
 
-  @Input() public contract: ContractDetail;
-
   ngOnInit() {
     const contractsUrl = environment.contractsUrl;
     this.profileUrl = environment.profileUrl;
-    this.logger.log(contractsUrl);
+    // this.logger.log(contractsUrl);
+
+    this.profileUrl = environment.profileUrl;
+    if (this.contract.sellerEmail == null) {
+      this.SellerEmail = this.contract.bidDetails.createdBy;
+      this.profileUrl = this.profileUrl + '/' + this.SellerEmail;
+    } else {
+      this.BuyerEmail = this.contract.auctionDetails.createdBy;
+      this.profileUrl = this.profileUrl + '/' + this.BuyerEmail;
+    }
+
     this.profileDataService.getUserProfileByEmailWithUrl(
-      this.profileUrl,
-      ContractCardComponent.messageKey,
-      'userProfile'
-    );
+      this.profileUrl, ContractCardComponent.messageKey, 'otherUser');
   }
 
   openDialog(contract: ContractDetail) {
