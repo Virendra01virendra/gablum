@@ -4,13 +4,15 @@ type uuid = string;
 
 export interface Auction {
     auctionId: uuid;
+    uniqueLink: string;
     auctionName: string;
     proposal: Proposal;
     isAuctionActive: boolean;
     isAuctionFinished: boolean;
     participantsVerificationId: string;
+    selectedParticipantList: string[];
     interestedUsersEmail: string[];
-    bidIdList: uuid[];
+    winningBid: string;
     createdOn: Date;
     updatedOn: Date;
     createdBy: string;
@@ -18,4 +20,5 @@ export interface Auction {
     auctionStartDate: Date;
     auctionEndDate: Date;
     socketToken?: string;
+    bidIdList: string[];
 }

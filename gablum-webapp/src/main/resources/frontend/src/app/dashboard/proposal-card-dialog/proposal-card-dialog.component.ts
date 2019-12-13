@@ -4,6 +4,8 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { Auction } from 'src/app/interfaces/auction';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
+import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
+import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
 
 @Component({
   selector: 'app-proposal-card-dialog',
@@ -25,27 +27,18 @@ export class ProposalCardDialogComponent implements OnInit {
   }
 
   startAuction(proposal1: Proposal) {
-  //   const auction = {
-  //     auctionName: proposal1.productName,
-  //     proposal: proposal1,
-  //     isAuctionActive: true,
-  //     interestedUsersEmail: proposal1.interestedUsersEmail,
-  //   };
-  //   const auctionList = [];
-  //   auctionList.push(auction);
-
-  //   this.data1 = JSON.parse(JSON.stringify(auctionList));
-
-  // //   this.http.post<any>(this.url, this.data, this.httpOptions).subscribe((response) => {
-  // //   console.log('response ::', response);
-  // // });
-
-  //   this.auctionDataService.saveAuction(ProposalCardDialogComponent.messageKey, this.data, 'save-auction');
-
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = proposal1;
     dialogConfig.width = '40%';
     this.matDialog.open(AuctionStartDialogComponent, dialogConfig);
+  }
+
+  sellersListDialog() {
+    this.matDialog.open(SellersListDialogComponent, { data: this.data });
+  }
+
+  extendDialog() {
+    this.matDialog.open(ExtendProposalDialogComponent, { data: this.data });
   }
 
 }

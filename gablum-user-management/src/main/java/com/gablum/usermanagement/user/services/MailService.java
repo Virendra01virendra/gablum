@@ -5,6 +5,8 @@ import com.gablum.usermanagement.user.model.othermodels.Auction;
 import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
+import com.gablum.usermanagement.user.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -13,23 +15,26 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class MailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public void sendEmail(String type, User user){
         SimpleMailMessage msg = new SimpleMailMessage();
         if (type == "registering"){
             msg.setTo(user.getEmail());
-            msg.setSubject("Verification of Email");
-
-            String text = "Hello " +user.getName()+ " from"+user.getCompanyName();
-            text += "Welcome to Gablum!!\nThanks for choosing us for your business.";
-            text += "Get started by logging in to your profile";
-            text += "You can now connect with businesses that best suit your expectations.\nIn case of " +
+            msg.setSubject("User Email verification.");
+            String text = "Hello "+user.getName()+", from "+user.getCompanyName()+".\n";
+            text += "\nWelcome to Gablum!!\nThanks for choosing us for your business.";
+            text += "\nGet started by logging in to your profile";
+            text += "\n\nYou can now connect with businesses that best suit your expectations.\nIn case of " +
                     "any query you can connect with our support team once you login.";
-            text += "\n\nSee you online.\nTeam Gablum.";
+            text += "\n\nSee you online.\n\nTeam Gablum.";
             msg.setText(text);
             try
             {
@@ -43,31 +48,60 @@ public class MailService {
 
     public void sendProposalEmail(String type, Proposal proposal) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        if(type == "newProposal"){
+        if(type == "newProposal") {
             msg.setTo(proposal.getCreatedBy());
 
             msg.setSubject("New Proposal Added");
 
-            String text = "Thanks for floating a new proposal on Gablum.";
-            text += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
-            text += "\n\n<h1>Proposal Details are</h1> : \n";
-            text += "\n<h3>Product Name : </h3>" + proposal.getProductName();
-            text += "\n<h3>Domain : </h3>" + proposal.getBusinessDomain();
-            text += "\n<h3>SubDomain : </h3>" + proposal.getBusinessSubDomain();
-            text += "\n<h3>Quantity : </h3>" + proposal.getQuantityValue() + proposal.getQuantityUnit() ;
-            text += "\n<h3>Delivery : </h3>" + proposal.getDeliveryDate() ;
-            text += "\n<h3>Registration Start Date : </h3>" + proposal.getRegStartDate() ;
-            text += "\n<h3>Auction Start Date : </h3>" + proposal.getAuctionStartDate() ;
-            text += "\n\nSimply visit your account dashboard if you wish to make changes to your floated proposal.";
-            text += "\nTeam Gablum";
-            msg.setText(text);
+            String textBuyer = "Thanks for floating a new proposal on Gablum.";
+            textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
+            textBuyer += "\n\nProposal Details are : \n";
+            textBuyer += "\nProduct Name : " + proposal.getProductName();
+            textBuyer += "\nDomain : " + proposal.getBusinessDomain();
+            textBuyer += "\nSubDomain : " + proposal.getBusinessSubDomain();
+            textBuyer += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit();
+            textBuyer += "\nDelivery : " + proposal.getDeliveryDate();
+            textBuyer += "\nRegistration Start Date : " + proposal.getRegStartDate();
+            textBuyer += "\nAuction Start Date : " + proposal.getAuctionStartDate();
+            textBuyer += "\n\nSimply visit your account dashboard if you wish to make changes to your floated proposal.";
+            textBuyer += "\nTeam Gablum";
+            msg.setText(textBuyer);
 
-            try
-            {
+            try {
                 javaMailSender.send(msg);
-            } catch (MailException e){
+            } catch (MailException e) {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
+            }
+
+            List<User> subDomainUsers = new ArrayList<>(userRepository.findUserByBusinessSubDomain(proposal.getBusinessSubDomain()));
+            for (int i=0; i<subDomainUsers.size(); i++){
+                SimpleMailMessage msgForSeller = new SimpleMailMessage();
+                msgForSeller.setTo(subDomainUsers.get(i).getEmail());
+
+                msgForSeller.setSubject("New Proposal Added of " + proposal.getBusinessSubDomain() + " Busniess Sub Domain");
+
+                String textSeller = "Hi " + subDomainUsers.get(i).getName();
+                textSeller += "\n A new proposal has been floated which might be of your interest. Please, look at brief of the proposal below." +
+                        "You can find more details in 'Active Proposal' in your dashboard and express interest.\n";
+                textSeller += "\n\nProposal Details are : \n";
+                textSeller += "\nProduct Name : " + proposal.getProductName();
+                textSeller += "\nDomain : " + proposal.getBusinessDomain();
+                textSeller += "\nSubDomain : " + proposal.getBusinessSubDomain();
+                textSeller += "\nQuantity : " + proposal.getQuantityValue() + proposal.getQuantityUnit();
+                textSeller += "\nDelivery : " + proposal.getDeliveryDate();
+                textSeller += "\nRegistration Start Date : " + proposal.getRegStartDate();
+                textSeller += "\nAuction Start Date : " + proposal.getAuctionStartDate();
+                textSeller += "\n\nVisit your account dashboard if you wish to express interest in floated proposal.";
+                textSeller += "\nTeam Gablum";
+                msgForSeller.setText(textSeller);
+
+                try {
+                    javaMailSender.send(msgForSeller);
+                } catch (MailException e) {
+                    System.out.println("Wrong email provided");
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -78,8 +112,11 @@ public class MailService {
         if (type == "newAuction"){
             msg.setTo(auction.getCreatedBy());
             msg.setSubject("New Auction Floated");
-            String text = "You have added a new Auction";
-            msg.setText(text);
+            String textBuyer = "Thanks for floating auction on Gablum.";
+            textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
+
+
+            msg.setText(textBuyer);
             try
             {
                 javaMailSender.send(msg);
@@ -95,8 +132,8 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-                text = "New Auction of your interested has been floated";
-                msgInterestedUsers.setText(text);
+                textBuyer = "New Auction of your interested has been floated";
+                msgInterestedUsers.setText(textBuyer);
                 try
                 {
                     javaMailSender.send(msgInterestedUsers);

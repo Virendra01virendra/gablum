@@ -96,6 +96,7 @@ export class DashboardComponent implements OnInit {
 
         if ('auctionsBuyer' in data) {
           this.auctionsBuyer = data.auctionsBuyer;
+          this.auctions = this.auctionsBuyer;
           console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
         }
 

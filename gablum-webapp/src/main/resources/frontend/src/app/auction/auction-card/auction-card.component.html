@@ -1,46 +1,100 @@
-<mat-card class="auction-card" *ngIf="auction" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-around">
-  <mat-card-header class="head" fxLayout="column" fxLayoutAlign="space-between">
-    <mat-card-title>{{auction.auctionName}}</mat-card-title>
-    <mat-card-subtitle style="color: antiquewhite;">{{auction.proposal.businessSubDomain}}</mat-card-subtitle>
-</mat-card-header>
-  <div fxLayout="row" fxLayoutAlign="space-between">
-    <app-timer [timerDetails]='auction'></app-timer>
-  </div>
-  <mat-card-content>
-    <div class="product-specs" fxLayout="column" fxLayoutAlign="space-between none" fxLayoutGap="5px">
-
-      <div fxLayoutAlign="space-between">
-       <mat-chip color="primary" selected>Price </mat-chip> 
-       <mat-chip>{{auction.proposal.price}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected>Credit Period</mat-chip> 
-          <mat-chip>{{auction.proposal.creditPeriod + ' months'}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between" >
-          <mat-chip color="primary" selected>Quality Certification</mat-chip> 
-          <mat-chip>{{auction.proposal.qualityCertification}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between" >
-          <mat-chip color="primary" selected> Method Of Supply</mat-chip> 
-          <mat-chip>{{auction.proposal.methodOfSupply}}</mat-chip>
-        </div>
-
-        <div fxLayoutAlign="space-between">
-          <mat-chip color="primary" selected>Delivery Date</mat-chip> 
-          <mat-chip>{{auction.proposal.deliveryDate | date}}</mat-chip>
-        </div>
-        
-        
-      </div>
-    </mat-card-content>
-    
-  <mat-card-actions fxLayout="row" fxLayoutGap="35px" fxLayoutAlign="flex-end center" *ngIf="buttonShow">
-    <button color="primary" mat-raised-button (click)="placeBid()" *ngIf="!isOwner">Place Bid</button>
-    <button color="primary" mat-raised-button (click) = "seeBids()" *ngIf="isOwner">See Bids</button>
-    </mat-card-actions>
-  </mat-card>
-  
+   <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+   />
+   <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
+       <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
+           <div class="card-header" fxFlexAlign="center" matTooltip="Product Name" >{{auction.auctionName}}</div>
+           <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
+               <div class="subdomain" fxFlexAlign="center" matTooltip="Business Sub-Domain" >{{auction.proposal.businessSubDomain}}</div>
+               <div class="timer">
+                   <app-timer
+                   style="align-content:flex-end ;"
+                   [timerDetails]="auction"
+                   ></app-timer>
+               </div>
+           </div>
+       </div>
+       <div class="info-container" fxLayout="row wrap"fxLayoutAlign="center center">
+       <div>
+           <i class="fa fa-money" aria-hidden="true" matTooltip="Expected Cost in ">
+              {{auction.proposal.price}} per unit</i
+               >
+           </div>
+           <div>
+               <i class="fa fa-handshake-o" aria-hidden="true" matTooltip="{{auction.createdBy}} is willing to pay-up in">
+                  {{auction.proposal.creditPeriod + 'Days'}}</i
+                   >
+               </div>
+               <div>
+                   <i
+                   class="fa fa-check-circle-o"
+                   aria-hidden="true"
+                   matTooltip="Quality Check Certified"
+                   *ngIf= "auction.proposal.qualityCertification == true"
+                   style="transform: scale3d(10);"
+                   >
+                   {{qualityMsgTrue}}</i
+                   >
+               </div>
+               <div>
+                  <i
+                  class="fa fa-times"
+                  aria-hidden="true"
+                  matTooltip="Quality Check Uncertified"
+                  style="transform: scale3d(10);"
+                  *ngIf= "auction.proposal.qualityCertification != true"
+                  >
+                  {{qualityMsgFalse}}</i
+                  >
+              </div>
+               <div>
+                   <i
+                   class="fa fa-cog"
+                   aria-hidden="true"
+                   matTooltip="Type of Product Supply"
+                   *ngIf= "auction.proposal.methodOfSupply == true"
+                   >
+                   {{supplyTrue}}</i
+                   >
+               </div>
+               <div>
+                  <i
+                  class="fa fa-cog"
+                  aria-hidden="true"
+                  matTooltip="How procurement is to be done"
+                  *ngIf= "auction.proposal.methodOfSupply != true"
+                  >
+                  {{supplyFalse}}</i
+                  >
+              </div>
+               <div>
+                  <i
+                  class="fa fa-truck"
+                  aria-hidden="true"
+                  matTooltip="Expected Delivery Date"
+                  >
+                  {{auction.proposal.deliveryDate | date: "mediumDate"}}</i
+                  >
+              </div>
+           </div>
+           
+           <div class="card-actions">
+               <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+               <i class="fa fa-hand-paper-o"
+               (click)="placeBid()"
+               *ngIf= buttonShow 
+               aria-hidden="true"
+               color = "primary"
+               style="cursor: pointer;"
+               >Bid
+               </i>
+               <i class="fa fa-eye"
+                aria-hidden="true" 
+                (click) = "seeBids()"
+                *ngIf= !buttonShow 
+                style="cursor: pointer;"
+                >View All Bids</i>
+           </div>
+       </div>
+   </div>

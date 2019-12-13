@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -29,7 +29,6 @@ export class BidListComponent implements OnInit, OnDestroy {
   private tokenBody: any;
 
   private subscriptionRef: StompSubscription;
-
   constructor(
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,

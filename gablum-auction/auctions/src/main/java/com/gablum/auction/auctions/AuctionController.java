@@ -1,6 +1,7 @@
 package com.gablum.auction.auctions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gablum.auction.auctions.otherModels.Contracts;
 import com.gablum.auction.auctions.rabbit.BidMessage;
 import com.gablum.auction.auctions.rabbit.StartAuctionBinding;
 import com.gablum.auction.auctions.services.UserService;
@@ -38,10 +39,12 @@ public class AuctionController {
 
     private MessageChannel messageChannelBid;
     private MessageChannel messageChannelAuction;
+    private MessageChannel messageChannelContract;
 
     public AuctionController(StartAuctionBinding auctionBinding) {
         this.messageChannelBid = auctionBinding.getNewBidTransmitChannel();
         this.messageChannelAuction = auctionBinding.floatingNewAuctionMessageChannel();
+        this.messageChannelContract = auctionBinding.awardContractChannel();
     }
 
     @GetMapping("/auctions")
@@ -74,7 +77,7 @@ public class AuctionController {
         String email = userService.getEmail(request);
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
-
+            auctionsToAdd.get(i).setAuctionActive(true);
             auctionsToAdd.get(i).setUpdatedBy(email);
             auctionsToAdd.get(i).setUpdatedOn(new Date());
             auctionsToAdd.get(i).setCreatedOn(new Date());
@@ -115,6 +118,18 @@ public class AuctionController {
         return auctionsAdded;
     }
 
+    @GetMapping("auctions/seller")
+    public List<Auction> getAllAuctionSeller( @RequestParam Map<String, String> queryMap,
+                                             HttpServletRequest request){
+        String email = userService.getEmail(request);
+        log.debug(email);
+
+        List<Auction> auctions =  auctionService.getAuctionSeller(queryMap, email);
+        for(Auction auction: auctions)  {
+            auction.setSocketTokens(null);
+        }
+        return auctions;
+    }
 
     @PostMapping("auctions/{id}/bid/score")
     public ScoreObject getBidScore(@RequestBody Bid bid, @PathVariable String id) throws ParseException {
@@ -122,7 +137,6 @@ public class AuctionController {
         scoreObject = bidService.getBidScore(bid, id);
         return scoreObject;
     }
-
 
     @PostMapping("auctions/{id}/bid")
     public ResponseEntity<ScoreObject> addNewBid(@RequestBody Bid bid, @PathVariable String id, HttpServletRequest request) throws JsonProcessingException,
@@ -150,16 +164,17 @@ public class AuctionController {
                 allBids,
                 (t2, t1) -> {
                     if (t2.getScoreObject().getTotal() < t1.getScoreObject().getTotal()) {
-                        return -1;
+                        return 1;
                     }
                     else if (t2.getScoreObject().getTotal() > t1.getScoreObject().getTotal()) {
-                        return 1;
+                        return -1;
                     }
                     return 0;
                 }
         );
 
         for (int _i = 0; _i < allBids.size(); _i++) {
+            log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
             if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
                 savedBid = allBids.get(_i);
@@ -208,7 +223,7 @@ public class AuctionController {
     @GetMapping("auctions/{id}/bid")
     public List<BidDataEntity> bidDataEntityList( @RequestParam Map<String, String> queryMap, @PathVariable String id
             , HttpServletRequest request) {
-        return bidService.getBidsAuction(id);
+        return bidService.getBidsAuction(id, request);
     }
 
     @PatchMapping("auctions/{id}/bid/end")
@@ -217,9 +232,16 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
+
         //FIXME: check if auction actually ended
         Auction auctionToEnd =  auctionService.updateAuction(auction);
         auctionToEnd.setSocketTokens(null);
+
+//      public Contracts(String auctionId, String bidId, Auction auctionDetails, BidDataEntity bidDetails, String buyerEmail, String sellerEmail, Boolean contractStatus, String previousHash) {
+        Contracts contracts = new Contracts(id, bidDataEntity.getBidId(), auction, bidDataEntity, auction.getProposal().getCreatedBy(), bidDataEntity.getCreatedBy(),true, null );
+
+        Message<Contracts> msg = MessageBuilder.withPayload(contracts).build();
+        messageChannelContract.send(msg);
         return auctionToEnd;
     }
 
@@ -242,22 +264,32 @@ public class AuctionController {
     }
 
 
-    @GetMapping("/auctions/seller")
+//    @GetMapping("/auctions/seller")
+//    @ResponseBody
+//    public List<Auction> getAllAuctionsSeller(
+//            @RequestParam Map<String, String> queryMap,
+//            HttpServletRequest request
+//    ) {
+//        String email = userService.getEmail(request);
+//        log.debug(email);
+//        List<Auction> auctionList2 = new ArrayList<Auction>();
+////        auctionList.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
+//        auctionList2.addAll(auctionService.getAuctionSeller(queryMap, email));
+//        for(Auction auction: auctionList2)  {
+//            auction.setSocketTokens(null);
+//        }
+//        return auctionList2;
+//    }
+
+    @GetMapping("auctions/buyer/old")
     @ResponseBody
-    public List<Auction> getAllAuctionsSeller(
-            @RequestParam Map<String, String> queryMap,
-            HttpServletRequest request
-    ) {
+    public List<Auction> getOldAuctionsBuyer(@RequestParam Map<String, String> queryMap,
+            HttpServletRequest request) {
         String email = userService.getEmail(request);
-        log.debug(email);
-        List<Auction> auctionList2 = new ArrayList<Auction>();
-//        auctionList.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
-        auctionList2.addAll(auctionService.getAuctionSeller(queryMap, email));
-        for(Auction auction: auctionList2)  {
-            auction.setSocketTokens(null);
-        }
-        return auctionList2;
+        return auctionService.getOldAuctionsBuyerService(queryMap, email);
     }
+
+
 
 
 

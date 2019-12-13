@@ -57,6 +57,7 @@ public class AuctionService implements IAuctionService{
     }
 
     public Auction addAuction(Auction auction){
+//        auction.setAuctionActive(true);
         return auctionRepo.save(auction);
     }
     public List<Auction> getAuctionSeller(Map<String, String> queryMap, String email) {
@@ -78,5 +79,10 @@ public class AuctionService implements IAuctionService{
 
     public Auction updateAuction(Auction auction) {
         return auctionRepo.save(auction);
+    }
+
+    public List<Auction> getOldAuctionsBuyerService(Map<String, String> queryMap, String email){
+        return auctionRepo.findAllByCreatedByAndIsAuctionActiveAndIsAuctionFinished(getPageable(queryMap), email,
+                true, true).getContent();
     }
 }

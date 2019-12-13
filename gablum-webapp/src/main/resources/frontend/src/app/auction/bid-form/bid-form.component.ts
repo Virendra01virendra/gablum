@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, OnDestroy } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -11,6 +11,8 @@ import { Auction } from '../../interfaces/auction';
 import { BidResponseDialogComponent } from '../bid-response-dialog/bid-response-dialog.component';
 import { BidSubmissionDialogComponent } from '../bid-submission-dialog/bid-submission-dialog.component';
 import { Score } from 'src/app/interfaces/score';
+import { NewBid } from 'src/app/interfaces/newbid';
+import { StompSubscription } from '@stomp/stompjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,7 +26,7 @@ const httpOptions = {
   styleUrls: ['./bid-form.component.css']
 })
 
-export class BidFormComponent implements OnInit {
+export class BidFormComponent implements OnInit, OnDestroy {
   public static messageKey = 'BidFormComponent';
   bidForm: FormGroup;
   url = 'localhost:8080/api/auctions/auctions/bid';
@@ -33,6 +35,10 @@ export class BidFormComponent implements OnInit {
   auctionId: string;
   auctionSingle: Auction;
   scoreObject: Score;
+  subscriptionRef: StompSubscription;
+  isOwner = false;
+  bids: NewBid[];
+  tokenBody: string;
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
@@ -40,7 +46,8 @@ export class BidFormComponent implements OnInit {
     private route: ActivatedRoute,
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
@@ -147,31 +154,61 @@ export class BidFormComponent implements OnInit {
   }
 
   subscribe() {
-    // this.ws.subscribe(
-    //   '/topic/*',
-    //   BidFormComponent.messageKey,
-    //   'newbid').subscribe(message => {
-    //     this.logger.log('message received is ::', message);
-    //     if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
-    //       const data = message.data;
-    //       if ('getscore' in data) {
-    //         this.result1 = data.getscore.body;
-    //         this.logger.log('message received is ::', data.getscore.body);
-    //       }
-    //       if ('newbid' in data) {
-    //         this.result2 = data.newbid.body;
-    //         this.logger.log('message received is ::', data.newbid.body);
-    //         // this.bids.push(this.testBid);
-    //       }
-    //       if ('fetchbid' in data) {
-    //         // this.result3 = data.fetchbid.body;
-    //         // this.logger.log('message received is ::', data.newbid.body);
-    //         // this.bids.push(this.testBid);
-    //       }
-    //     }
-    //   });
-
-
+    this.logger.log('calling subscribe');
+    this.snackBar.dismiss();
+    this.snackBar.open(
+      'Connected',
+      '',
+      {
+        duration: 5000
+      }
+    );
+    const stompHeaders = {
+      auth: this.auctionSingle.socketToken
+    };
+    if (this.isOwner) {
+      this.subscriptionRef = this.ws.subscribe(
+        '/topic/admin/' + this.auctionSingle.auctionId,
+        BidFormComponent.messageKey,
+        'newbid', this.auctionSingle.socketToken);
+      this.comms.getMessages().subscribe(message => {
+          if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
+            const data = message.data;
+            if ('newbid' in data) {
+              this.logger.log(data.newbid.body);
+              const newBid: NewBid = JSON.parse(data.newbid.body);
+              if (this.bids.map(b => b.bidId).indexOf(newBid.bidId) < 0) {
+                this.bids.push(newBid);
+              }
+            }
+          }
+        }
+      );
+    } else {
+      this.subscriptionRef = this.ws.subscribe(
+        '/topic/supplier/' + this.auctionSingle.auctionId + '/' + this.tokenBody.sub,
+        BidFormComponent.messageKey,
+        'newbid', this.auctionSingle.socketToken);
+      this.comms.getMessages().subscribe(message => {
+          if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
+            const data = message.data;
+            if ('newbid' in data) {
+              this.logger.log(data.newbid.body);
+            }
+          }
+        }
+      );
+    }
   }
 
+  ngOnDestroy() {
+    if (this.subscriptionRef !== undefined || this.subscriptionRef !== null) {
+      try {
+        this.subscriptionRef.unsubscribe();
+        this.ws.disconnect();
+      } catch (err) {
+        this.logger.log(err);
+      }
+    }
+  }
 }

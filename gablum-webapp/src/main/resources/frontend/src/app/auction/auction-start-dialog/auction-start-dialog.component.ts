@@ -30,7 +30,7 @@ export class AuctionStartDialogComponent {
                     const data1 = msg.data;
 
                     if ('save-auction' in data1) {
-                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctionsBuyer');
                     }
 
                   }
