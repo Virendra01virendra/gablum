@@ -31,7 +31,7 @@ export class BidFormComponent implements OnInit {
   result1;
   result2;
   auctionId: string;
-  auction;
+  auctionSingle: Auction;
   scoreObject: Score;
   constructor(
     public http: HttpClient,
@@ -46,8 +46,8 @@ export class BidFormComponent implements OnInit {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
           if ('auctionSingle' in data) {
-              this.auction = data.auctionSingle;
-              this.logger.log(this.auction);
+              this.auctionSingle = data.auctionSingle;
+              this.logger.log(this.auctionSingle);
           }
 
           if ('saveBids' in data) {
@@ -66,6 +66,7 @@ export class BidFormComponent implements OnInit {
 
         }
       });
+      console.log('in form');
 
     }
   ngOnInit() {
@@ -75,7 +76,7 @@ export class BidFormComponent implements OnInit {
         // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
-    // this.ws.connect(message => this.subscribe());
+    // // this.ws.connect(message => this.subscribe());
 
     this.bidForm = new FormGroup({
       newPrice: new FormControl('', [
@@ -90,7 +91,7 @@ export class BidFormComponent implements OnInit {
       });
 
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
-
+    console.log('in oninit form');
   }
 
   onSubmit(form: FormGroup) {

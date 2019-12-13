@@ -7,8 +7,9 @@ export interface Auction {
     auctionName: string;
     proposal: Proposal;
     isAuctionActive: boolean;
+    isAuctionFinished: boolean;
     participantsVerificationId: string;
-    selectedParticipantList: string[];
+    interestedUsersEmail: string[];
     bidIdList: uuid[];
     createdOn: Date;
     updatedOn: Date;

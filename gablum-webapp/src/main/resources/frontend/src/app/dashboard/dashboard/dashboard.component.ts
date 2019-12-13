@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   allProposals: Proposal[];
   auctions: Auction[];
   auctionsBuyer: Auction[];
-  auctionSeller: Auction[];
+  auctionsSeller: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
   // public dashboardSections: DashboardSection[] = [
@@ -88,8 +88,8 @@ export class DashboardComponent implements OnInit {
 
 
         if ('auctionsSeller' in data) {
-          this.auctionSeller = data.auctionsSeller;
-          console.log('auctionnnnnsellllllllllllre--->', this.auctionSeller);
+          this.auctionsSeller = data.auctionsSeller;
+          console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
         }
 
 
@@ -130,8 +130,8 @@ export class DashboardComponent implements OnInit {
             this.isSeller = true;
           }
         }
-        console.log(this.isBuyer);
-        console.log(this.isSeller);
+        console.log('recursive buyer', this.isBuyer);
+        console.log('recursive buyer', this.isSeller);
       }
     });
   }
@@ -203,7 +203,7 @@ export class DashboardComponent implements OnInit {
 
     } else {
       this.buttonName = 'SELLERS VIEW';
-      this.auctions = this.auctionSeller;
+      this.auctions = this.auctionsSeller;
     }
   }
 }
