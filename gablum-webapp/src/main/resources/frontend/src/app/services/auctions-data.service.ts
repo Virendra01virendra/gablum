@@ -53,7 +53,7 @@ export class AuctionsDataService {
   saveWinningBid(dest, data, key, auctionId) {
     this.bidUrl = this.auctionsUrl + '/' + auctionId + '/bid/end';
     this.networking.patchData(this.bidUrl, dest, data, key).subscribe((res) => {
-      console.log('We won');
+      // console.log('We won');
     },
     err => {
         this.logger.log(err);

@@ -41,7 +41,7 @@ export class WebsocketService {
     this.socketReconnect(false);
   }
 
-  connect(connectCb = connectMessage => { console.log(connectMessage); }) {
+  connect(connectCb = connectMessage => { this.logger.log(connectMessage); }) {
     this.wantedDisconnection = false;
     this.storedSubcriptions = connectCb;
     this.stompClient.connect({}, connectCb);

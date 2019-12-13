@@ -32,4 +32,5 @@ export interface NewBid {
     };
     createdBy: string;
     rank?: number;
+    createdOn?: string;
 }

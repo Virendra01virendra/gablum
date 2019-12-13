@@ -68,10 +68,10 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient
   ) {
-    this.isLoggedIn = auth.getAuthenticated();
-    if (this.isLoggedIn) {
-      this.logger.log(this, auth.getProfileData());
-    }
+    // this.isLoggedIn = auth.getAuthenticated();
+    // if (this.isLoggedIn) {
+    //   this.logger.log(this, auth.getProfileData());
+    // }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(this, auth.getProfileData());
+          // this.logger.log(this, auth.getProfileData());
         }
 
         if ('userProfile' in data) {
@@ -103,8 +103,8 @@ export class DashboardComponent implements OnInit {
             'sellerProposals'
           );
           this.userRole = this.userProfile.role;
-          console.log(this.userProfile.role[0]);
-          console.log(this.userProfile.role[1]);
+          // console.log(this.userProfile.role[0]);
+          // console.log(this.userProfile.role[1]);
           if (this.userProfile.role.length === 1) {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
@@ -118,8 +118,8 @@ export class DashboardComponent implements OnInit {
             this.isSeller = true;
           }
         }
-        console.log(this.isBuyer);
-        console.log(this.isSeller);
+        // console.log(this.isBuyer);
+        // console.log(this.isSeller);
       }
     });
   }

@@ -1,3 +1,8 @@
+.form-container {
+  background-image: url('../../../assets/Images/leave.jpg');
+  margin: 1em;
+
+}
 .title {
   margin-left: 2em;
 }
@@ -7,17 +12,20 @@
 }
 
 .body {
-  background-color: antiquewhite;
-  text-align: center;
+  background-color:white;
+  align-content: center;
 }
 
 .stepper {
-  background-color: rgb(245, 244, 252);
+  /* background-color: ; */
+  width: 80%;
+  margin: 2em 6em 2em 6em;
+  /* align-content: center; */
 }
 
-.prod-details {
-  width: 80%;
-}
+/* .prod-details {
+  width: 50%;
+} */
 
 .grid-container {
   margin: 2em 0;
@@ -29,4 +37,11 @@
 
 .padded-btn {
   margin: 0.5em 1em;
+}
+
+.know-weightage {
+  margin: 2em;
+  padding: 1em;
+  border-style: ridge;
+  border-width: 2px;
 }
