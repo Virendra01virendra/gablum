@@ -43,10 +43,15 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const timerObject = Object.assign({}, this.timerDetails);
-    // console.log('time object :::', timerObject);
-    this.auctionStartDate = new Date(timerObject.auctionStartDate);
-    this.auctionEndDate = new Date(timerObject.auctionEndDate);
-    this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
+    const timerObject1 = Object.assign({}, this.timerDetails1);
+    console.log('time object from proposal :::', timerObject);
+    console.log('time object auction :::', timerObject1);
+    this.regStartDate = new Date(timerObject.regStartDate);
+    this.regEndDate = new Date(timerObject.regEndDate);
+    this.timerLogic(this.regStartDate, this.regEndDate, this.currentTime);
+    this.auctionStartDate = new Date(timerObject1.auctionStartDate);
+    this.auctionEndDate = new Date(timerObject1.auctionEndDate);
+    this.timerLogic1(this.auctionStartDate, this.auctionEndDate, this.currentTime);
     this.start();
   }
   ngOnDestroy() {
