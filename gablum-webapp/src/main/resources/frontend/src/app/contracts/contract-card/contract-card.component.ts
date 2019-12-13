@@ -8,7 +8,6 @@ import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { environment } from 'src/environments/environment';
 import { ContractDetailComponent } from '../contract-detail/contract-detail.component';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
-import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { ContractWithBothUser } from 'src/app/interfaces/contract-with-both-user';
@@ -94,10 +93,6 @@ export class ContractCardComponent implements OnInit {
         contract: this.contract
       };
     }
-    // console.log(this.contractWithBothUsers.buyer.email);
-    // console.log(this.contractWithBothUsers.contract.buyerEmail);
-    // console.log(this.contractWithBothUsers.seller);
-    // console.log(this.contractWithBothUsers.seller.email);
     this.dialog.open(ContractDetailComponent, {
       data: this.contractWithBothUsers,
       width: '80%'

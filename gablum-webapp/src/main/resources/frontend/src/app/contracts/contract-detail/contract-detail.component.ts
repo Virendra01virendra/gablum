@@ -40,10 +40,6 @@ export class ContractDetailComponent implements OnInit {
     this.productName = this.proposal.productName;
     this.bidDetails = this.contract.bidDetails;
     this.sellerName = this.bidDetails.createdBy;
-    console.log(this.buyer.name);
-    console.log(this.contract.auctionDetails.proposal.createdBy);
-    console.log(this.seller);
-    console.log(this.seller.name);
   }
 
   ngOnInit() {}
