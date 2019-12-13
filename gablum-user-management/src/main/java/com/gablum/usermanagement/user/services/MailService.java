@@ -1,9 +1,6 @@
 package com.gablum.usermanagement.user.services;
 import com.gablum.usermanagement.user.model.User;
-import com.gablum.usermanagement.user.model.othermodels.Auction;
-import com.gablum.usermanagement.user.model.othermodels.Proposal;
-import com.gablum.usermanagement.user.model.othermodels.BidMessage;
-import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
+import com.gablum.usermanagement.user.model.othermodels.*;
 import com.gablum.usermanagement.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,12 +130,12 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-                String textBuyer = "\nNew Auction of your interested has been floated";
-                textBuyer += "\n\nKeep up to date with the deadlines for the end of registration" +
+                String textSeller = "\nNew Auction of your interested has been floated";
+                textSeller += "\n\nKeep up to date with the deadlines for the end of registration" +
                         " as well as the auction start and end dates.";
-                textBuyer += "\n\nPlace your bids wisely.\nAll the best.\n";
-                textBuyer += "\n\nTeam Gablum";
-                msgInterestedUsers.setText(textBuyer);
+                textSeller += "\n\nPlace your bids wisely.\nAll the best.\n";
+                textSeller += "\n\nTeam Gablum";
+                msgInterestedUsers.setText(textSeller);
                 try
                 {
                     javaMailSender.send(msgInterestedUsers);
@@ -171,6 +168,22 @@ public class MailService {
         }
     }
 
-    public void
-
+    public void sendContractEmail(String type, Contracts contracts) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        if (type == "newContracts") {
+            msg.setTo(contracts.getSellerEmail());
+            msg.setSubject("New Contract Awarded");
+            String textSeller = "Congratulations! You have been awarded the contract with Contract Id " + contracts.getContractId();
+            textSeller += "\nKindly abide by the clauses mentioned in the contract manual.";
+            textSeller += "\nStay in touch and expand your outreach by connecting with businesses round the globe.";
+            textSeller += "\n\n\n Team Gablum";
+            msg.setText(textSeller);
+            msg.setTo(contracts.getBuyerEmail());
+            msg.setSubject("New Contract awarded");
+            String textBuyer = "Congratulations! you got a suitable supplier for your demand.";
+            textBuyer += "\n\nTake a note that you need to e-sign the contract before you send it to the supplier.";
+            textBuyer += "\n\nPlease go through the contract manual carefully, before you sign it.";
+            textBuyer += "\n\n\nTeam Gablum";
+        }
+    }
 }
