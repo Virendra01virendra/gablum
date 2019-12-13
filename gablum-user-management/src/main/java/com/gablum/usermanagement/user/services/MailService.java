@@ -169,21 +169,23 @@ public class MailService {
     }
 
     public void sendContractEmail(String type, Contracts contracts) {
-        SimpleMailMessage msg = new SimpleMailMessage();
+        SimpleMailMessage msgB = new SimpleMailMessage();
+        SimpleMailMessage msgS = new SimpleMailMessage();
         if (type == "newContracts") {
-            msg.setTo(contracts.getSellerEmail());
-            msg.setSubject("New Contract Awarded");
+            msgS.setTo(contracts.getSellerEmail());
+            msgS.setSubject("New Contract Awarded");
             String textSeller = "Congratulations! You have been awarded the contract with Contract Id " + contracts.getContractId();
             textSeller += "\nKindly abide by the clauses mentioned in the contract manual.";
             textSeller += "\nStay in touch and expand your outreach by connecting with businesses round the globe.";
             textSeller += "\n\n\n Team Gablum";
-            msg.setText(textSeller);
-            msg.setTo(contracts.getBuyerEmail());
-            msg.setSubject("New Contract awarded");
+            msgS.setText(textSeller);
+            msgB.setTo(contracts.getBuyerEmail());
+            msgB.setSubject("New Contract awarded");
             String textBuyer = "Congratulations! you got a suitable supplier for your demand.";
             textBuyer += "\n\nTake a note that you need to e-sign the contract before you send it to the supplier.";
             textBuyer += "\n\nPlease go through the contract manual carefully, before you sign it.";
             textBuyer += "\n\n\nTeam Gablum";
+            msgB.setText(textBuyer);
         }
     }
 }
