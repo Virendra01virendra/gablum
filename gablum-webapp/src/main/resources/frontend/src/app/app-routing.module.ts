@@ -46,6 +46,10 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
   },
   {
+    path: 'register-admin',
+    loadChildren: () => import('./register-admin/register-admin.module').then(m => m.RegisterAdminModule)
+  },
+  {
     path: 'floatProposal',
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule),
     canLoad: [AuthGuardService, BuyerGuardService]

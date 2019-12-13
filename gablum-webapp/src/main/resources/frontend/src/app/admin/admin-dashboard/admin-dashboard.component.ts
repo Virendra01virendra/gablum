@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
+  public contents = ['BUYERS STATS', 'SELLERS STATS', 'DATA ANALYTICS', 'LIVE PERFORMANCE'];
+  public opened = true;
   constructor() { }
 
   ngOnInit() {

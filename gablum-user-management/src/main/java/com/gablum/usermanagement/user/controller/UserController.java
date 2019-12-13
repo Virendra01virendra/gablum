@@ -47,6 +47,7 @@ public class UserController {
     public List<NavLink> getMenuItems(HttpServletRequest request) {
         boolean isBuyer = false;
         boolean isSeller = false;
+        boolean isAdmin = false;
 //        boolean isAdmin = false;
         String token = tokenProvider.resolveToken(request);
         tokenClaims = Jwts.parser().setSigningKey(tokenProvider.getSecretKey()).parseClaimsJws(token).getBody();
@@ -58,9 +59,9 @@ public class UserController {
             if (role.contains("seller")) {
                 isSeller = true;
             }
-//            if (role.contains("admin")) {
-//                isAdmin = true;
-//            }
+            if (role.contains("admin")) {
+                isAdmin = true;
+            }
         }
         List<NavLink> menuItems = new ArrayList<NavLink>();
         if (isSeller || isBuyer) {
@@ -82,7 +83,17 @@ public class UserController {
                     new NavLink("Browse Proposals", "/browse", "list")
             );
         }
+        if (isAdmin) {
+            menuItems.addAll(List.of(
+                    new NavLink("Dashboard", "/dashboard", "dashboard"),
+//                    new NavLink("Calendar", "/calendar", "calendar_today"),
+                    new NavLink("Contracts Stats", "/contracts_admin", "book"),
+//                    new NavLink("Inbox", "/inbox", "email"))
+                    new NavLink("Users", "/users_performance", "supervised_user_circle"),
+                    new NavLink("Performance","/performance", "settings_applications")
 
+            ));
+        }
         return menuItems;
     }
 
