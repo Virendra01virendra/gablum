@@ -59,6 +59,10 @@ app-new-proposal-card {
     margin: 2em 1em;
 }
 
+app-auction-card {
+    margin: 2em 1em;
+}
+
 .but1
 {
     position: fixed;
