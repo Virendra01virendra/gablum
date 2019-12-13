@@ -8,6 +8,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { Proposal } from 'src/app/interfaces/proposal';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
 export interface InvitedUsersEmail {
   position: number;
@@ -28,30 +29,29 @@ export class SellersListDialogComponent implements OnInit {
   public isSeller = false;
   public profile: Profile;
   alreadyRegistered: boolean;
-  public userEmail = '';
-  displayedColumns: string[] = ['position', 'sellerEmail'];
+  public userEmail: string;
+  displayedColumns: string[] = [ 'sellerEmail', 'action'];
   public ELEMENT_DATA;
-  dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
-  selection = new SelectionModel<InvitedUsersEmail>(true, []);
+  // dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
+  // selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
-              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService) {
-    this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
-      return {
-        email: invitedUsersEmail,
-        position: i + 1
-      };
-    });
-    console.log('this.Element_Data ::', JSON.stringify(this.ELEMENT_DATA));
+              private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
+              private user: ProfileDataService) {
+    // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
+    //   return {
+    //     email: invitedUsersEmail,
+    //     position: i + 1
+    //   };
+    // });
+    this.ELEMENT_DATA = this.data.interestedUsersEmail;
+    console.log('this.Element_Data ::', this.ELEMENT_DATA);
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
 
-        if ('authChanged' in Data) {
-          this.isLoggedIn = auth.getAuthenticated();
-          this.profile = auth.getProfileData();
-          this.isBuyer = auth.isBuyer();
-          this.isSeller = auth.isSeller();
+        if ('userProfile' in Data) {
+          this.profile = Data.userProfile;
           this.userEmail = this.profile.email;
         }
 
@@ -63,7 +63,11 @@ export class SellersListDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.logger.log('aaaaaaaa' + JSON.stringify(this.dataSource));
+    this.user.getUserProfileByEmail(
+      SellersListDialogComponent.messageKey,
+      'userProfile'
+    );
+    // this.logger.log('aaaaaaaa' + JSON.stringify(this.dataSource));
   }
 
 
@@ -91,8 +95,8 @@ export class SellersListDialogComponent implements OnInit {
 
 
 
-  onInvite(ele, email) {
-    console.log('Invite data', ele, email);
+  onInvite(ele, sellerEmail) {
+    console.log('Invite data', ele, sellerEmail);
     this.disabled = true;
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
   }
