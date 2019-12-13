@@ -2,34 +2,65 @@
     <h1>
         Contract
     </h1>
+
+    <h3>
+        Product Name - {{productName | titlecase}}
+    </h3>
+    <h4>
+        Product Description {{contract.auctionDetails.proposal.productDescription}}
+    </h4>
+    <h4>
+        Quantity {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}
+    </h4>
     <mat-card>
         <mat-card-content>
-            <section>
-                <ul>
-                    <li>Product Name {{productName | titlecase}} </li>
-                    <li>Product Description {{contract.auctionDetails.proposal.productDescription}}</li>
-                    <li>Quantity {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}</li>
-                    <li>Method of Supply {{contract.bidDetails.bid.typeOfSupply}}</li>
-                    <li>Quality Certification {{contract.bidDetails.bid.qaqcCertificate}}</li>
-                    <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
-                    <li>Price {{contract.bidDetails.bid.price}}</li>
-                    <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>
-                </ul>
-            </section>
+            <mat-grid-list cols="2">
+                <mat-grid-tile>
+                    <h4>
+                        Auction Details :
+                    </h4>
+                    <section>
+                        <ul>
+                            <li>Method of Supply {{contract.auctionDetails.proposal.methodOfSupply}}</li>
+                            <li>Quality Certification {{contract.auctionDetails.proposal.qualityCertification}}</li>
+                            <li>Delivery Date {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
+                            <li>Price {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                            <li>Credit Period {{contract.auctionDetails.proposal.creditPeriod}} days</li>
+                        </ul>
+                    </section>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <h4>
+                        Bid Details :
+                    </h4>
+                    <section>
+                        <ul>
+                            <li>Method of Supply {{contract.bidDetails.bid.typeOfSupply}}</li>
+                            <li>Quality Certification {{contract.bidDetails.bid.qaqcCertificate}}</li>
+                            <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
+                            <li>Price {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                            <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>
+                        </ul>
+                    </section>
+                </mat-grid-tile>
+            </mat-grid-list>
+
         </mat-card-content>
     </mat-card>
     <article>
         <p>
-            This Tripartite Contract is between /*BuyerName*/ of /*CompanyName*/ hereinafter called Buyer, /*SellerName*/ of /*CompanyName*/ hereinafter called Supplier and Gablum Private Litmited hereinafter called GPL and is effective starting on /*Today */ till
-            the contract is fulfilled.
+            This Tripartite Contract is between {{buyer.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Buyer, {{seller.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Supplier and Gablum Private Litmited
+            hereinafter called GPL and is effective starting on today till the contract is fulfilled.
         </p>
         <p>
             The Contract binds the Buyer and Supplier to perform the required duties as agreed in the auction process, which are as following
         </p>
         <ul>
-            <li>The Supplier and Buyer participated fairly in the auction process held on Gablum platform during /*AuctionStartDate*/ and /*AuctionEndDate*/ for /*ProductName*/ with Specification /*ProductSpecs*/ </li>
-            <li>The Supplier will provide above mentioned product to the buyer on or before /*DeliveryDate*/ to the address /*Address*/ </li>
-            <li>The Buyer will have have credit period of /*CreditPeriod*/ days from /*Today*/ to provide the agreed amount of /*price*/ per /*unit*/. The details, of breakup or installments can be worked between Buyer and Supplier at their discretion.
+            <li>The Supplier and Buyer participated fairly in the auction process held on Gablum platform during {{contract.auctionDetails.auctionStartDate | date: 'mediumDate'}} and {{contract.auctionDetails.auctionEndDate | date: 'mediumDate'}} for {{contract.auctionDetails.proposal.productName}}
+                of \' {{contract.auctionDetails.proposal.productDescription}} \' specifications mentioned in the Auction </li>
+            <li>The Supplier will provide above mentioned product to the buyer on or before {{contract.bidDetails.bid.timeOfDelivery | date: 'mediumDate'}} mentioned in the bid</li>
+            <li>The Buyer will have have credit period of {{contract.bidDetails.bid.creditPeriod}} days from the delivery date to provide the agreed amount of {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}}. The details,
+                of breakup or installments can be worked between Buyer and Supplier at their discretion.
             </li>
         </ul>
         <p>

@@ -4,7 +4,6 @@ import { NetworkingService } from './networking.service';
 import { Profile } from '../interfaces/profile';
 import { environment } from 'src/environments/environment';
 import { NavLink } from '../interfaces/navlink';
-import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,7 @@ export class ProfileDataService {
   }
 
   getUserProfileByEmailWithUrl(url: string, dest, key) {
-    this.networking.getData<User>(url, dest, key);
+    this.networking.getData<Profile>(url, dest, key);
   }
 
   editUserProfile(dest, data, key) {
