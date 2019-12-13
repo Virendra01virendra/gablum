@@ -16,17 +16,21 @@
                 <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate| date: 'mediumDate'}}</mat-list-item> -->
 
         <mat-list-item>
-          <div fxFlex=70%><strong>Price</strong></div>
+          <div fxFill>{{ data.productDescription}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div fxFlex=70%>Price</div>
           <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.price}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-          <div fxFlex=70%><strong>Quantity</strong></div>
+          <div fxFlex=70%>Quantity</div>
           <div fxFlex=30%>{{ data.quantityValue + ' ' + data.quantityUnit}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-          <div fxFlex=70%><strong>Delivery Date</strong></div>
+          <div fxFlex=70%>Delivery Date</div>
           <div fxFlex=30%>{{ data.deliveryDate | date: 'mediumDate'}}</div>
         </mat-list-item>
       </mat-list>
@@ -82,14 +86,15 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
-            <div fxFlex=70%>Auction ends on</div> 
-            <div fxFlex=30%>{{data.auctionEndDate | date: 'mediumDate'}}</div>
-          </mat-list-item>
+          <div fxFlex=70%>Auction ends on</div>
+          <div fxFlex=30%>{{data.auctionEndDate | date: 'mediumDate'}}</div>
+        </mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
   </mat-accordion>
 </div>
-<div mat-dialog-actions *ngIf="isBuyer||(isBuyer&&isSeller)"   fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="1em">
+<div mat-dialog-actions *ngIf="isBuyer||(isBuyer&&isSeller)" fxLayout="row wrap" fxLayoutAlign="end center"
+  fxLayoutGap="1em">
 
   <button mat-raised-button mat-dialog-close color="secondary">Close</button>
   <button mat-raised-button mat-dialog-close>Bidder's List</button>

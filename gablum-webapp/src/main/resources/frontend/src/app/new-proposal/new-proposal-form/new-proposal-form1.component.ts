@@ -34,7 +34,7 @@ export class NewProposalForm1Component implements OnInit {
     businessDomain: new FormControl(''),
     businessSubDomain: new FormControl('', [Validators.required]),
     productName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(40)])),
-    productDescription: new FormControl('', Validators.compose([Validators.required, Validators.minLength(40), Validators.maxLength(300)])),
+    productDescription: new FormControl('', Validators.compose([Validators.required, Validators.minLength(40), Validators.maxLength(400)])),
     quantityValue: new FormControl('', [Validators.required, Validators.min(1)]),
     quantityUnit: new FormControl('')
   });

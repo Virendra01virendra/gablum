@@ -17,9 +17,10 @@
 }
 
 .stepper {
-  background-color: lightcyan;
+  /* background-color: ; */
   width: 80%;
-  align-content: center;
+  margin: 2em 6em 2em 6em;
+  /* align-content: center; */
 }
 
 /* .prod-details {

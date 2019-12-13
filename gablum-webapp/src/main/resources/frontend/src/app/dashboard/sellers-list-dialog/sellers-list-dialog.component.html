@@ -22,7 +22,7 @@
    
   <!--checkbox column -->
 
-    <ng-container matColumnDef="select">
+    <!-- <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox (change)="$event ? masterToggle() : null"
                         [checked]="selection.hasValue() && isAllSelected()"
@@ -37,7 +37,7 @@
                         [aria-label]="checkboxLabel(row)">
           </mat-checkbox>
         </td>
-      </ng-container>
+      </ng-container> -->
   
       <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -45,16 +45,16 @@
         </ng-container>
   
     <ng-container matColumnDef="sellerEmail">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef> User Name </th>
       <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
    
-    <!-- <ng-container matColumnDef="action">
+    <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Action </th>
       <td mat-cell *matCellDef="let ele ">
-         <button mat-raised-button color="primary" [disabled]="(data.invitedUsersEmail.indexOf(userEmail)>-1)" (click)="onInvite(ele)">Invite</button></td>
-    </ng-container> -->
+         <button mat-raised-button color="primary" [disabled]="(data.invitedUsersEmail.indexOf(ele.email)>-1)" (click)="onInvite(ele, ele.email)">Invite</button></td>
+    </ng-container>
   
     
   
