@@ -25,6 +25,7 @@
         "@angular/router": "~8.2.0",
         "@fortawesome/fontawesome-free": "^5.11.2",
         "@ngx-translate/core": "^11.0.1",
+        "@ngx-translate/http-loader": "^4.0.0",
         "@stomp/stompjs": "^5.4.2",
         "@swimlane/ngx-charts": "^12.1.0",
         "angular2-jwt": "^0.2.3",

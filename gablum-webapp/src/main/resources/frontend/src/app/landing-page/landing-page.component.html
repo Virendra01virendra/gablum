@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
   <div class="hero-text-container">
-    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
+    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{'LANDING.HEROTEXT' | translate}}</h2>
   </div>
 </div>
 
@@ -25,16 +25,7 @@ fxLayout="column nowrap"
       fxFlexAlign="space-around center"
       style="align-self: center;">
           <p class="section-content">
-              Lorem Ipsum is simply dummy text of the printing 
-              and typesetting industry. Lorem Ipsum has been the industry's 
-              standard dummy text ever since the 1500s, when an unknown 
-              printer took a galley of type and scrambled it to make a 
-              type specimen book. It has survived not only five centuries, 
-              but also the leap into electronic typesetting, remaining 
-              essentially unchanged. It was popularised in the 1960s with 
-              the release of Letraset sheets containing Lorem Ipsum 
-              passages, and more recently with desktop publishing software 
-              like Aldus PageMaker including versions of Lorem Ipsum.
+              {{'LANDING.ABOUT1' | translate}}
           </p>
       </div>
     </div>
@@ -53,16 +44,7 @@ fxLayout="column nowrap"
       fxFlexAlign="space-around center"
       style="align-self: center;">
           <p class="section-content">
-              Lorem Ipsum is simply dummy text of the printing 
-              and typesetting industry. Lorem Ipsum has been the industry's 
-              standard dummy text ever since the 1500s, when an unknown 
-              printer took a galley of type and scrambled it to make a 
-              type specimen book. It has survived not only five centuries, 
-              but also the leap into electronic typesetting, remaining 
-              essentially unchanged. It was popularised in the 1960s with 
-              the release of Letraset sheets containing Lorem Ipsum 
-              passages, and more recently with desktop publishing software 
-              like Aldus PageMaker including versions of Lorem Ipsum.
+              {{'LANDING.ABOUT2' | translate}}
           </p>
       </div>
     </div>
@@ -78,7 +60,7 @@ fxLayout="column nowrap"
 </section> -->
 
 <section class="contact-section" id="contact">
-    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>Contact Us for any Query</strong></h2>
+    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>{{'LANDING.CONTACT' | translate}}</strong></h2>
     <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.gt-xs><strong>Contact Us</strong></h2>
     <form class="contact-form" fxLayout="column nowrap">
         <mat-form-field appearance="outline">
