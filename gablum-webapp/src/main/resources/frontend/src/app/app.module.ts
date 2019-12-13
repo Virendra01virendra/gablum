@@ -26,17 +26,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { BrowseProposalsModule } from './browse-proposals/browse-proposals.module';
-<<<<<<< HEAD
 import { AdminModule } from './admin/admin.module';
 import { TeamComponent } from './team/team.component';
-=======
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
->>>>>>> 1c9057e4a0ecf83b6c1fd50c2d5b94cbddbd10c3
 
 @NgModule({
   declarations: [
@@ -70,9 +67,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RouterModule,
     FormsModule,
     BrowseProposalsModule,
-<<<<<<< HEAD
-    AdminModule
-=======
+    AdminModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -80,7 +75,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     })
->>>>>>> 1c9057e4a0ecf83b6c1fd50c2d5b94cbddbd10c3
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
