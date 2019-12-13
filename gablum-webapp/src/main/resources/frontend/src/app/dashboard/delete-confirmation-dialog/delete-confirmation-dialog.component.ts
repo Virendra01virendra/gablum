@@ -32,7 +32,7 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   }
 
   deleteOnConfirm(): void {
-    console.log(' Delete proposal :::', this.data.proposalData);
+    // console.log(' Delete proposal :::', this.data.proposalData);
     this.proposalDataService.deleteProposal(this.data.proposalData.proposalId, '@all', 'proposals');
     this.dialogRef.close();
     this.snackBar.open(
