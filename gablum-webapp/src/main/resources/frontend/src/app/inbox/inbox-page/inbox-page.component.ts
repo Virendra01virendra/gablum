@@ -28,9 +28,11 @@ export class InboxPageComponent implements OnInit {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === InboxPageComponent.messageKey || msg.dest === '@all' ) {
           const data = msg.data;
-          if ('authChanged' in data) {
+          if ('userProfile' in data) {
             try {
-              this.currentSubDomain = auth.getProfileData().businessSubDomain;
+              this.userProfile = data.userProfile;
+              logger.log('data---->', data);
+              this.currentSubDomain = this.userProfile.businessSubDomain;
               this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'proposals');
             } catch (err) {
               this.logger.log(err);

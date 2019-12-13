@@ -1,109 +1,108 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div
+  class="hero-container"
+  fxLayout="row nowrap"
+  fxLayoutAlign="space-around center"
+>
   <div class="hero-text-container">
-    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
+    <h2
+      class="hero-text"
+      [ngStyle]="{ 'font-size': '2.5em' }"
+      [ngStyle.xs]="{ 'font-size': '1.5em' }"
+    >
+      {{ heroText }}
+    </h2>
   </div>
 </div>
 
-<section class="about-section" id="about"
-[ngStyle.xs]="{'width': '80%'}"
-fxLayout="column nowrap"
+<section
+  class="about-section"
+  id="about"
+  [ngStyle.xs]="{ width: '80%' }"
+  fxLayout="column nowrap"
 >
-    <!-- <h3 class="section-header">What is Lorem Ipsum?</h3>
-    <p class="section-content">
-        Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book. It has survived not only five centuries, 
-        but also the leap into electronic typesetting, remaining 
-        essentially unchanged. It was popularised in the 1960s with 
-        the release of Letraset sheets containing Lorem Ipsum 
-        passages, and more recently with desktop publishing software 
-        like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    
-    <h3 class="section-header">Where does it come from?</h3>
-    <p class="section-content">
-        Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book. It has survived not only five centuries, 
-        but also the leap into electronic typesetting, remaining 
-        essentially unchanged. It was popularised in the 1960s with 
-        the release of Letraset sheets containing Lorem Ipsum 
-        passages, and more recently with desktop publishing software 
-        like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <p class="section-content">
-        Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. Lorem Ipsum has been the industry's 
-        standard dummy text ever since the 1500s, when an unknown 
-        printer took a galley of type and scrambled it to make a 
-        type specimen book. It has survived not only five centuries, 
-        but also the leap into electronic typesetting, remaining 
-        essentially unchanged. It was popularised in the 1960s with 
-        the release of Letraset sheets containing Lorem Ipsum 
-        passages, and more recently with desktop publishing software 
-        like Aldus PageMaker including versions of Lorem Ipsum.
-    </p> -->
-
-    <div class="feature"
+  <div
+    class="feature"
     fxLayout="row nowrap"
     fxLayout.xs="column nowrap"
     fxLayoutAlign="space-around"
-    fxLayoutAlign.xs="auto">
-      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
-        <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
-      </div>
-      <div 
-      class="feature-text" fxFlex="0 0 60%"
+    fxLayoutAlign.xs="auto"
+  >
+    <div
+      class="feature-img"
+      fxFlex="0 0 30%"
+      fxFlex.xs="0 0 auto"
+      style="height: 20em;"
+    >
+      <img
+        src="https://picsum.photos/400/400"
+        alt=""
+        style="object-fit: cover; width: 100%; height: 100%;"
+      />
+    </div>
+    <div
+      class="feature-text"
+      fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
-      style="align-self: center;">
-          <p class="section-content">
-              Lorem Ipsum is simply dummy text of the printing 
-              and typesetting industry. Lorem Ipsum has been the industry's 
-              standard dummy text ever since the 1500s, when an unknown 
-              printer took a galley of type and scrambled it to make a 
-              type specimen book. It has survived not only five centuries, 
-              but also the leap into electronic typesetting, remaining 
-              essentially unchanged. It was popularised in the 1960s with 
-              the release of Letraset sheets containing Lorem Ipsum 
-              passages, and more recently with desktop publishing software 
-              like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
-      </div>
+      style="align-self: center;"
+    >
+      <p class="section-content">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </p>
     </div>
-    <mat-divider fxFlex="1 0 100%" style="margin: 1em 0;"></mat-divider>
-    <div class="feature"
+  </div>
+  <mat-divider fxFlex="1 0 100%" style="margin: 1em 0;"></mat-divider>
+  <div
+    class="feature"
     fxLayout="row-reverse nowrap"
     fxLayout.xs="column nowrap"
     fxLayoutAlign="space-around"
-    fxLayoutAlign.xs="auto">
-      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
-        <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
-      </div>
-      <div 
-      class="feature-text" fxFlex="0 0 60%"
+    fxLayoutAlign.xs="auto"
+  >
+    <div
+      class="feature-img"
+      fxFlex="0 0 30%"
+      fxFlex.xs="0 0 auto"
+      style="height: 20em;"
+    >
+      <img
+        src="https://picsum.photos/400/400"
+        alt=""
+        style="object-fit: cover; width: 100%; height: 100%;"
+      />
+    </div>
+    <div
+      class="feature-text"
+      fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
-      style="align-self: center;">
-          <p class="section-content">
-              Lorem Ipsum is simply dummy text of the printing 
-              and typesetting industry. Lorem Ipsum has been the industry's 
-              standard dummy text ever since the 1500s, when an unknown 
-              printer took a galley of type and scrambled it to make a 
-              type specimen book. It has survived not only five centuries, 
-              but also the leap into electronic typesetting, remaining 
-              essentially unchanged. It was popularised in the 1960s with 
-              the release of Letraset sheets containing Lorem Ipsum 
-              passages, and more recently with desktop publishing software 
-              like Aldus PageMaker including versions of Lorem Ipsum.
-          </p>
-      </div>
+      style="align-self: center;"
+    >
+      <p class="section-content">
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type and
+        scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining
+        essentially unchanged. It was popularised in the 1960s with the release
+        of Letraset sheets containing Lorem Ipsum passages, and more recently
+        with desktop publishing software like Aldus PageMaker including versions
+        of Lorem Ipsum.
+      </p>
     </div>
+  </div>
 </section>
 
 <!-- <section class="subdomains-about" fxLayout="column nowrap">
@@ -116,39 +115,54 @@ fxLayout="column nowrap"
 </section> -->
 
 <section class="contact-section" id="contact">
-    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>Contact Us for any Query</strong></h2>
-    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.gt-xs><strong>Contact Us</strong></h2>
-    <form class="contact-form" fxLayout="column nowrap">
-        <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" type="text">
-        </mat-form-field>
+  <h2
+    class="mat-headline"
+    style="display: flex; justify-content: center;"
+    fxHide.xs
+  >
+    <strong>Contact Us for any Query</strong>
+  </h2>
+  <h2
+    class="mat-headline"
+    style="display: flex; justify-content: center;"
+    fxHide.gt-xs
+  >
+    <strong>Contact Us</strong>
+  </h2>
+  <form class="contact-form" fxLayout="column nowrap">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" type="text" />
+    </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" type="email">
-        </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email" type="email" />
+    </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Subject</mat-label>
-            <input matInput placeholder="Sucject" type="text">
-        </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-            <mat-label>Query</mat-label>
-            <textarea matInput placeholder="Leave a comment" rows="6"></textarea>
-        </mat-form-field>
-        <button mat-raised-button color='primary' type="submit" fxFlexAlign="flex-end">Submit</button>
-    </form>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input matInput placeholder="Sucject" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Query</mat-label>
+      <textarea matInput placeholder="Leave a comment" rows="6"></textarea>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      fxFlexAlign="flex-end"
+    >
+      Submit
+    </button>
+  </form>
 </section>
 
-<section class="map-container" id="mapContainer">
-
-</section>
+<section class="map-container" id="mapContainer"></section>
 
 <mat-divider></mat-divider>
-
-
 
 <!-- <mat-list>
             <mat-list-item><h3><b>Built with the aim to connect <br>
@@ -170,13 +184,12 @@ fxLayout="column nowrap"
         <i class="fa fa-envelope" aria-hidden="true"></i>
         <section class="mat-title">babu.apte@gmail.com</section>
       </div>
-
     </div>
     <!-- <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div> -->
     <mat-divider vertical></mat-divider>
     <div class="box1" fxFlex>
       <section class="mat-h1">Quick Links <mat-divider></mat-divider></section>
-      
+
       <div>
         <section class="mat-title">REVERSE AUCTIONS</section>
         <!-- <mat-divider></mat-divider> -->
@@ -191,48 +204,71 @@ fxLayout="column nowrap"
         <!-- <mat-divider></mat-divider> -->
       </div>
     </div>
-
-    <!-- <div style="border-left:3px solid #000;height:300px; margin: 15px auto;"></div> -->
-    <!-- <mat-divider vertical></mat-divider>
-    <div class="box1" id="box1" fxFlex>
-      <section class="mat-h1">Reach Out</section>
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Name">
-        </mat-form-field><br>
-
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment"></textarea>
-        </mat-form-field>
-      </form>
-      <br>
-      <button mat-button mat-raised-button color='primary'>Submit</button>
-    </div> -->
-</div>
-<mat-divider></mat-divider>
-<div class="connect">
+  </div>
+  <mat-divider></mat-divider>
+  <div class="connect">
     <h3>FIND US ON</h3>
-    <div class="socialmediaicons" fxLayout="row wrap" fxLayoutAlign="space-around center">
-      <mat-icon><a href=""><i class="fa fa-facebook"></i></a></mat-icon>
-      <mat-icon><a href=""><i class="fa fa-twitter"></i></a></mat-icon>
-      <mat-icon><a href=""><i class="fa fa-linkedin"></i></a></mat-icon>
-      <mat-icon><a href=""><i class="fa fa-instagram"></i></a></mat-icon>
-      <mat-icon><a href=""><i class="fa fa-github"></i></a></mat-icon>
+    <div
+      class="socialmediaicons"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-around center"
+    >
+      <mat-icon
+        ><a href=""><i class="fa fa-facebook"></i></a
+      ></mat-icon>
+      <mat-icon
+        ><a href=""><i class="fa fa-twitter"></i></a
+      ></mat-icon>
+      <mat-icon
+        ><a href=""><i class="fa fa-linkedin"></i></a
+      ></mat-icon>
+      <mat-icon
+        ><a href=""><i class="fa fa-instagram"></i></a
+      ></mat-icon>
+      <mat-icon
+        ><a href=""><i class="fa fa-github"></i></a
+      ></mat-icon>
+    </div>
+  </div>
+</div>
+<div class="cookie-confirmation-outer" id="cookie-confirmation-outer">
+  <div class="cookie-confirmation-inner">
+    <p></p>
+    <p>
+      "This website stores cookies on your computer. These cookies are used to
+      collect information about how you interact with our website and allow us
+      to remember you. We use this information in order to improve and customize
+      your browsing experience and for analytics and metrics about our visitors
+      both on this website and other media. To find out more about the cookies
+      we use, see our
+      <a href="https://gablum-dev.stackroute.io/terms" target="_blank"
+        >"Privacy Policy"</a
+      >
+      .
+    </p>
+    <p class="cookie-disclaimer">
+      If you decline, your information won’t be tracked when you visit this
+      website. A single cookie will be used in your browser to remember your
+      preference not to be tracked.
+    </p>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2em">
+      <button mat-raised-button (click)="hideCookies()">Decline</button>
+      <button mat-raised-button color="primary" (click)="hideCookies()">Accept</button>
     </div>
   </div>
 </div>
 
 <footer
-color="primary"
-fxLayout="column nowrap"
-fxLayoutAlign="space-around center"
-[ngStyle]="{'font-size': '0.9em'}">
-    <p fxFlexAlign="center center" [ngStyle]="{'margin': '0.4em'}">
-        Created with <i class="fa fa-heart"></i> by SleepyCats
-    </p>
+  color="primary"
+  fxLayout="column nowrap"
+  fxLayoutAlign="space-around center"
+  [ngStyle]="{ 'font-size': '0.9em' }"
+>
+  <p fxFlexAlign="center center" [ngStyle]="{ margin: '0.4em' }">
+    Created with <i class="fa fa-heart"></i> by SleepyCats
+  </p>
 
-    <p fxFlexAlign="center center" [ngStyle]="{'margin': '0.4em'}">
-        Copyright &copy; 2019
-    </p>
+  <p fxFlexAlign="center center" [ngStyle]="{ margin: '0.4em' }">
+    Copyright &copy; 2019
+  </p>
 </footer>
-

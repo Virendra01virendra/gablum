@@ -18,7 +18,6 @@ import { MatSnackBar } from '@angular/material';
 export class RegisterPageComponent implements OnInit {
 
   public static msgKey = 'regPage-component';
-  domain = 'Agriculture';
 
   get name() {
     return this.registrationForm.get('name');

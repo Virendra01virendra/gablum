@@ -1,9 +1,6 @@
 package com.gablum.contract.contracts.model.othermodels;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,10 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString
 public class Auction {
-    @Id
     private String _id;
-    @Indexed(unique = true)
-    @Setter(AccessLevel.NONE)
     private String auctionId = UUID.randomUUID().toString();
     private String uniqueLink;
 //    private UUID proposalId;

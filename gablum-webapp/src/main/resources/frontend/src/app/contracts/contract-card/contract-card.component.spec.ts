@@ -1,26 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ContractComponent } from './contract.component';
-import { MatListModule, MatButtonModule, MatCardModule, MatExpansionModule } from '@angular/material';
+import { ContractCardComponent } from './contract-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/app/material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
-describe('ContractComponent', () => {
-  let component: ContractComponent;
-  let fixture: ComponentFixture<ContractComponent>;
+describe('ContractCardComponent', () => {
+  let component: ContractCardComponent;
+  let fixture: ComponentFixture<ContractCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContractComponent],
+      declarations: [ ContractCardComponent ],
       imports: [
         BrowserAnimationsModule,
-        MaterialModule
+        MaterialModule,
+        HttpClientModule
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ContractComponent);
+    fixture = TestBed.createComponent(ContractCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
