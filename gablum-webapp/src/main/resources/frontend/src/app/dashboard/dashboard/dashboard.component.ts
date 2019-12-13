@@ -68,10 +68,10 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient
   ) {
-    this.isLoggedIn = auth.getAuthenticated();
-    if (this.isLoggedIn) {
-      this.logger.log(this, auth.getProfileData());
-    }
+    // this.isLoggedIn = auth.getAuthenticated();
+    // if (this.isLoggedIn) {
+    //   this.logger.log(this, auth.getProfileData());
+    // }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
-          this.logger.log(this, auth.getProfileData());
+          // this.logger.log(this, auth.getProfileData());
         }
 
         if ('userProfile' in data) {
