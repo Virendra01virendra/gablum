@@ -5,6 +5,7 @@ import { BidCardComponent } from '../bid-card/bid-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BidListComponent', () => {
   let component: BidListComponent;
@@ -15,7 +16,8 @@ describe('BidListComponent', () => {
       imports: [
         MaterialModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NoopAnimationsModule
       ],
       declarations: [
         BidListComponent,

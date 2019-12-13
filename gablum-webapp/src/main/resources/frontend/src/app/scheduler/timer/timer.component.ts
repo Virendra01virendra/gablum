@@ -43,6 +43,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const timerObject = Object.assign({}, this.timerDetails);
+<<<<<<< HEAD
     const timerObject1 = Object.assign({}, this.timerDetails1);
     console.log('time object from proposal :::', timerObject);
     console.log('time object auction :::', timerObject1);
@@ -52,6 +53,12 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.auctionStartDate = new Date(timerObject1.auctionStartDate);
     this.auctionEndDate = new Date(timerObject1.auctionEndDate);
     this.timerLogic1(this.auctionStartDate, this.auctionEndDate, this.currentTime);
+=======
+    // console.log('time object :::', timerObject);
+    this.auctionStartDate = new Date(timerObject.auctionStartDate);
+    this.auctionEndDate = new Date(timerObject.auctionEndDate);
+    this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
+>>>>>>> ff062ecd1fea1f25ec5c21518325ae19be21a0b9
     this.start();
   }
   ngOnDestroy() {
