@@ -10,7 +10,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppCommonModule } from './common/common.module';
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { HttpLoaderFactory } from './app.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -30,7 +32,14 @@ describe('AppComponent', () => {
         MatSelectModule,
         AppCommonModule,
         MaterialModule,
-        HttpClientModule
+        HttpClientModule,
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
       ],
       declarations: [
         AppComponent,

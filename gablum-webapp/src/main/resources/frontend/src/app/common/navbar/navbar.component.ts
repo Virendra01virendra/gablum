@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { LoginDataService } from 'src/app/services/login-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
+import { IntlService } from 'src/app/services/intl.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -31,7 +32,8 @@ export class NavbarComponent implements OnInit {
     private logger: LoggerService,
     private router: Router,
     private login: LoginDataService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private lang: IntlService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
     this.comms.getMessages().subscribe( message => {
@@ -78,5 +80,9 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(LoginComponent, {
       width: '60%',
     });
+  }
+
+  changeLang(lang: string) {
+    this.lang.setLang(lang);
   }
 }
