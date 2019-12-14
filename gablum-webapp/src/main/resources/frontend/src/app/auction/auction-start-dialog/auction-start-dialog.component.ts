@@ -9,6 +9,8 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import {Profile} from '../../interfaces/profile';
 import { environment } from 'src/environments/environment';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { ProposalsDataService } from 'src/app/services/proposals-data.service';
+
 
 @Component({
   selector: 'app-auction-start-dialog',
@@ -29,7 +31,8 @@ export class AuctionStartDialogComponent {
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private comms: CommunicatorService,
-    private profileDataService: ProfileDataService
+    private profileDataService: ProfileDataService,
+    private proposalDataService: ProposalsDataService
               ) {
                 comms.getMessages().subscribe(msg => {
                   if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
@@ -40,7 +43,11 @@ export class AuctionStartDialogComponent {
                       this.userProfileList.push(this.userProfile);
                     }
                     if ('save-auction' in data1) {
-                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
+                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctionsBuyer');
+                    }
+
+                    if ('auctionStarted' in data1) {
+                      const data2 = data1.auctionStarted;
                     }
                   }
                 });
@@ -64,6 +71,7 @@ export class AuctionStartDialogComponent {
     const data = JSON.parse(JSON.stringify(auctionList));
 
     this.auctionDataService.saveAuction(AuctionStartDialogComponent.messageKey, data, 'save-auction');
+    this.proposalDataService.changeAuctionFlag(proposal1.proposalId, AuctionStartDialogComponent.messageKey, 'auctionStarted');
     this.router.navigate(['dashboard']);
     this.close();
 
