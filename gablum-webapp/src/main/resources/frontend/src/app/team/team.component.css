@@ -51,6 +51,7 @@ a:hover{
 .team-member {
   margin: 15px 0;
   padding: 0;
+  border-style: 3px solid black;
 }
 
 .team-member figure {
@@ -62,6 +63,8 @@ a:hover{
 
 .team-member figure img {
   min-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .team-member figcaption p {
@@ -90,6 +93,7 @@ a:hover{
 .team-member h4 {
   margin: 10px 0 0;
   padding: 0;
+  font-size: large;
 }
 
 .team-member figcaption {

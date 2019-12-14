@@ -13,6 +13,7 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
+import { TeamComponent } from './team/team.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -44,7 +45,8 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         LandingPageComponent,
-        LoginComponent
+        LoginComponent,
+        TeamComponent
       ],
     }).compileComponents();
   }));

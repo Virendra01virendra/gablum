@@ -4,6 +4,7 @@ import { SellersListDialogComponent } from './sellers-list-dialog.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SellersListDialogComponent', () => {
   let component: SellersListDialogComponent;
@@ -33,7 +34,7 @@ describe('SellersListDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SellersListDialogComponent ],
-      imports: [ MaterialModule, HttpClientModule],
+      imports: [ MaterialModule, HttpClientModule, RouterTestingModule],
       providers: [{
         provide: MAT_DIALOG_DATA,
         useValue: data
