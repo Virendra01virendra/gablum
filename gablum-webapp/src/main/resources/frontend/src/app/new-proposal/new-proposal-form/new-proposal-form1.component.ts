@@ -31,7 +31,7 @@ export class NewProposalForm1Component implements OnInit {
   editable = false;
 
   productSpecsForm = new FormGroup({
-    businessDomain: new FormControl(''),
+    businessDomain: new FormControl('Agriculture'),
     businessSubDomain: new FormControl('', [Validators.required]),
     productName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(40)])),
     productDescription: new FormControl('', Validators.compose([Validators.required, Validators.minLength(40), Validators.maxLength(400)])),
@@ -76,7 +76,7 @@ export class NewProposalForm1Component implements OnInit {
   }
 
   onNext1(form: FormGroup) {
-    this.logger.log('name' + form.value.productName);
+    this.logger.log('domain:::' + form.value.businessDomain);
   }
 
   onSubmit() {

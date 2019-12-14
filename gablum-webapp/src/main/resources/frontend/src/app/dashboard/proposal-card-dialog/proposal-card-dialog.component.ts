@@ -9,7 +9,9 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { SellersListDialogComponent } from '../sellers-list-dialog/sellers-list-dialog.component';
 import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-proposal-dialog.component';
-
+import { Weights } from '../../interfaces/weights';
+import { element } from 'protractor';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 @Component({
   selector: 'app-proposal-card-dialog',
   templateUrl: './proposal-card-dialog.component.html',
@@ -18,7 +20,6 @@ import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-
 export class ProposalCardDialogComponent implements OnInit {
 
   public static messageKey = 'ProposalCardDialog';
-
   public userProfile: Profile;
   proposals: Proposal[];
   allProposals: Proposal[];
@@ -28,29 +29,35 @@ export class ProposalCardDialogComponent implements OnInit {
   isBuyer;
   isSeller;
   userRole;
+  weightObject = [];
+  weightData;
+  view: any[] = [500, 200];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private auctionDataService: AuctionsDataService,
     private matDialog: MatDialog, private comms: CommunicatorService,
-    private proposalDataService: ProposalsDataService
+    private proposalDataService: ProposalsDataService,
+    private user: ProfileDataService
   ) {
+    this.weightObject = Object.keys(this.data).filter((ele) => {
+      if (ele === 'priceWeight' ||
+        ele === 'deliveryDateWeight' ||
+        ele === 'creditPeriodWeight' ||
+        ele === 'qualityCertificationWeight' ||
+        ele === 'methodOfSupplyWeight') {
+        return {
+          name: ele,
+          value: this.data[ele]
+        };
+      }
+    });
     comms.getMessages().subscribe(msg => {
       if (msg.dest === ProposalCardDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
 
-
         if ('userProfile' in Data) {
-          // getting user profile for subDomain
           this.userProfile = data.userProfile;
-          this.businessSubdomain = this.userProfile.businessSubDomain;
-          this.proposalDataService.getProposalsBySubDomain(
-            this.businessSubdomain,
-            ProposalCardDialogComponent.messageKey,
-            'sellerProposals'
-          );
-          this.userRole = this.userProfile.role;
-          console.log(this.userProfile.role[0]);
-          console.log(this.userProfile.role[1]);
           if (this.userProfile.role.length === 1) {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
@@ -70,6 +77,12 @@ export class ProposalCardDialogComponent implements OnInit {
   data1;
 
   ngOnInit() {
+    this.weightData = this.weightObject.map(key => {
+      return {
+        name: key, value: this.data[key]
+      };
+    });
+    this.user.getUserProfileByEmail(ProposalCardDialogComponent.messageKey, 'userProfile');
   }
 
   startAuction(proposal1: Proposal) {

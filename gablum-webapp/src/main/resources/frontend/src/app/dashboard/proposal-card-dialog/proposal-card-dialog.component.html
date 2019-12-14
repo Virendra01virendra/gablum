@@ -20,46 +20,33 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-          <div fxFlex=70%>Price</div>
-          <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.price}}</div>
+          <div fxFlex=70%>Credit Period</div>
+          <div fxFlex=30%>{{ data.creditPeriod}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-          <div fxFlex=70%>Quantity</div>
-          <div fxFlex=30%>{{ data.quantityValue + ' ' + data.quantityUnit}}</div>
+          <div fxFlex=70%>Quality Certification</div>
+          <div fxFlex=30%>{{ data.qualityCertification}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
-          <div fxFlex=70%>Delivery Date</div>
-          <div fxFlex=30%>{{ data.deliveryDate | date: 'mediumDate'}}</div>
+          <div fxFlex=70%>Method of Supply</div>
+          <div fxFlex=30%>{{ data.methodOfSupply}}</div>
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="isBuyer">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Weights
         </mat-panel-title>
         <mat-panel-description>Here are the weights you specified</mat-panel-description>
       </mat-expansion-panel-header>
-      <mat-list role="list">
-        <mat-list-item role="listitem">
-          <div fxFlex=70%>Price Weight</div>
-          <div fxFlex=30%>{{data.priceWeight}}</div>
-
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">
-          <div fxFlex=70%>Credit Period Weight </div>
-          <div fxFlex=30%> {{data.creditPeriodWeight}}</div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">
-          <div fxFlex=70%>Delivery Date Weight</div>
-          <div fxFlex=30%> {{data.deliveryDateWeight}}</div>
-
-        </mat-list-item>
-      </mat-list>
+      <div class="graph-container">
+        <ngx-charts-bar-horizontal [view]="view" [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="true"
+          [showYAxisLabel]="false" [xAxisLabel]="'Weightage'" [yAxisLabel]="'Parameters'" [results]="weightData">
+        </ngx-charts-bar-horizontal>
+      </div>
     </mat-expansion-panel><br>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -94,16 +81,12 @@
   </mat-accordion>
 </div>
 <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
-  
-    <button mat-raised-button mat-dialog-close color="secondary">Close</button>
-    <button mat-raised-button mat-dialog-close
-    (click)="sellersListDialog()"
-    >Bidder's List</button>
-    <button mat-raised-button mat-dialog-close 
-    (click)="extendDialog()"
-    >Extend Registration</button>
-    <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
-  
+
+  <button mat-raised-button mat-dialog-close color="secondary">Close</button>
+  <button *ngIf="isBuyer" mat-raised-button mat-dialog-close (click)="sellersListDialog()">Bidder's List</button>
+  <button mat-raised-button mat-dialog-close (click)="extendDialog()">Extend Registration</button>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
+
 </div>
 
 
