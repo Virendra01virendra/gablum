@@ -2,9 +2,11 @@ package com.gablum.contract.contracts.controller;
 
 import com.gablum.contract.contracts.model.Contracts;
 import com.gablum.contract.contracts.service.ContractService;
+import com.gablum.contract.contracts.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
 public class ContractsController {
     @Autowired
     private ContractService contractService;
+
+    @Autowired
+    private UserService userService;
 
     // @GetMapping("/contracts/{contractsId}")
     // public Contracts getContract(@PathVariable String contractId){
@@ -34,7 +39,13 @@ public class ContractsController {
         return contractService.getContractBySellerEmail(email);
     }
 
-
+    @GetMapping("/contracts")
+    public List<Contracts> getAllContracts(HttpServletRequest request){
+        String email = userService.getEmail(request);
+        List<Contracts> totalContracts = new ArrayList<Contracts>(contractService.getContractByBuyerEmail(email));
+        totalContracts.addAll(contractService.getContractBySellerEmail(email));
+        return totalContracts;
+    }
 
 //    @PostMapping("/contracts")
 //    public Contracts saveContract(@RequestBody Contracts contracts){
