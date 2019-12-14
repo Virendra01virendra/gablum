@@ -11,11 +11,11 @@ const routes: Routes = [
     component: ContractPageComponent,
     pathMatch: 'full'
   },
-  {
-    path: 'card',
-    component: ContractCardComponent,
-    pathMatch: 'full'
-  },
+  // {
+  //   path: 'card',
+  //   component: ContractCardComponent,
+  //   pathMatch: 'full'
+  // },
   {
     path: 'modal',
     component: ContractDetailComponent,
