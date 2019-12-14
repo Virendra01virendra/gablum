@@ -16,7 +16,7 @@ public class Auction {
     private String uniqueLink;
 //    private UUID proposalId;
     private String auctionName;
-    private Proposal proposal;
+    public Proposal proposal;
     boolean isAuctionActive;
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
