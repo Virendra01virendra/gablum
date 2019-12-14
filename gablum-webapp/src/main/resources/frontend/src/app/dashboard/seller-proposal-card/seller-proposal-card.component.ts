@@ -72,7 +72,7 @@ export class SellerProposalCardComponent implements OnInit {
       data: allProposal
     });
     this.allProposal.views += 1;
-    console.log('view--->' + allProposal);
+    console.log('view--->' + JSON.stringify(allProposal));
     this.proposalDataService.postSellerView(SellerProposalCardComponent.messageKey, this.allProposal, 'saveSellerView');
   }
 }
