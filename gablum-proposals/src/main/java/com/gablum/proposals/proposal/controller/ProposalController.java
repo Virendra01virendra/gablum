@@ -1,6 +1,6 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
+import com.gablum.proposals.proposal.ProposalRabbit.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ public class    ProposalController {
     @Autowired
     private UserService userService;
 
+
     public ProposalController(ProposalInterfaceRabbit proposalInterface) {
         messageChannel = proposalInterface.newProposalMessageChannel();
     }
@@ -40,6 +42,7 @@ public class    ProposalController {
         proposalData.setCreatedOn(new Date());
         proposalData.setUpdatedOn(new Date());
         Proposal savedProposal = proposalService.addProposals(proposalData);
+
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
         return savedProposal;

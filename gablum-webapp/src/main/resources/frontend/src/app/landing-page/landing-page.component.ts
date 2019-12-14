@@ -37,19 +37,6 @@ export class LandingPageComponent implements OnInit {
   constructor(
     private router: Router,
     private loginService: LoginDataService,
-<<<<<<< HEAD
-    private comms: CommunicatorService) {
-    this.comms.getMessages().subscribe(message => {
-      if (message.dest === '@all' || message.dest === LandingPageComponent.messageKey) {
-        const data = message.data;
-        if ('loginResult' in data) {
-          const loginToken: LoginToken = data.loginResult.accessToken;
-          // console.log(loginToken.accessToken);
-          if (loginToken === undefined || loginToken === null) {
-
-          } else {
-            this.router.navigate(['dashboard']);
-=======
     private comms: CommunicatorService,
     private translate: TranslateService,
     private intl: IntlService) {
@@ -68,17 +55,16 @@ export class LandingPageComponent implements OnInit {
             } else {
               this.router.navigate(['dashboard']);
             }
->>>>>>> 7287b5e070711dd8e6054c6e433e2b84f5760a6d
           }
 
           if ('langChanged' in data) {
             translate.use(intl.getLang());
           }
         }
-      }
-    });
-  }
-  public heroText = 'A B2B Auctioning platform, where quality meets you';
+      });
+    }
+
+    public heroText = 'A B2B Auctioning platform, where quality meets you';
 
 
 
