@@ -41,92 +41,87 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-        <div class="mat-title card-header" fxFlexAlign="flex-start" >{{contract.auctionDetails.auctionName}}</div>
+        <div class="mat-title card-header" fxFlexAlign="flex-start">{{contract.auctionDetails.auctionName| titlecase}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
-            <div class="mat-subheading-2 subdomain" fxLayoutAlign="start center" >{{ contract.auctionDetails.proposal.businessSubDomain }}</div>
-            <div class="mat-subheading-2 subdomain" fxLayoutAlign="start center" >{{ contract.auctionDetails.proposal.quantityValue + " " + contract.auctionDetails.proposal.quantityUnit }}</div>
+            <div class="mat-subheading-2 subdomain" fxLayoutAlign="start center">{{ contract.auctionDetails.proposal.businessSubDomain | titlecase}}</div>
+            <div class="mat-subheading-2 subdomain" fxLayoutAlign="start center">{{ contract.auctionDetails.proposal.quantityValue + " " + contract.auctionDetails.proposal.quantityUnit }}</div>
         </div>
     </div>
 
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-between center">
 
-            <div>
-                <p><strong>Auction Details:</strong></p>
-            </div>
-
-            <div>
-                <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
-                    {{ contract.auctionDetails.proposal.price }}</i>
-            </div>
-            <div>
-                <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Auction Start Date"
-                    style="transform: scale3d(10);">
-                    {{ contract.auctionDetails.auctionStartDate | date: "mediumDate" }}</i>
-            </div>
-            <div>
-                <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction End Date">
-                    {{ contract.auctionDetails.auctionEndDate | date: "mediumDate" }}</i>
-            </div>
-            <mat-divider></mat-divider>
-    
+        <div>
+            <p><strong>Auction Details:</strong></p>
         </div>
+
+        <div>
+            <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
+                    {{ contract.auctionDetails.proposal.price }}</i>
+        </div>
+        <div>
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Auction Start Date" style="transform: scale3d(10);">
+                    {{ contract.auctionDetails.auctionStartDate | date: "mediumDate" }}</i>
+        </div>
+        <div>
+            <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction End Date">
+                    {{ contract.auctionDetails.auctionEndDate | date: "mediumDate" }}</i>
+        </div>
+        <mat-divider></mat-divider>
+
+    </div>
 
     <mat-divider></mat-divider>
 
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-between center">
 
-            <div>
-                <p><strong>Bid Details:</strong></p>
-            </div>
-        
-            <div>
-                <i class="fa fa-money" aria-hidden="true" matTooltip="Bid Price">
+        <div>
+            <p><strong>Bid Details:</strong></p>
+        </div>
+
+        <div>
+            <i class="fa fa-money" aria-hidden="true" matTooltip="Bid Price">
                     {{ contract.bidDetails.bid.price }}</i>
-            </div>
-            <div>
-                <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Delivery Date"
-                    style="transform: scale3d(10);">
+        </div>
+        <div>
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Delivery Date" style="transform: scale3d(10);">
                     {{ contract.bidDetails.bid.timeOfDelivery | date: "mediumDate" }}</i>
-            </div>
-            <div>
-                <i *ngIf="contract.bidDetails.bid.typeOfSupply == true" class="mat-icon" aria-hidden="true" matTooltip="Method of Supply" fxLayout="row">
+        </div>
+        <div>
+            <i *ngIf="contract.bidDetails.bid.typeOfSupply == true" class="mat-icon" aria-hidden="true" matTooltip="Method of Supply" fxLayout="row">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.3em"
                     height="1.3em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
                     preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M3 4a2 2 0 0 0-2 2v11h2a3 3 0 0 0 3 3a3 3 0 0 0 3-3h6a3 3 0 0 0 3 3a3 
                     3 0 0 0 3-3h2v-5l-3-4h-3V4m-7 2l4 4l-4 4v-3H4V9h6m7 .5h2.5l1.97 2.5H17M6 15.5A1.5 1.5 0 0 1 7.5 17A1.5 1.5 0 0 1 6 18.5A1.5 1.5 0 0 1 4.5 17A1.5 
                     1.5 0 0 1 6 15.5m12 0a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5z" fill="#626262"/></svg>Full</i>
-                <i *ngIf="contract.bidDetails.bid.typeOfSupply == false" class="fa fa-calendar" aria-hidden="true" matTooltip="Method of Supply">
+            <i *ngIf="contract.bidDetails.bid.typeOfSupply == false" class="fa fa-calendar" aria-hidden="true" matTooltip="Method of Supply">
                     Parts</i>
-            </div>
-    
         </div>
 
-        <mat-divider></mat-divider>
+    </div>
 
-        <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
-            
-            <div>
-                <p><strong>Buyer:</strong> {{user.name}}</p>
-            </div>
+    <mat-divider></mat-divider>
 
-            <div>
-                <p><strong>Supplier:</strong> {{user.name}}</p>
-            </div>
+    <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
+
+        <div>
+            <p><strong>Buyer : </strong> {{user.name| titlecase}}</p>
         </div>
 
-        <div style="margin-bottom: 0.5em;">
-            <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
-                <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Created On"
-                style="transform: scale3d(10);">{{ contract.createdOn | date: "mediumDate" }}</i>
-                <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog()"
-                    style="cursor: pointer;">visibility
-                </mat-icon>
-                <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog()"
-                    style="cursor: pointer;">check_circle_outline
-                </mat-icon>
-            </div>
+        <div>
+            <p><strong>Supplier : </strong> {{user.name| titlecase}}</p>
         </div>
-            
+    </div>
+
+    <div style="margin-bottom: 0.5em;">
+        <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Created On" style="transform: scale3d(10);">{{ contract.createdOn | date: "mediumDate" }}</i>
+            <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog()" style="cursor: pointer;">visibility
+            </mat-icon>
+            <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog()" style="cursor: pointer;">check_circle_outline
+            </mat-icon>
+        </div>
+    </div>
+
 
     <!-- <div style="margin-bottom: 0.5em;">
         <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
