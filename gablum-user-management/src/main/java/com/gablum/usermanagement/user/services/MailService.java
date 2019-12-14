@@ -20,22 +20,21 @@ public class MailService {
     @Autowired
     private UserRepository userRepository;
 
-    public void sendEmail(String type, User user){
+    public void sendEmail(String type, User user) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        if (type == "registering"){
+        if (type == "registering") {
             msg.setTo(user.getEmail());
             msg.setSubject("User Email verification.");
-            String text = "Hello "+user.getName()+", from "+user.getCompanyName()+".\n";
+            String text = "Hello " + user.getName() + ", from " + user.getCompanyName() + ".\n";
             text += "\nWelcome to Gablum!!\nThanks for choosing us for your business.";
             text += "\nGet started by logging in to your profile";
             text += "\n\nYou can now connect with businesses that best suit your expectations.\nIn case of " +
                     "any query you can connect with our support team once you login.";
             text += "\n\nSee you online.\n\nTeam Gablum.";
             msg.setText(text);
-            try
-            {
+            try {
                 javaMailSender.send(msg);
-            } catch (MailException e){
+            } catch (MailException e) {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
             }
@@ -44,7 +43,7 @@ public class MailService {
 
     public void sendProposalEmail(String type, Proposal proposal) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        if(type == "newProposal") {
+        if (type == "newProposal") {
             msg.setTo(proposal.getCreatedBy());
 
             msg.setSubject("New Proposal Added");
@@ -71,7 +70,7 @@ public class MailService {
             }
 
             List<User> subDomainUsers = new ArrayList<>(userRepository.findUserByBusinessSubDomain(proposal.getBusinessSubDomain()));
-            for (int i=0; i<subDomainUsers.size(); i++){
+            for (int i = 0; i < subDomainUsers.size(); i++) {
                 SimpleMailMessage msgForSeller = new SimpleMailMessage();
                 msgForSeller.setTo(subDomainUsers.get(i).getEmail());
 
@@ -111,12 +110,12 @@ public class MailService {
             String textBuyer = "You have initialised a new Auction.\n";
             textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
             textBuyer += "\n\nAuction Details are : ";
-            textBuyer += "\nAuction name: "+auction.getAuctionName();
-            textBuyer += "\nAuction ID: "+auction.getAuctionId();
-            textBuyer += "\nAuction Start Date: "+auction.getAuctionStartDate();
-            textBuyer += "\nAuction End Date: "+auction.getAuctionEndDate();
-            textBuyer += "\nProduct Name: "+auction.proposal.getProductName();
-            textBuyer += "\nCreated by: "+auction.getCreatedBy();
+            textBuyer += "\nAuction name: " + auction.getAuctionName();
+            textBuyer += "\nAuction ID: " + auction.getAuctionId();
+            textBuyer += "\nAuction Start Date: " + auction.getAuctionStartDate();
+            textBuyer += "\nAuction End Date: " + auction.getAuctionEndDate();
+            textBuyer += "\nProduct Name: " + auction.proposal.getProductName();
+            textBuyer += "\nCreated by: " + auction.getCreatedBy();
             textBuyer += "\n\nStay up to date while the auction runs and choose the bid of your" +
                     " choice to award the contract to the suitable supplier.\n";
             textBuyer += "Do read the instructions carefully before you award the contract.";
@@ -130,39 +129,38 @@ public class MailService {
             }
         }
 
-            List<String> interestedUsersEmail = new ArrayList<String>();
-            interestedUsersEmail = auction.getInterestedUsersEmail();
+        List<String> interestedUsersEmail = new ArrayList<String>();
+        interestedUsersEmail = auction.getInterestedUsersEmail();
 
-            for (int i=0; i<interestedUsersEmail.size(); i++){
-                SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
-                msgInterestedUsers.setText(interestedUsersEmail.get(i));
-                msgInterestedUsers.setSubject("New Auction Generated");
-                String textSeller = "\nNew Auction of your sub-domain has been generated";
-                textSeller += "\n\nKeep up to date with the deadlines for the end of registration" +
-                        " as well as the auction start and end dates.";
-                textSeller += "\n\nAuction Details are : ";
-                textSeller += "\nAuction name: "+auction.getAuctionName();
-                textSeller += "\nAuction ID: "+auction.getAuctionId();
-                textSeller += "\nAuction Start Date: "+auction.getAuctionStartDate();
-                textSeller += "\nAuction End Date: "+auction.getAuctionEndDate();
-                textSeller += "\nProduct Name: "+auction.proposal.getProductName();
-                textSeller += "\nCreated by: "+auction.getCreatedBy();
-                textSeller += "\n\nPlace your bids wisely.\nAll the best.\n";
-                textSeller += "\n\nTeam Gablum";
-                msgInterestedUsers.setText(textSeller);
-                try
-                {
-                    javaMailSender.send(msgInterestedUsers);
-                } catch (MailException e){
-                    System.out.println("Wrong email provided");
-                    e.printStackTrace();
-                }
+        for (int i = 0; i < interestedUsersEmail.size(); i++) {
+            SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
+            msgInterestedUsers.setText(interestedUsersEmail.get(i));
+            msgInterestedUsers.setSubject("New Auction Generated");
+            String textSeller = "\nNew Auction of your sub-domain has been generated";
+            textSeller += "\n\nKeep up to date with the deadlines for the end of registration" +
+                    " as well as the auction start and end dates.";
+            textSeller += "\n\nAuction Details are : ";
+            textSeller += "\nAuction name: " + auction.getAuctionName();
+            textSeller += "\nAuction ID: " + auction.getAuctionId();
+            textSeller += "\nAuction Start Date: " + auction.getAuctionStartDate();
+            textSeller += "\nAuction End Date: " + auction.getAuctionEndDate();
+            textSeller += "\nProduct Name: " + auction.proposal.getProductName();
+            textSeller += "\nCreated by: " + auction.getCreatedBy();
+            textSeller += "\n\nPlace your bids wisely.\nAll the best.\n";
+            textSeller += "\n\nTeam Gablum";
+            msgInterestedUsers.setText(textSeller);
+            try {
+                javaMailSender.send(msgInterestedUsers);
+            } catch (MailException e) {
+                System.out.println("Wrong email provided");
+                e.printStackTrace();
             }
         }
+    }
 
     public void sendBidEmail(String type, BidMessage bidMessage) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        if (type == "newBid"){
+        if (type == "newBid") {
             BidDataEntity bidDataEntity = bidMessage.getBidDataEntity();
             msg.setTo(bidDataEntity.getCreatedBy());
             msg.setSubject("New Bid Placed");
@@ -170,16 +168,15 @@ public class MailService {
                     "the top spot.\nImprovise your bid score and settle yourself in appropriate" +
                     "bracket.";
             textBidder += "\nBid details are: ";
-            textBidder += "\nBid Id: "+bidDataEntity.getBidId();
-            textBidder += "\nBid Score: "+bidDataEntity.getScore();
-            textBidder += "\nCurrent rank: "+bidDataEntity.getRank();
+            textBidder += "\nBid Id: " + bidDataEntity.getBidId();
+            textBidder += "\nBid Score: " + bidDataEntity.getScore();
+            textBidder += "\nCurrent rank: " + bidDataEntity.getRank();
             textBidder += "\n\nMake the buyer an offer that's hard to refuse.";
             textBidder += "\n\n\nTeam Gablum";
             msg.setText(textBidder);
-            try
-            {
+            try {
                 javaMailSender.send(msg);
-            } catch (MailException e){
+            } catch (MailException e) {
                 System.out.println("Wrong email provided");
                 e.printStackTrace();
             }
@@ -197,20 +194,22 @@ public class MailService {
             String textSeller = "Congratulations! You have been awarded the contract with Contract Id " + contracts.getContractId();
             textSeller += "\nKindly abide by the clauses mentioned in the contract manual.";
             textSeller += "\nWinning bid details:";
-            textSeller += "\nBid Id: "+contracts.getBidId();
-            textSeller += "\nAuction Id: "+contracts.getAuctionId();
-            textSeller += "\nBuyer's name: "+buyer.getCompanyName();
+            textSeller += "\nBid Id: " + contracts.getBidId();
+            textSeller += "\nAuction Id: " + contracts.getAuctionId();
+            textSeller += "\nBuyer's name: " + buyer.getCompanyName();
             textSeller += "\nStay in touch and expand your outreach by connecting with businesses round the globe.";
             textSeller += "\n\n\n Team Gablum";
             msgS.setText(textSeller);
             msgB.setTo(contracts.getBuyerEmail());
             msgB.setSubject("New Contract awarded");
             String textBuyer = "Congratulations! Your auction ended successfully.";
-            textBuyer += "The details of the auction that finished: ";
-            textBuyer += "\nAuction";
-            textBuyer += "\n\nTake a note that you need to e-sign the contract before you send it to the supplier.";
-            textBuyer += "\n\nPlease go through the contract manual carefully, before you sign it.";
+            textBuyer += "The details of the winning bid: ";
+            textBuyer += "\nAuction Id: " + contracts.getAuctionDetails().getAuctionId();
+            textBuyer += "\nBid Id: " + contracts.getBidId();
+            textBuyer += "\nSupplier's Name: " + seller.getCompanyName();
+            textBuyer += "\n\nPlease abide by the contract manual carefully.";
             textBuyer += "\n\n\nTeam Gablum";
             msgB.setText(textBuyer);
         }
     }
+}
