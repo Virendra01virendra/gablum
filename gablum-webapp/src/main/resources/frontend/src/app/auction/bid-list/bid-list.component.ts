@@ -28,7 +28,7 @@ export class BidListComponent implements OnInit, OnDestroy {
   private socketToken: string;
   private tokenBody: any;
 
-  public timeData: NgxDateData[] = [];
+  public timeData: NgxData[] = [];
 
   private subscriptionRef: StompSubscription;
   constructor(
@@ -47,15 +47,17 @@ export class BidListComponent implements OnInit, OnDestroy {
         const data = msg.data;
         if ('bidsAuction' in data) {
           this.bids = data.bidsAuction;
+          this.sortBidsByCreated();
           this.bids.forEach(b => {
             this.timeData.push(
               {
-                name: new Date(b.createdOn),
+                name: b.createdOn,
                 value: b.scoreObject.total
               }
             );
           });
           this.timeData = [...this.timeData];
+          this.sortBidsByScore();
         }
 
         if ('auctionSingle' in data) {
@@ -94,32 +96,9 @@ export class BidListComponent implements OnInit, OnDestroy {
 }
 
   ngOnInit() {
-    // this.bids = [
-    //   {
-    //     bidId: '123',
-    //     auctionId: '345',
-    //     bid: {
-    //       price: 12345,
-    //       creditPeriod: 2,
-    //       qaqcCertificate: true,
-    //       timeOfDelivery: new Date(),
-    //       typeOfSupply: true
-    //     },
-    //     createdBy: 'a@b.c',
-    //     score: {
-    //       creditScore: 123,
-    //       deliveryScore: 23,
-    //       priceScore: 56,
-    //       qaqcScore: 3,
-    //       typeScore: 4,
-    //       total: 209
-    //     }
-    //   }
-    // ];
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
-        // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
     this.auctionDataService.getBidsAuction(BidListComponent.messageKey, 'bidsAuction', this.auctionId);
@@ -154,12 +133,12 @@ export class BidListComponent implements OnInit, OnDestroy {
                 this.bids.push(newBid);
                 this.timeData.push(
                   {
-                    name: new Date(newBid.createdOn),
+                    name: newBid.createdOn,
                     value: newBid.scoreObject.total
                   }
                 );
                 this.timeData = [...this.timeData];
-                this.sortBids();
+                this.sortBidsByScore();
               }
             }
           }
@@ -193,7 +172,7 @@ export class BidListComponent implements OnInit, OnDestroy {
     }
   }
 
-  sortBids() {
+  sortBidsByScore() {
     this.bids.sort((b1, b2) => {
       if (b1.scoreObject.total < b2.scoreObject.total) {
         return 1;
@@ -205,6 +184,17 @@ export class BidListComponent implements OnInit, OnDestroy {
 
     this.bids.forEach((v, i) => {
       v.rank = i + 1;
+    });
+  }
+
+  sortBidsByCreated() {
+    this.bids.sort((b1, b2) => {
+      if (new Date(b1.createdOn) > new Date(b2.createdOn)) {
+        return 1;
+      } else if (new Date(b1.createdOn) < new Date(b2.createdOn)) {
+        return -1;
+      }
+      return 0;
     });
   }
 }
