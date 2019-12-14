@@ -41,7 +41,7 @@
         </mat-expansion-panel-header>
   
         <div class="expansion-auction-card" fxLayout="column">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
         </div>
   
       </mat-expansion-panel>
@@ -53,9 +53,7 @@
         </mat-expansion-panel-header>
   
         <div class="expansion-proposal-card" fxLayout="column">
-          <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal">
-          </app-seller-proposal-card>
-        </div>
+        <app-seller-proposal-card *ngFor="let allProposal of allProposals" [allProposal]="allProposal"  fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-seller-proposal-card>        </div>
       </mat-expansion-panel>
   
       <mat-expansion-panel>
