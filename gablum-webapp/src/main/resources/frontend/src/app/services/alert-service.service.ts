@@ -17,7 +17,7 @@ export class AlertServiceService {
   public storedSubcriptions = connectMessage => {};
 
   private socketReconnect = (isReconnect = true) => {
-    this.socket = new sockjs(environment.wsURL);
+    this.socket = new sockjs(environment.alertURL);
     this.stompClient = Stomp.over(this.socket);
     this.stompClient.debug = msg => this.logger.log(msg);
     this.stompClient.heartbeatIncoming = 5000;
@@ -39,6 +39,7 @@ export class AlertServiceService {
     this.socketReconnect(false);
   }
   connect(connectCb = connectMessage => { this.logger.log(connectMessage); }) {
+    this.logger.log('connect called on alert');
     this.wantedDisconnection = false;
     this.storedSubcriptions = connectCb;
     this.stompClient.connect({}, connectCb);
@@ -50,17 +51,15 @@ export class AlertServiceService {
     }
   }
 
-  subscribe(topic: string, dest: string, key: string, auth: string): StompSubscription {
+  subscribe(topic: string, dest: string, key: string): StompSubscription {
+    console.log('navbar component ::::: in service subscribe');
     if (!this.stompClient.connected) {
+      console.log('navbar component ::::: connection not open');
       throw new Error('connection not yet open');
     }
-    const stompHeaders = {
-      auth
-    };
     return this.stompClient.subscribe(topic, message => {
+      console.log('navbar component :::: calling service subscribe');
       this.comms.postMessage(this, dest, {[key]: message});
-    },
-    stompHeaders);
-    // return this.comms.getMessages();
+    });
   }
 }

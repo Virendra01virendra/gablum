@@ -23,8 +23,8 @@ public class GmailRabbitListener {
     @StreamListener("newProposal")
     public void newProposal(Proposal proposal){
 
-        mailController.sendingProposalMail(proposal);
         userListService.postMessageToUserListChannel(proposal);
+        mailController.sendingProposalMail(proposal);
     }
 
     @StreamListener("newAuction")

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   wsURL: 'https://gablum-dev.stackroute.io/api/auctions/ws',
+  alertURL: 'https://gablum-dev.stackroute.io/api/users/ws',
   loginApi: 'https://gablum-dev.stackroute.io/api/users/signin',
   logoutApi: 'https://gablum-dev.stackroute.io/api/users/signout',
   registerApi: 'https://gablum-dev.stackroute.io/api/users/signup',

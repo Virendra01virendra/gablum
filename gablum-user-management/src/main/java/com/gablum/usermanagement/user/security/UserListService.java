@@ -21,8 +21,11 @@ public class UserListService {
 
     public void postMessageToUserListChannel(Proposal proposal){
         List<User> listOfUsers = userRepository.findAllByBusinessSubDomain(proposal.getBusinessSubDomain());
+        log.warn(
+                "\n\n\n\n\n\n" + "recd props" + "\n\n\n\n\n"
+        );
         sendingOperations.convertAndSend(
-                "topic/proposalAlert",
+                "/topic/proposalAlert" + listOfUsers.get(0).getEmail(),
                  listOfUsers
                 );
     }

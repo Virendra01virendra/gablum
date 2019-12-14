@@ -11,6 +11,7 @@ import { LoginDataService } from 'src/app/services/login-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
 import { IntlService } from 'src/app/services/intl.service';
+import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -18,8 +19,11 @@ import { IntlService } from 'src/app/services/intl.service';
 })
 export class NavbarComponent implements OnInit {
 
+  public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
+  public alertMessage: string;
+  public alertFlag: boolean;
 
   @Output() public menuToggled = new EventEmitter();
 
@@ -33,11 +37,12 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private login: LoginDataService,
     public dialog: MatDialog,
-    private lang: IntlService
+    private lang: IntlService,
+    private alertService: AlertServiceService
   ) {
     this.isLoggedIn = auth.getAuthenticated();
-    this.comms.getMessages().subscribe( message => {
-      if (message.dest === '@all') {
+    this.comms.getMessages().subscribe(message => {
+      if (message.dest === '@all' || message.dest === NavbarComponent.messageKey) {
         const data = message.data;
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
@@ -62,11 +67,20 @@ export class NavbarComponent implements OnInit {
             logger.log(logoutResult);
           }
         }
+        if ('newProposalAlert' in data) {
+          console.log('data from subscribe to alert topic :::', JSON.stringify(data.newProposalAlert));
+        }
       }
     });
   }
 
   ngOnInit() {
+    if (!this.alertService.stompClient.connected) {
+      this.alertService.connect(message => this.subscribe());
+    } else {
+      this.subscribe();
+      this.alertService.storedSubcriptions = message => this.subscribe();
+    }
   }
 
   menuClicked(event) {
@@ -85,4 +99,14 @@ export class NavbarComponent implements OnInit {
   changeLang(lang: string) {
     this.lang.setLang(lang);
   }
+  alert() {
+    this.router.navigate(['/inbox']);
+  }
+
+
+  subscribe() {
+    this.logger.log('calling subscribe ::::::::::');
+    this.alertService.subscribe('/topic/proposalAlert', NavbarComponent.messageKey, 'newProposalAlert');
+  }
+
 }
