@@ -25,7 +25,9 @@ public class GmailRabbitListener {
 
     @StreamListener("newProposal")
     public void newProposal(Proposal proposal){
-        log.info("proposal--->",proposal.toString());
+//        log.info("proposal--->");
+//        log.info(proposal.toString());
+//        log.info("proposal--->");
 
         mailController.sendingProposalMail(proposal);
         userListService.postMessageToUserListChannel(proposal);
