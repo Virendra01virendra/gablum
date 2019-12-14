@@ -9,6 +9,10 @@ import { WinningBidDialogComponent } from '../winning-bid-dialog/winning-bid-dia
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Auction } from 'src/app/interfaces/auction';
 import { User } from 'src/app/interfaces/user';
+import { Profile } from 'src/app/interfaces/profile';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { environment } from 'src/environments/environment';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
 
 
@@ -23,12 +27,23 @@ export class BidCardComponent implements OnInit {
     private route: ActivatedRoute,
     private matDialog: MatDialog,
     private auth: AuthenticationService,
+    private comms: CommunicatorService,
+    private profileDataService: ProfileDataService
     ) {
+      comms.getMessages().subscribe(msg => {
+        if (msg.dest === BidCardComponent.messageKey || msg.dest === '@all') {
+          const data = msg.data;
+          if ('otherUser' in data) {
+            this.otherUser = data.otherUser;  // panelOpenState = false;
+          }
+        }
+      });
   }
   public static messageKey = 'BidCardComponent';
   public auctionId: string;
   public bidRank: number;
-
+  public otherUser: Profile;
+  public profileUrl = environment.profileUrl;
   @Input() public auction: Auction;
   @Input() public bidDataEntity: NewBid;
 
@@ -44,6 +59,9 @@ export class BidCardComponent implements OnInit {
         this.auctionId = params.get('id');
         // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
+    this.profileUrl = this.profileUrl + '/' + this.bidDataEntity.createdBy;
+    this.profileDataService.getUserProfileByEmailWithUrl(
+        this.profileUrl, BidCardComponent.messageKey, 'otherUser');
   }
 
   openDialog(bidDataEntity1: NewBid) {

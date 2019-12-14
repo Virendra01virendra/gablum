@@ -13,6 +13,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 import { MatSnackBar } from '@angular/material';
 import { StompSubscription } from '@stomp/stompjs';
 import { NgxData, NgxDateData } from 'src/app/interfaces/ngx-data';
+import { Profile } from 'src/app/interfaces/profile';
 
 @Component({
   selector: 'app-bid-list',
@@ -27,6 +28,7 @@ export class BidListComponent implements OnInit, OnDestroy {
   public isOwner = false;
   private socketToken: string;
   private tokenBody: any;
+  public otherUser: Profile;
 
   public timeData: NgxData[] = [];
 
