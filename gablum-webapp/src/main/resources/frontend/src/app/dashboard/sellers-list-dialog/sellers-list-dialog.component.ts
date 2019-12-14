@@ -30,7 +30,7 @@ export class SellersListDialogComponent implements OnInit {
   public profile: Profile;
   alreadyRegistered: boolean;
   public userEmail: string;
-  displayedColumns: string[] = [ 'sellerEmail', 'action'];
+  displayedColumns: string[] = ['sellerEmail', 'action'];
   public ELEMENT_DATA;
   // dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
   // selection = new SelectionModel<InvitedUsersEmail>(true, []);
@@ -95,9 +95,11 @@ export class SellersListDialogComponent implements OnInit {
 
 
 
-  onInvite(ele, sellerEmail) {
-    console.log('Invite data', ele, sellerEmail);
-    this.disabled = true;
+  onInvite(sellerEmail) {
+    this.data.invitedUsersEmail.push(sellerEmail);
+    console.log('Updated data', this.data);
+    // const patchObject = Object.assign({}, { id: this.data.proposalId, patchValue: [sellerEmail] });
+
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
   }
 }
