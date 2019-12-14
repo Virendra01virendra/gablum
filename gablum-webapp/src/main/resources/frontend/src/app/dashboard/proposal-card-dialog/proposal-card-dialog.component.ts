@@ -31,7 +31,7 @@ export class ProposalCardDialogComponent implements OnInit {
   userRole;
   weightObject = [];
   weightData;
-  view: any[] = [500, 200];
+  view: any[] = [500, 165];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -57,7 +57,7 @@ export class ProposalCardDialogComponent implements OnInit {
         const Data = msg.data;
 
         if ('userProfile' in Data) {
-          this.userProfile = data.userProfile;
+          this.userProfile = Data.userProfile;
           if (this.userProfile.role.length === 1) {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;

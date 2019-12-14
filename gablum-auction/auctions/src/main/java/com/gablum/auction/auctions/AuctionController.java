@@ -77,7 +77,7 @@ public class AuctionController {
         String email = userService.getEmail(request);
         while (i < auctionsToAdd.size()){
             auctionsToAdd.get(i).setCreatedBy(email);
-
+            auctionsToAdd.get(i).setAuctionActive(true);
             auctionsToAdd.get(i).setUpdatedBy(email);
             auctionsToAdd.get(i).setUpdatedOn(new Date());
             auctionsToAdd.get(i).setCreatedOn(new Date());
@@ -244,5 +244,53 @@ public class AuctionController {
         messageChannelContract.send(msg);
         return auctionToEnd;
     }
+
+
+    @GetMapping("/auctions/buyer")
+    @ResponseBody
+    public List<Auction> getAllAuctionsBuyer(
+            @RequestParam Map<String, String> queryMap,
+            HttpServletRequest request
+    ) {
+        String email = userService.getEmail(request);
+        log.debug(email);
+        List<Auction> auctionList1 = new ArrayList<Auction>();
+        auctionList1.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
+//        auctionList.addAll(auctionService.getAuctionSeller(queryMap, email));
+        for(Auction auction: auctionList1)  {
+            auction.setSocketTokens(null);
+        }
+        return auctionList1;
+    }
+
+
+//    @GetMapping("/auctions/seller")
+//    @ResponseBody
+//    public List<Auction> getAllAuctionsSeller(
+//            @RequestParam Map<String, String> queryMap,
+//            HttpServletRequest request
+//    ) {
+//        String email = userService.getEmail(request);
+//        log.debug(email);
+//        List<Auction> auctionList2 = new ArrayList<Auction>();
+////        auctionList.addAll(auctionService.getAllAuctionsBuyer(queryMap, email));
+//        auctionList2.addAll(auctionService.getAuctionSeller(queryMap, email));
+//        for(Auction auction: auctionList2)  {
+//            auction.setSocketTokens(null);
+//        }
+//        return auctionList2;
+//    }
+
+    @GetMapping("auctions/buyer/old")
+    @ResponseBody
+    public List<Auction> getOldAuctionsBuyer(@RequestParam Map<String, String> queryMap,
+            HttpServletRequest request) {
+        String email = userService.getEmail(request);
+        return auctionService.getOldAuctionsBuyerService(queryMap, email);
+    }
+
+
+
+
 
 }

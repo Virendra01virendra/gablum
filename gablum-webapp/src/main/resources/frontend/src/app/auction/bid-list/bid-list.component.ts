@@ -23,6 +23,7 @@ export class BidListComponent implements OnInit, OnDestroy {
   public static messageKey = 'BidListComponent';
   auctionId;
   bids: NewBid[];
+  bidsData: NewBid[];
   auction: Auction;
   public isOwner = false;
   private socketToken: string;
@@ -104,6 +105,7 @@ export class BidListComponent implements OnInit, OnDestroy {
     this.auctionDataService.getBidsAuction(BidListComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidListComponent.messageKey, 'auctionSingle', this.auctionId);
   }
+
 
   subscribe() {
     this.logger.log('calling subscribe');

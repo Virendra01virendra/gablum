@@ -25,7 +25,7 @@ export class InterceptorService implements HttpInterceptor {
             this.auth.clearProfile();
           } else if (err.status === 403) {
             this.logger.log(this);
-            this.router.navigate(['/dashboard']);
+            // this.router.navigate(['/dashboard']);
             // this.auth.clearProfile();
           }
         }

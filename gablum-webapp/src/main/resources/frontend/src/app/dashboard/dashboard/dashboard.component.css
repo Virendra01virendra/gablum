@@ -1,10 +1,10 @@
 .title {
-    margin-left: 2em;
+    margin-left: 1em;
 }
-  
+
 .title-icon {
     margin-left: 1em;
-}  
+}
 
 .dashboard-container {
     width: 90%;
@@ -12,6 +12,7 @@
     overflow-x: hidden;
     background-image: url("../../../assets/Images/background.jpg");
 }
+
 .proposal-card {
     margin: 1em;
     padding: 1em;
@@ -35,7 +36,7 @@
 }
 
 .timer {
-    align-content: center ;
+    align-content: center;
 }
 
 .product-specs {
