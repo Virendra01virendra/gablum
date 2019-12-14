@@ -48,19 +48,6 @@ export class AuctionCardComponent implements OnInit {
 
   ngOnInit() {
     const auctionUrl = environment.tokenUrl;
-    this.http.get<AuctionSocketToken>(auctionUrl + '/' + this.auction.auctionId)
-    .subscribe(token => {
-      this.auction.socketToken = token.token;
-      this.logger.log(this.auction);
-      this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
-      this.logger.log(this.tokenBody);
-      this.isOwner = this.tokenBody.isOwner;
-      // this.ws.connect(message => this.subscribe());
-    },
-    err => {
-      this.logger.log(err);
-    });
-    this.logger.log(auctionUrl);
   }
 
   public placeBid() {

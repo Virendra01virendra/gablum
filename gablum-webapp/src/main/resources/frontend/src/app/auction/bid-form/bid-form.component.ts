@@ -3,7 +3,7 @@ import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar, MatBottomSheet } from '@angular/material';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -13,6 +13,9 @@ import { BidSubmissionDialogComponent } from '../bid-submission-dialog/bid-submi
 import { Score } from 'src/app/interfaces/score';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { StompSubscription } from '@stomp/stompjs';
+import { AddBidSheetComponent } from '../add-bid-sheet/add-bid-sheet.component';
+import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,17 +31,16 @@ const httpOptions = {
 
 export class BidFormComponent implements OnInit, OnDestroy {
   public static messageKey = 'BidFormComponent';
-  bidForm: FormGroup;
-  url = 'localhost:8080/api/auctions/auctions/bid';
   result1;
   result2;
   auctionId: string;
   auction;
   scoreObject: Score;
   subscriptionRef: StompSubscription;
+  public auctionUrl: string;
   isOwner = false;
   bids: NewBid[];
-  tokenBody: string;
+  tokenBody: any;
   constructor(
     public http: HttpClient,
     private ws: WebsocketService,
@@ -47,14 +49,46 @@ export class BidFormComponent implements OnInit, OnDestroy {
     private auctionDataService: AuctionsDataService,
     private comms: CommunicatorService,
     private matDialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private bottomSheet: MatBottomSheet
     ) {
+      const auctionUrl = environment.auctionUrl;
       comms.getMessages().subscribe(msg => {
+        const tokenUrl = environment.tokenUrl;
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
           if ('auctionSingle' in data) {
               this.auction = data.auctionSingle;
               this.logger.log(this.auction);
+              this.logger.log(tokenUrl);
+              this.http.get<AuctionSocketToken>(tokenUrl + '/' + this.auctionId)
+              .subscribe(token => {
+                console.log(token);
+                this.auction.socketToken = token.token;
+                console.log(this.auction);
+                console.log(token.token);
+                this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
+                this.logger.log('connecting to ws');
+                this.logger.log(this.tokenBody);
+                this.isOwner = this.tokenBody.isOwner;
+                snackBar.open(
+                  'Connecting to the auction room',
+                  '',
+                  {
+                    duration: 60000
+                  }
+                );
+                if (!this.ws.stompClient.connected) {
+                  this.ws.connect(message => this.subscribe());
+                } else {
+                  this.subscribe();
+                  this.ws.storedSubcriptions = message => this.subscribe();
+                }
+              },
+              err => {
+                this.logger.log(err);
+              }
+            );
           }
 
           if ('saveBids' in data) {
@@ -99,18 +133,6 @@ export class BidFormComponent implements OnInit, OnDestroy {
       });
 
     // this.ws.connect(message => this.subscribe());
-
-    this.bidForm = new FormGroup({
-      newPrice: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+$')]),
-      newCreditPeriod: new FormControl('', [
-        Validators.required,
-        Validators.pattern('^[0-9]+$')]),
-      newQaqcCertificate: new FormControl('false'),
-      newTypeOfDelivery: new FormControl('false'),
-      newTimeOfDelivery: new FormControl(''),
-      });
     this.auctionDataService.getBidsAuction(BidFormComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
 
@@ -157,11 +179,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
       typeOfSupply: form.value.newTypeOfDelivery,
       timeOfDelivery: form.value.newTimeOfDelivery,
       };
-
-    // this.ws.getBidScore(bid);
-
     this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
-
   }
 
   bidList() {
@@ -225,5 +243,11 @@ export class BidFormComponent implements OnInit, OnDestroy {
         this.logger.log(err);
       }
     }
+  }
+
+  openSheet() {
+    this.bottomSheet.open(
+      AddBidSheetComponent
+    );
   }
 }
