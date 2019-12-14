@@ -11,11 +11,19 @@
         <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.xs *ngIf="isLoggedIn">Gablum</a>
         <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.gt-xs *ngIf="isLoggedIn">b</a>
         <div class="spacer"></div>
+        
         <div class="nav-links" *ngIf="!isLoggedIn" fxLayout="row" fxHide.xs>
             <a [routerLink]="['.']" class="nav-link nav-icon" (click)="opDialog()">Login</a>
             <a [routerLink]="['/']" fragment="about" class="nav-link nav-icon">About Us</a>
             <a [routerLink]="['/']" fragment="contact" class="nav-link nav-icon">Contact</a>
         </div>
+        <button class="menu-link nav-icon" nav-link nav-icon mat-button color="primary" [matMenuTriggerFor]="langMenu">
+            <mat-icon>language</mat-icon>
+        </button>
+        <mat-menu #langMenu="matMenu">
+            <button mat-button class="logout" (click)="changeLang('en')">English</button>    
+            <button mat-button class="logout" (click)="changeLang('hi')">Hindi</button>    
+        </mat-menu>
         <button class="menu-link nav-icon" nav-link nav-icon *ngIf="isLoggedIn" mat-button color="primary" [matMenuTriggerFor]="appMenu">
             <span *ngIf="userProfile && userProfile.name">{{ userProfile.name.split(' ')[0] | titlecase }} </span>
             <mat-icon>person</mat-icon>

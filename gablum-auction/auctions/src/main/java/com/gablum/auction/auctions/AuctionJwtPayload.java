@@ -19,5 +19,5 @@ public class AuctionJwtPayload {
     private boolean isOwner;
 
     private long iat;
-    private long expiry;
+    private long exp;
 }

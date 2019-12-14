@@ -1,37 +1,53 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
   <div class="hero-text-container">
-    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{heroText}}</h2>
+    <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{'LANDING.HEROTEXT' | translate}}</h2>
   </div>
 </div>
 
-<section class="about-section" id="about" [ngStyle.xs]="{'width': '80%'}" fxLayout="column nowrap">
+<section class="about-section" id="about"
+[ngStyle.xs]="{'width': '80%'}"
+fxLayout="column nowrap"
+>
 
 
-  <div class="feature" fxLayout="row nowrap" fxLayout.xs="column nowrap" fxLayoutAlign="space-around" fxLayoutAlign.xs="auto">
-    <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
-      <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+    <div class="feature"
+    fxLayout="row nowrap"
+    fxLayout.xs="column nowrap"
+    fxLayoutAlign="space-around"
+    fxLayoutAlign.xs="auto">
+      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
+        <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+      </div>
+      <div 
+      class="feature-text" fxFlex="0 0 60%"
+      fxFlex.xs="0 0 90%"
+      fxFlexAlign="space-around center"
+      style="align-self: center;">
+          <p class="section-content">
+              {{'LANDING.ABOUT1' | translate}}
+          </p>
+      </div>
     </div>
-    <div class="feature-text" fxFlex="0 0 60%" fxFlex.xs="0 0 90%" fxFlexAlign="space-around center" style="align-self: center;">
-      <p class="section-content">
-        A Productivity tool for procurement department of large organiszations, "Gablum" can also help in transparently tracking expenses. Digital platform for managing a Cloud based exchange for auctioning, reverse auctioning (downward pricing) in B2B environment.
-        Helps in transparent & competitive way of fulfillment of supply, where suppliers bid and win orders for supplies in real time.
-      </p>
+    <mat-divider fxFlex="1 0 100%" style="margin: 1em 0;"></mat-divider>
+    <div class="feature"
+    fxLayout="row-reverse nowrap"
+    fxLayout.xs="column nowrap"
+    fxLayoutAlign="space-around"
+    fxLayoutAlign.xs="auto">
+      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
+        <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+      </div>
+      <div 
+      class="feature-text" fxFlex="0 0 60%"
+      fxFlex.xs="0 0 90%"
+      fxFlexAlign="space-around center"
+      style="align-self: center;">
+          <p class="section-content">
+              {{'LANDING.ABOUT2' | translate}}
+          </p>
+      </div>
     </div>
-  </div>
-  <mat-divider fxFlex="1 0 100%" style="margin: 1em 0;"></mat-divider>
-  <div class="feature" fxLayout="row-reverse nowrap" fxLayout.xs="column nowrap" fxLayoutAlign="space-around" fxLayoutAlign.xs="auto">
-    <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
-      <img src="https://picsum.photos/400/400" alt="" style="object-fit: cover; width: 100%; height: 100%;">
-    </div>
-    <div class="feature-text" fxFlex="0 0 60%" fxFlex.xs="0 0 90%" fxFlexAlign="space-around center" style="align-self: center;">
-      <p class="section-content">
-        The solutions aims to solve problems of supply chain such as, overstocking/understocking, stocking cost, transportation costs (directly supply from production), it also helps suppliers reduce the risk of order acceptance, payment and fulfillment. Buyers
-        have to float proposals, schedule for auctioning, suppliers register and show up/participate in online auctioning processes. Auctioning process has to do due diligence, such as verify buyers, suppliers, the proposals for buying, submissions to
-        supply, the bids and others. The process has to be automatic and assisted, so that buyers and suppliers do not have to put too much of effort, instead focus more on value addition.
-      </p>
-    </div>
-  </div>
 </section>
 
 <!-- <section class="subdomains-about" fxLayout="column nowrap">
@@ -44,30 +60,30 @@
 </section> -->
 
 <section class="contact-section" id="contact">
-  <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>Contact Us for any Query</strong></h2>
-  <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.gt-xs><strong>Contact Us</strong></h2>
-  <form class="contact-form" fxLayout="column nowrap">
-    <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" type="text">
-    </mat-form-field>
+    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.xs><strong>{{'LANDING.CONTACT' | translate}}</strong></h2>
+    <h2 class="mat-headline" style="display: flex; justify-content: center;" fxHide.gt-xs><strong>Contact Us</strong></h2>
+    <form class="contact-form" fxLayout="column nowrap">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text">
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" type="email">
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email">
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Subject</mat-label>
-      <input matInput placeholder="Sucject" type="text">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Query</mat-label>
-      <textarea matInput placeholder="Leave a comment" rows="6"></textarea>
-    </mat-form-field>
-    <button mat-raised-button color='primary' type="submit" fxFlexAlign="flex-end">Submit</button>
-  </form>
+        <mat-form-field appearance="outline">
+            <mat-label>Subject</mat-label>
+            <input matInput placeholder="Sucject" type="text">
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Query</mat-label>
+            <textarea matInput placeholder="Leave a comment" rows="6"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color='primary' type="submit" fxFlexAlign="flex-end">Submit</button>
+    </form>
 </section>
 
 <section class="map-container" id="mapContainer">

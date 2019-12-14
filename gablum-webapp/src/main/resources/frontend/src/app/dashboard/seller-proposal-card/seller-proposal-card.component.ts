@@ -62,9 +62,7 @@ export class SellerProposalCardComponent implements OnInit {
 
   shownInterest(allProposal: Proposal) {
     // const proposalId = element.proposalId;
-    this.logger.log('some data which we are publishing ');
     this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, allProposal, 'interestedSellers');
-    this.logger.log('maakivhiooo--->' + this.auth.getProfileData());
   }
 
   openDialog(allProposal: Proposal) {
