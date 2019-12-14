@@ -95,8 +95,11 @@ public class UserController {
         foundUser.setPassword(null);
         return foundUser;
     }
-//
-//    public
+
+    @GetMapping("/profile/{email}")
+    public User getUserProfilesByEmail(@PathVariable String email){
+        return userService.getUserByEmail(email);
+    }
 
     @PatchMapping("/profile")
     public ResponseEntity<User> editUserProfile(@RequestBody User modifiedUser, HttpServletRequest request) {

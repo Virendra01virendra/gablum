@@ -187,6 +187,8 @@ public class MailService {
     }
 
     public void sendContractEmail(String type, Contracts contracts) {
+        User buyer = userRepository.findUserByEmail(contracts.getBuyerEmail());
+        User seller = userRepository.findUserByEmail(contracts.getSellerEmail());
         SimpleMailMessage msgB = new SimpleMailMessage();
         SimpleMailMessage msgS = new SimpleMailMessage();
         if (type == "newContracts") {
@@ -194,19 +196,21 @@ public class MailService {
             msgS.setSubject("New Contract Awarded");
             String textSeller = "Congratulations! You have been awarded the contract with Contract Id " + contracts.getContractId();
             textSeller += "\nKindly abide by the clauses mentioned in the contract manual.";
-            textSeller += "\nContract details:";
+            textSeller += "\nWinning bid details:";
             textSeller += "\nBid Id: "+contracts.getBidId();
             textSeller += "\nAuction Id: "+contracts.getAuctionId();
+            textSeller += "\nBuyer's name: "+buyer.getCompanyName();
             textSeller += "\nStay in touch and expand your outreach by connecting with businesses round the globe.";
             textSeller += "\n\n\n Team Gablum";
             msgS.setText(textSeller);
             msgB.setTo(contracts.getBuyerEmail());
             msgB.setSubject("New Contract awarded");
-            String textBuyer = "Congratulations! you got a suitable supplier for your demand.";
+            String textBuyer = "Congratulations! Your auction ended successfully.";
+            textBuyer += "The details of the auction that finished: ";
+            textBuyer += "\nAuction";
             textBuyer += "\n\nTake a note that you need to e-sign the contract before you send it to the supplier.";
             textBuyer += "\n\nPlease go through the contract manual carefully, before you sign it.";
             textBuyer += "\n\n\nTeam Gablum";
             msgB.setText(textBuyer);
         }
     }
-}

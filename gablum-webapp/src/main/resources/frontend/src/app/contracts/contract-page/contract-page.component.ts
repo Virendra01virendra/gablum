@@ -47,6 +47,7 @@ export class ContractPageComponent implements OnInit {
         if ('contracts' in data) {
           this.contracts = data.contracts;
         }
+        console.log(this.contracts);
       }
     });
   }
@@ -55,10 +56,6 @@ export class ContractPageComponent implements OnInit {
     this.contractsDataService.getAllContracts(
       ContractPageComponent.messageKey,
       'contracts'
-    );
-    this.user.getUserProfileByEmail(
-      ContractPageComponent.messageKey,
-      'userProfile'
     );
   }
 }

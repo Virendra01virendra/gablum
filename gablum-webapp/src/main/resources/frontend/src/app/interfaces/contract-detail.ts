@@ -2,6 +2,7 @@
 import { Time } from '@angular/common';
 import { Auction } from './auction';
 import { Bid } from './bid';
+import { NewBid } from './newbid';
 
 export interface ContractDetail {
     _id: string;
@@ -9,13 +10,11 @@ export interface ContractDetail {
     auctionId: string;
     bidId: string;
     auctionDetails: Auction;
-    BidDetails: any;
+    bidDetails: NewBid;
     buyerEmail: string;
-    buyer: any;
     buyerESign: string;
     sellerESign: string;
     sellerEmail: string;
-    seller: any;
     contractStatus: boolean;
     currentHash: string;
     previousHash: string;
