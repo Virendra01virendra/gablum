@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -19,14 +19,16 @@ import { IntlService } from 'src/app/services/intl.service';
 export class NavbarComponent implements OnInit {
 
   public isLoggedIn = false;
-  public userProfile: Profile;
+  public roles: string;
 
   @Output() public menuToggled = new EventEmitter();
+
+  @Input() profile: Profile;
 
   constructor(
     private comms: CommunicatorService,
     private auth: AuthenticationService,
-    private profile: ProfileDataService,
+    private profileDataService: ProfileDataService,
     private logger: LoggerService,
     private router: Router,
     private login: LoginDataService,
@@ -40,7 +42,13 @@ export class NavbarComponent implements OnInit {
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
           // this.logger.log(auth.getProfileData());
-          this.userProfile = auth.getProfileData();
+          this.profile = auth.getProfileData();
+        }
+
+        if ('profile' in data) {
+          this.profile = data.profile;
+          this.roles = this.profile.role.map(r => r.role).join(', ');
+          this.logger.log(this.profile);
         }
 
         if ('logoutResult' in data) {

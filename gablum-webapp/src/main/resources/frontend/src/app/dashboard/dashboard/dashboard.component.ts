@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit {
   pastAuctions: Proposal[];
   public businessSubdomain: string;
   public auctionsNotEmpty = true;
+  public oldAuctionsNotEmpty = true;
   // public dashboardSections: DashboardSection[] = [
   //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
   //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
@@ -99,6 +100,11 @@ export class DashboardComponent implements OnInit {
         if ('auctionsBuyer' in data) {
           this.auctionsBuyer = data.auctionsBuyer;
           this.auctions = this.auctionsBuyer;
+          if (this.auctions.length !== 0) {
+            this.auctionsNotEmpty = true;
+          } else {
+            this.auctionsNotEmpty = false;
+          }
           console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
         }
 
@@ -137,6 +143,11 @@ export class DashboardComponent implements OnInit {
         if ('oldAuctions' in data) {
           this.oldAuctions = data.oldAuctions;
           console.log('olllddd auctions', this.oldAuctions);
+          if (this.oldAuctions.length !== 0) {
+            this.oldAuctionsNotEmpty = true;
+          } else {
+            this.oldAuctionsNotEmpty = false;
+          }
         }
         // console.log(this.isBuyer);
         // console.log(this.isSeller);
