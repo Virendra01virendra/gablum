@@ -33,7 +33,7 @@ describe('ContractCardComponent', () => {
             },
           },
         },
-      },]
+      }, ]
     })
       .compileComponents();
   }));

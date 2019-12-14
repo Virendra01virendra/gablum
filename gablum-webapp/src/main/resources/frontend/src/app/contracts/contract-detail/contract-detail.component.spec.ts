@@ -6,11 +6,14 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ContractDetailComponent', () => {
   let component: ContractDetailComponent;
   let fixture: ComponentFixture<ContractDetailComponent>;
+  const fakeActivatedRoute = {
+    snapshot: { data: {} }
+  } as ActivatedRoute;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,10 +24,22 @@ describe('ContractDetailComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      providers: [
-        {
-          provide: MAT_DIALOG_DATA
-        }]
+      providers: [{
+        provide: ActivatedRoute, MAT_DIALOG_DATA,
+        useValue: {
+          snapshot: {
+            paramMap: {
+              get(): string {
+                return '123';
+              },
+            },
+          },
+        },
+      }, ]
+      // providers: [
+      //   {
+      //     provide: MAT_DIALOG_DATA
+      //   }]
     })
       .compileComponents();
   }));
@@ -33,8 +48,7 @@ describe('ContractDetailComponent', () => {
     fixture = TestBed.createComponent(ContractDetailComponent);
     component = fixture.componentInstance;
 
-
-    const contractDetail = {
+    const contract = {
       _id: '',
       contractId: '',
       auctionId: '',
@@ -75,41 +89,52 @@ describe('ContractDetailComponent', () => {
           interestedUsersEmail: [],
           invitedUsersEmail: [],
           productDescription: ''
+        },
+        isAuctionActive: true,
+        isAuctionFinished: true,
+        participantsVerificationId: '',
+        selectedParticipantList: [],
+        interestedUsersEmail: [],
+        winningBid: '',
+        createdOn: new Date(),
+        updatedOn: new Date(),
+        createdBy: '',
+        updatedBy: '',
+        auctionStartDate: new Date(),
+        auctionEndDate: new Date(),
+        bidIdList: []
       },
       bidDetails: {
         bidId: '',
-    auctionId: '',
-    bid: {
-        price: 20,
-        creditPeriod: 2,
-        qaqcCertificate: true,
-        typeOfSupply: true,
-        timeOfDelivery: new Date()
+        auctionId: '',
+        bid: {
+          price: 20,
+          creditPeriod: 2,
+          qaqcCertificate: true,
+          typeOfSupply: true,
+          timeOfDelivery: new Date()
         },
-    scoreObject: {
-        total: 3,
-        deliveryScore: 3,
-        priceScore: 2,
-        creditScore: 2,
-        qaqcScore: 2,
-        typeScore: 2
-    },
-    createdBy: ''
+        scoreObject: {
+          total: 3,
+          deliveryScore: 3,
+          priceScore: 2,
+          creditScore: 2,
+          qaqcScore: 2,
+          typeScore: 2
+        },
+        createdBy: ''
       },
       buyerEmail: '',
       buyerESign: '',
       sellerESign: '',
       sellerEmail: '',
-      contractStatus: '',
+      contractStatus: true,
       currentHash: '',
       previousHash: '',
       createdOn: new Date()
-    }
-  };
+    };
 
-    component.contractDetail = contractDetail;
-
-
+    component.contract = contract;
     fixture.detectChanges();
   });
 
