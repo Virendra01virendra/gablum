@@ -5,6 +5,7 @@ import com.gablum.usermanagement.user.model.othermodels.Auction;
 import com.gablum.usermanagement.user.model.othermodels.BidDataEntity;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.repository.UserRepository;
+import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
