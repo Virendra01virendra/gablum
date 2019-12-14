@@ -13,6 +13,7 @@ export class AuctionsDataService {
   public auctionsUrl: string;
   bidUrl;
   auctionUrlForSingle;
+  oldAuctionUrl;
 
   constructor(
     private comms: CommunicatorService,
@@ -24,6 +25,16 @@ export class AuctionsDataService {
 
   getAllAuctions(dest, key) {
     this.networking.getData<Auction>(this.auctionsUrl, dest, key);
+  }
+
+  getAllAuctionsBuyer(dest, key) {
+    const auctionUrlBuyer = this.auctionsUrl + '/buyer';
+    this.networking.getData<Auction>(auctionUrlBuyer, dest, key);
+  }
+
+  getAllAuctionsSeller(dest, key) {
+    const auctionUrlSeller = this.auctionsUrl + '/seller';
+    this.networking.getData<Auction>(auctionUrlSeller, dest, key);
   }
 
   getAuctionById(dest, key, auctionId) {
@@ -58,5 +69,10 @@ export class AuctionsDataService {
     err => {
         this.logger.log(err);
     });
+  }
+
+  getOldAuctions(dest, key) {
+    this.oldAuctionUrl = this.auctionsUrl + '/buyer/old';
+    this.networking.getData(this.oldAuctionUrl, dest, key);
   }
 }

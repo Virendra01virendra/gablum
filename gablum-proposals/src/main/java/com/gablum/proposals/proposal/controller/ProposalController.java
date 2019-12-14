@@ -12,6 +12,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +42,7 @@ public class    ProposalController {
         proposalData.setUpdatedBy(email);
         proposalData.setCreatedOn(new Date());
         proposalData.setUpdatedOn(new Date());
+        proposalData.setAuctionStarted(false);
         Proposal savedProposal = proposalService.addProposals(proposalData);
 
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
@@ -124,4 +126,15 @@ public class    ProposalController {
         String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
     }
+
+    @PatchMapping("proposals/{proposalId}/auction-started")
+    public ResponseEntity<Proposal> auctionStarted(@PathVariable("proposalId") String proposalId) {
+        System.out.println("PRRRRRRRRRRRROOOOOOOOPOOOOOOOSALSSSSSSS------------------------------->>>>>>>>>>>");
+        return new ResponseEntity<Proposal>(
+                proposalService.changeAuctionFlag(proposalId),
+                HttpStatus.OK
+        );
+    }
+
+
 }

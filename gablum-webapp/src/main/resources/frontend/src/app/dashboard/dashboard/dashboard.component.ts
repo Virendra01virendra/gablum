@@ -34,8 +34,13 @@ export class DashboardComponent implements OnInit {
   proposals: Proposal[];
   allProposals: Proposal[];
   auctions: Auction[];
+  oldAuctions: Auction[];
+  auctionsBuyer: Auction[];
+  auctionsSeller: Auction[];
   pastAuctions: Proposal[];
   public businessSubdomain: string;
+  public auctionsNotEmpty = true;
+  public oldAuctionsNotEmpty = true;
   // public dashboardSections: DashboardSection[] = [
   //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
   //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
@@ -84,9 +89,25 @@ export class DashboardComponent implements OnInit {
           this.allProposals = data.sellerProposals;
         }
 
-        if ('auctions' in data) {
-          this.auctions = data.auctions;
+
+        if ('auctionsSeller' in data) {
+          this.auctionsSeller = data.auctionsSeller;
+          console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
         }
+
+
+
+        if ('auctionsBuyer' in data) {
+          this.auctionsBuyer = data.auctionsBuyer;
+          this.auctions = this.auctionsBuyer;
+          if (this.auctions.length !== 0) {
+            this.auctionsNotEmpty = true;
+          } else {
+            this.auctionsNotEmpty = false;
+          }
+          console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
+        }
+
 
         if ('authChanged' in data) {
           this.isLoggedIn = auth.getAuthenticated();
@@ -118,6 +139,16 @@ export class DashboardComponent implements OnInit {
             this.isSeller = true;
           }
         }
+
+        if ('oldAuctions' in data) {
+          this.oldAuctions = data.oldAuctions;
+          console.log('olllddd auctions', this.oldAuctions);
+          if (this.oldAuctions.length !== 0) {
+            this.oldAuctionsNotEmpty = true;
+          } else {
+            this.oldAuctionsNotEmpty = false;
+          }
+        }
         // console.log(this.isBuyer);
         // console.log(this.isSeller);
       }
@@ -134,11 +165,23 @@ export class DashboardComponent implements OnInit {
       DashboardComponent.messageKey,
       'userProfile'
     );
-    this.auctionDataService.getAllAuctions(
+
+
+    this.auctionDataService.getAllAuctionsBuyer(
       DashboardComponent.messageKey,
-      'auctions'
+      'auctionsBuyer'
     );
-    // this.http.get('http://localhost:8080/api/auctions/auctions', this.httpOptions).subscribe(data => {this.auctions = data; });
+
+
+    this.auctionDataService.getAllAuctionsSeller(
+        DashboardComponent.messageKey,
+        'auctionsSeller'
+      );
+
+    this.auctionDataService.getOldAuctions(
+      DashboardComponent.messageKey,
+      'oldAuctions'
+      );
   }
 
   send() {
@@ -179,8 +222,21 @@ export class DashboardComponent implements OnInit {
     // CHANGE THE NAME OF THE BUTTON.
     if (this.show) {
       this.buttonName = 'BUYERS VIEW';
+      this.auctions = this.auctionsBuyer;
+      if (this.auctions.length !== 0) {
+        this.auctionsNotEmpty = true;
+      } else {
+        this.auctionsNotEmpty = false;
+      }
+
     } else {
       this.buttonName = 'SELLERS VIEW';
+      this.auctions = this.auctionsSeller;
+      if (this.auctions.length !== 0) {
+        this.auctionsNotEmpty = true;
+      } else {
+        this.auctionsNotEmpty = false;
+      }
     }
   }
 }
