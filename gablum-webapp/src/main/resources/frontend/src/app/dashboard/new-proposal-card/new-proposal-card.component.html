@@ -13,21 +13,23 @@
     </div>
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="center center">
         <div>
-            <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
-                {{ proposal.price }}</i>
+            <i class="fa fa-money" aria-hidden="true" matTooltip="Price"><span class="mat-subheading-2">
+                {{ proposal.price }}</span></i>
         </div>
         <div>
-            <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
-                {{ proposal.quantityValue + " " + proposal.quantityUnit }}</i>
+            <i class="fa fa-balance-scale mat-subheading-2" aria-hidden="true" matTooltip="Quantity">
+            <span class="mat-subheading-2">{{ proposal.quantityValue + " " + proposal.quantityUnit }}</span>
+            </i>
         </div>
         <div>
-            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date"
-                style="transform: scale3d(10);">
-                {{ proposal.regEndDate | date: "mediumDate" }}</i>
+            <i class="fa fa-calendar-o mat-subheading-2" aria-hidden="true" matTooltip="Registeration End-Date"
+                style="transform: scale3d(10);"><span class="mat-subheading-2">{{ proposal.regEndDate | date: "mediumDate" }}
+                </span></i>
         </div>
         <div>
-            <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction Start-Date">
-                {{ proposal.auctionStartDate | date: "mediumDate" }}</i>
+            <i class="fa fa-calendar mat-subheading-2" aria-hidden="true" matTooltip="Auction Start-Date">
+                <span class="mat-subheading-2">{{ proposal.auctionStartDate | date: "mediumDate" }}</span>
+                </i>
         </div>
     </div>
 

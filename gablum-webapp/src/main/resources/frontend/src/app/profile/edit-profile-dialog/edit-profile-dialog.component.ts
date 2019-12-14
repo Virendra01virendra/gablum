@@ -19,7 +19,7 @@ export class EditProfileDialogComponent implements OnInit {
 
   public profile: Profile;
 
-  public roles: string;
+  // public roles: string;
 
   get name() {
     return this.editProfileForm.get('name');
@@ -85,15 +85,14 @@ export class EditProfileDialogComponent implements OnInit {
       companyName : new FormControl(data.companyName),
       businessLicense : new FormControl(data.businessLicense, Validators.compose([Validators.required,
         Validators.pattern('^([0][1-9]|[1-2][0-9]|[3][0-7])([A-Z]{5})([0-9]{4})([A-Z]{1}[1-9A-Z]{1})([Z]{1})([0-9A-Z]{1})+$')])),
-      role : new FormControl(data.role),
+      // role : new FormControl(data.role),
       businessDomain : new FormControl(data.businessDomain),
       businessSubDomain : new FormControl(data.businessSubDomain)
     });
   }
-  
   ngOnInit() {
     this.logger.log('dialog data::', this.data);
-    this.roles = this.profile.role.map(r => r.role.toUpperCase()).join(', ');
+    // this.roles = this.profile.role.map(r => r.role.toUpperCase()).join(', ');
   }
 
   phoneErrorMessage() {

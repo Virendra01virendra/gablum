@@ -18,13 +18,12 @@
        <div class="info-container" fxLayout="row wrap"fxLayoutAlign="center center">
        <div>
            <i class="fa fa-money" aria-hidden="true" matTooltip="Expected Cost in ">
-              {{auction.proposal.price}} per unit</i
-               >
+               <span class="mat-subheading-2">
+              {{auction.proposal.price}} per unit</span></i>
            </div>
            <div>
                <i class="fa fa-handshake-o" aria-hidden="true" matTooltip="{{auction.createdBy}} is willing to pay-up in">
-                  {{auction.proposal.creditPeriod + 'Days'}}</i
-                   >
+                  <span class="mat-subheading-2">{{auction.proposal.creditPeriod + 'Days'}}</span></i>
                </div>
                <div>
                    <i
@@ -33,9 +32,8 @@
                    matTooltip="Quality Check Certified"
                    *ngIf= "auction.proposal.qualityCertification == true"
                    style="transform: scale3d(10);"
-                   >
-                   {{qualityMsgTrue}}</i
-                   >
+                   ><span class="mat-subheading-2">
+                   {{qualityMsgTrue}}</span></i>
                </div>
                <div>
                   <i
@@ -44,8 +42,8 @@
                   matTooltip="Quality Check Uncertified"
                   style="transform: scale3d(10);"
                   *ngIf= "auction.proposal.qualityCertification != true"
-                  >
-                  {{qualityMsgFalse}}</i
+                  ><span class="mat-subheading-2">
+                  {{qualityMsgFalse}}</span></i
                   >
               </div>
                <div>
@@ -54,8 +52,8 @@
                    aria-hidden="true"
                    matTooltip="Type of Product Supply"
                    *ngIf= "auction.proposal.methodOfSupply == true"
-                   >
-                   {{supplyTrue}}</i
+                   ><span class="mat-subheading-2">
+                   {{supplyTrue}}</span></i
                    >
                </div>
                <div>
@@ -64,8 +62,8 @@
                   aria-hidden="true"
                   matTooltip="How procurement is to be done"
                   *ngIf= "auction.proposal.methodOfSupply != true"
-                  >
-                  {{supplyFalse}}</i
+                  ><span class="mat-subheading-2">
+                  {{supplyFalse}</span>}</i
                   >
               </div>
                <div>
@@ -73,8 +71,8 @@
                   class="fa fa-truck"
                   aria-hidden="true"
                   matTooltip="Expected Delivery Date"
-                  >
-                  {{auction.proposal.deliveryDate | date: "mediumDate"}}</i
+                  ><span class="mat-subheading-2">
+                  {{auction.proposal.deliveryDate | date: "mediumDate"}}</span></i
                   >
               </div>
            </div>
@@ -87,14 +85,14 @@
                aria-hidden="true"
                color = "primary"
                style="cursor: pointer;"
-               >Bid
+               ><span class="mat-subheading-2">Bid</span>
                </i>
                <i class="fa fa-eye"
                 aria-hidden="true" 
                 (click) = "seeBids()"
                 *ngIf= !buttonShow 
                 style="cursor: pointer;"
-                >View All Bids</i>
+                ><span class="mat-subheading-2">View All Bids</span></i>
            </div>
        </div>
    </div>
