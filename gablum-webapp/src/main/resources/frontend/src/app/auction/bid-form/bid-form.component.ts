@@ -94,7 +94,9 @@ export class BidFormComponent implements OnInit, OnDestroy {
         Validators.pattern('^[0-9]+$')]),
       newQaqcCertificate: new FormControl('false'),
       newTypeOfDelivery: new FormControl('false'),
-      newTimeOfDelivery: new FormControl(''),
+      newTimeOfDelivery: new FormControl('', [
+        Validators.required,
+      ]),
       });
 
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
@@ -211,4 +213,15 @@ export class BidFormComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  newTimeOfDelivery = (d: Date): boolean => {
+    const currentDate = new Date();
+    if (d.getMonth() === currentDate.getMonth()
+      && d.getFullYear() === currentDate.getFullYear()) {
+      return ((d.getDate() > currentDate.getDate() + 4));
+    } else if (d.getMonth() > currentDate.getMonth() || d.getFullYear() > currentDate.getFullYear()) {
+      return true;
+    }
+  }
+
 }

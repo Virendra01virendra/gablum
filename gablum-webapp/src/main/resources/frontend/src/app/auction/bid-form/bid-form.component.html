@@ -25,8 +25,12 @@
       <br>
       
       <mat-form-field class="form-element" appearance = "outline">
-          <mat-label class="form-label">Time of delivery</mat-label> 
-          <input matInput type="date" formControlName="newTimeOfDelivery">
+          <!-- <mat-label class="form-label">Time of delivery</mat-label> 
+          <input matInput type="date" formControlName="newTimeOfDelivery"> -->
+          <input matInput [matDatepickerFilter]="newTimeOfDelivery" [matDatepicker]="picker1"
+              placeholder="Choose a delivery date" formControlName="newTimeOfDelivery">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
       <br>
       <mat-form-field class="form-element"appearance = "outline">
