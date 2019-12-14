@@ -20,8 +20,7 @@
     <mat-form-field class="fullWidth" appearance="outline">
       <mat-label>Phone</mat-label>
       <input matInput formControlName="phone" placeholder="+91" required [value]="data.phone" />
-      <mat-hint align="start">*Do not enter country code.</mat-hint> &nbsp; &nbsp; &nbsp;
-      <mat-hint>*Editable</mat-hint>
+      <mat-hint align="start">*Do not enter country code.</mat-hint>
       <mat-error *ngIf="phone.touched || phone.invalid">{{phoneErrorMessage()}}</mat-error>
     </mat-form-field>
 
