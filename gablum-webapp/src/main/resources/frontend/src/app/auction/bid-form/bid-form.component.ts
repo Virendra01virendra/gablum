@@ -33,7 +33,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
   result1;
   result2;
   auctionId: string;
-  auction;
+  auctionSingle: Auction;
   scoreObject: Score;
   subscriptionRef: StompSubscription;
   isOwner = false;
@@ -53,8 +53,8 @@ export class BidFormComponent implements OnInit, OnDestroy {
         if (msg.dest === BidFormComponent.messageKey || msg.dest === '@all') {
           const data = msg.data;
           if ('auctionSingle' in data) {
-              this.auction = data.auctionSingle;
-              this.logger.log(this.auction);
+              this.auctionSingle = data.auctionSingle;
+              this.logger.log(this.auctionSingle);
           }
 
           if ('saveBids' in data) {
@@ -73,6 +73,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
 
         }
       });
+      console.log('in form');
 
     }
   ngOnInit() {
@@ -82,7 +83,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
         // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
-    // this.ws.connect(message => this.subscribe());
+    // // this.ws.connect(message => this.subscribe());
 
     this.bidForm = new FormGroup({
       newPrice: new FormControl('', [
@@ -93,11 +94,13 @@ export class BidFormComponent implements OnInit, OnDestroy {
         Validators.pattern('^[0-9]+$')]),
       newQaqcCertificate: new FormControl('false'),
       newTypeOfDelivery: new FormControl('false'),
-      newTimeOfDelivery: new FormControl(''),
+      newTimeOfDelivery: new FormControl('', [
+        Validators.required,
+      ]),
       });
 
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
-
+    console.log('in oninit form');
   }
 
   onSubmit(form: FormGroup) {
@@ -163,13 +166,13 @@ export class BidFormComponent implements OnInit, OnDestroy {
       }
     );
     const stompHeaders = {
-      auth: this.auction.socketToken
+      auth: this.auctionSingle.socketToken
     };
     if (this.isOwner) {
       this.subscriptionRef = this.ws.subscribe(
-        '/topic/admin/' + this.auction.auctionId,
+        '/topic/admin/' + this.auctionSingle.auctionId,
         BidFormComponent.messageKey,
-        'newbid', this.auction.socketToken);
+        'newbid', this.auctionSingle.socketToken);
       this.comms.getMessages().subscribe(message => {
           if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
             const data = message.data;
@@ -185,9 +188,9 @@ export class BidFormComponent implements OnInit, OnDestroy {
       );
     } else {
       this.subscriptionRef = this.ws.subscribe(
-        '/topic/supplier/' + this.auction.auctionId + '/' + this.tokenBody.sub,
+        '/topic/supplier/' + this.auctionSingle.auctionId + '/' + this.tokenBody.sub,
         BidFormComponent.messageKey,
-        'newbid', this.auction.socketToken);
+        'newbid', this.auctionSingle.socketToken);
       this.comms.getMessages().subscribe(message => {
           if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
             const data = message.data;
@@ -210,4 +213,15 @@ export class BidFormComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  newTimeOfDelivery = (d: Date): boolean => {
+    const currentDate = new Date();
+    if (d.getMonth() === currentDate.getMonth()
+      && d.getFullYear() === currentDate.getFullYear()) {
+      return ((d.getDate() > currentDate.getDate() + 4));
+    } else if (d.getMonth() > currentDate.getMonth() || d.getFullYear() > currentDate.getFullYear()) {
+      return true;
+    }
+  }
+
 }

@@ -17,6 +17,8 @@ public interface ProposalRepository extends MongoRepository<Proposal, String> {
 
     Page<Proposal> getAllProposalsByCreatedBy(String email, Pageable page);
 
+    Page<Proposal> findAllByCreatedByAndAuctionStarted(Pageable pageable, String email, boolean isAuctionStarted);
+
     void deleteByProposalId(String proposalId);
 
     Page<Proposal> getAllProposalsByRegEndDateGreaterThan(Pageable page, Date currentDate);
