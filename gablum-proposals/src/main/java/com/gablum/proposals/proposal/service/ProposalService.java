@@ -90,13 +90,13 @@ public class ProposalService implements IProposalService {
 
     @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap) {
-        return proposalRepo.getAllProposalsByRegEndDateGreaterThan(
-                getPageable(queryMap), new Date()
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndAuctionStarted(
+                getPageable(queryMap), new Date(), false
         ).getContent();
     }
 
     public List<Proposal> getAllProposalsByBusinessSubDomain (Map<String, String> queryMap, String businessSubDomain) {
-        return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(getPageable(queryMap),new Date(),businessSubDomain);
+        return proposalRepo.getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomainAndAuctionStarted(getPageable(queryMap),new Date(),businessSubDomain, false);
        }
 
     public Proposal saveInterestedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
