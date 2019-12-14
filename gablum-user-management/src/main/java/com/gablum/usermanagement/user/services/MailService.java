@@ -77,6 +77,8 @@ public class MailService {
             List<User> subDomainUsers = new ArrayList<>(userRepository.findUserByBusinessSubDomain(proposal.getBusinessSubDomain()));
             for (int i=0; i<subDomainUsers.size(); i++){
                 SimpleMailMessage msgForSeller = new SimpleMailMessage();
+                if (subDomainUsers.get(i).getName()==proposal.getCreatedBy())
+                    continue;
                 msgForSeller.setTo(subDomainUsers.get(i).getEmail());
 
                 msgForSeller.setSubject("New Proposal Added of " + proposal.getBusinessSubDomain() + " Busniess Sub Domain");
@@ -114,8 +116,6 @@ public class MailService {
             msg.setSubject("New Auction Floated");
             String textBuyer = "Thanks for floating auction on Gablum.";
             textBuyer += "We hope to provide you with the best pool of suppliers inline with your proposal.\n";
-
-
             msg.setText(textBuyer);
             try
             {
@@ -130,6 +130,8 @@ public class MailService {
 
             for (int i=0; i<interestedUsersEmail.size(); i++){
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
+                if (interestedUsersEmail.get(i)==auction.getCreatedBy())
+                    continue;
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
                 textBuyer = "New Auction of your interested has been floated";
