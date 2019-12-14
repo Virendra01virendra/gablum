@@ -9,32 +9,43 @@
 </mat-toolbar>
 
 <div class="bid-list"
-fxLayout="row nowrap"
-fxLayout.xs="column nowrap"
-fxLayoutAlign="space-around flex-start"
-fxLayoutAlign.xs="flex-start center"
+fxLayout="column nowrap"
+fxLayoutAlign="flex-start center"
 >
+    <div class="auction-details-container"
+    fxLayout="row wrap"
+    fxLayout.xs="column nowrap"
+    fxLayoutAlign="space-around center"
+    style="padding: 2em 0;"
+    >
+        <app-auction-card
+        [auction]="auction"
+        *ngIf="auction"
+        [buttonShow]=false
+        fxFlex="1 1 40%"></app-auction-card>
+        <div class="chart-container" fxFlex="1 1 40%">
+            <ngx-charts-bar-vertical
+            [yAxis]="true"
+            [legend]="false"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Time'"
+            [yAxisLabel]="'Score'"
+            [results]="timeData"
+            [tooltipDisabled]="true"
+            *ngIf="timeData && timeData.length !== 0"
+            >
+            </ngx-charts-bar-vertical>
+        </div>
+    </div>
     <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
     </div>
-    <div class="auction-details" fxLayout="column nowrap">
+    <!-- <div class="auction-details" fxLayout="column nowrap">
         <h2 *ngIf="auction">{{auction.auctionName}}</h2>
         <h2 *ngIf="timeData && timeData.length === 0">
             No bids to show
         </h2>
-        <ngx-charts-bar-vertical
-        style="width: 30em; height: 20em;"
-        [yAxis]="true"
-        [legend]="false"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        [xAxisLabel]="'Time'"
-        [yAxisLabel]="'Score'"
-        [results]="timeData"
-        [tooltipDisabled]="true"
-        *ngIf="timeData && timeData.length !== 0"
-        >
-        </ngx-charts-bar-vertical>
-    </div>
+    </div> -->
 
 </div>
