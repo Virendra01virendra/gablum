@@ -62,7 +62,6 @@ export class AuctionStartDialogComponent {
 
     this.auctionDataService.saveAuction(AuctionStartDialogComponent.messageKey, data, 'save-auction');
     this.proposalDataService.changeAuctionFlag(proposal1.proposalId, AuctionStartDialogComponent.messageKey, 'auctionStarted');
-    this.proposalDataService.getAllProposals('DashboardComponent', 'proposals');
     this.router.navigate(['dashboard']);
     this.close();
 

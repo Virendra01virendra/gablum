@@ -79,13 +79,13 @@ public class ProposalService implements IProposalService {
 
     public Proposal changeAuctionFlag(String proposalId) {
         Proposal proposalToChange = getProposalById(proposalId);
-        proposalToChange.setAuctionStarted(false);
+        proposalToChange.setAuctionStarted(true);
         return proposalRepo.save(proposalToChange);
     }
 
     @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
-        return proposalRepo.findAllByCreatedByAndIsAuctionStarted(getPageable(queryMap), email, false).getContent();
+        return proposalRepo.findAllByCreatedByAndAuctionStarted(getPageable(queryMap), email, false).getContent();
     }
 
     @Override
