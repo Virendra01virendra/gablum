@@ -1,5 +1,8 @@
 version: "3"
 
+volumes: 
+  grafana-storage:
+
 services:
   config-server:
     build:
@@ -110,6 +113,8 @@ services:
       - -jar
       - /usr/app/app.jar
     restart: on-failure
+    ports: 
+      - "4000:4000"
 
   # bid:
   #   build:
@@ -201,3 +206,23 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: "gablum"
       RABBITMQ_DEFAULT_PASS: "GaB1uM"
+
+  prometheus:
+    image: prom/prometheus:v2.14.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090"
+    restart: always
+  
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment: 
+      GF_SERVER_SERVE_FROM_SUB_PATH: 'true'
+      GF_SERVER_ROOT_URL: http://localhost:3000/grafana
+    ports: 
+      - "3000:3000"
