@@ -71,8 +71,8 @@ export class SellerProposalCardComponent implements OnInit {
       // height: '60%',
       data: allProposal
     });
-    this.allProposal.views += 1;
-    console.log('view--->' + JSON.stringify(allProposal));
+    // this.allProposal.views += 1;
+    // console.log('view--->' + JSON.stringify(allProposal));
     this.proposalDataService.postSellerView(SellerProposalCardComponent.messageKey, this.allProposal, 'saveSellerView');
   }
 }
