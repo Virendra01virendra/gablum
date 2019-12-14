@@ -15,6 +15,7 @@ export class NewProposalForm1Component implements OnInit {
 
   newMoment = moment();
   showTicks = false;
+  exPanelOpenState = false;
 
   constructor(
     private router: Router,
