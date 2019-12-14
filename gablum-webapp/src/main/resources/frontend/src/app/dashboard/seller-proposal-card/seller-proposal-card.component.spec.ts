@@ -50,7 +50,8 @@ describe('SellerProposalCardComponent', () => {
   regEndDate: new Date('Date Fri Nov 29 2019 00:00:00 GMT+0530 (India Standard Time)'),
   regStartDate: new Date('Date Thu Nov 28 2019 00:00:00 GMT+0530 (India Standard Time)'),
   interestedUsersEmail: [],
-  productDescription: 'Whole Maize'
+  productDescription: 'Whole Maize',
+  invitedUsersEmail: []
 };
 
 // simulate the parent setting the input property with that hero
