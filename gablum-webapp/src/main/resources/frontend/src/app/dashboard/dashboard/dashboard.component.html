@@ -194,21 +194,6 @@
   <ng-container *ngIf="!show" class="dashboard-container">
     <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
       <mat-tab label="Active Auctions">
-<<<<<<< HEAD
-        <div
-          class="auctions-cont"
-          fxLayout="row wrap"
-          fxLayoutAlign="space-around"
-        >
-          <app-auction-card
-            *ngFor="let auction of auctions"
-            [auction]="auction"
-            [buttonShow]="true"
-            fxFlex="27%"
-            fxFlex.sm="45%"
-            fxFlex.xs="80%"
-          ></app-auction-card>
-=======
         <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
         </div>
@@ -218,7 +203,6 @@
           <mat-icon>broken_image</mat-icon>
           <br>
           <div> Sorry, no ongoing Auctions in your sub-domain!</div>
->>>>>>> b93a112f3225a7a4fb56a5d25583f871515842ce
         </div>
       </mat-tab>
 
@@ -263,12 +247,6 @@
           <mat-panel-title>Active Auctions</mat-panel-title>
           <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-<<<<<<< HEAD
-
-        <div class="expansion-auction-card" fxLayout="column">
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
-        </div>
-=======
   
         <div class="expansion-auction-card" fxLayout="column" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
@@ -281,7 +259,6 @@
           <div> Sorry, no ongoing Auctions in your sub-domain!</div>
         </div>
   
->>>>>>> b93a112f3225a7a4fb56a5d25583f871515842ce
       </mat-expansion-panel>
 
       <mat-expansion-panel>
@@ -299,11 +276,6 @@
           <mat-panel-title>Past Auctions</mat-panel-title>
           <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-<<<<<<< HEAD
-
-        <div>
-          <p>past auctions</p>
-=======
   
         <div class="expansion-auction-card" fxLayout="column" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of oldAuctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
@@ -314,7 +286,6 @@
           <mat-icon>broken_image</mat-icon>
           <br>
           <div> Sorry, you have no past Auctions!</div>
->>>>>>> b93a112f3225a7a4fb56a5d25583f871515842ce
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -387,15 +358,6 @@
           <mat-panel-title>Active Auctions</mat-panel-title>
           <mat-panel-description></mat-panel-description>
         </mat-expansion-panel-header>
-<<<<<<< HEAD
-
-        <div class="expansion-auction-card" fxLayout="column">
-          <app-auction-card
-            *ngFor="let auction of auctions"
-            [auction]="auction"
-          ></app-auction-card>
-        </div>
-=======
   
         <div class="expansion-auction-card" fxLayout="column" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
@@ -407,7 +369,6 @@
           <div> Sorry, no ongoing Auctions in your sub-domain!</div>
         </div>
   
->>>>>>> b93a112f3225a7a4fb56a5d25583f871515842ce
       </mat-expansion-panel>
 
       <mat-expansion-panel>

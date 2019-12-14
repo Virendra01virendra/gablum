@@ -15,15 +15,12 @@ public class UserListService {
 
     @Autowired
     public SimpMessageSendingOperations sendingOperations;
+
     @Autowired
     public UserRepository userRepository;
 
     public void postMessageToUserListChannel(Proposal proposal){
         List<User> listOfUsers = userRepository.findAllByBusinessSubDomain(proposal.getBusinessSubDomain());
-        log.info("business subdomain ----- > " , proposal.getBusinessSubDomain());
-        log.info("Proposal ----- > " , proposal.toString());
-        log.info("Alert to be sent to user via WEB SOCKETS --------> " );
-        log.info(String.valueOf(listOfUsers.size()));
         sendingOperations.convertAndSend(
                 "topic/proposalAlert",
                  listOfUsers
