@@ -18,8 +18,26 @@
                     Auction Details :
                 </h4>
                 <ul>
-                    <li>Method of Supply {{contract.auctionDetails.proposal.methodOfSupply}}</li>
-                    <li>Quality Certification {{contract.auctionDetails.proposal.qualityCertification}}</li>
+                    <div *ngIf="contract.auctionDetails.proposal.methodOfSupply == true">
+                        <li>
+                            Method of Supply - Full
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.methodOfSupply != true">
+                        <li>
+                            Method of Supply - Parts
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.qualityCertification == true">
+                        <li>
+                            Quality Certification - Required
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.qualityCertification != true">
+                        <li>
+                            Quality Certification - Optional
+                        </li>
+                    </div>
                     <li>Delivery Date {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
                     <li>Price {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
                     <li>Credit Period {{contract.auctionDetails.proposal.creditPeriod}} days</li>
@@ -32,8 +50,26 @@
                     Bid Details :
                 </h4>
                 <ul>
-                    <li>Method of Supply {{contract.bidDetails.bid.typeOfSupply}}</li>
-                    <li>Quality Certification {{contract.bidDetails.bid.qaqcCertificate}}</li>
+                    <div *ngIf="contract.auctionDetails.proposal.methodOfSupply == true">
+                        <li>
+                            Method of Supply - Full
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.methodOfSupply != true">
+                        <li>
+                            Method of Supply - Parts
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.qualityCertification == true">
+                        <li>
+                            Quality Certification - Required
+                        </li>
+                    </div>
+                    <div *ngIf="contract.auctionDetails.proposal.qualityCertification != true">
+                        <li>
+                            Quality Certification - Optional
+                        </li>
+                    </div>
                     <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
                     <li>Price {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
                     <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>

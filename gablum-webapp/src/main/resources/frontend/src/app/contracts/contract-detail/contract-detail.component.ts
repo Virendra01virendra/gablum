@@ -41,6 +41,5 @@ export class ContractDetailComponent implements OnInit {
     this.bidDetails = this.contract.bidDetails;
     this.sellerName = this.bidDetails.createdBy;
   }
-
   ngOnInit() {}
 }
