@@ -63,10 +63,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
               this.logger.log(tokenUrl);
               this.http.get<AuctionSocketToken>(tokenUrl + '/' + this.auctionId)
               .subscribe(token => {
-                console.log(token);
+                this.logger.log(token);
                 this.auction.socketToken = token.token;
-                console.log(this.auction);
-                console.log(token.token);
+                this.logger.log(this.auction);
+                this.logger.log(token.token);
                 this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
                 this.logger.log('connecting to ws');
                 this.logger.log(this.tokenBody);
@@ -129,7 +129,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
-        // console.log('aucuccuctioniiidd ---------->', this.auctionId);
+        // this.logger.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
     // this.ws.connect(message => this.subscribe());
@@ -155,13 +155,13 @@ export class BidFormComponent implements OnInit, OnDestroy {
     this.logger.log('making api call', bid1);
 
     // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
-    //   console.log('response ::', response);
+    //   this.logger.log('response ::', response);
     // });
 
     // this.ws.sendBid(bid);
 
     // this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
-    // .subscribe(Response => {console.log(Response); });
+    // .subscribe(Response => {this.logger.log(Response); });
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = bidData;
@@ -247,7 +247,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
 
   openSheet() {
     this.bottomSheet.open(
-      AddBidSheetComponent
+      AddBidSheetComponent,
+      {
+        data: {id: this.auctionId}
+      }
     );
   }
 }

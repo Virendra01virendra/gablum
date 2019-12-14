@@ -185,7 +185,8 @@ public class AuctionController {
                 if (sellerList.containsKey(allBids.get(_i).getCreatedBy())) {
                     sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
                 } else {
-                    sellerList.put(allBids.get(_i).getCreatedBy(), List.of(allBids.get(_i)));
+                    sellerList.put(allBids.get(_i).getCreatedBy(), new ArrayList<>());
+                    sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
                 }
             }
         }

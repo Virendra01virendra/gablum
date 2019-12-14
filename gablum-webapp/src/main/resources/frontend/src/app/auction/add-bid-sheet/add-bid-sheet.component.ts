@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoggerService } from 'src/app/services/logger.service';
+import { AuctionsDataService } from 'src/app/services/auctions-data.service';
+import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-bid-sheet',
@@ -9,10 +11,16 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class AddBidSheetComponent implements OnInit {
   bidForm: FormGroup;
+  private auctionId: string;
 
   constructor(
-    private logger: LoggerService
-  ) { }
+    private logger: LoggerService,
+    private auctionDataService: AuctionsDataService,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
+  ) {
+    this.auctionId = data.id;
+    this.logger.log(data.id);
+  }
 
   ngOnInit() {
     this.bidForm = new FormGroup({
@@ -43,6 +51,8 @@ export class AddBidSheetComponent implements OnInit {
     };
 
     this.logger.log('making api call', bid1);
+    this.auctionDataService.saveBid('@all', bid1, 'saveBids', this.auctionId);
+
 
     // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
     //   console.log('response ::', response);
