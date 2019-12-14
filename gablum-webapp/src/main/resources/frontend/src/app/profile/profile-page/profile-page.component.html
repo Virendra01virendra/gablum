@@ -4,7 +4,7 @@
             <i class="material-icons">account_circle</i>
         </div>
         <div class="welcome">
-            <h1>Welcome, {{profile.name}}</h1>
+            <h1>Welcome, {{profile.name | titlecase}}</h1>
         </div>
     </div>
     <mat-card style="margin: 1em 12em 4em 12em;">
@@ -144,7 +144,7 @@
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60">
-                <button mat-raised-button color="primary" (click)="onClick()">EDIT INFORMATION</button>
+                <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()">EDIT</button>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>

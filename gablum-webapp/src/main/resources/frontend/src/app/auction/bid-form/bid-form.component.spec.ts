@@ -52,7 +52,7 @@ describe('BidFormComponent', () => {
       auctionName: '',
       proposal: {
         proposalId: '',
-    productId: '',
+        productId: '',
     createdBy: '',
     updatedBy: '',
     businessDomain: '',
@@ -79,6 +79,9 @@ describe('BidFormComponent', () => {
     thresholdParticipants: 1,
     views: 1,
     interested: 1,
+    interestedUsersEmail: [''],
+    invitedUsersEmail: [''],
+    productDescription: '',
       },
       isAuctionActive: true,
       participantsVerificationId: '',
@@ -89,9 +92,13 @@ describe('BidFormComponent', () => {
       createdBy: '',
       updatedBy: '',
       auctionStartDate: new Date(),
-      auctionEndDate: new Date()
+      auctionEndDate: new Date(),
+      uniqueLink: '',
+      winningBid: '',
+      isAuctionFinished: true,
+      interestedUsersEmail: [''],
     };
-    component.auction = auction;
+    component.auctionSingle = auction;
     fixture.detectChanges();
   });
   xit('should create', (router) => {

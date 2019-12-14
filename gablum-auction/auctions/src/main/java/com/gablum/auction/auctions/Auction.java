@@ -28,7 +28,7 @@ public class Auction {
     private String uniqueLink;
 //    private UUID proposalId;
     private String auctionName;
-    private Proposal proposal;
+    public Proposal proposal;
     boolean isAuctionActive;
     boolean isAuctionFinished;
     private String participantsVerificationId;
@@ -43,7 +43,6 @@ public class Auction {
     private Date auctionStartDate;
     private Date auctionEndDate;
     private List<String> bidIdList;
-
     public String toStringContract(){
         return auctionId + auctionName + proposal.toStringContract();
     }

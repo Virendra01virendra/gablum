@@ -79,5 +79,16 @@ export class ProposalsDataService {
   }
 
 
+  changeAuctionFlag(proposalId, dest, key) {
+    const proposalAuctionStartUrl = this.proposalsUrl + '/' + proposalId + '/auction-started';
+    this.networking.patchData(proposalAuctionStartUrl, dest, '', key).subscribe((res) => {
+      this.getAllProposals('DashboardComponent', 'proposals');
+    },
+    err => {
+        this.logger.log(err);
+    });
+    console.log('in change auctionnnnnnnn------------>');
+  }
+
 
 }
