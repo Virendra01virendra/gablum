@@ -41,7 +41,7 @@ const routes: Routes = [
   {
     path: 'float-proposal',
     loadChildren: () => import('./new-proposal/new-proposal.module').then(m => m.NewProposalModule),
-    // canLoad: [AuthGuardService, BuyerGuardService]
+    canLoad: [AuthGuardService, BuyerGuardService]
   },
   {
     path: 'auctions',
