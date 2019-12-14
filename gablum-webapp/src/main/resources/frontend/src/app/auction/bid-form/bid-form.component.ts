@@ -111,7 +111,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
         typeOfSupply: this.bidForm.value.newTypeOfDelivery,
         timeOfDelivery: this.bidForm.value.newTimeOfDelivery,
         };
-      this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId); 
+      this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
     });
   }
 
