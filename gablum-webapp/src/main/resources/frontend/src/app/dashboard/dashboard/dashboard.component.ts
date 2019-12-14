@@ -157,6 +157,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // this.ws.connect(message => this.subscribe());
+    this.proposalDataService.getProposalsBySubDomain(
+      this.businessSubdomain,
+      DashboardComponent.messageKey,
+      'sellerProposals'
+    );
     this.proposalDataService.getAllProposals(
       DashboardComponent.messageKey,
       'proposals'
