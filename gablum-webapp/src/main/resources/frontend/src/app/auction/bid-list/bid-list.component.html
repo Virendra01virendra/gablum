@@ -20,10 +20,23 @@ fxLayoutAlign="flex-start center"
     >
         <app-auction-card
         [auction]="auction"
+        [showAnyButton]="false"
         *ngIf="auction"
         [buttonShow]=false
-        fxFlex="1 1 40%"></app-auction-card>
-        <div class="chart-container" fxFlex="1 1 40%">
+        fxFlex="1 1 40%"
+        fxFlex.xs="1 1 auto"
+        ></app-auction-card>
+        <div
+        class="chart-container mat-elevation-z6"
+        fxFlex="1 1 40%"
+        fxFlex.xs="1 1 auto"
+        fxLayout="column nowrap"
+        fxLayoutAlign="flex-start center"
+        [ngStyle.xs]="{'height': '20em', 'max-width': '80%'}"
+        >
+        <span>
+            Score of bids over time
+        </span>
             <ngx-charts-bar-vertical
             [yAxis]="true"
             [legend]="false"

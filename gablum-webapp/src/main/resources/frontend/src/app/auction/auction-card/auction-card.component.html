@@ -75,7 +75,7 @@
               </div>
            </div>
            
-           <div class="card-actions">
+           <div class="card-actions" *ngIf="showAnyButton === undefined">
                <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
                <i class="fa fa-hand-paper-o"
                (click)="placeBid()"

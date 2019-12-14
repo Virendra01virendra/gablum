@@ -74,7 +74,7 @@ public class UserController {
         }
 
         if(isBuyer) {
-            menuItems.add(new NavLink("New Proposal", "/new", "add"));
+            menuItems.add(new NavLink("New Proposal", "/float-proposal", "add"));
         }
 
         if (isSeller) {

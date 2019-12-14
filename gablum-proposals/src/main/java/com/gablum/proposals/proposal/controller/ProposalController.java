@@ -1,6 +1,7 @@
 package com.gablum.proposals.proposal.controller;
 
 import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
+import com.gablum.proposals.proposal.model.JwtPayload;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
@@ -32,9 +33,22 @@ public class    ProposalController {
     }
 
     @PostMapping("/proposals")                                 // Add proposal details
-    public Proposal addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
+    public ResponseEntity<Proposal> addProposal(@RequestBody Proposal proposalData, HttpServletRequest request) {
         //FIXME: ensure it is a buyer floating a proposal
         String email = userService.getEmail(request);
+        JwtPayload payload = userService.getJwtPayload(request);
+        List<String> roles = payload.getAuth();
+        boolean isBuyer = false;
+        for (String role: roles) {
+            if (role.contains("buyer")) {
+                isBuyer = true;
+            }
+        }
+        if (!isBuyer) {
+            return new ResponseEntity<>(
+                    HttpStatus.FORBIDDEN
+            );
+        }
         proposalData.setCreatedBy(email);
         proposalData.setUpdatedBy(email);
         proposalData.setCreatedOn(new Date());
@@ -42,7 +56,10 @@ public class    ProposalController {
         Proposal savedProposal = proposalService.addProposals(proposalData);
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
-        return savedProposal;
+        return new ResponseEntity<>(
+                savedProposal,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/proposals/{proposalId}")                  // Get proposal details by Id

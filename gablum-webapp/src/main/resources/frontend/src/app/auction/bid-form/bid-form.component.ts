@@ -71,6 +71,22 @@ export class BidFormComponent implements OnInit, OnDestroy {
             this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
+          if ('bidsAuction' in data) {
+            this.bids = data.bidsAuction;
+            this.logger.log(this.bids);
+            // this.sortBidsByCreated();
+            // this.bids.forEach(b => {
+            //   this.timeData.push(
+            //     {
+            //       name: b.createdOn,
+            //       value: b.scoreObject.total
+            //     }
+            //   );
+            // });
+            // this.timeData = [...this.timeData];
+            // this.sortBidsByScore();
+          }
+
         }
       });
 
@@ -95,7 +111,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
       newTypeOfDelivery: new FormControl('false'),
       newTimeOfDelivery: new FormControl(''),
       });
-
+    this.auctionDataService.getBidsAuction(BidFormComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
 
   }

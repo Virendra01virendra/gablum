@@ -40,6 +40,8 @@ export class AuctionCardComponent implements OnInit {
 
   @Input() public auction: Auction;
   @Input() public buttonShow: boolean;
+  @Input() public showAnyButton: boolean;
+
 
   public isOwner = false;
   private tokenBody: any;
