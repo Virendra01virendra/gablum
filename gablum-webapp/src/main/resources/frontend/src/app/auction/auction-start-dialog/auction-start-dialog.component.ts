@@ -6,7 +6,9 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { Router } from '@angular/router';
 import { CommunicatorService } from 'src/app/services/communicator.service';
-
+import {Profile} from '../../interfaces/profile';
+import { environment } from 'src/environments/environment';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
 @Component({
   selector: 'app-auction-start-dialog',
@@ -17,6 +19,9 @@ export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
+  public userProfileList: Profile[];
+  public userProfile: Profile;
+  public profileUrl = environment.profileUrl;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -24,15 +29,19 @@ export class AuctionStartDialogComponent {
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private comms: CommunicatorService,
+    private profileDataService: ProfileDataService
               ) {
                 comms.getMessages().subscribe(msg => {
                   if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
                     const data1 = msg.data;
-
+                    if ('otherUser' in data) {
+                      this.userProfile = data.otherUser;
+                      console.log(this.userProfile.name);
+                      this.userProfileList.push(this.userProfile);
+                    }
                     if ('save-auction' in data1) {
                       this.auctionDataService.getAllAuctions('DashboardComponent', 'auctions');
                     }
-
                   }
                 });
               }
@@ -59,7 +68,15 @@ export class AuctionStartDialogComponent {
     this.close();
 
   }
-
+ngOnIt() {
+  let i = 0;
+  for ( ; i < this.data.interestedUsersEmail.length; i++) {
+    this.profileUrl = environment.profileUrl;
+    this.profileUrl = this.profileUrl + '/' + this.data.interestedUsersEmail[i];
+    this.profileDataService.getUserProfileByEmailWithUrl(
+      this.profileUrl, AuctionStartDialogComponent.messageKey, 'otherUser');
+  }
+}
   onClick() {
     this.disabled = true;
   }

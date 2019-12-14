@@ -45,7 +45,7 @@ export class SellersListDialogComponent implements OnInit {
     //   };
     // });
     this.ELEMENT_DATA = this.data.interestedUsersEmail;
-    console.log('this.Element_Data ::', this.ELEMENT_DATA);
+    // console.log('this.Element_Data ::', this.ELEMENT_DATA);
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;

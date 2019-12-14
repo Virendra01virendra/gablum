@@ -42,4 +42,5 @@ export class ContractDetailComponent implements OnInit {
     this.sellerName = this.bidDetails.createdBy;
   }
   ngOnInit() {}
+  // FIXME adding formal fonts for contracts
 }
