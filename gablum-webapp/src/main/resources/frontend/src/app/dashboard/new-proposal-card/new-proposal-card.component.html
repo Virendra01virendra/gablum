@@ -1,5 +1,7 @@
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
-    <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
+    <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch"
+    [style.backgroundColor]="getBackgroundColor()"
+    >
         <div class="mat-title card-header" fxFlexAlign="flex-start" >{{proposal.productName}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="mat-subheading-2 subdomain" fxFlexAlign="center" >{{ proposal.businessSubDomain }}</div>

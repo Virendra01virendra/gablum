@@ -133,44 +133,37 @@ export class RegisterPageComponent implements OnInit {
   // sendMail(){
 
   // }
-  getErrorMessage1() {
+  nameErrorMessage1() {
     return this.name.hasError('required') ? '*You must enter a name' :
     this.name.hasError('maxlength') ? '*More than 30 characters not allowed' :
             '';
   }
 
-  getErrorMessage2() {
+  emailErrorMessage2() {
     return this.email.hasError('required') ? '*Email required' :
     this.email.hasError('email') ? '*Not a valid email' :
     '';
   }
 
-  getErrorMessage3() {
+  phoneErrorMessage3() {
     return this.phone.hasError('required') ? '*Required' :
         this.phone.hasError('pattern') ? '*Not a valid phone no' :
             '';
   }
 
-  getErrorMessage4() {
+  companyErrorMessage4() {
     return this.companyName.hasError('required') ? '*Required' :
     '';
   }
 
-  getErrorMessage5() {
-    return this.userName.hasError('required') ? '*You must enter a Username' :
-        this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('maxlength') ? '*Maximum 30 characters only' :
-            '';
-  }
-
-  getErrorMessage6() {
+  passwordErrorMessage6() {
     return this.password.hasError('required') ? '*You must enter a Password' :
         this.password.hasError('pattern') ? '*Not a valid Password' :
         this.password.hasError('minlength') ? '*Minimum 5 characters' :
             '';
   }
 
-  getErrorMessage7() {
+  businessLicenseErrorMessage7() {
     return this.businessLicense.hasError('required') ? '*Required' :
         this.businessLicense.hasError('pattern') ? '*Invalid GSTIN no.' :
         '';

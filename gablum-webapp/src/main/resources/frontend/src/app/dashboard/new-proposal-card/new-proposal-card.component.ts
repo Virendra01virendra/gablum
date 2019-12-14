@@ -77,5 +77,14 @@ export class NewProposalCardComponent implements OnInit {
     dialogConfig.width = '40%';
     this.dialog.open(AuctionStartDialogComponent, dialogConfig);
   }
+
+  getBackgroundColor() {
+    if (this.proposal.businessSubDomain === 'Crops') {
+      return '#e5f5dc';
+    } else if (this.proposal.businessSubDomain === 'Raw material') {
+      return '#fffad5';
+    }
+    return '#e6e6e6';
+  }
 }
 

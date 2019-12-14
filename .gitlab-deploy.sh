@@ -34,7 +34,7 @@ command="ls -ltr && \
  echo 'listing things' && \
  ls -ltr && \
  echo 'Deploying the Gablum Application' && \
- docker system prune -f && \
+ docker image prune -f && \
  docker-compose up --build -d --remove-orphans && \
  echo 'DONE DEPLOYING'"
 

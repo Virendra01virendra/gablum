@@ -82,7 +82,7 @@
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
           <div fxFlex=70%>Auction starts on</div>
-          <div fxFlex=30%>>{{data.auctionStartDate | date: 'mediumDate'}}</div>
+          <div fxFlex=30%>{{data.auctionStartDate | date: 'mediumDate'}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
@@ -94,14 +94,10 @@
   </mat-accordion>
 </div>
 <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
-  
+
     <button mat-raised-button mat-dialog-close color="secondary">Close</button>
-    <button mat-raised-button mat-dialog-close
-    (click)="sellersListDialog()"
-    >Bidder's List</button>
-    <button mat-raised-button mat-dialog-close 
-    (click)="extendDialog()"
-    >Extend Registration</button>
-    <button mat-raised-button color="primary" mat-dialog-close (click) = "startAuction(data)">Generate Auction</button>
-  
+    <button mat-raised-button mat-dialog-close (click)="sellersListDialog()">Bidder's List</button>
+    <button mat-raised-button mat-dialog-close (click)="extendDialog()">Extend Registration</button>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
+
 </div>
