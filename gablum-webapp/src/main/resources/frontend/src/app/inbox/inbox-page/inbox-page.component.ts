@@ -6,6 +6,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inbox-page',
@@ -25,7 +26,8 @@ export class InboxPageComponent implements OnInit {
     private proposalDataService: ProposalsDataService,
     private logger: LoggerService,
     private auth: AuthenticationService,
-    private user: ProfileDataService
+    private user: ProfileDataService,
+    private router: Router
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === InboxPageComponent.messageKey || msg.dest === '@all' ) {
@@ -59,6 +61,9 @@ export class InboxPageComponent implements OnInit {
     this.user.getUserProfileByEmail(
       InboxPageComponent.messageKey,
       'profile');
+  }
+  onClick() {
+    this.router.navigate(['/browse']);
   }
 
 }
