@@ -12,6 +12,13 @@ describe('BidSubmissionDialogComponent', () => {
   let component: BidSubmissionDialogComponent;
   let fixture: ComponentFixture<BidSubmissionDialogComponent>;
 
+  const bid = {
+    price: 0,
+    creditPeriod: 0,
+    qaqcCertificate: true,
+    typeOfSupply: true,
+    timeOfdelivery: new Date()
+    };
   const bidDataEntity = {
     bidId: '',
     auctionId: '',
