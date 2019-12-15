@@ -43,23 +43,6 @@
 
     </mat-list>
   </div>
-
-  <div *ngIf="data.interestedUsersEmail.size > 0">
-    <h1 mat-dialog-title>Interested sellers</h1>
-    <div mat-dialog-content>
-
-
-      <mat-list role="list">
-        <mat-list-item role="listitem" *ngFor="let seller of data.interestedUsersEmail">
-          {{seller}}
-          <button mat-raised-button color="primary" (click)="onClick()">Invite</button>
-        </mat-list-item>
-
-
-      </mat-list>
-
-    </div>
-  </div>
   <br>
 
   <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
