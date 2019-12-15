@@ -15,6 +15,7 @@ export class ProposalsDataService {
   public guestProposallistUrl: string;
   public sellerProposalsUrl: string;
   public inviteSellerUrl: string;
+  public saveSellerViewUrl: string;
 
   constructor(
     private comms: CommunicatorService,
@@ -24,6 +25,7 @@ export class ProposalsDataService {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
     this.inviteSellerUrl = environment.inviteSellerUrl;
+    this.saveSellerViewUrl = environment.saveSellerViewUrl;
   }
 
   saveProposal(dest, data, key) {
@@ -57,6 +59,16 @@ export class ProposalsDataService {
     err => {
       this.logger.log(err);
     });
+  }
+
+  postSellerView(dest, data, key) {
+    this.networking.patchData<Proposal>(this.saveSellerViewUrl, dest, data, key)
+    .subscribe(res => {
+      this.getAllProposalForSeller('DashboardComponent', 'proposals');
+      },
+      err => {
+        this.logger.log(err);
+      });
   }
 
   deleteProposal(proposalId, dest, key) {
