@@ -27,7 +27,7 @@ describe('SellerProposalCardComponent', () => {
     createdOn: new Date('Date Fri Nov 29 2019 00:00:00 GMT+0530 (India Standard Time)') ,
     updatedOn: new Date('Date Fri Nov 29 2019 00:00:00 GMT+0530 (India Standard Time)'),
     thresholdParticipants: 5,
-    views: 5,
+    viewSellerEmails: ['a', 'b'],
     interested: 5,
     businessDomain: 'Agriculture',
   businessSubDomain: 'Raw material',
