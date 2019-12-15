@@ -27,6 +27,11 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
+            <div fxFlex=70%>Credit Period</div>
+            <div fxFlex=30%>{{ data.form2.value.creditPeriod + 'Days'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
             <div fxFlex=70%>Registration Start Date</div>
             <div fxFlex=30%>{{ data.form3.value.regStartDate | date: 'mediumDate'}}</div>
         </mat-list-item>

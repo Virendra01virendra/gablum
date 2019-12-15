@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
-  public alertMessage: string;
+  public alertMessage = 0;
   public alertFlag: boolean;
   public wsRef: StompSubscription;
 
@@ -75,10 +75,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
           this.logger.log(array);
           if (array.indexOf(this.profile.email) >= 0 ) {
             //  this.alertFlag = true;
-             this.alertMessage = '!';
-          } else {
-            this.alertMessage = '0';
+             this.alertMessage += 1 ;
           }
+             // } else {
+          //   this.alertMessage = '0';
+          // }
         }
       }
     });

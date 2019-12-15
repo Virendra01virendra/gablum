@@ -92,7 +92,26 @@ export class DashboardComponent implements OnInit {
 
         if ('auctionsSeller' in data) {
           this.auctionsSeller = data.auctionsSeller;
-          console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // if (this.isSeller === true) {
+          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
+          //
+          // }
+        }
+
+        if ('auctionsSellerOnly' in data) {
+          this.auctionsSeller = data.auctionsSellerOnly;
+          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // if (this.isSeller === true) {
+          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
+          //
+          // }
+          this.auctions = this.auctionsSeller;
+          if (this.auctions.length !== 0) {
+            this.auctionsNotEmpty = true;
+          } else {
+            this.auctionsNotEmpty = false;
+          }
         }
 
 
@@ -130,6 +149,10 @@ export class DashboardComponent implements OnInit {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
               this.isBuyer = false;
+              this.auctionDataService.getAllAuctionsSeller(
+                DashboardComponent.messageKey,
+                'auctionsSellerOnly'
+              );
             } else {
               this.isSeller = false;
               this.isBuyer = true;
@@ -157,6 +180,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // this.ws.connect(message => this.subscribe());
+    this.proposalDataService.getProposalsBySubDomain(
+      this.businessSubdomain,
+      DashboardComponent.messageKey,
+      'sellerProposals'
+    );
     this.proposalDataService.getAllProposals(
       DashboardComponent.messageKey,
       'proposals'

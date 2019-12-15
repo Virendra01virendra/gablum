@@ -13,4 +13,5 @@ export const environment = {
   auctionUrl: 'https://gablum-dev.stackroute.io/api/auctions/auctions',
   tokenUrl: 'https://gablum-dev.stackroute.io/api/auctions/tokens',
   inviteSellerUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals/invite',
+  saveSellerViewUrl: 'https://gablum-dev.stackroute.io/api/proposals/proposals/views',
 };
