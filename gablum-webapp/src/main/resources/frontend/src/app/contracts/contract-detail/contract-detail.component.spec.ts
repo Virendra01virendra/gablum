@@ -6,14 +6,10 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MAT_DIALOG_DATA } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
 
 describe('ContractDetailComponent', () => {
   let component: ContractDetailComponent;
   let fixture: ComponentFixture<ContractDetailComponent>;
-  const fakeActivatedRoute = {
-    snapshot: { data: {} }
-  } as ActivatedRoute;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -24,22 +20,10 @@ describe('ContractDetailComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      providers: [{
-        provide: ActivatedRoute, MAT_DIALOG_DATA,
-        useValue: {
-          snapshot: {
-            paramMap: {
-              get(): string {
-                return '123';
-              },
-            },
-          },
-        },
-      }, ]
-      // providers: [
-      //   {
-      //     provide: MAT_DIALOG_DATA
-      //   }]
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA
+        }]
     })
       .compileComponents();
   }));
@@ -48,93 +32,124 @@ describe('ContractDetailComponent', () => {
     fixture = TestBed.createComponent(ContractDetailComponent);
     component = fixture.componentInstance;
 
-    const contract = {
-      _id: '',
-      contractId: '',
-      auctionId: '',
-      bidId: '',
-      auctionDetails: {
+    const contractWithBothUser = {
+      contract: {
+        _id: '',
+        contractId: '',
         auctionId: '',
-        uniqueLink: '',
-        auctionName: '',
-        proposal: {
-          proposalId: '',
-          productId: '',
-          createdBy: '',
-          updatedBy: '',
-          businessDomain: '',
-          businessSubDomain: '',
-          productName: '',
-          quantityValue: 2,
-          quantityUnit: '',
-          price: 1,
-          priceWeight: 1,
-          deliveryDate: new Date(),
-          deliveryDateWeight: 1,
-          creditPeriod: 2,
-          creditPeriodWeight: 1,
-          qualityCertification: true,
-          qualityCertificationWeight: 2,
-          methodOfSupply: true,
-          methodOfSupplyWeight: 1,
-          regStartDate: new Date(),
-          regEndDate: new Date(),
-          auctionStartDate: new Date(),
-          auctionEndDate: new Date(),
+        bidId: '',
+        auctionDetails: {
+          auctionId: '',
+          uniqueLink: '',
+          auctionName: '',
+          proposal: {
+            proposalId: '',
+            productId: '',
+            createdBy: '',
+            updatedBy: '',
+            businessDomain: '',
+            businessSubDomain: '',
+            productName: '',
+            quantityValue: 2,
+            quantityUnit: '',
+            price: 1,
+            priceWeight: 1,
+            deliveryDate: new Date(),
+            deliveryDateWeight: 1,
+            creditPeriod: 2,
+            creditPeriodWeight: 1,
+            qualityCertification: true,
+            qualityCertificationWeight: 2,
+            methodOfSupply: true,
+            methodOfSupplyWeight: 1,
+            regStartDate: new Date(),
+            regEndDate: new Date(),
+            auctionStartDate: new Date(),
+            auctionEndDate: new Date(),
+            createdOn: new Date(),
+            updatedOn: new Date(),
+            thresholdParticipants: 3,
+            views: 2,
+            interested: 1,
+            interestedUsersEmail: [],
+            invitedUsersEmail: [],
+            productDescription: ''
+          },
+          isAuctionActive: true,
+          isAuctionFinished: true,
+          participantsVerificationId: '',
+          selectedParticipantList: [],
+          interestedUsersEmail: [],
+          winningBid: '',
           createdOn: new Date(),
           updatedOn: new Date(),
-          thresholdParticipants: 3,
-          views: 2,
-          interested: 1,
-          interestedUsersEmail: [],
-          invitedUsersEmail: [],
-          productDescription: ''
+          createdBy: '',
+          updatedBy: '',
+          auctionStartDate: new Date(),
+          auctionEndDate: new Date(),
+          bidIdList: []
         },
-        isAuctionActive: true,
-        isAuctionFinished: true,
-        participantsVerificationId: '',
-        selectedParticipantList: [],
-        interestedUsersEmail: [],
-        winningBid: '',
-        createdOn: new Date(),
-        updatedOn: new Date(),
-        createdBy: '',
-        updatedBy: '',
-        auctionStartDate: new Date(),
-        auctionEndDate: new Date(),
-        bidIdList: []
+        bidDetails: {
+          bidId: '',
+          auctionId: '',
+          bid: {
+            price: 20,
+            creditPeriod: 2,
+            qaqcCertificate: true,
+            typeOfSupply: true,
+            timeOfDelivery: new Date()
+          },
+          scoreObject: {
+            total: 3,
+            deliveryScore: 3,
+            priceScore: 2,
+            creditScore: 2,
+            qaqcScore: 2,
+            typeScore: 2
+          },
+          createdBy: ''
+        },
+        buyerEmail: '',
+        buyerESign: '',
+        sellerESign: '',
+        sellerEmail: '',
+        contractStatus: true,
+        currentHash: '',
+        previousHash: '',
+        createdOn: new Date()
       },
-      bidDetails: {
-        bidId: '',
-        auctionId: '',
-        bid: {
-          price: 20,
-          creditPeriod: 2,
-          qaqcCertificate: true,
-          typeOfSupply: true,
-          timeOfDelivery: new Date()
-        },
-        scoreObject: {
-          total: 3,
-          deliveryScore: 3,
-          priceScore: 2,
-          creditScore: 2,
-          qaqcScore: 2,
-          typeScore: 2
-        },
-        createdBy: ''
+      buyer: {
+        name: '',
+        email: '',
+        address: '',
+        phone: 2,
+        companyName: '',
+        businessLicense: '',
+        password: '',
+        role: [{
+          role: '',
+          id: 2
+        }],
+        businessDomain: '',
+        businessSubDomain: ''
       },
-      buyerEmail: '',
-      buyerESign: '',
-      sellerESign: '',
-      sellerEmail: '',
-      contractStatus: true,
-      currentHash: '',
-      previousHash: '',
-      createdOn: new Date()
+      seller: {
+        name: '',
+        email: '',
+        address: '',
+        phone: 2,
+        companyName: '',
+        businessLicense: '',
+        password: '',
+        role: [{
+          role: '',
+          id: 2
+        }],
+        businessDomain: '',
+        businessSubDomain: ''
+      }
     };
-
-    component.contract = contract;
+    component.contractWithBothUser = contractWithBothUser;
     fixture.detectChanges();
   });
 
