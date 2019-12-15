@@ -90,9 +90,11 @@ fxLayoutAlign="flex-start center"
 [ngStyle]="{'position': 'fixed', 'bottom': '2em', 'right': '2em'}"
 fxLayout="column nowrap"
 >
-  <button mat-fab matTooltip="Go back" (click)="goBack()"
-  style="position: fixed; bottom: 2em; right: 2em;"
+<button mat-fab matTooltip="Go back" (click)="goBack()"
+    style="position: fixed; bottom: 2em; right: 2em;"
 >
+    <mat-icon>keyboard_backspace</mat-icon>
+</button>
   <button mat-fab matTooltip="Place a new bid" color="primary"
   
   (click)="openSheet()"
