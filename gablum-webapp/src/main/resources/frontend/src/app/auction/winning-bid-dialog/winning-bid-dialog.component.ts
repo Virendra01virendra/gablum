@@ -43,7 +43,7 @@ export class WinningBidDialogComponent {
   }
   selectBid() {
     this.auctionDataService.saveWinningBid(WinningBidDialogComponent.messageKey, this.bidData, 'winningBid', this.auctionIdn);
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['contracts']);
     this.close();
   }
 

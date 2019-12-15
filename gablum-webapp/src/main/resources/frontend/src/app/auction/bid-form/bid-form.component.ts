@@ -143,6 +143,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = bidData;
     dialogConfig.width = '40%';
+    dialogConfig.height = '55%';
     this.matDialog.open(BidSubmissionDialogComponent, dialogConfig);
 
   }
