@@ -55,10 +55,4 @@ export class WinningBidDialogComponent {
     this.router.navigate(['contracts']);
     this.close();
   }
-
-
-
-
-
-
 }

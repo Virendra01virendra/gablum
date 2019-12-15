@@ -9,7 +9,7 @@
 </label> -->
 <div mat-dialog-content style="overflow: scroll; overflow-x: hidden">
     <h3>
-        {{'CONTRACTS.PN' | translate}} - {{productName | titlecase}}
+        {{'CONTRACTS.PN' | translate}} - {{productName | uppercase}}
     </h3>
     <h4>
         {{'CONTRACTS.PD' | translate}} {{contract.auctionDetails.proposal.productDescription}}
@@ -31,7 +31,7 @@
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.methodOfSupply != true">
                         <li>
-                                {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.PARTS' | translate}}
+                            {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.PARTS' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.qualityCertification == true">
@@ -85,7 +85,8 @@
     </mat-grid-list>
     <article>
         <p>
-            {{'CONTRACTS.PRE1' | translate}} {{buyer.name | titlecase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}} {{'CONTRACTS.PRE3' | translate}} {{seller.name | titlecase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}} {{'CONTRACTS.PRE4' | translate}}
+            {{'CONTRACTS.PRE1' | translate}} {{buyer.name | uppercase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}} {{'CONTRACTS.PRE3' | translate}} {{seller.name | uppercase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}}
+            {{'CONTRACTS.PRE4' | translate}}
         </p>
         <p>
             {{'CONTRACTS.OPEN' | translate}}
@@ -94,7 +95,8 @@
             <li>{{'CONTRACTS.ONE' | translate}} {{contract.auctionDetails.auctionStartDate | date: 'mediumDate'}} {{'CONTRACTS.AND' | translate}} {{contract.auctionDetails.auctionEndDate | date: 'mediumDate'}} {{'CONTRACTS.FOR' | translate}} {{contract.auctionDetails.proposal.productName}}
                 {{'CONTRACTS.OF' | translate}} ' {{contract.auctionDetails.proposal.productDescription}} ' {{'CONTRACTS.TWO' | translate}}</li>
             <li>{{'CONTRACTS.THREE' | translate}} {{contract.bidDetails.bid.timeOfDelivery | date: 'mediumDate'}} {{'CONTRACTS.THREE1' | translate}}</li>
-            <li>{{'CONTRACTS.FOUR' | translate}} {{contract.bidDetails.bid.creditPeriod}} {{'CONTRACTS.FOUR1' | translate}} {{contract.bidDetails.bid.price}} {{'CONTRACTS.PER' | translate}} {{contract.auctionDetails.proposal.quantityUnit}}. {{'CONTRACTS.FOUR2' | translate}}.
+            <li>{{'CONTRACTS.FOUR' | translate}} {{contract.bidDetails.bid.creditPeriod}} {{'CONTRACTS.FOUR1' | translate}} {{contract.bidDetails.bid.price}} {{'CONTRACTS.PER' | translate}} {{contract.auctionDetails.proposal.quantityUnit}}. {{'CONTRACTS.FOUR2'
+                | translate}}.
             </li>
         </ul>
         <p>
