@@ -65,5 +65,7 @@ export class InboxPageComponent implements OnInit {
   onClick() {
     this.router.navigate(['/browse']);
   }
-
+  loadProfile(email) {
+    this.router.navigate(['/profile', email]);
+  }
 }

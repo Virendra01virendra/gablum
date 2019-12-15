@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { NgxData } from 'src/app/interfaces/ngx-data';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { WinningBidDialogComponent } from '../winning-bid-dialog/winning-bid-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -27,7 +27,8 @@ export class BidCardComponent implements OnInit {
     private matDialog: MatDialog,
     private auth: AuthenticationService,
     private comms: CommunicatorService,
-    private profileDataService: ProfileDataService
+    private profileDataService: ProfileDataService,
+    public router: Router
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === BidCardComponent.messageKey || msg.dest === '@all') {
@@ -75,6 +76,9 @@ export class BidCardComponent implements OnInit {
     dialogConfig.width = '40%';
     this.matDialog.open(WinningBidDialogComponent, dialogConfig);
 
+  }
+  loadProfile(email: string){
+    this.router.navigate(['/profile', email]);
   }
 
 }
