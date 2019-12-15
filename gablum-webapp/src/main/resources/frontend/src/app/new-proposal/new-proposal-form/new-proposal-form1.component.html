@@ -83,7 +83,7 @@
             <mat-label class="form-label">Delivery date</mat-label>
             <input matInput [matDatepickerFilter]="deliveryDate" [matDatepicker]="picker1" placeholder="Choose a delivery date" formControlName="deliveryDate">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-hint fxHide.xs align="start"> a day dedicated to each registration start, end, and auction start and end </mat-hint>
+            <!-- <mat-hint fxHide.xs fxHide.l align="start"> a day dedicated to each registration start, end, and auction start and end </mat-hint> -->
             <mat-datepicker #picker1 disabled="false"></mat-datepicker>
           </mat-form-field>
           <div fxFlex="45">
@@ -149,10 +149,7 @@
           <mat-divider></mat-divider>
           <mat-expansion-panel (opened)="exPanelOpenState = true" (closed)="exPanelOpenState = false">
             <mat-expansion-panel-header>
-              <mat-panel-title fxHide.xs>
-                Why to Quantify importance of each parameter in terms of weightage?
-              </mat-panel-title>
-              <mat-panel-title fxHide.sm fxHide.l>
+              <mat-panel-title>
                 Significance of Weightage
               </mat-panel-title>
             </mat-expansion-panel-header>

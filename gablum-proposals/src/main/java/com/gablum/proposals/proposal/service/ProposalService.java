@@ -77,9 +77,15 @@ public class ProposalService implements IProposalService {
         return proposalRepo.save(proposalToChange);
     }
 
+    public Proposal changeAuctionFlag(String proposalId) {
+        Proposal proposalToChange = getProposalById(proposalId);
+        proposalToChange.setAuctionStarted(true);
+        return proposalRepo.save(proposalToChange);
+    }
+
     @Override
     public List<Proposal> getAllProposals(Map<String, String> queryMap, String email) {
-        return proposalRepo.getAllProposalsByCreatedBy(email, getPageable(queryMap)).getContent();
+        return proposalRepo.findAllByCreatedByAndAuctionStarted(getPageable(queryMap), email, false).getContent();
     }
 
     @Override
@@ -100,10 +106,17 @@ public class ProposalService implements IProposalService {
         return proposalRepo.save(updatedProposal);
     }
 
-    public Proposal saveInvitedSeller(String currentLoggedUserEmail, Proposal proposalInWhichAdditionIsDone) {
-        Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
+    public Proposal saveInvitedSeller(Proposal updatedProposal) {
+//        Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
         System.out.println("vahin" + updatedProposal);
-        updatedProposal.getInvitedUsersEmail().add(currentLoggedUserEmail);
+//        updatedProposal.getInvitedUsersEmail().add(currentLoggedUserEmail);
+        return proposalRepo.save(updatedProposal);
+    }
+
+    public Proposal saveSellerView(Proposal updatedProposal) {
+//        Proposal updatedProposal = getProposalById(proposalInWhichAdditionIsDone.getProposalId());
+        System.out.println("vahin" + updatedProposal);
+//        updatedProposal.getInvitedUsersEmail().add(currentLoggedUserEmail);
         return proposalRepo.save(updatedProposal);
     }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatOptionModule, MatProgressBarModule, MatSnackBarModule, MatCheckboxModule, MatBottomSheetModule } from '@angular/material';
+import { MatOptionModule, MatProgressBarModule, MatSnackBarModule, MatCheckboxModule, MatBottomSheetModule, MatSortModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -75,7 +75,8 @@ const modules = [
   NgxChartsModule,
   MatSnackBarModule,
   MatCheckboxModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatSortModule
 ];
 
 @NgModule({

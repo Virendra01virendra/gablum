@@ -15,6 +15,7 @@ export class ProposalsDataService {
   public guestProposallistUrl: string;
   public sellerProposalsUrl: string;
   public inviteSellerUrl: string;
+  public saveSellerViewUrl: string;
 
   constructor(
     private comms: CommunicatorService,
@@ -24,6 +25,7 @@ export class ProposalsDataService {
     this.proposalsUrl = environment.proposalUrl;
     this.guestProposallistUrl = environment.guestProposallistUrl;
     this.inviteSellerUrl = environment.inviteSellerUrl;
+    this.saveSellerViewUrl = environment.saveSellerViewUrl;
   }
 
   saveProposal(dest, data, key) {
@@ -59,6 +61,16 @@ export class ProposalsDataService {
     });
   }
 
+  postSellerView(dest, data, key) {
+    this.networking.patchData<Proposal>(this.saveSellerViewUrl, dest, data, key)
+    .subscribe(res => {
+      this.getAllProposalForSeller('DashboardComponent', 'proposals');
+      },
+      err => {
+        this.logger.log(err);
+      });
+  }
+
   deleteProposal(proposalId, dest, key) {
     const proposalUrlDel = this.proposalsUrl + '/' + proposalId;
     this.networking.deleteData<Proposal>(proposalUrlDel, dest, key).subscribe(
@@ -78,6 +90,17 @@ export class ProposalsDataService {
     this.networking.getData<Proposal>(proposalUrlSubDomain, dest, key);
   }
 
+
+  changeAuctionFlag(proposalId, dest, key) {
+    const proposalAuctionStartUrl = this.proposalsUrl + '/' + proposalId + '/auction-started';
+    this.networking.patchData(proposalAuctionStartUrl, dest, '', key).subscribe((res) => {
+      this.getAllProposals('DashboardComponent', 'proposals');
+    },
+    err => {
+        this.logger.log(err);
+    });
+    console.log('in change auctionnnnnnnn------------>');
+  }
 
 
 }

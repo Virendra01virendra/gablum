@@ -1,9 +1,9 @@
-import { Component, OnInit, Input, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Inject, OnDestroy, ViewChild } from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { MatDialog, MatDialogConfig, MatSnackBar, MatBottomSheet } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatSnackBar, MatBottomSheet, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Params } from '@angular/router';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
@@ -40,11 +40,15 @@ export class BidFormComponent implements OnInit, OnDestroy {
   public auctionUrl: string;
   isOwner = false;
   bids: NewBid[];
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   public displayedColumns = [
     'createdOn', 'rank', 'price', 'delivery'
   ];
 
   public tableData = [];
+  public dataSource: MatTableDataSource<any>;
   tokenBody: any;
   constructor(
     public http: HttpClient,
@@ -57,6 +61,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private bottomSheet: MatBottomSheet
     ) {
+      this.dataSource = new MatTableDataSource([]);
       const auctionUrl = environment.auctionUrl;
       comms.getMessages().subscribe(msg => {
         const tokenUrl = environment.tokenUrl;
@@ -122,10 +127,11 @@ export class BidFormComponent implements OnInit, OnDestroy {
             });
             this.logger.log(this.bids);
             this.tableData = [...this.tableData];
+            this.dataSource.data = this.tableData;
+            this.dataSource.sort = this.sort;
           }
         }
       });
-
     }
   ngOnInit() {
     this.route.paramMap
@@ -160,18 +166,6 @@ export class BidFormComponent implements OnInit, OnDestroy {
     dialogConfig.width = '40%';
     this.matDialog.open(BidSubmissionDialogComponent, dialogConfig);
 
-  }
-
-
-  seeScore(form: FormGroup) {
-    const bid = {
-      price: form.value.newPrice,
-      creditPeriod: form.value.newCreditPeriod,
-      qaqcCertificate: form.value.newQaqcCertificate,
-      typeOfSupply: form.value.newTypeOfDelivery,
-      timeOfDelivery: form.value.newTimeOfDelivery,
-      };
-    this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
   }
 
   bidList() {
@@ -212,6 +206,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
               });
               this.logger.log(this.bids);
               this.tableData = [...this.tableData];
+              this.dataSource.data = this.tableData;
             }
           }
         }

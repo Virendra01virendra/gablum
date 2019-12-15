@@ -12,6 +12,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
@@ -53,6 +54,7 @@ public class    ProposalController {
         proposalData.setUpdatedBy(email);
         proposalData.setCreatedOn(new Date());
         proposalData.setUpdatedOn(new Date());
+        proposalData.setAuctionStarted(false);
         Proposal savedProposal = proposalService.addProposals(proposalData);
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
@@ -133,9 +135,26 @@ public class    ProposalController {
         );
     }
 
-    @PatchMapping("/proposals/invite")
-    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
-        String currentLoggedUserEmail = userService.getEmail(request);
-        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
+    @PatchMapping("/proposals/invite/")
+    public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal updatedProposal, HttpServletRequest request) {
+        // String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(updatedProposal), HttpStatus.OK);
     }
+
+    @PatchMapping("proposals/{proposalId}/auction-started")
+    public ResponseEntity<Proposal> auctionStarted(@PathVariable("proposalId") String proposalId) {
+        System.out.println("PRRRRRRRRRRRROOOOOOOOPOOOOOOOSALSSSSSSS------------------------------->>>>>>>>>>>");
+        return new ResponseEntity<Proposal>(
+                proposalService.changeAuctionFlag(proposalId),
+                HttpStatus.OK
+        );
+    }
+
+    @PatchMapping("/proposals/views/")
+    public ResponseEntity<Proposal> saveSellerView(@RequestBody Proposal updatedProposal, HttpServletRequest request) {
+        // String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveSellerView(updatedProposal), HttpStatus.OK);
+    }
+
+
 }
