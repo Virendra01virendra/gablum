@@ -4,10 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @Getter
@@ -42,7 +39,7 @@ public class Proposal {
     private Date createdOn;
     private Date updatedOn;
     private int thresholdParticipants;
-    private int views;
+    private Set<String> viewSellerEmails = new HashSet<>();
     private int interested;
     private List<String> invitedUsersEmail = new ArrayList<>();
     private List<String> interestedUsersEmail = new ArrayList<>();
