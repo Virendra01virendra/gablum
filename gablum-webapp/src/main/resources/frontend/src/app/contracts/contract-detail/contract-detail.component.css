@@ -1,1 +1,15 @@
-/* add formal headings like times new roman*/
+mat-grid-tile {
+    background-color: rgb(245, 245, 245);
+    padding: 4px;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+article {
+    text-align: justify;
+    font-family: monospace;
+}
