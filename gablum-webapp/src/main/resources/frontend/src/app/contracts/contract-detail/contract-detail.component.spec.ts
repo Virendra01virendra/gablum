@@ -47,6 +47,7 @@ describe('ContractDetailComponent', () => {
           createdOn: new Date(),
           updatedOn: new Date(),
           thresholdParticipants: 3,
+          viewSellerEmails: [],
           views: 2,
           interested: 1,
           interestedUsersEmail: [],

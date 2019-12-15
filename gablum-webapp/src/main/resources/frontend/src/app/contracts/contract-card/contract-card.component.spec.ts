@@ -92,6 +92,7 @@ describe('ContractCardComponent', () => {
           auctionEndDate: new Date(),
           createdOn: new Date(),
           updatedOn: new Date(),
+          viewSellerEmails: [],
           thresholdParticipants: 3,
           views: 2,
           interested: 1,
