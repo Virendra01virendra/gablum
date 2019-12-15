@@ -35,11 +35,11 @@ export class InboxPageComponent implements OnInit {
           if ('profile' in data) {
             try {
               this.userProfile = data.profile;
-              logger.log('data---->', data);
+              // logger.log('data---->', data);
               this.currentSubDomain = this.userProfile.businessSubDomain;
-              logger.log('SubDomain---->', this.currentSubDomain);
+              // logger.log('SubDomain---->', this.currentSubDomain);
               this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'Allproposals');
-            } catch (err) {
+             } catch (err) {
               this.logger.log(err);
             }
 
