@@ -34,6 +34,8 @@ export class ContractCardComponent implements OnInit {
   public profileUrl: string;
   public otherUser: Profile;
   public contractWithBothUsers: ContractWithBothUser;
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
 
   constructor(
     private dialog: MatDialog,

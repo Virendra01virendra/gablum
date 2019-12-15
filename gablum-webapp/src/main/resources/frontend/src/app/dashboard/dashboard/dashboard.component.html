@@ -15,11 +15,13 @@
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
         </div>
 
+        <div style="height: 20vh;"></div>
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 5em;">broken_image</mat-icon>
           <br>
-          <div> Sorry, no ongoing Auctions in your sub-domain!</div>
+          <div style="height: 5vh;"></div>
+          <div style="font-size: 1.5em;"> Sorry, no ongoing Auctions in your sub-domain!</div>
         </div>
       </mat-tab>
   
@@ -39,11 +41,13 @@
           <app-auction-card *ngFor="let auction of oldAuctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
         </div>
 
+        <div style="height: 20vh;"></div>
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !oldAuctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 5em;">broken_image</mat-icon>
           <br>
-          <div> Sorry, you have no past Auctions!</div>
+          <div style="height: 5vh;"></div>
+          <div style="font-size: 1.5em;"> Sorry, you have no past Auctions!</div>
         </div>
       </mat-tab>
     </mat-tab-group>
@@ -62,7 +66,7 @@
 
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 2em;">broken_image</mat-icon>
           <br>
           <div> Sorry, no ongoing Auctions in your sub-domain!</div>
         </div>
@@ -91,7 +95,7 @@
 
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !oldAuctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 2em;">broken_image</mat-icon>
           <br>
           <div> Sorry, you have no past Auctions!</div>
         </div>
@@ -116,11 +120,13 @@
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
        </div>
 
+       <div style="height: 20 vh;"></div>
        <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
         <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 5em;">broken_image</mat-icon>
         <br>
-        <div> Sorry, no ongoing Auctions in your sub-domain!</div>
+        <div style="height: 5vh;"></div>
+        <div style="font-size: 1.5em;"> Sorry, no ongoing Auctions in your sub-domain!</div>
       </div>
         </mat-tab>
   
@@ -134,12 +140,14 @@
         <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" *ngIf = oldAuctionsNotEmpty>
           <app-auction-card *ngFor="let auction of oldAuctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
        </div>
-
+      
+       <div style="height: 20vh;"></div>
        <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !oldAuctionsNotEmpty>
         <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 5em;">broken_image</mat-icon>
         <br>
-        <div> Sorry, no ongoing Auctions in your sub-domain!</div>
+        <div style="height: 5vh;"></div>
+        <div style="font-size: 1.5em;"> Sorry, no past Auctions in your sub-domain!</div>
       </div>
 
       </mat-tab>
@@ -159,7 +167,7 @@
         </div>
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 2em;">broken_image</mat-icon>
           <br>
           <div> Sorry, no ongoing Auctions in your sub-domain!</div>
         </div>
@@ -192,7 +200,7 @@
         </div>
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !oldAuctionsNotEmpty>
           <br>
-          <mat-icon>broken_image</mat-icon>
+          <mat-icon style="font-size: 2em">broken_image</mat-icon>
           <br>
           <div> Sorry, you have no past Auctions!</div>
         </div>
@@ -338,10 +346,9 @@
             <div class="expansion-auction-card" fxLayout="column" *ngIf = auctionsNotEmpty>
               <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
             </div>
-            
             <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
               <br>
-              <mat-icon>broken_image</mat-icon>
+              <mat-icon style="height: 2.5em; width: 2.5em">broken_image</mat-icon>
               <br>
               <div> Sorry, no ongoing Auctions in your sub-domain!</div>
             </div>
