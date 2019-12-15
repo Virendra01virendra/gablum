@@ -1,0 +1,53 @@
+import { Component, OnInit } from '@angular/core';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { CommunicatorService } from 'src/app/services/communicator.service';
+import { Profile } from 'src/app/interfaces/profile';
+import { LoggerService } from 'src/app/services/logger.service';
+import { PublicProfileService} from 'src/app/services/public-profile.service';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
+@Component({
+  selector: 'app-public-profile',
+  templateUrl: './public-profile.component.html',
+  styleUrls: ['./public-profile.component.css']
+})
+export class PublicProfileComponent implements OnInit {
+  public static messageKey = 'public-profile-component';
+  public profile: Profile;
+  public roles: string;
+  public previousRoute: string;
+  public profileEmail: string;
+
+  constructor(
+    public profileDataService: ProfileDataService,
+    public comms: CommunicatorService,
+    private logger: LoggerService,
+    public publicProfile: PublicProfileService,
+    public activatedRoute: ActivatedRoute,
+    public router: Router
+  ) {
+    console.log('In public profile component');
+    this.activatedRoute.paramMap
+      .subscribe((params: Params) => {
+        this.profileEmail = params.get('email');
+      });
+    this.profileEmail = environment.profileUrl + '/' + this.profileEmail;
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === PublicProfileComponent.messageKey || msg.dest === '@all') {
+        const data = msg.data;
+        if ('profile' in data) {
+          this.profile = data.profile;
+          this.roles = this.profile.role.map(r => r.role).join(', ');
+          this.logger.log(this.profile);
+        }
+      }
+    });
+   }
+  ngOnInit() {
+    this.profileDataService.getUserProfileByEmailWithUrl(this.profileEmail, PublicProfileComponent.messageKey, 'profile');
+  }
+  // onClick(){
+  //   this.router.navigate
+  // }
+}

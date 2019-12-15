@@ -4,7 +4,7 @@
             <i class="material-icons">account_circle</i>
         </div>
         <div class="welcome">
-            <h1>Welcome, {{profile.name | titlecase}}</h1>
+            <h1>{{profile.name | titlecase}}'s Profile</h1>
         </div>
     </div>
     <mat-card style="margin: 1em 12em 4em 12em;">
@@ -70,34 +70,12 @@
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
                     <div fxLayout="row" fxFill>
-                        <div fxFlex="30">PHONE</div>
-                        <div fxFlex="60">{{profile.phone}}</div>
-                    </div>
-                </div>
-                <div fxFlex="20" fxHide.xs></div>
-            </div>
-
-            <div class="name">
-                <div fxFlex="20" fxHide.xs></div>
-                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
-                    <div fxLayout="row" fxFill>
                         <div fxFlex="30">COMPANY NAME</div>
                         <div fxFlex="60">{{profile.companyName}}</div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-
-            <!-- <div class="name">
-                <div fxFlex="20" fxHide.xs></div>
-                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
-                    <div fxLayout="row" fxFill>
-                        <div fxFlex="30">USERNAME</div>
-                        <div fxFlex="60" aria-disabled>{{profile.userName}}</div>
-                    </div>
-                </div>
-                <div fxFlex="20" fxHide.xs></div>
-            </div> -->
 
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
@@ -146,7 +124,9 @@
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60">
-                    <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()">EDIT</button>
+                    <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()" [routerLink]="['/dashboard']">
+                        Back
+                    </button>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>

@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { environment } from 'src/environments/environment';
 import { ProposalWithProfiles } from 'src/app/interfaces/proposal-with-profiles';
+import { Router } from '@angular/router';
 
 export interface InvitedUsersEmail {
   position: number;
@@ -32,7 +33,7 @@ export class SellersListDialogComponent implements OnInit {
   public profile: Profile;
   alreadyRegistered: boolean;
   public userEmail: string;
-  displayedColumns: string[] = ['sellerEmail', 'action'];
+  displayedColumns: string[] = ['sellerEmail', 'loadProfile',  'action'];
   public ELEMENT_DATA;
   public otherProfile: Profile;
   public otherProfileList = [];
@@ -43,7 +44,9 @@ export class SellersListDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
               private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
-              private user: ProfileDataService) {
+              private user: ProfileDataService,
+              public router: Router
+              ) {
     // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
     //   return {
     //     email: invitedUsersEmail,
@@ -78,7 +81,7 @@ export class SellersListDialogComponent implements OnInit {
         }
 
         if ('invite-seller' in Data) {
-          this.buttonClicked = true;
+          // this.buttonClicked = true;
         }
 
         // if ('otherUser' in Data) {
@@ -133,5 +136,10 @@ export class SellersListDialogComponent implements OnInit {
     // const patchObject = Object.assign({}, { id: this.data.proposalId, patchValue: [sellerEmail] });
 
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
+  }
+
+  loadProfile(sellerEmail) {
+    console.log('loading Profile');
+    this.router.navigate(['/profile', sellerEmail]);
   }
 }

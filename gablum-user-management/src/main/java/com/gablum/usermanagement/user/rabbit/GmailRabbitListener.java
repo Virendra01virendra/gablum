@@ -32,9 +32,9 @@ public class GmailRabbitListener {
         mailController.sendingBidMail(bidMessage);
     }
 
-    @StreamListener()
-    public void newContract(Contracts contracts){
-        log.warn("sending contracts" + contracts.toString());
-        mailController.sendingContract(contracts);
-    }
+//    @StreamListener()
+//    public void newContract(Contracts contracts){
+//        log.warn("sending contracts" + contracts.toString());
+//        mailController.sendingContract(contracts);
+//    }
 }
