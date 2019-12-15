@@ -55,6 +55,27 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
+  # gateway2:
+  #   build:
+  #     context: ./gateway2
+  #   env_file: env_local.env
+  #   expose:
+  #     - 8080
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - discovery
+  #   entrypoint:
+  #     - ./wait
+  #     - discovery:8001
+  #     - -t
+  #     - "300"
+  #     - --
+  #     - java
+  #     - -jar
+  #     - /usr/app/app.jar
+  #   restart: on-failure
+
   user-service:
     build:
       context: ./gablum-user-management
@@ -150,22 +171,22 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
-#  scheduler:
-#     build:
-#       context: ./gablum-scheduler
-#     env_file: env_local.env
-#     depends_on:
-#       - discovery
-#     entrypoint:
-#       - ./wait
-#       - discovery:8001
-#       - -t
-#       - "300"
-#       - --
-#       - java
-#       - -jar
-#       - /usr/app/app.jar
-#     restart: on-failure
+ scheduler:
+    build:
+      context: ./gablum-scheduler
+    env_file: env_local.env
+    depends_on:
+      - discovery
+    entrypoint:
+      - ./wait
+      - discovery:8001
+      - -t
+      - "300"
+      - --
+      - java
+      - -jar
+      - /usr/app/app.jar
+    restart: on-failure
 
   contracts:
     build:

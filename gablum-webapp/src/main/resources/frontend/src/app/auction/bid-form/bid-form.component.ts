@@ -194,6 +194,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
       this.comms.getMessages().subscribe(message => {
           if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
             const data = message.data;
+            this.logger.log(data);
             if ('newbid' in data) {
               this.bids = JSON.parse(data.newbid.body);
               this.sortBidsByCreated();

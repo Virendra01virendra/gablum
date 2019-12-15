@@ -14,6 +14,7 @@ export class AddBidSheetComponent implements OnInit {
   public static messageKey = 'AddBidSheetComponent';
   bidForm: FormGroup;
   private auctionId: string;
+  private dest: string;
 
 
   constructor(
@@ -23,10 +24,11 @@ export class AddBidSheetComponent implements OnInit {
     private sheetRef: MatBottomSheetRef,
     private comms: CommunicatorService
   ) {
+    this.dest = 'd' + Date.now();
     this.auctionId = data.id;
     this.logger.log(data.id);
     this.comms.getMessages().subscribe(message => {
-      if (message.dest === AddBidSheetComponent.messageKey) {
+      if (message.dest === this.dest) {
         const commData = message.data;
         if ('saveBids' in commData) {
           this.sheetRef.dismiss();
@@ -59,7 +61,7 @@ export class AddBidSheetComponent implements OnInit {
           typeOfSupply: this.bidForm.value.newTypeOfDelivery,
           timeOfDelivery: this.bidForm.value.newTimeOfDelivery,
           };
-        this.auctionDataService.getScore(AddBidSheetComponent.messageKey, bid, 'scoreBids', this.auctionId);
+        // this.auctionDataService.getScore(this.dest, bid, 'scoreBids', this.auctionId);
       });
   }
 
@@ -72,7 +74,7 @@ export class AddBidSheetComponent implements OnInit {
     timeOfDelivery: form.value.newTimeOfDelivery,
     };
     this.logger.log('making api call', bid1);
-    this.auctionDataService.saveBid(AddBidSheetComponent.messageKey, bid1, 'saveBids', this.auctionId);
+    this.auctionDataService.saveBid(this.dest, bid1, 'saveBids', this.auctionId);
   }
 
 }
