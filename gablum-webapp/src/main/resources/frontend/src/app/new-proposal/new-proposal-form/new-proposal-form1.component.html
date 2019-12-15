@@ -1,10 +1,12 @@
 <mat-toolbar style="background-color: #E0E0E0;">
-  <mat-icon class="title-icon">add</mat-icon>
-  <span class="title" fxHide.xs>Float a new proposal</span>
-  <span class="title" fxHide.gt-xs>New proposal</span>
-  <a style="align-content: right;" [routerLink]="['/dashboard']">
-    <button class="but1" mat-raised-button>Back to Home</button>
-  </a>
+    <mat-icon class="title-icon">add</mat-icon>
+    <span class="title" fxHide.xs>Float a new proposal</span>
+    <span class="title" fxHide.gt-xs>New proposal</span>
+    <span>
+        <a  [routerLink]="['/dashboard']">
+            <button class="but1" mat-raised-button color="accent">Back to Home</button>
+        </a>
+    </span>
 </mat-toolbar>
 <div class="body">
     <div class="form-container" fxLayoutAlign="space-between center">
@@ -19,8 +21,7 @@
                         <div fxLayout="row wrap" fxLayoutAlign="space-between start">
                             <mat-form-field fxFlex="45" appearance="outline" class="prod-details">
                                 <mat-label class="form-label">Business Domain:</mat-label>
-                                <input matInput type="text" readonly="true"
-                                    formControName="businessDomain">
+                                <input matInput type="text" readonly="true" formControName="businessDomain">
                             </mat-form-field>
 
                             <mat-form-field fxFlex="45" appearance="outline" class="prod-details">
@@ -33,7 +34,7 @@
                             </mat-form-field>
                         </div>
 
-                        <div >
+                        <div>
                             <mat-form-field appearance="outline" class="prod-details">
                                 <mat-label class="form-label">Product name:</mat-label>
                                 <input matInput type="text" placeholder="Product Name" formControlName="productName"
@@ -166,7 +167,8 @@
                         <div></div>
                         <div>
                             <button mat-raised-button matStepperPrevious class="padded-btn">Back</button>
-                            <button mat-raised-button color="primary" matStepperNext [disabled]="!paramForm.valid" class="padded-btn">Next</button>
+                            <button mat-raised-button color="primary" matStepperNext [disabled]="!paramForm.valid"
+                                class="padded-btn">Next</button>
                         </div>
                     </div>
                     <div fxFlex="35" class="know-weightage">
@@ -233,7 +235,8 @@
                         <div></div>
                         <div>
                             <button mat-raised-button matStepperPrevious class="padded-btn">Back</button>
-                            <button mat-raised-button color="primary" matStepperNext (click)="onSubmit()" [disabled]="!timeForm.valid" class="padded-btn">Submit</button>
+                            <button mat-raised-button color="primary" matStepperNext (click)="onSubmit()"
+                                [disabled]="!timeForm.valid" class="padded-btn">Submit</button>
                         </div>
                     </div>
                 </form>
