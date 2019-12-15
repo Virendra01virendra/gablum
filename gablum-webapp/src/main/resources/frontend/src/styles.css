@@ -33,8 +33,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-left: 16px solid pink;
     width: 120px;
     height: 120px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
   }
   
   .loader-inner {
@@ -42,7 +42,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: inline-block;
     width: 100%;
     color: #fff;
-    animation: loader-inner 2s infinite ease-in;
+    animation: loader-inner 1s infinite ease-in;
   }
   
   @-webkit-keyframes spin {
