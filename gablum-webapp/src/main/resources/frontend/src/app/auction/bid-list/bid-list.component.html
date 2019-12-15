@@ -16,7 +16,7 @@ fxLayoutAlign="flex-start center"
     fxLayout="row wrap"
     fxLayout.xs="column nowrap"
     fxLayoutAlign="space-around center"
-    style="padding: 2em 0;"
+    style="margin: 2em 0;"
     >
         <app-auction-card
         [auction]="auction"
@@ -24,30 +24,35 @@ fxLayoutAlign="flex-start center"
         [buttonShow]=false
         fxFlex="1 1 40%"
         fxFlex.xs="1 1 auto"
+        [ngStyle.xs]="{'width': '80%', 'margin': '1em 0'}"
         ></app-auction-card>
         <div
         class="chart-container mat-elevation-z6"
         fxFlex="1 1 40%"
-        fxFlex.xs="1 1 auto"
+        fxFlex.xs="0 0 auto"
         fxLayout="column nowrap"
         fxLayoutAlign="flex-start center"
-        [ngStyle.xs]="{'height': '20em', 'max-width': '80%'}"
+        [ngStyle.xs]="{'height': '20em', 'width': '80%', 'margin': '1em 0'}"
         >
         <span>
             Score of bids over time
         </span>
-            <ngx-charts-bar-vertical
-            [yAxis]="true"
-            [legend]="false"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [xAxisLabel]="'Time'"
-            [yAxisLabel]="'Score'"
-            [results]="timeData"
-            [tooltipDisabled]="true"
-            *ngIf="timeData && timeData.length !== 0"
+            <div class="graph-cont"
+            [ngStyle]="{'height': '20em', 'width': '100%'}"
             >
-            </ngx-charts-bar-vertical>
+                <ngx-charts-bar-vertical
+                [yAxis]="true"
+                [legend]="false"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxisLabel]="'Time'"
+                [yAxisLabel]="'Score'"
+                [results]="timeData"
+                [tooltipDisabled]="true"
+                *ngIf="timeData && timeData.length !== 0"
+                >
+                </ngx-charts-bar-vertical>
+            </div>
         </div>
     </div>
     <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
