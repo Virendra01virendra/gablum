@@ -15,6 +15,8 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
+// import { TranslateService } from '@ngx-translate/core';
+// import { IntlService } from 'src/app/services/intl.service';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-dashboard',
@@ -72,7 +74,9 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
     private auth: AuthenticationService,
-    public http: HttpClient
+    public http: HttpClient,
+    // public translate: TranslateService,
+    // public intl: IntlService
   ) {
     // this.isLoggedIn = auth.getAuthenticated();
     // if (this.isLoggedIn) {
@@ -174,6 +178,11 @@ export class DashboardComponent implements OnInit {
             this.oldAuctionsNotEmpty = false;
           }
         }
+
+        // translate.addLangs(['en', 'fr', 'hi']);
+        // translate.setDefaultLang('en');
+    // const browserLang = translate.getBrowserLang();
+        // translate.use(intl.getLang());
         // console.log(this.isBuyer);
         // console.log(this.isSeller);
       }
