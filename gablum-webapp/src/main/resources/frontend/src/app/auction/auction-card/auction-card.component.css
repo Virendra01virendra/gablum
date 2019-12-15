@@ -19,10 +19,12 @@
   font-size: 1.2em;
 }
 
+.info-container {
+  background: rgb(240, 240, 240);
+}
 
 .info-container > div {
   margin: 1em 0.8em;
-  background: rgb(240, 240, 240);
 }
 
 .card-actions > div {
