@@ -1,0 +1,12 @@
+ng-container {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+table {
+    width: 80%;
+}
+
+button {
+    margin: 10px 10px 10px 10px;
+}

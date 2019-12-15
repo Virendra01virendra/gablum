@@ -6,7 +6,7 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
 
 const routes: Routes = [
   {
-    path: '/:email',
+    path: ':email',
     component: PublicProfileComponent,
     pathMatch: 'full'
   },

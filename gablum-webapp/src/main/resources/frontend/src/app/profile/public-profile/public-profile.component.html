@@ -19,6 +19,15 @@
         </div>
 
         <mat-card-content>
+            <div class="name">
+                <div fxFlex="20" fxHide.xs></div>
+                <div fxFlex="60">
+                    <button mat-raised-button fxLayoutAlign="end center" [routerLink]="['/dashboard']">
+                        Back
+                    </button>
+                </div>
+                <div fxFlex="20" fxHide.xs></div>
+            </div>
             <div>
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxFlex.xs="95">
@@ -39,28 +48,6 @@
                     <div fxLayout="row" fxFill>
                         <div fxFlex="30">NAME</div>
                         <div fxFlex="60">{{profile.name}}</div>
-                    </div>
-                </div>
-                <div fxFlex="20" fxHide.xs></div>
-            </div>
-
-            <div class="name">
-                <div fxFlex="20" fxHide.xs></div>
-                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
-                    <div fxLayout="row" fxFill>
-                        <div fxFlex="30">EMAIL</div>
-                        <div fxFlex="60">{{profile.email}}</div>
-                    </div>
-                </div>
-                <div fxFlex="20" fxHide.xs></div>
-            </div>
-
-            <div class="name">
-                <div fxFlex="20" fxHide.xs></div>
-                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
-                    <div fxLayout="row" fxFill>
-                        <div fxFlex="30">ADDRESS</div>
-                        <div fxFlex="60">{{profile.address}}</div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
@@ -92,19 +79,32 @@
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
                     <div fxLayout="row" fxFill>
-                        <div fxFlex="30">ROLE</div>
-                        <div fxFlex="60" aria-disabled>{{roles}}</div>
+                        <div fxFlex="30">RATING</div>
+                        <div fxFlex="60">{{rating}}</div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
+
+
+            <div class="name">
+                <div fxFlex="20" fxHide.xs></div>
+                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
+                    <div fxLayout="row" fxFill>
+                        <div fxFlex="30">EMAIL</div>
+                        <div fxFlex="60">{{profile.email}}</div>
+                    </div>
+                </div>
+                <div fxFlex="20" fxHide.xs></div>
+            </div>
+
 
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
                     <div fxLayout="row" fxFill>
                         <div fxFlex="30">BUSINESS DOMAIN</div>
-                        <div fxFlex="60">{{profile.businessDomain}}</div>
+                        <div fxFlex="60">Agricutlture</div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
@@ -123,10 +123,22 @@
 
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
-                <div fxFlex="60">
-                    <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()" [routerLink]="['/dashboard']">
-                        Back
-                    </button>
+                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
+                    <div fxLayout="row" fxFill>
+                        <div fxFlex="30">ADDRESS</div>
+                        <div fxFlex="60">{{profile.address}}</div>
+                    </div>
+                </div>
+                <div fxFlex="20" fxHide.xs></div>
+            </div>
+
+            <div class="name">
+                <div fxFlex="20" fxHide.xs></div>
+                <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
+                    <div fxLayout="row" fxFill>
+                        <div fxFlex="30">ROLE</div>
+                        <div fxFlex="60" aria-disabled>{{roles}}</div>
+                    </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>

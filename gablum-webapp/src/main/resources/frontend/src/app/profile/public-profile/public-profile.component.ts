@@ -18,6 +18,7 @@ export class PublicProfileComponent implements OnInit {
   public roles: string;
   public previousRoute: string;
   public profileEmail: string;
+  public rating: number;
 
   constructor(
     public profileDataService: ProfileDataService,
@@ -43,6 +44,7 @@ export class PublicProfileComponent implements OnInit {
         }
       }
     });
+    this.rating = Math.round( (3.3 + (Math.random() * 1.5) ) * 10 ) / 10;
    }
   ngOnInit() {
     this.profileDataService.getUserProfileByEmailWithUrl(this.profileEmail, PublicProfileComponent.messageKey, 'profile');

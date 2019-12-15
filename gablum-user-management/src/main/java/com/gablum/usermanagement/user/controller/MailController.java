@@ -30,10 +30,10 @@ public class MailController {
         mailService.sendBidEmail("newBid", bidMessage);
     }
 
-    public void sendingContract(Contracts contracts){
-        User buyer = userManagementService.getUser(contracts.getBuyerEmail());
-        User seller = userManagementService.getUser(contracts.getSellerEmail());
-        
-        mailService.sendContractEmail("newContract", contracts);
-    }
+//    public void sendingContract(Contracts contracts){
+//        User buyer = userManagementService.getUser(contracts.getBuyerEmail());
+//        User seller = userManagementService.getUser(contracts.getSellerEmail());
+//
+//        mailService.sendContractEmail("newContract", contracts);
+//    }
 }

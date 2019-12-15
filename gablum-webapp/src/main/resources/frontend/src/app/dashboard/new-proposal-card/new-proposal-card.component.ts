@@ -73,7 +73,10 @@ export class NewProposalCardComponent implements OnInit {
     //   profileList: this.otherProfileList
     // };
     // this.dialog.open(SellersListDialogComponent, { data: this.proposalWithProfiles });
-    this.dialog.open(SellersListDialogComponent, { data: this.proposal });
+    this.dialog.open(SellersListDialogComponent,
+       { data: this.proposal,
+        width: '60%'
+       });
 
   }
 

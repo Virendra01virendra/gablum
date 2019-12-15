@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Profile } from 'src/app/interfaces/profile';
@@ -45,7 +45,8 @@ export class SellersListDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
               private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
               private user: ProfileDataService,
-              public router: Router
+              public router: Router,
+              public dialogRef: MatDialogRef<SellersListDialogComponent>,
               ) {
     // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
     //   return {
@@ -140,6 +141,7 @@ export class SellersListDialogComponent implements OnInit {
 
   loadProfile(sellerEmail) {
     console.log('loading Profile');
+    this.dialogRef.close();
     this.router.navigate(['/profile', sellerEmail]);
   }
 }
