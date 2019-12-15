@@ -86,19 +86,4 @@ export class ProposalSellerDialogComponent implements OnInit {
     this.user.getUserProfileByEmail(ProposalSellerDialogComponent.messageKey, 'userProfile');
   }
 
-  startAuction(proposal1: Proposal) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = proposal1;
-    dialogConfig.width = '40%';
-    this.matDialog.open(AuctionStartDialogComponent, dialogConfig);
-  }
-
-  sellersListDialog() {
-    this.matDialog.open(SellersListDialogComponent, { data: this.data });
-  }
-
-  extendDialog() {
-    this.matDialog.open(ExtendProposalDialogComponent, { data: this.data });
-  }
-
 }
