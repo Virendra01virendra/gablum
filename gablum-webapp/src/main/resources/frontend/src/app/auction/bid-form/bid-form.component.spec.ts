@@ -10,6 +10,7 @@ import { WindowComponent } from '../../console/window/window.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 
 
 describe('BidFormComponent', () => {
@@ -17,9 +18,18 @@ describe('BidFormComponent', () => {
   let fixture: ComponentFixture<BidFormComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BidFormComponent, AuctionCardComponent, ButtonComponent, WindowComponent],
-      imports: [ReactiveFormsModule, MaterialModule, HttpClientModule, BrowserAnimationsModule, NoopAnimationsModule,
-        RouterTestingModule, HttpClientTestingModule],
+      declarations: [BidFormComponent,
+        AuctionCardComponent,
+        ButtonComponent,
+        WindowComponent,
+        TimerComponent],
+      imports: [ ReactiveFormsModule,
+        MaterialModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        RouterTestingModule,
+        HttpClientTestingModule ],
       providers: [
         BrowserAnimationsModule,
         NoopAnimationsModule,
@@ -96,7 +106,7 @@ describe('BidFormComponent', () => {
     component.auctionSingle = auction;
     fixture.detectChanges();
   });
-  it('should create', (router) => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
