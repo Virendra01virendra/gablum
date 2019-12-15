@@ -32,6 +32,7 @@ public class User {
     private String businessLicense;
     private String businessDomain = "Agriculture";
     private String businessSubDomain;
+    private String profileImage;
     private List<Map<String, List<String>>> userDomainDetails;
     private Map<String, String> hashEncryptionKeyList;
     private List<Block> blockchain;
