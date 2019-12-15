@@ -1,5 +1,5 @@
 <mat-expansion-panel>
-  <mat-expansion-panel-header [collapsedHeight]="'8em'" [expandedHeight]="'11em'" fxLayout="row"
+  <mat-expansion-panel-header [collapsedHeight]="'6em'" [expandedHeight]="'9em'" fxLayout="row"
     class="mat-elevation-z4">
     <div class="profile-image" fxFlex="0 0 auto">
       <img src="https://picsum.photos/100" alt="">
@@ -8,8 +8,8 @@
       <span>{{bidDataEntity.createdBy}}</span>
       <mat-divider></mat-divider>
       <mat-chip-list>
-        <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price}}</mat-chip>
-        <mat-chip matTooltip="Score">Score: {{bidDataEntity.scoreObject.total}}</mat-chip>
+        <mat-chip matTooltip="Price">Price: {{bidDataEntity.bid.price | number:'1.1-2'}}</mat-chip>
+        <mat-chip matTooltip="Score">Score: {{bidDataEntity.scoreObject.total | number:'1.1-2'}}</mat-chip>
         <mat-chip matTooltip="Rank">#{{bidDataEntity.rank}}</mat-chip>
       </mat-chip-list>
     </div>

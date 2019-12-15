@@ -1,4 +1,6 @@
-<mat-toolbar style="background-color: #E0E0E0;">
+<mat-toolbar style="background-color: #E0E0E0;"
+style="justify-content: start;"
+>
   <mat-icon class="title-icon">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M1 21h12v2H1zM5.245 8.07l2.83-2.827 14.14 14.142-2.828 2.828zM12.317 1l5.657 5.656-2.83 2.83-5.654-5.66zM3.825 9.485l5.657 5.657-2.828 2.828-5.657-5.657z"/>
@@ -90,13 +92,14 @@ fxLayoutAlign="flex-start center"
 [ngStyle]="{'position': 'fixed', 'bottom': '2em', 'right': '2em'}"
 fxLayout="column nowrap"
 >
-<button mat-fab matTooltip="Go back" (click)="goBack()"
-    style="position: fixed; bottom: 2em; right: 2em;"
->
-    <mat-icon>keyboard_backspace</mat-icon>
-</button>
+  <button mat-fab matTooltip="Go back"
+  (click)="goBack()"
+  style="margin: 0.5em 0;"
+  >
+      <mat-icon>keyboard_backspace</mat-icon>
+  </button>
   <button mat-fab matTooltip="Place a new bid" color="primary"
-  
+  style="margin: 0.5em 0;"
   (click)="openSheet()"
   >
     <mat-icon>add</mat-icon>

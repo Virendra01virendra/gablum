@@ -1,5 +1,5 @@
 mat-expansion-panel {
-    width: 30em;
+    width: 25em;
     margin-bottom: 0.5em;
 }
 
@@ -8,9 +8,9 @@ mat-expansion-panel {
     height: 5em;
 }
 .profile-image {
-    width: 5em;
-    height: 5em;
-    border-radius: 2.5em;
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
     overflow: hidden;
 }
 
