@@ -14,8 +14,8 @@ import { Auction } from 'src/app/interfaces/auction';
 })
 export class TimerComponent implements OnInit, OnDestroy {
 
-  @Input()
-  timerDetails; /** the time period of the auction/ registeration is defined here */
+  @Input() timerDetails: Proposal; /** the time period of the auction/ registeration is defined here */
+  @Input() timerDetails1: Auction;
   // @Input()
   // timerDetails1: Auction['proposal'];
 
@@ -23,6 +23,8 @@ export class TimerComponent implements OnInit, OnDestroy {
   counterState = new EventEmitter();
   public auctionStartDate: Date;
   public auctionEndDate: Date;
+  public regStartDate: Date;
+  public regEndDate: Date;
   public currentTime = new Date();
   public days = 0;
   public hours = 0;
@@ -41,10 +43,15 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const timerObject = Object.assign({}, this.timerDetails);
-    // console.log('time object :::', timerObject);
-    this.auctionStartDate = new Date(timerObject.auctionStartDate);
-    this.auctionEndDate = new Date(timerObject.auctionEndDate);
-    this.timerLogic(this.auctionStartDate, this.auctionEndDate, this.currentTime);
+    const timerObject1 = Object.assign({}, this.timerDetails1);
+    console.log('time object from proposal :::', timerObject);
+    console.log('time object auction :::', timerObject1);
+    this.regStartDate = new Date(timerObject.regStartDate);
+    this.regEndDate = new Date(timerObject.regEndDate);
+    this.timerLogic(this.regStartDate, this.regEndDate, this.currentTime);
+    this.auctionStartDate = new Date(timerObject1.auctionStartDate);
+    this.auctionEndDate = new Date(timerObject1.auctionEndDate);
+    this.timerLogic1(this.auctionStartDate, this.auctionEndDate, this.currentTime);
     this.start();
   }
   ngOnDestroy() {
@@ -92,6 +99,18 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   public timerLogic(timetoStart: Date, timeToEnd: Date, localTime: Date) {
     if (localTime.getTime() < timetoStart.getTime()) {
+      this.toStartMsg = 'Registerations Not Started';
+      this.timerEventTime = timetoStart.getTime() - localTime.getTime();
+    } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
+      this.liveMsg = 'Register For Consideration in this auction';
+      this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
+      this.formatValue(this.timerEventTime);
+    } else if (localTime.getTime() > timeToEnd.getTime()) {
+      this.endedMsg = 'Registerations have Ended';
+    }
+  }
+  public timerLogic1(timetoStart: Date, timeToEnd: Date, localTime: Date) {
+    if (localTime.getTime() < timetoStart.getTime()) {
       this.toStartMsg = 'Auction Begins in -->';
       this.timerEventTime = timetoStart.getTime() - localTime.getTime();
     } else if (localTime.getTime() >= timetoStart.getTime() && localTime.getTime() < timeToEnd.getTime() ) {
@@ -99,7 +118,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.timerEventTime = timeToEnd.getTime() - localTime.getTime();
       this.formatValue(this.timerEventTime);
     } else if (localTime.getTime() > timeToEnd.getTime()) {
-      this.endedMsg = 'Event has ended';
+      this.endedMsg = 'Auction has ended';
     }
   }
 

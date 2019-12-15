@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-
 describe('AuctionCardComponent', () => {
   let component: AuctionCardComponent;
   let fixture: ComponentFixture<AuctionCardComponent>;
@@ -74,7 +73,7 @@ describe('AuctionCardComponent', () => {
         createdOn: new Date(),
         updatedOn: new Date(),
         thresholdParticipants: 2,
-        views: 2,
+        viewSellerEmails: ['a', 'b'],
         interested: 2,
         interestedUsersEmail: [],
         productDescription: ' ',

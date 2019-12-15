@@ -7,4 +7,7 @@ public interface OutputRabbit {
 
     @Output("userParsing")
     MessageChannel userParsingChannel();
+//
+//    @Output("userList")
+//    MessageChannel userListBySubDomainChannel();
 }

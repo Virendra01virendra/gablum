@@ -13,4 +13,5 @@ public interface IGmailRabbit {
 
     @Input("newBid")
     SubscribableChannel newBid();
+
 }

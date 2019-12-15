@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { DashboardSection } from 'src/app/interfaces/dashboard-section';
@@ -17,6 +17,7 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { TranslateService } from '@ngx-translate/core';
 import { IntlService } from 'src/app/services/intl.service';
+import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -96,7 +97,26 @@ export class DashboardComponent implements OnInit {
 
         if ('auctionsSeller' in data) {
           this.auctionsSeller = data.auctionsSeller;
-          console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // if (this.isSeller === true) {
+          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
+          //
+          // }
+        }
+
+        if ('auctionsSellerOnly' in data) {
+          this.auctionsSeller = data.auctionsSellerOnly;
+          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
+          // if (this.isSeller === true) {
+          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
+          //
+          // }
+          this.auctions = this.auctionsSeller;
+          if (this.auctions.length !== 0) {
+            this.auctionsNotEmpty = true;
+          } else {
+            this.auctionsNotEmpty = false;
+          }
         }
 
 
@@ -127,6 +147,7 @@ export class DashboardComponent implements OnInit {
             DashboardComponent.messageKey,
             'sellerProposals'
           );
+
           this.userRole = this.userProfile.role;
           // console.log(this.userProfile.role[0]);
           // console.log(this.userProfile.role[1]);
@@ -134,6 +155,10 @@ export class DashboardComponent implements OnInit {
             if (this.userProfile.role[0].role === 'seller') {
               this.isSeller = true;
               this.isBuyer = false;
+              this.auctionDataService.getAllAuctionsSeller(
+                DashboardComponent.messageKey,
+                'auctionsSellerOnly'
+              );
             } else {
               this.isSeller = false;
               this.isBuyer = true;

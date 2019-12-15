@@ -21,8 +21,8 @@ describe('BidListComponent', () => {
       ],
       declarations: [
         BidListComponent,
-      BidCardComponent
-     ]
+        BidCardComponent
+      ]
     })
     .compileComponents();
   }));

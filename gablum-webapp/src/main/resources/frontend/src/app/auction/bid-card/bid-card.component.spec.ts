@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BidCardComponent } from './bid-card.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BidCardComponent', () => {
   let component: BidCardComponent;
@@ -12,9 +14,12 @@ describe('BidCardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BidCardComponent ],
       imports: [
+        BrowserAnimationsModule,
         MaterialModule,
-        BrowserAnimationsModule
-      ]
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      providers: [ HttpClientTestingModule ]
     })
     .compileComponents();
   }));
@@ -46,7 +51,7 @@ describe('BidCardComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
