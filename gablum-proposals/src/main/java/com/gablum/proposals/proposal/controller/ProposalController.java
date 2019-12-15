@@ -1,6 +1,6 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
+import com.gablum.proposals.proposal.ProposalRabbit.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;
 import com.gablum.proposals.proposal.service.UserService;
@@ -28,6 +28,7 @@ public class    ProposalController {
     @Autowired
     private UserService userService;
 
+
     public ProposalController(ProposalInterfaceRabbit proposalInterface) {
         messageChannel = proposalInterface.newProposalMessageChannel();
     }
@@ -42,6 +43,7 @@ public class    ProposalController {
         proposalData.setUpdatedOn(new Date());
         proposalData.setAuctionStarted(false);
         Proposal savedProposal = proposalService.addProposals(proposalData);
+
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
         return savedProposal;

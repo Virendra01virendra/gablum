@@ -14,5 +14,5 @@ public interface UserRepository extends MongoRepository<User,String> {
     long countByIsLocked(boolean locked);
     long countByIsEnabled(boolean enabled);
     List<User> findUserByRoleRoleContaining(String role);
-    List<User> findUserByBusinessSubDomain(String businessSubDomain);
+    List<User> findAllByBusinessSubDomain(String businessSubDomain);
 }
