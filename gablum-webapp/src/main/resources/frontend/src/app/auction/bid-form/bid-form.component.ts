@@ -92,8 +92,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
       newCreditPeriod: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]+$')]),
-      newQaqcCertificate: new FormControl(''),
-      newTypeOfDelivery: new FormControl(''),
+      newQaqcCertificate: new FormControl('', [
+        Validators.required, ]),
+      newTypeOfDelivery: new FormControl('', [
+        Validators.required, ]),
       newTimeOfDelivery: new FormControl('', [
         Validators.required,
       ]),
