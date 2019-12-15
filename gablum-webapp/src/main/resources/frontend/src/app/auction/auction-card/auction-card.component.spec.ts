@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-
 describe('AuctionCardComponent', () => {
   let component: AuctionCardComponent;
   let fixture: ComponentFixture<AuctionCardComponent>;
