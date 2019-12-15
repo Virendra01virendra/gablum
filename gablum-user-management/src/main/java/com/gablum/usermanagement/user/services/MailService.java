@@ -133,8 +133,10 @@ public class MailService {
                 SimpleMailMessage msgInterestedUsers = new SimpleMailMessage();
                 msgInterestedUsers.setText(interestedUsersEmail.get(i));
                 msgInterestedUsers.setSubject("New Auction Floated");
-                String textBuyer = "New Auction of your interested has been floated";
-                msgInterestedUsers.setText(textBuyer);
+                String textSeller = "New Auction of your interested has been floated\n";
+                textSeller += "Place your bids wisely. All the best.\n";
+                textSeller += "\n\n\nTeam Gablum";
+                msgInterestedUsers.setText(textSeller);
                 try
                 {
                     javaMailSender.send(msgInterestedUsers);
