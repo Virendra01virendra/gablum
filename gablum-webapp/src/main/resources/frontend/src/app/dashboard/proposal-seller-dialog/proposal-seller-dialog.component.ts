@@ -19,7 +19,7 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 })
 export class ProposalSellerDialogComponent implements OnInit {
 
-  public static messageKey = 'ProposalCardDialog';
+  public static messageKey = 'ProposalSellerDialog';
   public userProfile: Profile;
   proposals: Proposal[];
   allProposals: Proposal[];
