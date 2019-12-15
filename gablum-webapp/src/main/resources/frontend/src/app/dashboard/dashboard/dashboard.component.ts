@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { DashboardSection } from 'src/app/interfaces/dashboard-section';
@@ -15,6 +15,7 @@ import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
+import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -142,6 +143,7 @@ export class DashboardComponent implements OnInit {
             DashboardComponent.messageKey,
             'sellerProposals'
           );
+
           this.userRole = this.userProfile.role;
           // console.log(this.userProfile.role[0]);
           // console.log(this.userProfile.role[1]);

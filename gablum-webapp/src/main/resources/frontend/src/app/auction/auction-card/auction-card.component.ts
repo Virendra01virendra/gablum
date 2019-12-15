@@ -29,13 +29,6 @@ export class AuctionCardComponent implements OnInit {
     private http: HttpClient,
     private ws: WebsocketService
     ) {
-
-    //     if ('auctions' in data) {
-    //       this.auctions = data.auctions;
-    //       console.log(this.auctions);
-    //     }
-    //   }
-    // });
   }
 
   @Input() public auction: Auction;

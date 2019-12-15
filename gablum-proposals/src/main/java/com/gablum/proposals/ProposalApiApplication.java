@@ -1,6 +1,6 @@
 package com.gablum.proposals;
 
-import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
+import com.gablum.proposals.proposal.ProposalRabbit.ProposalInterfaceRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;

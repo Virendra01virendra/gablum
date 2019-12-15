@@ -1,8 +1,9 @@
+
    <link
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
    />
-   <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
+   <div class="proposal-card mat-elevation-z6 mat-title" fxLayout="column nowrap" fxLayoutAlign="space-between">
        <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
            <div class="card-header" fxFlexAlign="center" matTooltip="Product Name" >{{auction.auctionName}}</div>
            <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
@@ -10,7 +11,7 @@
                <div class="timer">
                    <app-timer
                    style="align-content:flex-end ;"
-                   [timerDetails]="auction"
+                   [timerDetails1]="auction"
                    ></app-timer>
                </div>
            </div>

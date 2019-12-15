@@ -126,4 +126,7 @@ public class UserController {
                 userService.editUserDetail(modifiedUser, email), HttpStatus.OK
         );
     }
+//    public List<User> userListBySubDomain(String subDomain){
+//        return managementService.getAllUsersBySubDomain(subDomain);
+//    }
 }
