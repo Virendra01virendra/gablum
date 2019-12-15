@@ -59,3 +59,7 @@ fxLayoutAlign="flex-start center"
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
     </div>
 </div>
+
+<button mat-fab matTooltip="Go back" (click)="goBack()">
+    <mat-icon>keyboard_backspace</mat-icon>
+</button>

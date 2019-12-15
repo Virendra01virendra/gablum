@@ -1,6 +1,6 @@
 package com.gablum.proposals.proposal.controller;
 
-import com.gablum.proposals.proposal.interfaces.ProposalInterfaceRabbit;
+import com.gablum.proposals.proposal.ProposalRabbit.ProposalInterfaceRabbit;
 import com.gablum.proposals.proposal.model.JwtPayload;
 import com.gablum.proposals.proposal.model.Proposal;
 import com.gablum.proposals.proposal.service.ProposalService;

@@ -171,7 +171,7 @@ services:
       - /usr/app/app.jar
     restart: on-failure
 
- scheduler:
+  scheduler:
     build:
       context: ./gablum-scheduler
     env_file: env_local.env

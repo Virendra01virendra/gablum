@@ -155,7 +155,7 @@
         <section class="mat-title">DEVELOPING TECHNOLOGY</section>
         <!-- <mat-divider></mat-divider> -->
 
-        <section class="mat-title">SMART CONTRACTS</section>
+        <section class="mat-title">DIGITAL CONTRACTS</section>
         <!-- <mat-divider></mat-divider> -->
 
         <section class="mat-title">OUR TEAM MEMBERS</section>
@@ -190,7 +190,7 @@
     </div>
   </div>
 </div>
-<div class="cookie-confirmation-outer" id="cookie-confirmation-outer">
+<div class="cookie-confirmation-outer" id="cookie-confirmation-outer" *ngIf="showCookieBanner">
   <div class="cookie-confirmation-inner">
     <p></p>
     <p>
@@ -211,7 +211,7 @@
       preference not to be tracked.
     </p>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2em">
-      <button mat-raised-button (click)="hideCookies()">Decline</button>
+      <button mat-raised-button (click)="hideCookies(false)">Decline</button>
       <button mat-raised-button color="primary" (click)="hideCookies()">Accept</button>
     </div>
   </div>
