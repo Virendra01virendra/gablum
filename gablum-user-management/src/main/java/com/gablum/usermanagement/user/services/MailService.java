@@ -46,6 +46,7 @@ public class MailService {
     }
 
     public void sendProposalEmail(String type, Proposal proposal) {
+        log.warn("mail proposal--->", proposal.toString());
         SimpleMailMessage msg = new SimpleMailMessage();
         if(type == "newProposal") {
             msg.setTo(proposal.getCreatedBy());
@@ -73,7 +74,7 @@ public class MailService {
                 e.printStackTrace();
             }
 
-            List<User> subDomainUsers = new ArrayList<>(userRepository.findUserByBusinessSubDomain(proposal.getBusinessSubDomain()));
+            List<User> subDomainUsers = new ArrayList<>(userRepository.findAllByBusinessSubDomain(proposal.getBusinessSubDomain()));
             for (int i=0; i<subDomainUsers.size(); i++){
                 SimpleMailMessage msgForSeller = new SimpleMailMessage();
                 msgForSeller.setTo(subDomainUsers.get(i).getEmail());

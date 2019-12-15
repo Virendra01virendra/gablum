@@ -28,9 +28,9 @@ export class LandingPageComponent implements OnInit {
   }
 
   loginForm = new FormGroup({
-    username : new FormControl('', Validators.compose([Validators.required,
-      Validators.minLength(3)])),
-    password : new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
+    username: new FormControl('', Validators.compose([Validators.required,
+    Validators.minLength(3)])),
+    password: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9-.]*$'),
     Validators.minLength(3)]))
   });
 
@@ -62,8 +62,9 @@ export class LandingPageComponent implements OnInit {
           }
         }
       });
-  }
-  public heroText = 'A B2B Auctioning platform, where quality meets you';
+    }
+
+    public heroText = 'A B2B Auctioning platform, where quality meets you';
 
 
 
@@ -88,31 +89,31 @@ export class LandingPageComponent implements OnInit {
       window.addEventListener('resize', () => map.getViewPort().resize());
 
       const svgMarkup = '<svg width="24" height="24" ' +
-          'xmlns="http://www.w3.org/2000/svg">' +
-          '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
-          'height="22" /><text x="12" y="18" font-size="12pt" ' +
-          'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
-          'fill="white">b</text></svg>';
+        'xmlns="http://www.w3.org/2000/svg">' +
+        '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' +
+        'height="22" /><text x="12" y="18" font-size="12pt" ' +
+        'font-family="Arial" font-weight="bold" text-anchor="middle" ' +
+        'fill="white">b</text></svg>';
 
-  // Create an icon, an object holding the latitude and longitude, and a marker:
+      // Create an icon, an object holding the latitude and longitude, and a marker:
       const icon = new H.map.Icon(svgMarkup);
-      const marker = new H.map.Marker(coords, {icon});
+      const marker = new H.map.Marker(coords, { icon });
       map.addObject(marker);
       map.setCenter(coords);
     }
   }
   getErrorMessage1() {
     return this.userName.hasError('required') ? '*You must enter a Username' :
-        // this.userName.hasError('pattern') ? '*Not a valid Username' :
-        this.userName.hasError('minlength') ? '*Minimum 8 characters' :
-            '';
+      // this.userName.hasError('pattern') ? '*Not a valid Username' :
+      this.userName.hasError('minlength') ? '*Minimum 8 characters' :
+        '';
   }
 
   getErrorMessage2() {
     return this.password.hasError('required') ? '*You must enter a Password' :
-        this.password.hasError('pattern') ? '*Not a valid Password' :
+      this.password.hasError('pattern') ? '*Not a valid Password' :
         this.password.hasError('minlength') ? '*Minimum 8 characters' :
-            '';
+          '';
   }
 
   onSubmit() {
@@ -121,6 +122,14 @@ export class LandingPageComponent implements OnInit {
     // this.router.navigate(['/dashboard']);
   }
 
+  hideCookies() {
+    const x = document.getElementById('cookie-confirmation-outer');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+    } else {
+      x.style.display = 'none';
+    }
+  }
 
 }
 

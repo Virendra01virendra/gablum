@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   wsURL: 'http://localhost:8080/api/auctions/ws',
+  alertURL: 'http://localhost:8080/api/users/ws',
   loginApi: 'http://localhost:8080/api/users/signin',
   logoutApi: 'http://localhost:8080/api/users/signout',
   registerApi: 'http://localhost:8080/api/users/signup',
