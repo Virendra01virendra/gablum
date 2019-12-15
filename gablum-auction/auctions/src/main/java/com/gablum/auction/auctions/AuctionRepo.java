@@ -16,7 +16,7 @@ public interface AuctionRepo extends MongoRepository<Auction, ObjectId> {
                                                                            String email,
                                                                            boolean isAuctionActive,
                                                                            boolean isAuctionFinished);
-    Page<Auction> findAllByInterestedUsersEmailContainingAndIsAuctionActiveAndIsAuctionFinished(Pageable pageable,
+    Page<Auction> findAllByInvitedUsersEmailContainingAndIsAuctionActiveAndIsAuctionFinished(Pageable pageable,
                                                                                              String email,
                                                                                                 boolean isAuctionActive,
                                                                                                 boolean isAuctionFinished);

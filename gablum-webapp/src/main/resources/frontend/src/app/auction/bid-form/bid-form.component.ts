@@ -92,8 +92,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
       newCreditPeriod: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]+$')]),
-      newQaqcCertificate: new FormControl('false'),
-      newTypeOfDelivery: new FormControl('false'),
+      newQaqcCertificate: new FormControl('', [
+        Validators.required, ]),
+      newTypeOfDelivery: new FormControl('', [
+        Validators.required, ]),
       newTimeOfDelivery: new FormControl('', [
         Validators.required,
       ]),
@@ -143,6 +145,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = bidData;
     dialogConfig.width = '40%';
+    dialogConfig.height = '55%';
     this.matDialog.open(BidSubmissionDialogComponent, dialogConfig);
 
   }

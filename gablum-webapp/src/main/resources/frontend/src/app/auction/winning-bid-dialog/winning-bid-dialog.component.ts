@@ -7,6 +7,7 @@ import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { NewBid } from 'src/app/interfaces/newbid';
 import { environment } from 'src/environments/environment';
+import { ContractsDataService } from 'src/app/services/contracts-data.service';
 
 
 @Component({
@@ -19,13 +20,18 @@ export class WinningBidDialogComponent {
   public static messageKey = 'WinningBidDialogComponent';
   bidData = this.data.bidDataEntity;
   auctionIdn = this.data.auctionID;
+  public qualityMsgTrue = 'Provided';
+  public qualityMsgFalse = 'Not Provided';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<WinningBidDialogComponent>,
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private comms: CommunicatorService,
-    public activatedroute: ActivatedRoute
+    public activatedroute: ActivatedRoute,
+    private contractsDataService: ContractsDataService
   ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === WinningBidDialogComponent.messageKey || msg.dest === '@all') {
@@ -45,7 +51,8 @@ export class WinningBidDialogComponent {
   }
   selectBid() {
     this.auctionDataService.saveWinningBid(WinningBidDialogComponent.messageKey, this.bidData, 'winningBid', this.auctionIdn);
-    this.router.navigate([environment.contractsUrl]);
+    this.contractsDataService.getAllContracts('ContractPageComponent', 'contracts');
+    this.router.navigate(['contracts']);
     this.close();
   }
 

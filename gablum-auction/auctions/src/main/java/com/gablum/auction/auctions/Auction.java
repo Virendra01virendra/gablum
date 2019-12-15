@@ -9,10 +9,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Setter
 @Getter
@@ -34,6 +31,7 @@ public class Auction {
     private String participantsVerificationId;
     private List<String> selectedParticipantList; // usernames
     private List<String> interestedUsersEmail;
+    private List<String> invitedUsersEmail = new ArrayList<>();
     private String winningBid;
     private HashMap<String, String> socketTokens;
     private Date createdOn;
