@@ -66,13 +66,13 @@ export class SellerProposalCardComponent implements OnInit {
   }
 
   openDialog(allProposal: Proposal) {
+    this.proposalDataService.postSellerView(SellerProposalCardComponent.messageKey, this.allProposal, 'saveSellerView');
     this.dialog.open(ProposalCardDialogComponent, {
       // width: '60%',
       // height: '60%',
       data: allProposal
     });
     // this.allProposal.views += 1;
-    // console.log('view--->' + JSON.stringify(allProposal));
-    this.proposalDataService.postSellerView(SellerProposalCardComponent.messageKey, this.allProposal, 'saveSellerView');
+    console.log('view--->' + JSON.stringify(allProposal));
   }
 }
