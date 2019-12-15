@@ -178,6 +178,7 @@ public class AuctionController {
         for (int _i = 0; _i < allBids.size(); _i++) {
             log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
+            
             if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
                 savedBid = allBids.get(_i);
                 sendingOperations.convertAndSend(

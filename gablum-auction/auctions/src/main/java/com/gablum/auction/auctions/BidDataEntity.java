@@ -25,6 +25,8 @@ public class BidDataEntity {
     private Date createdOn = new Date();
 
     private long rank;
+
+    private long percentile;
     public String toStringContract(){
         return this.getBidId() + this.getAuctionId() + this.getCreatedBy() +
                 this.getBid().toString()+ String.valueOf(this.scoreObject.getTotal());

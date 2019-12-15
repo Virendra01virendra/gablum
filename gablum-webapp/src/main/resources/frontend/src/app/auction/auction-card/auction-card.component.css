@@ -10,29 +10,19 @@
   /* width: 15em; */
   border-radius: 0.4em;
   overflow: hidden;
-}
-
-.header-container {
-  background-color: rgb(32, 149, 179);
-  background-image:  linear-gradient(to bottom, rgb(32, 149, 179, 1.0) , rgb(32, 149, 179, 0.5)), url("src/assets/front.webp");
-
-  color: aliceblue;
+  background: white;
 }
 
 .card-header  {
   margin-top: 0.5em;
+  margin-left: 1.5em;
   font-size: 1.2em;
 }
-/* .info-container {
-  font-size: 2em;
-} */
+
 
 .info-container > div {
   margin: 1em 0.8em;
-}
-.card-actions {
-  background-color: rgb(32, 149, 179, 0.5);
-  color: aliceblue;
+  background: rgb(240, 240, 240);
 }
 
 .card-actions > div {
