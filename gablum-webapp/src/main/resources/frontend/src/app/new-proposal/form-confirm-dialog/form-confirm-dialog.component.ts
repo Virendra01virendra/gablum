@@ -30,6 +30,7 @@ export class FormConfirmDialogComponent implements OnInit {
     businessDomain: data.form1.value.businessDomain,
     businessSubDomain: data.form1.value.businessSubDomain,
     productName: data.form1.value.productName,
+    productDescription: data.form1.value.productDescription,
     quantityValue: data.form1.value.quantityValue,
     quantityUnit: data.form1.value.quantityUnit,
     price: data.form2.value.price,
