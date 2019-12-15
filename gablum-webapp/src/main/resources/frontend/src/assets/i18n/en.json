@@ -12,5 +12,23 @@
         "TECH": "Developing Technology",
         "CONTRACTS": "Contracts",
         "TEAM": "Team Members"
+    },
+
+    "CONTRACTS":{
+        "OPEN": "The Contract binds the Buyer and Supplier to perform the required duties as agreed in the auction process, which are as following",
+        "ONE": "The Supplier and Buyer participated fairly in the auction process held on Gablum platform during",
+        "TWO": "specifications mentioned in the Auction",
+        "AND": "and",
+        "FOR": "for",
+        "OF": "of",
+        "THREE": "The Supplier will provide above mentioned product to the buyer on or before",
+        "THREE1": "mentioned in the bid",
+        "FOUR": "The Buyer will have have credit period of",
+        "FOUR1": "days from the delivery date to provide the agreed amount of",
+        "FOUR2": "The details of breakup or installments can be worked between Buyer and Supplier at their discretion.",
+        "FIVE": "In case of default of the Buyer or Supplier parties, GPL will not be liable for any legal action ensuing from the said default. In such cases, suitable actions like blacklist of at-fault party from GPL's platforms can be taken, at sole discretion of GPL.",
+        "SIX": "Legal Team,",
+        "SELECT": "Select Language",
+        "PER": "per"
     }
 }

@@ -1,6 +1,12 @@
 <h1 mat-dialog-title>
     Contract
 </h1>
+<!-- <label for="">
+    {{'CONTRACTS.SELECT' | translate}} 
+    <select #langselect (change)="translate.use(langselect.value)">
+        <option *ngFor="let lang of translate.getLangs()" [value]="lang">{{ lang }}</option>
+    </select>
+</label> -->
 <div mat-dialog-content style="overflow: scroll; overflow-x: hidden">
     <h3>
         Product Name - {{productName | titlecase}}
@@ -83,21 +89,20 @@
             hereinafter called GPL and is effective starting on today till the contract is fulfilled.
         </p>
         <p>
-            The Contract binds the Buyer and Supplier to perform the required duties as agreed in the auction process, which are as following
+            {{'CONTRACTS.OPEN' | translate}}
         </p>
         <ul>
-            <li>The Supplier and Buyer participated fairly in the auction process held on Gablum platform during {{contract.auctionDetails.auctionStartDate | date: 'mediumDate'}} and {{contract.auctionDetails.auctionEndDate | date: 'mediumDate'}} for {{contract.auctionDetails.proposal.productName}}
-                of ' {{contract.auctionDetails.proposal.productDescription}} ' specifications mentioned in the Auction </li>
-            <li>The Supplier will provide above mentioned product to the buyer on or before {{contract.bidDetails.bid.timeOfDelivery | date: 'mediumDate'}} mentioned in the bid</li>
-            <li>The Buyer will have have credit period of {{contract.bidDetails.bid.creditPeriod}} days from the delivery date to provide the agreed amount of {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}}. The details,
-                of breakup or installments can be worked between Buyer and Supplier at their discretion.
+            <li>{{'CONTRACTS.ONE' | translate}} {{contract.auctionDetails.auctionStartDate | date: 'mediumDate'}} {{'CONTRACTS.AND' | translate}} {{contract.auctionDetails.auctionEndDate | date: 'mediumDate'}} {{'CONTRACTS.FOR' | translate}} {{contract.auctionDetails.proposal.productName}}
+                {{'CONTRACTS.OF' | translate}} ' {{contract.auctionDetails.proposal.productDescription}} ' {{'CONTRACTS.TWO' | translate}}</li>
+            <li>{{'CONTRACTS.THREE' | translate}} {{contract.bidDetails.bid.timeOfDelivery | date: 'mediumDate'}} {{'CONTRACTS.THREE1' | translate}}</li>
+            <li>{{'CONTRACTS.FOUR' | translate}} {{contract.bidDetails.bid.creditPeriod}} {{'CONTRACTS.FOUR1' | translate}} {{contract.bidDetails.bid.price}} {{'CONTRACTS.PER' | translate}} {{contract.auctionDetails.proposal.quantityUnit}}. {{'CONTRACTS.FOUR2' | translate}}.
             </li>
         </ul>
         <p>
-            In case of default of the Buyer or Supplier parties, GPL will not be liable for any legal action ensuing from the said default. In such cases, suitable actions like blacklist of at-fault party from GPL's platforms can be taken, at sole discretion of GPL.
+            {{'CONTRACTS.FIVE' | translate}}
         </p>
         <p>
-            Legal Team,
+            {{'CONTRACTS.SIX' | translate}},
         </p>
         <p>
             Gablum Private Limited
