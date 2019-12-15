@@ -174,6 +174,11 @@ export class BidListComponent implements OnInit, OnDestroy {
         this.logger.log(err);
       }
     }
+    try {
+      this.snackBar.dismiss();
+    } catch (err) {
+      this.logger.log(err);
+    }
   }
 
   sortBidsByScore() {

@@ -223,6 +223,11 @@ export class BidFormComponent implements OnInit, OnDestroy {
         this.logger.log(err);
       }
     }
+    try {
+      this.snackBar.dismiss();
+    } catch (err) {
+      this.logger.log(err);
+    }
   }
 
   openSheet() {

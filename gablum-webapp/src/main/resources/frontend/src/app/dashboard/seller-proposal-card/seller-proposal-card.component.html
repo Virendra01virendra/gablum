@@ -41,7 +41,7 @@
         <div style="margin-bottom: 0.5em;">
             <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
                 <button mat-raised-button color="primary"
-        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1)"
+        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
         (click)="shownInterest(allProposal)">
         <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true">Show Interest</i>
       </button>
