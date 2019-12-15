@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
           } else {
             this.auctionsNotEmpty = false;
           }
-          console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
+          this.logger.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
         }
 
 
@@ -165,7 +165,7 @@ export class DashboardComponent implements OnInit {
 
         if ('oldAuctions' in data) {
           this.oldAuctions = data.oldAuctions;
-          console.log('olllddd auctions', this.oldAuctions);
+          this.logger.log('olllddd auctions', this.oldAuctions);
           if (this.oldAuctions.length !== 0) {
             this.oldAuctionsNotEmpty = true;
           } else {

@@ -47,7 +47,7 @@ export class ContractPageComponent implements OnInit {
         if ('contracts' in data) {
           this.contracts = data.contracts;
         }
-        console.log(this.contracts);
+        this.logger.log(this.contracts);
       }
     });
   }

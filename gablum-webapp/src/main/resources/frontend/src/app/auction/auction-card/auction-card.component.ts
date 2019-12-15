@@ -64,7 +64,7 @@ export class AuctionCardComponent implements OnInit {
   }
 
   public placeBid() {
-    console.log('calling place bid');
+    this.logger.log('calling place bid');
     this.router.navigate(['auctions', this.auction.auctionId, 'new', 'bid']);
   }
 

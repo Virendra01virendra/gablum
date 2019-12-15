@@ -99,7 +99,7 @@ export class ProposalsDataService {
     err => {
         this.logger.log(err);
     });
-    console.log('in change auctionnnnnnnn------------>');
+    this.logger.log('in change auctionnnnnnnn------------>');
   }
 
 

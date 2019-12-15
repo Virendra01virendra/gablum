@@ -98,7 +98,7 @@ describe('BidFormComponent', () => {
       isAuctionFinished: true,
       interestedUsersEmail: [''],
     };
-    component.auctionSingle = auction;
+    component.auction = auction;
     fixture.detectChanges();
   });
   xit('should create', (router) => {
