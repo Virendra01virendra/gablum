@@ -13,7 +13,7 @@
   </mat-expansion-panel-header>
   <div fxLayout="row" fxLayoutAlign="space-between" class="bid-body">
     <span matTooltip="Delivery Date">Time of Delivery: {{bidDataEntity.bid.timeOfDelivery | date}}</span>
-    <span matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}}</span>
+    <span matTooltip="Credit period (Months)">Credit Period: {{bidDataEntity.bid.creditPeriod}} days</span>
   </div>
   <div class="graph-container">
     <ngx-charts-bar-horizontal [xAxis]="true" [yAxis]="true" [legend]="false" [showXAxisLabel]="true"

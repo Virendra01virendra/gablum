@@ -17,6 +17,7 @@ import { AddBidSheetComponent } from '../add-bid-sheet/add-bid-sheet.component';
 import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 import { environment } from 'src/environments/environment';
 import { Location } from '@angular/common';
+import { NgxData } from 'src/app/interfaces/ngx-data';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -39,6 +40,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
   scoreObject: Score;
   subscriptionRef: StompSubscription;
   public auctionUrl: string;
+  public timeData: NgxData[];
   isOwner = false;
   bids: NewBid[];
 
@@ -64,6 +66,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
     private location: Location
     ) {
       this.dataSource = new MatTableDataSource([]);
+      this.timeData = [];
       const auctionUrl = environment.auctionUrl;
       comms.getMessages().subscribe(msg => {
         const tokenUrl = environment.tokenUrl;
@@ -131,6 +134,16 @@ export class BidFormComponent implements OnInit, OnDestroy {
             this.tableData = [...this.tableData];
             this.dataSource.data = this.tableData;
             this.dataSource.sort = this.sort;
+            this.sortBidsByCreated(-1);
+            this.bids.forEach(b => {
+              this.timeData.push(
+                {
+                  name: 'd' + b.createdOn,
+                  value: b.percentile
+                }
+              );
+            });
+            this.timeData = [...this.timeData];
           }
         }
       });
@@ -210,6 +223,17 @@ export class BidFormComponent implements OnInit, OnDestroy {
               this.logger.log(this.bids);
               this.tableData = [...this.tableData];
               this.dataSource.data = this.tableData;
+              this.sortBidsByCreated(-1);
+              this.timeData = [];
+              this.bids.forEach(b => {
+                this.timeData.push(
+                  {
+                    name: 'd' + b.createdOn,
+                    value: b.percentile
+                  }
+                );
+              });
+              this.timeData = [...this.timeData];
             }
           }
         }

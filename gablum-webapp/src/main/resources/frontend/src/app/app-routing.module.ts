@@ -5,6 +5,7 @@ import { TimerComponent } from './scheduler/timer/timer.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BuyerGuardService } from './services/buyer-guard.service';
 import { SellerGuardService } from './services/seller-guard.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -69,7 +70,9 @@ const routes: Routes = [
     path: '',
     component: LandingPageComponent,
     pathMatch: 'full'
-  }
+  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({
