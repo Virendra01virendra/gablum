@@ -1,20 +1,9 @@
-<!-- <div class="example-container">
-    <mat-toolbar color="primary" class="example-toolbar">
-      <button mat-icon-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-      <h1 class="example-app-name">ADMINISTRATION DASHBOARD</h1>
-    </mat-toolbar>
-</div>
-  
-    <mat-sidenav-container>
-      <mat-sidenav mode="side" [(opened)]="opened">
-        <mat-nav-list>
-          <a mat-list-item *ngFor="let content of contents">{{content}}</a>
-        </mat-nav-list>
-      </mat-sidenav>
-  
-      <mat-sidenav-content >
-    </mat-sidenav-content>
-    </mat-sidenav-container>
-  -->
-  
-  
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile
+      *ngFor="let tile of tiles"
+      [colspan]="tile.cols"
+      [rowspan]="tile.rows"
+      [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+</mat-grid-list>
