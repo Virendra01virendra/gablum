@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterAdminPageComponent } from './register-admin-page.component';
-import { MaterialModule } from '../../../../../../../../target/classes/frontend/src/app/material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
