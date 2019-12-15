@@ -13,7 +13,7 @@ java-build:
     script:
         - mvn -B package -PskipAngular -DskipTests
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 # java-tests:
@@ -22,7 +22,7 @@ java-build:
 #     script:
 #         - mvn -B test -PskipAngular
 #     tags:
-#         - immersive-runner-cgi
+#         - gablum-ci-jobs
 
 
 java-lint:
@@ -31,7 +31,7 @@ java-lint:
     script:
         - mvn -B pmd:check -Dpmd.printFailingErrors=true
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 java-tests:
@@ -40,7 +40,7 @@ java-tests:
     script:
         - mvn -B jacoco:prepare-agent install jacoco:report -PskipAngular
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 angular-build:
@@ -49,7 +49,7 @@ angular-build:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run build -- --prod
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 angular-lint:
@@ -58,7 +58,7 @@ angular-lint:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run lint
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 angular-tests:
@@ -67,7 +67,7 @@ angular-tests:
     script:
         - cd gablum-webapp/src/main/resources/frontend && npm install && npm run test
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
 
 # CD stage
@@ -75,7 +75,7 @@ release_deploy:
     image: ubuntu:latest
     stage: release
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
     before_script:
         - mkdir -p ~/.ssh
@@ -96,7 +96,7 @@ production_deploy:
     image: ubuntu:latest
     stage: production
     tags:
-        - immersive-runner-cgi
+        - gablum-ci-jobs
 
     before_script:
         #generate ssh key
