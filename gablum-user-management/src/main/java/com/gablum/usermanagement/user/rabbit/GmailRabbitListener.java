@@ -2,7 +2,6 @@ package com.gablum.usermanagement.user.rabbit;
 
 import com.gablum.usermanagement.user.controller.MailController;
 import com.gablum.usermanagement.user.model.othermodels.Auction;
-import com.gablum.usermanagement.user.model.othermodels.Contracts;
 import com.gablum.usermanagement.user.model.othermodels.Proposal;
 import com.gablum.usermanagement.user.model.othermodels.BidMessage;
 import com.gablum.usermanagement.user.security.UserListService;
