@@ -52,13 +52,10 @@ export class AlertServiceService {
   }
 
   subscribe(topic: string, dest: string, key: string): StompSubscription {
-    console.log('navbar component ::::: in service subscribe');
     if (!this.stompClient.connected) {
-      console.log('navbar component ::::: connection not open');
       throw new Error('connection not yet open');
     }
     return this.stompClient.subscribe(topic, message => {
-      console.log('navbar component :::: calling service subscribe');
       this.comms.postMessage(this, dest, {[key]: message});
     });
   }

@@ -5,6 +5,7 @@ import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Profile } from 'src/app/interfaces/profile';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
 
 @Component({
   selector: 'app-inbox-page',
@@ -14,7 +15,7 @@ import { Profile } from 'src/app/interfaces/profile';
 export class InboxPageComponent implements OnInit {
   public static messageKey = 'InboxPageComponent';
   proposals: Proposal[];
-  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'quantity', 'view'];
+  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'createdOn', 'quantity', 'view'];
   dataSource;
   userProfile: Profile;
   currentSubDomain;
@@ -23,7 +24,8 @@ export class InboxPageComponent implements OnInit {
     private comms: CommunicatorService,
     private proposalDataService: ProposalsDataService,
     private logger: LoggerService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private user: ProfileDataService
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === InboxPageComponent.messageKey || msg.dest === '@all' ) {
@@ -44,8 +46,8 @@ export class InboxPageComponent implements OnInit {
           // logger.log('user profile data --------->' , JSON.stringify(this.userProfile));
           // this.currentSubDomain = this.userProfile.businessSubDomain;
           // logger.log('current sub domain ------>', this.currentSubDomain);
-          if ('proposals' in data) {
-            this.proposals = data.proposals;
+          if ('Allproposals' in data) {
+            this.proposals = data.Allproposals;
             logger.log('data from get api call for filtered data ---->' , this.proposals );
             this.dataSource = this.proposals;
           }
@@ -54,6 +56,9 @@ export class InboxPageComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.user.getUserProfileByEmail(
+      InboxPageComponent.messageKey,
+      'profile');
   }
 
 }
