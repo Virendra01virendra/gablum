@@ -70,12 +70,15 @@ export class NavbarComponent implements OnInit, OnDestroy {
           }
         }
         if ('newProposalAlert' in data) {
-          logger.log('calling if block in BSub---->');
-          logger.log('data from subscribe to alert topic :::', JSON.stringify(data.newProposalAlert));
-          this.alertFlag = true;
-          this.alertMessage = '!';
-        } else {
-          this.alertMessage = '0';
+          logger.log('data from New Proposal Alert  :::', JSON.stringify(data.newProposalAlert));
+          const array = JSON.parse(data.newProposalAlert.body);
+          this.logger.log(array);
+          if (array.indexOf(this.profile.email) >= 0 ) {
+            //  this.alertFlag = true;
+             this.alertMessage = '!';
+          } else {
+            this.alertMessage = '0';
+          }
         }
       }
     });
@@ -110,14 +113,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.lang.setLang(lang);
   }
   alert() {
+    // this.alertFlag = false;
+    this.alertMessage = '0';
     this.router.navigate(['/inbox']);
   }
 
 
   subscribe() {
     this.logger.log('calling subscribe ::::::::::');
-    this.wsRef = this.alertService.subscribe(
-      '/topic/proposalAlert/' + this.auth.getProfileData().email,
+    this.alertService.subscribe(
+      '/topic/proposalAlert/',
       NavbarComponent.messageKey,
       'newProposalAlert');
   }

@@ -21,7 +21,7 @@
             <mat-icon>language</mat-icon>
         </button>
         <button *ngIf = "isLoggedIn" class="menu-link nav-icon" nav-link nav-ivon mat-button (click)= "alert()">
-            <mat-icon matBadge="{{alertMessage}}">notifications</mat-icon>
+            <mat-icon matBadge="{{alertMessage}}" matTooltip="Inbox">notifications</mat-icon>
         </button>
         <mat-menu #langMenu="matMenu">
             <button mat-button class="logout" (click)="changeLang('en')">English</button>    
