@@ -75,11 +75,11 @@
               </div>
            </div>
            
-           <div class="card-actions" *ngIf="showAnyButton === undefined">
-               <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
+           <div class="card-actions">
+               <div fxLayout="row nowrap" fxLayoutAlign="space-around center" *ngIf= buttonShow >
                <i class="fa fa-hand-paper-o"
                (click)="placeBid()"
-               *ngIf= buttonShow 
+               *ngIf= !isOwner 
                aria-hidden="true"
                color = "primary"
                style="cursor: pointer;"
@@ -88,7 +88,7 @@
                <i class="fa fa-eye"
                 aria-hidden="true" 
                 (click) = "seeBids()"
-                *ngIf= !buttonShow 
+                *ngIf= isOwner
                 style="cursor: pointer;"
                 >View All Bids</i>
            </div>

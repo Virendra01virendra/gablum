@@ -109,10 +109,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
           if ('scoreBids' in data) {
             this.scoreObject = data.scoreBids;
             this.result2 = this.scoreObject.total;
-            const dialogConfig = new MatDialogConfig();
-            dialogConfig.data = this.result2;
-            dialogConfig.width = '30%';
-            this.matDialog.open(BidResponseDialogComponent, dialogConfig);
+            // const dialogConfig = new MatDialogConfig();
+            // dialogConfig.data = this.result2;
+            // dialogConfig.width = '30%';
+            // this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
           if ('bidsAuction' in data) {
@@ -142,7 +142,6 @@ export class BidFormComponent implements OnInit, OnDestroy {
 
     this.auctionDataService.getBidsAuction(BidFormComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
-
   }
 
   onSubmit(form: FormGroup) {

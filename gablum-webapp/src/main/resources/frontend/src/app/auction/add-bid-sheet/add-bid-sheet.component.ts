@@ -47,6 +47,20 @@ export class AddBidSheetComponent implements OnInit {
       newTypeOfDelivery: new FormControl('false'),
       newTimeOfDelivery: new FormControl(''),
       });
+
+    this.bidForm.valueChanges.subscribe(() => {
+        if (!this.bidForm.valid) {
+          return;
+        }
+        const bid = {
+          price: this.bidForm.value.newPrice,
+          creditPeriod: this.bidForm.value.newCreditPeriod,
+          qaqcCertificate: this.bidForm.value.newQaqcCertificate,
+          typeOfSupply: this.bidForm.value.newTypeOfDelivery,
+          timeOfDelivery: this.bidForm.value.newTimeOfDelivery,
+          };
+        this.auctionDataService.getScore(AddBidSheetComponent.messageKey, bid, 'scoreBids', this.auctionId);
+      });
   }
 
   onSubmit(form: FormGroup) {
