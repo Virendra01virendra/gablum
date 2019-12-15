@@ -30,8 +30,13 @@ export class ProposalsDataService {
 
   saveProposal(dest, data, key) {
     this.networking.postData<Proposal>(this.proposalsUrl, dest, data, key);
-    // this.networking.getData<Proposal>(this.proposalsUrl, dest , key);
-  }
+    // .subscribe(res => {
+    //   this.getAllProposals('DashboardComponent', 'proposals');
+    //   },
+    //   err => {
+    //     this.logger.log(err);
+    //   });
+    }
 
   getAllProposals(dest, key) {
     this.networking.getData<Proposal>(this.proposalsUrl, dest, key);

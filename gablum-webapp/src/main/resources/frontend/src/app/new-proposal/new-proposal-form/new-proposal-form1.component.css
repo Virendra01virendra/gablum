@@ -6,6 +6,11 @@
   margin-left: 1em;
 }
 
+.but1 {
+  position: fixed;
+  right: 0.5em;
+}
+
 .body {
   background-color:white;
   align-content: center;

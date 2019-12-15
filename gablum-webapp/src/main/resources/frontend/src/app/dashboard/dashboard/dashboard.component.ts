@@ -73,10 +73,6 @@ export class DashboardComponent implements OnInit {
     private auth: AuthenticationService,
     public http: HttpClient
   ) {
-    // this.isLoggedIn = auth.getAuthenticated();
-    // if (this.isLoggedIn) {
-    //   this.logger.log(this, auth.getProfileData());
-    // }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -92,20 +88,10 @@ export class DashboardComponent implements OnInit {
 
         if ('auctionsSeller' in data) {
           this.auctionsSeller = data.auctionsSeller;
-          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
-          // if (this.isSeller === true) {
-          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
-          //
-          // }
         }
 
         if ('auctionsSellerOnly' in data) {
           this.auctionsSeller = data.auctionsSellerOnly;
-          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
-          // if (this.isSeller === true) {
-          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
-          //
-          // }
           this.auctions = this.auctionsSeller;
           if (this.auctions.length !== 0) {
             this.auctionsNotEmpty = true;
