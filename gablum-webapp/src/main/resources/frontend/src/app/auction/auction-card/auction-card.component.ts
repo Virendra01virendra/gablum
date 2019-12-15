@@ -10,6 +10,9 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { HttpClient } from '@angular/common/http';
 import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 import { WebsocketService } from 'src/app/services/websocket.service';
+// import { TranslateService } from '@ngx-translate/core';
+// import { IntlService } from 'src/app/services/intl.service';
+
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -27,8 +30,14 @@ export class AuctionCardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
     private http: HttpClient,
-    private ws: WebsocketService
-    ) {
+    private ws: WebsocketService,
+    // public translate: TranslateService,
+    // public intl: IntlService
+  ) {
+    // translate.addLangs(['en', 'fr', 'hi']);
+    // translate.setDefaultLang('en');
+    // // const browserLang = translate.getBrowserLang();
+    // translate.use(intl.getLang());
 
     //     if ('auctions' in data) {
     //       this.auctions = data.auctions;

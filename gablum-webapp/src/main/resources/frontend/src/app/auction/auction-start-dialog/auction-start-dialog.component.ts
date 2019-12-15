@@ -52,8 +52,6 @@ export class AuctionStartDialogComponent {
                   }
                 });
               }
-
-
   close() {
     this.dialogRef.close();
   }
@@ -74,7 +72,6 @@ export class AuctionStartDialogComponent {
     this.proposalDataService.changeAuctionFlag(proposal1.proposalId, AuctionStartDialogComponent.messageKey, 'auctionStarted');
     this.router.navigate(['dashboard']);
     this.close();
-
   }
 ngOnIt() {
   let i = 0;
@@ -88,5 +85,4 @@ ngOnIt() {
   onClick() {
     this.disabled = true;
   }
-
 }

@@ -54,6 +54,7 @@ const modules = [
   MatStepperModule,
   MatDividerModule,
   MatListModule,
+  MatCheckboxModule,
   MatOptionModule,
   MatExpansionModule,
   MatTooltipModule,

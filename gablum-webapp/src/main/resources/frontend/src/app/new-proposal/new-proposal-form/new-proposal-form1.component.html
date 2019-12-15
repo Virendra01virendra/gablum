@@ -95,7 +95,7 @@
         <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="10px">
           <mat-form-field fxFlex="45" appearance="outline">
             <mat-label class="form-label">Credit Period</mat-label>
-            <input matInput type="number" placeholder="Enter months" formControlName="creditPeriod">
+            <input matInput type="number" placeholder="Enter days" formControlName="creditPeriod">
             <mat-error *ngIf="creditPeriod.touched || creditPeriod.invalid">{{creditPeriodError()}}
             </mat-error>
           </mat-form-field>

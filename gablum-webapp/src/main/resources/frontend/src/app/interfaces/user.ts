@@ -1,3 +1,6 @@
+import { RouterLink } from '@angular/router';
+import { UserRole } from './user-role';
+
 export interface User {
     name: string;
     email: string;
@@ -15,7 +18,7 @@ export interface User {
     proposalIdList: string[];
     auctionIdList: string[];
     bidIdList: string[];
-    role: any;
+    role: UserRole[];
     rating: number;
     active: number;
     isLocked: boolean;
@@ -23,3 +26,4 @@ export interface User {
     isEnabled: boolean;
     createdOn: Date;
 }
+// role defined from any to User-RouterLink.ts

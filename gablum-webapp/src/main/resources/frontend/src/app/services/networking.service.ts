@@ -46,13 +46,6 @@ export class NetworkingService {
           return throwError(err);
         })
       );
-      // .subscribe(res => {
-      //   this.comms.postMessage(this, dest, { [key]: res });
-      //   this.getData<T>(url, dest, key);
-      // },
-      //   err => {
-      //     this.logger.log(err);
-      //   });
   }
 
   postData<T>(url: string, dest: string, data, key = 'inventory') {
@@ -61,7 +54,6 @@ export class NetworkingService {
         'Content-Type': 'application/json'
       })
     };
-    // console.log(' datatatatat :::', data);
     this.http.post<T>(url, data, httpOptions)
       .pipe(
         retry(3),
@@ -90,11 +82,5 @@ export class NetworkingService {
           return throwError(err);
         })
       );
-    // .subscribe(res => {
-    //   this.comms.postMessage(this, dest, {[key]: res});
-    // },
-    // err => {
-    //   this.logger.log(err);
-    // });
   }
 }

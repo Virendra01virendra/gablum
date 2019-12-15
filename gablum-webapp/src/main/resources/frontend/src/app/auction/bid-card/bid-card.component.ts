@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewBid } from 'src/app/interfaces/newbid';
-import { MatChipsModule } from '@angular/material/chips';
 import { NgxData } from 'src/app/interfaces/ngx-data';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -57,7 +56,6 @@ export class BidCardComponent implements OnInit {
     this.route.paramMap
       .subscribe((params: Params) => {
         this.auctionId = params.get('id');
-        // console.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
     this.profileUrl = this.profileUrl + '/' + this.bidDataEntity.createdBy;
     this.profileDataService.getUserProfileByEmailWithUrl(
@@ -65,7 +63,6 @@ export class BidCardComponent implements OnInit {
   }
 
   openDialog(bidDataEntity1: NewBid) {
-    // this.auctionDataService.saveWinningBid(BidCardComponent.messageKey, bidDataEntity, 'winningBid', this.auctionId);
     const sellerEmail = bidDataEntity1.createdBy;
     const buyerEmail = this.auction.createdBy;
     const bidData = {
