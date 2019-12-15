@@ -18,6 +18,10 @@ export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
+  public qualityMsgTrue = 'Required';
+  public qualityMsgFalse = 'Optional';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -52,7 +56,8 @@ export class AuctionStartDialogComponent {
       auctionName: proposal1.productName,
       proposal: proposal1,
       isAuctionActive: true,
-      interestedUsersEmail: proposal1.interestedUsersEmail
+      interestedUsersEmail: proposal1.interestedUsersEmail,
+      invitedUsersEmail: proposal1.invitedUsersEmail
     };
     const auctionList = [];
     auctionList.push(auction);
