@@ -44,7 +44,7 @@ export class ContractDetailComponent implements OnInit {
     this.productName = this.proposal.productName;
     this.bidDetails = this.contract.bidDetails;
     this.sellerName = this.bidDetails.createdBy;
-    translate.addLangs(['en', 'fr']);
+    translate.addLangs(['en', 'fr', 'hi']);
     translate.setDefaultLang('en');
     // const browserLang = translate.getBrowserLang();
     translate.use(intl.getLang());

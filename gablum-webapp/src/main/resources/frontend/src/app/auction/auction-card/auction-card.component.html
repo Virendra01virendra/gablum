@@ -4,9 +4,9 @@
    />
    <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
        <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-           <div class="card-header" fxFlexAlign="center" matTooltip="Product Name" >{{auction.auctionName}}</div>
+           <div class="card-header" fxFlexAlign="center" matTooltip="{{'CONTRACTS.PN' | translate}}" >{{auction.auctionName}}</div>
            <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
-               <div class="subdomain" fxFlexAlign="center" matTooltip="Business Sub-Domain" >{{auction.proposal.businessSubDomain}}</div>
+               <div class="subdomain" fxFlexAlign="center" matTooltip="{{'CONTRACTS.BS' | translate}}" >{{auction.proposal.businessSubDomain}}</div>
                <div class="timer">
                    <app-timer
                    style="align-content:flex-end ;"
@@ -17,19 +17,19 @@
        </div>
        <div class="info-container" fxLayout="row wrap"fxLayoutAlign="center center">
        <div>
-           <i class="fa fa-money" aria-hidden="true" matTooltip="Expected Cost in ">
+           <i class="fa fa-money" aria-hidden="true" matTooltip="{{'CONTRACTS.EC' | translate}}">
                <span class="mat-subheading-2">
-              {{auction.proposal.price}} per unit</span></i>
+              {{auction.proposal.price}} {{'CONTRACTS.PER' | translate}} unit</span></i>
            </div>
            <div>
-               <i class="fa fa-handshake-o" aria-hidden="true" matTooltip="{{auction.createdBy}} is willing to pay-up in">
+               <i class="fa fa-handshake-o" aria-hidden="true" matTooltip="{{auction.createdBy}} {{'CONTRACTS.PAY' | translate}}">
                   <span class="mat-subheading-2">{{auction.proposal.creditPeriod + 'Days'}}</span></i>
                </div>
                <div>
                    <i
                    class="fa fa-check-circle-o"
                    aria-hidden="true"
-                   matTooltip="Quality Check Certified"
+                   matTooltip="{{'CONTRACTS.QCP' | translate}}"
                    *ngIf= "auction.proposal.qualityCertification == true"
                    style="transform: scale3d(10);"
                    ><span class="mat-subheading-2">
@@ -39,7 +39,7 @@
                   <i
                   class="fa fa-times"
                   aria-hidden="true"
-                  matTooltip="Quality Check Uncertified"
+                  matTooltip="{{'CONTRACTS.QCF' | translate}}"
                   style="transform: scale3d(10);"
                   *ngIf= "auction.proposal.qualityCertification != true"
                   ><span class="mat-subheading-2">
@@ -50,7 +50,7 @@
                    <i
                    class="fa fa-cog"
                    aria-hidden="true"
-                   matTooltip="Type of Product Supply"
+                   matTooltip="{{'CONTRACTS.SUPPLY' | translate}}"
                    *ngIf= "auction.proposal.methodOfSupply == true"
                    ><span class="mat-subheading-2">
                    {{supplyTrue}}</span></i
@@ -60,17 +60,16 @@
                   <i
                   class="fa fa-cog"
                   aria-hidden="true"
-                  matTooltip="How procurement is to be done"
+                  matTooltip="{{'CONTRACTS.SUPPLY2' | translate}}"
                   *ngIf= "auction.proposal.methodOfSupply != true"
                   ><span class="mat-subheading-2">
-                  {{supplyFalse}}</span></i
-                  >
-              </div>
+                  {{supplyFalse}}</span></i>
+               </div>
                <div>
                   <i
                   class="fa fa-truck"
                   aria-hidden="true"
-                  matTooltip="Expected Delivery Date"
+                  matTooltip="{{'CONTRACTS.EDD' | translate}}"
                   ><span class="mat-subheading-2">
                   {{auction.proposal.deliveryDate | date: "mediumDate"}}</span></i
                   >

@@ -34,7 +34,7 @@ export class AuctionCardComponent implements OnInit {
     public translate: TranslateService,
     public intl: IntlService
   ) {
-    translate.addLangs(['en', 'fr']);
+    translate.addLangs(['en', 'fr', 'hi']);
     translate.setDefaultLang('en');
     // const browserLang = translate.getBrowserLang();
     translate.use(intl.getLang());

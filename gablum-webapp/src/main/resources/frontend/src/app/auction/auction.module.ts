@@ -16,8 +16,13 @@ import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     BidFormComponent,
@@ -35,11 +40,18 @@ import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dial
     ReactiveFormsModule,
     MaterialModule,
     ConsoleModule,
-    SchedulerModule
+    SchedulerModule,
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
     // FlexLayoutModule
     // BrowserAnimationsModule,
     // NoopAnimationsModule
-  ],
+      }
+    })],
   exports: [
     AuctionCardComponent,
     BidCardComponent
