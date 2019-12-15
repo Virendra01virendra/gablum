@@ -1,8 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between"
-    (click)="openDialog()" style="cursor: pointer;">
+<div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between" (click)="openDialog()" style="cursor: pointer;">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-        <div class="mat-title card-header" fxFlexAlign="flex-start">{{contract.auctionDetails.auctionName| titlecase}}
+        <div class="mat-title card-header" fxFlexAlign="flex-start">{{contract.auctionDetails.auctionName| uppercase}}
         </div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="mat-subheading-2 subdomain" fxLayoutAlign="start center">
@@ -25,8 +24,7 @@
                     {{ contract.auctionDetails.proposal.price }}</span></i>
         </div>
         <div>
-            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Auction Start Date"
-                style="transform: scale3d(10);">
+            <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Auction Start Date" style="transform: scale3d(10);">
                 <span class="mat-subheading-2">
                     {{ contract.auctionDetails.auctionStartDate | date: "mediumDate" }}</span></i>
         </div>
@@ -58,12 +56,7 @@
                     {{ contract.bidDetails.bid.timeOfDelivery | date: "mediumDate" }}</span></i>
         </div>
         <div>
-                <i
-                class="fa fa-cog"
-                aria-hidden="true"
-                matTooltip="Type of Product Supply"
-                *ngIf= "contract.auctionDetails.proposal.methodOfSupply == true"
-                ><span class="mat-subheading-2">
+            <i class="fa fa-cog" aria-hidden="true" matTooltip="Type of Product Supply" *ngIf="contract.auctionDetails.proposal.methodOfSupply == true"><span class="mat-subheading-2">
                 {{supplyTrue}}</span></i
                 >
             </div>
@@ -84,12 +77,12 @@
 
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
 
-        <div>
-            <p><strong>Buyer : </strong> {{user.name| titlecase}}</p>
+        <div (click)="loadProfile(contract.buyerEmail)">
+            <p><strong>Buyer : </strong> {{contractWithBothUsers.buyer.name| uppercase}}</p>
         </div>
 
-        <div>
-            <p><strong>Supplier : </strong> {{user.name| titlecase}}</p>
+        <div (click)="loadProfile(contract.sellerEmail)">
+            <p><strong>Supplier : </strong> {{contractWithBothUsers.seller.name| uppercase}}</p>
         </div>
     </div>
     <div></div>

@@ -47,19 +47,20 @@
     <ng-container matColumnDef="sellerEmail">
         <th mat-header-cell *matHeaderCellDef> Seller Email </th>
         <!-- <td mat-cell *matCellDef="let element"> {{element.name}}, {{element.companyName}} </td> -->
-        <td mat-cell *matCellDef="let element"> {{element}} </td>
+        <td mat-cell *matCellDef="let element" (click)="loadProfile(ele)> {{element}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="loadProfile">
+    <ng-container matColumnDef=" loadProfile ">
         <th mat-header-cell *matHeaderCellDef> Load Profile </th>
         <td mat-cell *matCellDef="let ele ">
-            <button mat-raised-button (click)="loadProfile(ele)">Load Profile</button></td>
+            <button mat-raised-button (click)="loadProfile(ele) ">Load Profile</button></td>
     </ng-container>
 
-    <ng-container matColumnDef="action">
+    <ng-container matColumnDef="action ">
         <th mat-header-cell *matHeaderCellDef> Action </th>
         <td mat-cell *matCellDef="let ele ">
-            <button mat-raised-button color="primary" [disabled]="(ele.indexOf(ele)>-1)" (click)="onInvite(ele)">Invite</button></td>
+            <button mat-raised-button color="primary " [disabled]="(ele.indexOf(ele)>-1)" (click)="onInvite(ele)">Invite</button>
+        </td>
     </ng-container>
 
 

@@ -79,9 +79,6 @@ export class ContractCardComponent implements OnInit {
       seller: this.user,
       contract: this.contract
     };
-  }
-
-  openDialog() {
     if (this.contract.buyerEmail === this.user.email) {
       this.contractWithBothUsers = {
         buyer: this.user,
@@ -95,10 +92,15 @@ export class ContractCardComponent implements OnInit {
         contract: this.contract
       };
     }
+  }
+
+  openDialog() {
     this.dialog.open(ContractDetailComponent, {
       data: this.contractWithBothUsers,
       width: '80%'
     });
   }
-
+  loadProfile(email) {
+    this.router.navigate(['/profile', email]);
+  }
 }
