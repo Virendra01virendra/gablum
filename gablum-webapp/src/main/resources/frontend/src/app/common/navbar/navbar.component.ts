@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Output, Input, OnDestroy } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,18 +12,20 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../login/login.component';
 import { IntlService } from 'src/app/services/intl.service';
 import { AlertServiceService } from 'src/app/services/alert-service.service';
+import { StompSubscription } from '@stomp/stompjs';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
   public alertMessage: string;
   public alertFlag: boolean;
+  public wsRef: StompSubscription;
 
   @Output() public menuToggled = new EventEmitter();
 
@@ -68,7 +70,12 @@ export class NavbarComponent implements OnInit {
           }
         }
         if ('newProposalAlert' in data) {
-          console.log('data from subscribe to alert topic :::', JSON.stringify(data.newProposalAlert));
+          logger.log('calling if block in BSub---->');
+          logger.log('data from subscribe to alert topic :::', JSON.stringify(data.newProposalAlert));
+          this.alertFlag = true;
+          this.alertMessage = '!';
+        } else {
+          this.alertMessage = '0';
         }
       }
     });
@@ -81,6 +88,9 @@ export class NavbarComponent implements OnInit {
       this.subscribe();
       this.alertService.storedSubcriptions = message => this.subscribe();
     }
+  }
+
+  ngOnDestroy() {
   }
 
   menuClicked(event) {
@@ -106,7 +116,10 @@ export class NavbarComponent implements OnInit {
 
   subscribe() {
     this.logger.log('calling subscribe ::::::::::');
-    this.alertService.subscribe('/topic/proposalAlert', NavbarComponent.messageKey, 'newProposalAlert');
+    this.wsRef = this.alertService.subscribe(
+      '/topic/proposalAlert/' + this.auth.getProfileData().email,
+      NavbarComponent.messageKey,
+      'newProposalAlert');
   }
 
 }
