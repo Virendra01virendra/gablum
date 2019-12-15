@@ -19,6 +19,10 @@ export class WinningBidDialogComponent {
   public static messageKey = 'WinningBidDialogComponent';
   bidData = this.data.bidDataEntity;
   auctionIdn = this.data.auctionID;
+  public qualityMsgTrue = 'Provided';
+  public qualityMsgFalse = 'Not Provided';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<WinningBidDialogComponent>,
