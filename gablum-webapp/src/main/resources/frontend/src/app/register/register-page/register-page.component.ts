@@ -100,11 +100,11 @@ export class RegisterPageComponent implements OnInit {
         if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
           const data = message.data;
           if ('registrationResult' in data) {
-            const registrationToken: RegisterToken = data.registrationResult;
+            const registrationToken: any = data.registrationResult;
             this.logger.log(registrationToken);
             if (registrationToken === undefined ||
               registrationToken === null ||
-              !registrationToken.isOk) {
+              !registrationToken.ok) {
               this.snackbar.open(
                 'Registration failed',
                 '',

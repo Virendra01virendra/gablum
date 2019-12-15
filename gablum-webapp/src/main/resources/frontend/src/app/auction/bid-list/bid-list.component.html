@@ -61,7 +61,7 @@ fxLayoutAlign="flex-start center"
         >
             Bids in this auction so far
         </div>
-        <div class="bid-list-header mat-subheading-1" *ngIf="bids.length === 0">
+        <div class="bid-list-header mat-subheading-1" *ngIf="bids && bids.length === 0">
             No bids yet
         </div>
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
