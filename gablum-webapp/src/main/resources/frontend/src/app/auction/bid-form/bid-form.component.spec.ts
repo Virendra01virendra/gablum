@@ -77,7 +77,7 @@ describe('BidFormComponent', () => {
     createdOn: new Date(),
     updatedOn: new Date(),
     thresholdParticipants: 1,
-    views: 1,
+    viewSellerEmails: [],
     interested: 1,
     interestedUsersEmail: [''],
     invitedUsersEmail: [''],
