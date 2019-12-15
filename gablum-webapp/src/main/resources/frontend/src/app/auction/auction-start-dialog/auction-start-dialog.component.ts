@@ -18,8 +18,8 @@ export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
-  public qualityMsgTrue = 'Quality Assurance Required';
-  public qualityMsgFalse = 'Quality Certification Optional';
+  public qualityMsgTrue = 'Required';
+  public qualityMsgFalse = 'Optional';
   public supplyTrue = 'FULL';
   public supplyFalse = 'IN PARTS';
 
