@@ -16,9 +16,9 @@ public class MailController {
     ContractService contractService;
 
     @StreamListener("newContract")
-    public void awardContractChannel(Contracts contract){
+    public void awardContractChannel(Contracts contract)
+    {
+        log.warn("from contract MS, saving Contracts");
         contractService.saveContract(contract);
     }
-
-
 }

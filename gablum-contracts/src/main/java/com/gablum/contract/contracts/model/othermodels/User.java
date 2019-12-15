@@ -78,4 +78,11 @@ public class User {
     public void setRole(Set<Role> role) {
         this.role = role;
     }
+    public void addContractId(String contractID){
+        contractIdList.add(contractID);
+    }
+
+    public void addBlock(Block block){
+        blockchain.add(block);
+    }
 }
