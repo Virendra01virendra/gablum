@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
-import { MAT_BOTTOM_SHEET_DATA } from '@angular/material';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material';
+import { CommunicatorService } from 'src/app/services/communicator.service';
 
 @Component({
   selector: 'app-add-bid-sheet',
@@ -18,10 +19,20 @@ export class AddBidSheetComponent implements OnInit {
   constructor(
     private logger: LoggerService,
     private auctionDataService: AuctionsDataService,
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
+    private sheetRef: MatBottomSheetRef,
+    private comms: CommunicatorService
   ) {
     this.auctionId = data.id;
     this.logger.log(data.id);
+    this.comms.getMessages().subscribe(message => {
+      if (message.dest === AddBidSheetComponent.messageKey) {
+        const commData = message.data;
+        if ('saveBids' in commData) {
+          this.sheetRef.dismiss();
+        }
+      }
+    });
   }
 
   ngOnInit() {
@@ -47,7 +58,7 @@ export class AddBidSheetComponent implements OnInit {
     timeOfDelivery: form.value.newTimeOfDelivery,
     };
     this.logger.log('making api call', bid1);
-    this.auctionDataService.saveBid('@all', bid1, 'saveBids', this.auctionId);
+    this.auctionDataService.saveBid(AddBidSheetComponent.messageKey, bid1, 'saveBids', this.auctionId);
   }
 
 }
