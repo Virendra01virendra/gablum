@@ -133,5 +133,11 @@ public class    ProposalController {
         );
     }
 
+    @PatchMapping("/proposals/views/")
+    public ResponseEntity<Proposal> saveSellerView(@RequestBody Proposal updatedProposal, HttpServletRequest request) {
+        // String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveSellerView(updatedProposal), HttpStatus.OK);
+    }
+
 
 }
