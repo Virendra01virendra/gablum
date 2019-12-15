@@ -4,6 +4,9 @@ import { RegisterAdminPageComponent } from './register-admin-page.component';
 import { MaterialModule } from '../../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('RegisterAdminPageComponent', () => {
   let component: RegisterAdminPageComponent;
@@ -16,7 +19,10 @@ describe('RegisterAdminPageComponent', () => {
         MaterialModule,
         FormsModule,
         ReactiveFormsModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        RouterTestingModule,
+        HttpClientModule,
+        BrowserAnimationsModule
       ]
     })
     .compileComponents();
