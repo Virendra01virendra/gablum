@@ -18,6 +18,7 @@ import { SellerProposalCardComponent } from './seller-proposal-card/seller-propo
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ProposalSellerDialogComponent } from './proposal-seller-dialog/proposal-seller-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
     SellerProposalCardComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    ProposalSellerDialogComponent
   ],
   imports: [
     CommonModule,
