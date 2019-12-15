@@ -64,7 +64,8 @@ import { ProposalSellerDialogComponent } from './proposal-seller-dialog/proposal
     SellersListDialogComponent,
     ExtendProposalDialogComponent,
     AuctionStartDialogComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    ProposalSellerDialogComponent
   ],
   exports: [
     SellerProposalCardComponent
