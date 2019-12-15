@@ -18,6 +18,10 @@ export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
+  public qualityMsgTrue = 'Quality Assurance Required';
+  public qualityMsgFalse = 'Quality Certification Optional';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

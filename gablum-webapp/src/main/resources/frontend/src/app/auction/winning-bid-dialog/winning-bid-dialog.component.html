@@ -1,46 +1,55 @@
-<div class="wrapper" fxLayoutAlign="space-around center">
-    <mat-dialog-content>
-        <div> Bid Details:</div>
-        <div fxLayoutAlign="space-between">
-                <mat-chip color="primary">Price </mat-chip> 
-                <mat-chip>{{bidData.bid.price}}</mat-chip>
-                 </div>
-         
-                 <div fxLayoutAlign="space-between">
-                   <mat-chip color="primary">Credit Period</mat-chip> 
-                   <mat-chip>{{bidData.bid.creditPeriod + ' months'}}</mat-chip>
-                 </div>
-         
-                 <div fxLayoutAlign="space-between">
-                   <mat-chip color="primary">Quality Certification</mat-chip> 
-                   <mat-chip>{{bidData.bid.qaqcCertificate}}</mat-chip>
-                 </div>
-         
-                 <div fxLayoutAlign="space-between">
-                   <mat-chip color="primary">Method Of Supply</mat-chip> 
-                   <mat-chip>{{bidData.bid.typeOfSupply}}</mat-chip>
-                 </div>
+<div mat-dialog-content style="overflow : hidden;">
+  <div>
+    <div> Bid Details:</div>
 
-                 <div fxLayoutAlign="space-between">
-                    <mat-chip color="primary">Delivery Date</mat-chip> 
-                    <mat-chip>{{bidData.bid.timeOfDelivery | date}}</mat-chip>
-                  </div>
-               
-        <!-- <div> Your score is <div [ngClass]="{
-                  'positive' : data >= 90,
-                  'medium' : data < 90 && data >= 70,
-                  'negative': data < 70
-              }">
-          {{result1}}
-          </div>
-      </div> -->
-    </mat-dialog-content>
+    <mat-list role="list">
+
+      <mat-list-item>
+        <div fxFlex=70%>Price</div>
+        <div fxFlex=30%>{{bidData.bid.price}}</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <div fxFlex=70%>Credit Period</div>
+        <div fxFlex=30%>{{bidData.bid.creditPeriod + ' days'}}</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+
+      <mat-list-item>
+        <div fxFlex=70%>Quality Certification</div>
+        <div fxFlex=30%>{{bidData.bid.qaqcCertificate}}</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+
+      <mat-list-item>
+        <div fxFlex=70%>Method Of Supply</div>
+        <div fxFlex=30%>{{bidData.bid.typeOfSupply}}</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item>
+        <div fxFlex=70%>Delivery Date</div>
+        <div fxFlex=30%>{{bidData.bid.timeOfDelivery | date}}</div>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+    </mat-list>
   </div>
   <br>
-  <div class="wrapper" fxLayoutAlign="space-around center">
-    <mat-dialog-actions>
-      <button color="primary" mat-raised-button (click)="close()">Back to Bids</button>
+
+  <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
+    <mat-dialog-actions fxLayout="row nowrap" fxLayoutAlign="end center">
+      <button mat-raised-button (click)="close()">Back to Bids</button>
       <button color="primary" mat-raised-button (click)="selectBid()">Select Bid</button>
     </mat-dialog-actions>
   </div>
-  
+
+</div>

@@ -21,7 +21,8 @@
 
       <mat-list-item>
         <div fxFlex=70%>Quality Certification</div>
-        <div fxFlex=30%>{{data.qualityCertification}}</div>
+        <div *ngIf= "data.qualityCertification == true" fxFlex=30%>{{qualityMsgTrue}}</div>
+        <div *ngIf= "data.qualityCertification == false" fxFlex=30%>{{qualityMsgFalse}}</div>
       </mat-list-item>
 
       <mat-divider></mat-divider>
@@ -29,7 +30,8 @@
 
       <mat-list-item>
         <div fxFlex=70%>Method Of Supply</div>
-        <div fxFlex=30%>{{data.methodOfSupply}}</div>
+        <div *ngIf= "data.methodOfSupply == true" fxFlex=30%>{{supplyTrue}}</div>
+        <div *ngIf= "data.methodOfSupply == false" fxFlex=30%>{{supplyFalse}}</div>
       </mat-list-item>
 
       <mat-divider></mat-divider>
