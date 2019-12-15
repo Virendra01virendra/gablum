@@ -126,11 +126,17 @@ public class    ProposalController {
 
     @PatchMapping("proposals/{proposalId}/auction-started")
     public ResponseEntity<Proposal> auctionStarted(@PathVariable("proposalId") String proposalId) {
-        System.out.println("PRRRRRRRRRRRROOOOOOOOPOOOOOOOSALSSSSSSS------------------------------->>>>>>>>>>>");
+//        System.out.println("PRRRRRRRRRRRROOOOOOOOPOOOOOOOSALSSSSSSS------------------------------->>>>>>>>>>>");
         return new ResponseEntity<Proposal>(
                 proposalService.changeAuctionFlag(proposalId),
                 HttpStatus.OK
         );
+    }
+
+    @PatchMapping("/proposals/views")
+    public ResponseEntity<Proposal> saveSellerView(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
+         String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveSellerView(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
     }
 
 

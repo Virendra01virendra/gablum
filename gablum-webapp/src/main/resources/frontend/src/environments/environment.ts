@@ -14,6 +14,7 @@ export const environment = {
   navlinkUrl: 'http://localhost:8080/api/users/menuitems',
   guestProposallistUrl: 'http://localhost:8080/api/proposals/proposals/browse',
   inviteSellerUrl: 'http://localhost:8080/api/proposals/proposals/invite',
+  saveSellerViewUrl: 'http://localhost:8080/api/proposals/proposals/views',
   auctionUrl: 'http://localhost:8080/api/auctions/auctions',
   tokenUrl: 'http://localhost:8080/api/auctions/tokens',
 };

@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch"
-    [style.backgroundColor]="getBackgroundColor()"
-    >
-        <div class="mat-title card-header" fxFlexAlign="flex-start" >{{proposal.productName}}</div>
+        [style.backgroundColor]="getBackgroundColor()">
+        <div class="mat-title card-header" fxFlexAlign="flex-start">{{proposal.productName}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
-            <div class="mat-subheading-2 subdomain" fxFlexAlign="center" >{{ proposal.businessSubDomain }}</div>
+            <div class="mat-subheading-2 subdomain" fxFlexAlign="center">{{ proposal.businessSubDomain }}</div>
             <div class="timer">
                 <app-timer style="align-content:flex-end ;" [timerDetails]="proposal"></app-timer>
             </div>
@@ -29,6 +28,9 @@
             <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction Start-Date">
                 {{ proposal.auctionStartDate | date: "mediumDate" }}</i>
         </div>
+<div>
+    {{'Views: ' + proposal.viewSellerEmails.length}}
+</div>
     </div>
 
     <div style="margin-bottom: 0.5em;">

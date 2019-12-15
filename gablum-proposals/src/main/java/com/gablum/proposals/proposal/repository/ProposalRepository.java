@@ -21,12 +21,14 @@ public interface ProposalRepository extends MongoRepository<Proposal, String> {
 
     void deleteByProposalId(String proposalId);
 
-    Page<Proposal> getAllProposalsByRegEndDateGreaterThan(Pageable page, Date currentDate);
+    Page<Proposal> getAllProposalsByRegEndDateGreaterThanAndAuctionStarted(Pageable page, Date currentDate,
+                                                                           boolean isAuctionStarted);
 
-    List<Proposal> getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomain(
+    List<Proposal> getAllProposalsByRegEndDateGreaterThanAndBusinessSubDomainAndAuctionStarted(
             Pageable page,
             Date currentDate,
-            String businessSubDomain
+            String businessSubDomain,
+            boolean isAuctionStarted
     );
 
 }

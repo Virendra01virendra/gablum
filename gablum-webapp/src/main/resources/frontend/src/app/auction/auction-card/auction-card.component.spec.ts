@@ -74,7 +74,7 @@ describe('AuctionCardComponent', () => {
         createdOn: new Date(),
         updatedOn: new Date(),
         thresholdParticipants: 2,
-        views: 2,
+        viewSellerEmails: ['a', 'b'],
         interested: 2,
         interestedUsersEmail: [],
         productDescription: ' ',
