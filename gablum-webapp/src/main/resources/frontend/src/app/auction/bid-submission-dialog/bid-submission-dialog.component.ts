@@ -18,6 +18,10 @@ export class BidSubmissionDialogComponent implements OnInit {
   public static messageKey = 'BidSubmissionDialogComponent';
   result1;
   scoreObject: Score;
+  public qualityMsgTrue = 'Provided';
+  public qualityMsgFalse = 'Not Provided';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   bid2 = {
     price: this.data.bid.price,
     creditPeriod: this.data.bid.creditPeriod,

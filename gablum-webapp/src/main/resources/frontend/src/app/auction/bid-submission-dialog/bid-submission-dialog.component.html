@@ -20,8 +20,9 @@
 
 
       <mat-list-item>
-        <div fxFlex=70%>Quality Certification</div>
-        <div fxFlex=30%>{{data.bid.qaqcCertificate}}</div>
+        <div fxFlex=70% >Quality Certification</div>
+        <div *ngIf= "data.bid.qaqcCertificate == true" fxFlex=30%>{{qualityMsgTrue}}</div>
+        <div *ngIf= "data.bid.qaqcCertificate == false" fxFlex=30%>{{qualityMsgFalse}}</div>
       </mat-list-item>
 
       <mat-divider></mat-divider>
@@ -29,7 +30,8 @@
 
       <mat-list-item>
         <div fxFlex=70%>Method Of Supply</div>
-        <div fxFlex=30%>{{data.bid.typeOfSupply}}</div>
+        <div *ngIf= "data.bid.typeOfSupply == true" fxFlex=30%>{{supplyTrue}}</div>
+        <div *ngIf= "data.bid.typeOfSupply == false" fxFlex=30%>{{supplyFalse}}</div>
       </mat-list-item>
 
 
