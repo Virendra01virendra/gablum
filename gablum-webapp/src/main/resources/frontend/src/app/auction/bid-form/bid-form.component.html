@@ -86,9 +86,17 @@ fxLayoutAlign="flex-start center"
 
 </div>
 
-<button mat-fab matTooltip="Place a new bid" color="primary"
+<div class="fab-container"
 [ngStyle]="{'position': 'fixed', 'bottom': '2em', 'right': '2em'}"
-(click)="openSheet()"
+fxLayout="column nowrap"
 >
-  <mat-icon>add</mat-icon>
-</button>
+  <button mat-fab matTooltip="Go back" (click)="goBack()"
+  style="position: fixed; bottom: 2em; right: 2em;"
+>
+  <button mat-fab matTooltip="Place a new bid" color="primary"
+  
+  (click)="openSheet()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

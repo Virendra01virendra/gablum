@@ -16,6 +16,7 @@ import { StompSubscription } from '@stomp/stompjs';
 import { AddBidSheetComponent } from '../add-bid-sheet/add-bid-sheet.component';
 import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -59,7 +60,8 @@ export class BidFormComponent implements OnInit, OnDestroy {
     private comms: CommunicatorService,
     private matDialog: MatDialog,
     private snackBar: MatSnackBar,
-    private bottomSheet: MatBottomSheet
+    private bottomSheet: MatBottomSheet,
+    private location: Location
     ) {
       this.dataSource = new MatTableDataSource([]);
       const auctionUrl = environment.auctionUrl;
@@ -248,5 +250,9 @@ export class BidFormComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }
