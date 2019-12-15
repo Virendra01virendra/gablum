@@ -53,6 +53,8 @@ export class AuctionCardComponent implements OnInit {
       this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
       this.logger.log(this.tokenBody);
       this.isOwner = this.tokenBody.isOwner;
+
+      console.log('oowwwwwwwwwwwwwwwner', this.isOwner);
       // this.ws.connect(message => this.subscribe());
     },
     err => {

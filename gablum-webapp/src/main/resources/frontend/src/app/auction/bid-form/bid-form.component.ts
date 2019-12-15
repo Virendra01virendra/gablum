@@ -65,10 +65,10 @@ export class BidFormComponent implements OnInit, OnDestroy {
           if ('scoreBids' in data) {
             this.scoreObject = data.scoreBids;
             this.result2 = this.scoreObject.total;
-            const dialogConfig = new MatDialogConfig();
-            dialogConfig.data = this.result2;
-            dialogConfig.width = '30%';
-            this.matDialog.open(BidResponseDialogComponent, dialogConfig);
+            // const dialogConfig = new MatDialogConfig();
+            // dialogConfig.data = this.result2;
+            // dialogConfig.width = '30%';
+            // this.matDialog.open(BidResponseDialogComponent, dialogConfig);
           }
 
         }
@@ -100,7 +100,19 @@ export class BidFormComponent implements OnInit, OnDestroy {
       });
 
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
-    console.log('in oninit form');
+    // console.log('in oninit form');
+
+    // this.ws.getBidScore(bid);
+    this.bidForm.valueChanges.subscribe(() => {
+      const bid = {
+        price: this.bidForm.value.newPrice,
+        creditPeriod: this.bidForm.value.newCreditPeriod,
+        qaqcCertificate: this.bidForm.value.newQaqcCertificate,
+        typeOfSupply: this.bidForm.value.newTypeOfDelivery,
+        timeOfDelivery: this.bidForm.value.newTimeOfDelivery,
+        };
+      this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
+    });
   }
 
   onSubmit(form: FormGroup) {
@@ -137,17 +149,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
 
 
   seeScore(form: FormGroup) {
-    const bid = {
-      price: form.value.newPrice,
-      creditPeriod: form.value.newCreditPeriod,
-      qaqcCertificate: form.value.newQaqcCertificate,
-      typeOfSupply: form.value.newTypeOfDelivery,
-      timeOfDelivery: form.value.newTimeOfDelivery,
-      };
-
-    // this.ws.getBidScore(bid);
-
-    this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
+    // this.auctionDataService.getScore(BidFormComponent.messageKey, bid, 'scoreBids', this.auctionId);
 
   }
 
