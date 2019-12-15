@@ -14,7 +14,26 @@
         "TEAM": "Team Members"
     },
 
-    "CONTRACTS":{
+    "CONTRACTS": {
+        "TITLE": "Contract",
+        "PN": "Product Name",
+        "PD": "Product Description",
+        "QUANT": "Quantity",
+        "AD": "Auction Details",
+        "MOS": "Method of Supply",
+        "FULL": "Full",
+        "PARTS": "Parts",
+        "QC": "Quality Certification",
+        "REQ": "Required",
+        "OP": "Optional",
+        "DD": "Deliver Date",
+        "PRICE": "Price",
+        "CP": "Credit Period",
+        "BD": "Bid Details", 
+        "PRE1": "This Tripartite Contract is between",
+        "PRE2": "of firm",
+        "PRE3": "hereinafter called Buyer,",
+        "PRE4": "hereinafter called Supplier and Gablum Private Litmited hereinafter called GPL and is effective starting on today till the contract is fulfilled.",
         "OPEN": "The Contract binds the Buyer and Supplier to perform the required duties as agreed in the auction process, which are as following",
         "ONE": "The Supplier and Buyer participated fairly in the auction process held on Gablum platform during",
         "TWO": "specifications mentioned in the Auction",

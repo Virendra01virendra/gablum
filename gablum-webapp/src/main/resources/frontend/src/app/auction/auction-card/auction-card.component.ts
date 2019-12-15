@@ -10,6 +10,9 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { HttpClient } from '@angular/common/http';
 import { AuctionSocketToken } from 'src/app/interfaces/auction-token';
 import { WebsocketService } from 'src/app/services/websocket.service';
+import { TranslateService } from '@ngx-translate/core';
+import { IntlService } from 'src/app/services/intl.service';
+
 @Component({
   selector: 'app-auction-card',
   templateUrl: './auction-card.component.html',
@@ -27,8 +30,14 @@ export class AuctionCardComponent implements OnInit {
     private router: Router,
     private logger: LoggerService,
     private http: HttpClient,
-    private ws: WebsocketService
-    ) {
+    private ws: WebsocketService,
+    public translate: TranslateService,
+    public intl: IntlService
+  ) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+    // const browserLang = translate.getBrowserLang();
+    translate.use(intl.getLang());
 
     //     if ('auctions' in data) {
     //       this.auctions = data.auctions;
@@ -47,17 +56,17 @@ export class AuctionCardComponent implements OnInit {
   ngOnInit() {
     const auctionUrl = environment.tokenUrl;
     this.http.get<AuctionSocketToken>(auctionUrl + '/' + this.auction.auctionId)
-    .subscribe(token => {
-      this.auction.socketToken = token.token;
-      this.logger.log(this.auction);
-      this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
-      this.logger.log(this.tokenBody);
-      this.isOwner = this.tokenBody.isOwner;
-      // this.ws.connect(message => this.subscribe());
-    },
-    err => {
-      this.logger.log(err);
-    });
+      .subscribe(token => {
+        this.auction.socketToken = token.token;
+        this.logger.log(this.auction);
+        this.tokenBody = JSON.parse(atob(token.token.split('.')[1]));
+        this.logger.log(this.tokenBody);
+        this.isOwner = this.tokenBody.isOwner;
+        // this.ws.connect(message => this.subscribe());
+      },
+        err => {
+          this.logger.log(err);
+        });
     this.logger.log(auctionUrl);
   }
 

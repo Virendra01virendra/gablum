@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-    Contract
+    <strong>{{'CONTRACTS.TITLE' | translate}}</strong>
 </h1>
 <!-- <label for="">
     {{'CONTRACTS.SELECT' | translate}} 
@@ -9,84 +9,83 @@
 </label> -->
 <div mat-dialog-content style="overflow: scroll; overflow-x: hidden">
     <h3>
-        Product Name - {{productName | titlecase}}
+        {{'CONTRACTS.PN' | translate}} - {{productName | titlecase}}
     </h3>
     <h4>
-        Product Description {{contract.auctionDetails.proposal.productDescription}}
+        {{'CONTRACTS.PD' | translate}} {{contract.auctionDetails.proposal.productDescription}}
     </h4>
     <h4>
-        Quantity {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}
+        {{'CONTRACTS.QUANT' | translate}} - {{contract.auctionDetails.proposal.quantityValue}}{{contract.auctionDetails.proposal.quantityUnit}}
     </h4>
     <mat-grid-list cols="2" rowHeight="2:1">
         <mat-grid-tile>
             <section>
                 <h4>
-                    Auction Details :
+                    {{'CONTRACTS.AD' | translate}} :
                 </h4>
                 <ul>
                     <div *ngIf="contract.auctionDetails.proposal.methodOfSupply == true">
                         <li>
-                            Method of Supply - Full
+                            {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.FULL' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.methodOfSupply != true">
                         <li>
-                            Method of Supply - Parts
+                                {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.PARTS' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.qualityCertification == true">
                         <li>
-                            Quality Certification - Required
+                            {{'CONTRACTS.QC' | translate}} - {{'CONTRACTS.REQ' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.qualityCertification != true">
                         <li>
-                            Quality Certification - Optional
+                            {{'CONTRACTS.QC' | translate}} - {{'CONTRACTS.OP' | translate}}
                         </li>
                     </div>
-                    <li>Delivery Date {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
-                    <li>Price {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
-                    <li>Credit Period {{contract.auctionDetails.proposal.creditPeriod}} days</li>
+                    <li>{{'CONTRACTS.DD' | translate}} : {{contract.auctionDetails.proposal.deliveryDate | date:'mediumDate'}}</li>
+                    <li>{{'CONTRACTS.PRICE' | translate}} : {{contract.auctionDetails.proposal.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                    <li>{{'CONTRACTS.CP' | translate}} : {{contract.auctionDetails.proposal.creditPeriod}} days</li>
                 </ul>
             </section>
         </mat-grid-tile>
         <mat-grid-tile>
             <section>
                 <h4>
-                    Bid Details :
+                    {{'CONTRACTS.BD' | translate}} :
                 </h4>
                 <ul>
                     <div *ngIf="contract.auctionDetails.proposal.methodOfSupply == true">
                         <li>
-                            Method of Supply - Full
+                            {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.FULL' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.methodOfSupply != true">
                         <li>
-                            Method of Supply - Parts
+                            {{'CONTRACTS.MOS' | translate}} - {{'CONTRACTS.PARTS' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.qualityCertification == true">
                         <li>
-                            Quality Certification - Required
+                            {{'CONTRACTS.QC' | translate}} - {{'CONTRACTS.REQ' | translate}}
                         </li>
                     </div>
                     <div *ngIf="contract.auctionDetails.proposal.qualityCertification != true">
                         <li>
-                            Quality Certification - Optional
+                            {{'CONTRACTS.QC' | translate}} - {{'CONTRACTS.OP' | translate}}
                         </li>
                     </div>
-                    <li>Delivery Date {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
-                    <li>Price {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
-                    <li>Credit Period {{contract.bidDetails.bid.creditPeriod}}days</li>
+                    <li>{{'CONTRACTS.DD' | translate}} : {{contract.bidDetails.bid.timeOfDelivery | date:'mediumDate'}}</li>
+                    <li>{{'CONTRACTS.PRICE' | translate}} : {{contract.bidDetails.bid.price}} per {{contract.auctionDetails.proposal.quantityUnit}} </li>
+                    <li>{{'CONTRACTS.CP' | translate}} : {{contract.bidDetails.bid.creditPeriod}} days</li>
                 </ul>
             </section>
         </mat-grid-tile>
     </mat-grid-list>
     <article>
         <p>
-            This Tripartite Contract is between {{buyer.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Buyer, {{seller.name | titlecase}} of firm {{ buyer.companyName | titlecase}} hereinafter called Supplier and Gablum Private Litmited
-            hereinafter called GPL and is effective starting on today till the contract is fulfilled.
+            {{'CONTRACTS.PRE1' | translate}} {{buyer.name | titlecase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}} {{'CONTRACTS.PRE3' | translate}} {{seller.name | titlecase}} {{'CONTRACTS.PRE2' | translate}} {{ buyer.companyName | titlecase}} {{'CONTRACTS.PRE4' | translate}}
         </p>
         <p>
             {{'CONTRACTS.OPEN' | translate}}
