@@ -18,7 +18,7 @@ import { StompSubscription } from '@stomp/stompjs';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit, OnDestroy {
+export class NavbarComponent implements OnInit {
 
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
@@ -94,14 +94,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-  }
 
   menuClicked(event) {
     this.menuToggled.emit(event);
   }
 
   logout() {
+    this.alertService.disconnect();
     this.login.logout();
   }
   opDialog() {
