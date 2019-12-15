@@ -116,7 +116,7 @@ export class RegisterPageComponent implements OnInit {
               this.logger.log('registered');
               this.router.navigate(['/']);
               this.snackbar.open(
-                'Registered successfully as ' + this.email,
+                'Registered successfully, please login',
                 '',
                 {
                   duration: 5000
