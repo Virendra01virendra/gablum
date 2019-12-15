@@ -40,6 +40,11 @@ export class BidFormComponent implements OnInit, OnDestroy {
   public auctionUrl: string;
   isOwner = false;
   bids: NewBid[];
+  public displayedColumns = [
+    'createdOn', 'rank', 'price', 'delivery'
+  ];
+
+  public tableData = [];
   tokenBody: any;
   constructor(
     public http: HttpClient,
@@ -108,19 +113,16 @@ export class BidFormComponent implements OnInit, OnDestroy {
           if ('bidsAuction' in data) {
             this.bids = data.bidsAuction;
             this.logger.log(this.bids);
-            // this.sortBidsByCreated();
-            // this.bids.forEach(b => {
-            //   this.timeData.push(
-            //     {
-            //       name: b.createdOn,
-            //       value: b.scoreObject.total
-            //     }
-            //   );
-            // });
-            // this.timeData = [...this.timeData];
-            // this.sortBidsByScore();
+            this.sortBidsByCreated();
+            this.tableData = [];
+            this.bids.forEach(b => {
+              this.tableData.push(
+                {createdOn: b.createdOn, rank: b.rank, price: b.bid.price, delivery: new Date(b.bid.timeOfDelivery)}
+              );
+            });
+            this.logger.log(this.bids);
+            this.tableData = [...this.tableData];
           }
-
         }
       });
 
@@ -132,7 +134,6 @@ export class BidFormComponent implements OnInit, OnDestroy {
         // this.logger.log('aucuccuctioniiidd ---------->', this.auctionId);
       });
 
-    // this.ws.connect(message => this.subscribe());
     this.auctionDataService.getBidsAuction(BidFormComponent.messageKey, 'bidsAuction', this.auctionId);
     this.auctionDataService.getAuctionById(BidFormComponent.messageKey, 'auctionSingle', this.auctionId);
 
@@ -153,15 +154,6 @@ export class BidFormComponent implements OnInit, OnDestroy {
     };
 
     this.logger.log('making api call', bid1);
-
-    // this.http.post<Ibid>(this.url, bid, httpOptions).subscribe((response) => {
-    //   this.logger.log('response ::', response);
-    // });
-
-    // this.ws.sendBid(bid);
-
-    // this.http.post('http://localhost:8080/api/auctions/auctions/' + this.auctionId + '/bid', bid, httpOptions)
-    // .subscribe(Response => {this.logger.log(Response); });
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = bidData;
@@ -200,23 +192,7 @@ export class BidFormComponent implements OnInit, OnDestroy {
       auth: this.auction.socketToken
     };
     if (this.isOwner) {
-      this.subscriptionRef = this.ws.subscribe(
-        '/topic/admin/' + this.auction.auctionId,
-        BidFormComponent.messageKey,
-        'newbid', this.auction.socketToken);
-      this.comms.getMessages().subscribe(message => {
-          if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
-            const data = message.data;
-            if ('newbid' in data) {
-              this.logger.log(data.newbid.body);
-              const newBid: NewBid = JSON.parse(data.newbid.body);
-              if (this.bids.map(b => b.bidId).indexOf(newBid.bidId) < 0) {
-                this.bids.push(newBid);
-              }
-            }
-          }
-        }
-      );
+      this.logger.log(this.isOwner);
     } else {
       this.subscriptionRef = this.ws.subscribe(
         '/topic/supplier/' + this.auction.auctionId + '/' + this.tokenBody.sub,
@@ -226,7 +202,16 @@ export class BidFormComponent implements OnInit, OnDestroy {
           if (message.dest === '@all' || message.dest === BidFormComponent.messageKey) {
             const data = message.data;
             if ('newbid' in data) {
-              this.logger.log(data.newbid.body);
+              this.bids = JSON.parse(data.newbid.body);
+              this.sortBidsByCreated();
+              this.tableData = [];
+              this.bids.forEach(b => {
+                this.tableData.push(
+                  {createdOn: b.createdOn, rank: b.rank, price: b.bid.price, delivery: new Date(b.bid.timeOfDelivery)}
+                );
+              });
+              this.logger.log(this.bids);
+              this.tableData = [...this.tableData];
             }
           }
         }
@@ -252,5 +237,16 @@ export class BidFormComponent implements OnInit, OnDestroy {
         data: {id: this.auctionId}
       }
     );
+  }
+
+  sortBidsByCreated(dir = 1) {
+    this.bids.sort((b2, b1) => {
+      if (new Date(b1.createdOn) > new Date(b2.createdOn)) {
+        return dir * 1;
+      } else if (new Date(b1.createdOn) < new Date(b2.createdOn)) {
+        return - dir * 1;
+      }
+      return 0;
+    });
   }
 }

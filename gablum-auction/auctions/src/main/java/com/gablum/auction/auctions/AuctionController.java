@@ -180,7 +180,11 @@ public class AuctionController {
             allBids.get(_i).setRank(_i +1);
             if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
                 savedBid = allBids.get(_i);
-            } else {
+                sendingOperations.convertAndSend(
+                        "/topic/admin/" + id,
+                        savedBid
+                );
+            }
                 allBids.get(_i).setScoreObject(null);
                 if (sellerList.containsKey(allBids.get(_i).getCreatedBy())) {
                     sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
@@ -188,15 +192,7 @@ public class AuctionController {
                     sellerList.put(allBids.get(_i).getCreatedBy(), new ArrayList<>());
                     sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
                 }
-            }
         }
-
-
-
-        sendingOperations.convertAndSend(
-                "/topic/admin/" + id,
-                savedBid
-        );
 
         for (String sellerEmail: sellerList.keySet()) {
             sendingOperations.convertAndSend(

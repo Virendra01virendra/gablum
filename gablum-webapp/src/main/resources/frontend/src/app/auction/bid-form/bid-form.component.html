@@ -104,15 +104,38 @@ fxLayoutAlign="flex-start center"
             </ngx-charts-bar-vertical> -->
         </div>
     </div>
-    <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
+    <!-- <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
-    </div>
+    </div> -->
     <!-- <div class="auction-details" fxLayout="column nowrap">
         <h2 *ngIf="auction">{{auction.auctionName}}</h2>
         <h2 *ngIf="timeData && timeData.length === 0">
             No bids to show
         </h2>
     </div> -->
+    <table mat-table [dataSource]="tableData" class="mat-elevation-z6"
+    [ngStyle]="{'width': '60%'}"
+    [ngStyle.xs]="{'width': '80%'}"
+    >
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef> Bid placed </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdOn | date:'medium'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="rank">
+        <th mat-header-cell *matHeaderCellDef> Bid rank </th>
+        <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Bid price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+      <ng-container matColumnDef="delivery">
+        <th mat-header-cell *matHeaderCellDef> Delivery date </th>
+        <td mat-cell *matCellDef="let element"> {{element.delivery | date}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 
 </div>
 
