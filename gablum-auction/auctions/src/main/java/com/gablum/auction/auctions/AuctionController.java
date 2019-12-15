@@ -232,8 +232,6 @@ public class AuctionController {
         Auction auction = auctionService.getAuctionById(id);
         auction.setWinningBid(bidDataEntity.getBidId());
         auction.isAuctionFinished = true;
-
-        //FIXME: check if auction actually ended
         Auction auctionToEnd =  auctionService.updateAuction(auction);
         auctionToEnd.setSocketTokens(null);
 

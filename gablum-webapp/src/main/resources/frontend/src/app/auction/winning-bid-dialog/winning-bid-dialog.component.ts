@@ -2,10 +2,11 @@ import { Component, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA, MatDialogRef
 } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { AuctionsDataService } from 'src/app/services/auctions-data.service';
 import { NewBid } from 'src/app/interfaces/newbid';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class WinningBidDialogComponent {
     private auctionDataService: AuctionsDataService,
     private router: Router,
     private comms: CommunicatorService,
+    public activatedroute: ActivatedRoute
   ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === WinningBidDialogComponent.messageKey || msg.dest === '@all') {
@@ -43,7 +45,7 @@ export class WinningBidDialogComponent {
   }
   selectBid() {
     this.auctionDataService.saveWinningBid(WinningBidDialogComponent.messageKey, this.bidData, 'winningBid', this.auctionIdn);
-    this.router.navigate(['dashboard']);
+    this.router.navigate([environment.contractsUrl]);
     this.close();
   }
 

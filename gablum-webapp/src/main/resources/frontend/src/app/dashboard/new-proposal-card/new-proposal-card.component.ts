@@ -11,7 +11,10 @@ import { ExtendProposalDialogComponent } from '../extend-proposal-dialog/extend-
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuctionStartDialogComponent } from 'src/app/auction/auction-start-dialog/auction-start-dialog.component';
 import { ConfirmDialogModel, DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
-
+import { Profile } from 'src/app/interfaces/profile';
+import { environment } from 'src/environments/environment';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
+import {ProposalWithProfiles} from 'src/app/interfaces/proposal-with-profiles';
 @Component({
   selector: 'app-new-proposal-card',
   templateUrl: './new-proposal-card.component.html',
@@ -21,24 +24,57 @@ import { ConfirmDialogModel, DeleteConfirmationDialogComponent } from '../delete
 export class NewProposalCardComponent implements OnInit {
 
   public static messageKey = 'new-proposal-card-component';
+  public otherProfile: Profile;
+  public otherProfileList = new Array();
+  public profileUrl: string;
+  public proposalWithProfiles: ProposalWithProfiles;
 
   constructor(
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
     private dialog: MatDialog,
-    private auctionDataService: AuctionsDataService,
+    public auctionDataService: AuctionsDataService,
     private router: Router,
-    private logger: LoggerService
-  ) { }
-
+    private logger: LoggerService,
+    public profileDataService: ProfileDataService
+  ) {
+    // this.comms.getMessages().subscribe(msg => {
+    //   if (msg.dest === NewProposalCardComponent.messageKey || msg.dest === '@all') {
+    //     const Data = msg.data;
+    //     if ('otherUser' in Data) {
+    //       this.otherProfile = Data.otherUser;
+    //       this.otherProfileList.push(this.otherProfile);
+    //       console.log('other user in Sellers List Dialog');
+    //       console.log(this.otherProfile.email);
+    //       console.log(this.otherProfile);
+    //       console.log(this.otherProfileList);
+    //     }
+    //   }
+    // });
+  }
   alreadyRegistered = false;
   @Input() proposal: Proposal;
-
   ngOnInit() {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal });
+    // let i = 0;
+    // for ( ; i < this.proposal.interestedUsersEmail.length; i++) {
+    //   console.log('inside new proposal card');
+    //   this.profileUrl = environment.profileUrl + '/' + this.proposal.interestedUsersEmail[i];
+    //   this.profileDataService.getUserProfileByEmailWithUrl(
+    //     this.profileUrl,
+    //     SellersListDialogComponent.messageKey,
+    //     'otherUser' );
+    //   console.log(this.profileUrl);
+    // }
+    // this.proposalWithProfiles = {
+    //   proposal: this.proposal,
+    //   profileList: this.otherProfileList
+    // };
+    // this.dialog.open(SellersListDialogComponent, { data: this.proposalWithProfiles });
+    this.dialog.open(SellersListDialogComponent, { data: this.proposal });
+
   }
 
   shownInterest(proposal: Proposal) {

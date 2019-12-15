@@ -9,6 +9,8 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { environment } from 'src/environments/environment';
+import { ProposalWithProfiles } from 'src/app/interfaces/proposal-with-profiles';
 
 export interface InvitedUsersEmail {
   position: number;
@@ -32,6 +34,10 @@ export class SellersListDialogComponent implements OnInit {
   public userEmail: string;
   displayedColumns: string[] = ['sellerEmail', 'action'];
   public ELEMENT_DATA;
+  public otherProfile: Profile;
+  public otherProfileList = [];
+  public profileUrl: string;
+  public proposal: Proposal;
   // dataSource = new MatTableDataSource<InvitedUsersEmail>(this.ELEMENT_DATA);
   // selection = new SelectionModel<InvitedUsersEmail>(true, []);
 
@@ -45,6 +51,22 @@ export class SellersListDialogComponent implements OnInit {
     //   };
     // });
     this.ELEMENT_DATA = this.data.interestedUsersEmail;
+    // this.ELEMENT_DATA = this.data.profileList;
+    // this.proposal = this.data.proposal;
+    // console.log('inside sellers lis dialog constructor');
+    // console.log(this.ELEMENT_DATA[0]);
+    // console.log(this.ELEMENT_DATA.length);
+    // console.log('ctor on in it');
+    // let i = 0;
+    // for ( ; i < this.ELEMENT_DATA.length; i++) {
+    //   console.log('inside fo loop of ng on init');
+    //   this.profileUrl = environment.profileUrl + '/' + this.ELEMENT_DATA[i];
+    //   this.user.getUserProfileByEmailWithUrl(
+    //     this.profileUrl,
+    //     SellersListDialogComponent.messageKey,
+    //     'otherUser' );
+    //   console.log(this.profileUrl);
+    // }
     // console.log('this.Element_Data ::', this.ELEMENT_DATA);
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
@@ -58,6 +80,15 @@ export class SellersListDialogComponent implements OnInit {
         if ('invite-seller' in Data) {
           this.buttonClicked = true;
         }
+
+        // if ('otherUser' in Data) {
+        //   this.otherProfile = Data.otherUser;
+        //   this.otherProfileList.push(this.otherProfile);
+        //   console.log('other user in data, constructor');
+        //   console.log(this.otherProfile.email);
+        //   console.log(this.otherProfile);
+        //   console.log(this.otherProfileList);
+        // }
       }
     });
   }
@@ -96,7 +127,8 @@ export class SellersListDialogComponent implements OnInit {
 
 
   onInvite(sellerEmail) {
-    this.data.invitedUsersEmail.push(sellerEmail);
+    // this.data.proposal.invitedUsersEmail.push(sellerEmail);
+    this.data.interestedUsersEmail.push(sellerEmail);
     console.log('Updated data', this.data);
     // const patchObject = Object.assign({}, { id: this.data.proposalId, patchValue: [sellerEmail] });
 

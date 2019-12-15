@@ -17,8 +17,8 @@
 </div> -->
 
 <h1 mat-dialog-title>Interested sellers</h1>
+<!-- <table mat-table [dataSource]="otherProfileList" class="mat-elevation-z2"> -->
 <table mat-table [dataSource]="ELEMENT_DATA" class="mat-elevation-z2">
-
 
     <!--checkbox column -->
 
@@ -45,15 +45,16 @@
         </ng-container> -->
 
     <ng-container matColumnDef="sellerEmail">
-      <th mat-header-cell *matHeaderCellDef> Seller Email </th>
-      <td mat-cell *matCellDef="let element"> {{element}} </td>
+        <th mat-header-cell *matHeaderCellDef> Seller Email </th>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.name}}, {{element.companyName}} </td> -->
+        <td mat-cell *matCellDef="let element"> {{element}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let ele ">
-         <button mat-raised-button color="primary" [disabled]="(data.invitedUsersEmail.indexOf(ele)>-1)" (click)="onInvite(ele)">Invite</button></td>
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let ele ">
+            <button mat-raised-button color="primary" [disabled]="(ele.indexOf(ele)>-1)" (click)="onInvite(ele)">Invite</button></td>
     </ng-container>
 
 
