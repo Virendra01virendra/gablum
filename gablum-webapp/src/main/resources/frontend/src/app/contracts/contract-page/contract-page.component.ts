@@ -6,10 +6,8 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from 'src/app/interfaces/profile';
-import { Auction } from 'src/app/interfaces/auction';
 import { ContractDetail } from 'src/app/interfaces/contract-detail';
 import { ContractsDataService } from 'src/app/services/contracts-data.service';
-import { ContractCardComponent } from '../contract-card/contract-card.component';
 
 @Component({
   selector: 'app-contract-page',

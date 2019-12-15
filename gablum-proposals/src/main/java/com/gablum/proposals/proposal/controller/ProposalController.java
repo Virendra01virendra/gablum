@@ -29,6 +29,7 @@ public class    ProposalController {
     @Autowired
     private UserService userService;
 
+
     public ProposalController(ProposalInterfaceRabbit proposalInterface) {
         messageChannel = proposalInterface.newProposalMessageChannel();
     }
@@ -56,6 +57,7 @@ public class    ProposalController {
         proposalData.setUpdatedOn(new Date());
         proposalData.setAuctionStarted(false);
         Proposal savedProposal = proposalService.addProposals(proposalData);
+
         Message<Proposal> msg = MessageBuilder.withPayload(proposalData).build();
         messageChannel.send(msg);
         return new ResponseEntity<>(
@@ -150,10 +152,10 @@ public class    ProposalController {
         );
     }
 
-    @PatchMapping("/proposals/views/")
-    public ResponseEntity<Proposal> saveSellerView(@RequestBody Proposal updatedProposal, HttpServletRequest request) {
-        // String currentLoggedUserEmail = userService.getEmail(request);
-        return new ResponseEntity<Proposal>(proposalService.saveSellerView(updatedProposal), HttpStatus.OK);
+    @PatchMapping("/proposals/views")
+    public ResponseEntity<Proposal> saveSellerView(@RequestBody Proposal proposalInWhichAdditionIsDone, HttpServletRequest request) {
+         String currentLoggedUserEmail = userService.getEmail(request);
+        return new ResponseEntity<Proposal>(proposalService.saveSellerView(currentLoggedUserEmail, proposalInWhichAdditionIsDone), HttpStatus.OK);
     }
 
 

@@ -27,7 +27,7 @@ export interface Proposal {
     createdOn: Date;
     updatedOn: Date;
     thresholdParticipants: number;
-    views: number;
+    viewSellerEmails: string[];
     interested: number;
     interestedUsersEmail: string[];
     invitedUsersEmail: string[];

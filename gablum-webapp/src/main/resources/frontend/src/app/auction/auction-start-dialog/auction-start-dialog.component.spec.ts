@@ -2,25 +2,29 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuctionStartDialogComponent } from './auction-start-dialog.component';
 import { MaterialModule } from 'src/app/material/material.module';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 describe('AuctionStartDialogComponent', () => {
   let component: AuctionStartDialogComponent;
   let fixture: ComponentFixture<AuctionStartDialogComponent>;
+  const data1 = {};
+  const data2 = [];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AuctionStartDialogComponent ],
       imports: [
+        BrowserAnimationsModule,
         MaterialModule,
         HttpClientTestingModule,
         RouterTestingModule
       ],
       providers: [
-        {provide: MAT_DIALOG_DATA, useValue: {}},
-        {provide: MatDialogRef, useValue: {}}
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: [] },
       ]
     })
     .compileComponents();

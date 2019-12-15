@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   wsURL: 'http://localhost:8080/api/auctions/ws',
+  alertURL: 'http://localhost:8080/api/users/ws',
   loginApi: 'http://localhost:8080/api/users/signin',
   logoutApi: 'http://localhost:8080/api/users/signout',
   registerApi: 'http://localhost:8080/api/users/signup',
@@ -14,7 +15,7 @@ export const environment = {
   navlinkUrl: 'http://localhost:8080/api/users/menuitems',
   guestProposallistUrl: 'http://localhost:8080/api/proposals/proposals/browse',
   inviteSellerUrl: 'http://localhost:8080/api/proposals/proposals/invite',
-  saveSellerViewUrl: 'http://localhost:8080/api/proposals/proposals/',
+  saveSellerViewUrl: 'http://localhost:8080/api/proposals/proposals/views',
   auctionUrl: 'http://localhost:8080/api/auctions/auctions',
   tokenUrl: 'http://localhost:8080/api/auctions/tokens',
 };

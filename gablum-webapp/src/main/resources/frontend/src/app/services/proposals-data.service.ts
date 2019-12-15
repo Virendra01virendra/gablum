@@ -64,7 +64,7 @@ export class ProposalsDataService {
   postSellerView(dest, data, key) {
     this.networking.patchData<Proposal>(this.saveSellerViewUrl, dest, data, key)
     .subscribe(res => {
-      this.getAllProposalForSeller('DashboardComponent', 'proposals');
+      this.getAllProposals('DashboardComponent', 'proposals');
       },
       err => {
         this.logger.log(err);

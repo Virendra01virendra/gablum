@@ -5,20 +5,23 @@ import { AuctionRoutingModule } from './auction-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuctionCardComponent } from './auction-card/auction-card.component';
-// import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-// import {FlexL  ayoutModule} from '@angular/flex-layout';
 import { ConsoleModule } from '../console/console.module';
 import { BidResponseDialogComponent } from './bid-response-dialog/bid-response-dialog.component';
 import { BidSubmissionDialogComponent } from './bid-submission-dialog/bid-submission-dialog.component';
-import { TimerComponent } from '../scheduler/timer/timer.component';
 import { BidListComponent } from './bid-list/bid-list.component';
 import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
 import { AddBidSheetComponent } from './add-bid-sheet/add-bid-sheet.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { MatChipsModule } from '@angular/material';
 
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     BidFormComponent,
@@ -37,11 +40,18 @@ import { AddBidSheetComponent } from './add-bid-sheet/add-bid-sheet.component';
     ReactiveFormsModule,
     MaterialModule,
     ConsoleModule,
-    SchedulerModule
+    SchedulerModule,
+    HttpClientModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
     // FlexLayoutModule
     // BrowserAnimationsModule,
     // NoopAnimationsModule
-  ],
+      }
+    })],
   exports: [
     AuctionCardComponent,
     BidCardComponent
