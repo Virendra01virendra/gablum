@@ -5,6 +5,8 @@ import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Profile } from 'src/app/interfaces/profile';
+import { ProfileDataService } from 'src/app/services/profile-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inbox-page',
@@ -14,7 +16,7 @@ import { Profile } from 'src/app/interfaces/profile';
 export class InboxPageComponent implements OnInit {
   public static messageKey = 'InboxPageComponent';
   proposals: Proposal[];
-  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'quantity', 'view'];
+  displayedColumns: string[] = ['productName', 'businessSubDomain', 'createdBy', 'createdOn', 'quantity', 'view'];
   dataSource;
   userProfile: Profile;
   currentSubDomain;
@@ -23,16 +25,21 @@ export class InboxPageComponent implements OnInit {
     private comms: CommunicatorService,
     private proposalDataService: ProposalsDataService,
     private logger: LoggerService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private user: ProfileDataService,
+    private router: Router
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === InboxPageComponent.messageKey || msg.dest === '@all' ) {
           const data = msg.data;
-          if ('authChanged' in data) {
+          if ('profile' in data) {
             try {
-              this.currentSubDomain = auth.getProfileData().businessSubDomain;
-              this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'proposals');
-            } catch (err) {
+              this.userProfile = data.profile;
+              // logger.log('data---->', data);
+              this.currentSubDomain = this.userProfile.businessSubDomain;
+              // logger.log('SubDomain---->', this.currentSubDomain);
+              this.proposalDataService.getProposalsBySubDomain(this.currentSubDomain, InboxPageComponent.messageKey, 'Allproposals');
+             } catch (err) {
               this.logger.log(err);
             }
 
@@ -41,8 +48,8 @@ export class InboxPageComponent implements OnInit {
           // logger.log('user profile data --------->' , JSON.stringify(this.userProfile));
           // this.currentSubDomain = this.userProfile.businessSubDomain;
           // logger.log('current sub domain ------>', this.currentSubDomain);
-          if ('proposals' in data) {
-            this.proposals = data.proposals;
+          if ('Allproposals' in data) {
+            this.proposals = data.Allproposals;
             logger.log('data from get api call for filtered data ---->' , this.proposals );
             this.dataSource = this.proposals;
           }
@@ -51,6 +58,12 @@ export class InboxPageComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.user.getUserProfileByEmail(
+      InboxPageComponent.messageKey,
+      'profile');
+  }
+  onClick() {
+    this.router.navigate(['/browse']);
   }
 
 }

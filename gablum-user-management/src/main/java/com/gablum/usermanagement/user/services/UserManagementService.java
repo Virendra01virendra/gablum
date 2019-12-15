@@ -6,6 +6,8 @@ import com.gablum.usermanagement.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserManagementService {
@@ -22,5 +24,8 @@ public class UserManagementService {
         counts.setDisabled(userRepository.countByIsEnabled(false));
         counts.setLocked(userRepository.countByIsLocked(true));
         return counts;
+    }
+    public List<User> getAllUsersBySubDomain(String subDomain){
+        return userRepository.findAllByBusinessSubDomain(subDomain);
     }
 }

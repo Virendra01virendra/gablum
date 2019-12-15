@@ -18,6 +18,12 @@ import { SellerProposalCardComponent } from './seller-proposal-card/seller-propo
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+// import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+// import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+// export function HttpLoaderFactory(http: HttpClient) {
+//   return new TranslateHttpLoader(http);
 
 @NgModule({
   declarations: [
@@ -41,7 +47,15 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     FormsModule,
     ConsoleModule,
     AuctionModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    // HttpClientModule,
+    // TranslateModule.forChild({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: HttpLoaderFactory,
+    //     deps: [HttpClient]
+    //   }
+    // })
   ],
   entryComponents: [
     ProposalCardDialogComponent,
