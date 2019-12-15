@@ -43,7 +43,7 @@ export class BidSubmissionDialogComponent implements OnInit {
                     if ('scoreBids' in data) {
                         this.scoreObject = data.scoreBids;
                         this.result1 = this.scoreObject.total;
-                        console.log('score thru dialog---------->', this.result1);
+                        this.logger.log('score thru dialog---------->', this.result1);
                     }
                   }
                 });

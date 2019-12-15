@@ -5,3 +5,9 @@
 .title-icon {
     margin-left: 1em;
 }  
+
+.chart-container {
+    border-radius: 0.4em;
+    background-color: white;
+    padding: 1em;
+}

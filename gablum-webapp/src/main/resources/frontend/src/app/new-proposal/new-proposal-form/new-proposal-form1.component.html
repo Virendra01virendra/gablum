@@ -67,7 +67,7 @@
       <div fxLayout="column wrap" fxLayoutAlign="space-around start" fxLayoutGap.sm="2em">
         <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxLayoutGap="10px">
           <mat-form-field fxFlex="45" appearance="outline">
-            <mat-label class="form-label">Price</mat-label>
+            <mat-label class="form-label">Price per unit</mat-label>
             <input matInput type="number" formControlName="price">
             <span matPrefix>&#8377;&nbsp;</span>
             <mat-error *ngIf="price.touched || price.invalid">{{priceError()}}</mat-error>

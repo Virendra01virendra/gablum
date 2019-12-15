@@ -19,6 +19,7 @@ declare const H: any;
 export class LandingPageComponent implements OnInit {
 
   public static messageKey = 'login-component';
+  public showCookieBanner = true;
 
   get password() {
     return this.loginForm.get('password');
@@ -40,6 +41,9 @@ export class LandingPageComponent implements OnInit {
     private comms: CommunicatorService,
     private translate: TranslateService,
     private intl: IntlService) {
+      if (localStorage.getItem('showcookie')) {
+        this.showCookieBanner = false;
+      }
       translate.addLangs(['en', 'hi']);
       translate.setDefaultLang('hi');
       const browserLang = translate.getBrowserLang();
@@ -122,13 +126,17 @@ export class LandingPageComponent implements OnInit {
     // this.router.navigate(['/dashboard']);
   }
 
-  hideCookies() {
-    const x = document.getElementById('cookie-confirmation-outer');
-    if (x.style.display === 'none') {
-      x.style.display = 'block';
-    } else {
-      x.style.display = 'none';
+  hideCookies(accept = true) {
+    this.showCookieBanner = false;
+    if (accept) {
+      localStorage.setItem('showcookie', 'yes');
     }
+    // const x = document.getElementById('cookie-confirmation-outer');
+    // if (x.style.display === 'none') {
+    //   x.style.display = 'block';
+    // } else {
+    //   x.style.display = 'none';
+    // }
   }
 
 }

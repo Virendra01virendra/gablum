@@ -39,4 +39,8 @@ describe('AuctionStartDialogComponent', () => {
   xit('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('should call network', () => {
+    expect(component.startAuction(null)).toThrowError(TypeError);
+  });
 });
