@@ -115,7 +115,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   alert() {
     // this.alertFlag = false;
-    this.alertMessage = '0';
+    this.alertMessage = 0;
     this.router.navigate(['/inbox']);
   }
 
