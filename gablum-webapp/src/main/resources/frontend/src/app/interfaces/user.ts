@@ -1,4 +1,4 @@
-import { RouterLink } from '@angular/router'
+import { RouterLink } from '@angular/router';
 import { UserRole } from './user-role';
 
 export interface User {
