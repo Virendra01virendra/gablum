@@ -13,13 +13,10 @@ import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
-<<<<<<< HEAD
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-=======
 import { MatChipsModule } from '@angular/material';
->>>>>>> 1500c9fbadb07cf932bed34ac2cd97159b0c3fc2
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
