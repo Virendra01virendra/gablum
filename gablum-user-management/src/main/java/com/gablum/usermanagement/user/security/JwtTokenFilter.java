@@ -2,6 +2,7 @@ package com.gablum.usermanagement.user.security;
 
 import com.gablum.usermanagement.user.exception.CustomException;
 import io.jsonwebtoken.JwtException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+@Slf4j
 public class JwtTokenFilter extends GenericFilterBean {
     private JwtTokenProvider jwtTokenProvider;
 
@@ -26,6 +29,7 @@ public class JwtTokenFilter extends GenericFilterBean {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
+        log.warn(((HttpServletRequest) req).getRequestURI());
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
         if (token != null) {
             if (!jwtTokenProvider.isTokenPresentInDB(token)) {

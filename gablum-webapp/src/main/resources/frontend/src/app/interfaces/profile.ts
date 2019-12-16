@@ -11,4 +11,5 @@ export interface Profile {
     role: UserRole[];
     businessDomain: string;
     businessSubDomain: string;
+    profileImage?: string;
 }

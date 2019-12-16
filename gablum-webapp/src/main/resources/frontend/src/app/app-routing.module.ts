@@ -7,6 +7,7 @@ import { BuyerGuardService } from './services/buyer-guard.service';
 import { SellerGuardService } from './services/seller-guard.service';
 import { TeamComponent } from './team/team.component';
 
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -85,8 +86,10 @@ const routes: Routes = [
     path: 'team',
     component: TeamComponent,
     pathMatch: 'full'
-  }
+  },
 
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' }
 ];
 
 @NgModule({

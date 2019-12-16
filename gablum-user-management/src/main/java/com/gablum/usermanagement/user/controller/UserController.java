@@ -68,19 +68,22 @@ public class UserController {
             menuItems.addAll(List.of(
                     new NavLink("Dashboard", "/dashboard", "dashboard"),
 //                    new NavLink("Calendar", "/calendar", "calendar_today"),
-                    new NavLink("Contracts", "/contracts", "book"),
+                    new NavLink("Contracts", "/contracts", "book")
 //                    new NavLink("Inbox", "/inbox", "email"))
-                    new NavLink("Inbox", "/inbox", "email")
             ));
         }
 
         if(isBuyer) {
-            menuItems.add(new NavLink("New Proposal", "/new", "add"));
+            menuItems.add(new NavLink("New Proposal", "/float-proposal", "add"));
         }
 
         if (isSeller) {
             menuItems.add(
                     new NavLink("Browse Proposals", "/browse", "list")
+            );
+            menuItems.add(
+                    new NavLink("Inbox", "/inbox", "email")
+
             );
         }
         if (isAdmin) {

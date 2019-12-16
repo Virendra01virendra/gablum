@@ -30,6 +30,7 @@ import { AdminModule } from './admin/admin.module';
 import { TeamComponent } from './team/team.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -40,7 +41,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     LandingPageComponent,
     LoginComponent,
-    TeamComponent
+    TeamComponent,
+    NotFoundComponent
   ],
   imports: [
     // BrowserModule,

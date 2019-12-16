@@ -1,20 +1,12 @@
-.head
-{
-   background-color: rgb(53, 43, 59);
-   color: white;
-   /* text-align: left;  */
-}
-
 .proposal-card {
   height: 20em;
-  /* width: 15em; */
   border-radius: 0.4em;
   overflow: hidden;
+  background: white;
 }
 
 .header-container {
-  background-color: rgb(53, 43, 59);
-  color: aliceblue;
+  background: rgb(230, 230, 230);
 }
 
 .card-header  {
@@ -24,4 +16,8 @@
 
 .info-container > div {
   margin: 1em 0.8em;
+}
+
+.exp-int {
+  margin-right: 1em;
 }

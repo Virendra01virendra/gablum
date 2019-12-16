@@ -45,7 +45,7 @@ export class SellersListDialogComponent implements OnInit {
     //   };
     // });
     this.ELEMENT_DATA = this.data.interestedUsersEmail;
-    console.log('this.Element_Data ::', this.ELEMENT_DATA);
+    this.logger.log('this.Element_Data ::', this.ELEMENT_DATA);
     comms.getMessages().subscribe(msg => {
       if (msg.dest === SellersListDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
@@ -97,7 +97,7 @@ export class SellersListDialogComponent implements OnInit {
 
   onInvite(sellerEmail) {
     this.data.invitedUsersEmail.push(sellerEmail);
-    console.log('Updated data', this.data);
+    this.logger.log('Updated data', this.data);
     // const patchObject = Object.assign({}, { id: this.data.proposalId, patchValue: [sellerEmail] });
 
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');

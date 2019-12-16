@@ -13,7 +13,11 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
+<<<<<<< HEAD
 import { TeamComponent } from './team/team.component';
+=======
+import { NotFoundComponent } from './not-found/not-found.component';
+>>>>>>> 186b9e274a6739f8819f16fe24388930a94b59a2
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -46,7 +50,11 @@ describe('AppComponent', () => {
         AppComponent,
         LandingPageComponent,
         LoginComponent,
+<<<<<<< HEAD
         TeamComponent
+=======
+        NotFoundComponent
+>>>>>>> 186b9e274a6739f8819f16fe24388930a94b59a2
       ],
     }).compileComponents();
   }));

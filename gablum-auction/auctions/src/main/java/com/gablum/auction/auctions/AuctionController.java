@@ -173,18 +173,34 @@ public class AuctionController {
                 }
         );
 
+        HashMap<String, List<BidDataEntity>> sellerList = new HashMap<String, List<BidDataEntity>>();
+
         for (int _i = 0; _i < allBids.size(); _i++) {
             log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
+            allBids.get(_i).setPercentile(((float)(allBids.size() - _i))*100.0f/(allBids.size()));
             if (allBids.get(_i).getBidId().equals(savedBid.getBidId())) {
                 savedBid = allBids.get(_i);
+                sendingOperations.convertAndSend(
+                        "/topic/admin/" + id,
+                        savedBid
+                );
             }
+                allBids.get(_i).setScoreObject(null);
+                if (sellerList.containsKey(allBids.get(_i).getCreatedBy())) {
+                    sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
+                } else {
+                    sellerList.put(allBids.get(_i).getCreatedBy(), new ArrayList<>());
+                    sellerList.get(allBids.get(_i).getCreatedBy()).add(allBids.get(_i));
+                }
         }
 
-        sendingOperations.convertAndSend(
-                "/topic/admin/" + id,
-                savedBid
-        );
+        for (String sellerEmail: sellerList.keySet()) {
+            sendingOperations.convertAndSend(
+                    "/topic/supplier/" + id + "/" + sellerEmail,
+                    sellerList.get(sellerEmail)
+            );
+        }
 
         Message<BidMessage> message = MessageBuilder.withPayload(
                 new BidMessage(bidDataEntity, InetAddress.getLocalHost().getHostAddress())

@@ -1,89 +1,121 @@
-<mat-toolbar class="header">
-  <div class="head">Bid Submission</div>
+<mat-toolbar
+style="background-color: #E0E0E0; justify-content: start;"
+>
+  <mat-icon class="title-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path d="M1 21h12v2H1zM5.245 8.07l2.83-2.827 14.14 14.142-2.828 2.828zM12.317 1l5.657 5.656-2.83 2.83-5.654-5.66zM3.825 9.485l5.657 5.657-2.828 2.828-5.657-5.657z"/>
+      </svg>
+  </mat-icon>
+  <span class="title" fxHide.xs>Participate in this auction</span>
+  <span class="title" fxHide.gt-xs>Participate</span>
 </mat-toolbar>
-<div fxLayout="row wrap"  class="wrapper" fxLayoutAlign="space-between"
- fxLayout.xs="column wrap">
+<div class="bid-list"
+fxLayout="column nowrap"
+fxLayoutAlign="flex-start center"
+>
+    <div class="auction-details-container"
+    fxLayout="row wrap"
+    fxLayout.xs="column nowrap"
+    fxLayoutAlign="space-around center"
+    style="margin: 2em 0;"
+    >
+        <app-auction-card
+        [auction]="auction"
+        *ngIf="auction"
+        [buttonShow]=false
+        fxFlex="1 1 40%"
+        fxFlex.xs="1 1 auto"
+        [ngStyle.xs]="{'width': '80%', 'margin': '1em 0'}"
+        ></app-auction-card>
+        <div
+        class="chart-container mat-elevation-z6"
+        fxFlex="1 1 40%"
+        fxFlex.xs="0 0 auto"
+        fxLayout="column nowrap"
+        fxLayoutAlign="space-around center"
+        [ngStyle.xs]="{'height': '22em', 'width': '80%', 'margin': '1em 0'}"
+        >
+        <span>
+            Percentile of your bids over time
+        </span>
+        <div class="fixed-chart-container"
+        style="height: 19em; width: 100%;"
+        >
 
-  <div class="left" fxFlex="30">
-    <app-auction-card [auction]="auctionSingle" *ngIf="auctionSingle" [buttonShow]=false></app-auction-card>
-    <br>
-    <mat-divider></mat-divider>
-    <br>
-    <div *ngIf = result2 >
-      Your score: <span [ngClass]="{
-        'positive' : result2 >= 90,
-        'medium' : result2 < 90 && result2 >= 70,
-        'negative': result2 < 70
-      }">
-      {{result2}}
-    </span>
+          <ngx-charts-bar-vertical
+          [yAxis]="true"
+          [legend]="false"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Time'"
+          [yAxisLabel]="'Score'"
+          [results]="timeData"
+          [tooltipDisabled]="true"
+          *ngIf="timeData"
+          >
+          </ngx-charts-bar-vertical>
+        </div>
+        </div>
     </div>
-  </div>
+    <!-- <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
+        <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
+    </div> -->
+    <!-- <div class="auction-details" fxLayout="column nowrap">
+        <h2 *ngIf="auction">{{auction.auctionName}}</h2>
+        <h2 *ngIf="timeData && timeData.length === 0">
+            No bids to show
+        </h2>
+    </div> -->
+    <div class="table-wrapper"
+    style="margin: 1em 0; border-radius: 0.5em; background: white; width: 80%; padding: 0.5em 0 1em 0;"
+    fxLayout="column nowrap"
+    fxLayoutAlign="start center"
+    >
+      <div class="mat-title">Your bids</div>
+      <div class="mat-subheading-1" *ngIf="tableData.length === 0">No bids placed so far</div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z6"
+      [ngStyle]="{'width': '60%'}"
+      [ngStyle.xs]="{'width': '90%'}"
+      matSort
+      *ngIf="tableData.length !== 0"
+      >
+        <ng-container matColumnDef="createdOn">
+          <th mat-header-cell *matHeaderCellDef> Bid placed </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdOn | date:'medium'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="rank">
+          <th mat-header-cell *matHeaderCellDef> Bid rank </th>
+          <td mat-cell *matCellDef="let element"> # {{element.rank}} </td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Bid price </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+        <ng-container matColumnDef="delivery">
+          <th mat-header-cell *matHeaderCellDef> Delivery date </th>
+          <td mat-cell *matCellDef="let element"> {{element.delivery | date}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
 
-
-<div class="right" fxFlex="60" >
-  <form [formGroup]="bidForm">
-      
-      <!-- <h3> Bid Submission</h3> -->
-    
-      <mat-form-field class="form-element" appearance = "outline">
-          <mat-label class="form-label">Price</mat-label> 
-          <input matInput type="number" formControlName="newPrice">
-          <!-- <div *ngIf="bidForm.controls['newPrice'].errors && !bidForm.controls['newPrice'].pristine" class="error-msg">
-            <div [hidden]="!bidForm.controls['newPrice'].errors.required">Price is required</div>
-            <div [hidden]="!bidForm.controls['newPrice'].errors.patternInvalid">Please enter a number</div>
-          </div> -->
-      </mat-form-field>
-      <br>
-      
-      <mat-form-field class="form-element" appearance = "outline">
-          <!-- <mat-label class="form-label">Time of delivery</mat-label> 
-          <input matInput type="date" formControlName="newTimeOfDelivery"> -->
-          <input matInput [matDatepickerFilter]="newTimeOfDelivery" [matDatepicker]="picker1"
-              placeholder="Choose a delivery date" formControlName="newTimeOfDelivery">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-      <br>
-      <mat-form-field class="form-element"appearance = "outline">
-          <mat-label class="form-label">Credit Period</mat-label>
-          <input matInput type="number" formControlName="newCreditPeriod">
-          <!-- <div *ngIf="bidForm.controls['newCreditPeriod'].errors && !bidForm.controls['newCreditPeriod'].pristine" class="error-msg">
-            <div [hidden]="!bidForm.controls['newCreditPeriod'].errors.required">Credit period is required</div>
-            <div [hidden]="!bidForm.controls['newCreditPeriod'].errors.patternInvalid">Please enter a number</div>
-          </div> -->
-      </mat-form-field>
-      <br>
-      QA-QC certificates:
-      <mat-radio-group class="form-element" formControlName="newQaqcCertificate">
-    <mat-radio-button class="example-radio-button" [value]="true">
-      Yes
-    </mat-radio-button>
-    <mat-radio-button class="example-radio-button" [value]="false" [checked]="true">
-      No
-    </mat-radio-button>
-  </mat-radio-group>
-      <br>
-      <br>
-      Type of Supply:
-      <mat-radio-group aria-labelledby="example-radio-group-label" class="form-element"
-      formControlName="newTypeOfDelivery" appearance = "outline">
-    <mat-radio-button class="example-radio-button" [value]="true">
-      Full
-    </mat-radio-button>
-    <mat-radio-button class="example-radio-button" [value]="false" [checked]="true">
-      Parts
-    </mat-radio-button>
-  </mat-radio-group>
-      <!-- <br>
-      <br> -->
-      <!-- <button (click)="seeScore(bidForm)" mat-raised-button [disabled]='!bidForm.valid'> See my score! </button>
-      <br>
-      <br> -->
-      <button (click)="onSubmit(bidForm)" mat-raised-button [disabled]='!bidForm.valid'>Submit</button>
-      <!-- <br>
-      <br> -->
-  </form>
 </div>
 
+<div class="fab-container"
+[ngStyle]="{'position': 'fixed', 'bottom': '2em', 'right': '2em'}"
+fxLayout="column nowrap"
+>
+  <button mat-fab matTooltip="Go back"
+  (click)="goBack()"
+  style="margin: 0.5em 0;"
+  >
+      <mat-icon>keyboard_backspace</mat-icon>
+  </button>
+  <button mat-fab matTooltip="Place a new bid" color="primary"
+  style="margin: 0.5em 0;"
+  (click)="openSheet()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
 </div>

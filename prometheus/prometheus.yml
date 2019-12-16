@@ -41,8 +41,8 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
     - targets: ['contracts:4000']
-  - job_name: 'gabplum-webapp'
+  - job_name: 'gateway'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-    - targets: ['webapp:4000']
+    - targets: ['gateway:8080']

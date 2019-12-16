@@ -18,6 +18,10 @@ export class BidSubmissionDialogComponent implements OnInit {
   public static messageKey = 'BidSubmissionDialogComponent';
   result1;
   scoreObject: Score;
+  public qualityMsgTrue = 'Provided';
+  public qualityMsgFalse = 'Not Provided';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
   bid2 = {
     price: this.data.bid.price,
     creditPeriod: this.data.bid.creditPeriod,
@@ -39,7 +43,7 @@ export class BidSubmissionDialogComponent implements OnInit {
                     if ('scoreBids' in data) {
                         this.scoreObject = data.scoreBids;
                         this.result1 = this.scoreObject.total;
-                        console.log('score thru dialog---------->', this.result1);
+                        this.logger.log('score thru dialog---------->', this.result1);
                     }
                   }
                 });

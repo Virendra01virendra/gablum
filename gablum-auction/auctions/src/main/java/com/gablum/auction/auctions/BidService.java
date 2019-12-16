@@ -108,8 +108,8 @@ public class BidService implements IBidService {
         );
 
         for (int _i = 0; _i < allBids.size(); _i++) {
-            log.warn(allBids.get(_i).toString());
             allBids.get(_i).setRank(_i +1);
+            allBids.get(_i).setPercentile(((float)(allBids.size() - _i))*100.0f/(allBids.size()));
         }
         Auction auction = auctionService.getAuctionById(id);
         String email = userService.getEmail(request);
