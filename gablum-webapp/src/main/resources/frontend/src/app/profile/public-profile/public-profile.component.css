@@ -6,6 +6,10 @@
     font-size: 0%;
 }
 
+.back-button {
+    margin-right: 20px;
+}
+
 .name {
     padding: 2% 0% 2% 0%;
 }

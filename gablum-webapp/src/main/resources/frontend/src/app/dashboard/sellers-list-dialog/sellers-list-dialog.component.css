@@ -5,3 +5,11 @@ mat-table {
 ng-container {
     margin: 10px 10px 10px 10px;
 }
+
+mat-cell {
+    margin-right: 10px;
+}
+
+mat-header-cell {
+    margin-right: 10px;
+}

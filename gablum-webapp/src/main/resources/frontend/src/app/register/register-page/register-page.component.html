@@ -89,7 +89,7 @@
         <mat-error *ngIf="password.touched || password.invalid">{{passwordErrorMessage6()}}</mat-error>
     </mat-form-field>
     <div class="btn" fxLayout="row nowrap" fxLayoutAlign="end center">
-        <button mat-raised-button color="primary" [disabled]='!registrationForm.valid' type="submit" (click)="onSubmit()">Sign Up</button>
         <button mat-raised-button type="cancel" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]='!registrationForm.valid' type="submit" (click)="onSubmit()">Sign Up</button>
     </div>
 </form>
