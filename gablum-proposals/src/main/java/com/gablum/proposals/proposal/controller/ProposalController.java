@@ -137,7 +137,7 @@ public class    ProposalController {
         );
     }
 
-    @PatchMapping("/proposals/invite/")
+    @PatchMapping("/proposals/invite")
     public ResponseEntity<Proposal> saveInvitedSeller(@RequestBody Proposal updatedProposal, HttpServletRequest request) {
         // String currentLoggedUserEmail = userService.getEmail(request);
         return new ResponseEntity<Proposal>(proposalService.saveInvitedSeller(updatedProposal), HttpStatus.OK);
