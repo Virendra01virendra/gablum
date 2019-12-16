@@ -65,7 +65,7 @@ public class UserController {
         List<NavLink> menuItems = new ArrayList<NavLink>();
         if (isSeller || isBuyer) {
             menuItems.addAll(List.of(
-                    new NavLink("Home", "/dashboard", "dashboard"),
+                    new NavLink("Dashboard", "/dashboard", "dashboard"),
 //                    new NavLink("Calendar", "/calendar", "calendar_today"),
                     new NavLink("Contracts", "/contracts", "book")
 //                    new NavLink("Inbox", "/inbox", "email"))
