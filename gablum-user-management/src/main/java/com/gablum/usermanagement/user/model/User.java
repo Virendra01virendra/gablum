@@ -30,8 +30,9 @@ public class User {
     private String companyName;
     private String userName;
     private String businessLicense;
-    private String businessDomain;
+    private String businessDomain = "Agriculture";
     private String businessSubDomain;
+    private String profileImage;
     private List<Map<String, List<String>>> userDomainDetails;
     private Map<String, String> hashEncryptionKeyList;
     private List<Block> blockchain;
@@ -58,7 +59,7 @@ public class User {
     private boolean isExpired=false;
     private boolean isEnabled=true;
 
-    private Date createdOn;
+    private Date createdOn = new Date();
 
     public boolean isLocked() {
         return isLocked;

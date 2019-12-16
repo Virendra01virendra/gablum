@@ -1,17 +1,3 @@
-// import { BidScore } from './bid-score';
-// import { UserProfile } from './user';
-
-// export interface NewBid {
-//     price: number;
-//     seller: UserProfile;
-//     unitPrice: number;
-//     rank: number;
-//     scores: BidScore[];
-//     totalScore: number;
-//     estimatedDispatchDate: Date;
-//     creditPeriodInDays: number;
-//     certifications: string[];
-// }
 export interface NewBid {
     bidId: string;
     auctionId: string;
@@ -33,4 +19,5 @@ export interface NewBid {
     createdBy: string;
     rank?: number;
     createdOn?: string;
+    percentile?: number;
 }

@@ -100,11 +100,11 @@ export class RegisterPageComponent implements OnInit {
         if (message.dest === '@all' || message.dest === RegisterPageComponent.msgKey) {
           const data = message.data;
           if ('registrationResult' in data) {
-            const registrationToken: RegisterToken = data.registrationResult;
+            const registrationToken: any = data.registrationResult;
             this.logger.log(registrationToken);
             if (registrationToken === undefined ||
               registrationToken === null ||
-              !registrationToken.isOk) {
+              !registrationToken.ok) {
               this.snackbar.open(
                 'Registration failed',
                 '',
@@ -116,7 +116,7 @@ export class RegisterPageComponent implements OnInit {
               this.logger.log('registered');
               this.router.navigate(['/']);
               this.snackbar.open(
-                'Registered successfully as ' + this.email,
+                'Registered successfully, please login',
                 '',
                 {
                   duration: 5000
@@ -183,6 +183,7 @@ export class RegisterPageComponent implements OnInit {
       role: 'seller',
       id: 2
     };
+    this.logger.log(' Registeration Form Details ' , this.registrationForm.value, this.businessDomain);
     const registerProfile: RegisterRequest = this.registrationForm.value;
     if (this.registrationForm.value.role === 'buyer') {
       registerProfile.role = [roleBuyer];
@@ -194,6 +195,6 @@ export class RegisterPageComponent implements OnInit {
       registerProfile.role = [roleBuyer, roleSeller];
     }
     this.registrationService.register(registerProfile);
-    this.router.navigate(['']);
+    this.router.navigate(['/register']);
   }
 }

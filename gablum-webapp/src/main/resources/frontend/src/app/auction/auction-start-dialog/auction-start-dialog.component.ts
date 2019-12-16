@@ -18,6 +18,10 @@ export class AuctionStartDialogComponent {
 
   public static messageKey = 'AuctionStartDialogComponent';
   disabled = false;
+  public qualityMsgTrue = 'Required';
+  public qualityMsgFalse = 'Optional';
+  public supplyTrue = 'FULL';
+  public supplyFalse = 'IN PARTS';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,23 +30,22 @@ export class AuctionStartDialogComponent {
     private router: Router,
     private comms: CommunicatorService,
     private proposalDataService: ProposalsDataService
-              ) {
-                comms.getMessages().subscribe(msg => {
-                  if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
-                    const data1 = msg.data;
+  ) {
+    comms.getMessages().subscribe(msg => {
+      if (msg.dest === AuctionStartDialogComponent.messageKey || msg.dest === '@all') {
+        const data1 = msg.data;
 
-                    if ('save-auction' in data1) {
-                      this.auctionDataService.getAllAuctions('DashboardComponent', 'auctionsBuyer');
-                    }
+        if ('save-auction' in data1) {
+          this.auctionDataService.getAllAuctions('DashboardComponent', 'auctionsBuyer');
+        }
 
-                    if ('auctionStarted' in data1) {
-                      const data2 = data1.auctionStarted;
-                    }
+        if ('auctionStarted' in data1) {
+          const data2 = data1.auctionStarted;
+        }
 
-                  }
-                });
-              }
-
+      }
+    });
+  }
 
   close() {
     this.dialogRef.close();
@@ -53,7 +56,8 @@ export class AuctionStartDialogComponent {
       auctionName: proposal1.productName,
       proposal: proposal1,
       isAuctionActive: true,
-      interestedUsersEmail: proposal1.interestedUsersEmail
+      interestedUsersEmail: proposal1.interestedUsersEmail,
+      invitedUsersEmail: proposal1.invitedUsersEmail
     };
     const auctionList = [];
     auctionList.push(auction);
@@ -64,11 +68,9 @@ export class AuctionStartDialogComponent {
     this.proposalDataService.changeAuctionFlag(proposal1.proposalId, AuctionStartDialogComponent.messageKey, 'auctionStarted');
     this.router.navigate(['dashboard']);
     this.close();
-
   }
 
   onClick() {
     this.disabled = true;
   }
-
 }

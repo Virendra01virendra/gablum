@@ -1,11 +1,7 @@
 <!-- fixme:: instead of auction starts in timer should display registeration ends in  -->
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch">
-        <div class="card-header" fxFlexAlign="center" >{{allProposal.productName}}</div>
+        <div class="card-header" fxFlexAlign="start" style="margin-left: 2em;" >{{allProposal.productName}}</div>
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="subdomain" fxFlexAlign="center" >{{ allProposal.businessSubDomain }}</div>
             <div class="timer">
@@ -43,13 +39,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
         </div>
         
         <div style="margin-bottom: 0.5em;">
-            <div fxLayout="row nowrap" fxLayoutAlign="space-around center">
-                <button mat-raised-button color="primary"
-        [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1)"
-        (click)="shownInterest(allProposal)">
-        <i class="fa fa-registered" color="primary" matTooltip="Register for Auction" aria-hidden="true">Show Interest</i>
-      </button>
-      <mat-icon matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
+            <div fxLayout="row nowrap" fxLayoutAlign="end center" fxLayoutGap="1em">
+                <mat-icon style="cursor: pointer;" matTooltip="See Details" class="material-icons" (click)="openDialog(allProposal)">visibility</mat-icon>
+                <button class="exp-int" mat-raised-button color="primary"
+                    [disabled]="(allProposal.interestedUsersEmail.indexOf(userEmail)>-1) || buttonClicked"
+                    (click)="shownInterest(allProposal)"
+                    matTooltip="Express interest for Auction">
+                    Express Interest
+                </button>
         </div>   
     </div>
 </div>

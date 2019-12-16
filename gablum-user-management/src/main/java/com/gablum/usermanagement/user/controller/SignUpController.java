@@ -35,6 +35,11 @@ public class SignUpController {
         }
         user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setProfileImage(
+                "https://picsum.photos/id/10" +
+                        (20 + (int)(Math.random()*9)) +
+                        "/200/200"
+        );
         mailService.sendEmail("registering", user);
         userRepository.save(user);
         return new ResponseEntity<SignupResult>(new SignupResult("Registered", true), HttpStatus.CREATED );

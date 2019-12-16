@@ -50,9 +50,9 @@ export class SellerProposalCardComponent implements OnInit {
                     this.userEmail = this.profile.email;
                   }
 
-                  if ('interestedSellers' in data) {
-                    this.buttonClicked = true;
-                  }
+                  // if ('interestedSellers' in data) {
+                  //   this.buttonClicked = true;
+                  // }
               }
             });
           }
@@ -63,6 +63,7 @@ export class SellerProposalCardComponent implements OnInit {
   shownInterest(allProposal: Proposal) {
     // const proposalId = element.proposalId;
     this.proposalDataService.postInterestedSeller(SellerProposalCardComponent.messageKey, allProposal, 'interestedSellers');
+    this.buttonClicked = true;
   }
 
   openDialog(allProposal: Proposal) {
@@ -73,6 +74,6 @@ export class SellerProposalCardComponent implements OnInit {
       data: allProposal
     });
     // this.allProposal.views += 1;
-    console.log('view--->' + JSON.stringify(allProposal));
+    this.logger.log('view--->' + JSON.stringify(allProposal));
   }
 }

@@ -6,5 +6,5 @@ check identifier for a person
 font, color consistency
 @anurag admin view
 ci pipeline, code coverage
-grafana
+grafana: done
 show tech stack
