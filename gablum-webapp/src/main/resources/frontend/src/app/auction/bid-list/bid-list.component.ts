@@ -82,6 +82,7 @@ export class BidListComponent implements OnInit, OnDestroy {
               }
             );
             if (!this.ws.stompClient.connected) {
+              this.logger.log('ws not connected, opening');
               this.ws.connect(message => this.subscribe());
             } else {
               this.subscribe();
