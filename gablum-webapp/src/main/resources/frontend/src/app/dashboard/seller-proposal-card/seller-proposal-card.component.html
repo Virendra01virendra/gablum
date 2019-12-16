@@ -6,7 +6,7 @@
             <div class="subdomain" fxFlexAlign="center" >{{ allProposal.businessSubDomain }}</div>
             <div class="timer">
                 <app-timer
-                style="align-content:flex-end ;"
+                style="align-content:flex-end ; color:#e61a1a"
                 [timerDetails]="allProposal"
                 ></app-timer>
             </div>
@@ -17,12 +17,12 @@
     fxLayoutAlign="center center"
     >
     <div>
-        <i class="fa fa-money" aria-hidden="true" matTooltip="Price">
-            {{ allProposal.price }}</i>
+        <i class="fa fa-money" aria-hidden="true" matTooltip="Price"><span class="mat-subheading-2">
+            {{ allProposal.price }}</span></i>
         </div>
         <div>
             <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
-                {{ allProposal.quantityValue + " " + allProposal.quantityUnit }}</i
+                    <span class="mat-subheading-2">{{" " + allProposal.quantityValue + " " + allProposal.quantityUnit }}</span></i
                 >
             </div>
             <div>
@@ -31,8 +31,8 @@
                 aria-hidden="true"
                 matTooltip="Registeration End-Date"
                 style="transform: scale3d(10);"
-                >
-                {{ allProposal.regEndDate | date: "mediumDate" }}</i
+                ><span class="mat-subheading-2">
+                {{ allProposal.regEndDate | date: "mediumDate" }}</span></i
                 >
             </div>
             

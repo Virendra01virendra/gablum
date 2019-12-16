@@ -5,7 +5,7 @@
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="mat-subheading-2 subdomain" fxFlexAlign="center">{{ proposal.businessSubDomain }}</div>
             <div class="timer">
-                <app-timer style="align-content:flex-end ;" [timerDetails]="proposal"></app-timer>
+                <app-timer style="align-content:flex-end ; color: #e61a1a;" [timerDetails]="proposal"></app-timer>
             </div>
         </div>
     </div>
@@ -16,17 +16,17 @@
         </div>
         <div>
             <i class="fa fa-balance-scale" aria-hidden="true" matTooltip="Quantity">
-            <span class="mat-subheading-2">{{ proposal.quantityValue + " " + proposal.quantityUnit }}</span>
+            <span class="mat-subheading-2">{{' ' + proposal.quantityValue + " " + proposal.quantityUnit }}</span>
             </i>
         </div>
         <div>
             <i class="fa fa-calendar-o" aria-hidden="true" matTooltip="Registeration End-Date"
-                style="transform: scale3d(10);"><span class="mat-subheading-2">{{ proposal.regEndDate | date: "mediumDate" }}
+                style="transform: scale3d(10);"><span class="mat-subheading-2">{{"  " + proposal.regEndDate | date: "mediumDate" }}
                 </span></i>
         </div>
         <div>
             <i class="fa fa-calendar" aria-hidden="true" matTooltip="Auction Start-Date">
-                <span class="mat-subheading-2">{{ proposal.auctionStartDate | date: "mediumDate" }}</span>
+                <span class="mat-subheading-2">{{"  " + proposal.auctionStartDate | date: "mediumDate" }}</span>
                 </i>
         </div>
 <div>

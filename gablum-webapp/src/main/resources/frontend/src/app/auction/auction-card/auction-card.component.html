@@ -6,7 +6,7 @@
             <div class="subdomain" fxFlexAlign="center" matTooltip="Business Sub-Domain">
                 {{auction.proposal.businessSubDomain}}</div>
             <div class="timer">
-                <app-timer style="align-content:flex-end ;" [timerDetails1]="auction"></app-timer>
+                <app-timer style="align-content:flex-end ; color: #e61a1a;" [timerDetails1]="auction"></app-timer>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
         <div [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-handshake-o" aria-hidden="true"
                 matTooltip="{{auction.createdBy}} is willing to pay-up in">
-                <span class="mat-subheading-2">{{auction.proposal.creditPeriod + ' Days'}}</span></i>
+                <span class="mat-subheading-2">{{" " + auction.proposal.creditPeriod + ' Days'}}</span></i>
         </div>
         <div *ngIf="auction.proposal.qualityCertification"  [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-check-circle-o" aria-hidden="true" matTooltip="Quality Check Certified"
