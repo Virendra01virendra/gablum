@@ -3,7 +3,6 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { LoggerService } from 'src/app/services/logger.service';
-import { PublicProfileService} from 'src/app/services/public-profile.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -24,7 +23,6 @@ export class PublicProfileComponent implements OnInit {
     public profileDataService: ProfileDataService,
     public comms: CommunicatorService,
     private logger: LoggerService,
-    public publicProfile: PublicProfileService,
     public activatedRoute: ActivatedRoute,
     public router: Router
   ) {
