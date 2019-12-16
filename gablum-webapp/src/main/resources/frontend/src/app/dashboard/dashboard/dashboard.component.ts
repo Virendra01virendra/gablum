@@ -17,7 +17,6 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
 // import { TranslateService } from '@ngx-translate/core';
 // import { IntlService } from 'src/app/services/intl.service';
-import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
