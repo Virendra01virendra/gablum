@@ -133,15 +133,15 @@ export class NewProposalForm1Component implements OnInit {
 
   productNameError() {
     return this.productName.hasError('required') ? '*You must enter a product name' :
-    this.productName.hasError('minLength') ? '*Name too short( Atleast 3 characters)' :
+    this.productName.hasError('minlength') ? '*( Atleast 3 characters)' :
     this.productName.hasError('maxlength') ? '*More than 40 characters not allowed' :
         '';
   }
 
   productDescriptionError() {
     return this.productDescription.hasError('required') ? '*You must enter product Details' :
-    this.productDescription.hasError('minLength') ? '*Describe little more' :
-    this.productDescription.hasError('maxlength') ? '*More than 300 characters not allowed' :
+    this.productDescription.hasError('minlength') ? '*Describe little more( Atleast 40 characters)' :
+    this.productDescription.hasError('maxlength') ? '*400 characters limit reached' :
       '';
   }
 
