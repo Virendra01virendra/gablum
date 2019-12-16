@@ -10,6 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material';
 
 export interface InvitedUsersEmail {
   position: number;
@@ -39,7 +40,8 @@ export class SellersListDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Proposal, private proposalService: ProposalsDataService,
               private comms: CommunicatorService, private auth: AuthenticationService, private logger: LoggerService,
               private user: ProfileDataService,
-              public router: Router
+              public router: Router,
+              private dialogRef: MatDialogRef<SellersListDialogComponent>
               ) {
     // this.ELEMENT_DATA = this.data.invitedUsersEmail.map((invitedUsersEmail, i) => {
     //   return {
@@ -106,6 +108,7 @@ export class SellersListDialogComponent implements OnInit {
     this.proposalService.postInvitedSeller(SellersListDialogComponent.messageKey, this.data, 'invite-seller');
   }
   loadProfile(email) {
+    this.dialogRef.close();
     this.router.navigate(['/profile', email]);
   }
 }

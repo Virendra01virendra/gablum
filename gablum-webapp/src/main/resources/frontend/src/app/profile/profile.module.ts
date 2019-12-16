@@ -12,7 +12,7 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
 // import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  entryComponents: [EditProfileDialogComponent],
+  entryComponents: [EditProfileDialogComponent, ProfilePageComponent],
   declarations: [ProfilePageComponent, EditProfileDialogComponent, PublicProfileComponent],
   imports: [
     CommonModule,
