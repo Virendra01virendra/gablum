@@ -46,7 +46,7 @@
 
     <ng-container matColumnDef="sellerEmail">
         <th mat-header-cell *matHeaderCellDef> Seller Email </th>
-        <td mat-cell *matCellDef="let element" (click)="loadProfile(element)"> {{element}} </td>
+        <td mat-cell *matCellDef="let element" (click)="loadProfile(element)" [mat-dialog-close]="true"> {{element}} </td>
     </ng-container>
 
 
