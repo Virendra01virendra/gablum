@@ -9,7 +9,7 @@
   <!--tab for seller-->
   
   <ng-container *ngIf="isSeller && !isBuyer" class="dashboard-container">
-    <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+    <mat-tab-group class="tab-container" fxLayoutGap="5px">
       <mat-tab label="Active Auctions">
         <div class="auctions-cont" fxLayout="row wrap" fxLayoutAlign="space-around" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
@@ -53,7 +53,7 @@
     </mat-tab-group>
   
     <!--expansion panel for seller-->
-    <mat-accordion class="tab-container" fxHide.gt-xs>
+    <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
       <mat-expansion-panel [expanded]=true>
         <mat-expansion-panel-header>
           <mat-panel-title>Active Auctions</mat-panel-title>
@@ -100,7 +100,7 @@
           <div> Sorry, you have no past Auctions!</div>
         </div>
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion> -->
   
   </ng-container>
 
@@ -114,7 +114,7 @@
   <!--Tab for buyer-->
   
   <ng-container *ngIf="isBuyer && !isSeller" class="dashboard-container">
-    <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+    <mat-tab-group class="tab-container" fxLayoutGap="5px">
       <mat-tab label="Active Auctions">
         <div class="auctions-card" fxLayout="row wrap" fxLayoutAlign="space-around" *ngIf = auctionsNotEmpty>
           <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%"></app-auction-card>
@@ -155,7 +155,7 @@
   
     <!--expansion panel for buyer-->
     
-    <mat-accordion class="tab-container" fxHide.gt-xs>
+    <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>Active Auctions</mat-panel-title>
@@ -205,7 +205,7 @@
           <div> Sorry, you have no past Auctions!</div>
         </div>
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion> -->
   </ng-container> 
 
   <div class="fab-container" fxLayout="column nowrap">
