@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
-  public alertMessage = '0'; 
+  public alertMessage = '0';
   public alertFlag: boolean;
   public wsRef: StompSubscription;
 
