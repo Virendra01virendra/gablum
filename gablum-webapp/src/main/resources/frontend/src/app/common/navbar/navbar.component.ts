@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
-  public alertMessage = 0;
+  public alertMessage = '0'; 
   public alertFlag: boolean;
   public wsRef: StompSubscription;
 
@@ -70,16 +70,10 @@ export class NavbarComponent implements OnInit {
           }
         }
         if ('newProposalAlert' in data) {
-          logger.log('data from New Proposal Alert  :::', JSON.stringify(data.newProposalAlert));
           const array = JSON.parse(data.newProposalAlert.body);
-          this.logger.log(array);
           if (array.indexOf(this.profile.email) >= 0 ) {
-            //  this.alertFlag = true;
-             this.alertMessage += 1 ;
+             this.alertMessage = '!' ;
           }
-             // } else {
-          //   this.alertMessage = '0';
-          // }
         }
       }
     });
@@ -113,8 +107,7 @@ export class NavbarComponent implements OnInit {
     this.lang.setLang(lang);
   }
   alert() {
-    // this.alertFlag = false;
-    this.alertMessage = 0;
+    this.alertMessage = '';
     this.router.navigate(['/inbox']);
   }
 
