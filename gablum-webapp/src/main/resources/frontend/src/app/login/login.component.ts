@@ -94,7 +94,6 @@ export class LoginComponent implements OnInit {
         this.password.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
-
   onSubmit() {
     this.loginService.login(this.loginForm.value)
     .subscribe(res => {
@@ -127,9 +126,7 @@ export class LoginComponent implements OnInit {
   OnSignUp() {
     this.router.navigate(['/register']);
   }
-
-  onCancel(){
+  onCancel() {
     this.dialogRef.close();
   }
-
 }
