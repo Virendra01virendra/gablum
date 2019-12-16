@@ -48,9 +48,10 @@ export class ProposalsDataService {
   }
 
   postInterestedSeller(dest, data, key) {
+    this.businessSubdomain = data.businessSubDomain;
     this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key)
     .subscribe(res => {
-      this.getAllProposalForSeller('DashboardComponent', 'sellerProposals');
+      this.getProposalsBySubDomain(this.businessSubdomain, 'DashboardComponent', 'sellerProposals');
       },
       err => {
         this.logger.log(err);
@@ -58,10 +59,9 @@ export class ProposalsDataService {
   }
 
   postInvitedSeller(dest, data, key) {
-    this.businessSubdomain = data.businessSubDomain;
     this.networking.patchData<Proposal>(this.inviteSellerUrl, dest, data, key)
     .subscribe(res => {
-      this.getProposalsBySubDomain(this.businessSubdomain, dest, key);
+      this.getAllProposals(dest, key);
     },
     err => {
       this.logger.log(err);
