@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
               if ('userProfile' in data) {
                 this.userProfile = data.userProfile;
                 this.userRole = this.userProfile.role;
-                if ( this.userRole[0].role === 'admin') {
+                if ( this.userRole[0].role === 'Admin') {
                   this.router.navigate(['/grafana']);
                 } else {
                   this.router.navigate(['/dashboard']);
