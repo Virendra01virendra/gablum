@@ -11,11 +11,13 @@
         <div class="profile" fxLayout="row" fxLayoutAlign="center center">
             <div fxFlex="20" fxHide.xs></div>
             <div fxFlex="60" fxLayout="row">
-            <div><h2>Profile</h2></div>
+                <div>
+                    <h2>Profile</h2>
+                </div>
             </div>
             <div fxFlex="20" fxHide.xs></div>
         </div>
-    
+
         <mat-card-content>
             <div>
                 <div fxFlex="20" fxHide.xs></div>
@@ -24,13 +26,13 @@
                         <div fxFlex="30">PHOTO</div>
                         <div fxFlex="60">A photo helps to personalize better</div>
                         <div fxFlex="20" fxLayoutAlign="center center">
-                            <i class="material-icons" style="font-size: 1rem" >camera_alt</i>
+                            <i class="material-icons" style="font-size: 1rem">camera_alt</i>
                             <i class="material-icons" style="font-size: 3rem">account_circle</i></div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-    
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -40,8 +42,8 @@
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
-            </div> 
-            
+            </div>
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -52,7 +54,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -63,7 +65,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -74,7 +76,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -85,7 +87,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <!-- <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -96,7 +98,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div> -->
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -107,7 +109,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -118,7 +120,7 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
@@ -129,22 +131,22 @@
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60" fxLayout="row" fxFlex.xs="95">
                     <div fxLayout="row" fxFill>
                         <div fxFlex="30">SUB-DOMAIN</div>
-                        <div fxFlex="60">{{profile.businessSubDomain}}</div>
+                        <div fxFlex="60">{{profile.businessSubDomain | titlecase}}</div>
                     </div>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>
-            
+
             <div class="name">
                 <div fxFlex="20" fxHide.xs></div>
                 <div fxFlex="60">
-                <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()">EDIT</button>
+                    <button mat-raised-button fxLayoutAlign="end center" color="primary" (click)="onClick()">EDIT</button>
                 </div>
                 <div fxFlex="20" fxHide.xs></div>
             </div>

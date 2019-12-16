@@ -69,7 +69,7 @@
         <mat-label>Business Sub-domain:</mat-label>
         <mat-select id="subDomain-select" formControlName="businessSubDomain">
             <mat-option value="" disabled>Choose your Sub-domain</mat-option>
-            <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs}}
+            <mat-option *ngFor="let subs of subDomains" [value]="subs">{{subs| titlecase}}
             </mat-option>
         </mat-select>
         <mat-error *ngIf="businessSubDomain.touched || businessSubDomain.invalid">{{getErrorMessage8()}}</mat-error>
