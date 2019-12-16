@@ -43,6 +43,7 @@ public class UserService implements UserDetailsService {
         editedUser.setPhone(modifiedUser.getPhone());
         editedUser.setBusinessLicense(modifiedUser.getBusinessLicense());
         editedUser = userRepository.save(editedUser);
+        editedUser.setBusinessSubDomain(modifiedUser.getBusinessSubDomain());
         editedUser.setPassword(null);
         return editedUser;
     }
