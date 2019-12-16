@@ -5,7 +5,7 @@
         <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
             <div class="subdomain" fxFlexAlign="center" matTooltip="Business Sub-Domain">
                 {{auction.proposal.businessSubDomain| titlecase}}</div>
-            <div class="timer">
+            <div class="timer" *ngIf="showTimer === undefined">
                 <app-timer style="align-content:flex-end ; color: #e61a1a;" [timerDetails1]="auction"></app-timer>
             </div>
         </div>
