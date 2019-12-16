@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   public static messageKey = 'NavbarComponent';
   public isLoggedIn = false;
   public roles: string;
-  public alertMessage = '0';
+  public alertMessage = 0;
   public alertFlag: boolean;
   public wsRef: StompSubscription;
 
@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
         if ('newProposalAlert' in data) {
           const array = JSON.parse(data.newProposalAlert.body);
           if (array.indexOf(this.profile.email) >= 0 ) {
-             this.alertMessage = '!' ;
+             this.alertMessage = this.alertMessage + 1 ;
           }
         }
       }
@@ -107,13 +107,12 @@ export class NavbarComponent implements OnInit {
     this.lang.setLang(lang);
   }
   alert() {
-    this.alertMessage = '';
+    this.alertMessage = 0;
     this.router.navigate(['/inbox']);
   }
 
 
   subscribe() {
-    this.logger.log('calling subscribe ::::::::::');
     this.alertService.subscribe(
       '/topic/proposalAlert/',
       NavbarComponent.messageKey,
