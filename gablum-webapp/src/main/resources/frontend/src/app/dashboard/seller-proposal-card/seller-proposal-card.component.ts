@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoggerService } from '../../services/logger.service';
 import { ProposalsDataService } from '../../services/proposals-data.service';
 import { CommunicatorService } from '../../services/communicator.service';
-import { ProposalCardDialogComponent } from '../proposal-card-dialog/proposal-card-dialog.component';
+import { ProposalSellerDialogComponent } from '../proposal-seller-dialog/proposal-seller-dialog.component';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Profile } from 'src/app/interfaces/profile';
 import { all } from 'q';
@@ -68,7 +68,7 @@ export class SellerProposalCardComponent implements OnInit {
 
   openDialog(allProposal: Proposal) {
     this.proposalDataService.postSellerView(SellerProposalCardComponent.messageKey, this.allProposal, 'saveSellerView');
-    this.dialog.open(ProposalCardDialogComponent, {
+    this.dialog.open(ProposalSellerDialogComponent, {
       // width: '60%',
       // height: '60%',
       data: allProposal

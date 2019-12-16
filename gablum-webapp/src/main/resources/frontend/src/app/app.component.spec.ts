@@ -13,6 +13,7 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './app.module';
+import { TeamComponent } from './team/team.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 describe('AppComponent', () => {
@@ -46,6 +47,7 @@ describe('AppComponent', () => {
         AppComponent,
         LandingPageComponent,
         LoginComponent,
+        TeamComponent,
         NotFoundComponent
       ],
     }).compileComponents();

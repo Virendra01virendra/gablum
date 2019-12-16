@@ -16,6 +16,7 @@ export class ProposalsDataService {
   public sellerProposalsUrl: string;
   public inviteSellerUrl: string;
   public saveSellerViewUrl: string;
+  public businessSubdomain: string;
 
   constructor(
     private comms: CommunicatorService,
@@ -47,9 +48,10 @@ export class ProposalsDataService {
   }
 
   postInterestedSeller(dest, data, key) {
+    this.businessSubdomain = data.businessSubDomain;
     this.networking.patchData<Proposal>(this.proposalsUrl, dest, data, key)
     .subscribe(res => {
-      this.getAllProposalForSeller('DashboardComponent', 'sellerProposals');
+      this.getProposalsBySubDomain(this.businessSubdomain, 'DashboardComponent', 'sellerProposals');
       },
       err => {
         this.logger.log(err);

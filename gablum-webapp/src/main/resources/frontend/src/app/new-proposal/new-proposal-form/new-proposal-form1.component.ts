@@ -5,6 +5,8 @@ import { FormConfirmDialogComponent } from '../form-confirm-dialog/form-confirm-
 import { MatDialog } from '@angular/material';
 import { LoggerService } from 'src/app/services/logger.service';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-new-proposal-form1',
   templateUrl: './new-proposal-form1.component.html',
@@ -20,7 +22,8 @@ export class NewProposalForm1Component implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private logger: LoggerService) { }
+    private logger: LoggerService,
+    private location: Location) { }
 
   subDomains = ['Raw material', 'Crops', 'Machinery'];
   units = ['Units', 'Kgs', 'Litres'];
@@ -161,5 +164,9 @@ export class NewProposalForm1Component implements OnInit {
     return this.creditPeriod.hasError('required') ? '*You must enter Credit Period' :
       this.creditPeriod.hasError('min') ? '* Enter positive credit period' :
         '';
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

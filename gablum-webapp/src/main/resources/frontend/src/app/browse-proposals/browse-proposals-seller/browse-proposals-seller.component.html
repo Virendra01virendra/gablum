@@ -2,9 +2,9 @@
     <mat-icon class="title-icon">list</mat-icon>
     <span class="title" fxHide.xs>Browse all active proposals</span>
     <span class="title" fxHide.gt-xs>Browse proposals</span>
-    <span><a [routerLink]="['/dashboard']">
+    <!-- <span><a [routerLink]="['/dashboard']">
             <button class="but1" mat-raised-button color="accent">Back to Home</button>
-        </a></span>
+        </a></span> -->
 </mat-toolbar>
 
 <!-- proposal card of all SubDomains for Seller-->
@@ -15,7 +15,11 @@
 
 </div>
 
-
+<button mat-fab matTooltip="Go back" (click)="goBack()"
+    style="position: fixed; bottom: 2em; right: 2em;" tooltip="Back to Dashboard"
+>
+    <mat-icon>keyboard_backspace</mat-icon>
+</button>
 
 
 <!--expansion panel for seller-->

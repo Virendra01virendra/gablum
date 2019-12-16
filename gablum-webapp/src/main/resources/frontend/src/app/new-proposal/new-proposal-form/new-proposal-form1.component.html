@@ -2,11 +2,11 @@
     <mat-icon class="title-icon">add</mat-icon>
     <span class="title" fxHide.xs>Float a new proposal</span>
     <span class="title" fxHide.gt-xs>New proposal</span>
-    <span>
+    <!-- <span>
         <a  [routerLink]="['/dashboard']">
             <button class="but1" mat-raised-button color="accent">Back to Home</button>
         </a>
-    </span>
+    </span> -->
 </mat-toolbar>
 <div class="body">
     <div class="form-container" fxLayoutAlign="space-between center">
@@ -215,3 +215,9 @@
     </form>
   </mat-step>
 </mat-vertical-stepper>
+
+<button mat-fab matTooltip="Go back" (click)="goBack()"
+    style="position: fixed; bottom: 2em; right: 2em;" tooltip="Back to Dashboard"
+>
+    <mat-icon>keyboard_backspace</mat-icon>
+</button>
