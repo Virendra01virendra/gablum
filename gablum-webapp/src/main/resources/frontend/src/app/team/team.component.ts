@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamComponent implements OnInit {
 
-  public heros = ['ANaN_YO', 'VEERU_PA', 'SOODHIYA_BEATER', 'CAPTAIN', 'ABHIII', 'SCAM_MASTER', 'SU_DHIN_DHRAA', 'SWARTHY_PARTH'];
+  public heros = ['ANaN_YO', 'VEERU_PA', 'PRATS99', 'CAPTAIN', 'ABHI', 'SCAM_MASTER', 'SU_DHIN_DHRAA', 'SWARTHY_PARTH'];
 
   constructor() {
    }
