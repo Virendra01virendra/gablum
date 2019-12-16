@@ -11,39 +11,39 @@
         </div>
     </div>
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="center center">
-        <div>
+        <div [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-money" aria-hidden="true" matTooltip="{{'CONTRACTS.EC' | translate}}">
                 <span class="mat-subheading-2">
                     {{auction.proposal.price}} per unit</span></i>
         </div>
-        <div>
+        <div [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-handshake-o" aria-hidden="true"
                 matTooltip="{{auction.createdBy}} is willing to pay-up in">
                 <span class="mat-subheading-2">{{auction.proposal.creditPeriod + ' Days'}}</span></i>
         </div>
-        <div>
+        <div *ngIf="auction.proposal.qualityCertification"  [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-check-circle-o" aria-hidden="true" matTooltip="Quality Check Certified"
-                *ngIf="auction.proposal.qualityCertification == true" style="transform: scale3d(10);"><span
+                 style="transform: scale3d(10);"><span
                     class="mat-subheading-2">
                     {{qualityMsgTrue}}</span></i>
         </div>
-        <div>
+        <div *ngIf="!auction.proposal.qualityCertification" [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-times" aria-hidden="true" matTooltip="Quality Check Uncertified"
-                style="transform: scale3d(10);" *ngIf="auction.proposal.qualityCertification != true"><span
+                style="transform: scale3d(10);"><span
                     class="mat-subheading-2">
                     {{qualityMsgFalse}}</span></i>
         </div>
-        <div>
+        <div *ngIf="auction.proposal.methodOfSupply" [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-cog" aria-hidden="true" matTooltip="Type of Product Supply"
-                *ngIf="auction.proposal.methodOfSupply == true"><span class="mat-subheading-2">
+                ><span class="mat-subheading-2">
                     {{supplyTrue}}</span></i>
         </div>
-        <div>
+        <div *ngIf="!auction.proposal.methodOfSupply" [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-cog" aria-hidden="true" matTooltip="How Procurement is to be done"
-                *ngIf="auction.proposal.methodOfSupply != true"><span class="mat-subheading-2">
+                ><span class="mat-subheading-2">
                     {{supplyFalse}}</span></i>
         </div>
-        <div>
+        <div [ngStyle.xs] = "{'margin': '0.6em 0.8em'}">
             <i class="fa fa-truck" aria-hidden="true" matTooltip="Expected Delivery Date"><span
                     class="mat-subheading-2">
                     {{auction.proposal.deliveryDate | date: "mediumDate"}}</span></i>
