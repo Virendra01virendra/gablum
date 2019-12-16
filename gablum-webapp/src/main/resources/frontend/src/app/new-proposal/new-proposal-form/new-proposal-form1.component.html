@@ -1,15 +1,8 @@
 <mat-toolbar style="background-color: #E0E0E0;">
-    <mat-icon class="title-icon">add</mat-icon>
-    <span class="title" fxHide.xs>Float a new proposal</span>
-    <span class="title" fxHide.gt-xs>New proposal</span>
-    <span>
-        <a  [routerLink]="['/dashboard']">
-            <button class="but1" mat-raised-button color="accent">Back to Home</button>
-        </a>
-    </span>
+  <mat-icon class="title-icon">add</mat-icon>
+  <span class="title" fxHide.xs>Float a new proposal</span>
+  <span class="title" fxHide.gt-xs>New proposal</span>
 </mat-toolbar>
-<div class="body">
-    <div class="form-container" fxLayoutAlign="space-between center">
 
 <mat-vertical-stepper class="stepper" [linear]="false" #stepper>
   <mat-step [stepControl]="productSpecsForm">

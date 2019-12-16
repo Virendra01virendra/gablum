@@ -6,7 +6,6 @@ import { SellerProposalCardComponent } from 'src/app/dashboard/seller-proposal-c
 import { TimerComponent } from 'src/app/scheduler/timer/timer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BrowseProposalsSellerComponent', () => {
   let component: BrowseProposalsSellerComponent;
@@ -16,7 +15,7 @@ describe('BrowseProposalsSellerComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BrowseProposalsSellerComponent, SellerProposalCardComponent, TimerComponent ],
       imports: [
-        MaterialModule, HttpClientModule, BrowserAnimationsModule, RouterTestingModule
+        MaterialModule, HttpClientModule, BrowserAnimationsModule
       ]
     })
     .compileComponents();

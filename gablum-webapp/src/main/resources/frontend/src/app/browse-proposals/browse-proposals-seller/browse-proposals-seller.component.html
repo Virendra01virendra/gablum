@@ -2,17 +2,13 @@
     <mat-icon class="title-icon">list</mat-icon>
     <span class="title" fxHide.xs>Browse all active proposals</span>
     <span class="title" fxHide.gt-xs>Browse proposals</span>
-    <span><a [routerLink]="['/dashboard']">
-            <button class="but1" mat-raised-button color="accent">Back to Home</button>
-        </a></span>
 </mat-toolbar>
 
 <!-- proposal card of all SubDomains for Seller-->
 <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
-    <app-seller-proposal-card *ngFor="let proposal of proposals" [allProposal]="proposal" fxFlex="27%" fxFlex.sm="45%"
-        fxFlex.xs="80%">
+    <app-seller-proposal-card *ngFor="let proposal of proposals" [allProposal]="proposal" fxFlex="27%" fxFlex.sm="45%" fxFlex.xs="80%">
     </app-seller-proposal-card>
-
+    
 </div>
 
 
