@@ -9,6 +9,12 @@
         <mat-panel-description>View Product Specifications here</mat-panel-description>
       </mat-expansion-panel-header>
       <mat-list role="list">
+        <!-- <mat-list-item role="listitem" >Price: {{data.price}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">Quantity: {{data.quantityValue + ' ' + data.quantityUnit}}</mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem">Delivery Date: {{data.deliveryDate| date: 'mediumDate'}}</mat-list-item> -->
+
         <mat-list-item>
           <div fxFill>{{ data.productDescription}}</div>
         </mat-list-item>
@@ -28,7 +34,6 @@
           <div fxFlex=70%>Method of Supply</div>
           <div *ngIf="data.methodOfSupply==true" fxFlex=30%>{{'Full'}}</div>
           <div *ngIf="data.methodOfSupply==false" fxFlex=30%>{{'Parts'}}</div>
-
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel><br>
@@ -80,11 +85,7 @@
 <div mat-dialog-actions fxLayout="row wrap" fxLayoutAlign="end" fxLayoutGap="1em">
 
   <button mat-raised-button mat-dialog-close color="secondary">Close</button>
-  <!-- When only buyer -->
-
-  <button *ngIf="isBuyer" mat-raised-button mat-dialog-close (click)="sellersListDialog()">Bidder's List</button>
-  <button *ngIf="isBuyer" mat-raised-button mat-dialog-close (click)="extendDialog()">Extend Registration</button>
-  <button *ngIf="isBuyer" mat-raised-button color="primary" mat-dialog-close (click)="startAuction(data)">Generate Auction</button>
-
-  
 </div>
+
+
+<!-- <button mat-button [mat-dialog-close] color="secondary">close</button> -->

@@ -85,11 +85,11 @@
     <div class="info-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
 
         <div>
-            <p><strong>Buyer : </strong> {{user.name| titlecase}}</p>
+            <p><strong>Buyer : </strong> {{ contractWithBothUsers.buyer.name | titlecase}}</p>
         </div>
 
         <div>
-            <p><strong>Supplier : </strong> {{user.name| titlecase}}</p>
+            <p><strong>Supplier : </strong> {{ contractWithBothUsers.seller.name | titlecase}}</p>
         </div>
     </div>
     <div></div>
