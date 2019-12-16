@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
           } else {
             this.auctionsNotEmpty = false;
           }
-          console.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
+          this.logger.log('auctionnnnnnsbbbuuyyer------>', this.auctionsBuyer);
         }
 
 
@@ -171,7 +171,7 @@ export class DashboardComponent implements OnInit {
 
         if ('oldAuctions' in data) {
           this.oldAuctions = data.oldAuctions;
-          console.log('olllddd auctions', this.oldAuctions);
+          this.logger.log('olllddd auctions', this.oldAuctions);
           if (this.oldAuctions.length !== 0) {
             this.oldAuctionsNotEmpty = true;
           } else {
@@ -243,7 +243,8 @@ export class DashboardComponent implements OnInit {
       auctionName: proposal1.productName,
       proposal: proposal1,
       isAuctionActive: true,
-      interestedUsersEmail: proposal1.interestedUsersEmail
+      interestedUsersEmail: proposal1.interestedUsersEmail,
+      invitedUsersEmail: proposal1.invitedUsersEmail
     };
     const auctionList = [];
     auctionList.push(auction);

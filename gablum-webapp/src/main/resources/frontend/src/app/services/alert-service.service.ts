@@ -25,7 +25,7 @@ export class AlertServiceService {
     this.stompClient.onWebSocketClose = () => {
       this.logger.log('rip');
       if (!this.wantedDisconnection) {
-        setTimeout(this.socketReconnect, 5000);
+        setTimeout(this.socketReconnect, 30000);
       }
     };
     if (isReconnect) {

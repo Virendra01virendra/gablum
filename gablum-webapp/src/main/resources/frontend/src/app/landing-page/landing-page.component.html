@@ -1,12 +1,4 @@
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<div
-  class="hero-container"
-  fxLayout="row nowrap"
-  fxLayoutAlign="space-around center"
->
+<div class="hero-container" fxLayout="row nowrap" fxLayoutAlign="space-around center">
   <div class="hero-text-container">
     <h2 class="hero-text" [ngStyle]="{'font-size': '2.5em'}" [ngStyle.xs]="{'font-size': '1.5em'}">{{'LANDING.HEROTEXT' | translate}}</h2>
   </div>
@@ -23,23 +15,12 @@
     fxLayout="row nowrap"
     fxLayout.xs="column nowrap"
     fxLayoutAlign="space-around"
-    fxLayoutAlign.xs="auto"
-  >
-    <div
-      class="feature-img"
-      fxFlex="0 0 30%"
-      fxFlex.xs="0 0 auto"
-      style="height: 20em;"
-    >
-      <img
-        src="https://picsum.photos/400/400"
-        alt=""
-        style="object-fit: cover; width: 100%; height: 100%;"
-      />
-    </div>
-    <div
-      class="feature-text"
-      fxFlex="0 0 60%"
+    fxLayoutAlign.xs="auto">
+      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
+        <img src="assets/front1.webp" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+      </div>
+      <div 
+      class="feature-text" fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
       style="align-self: center;">
@@ -55,23 +36,12 @@
     fxLayout="row-reverse nowrap"
     fxLayout.xs="column nowrap"
     fxLayoutAlign="space-around"
-    fxLayoutAlign.xs="auto"
-  >
-    <div
-      class="feature-img"
-      fxFlex="0 0 30%"
-      fxFlex.xs="0 0 auto"
-      style="height: 20em;"
-    >
-      <img
-        src="https://picsum.photos/400/400"
-        alt=""
-        style="object-fit: cover; width: 100%; height: 100%;"
-      />
-    </div>
-    <div
-      class="feature-text"
-      fxFlex="0 0 60%"
+    fxLayoutAlign.xs="auto">
+      <div class="feature-img" fxFlex="0 0 30%" fxFlex.xs="0 0 auto" style="height: 20em;">
+        <img src="assets/bid-card.webp" alt="" style="object-fit: cover; width: 100%; height: 100%;">
+      </div>
+      <div 
+      class="feature-text" fxFlex="0 0 60%"
       fxFlex.xs="0 0 90%"
       fxFlexAlign="space-around center"
       style="align-self: center;">
@@ -185,7 +155,7 @@
         <section class="mat-title">DEVELOPING TECHNOLOGY</section>
         <!-- <mat-divider></mat-divider> -->
 
-        <section class="mat-title">SMART CONTRACTS</section>
+        <section class="mat-title">DIGITAL CONTRACTS</section>
         <!-- <mat-divider></mat-divider> -->
 
         <section class="mat-title">OUR TEAM MEMBERS</section>
@@ -220,7 +190,7 @@
     </div>
   </div>
 </div>
-<div class="cookie-confirmation-outer" id="cookie-confirmation-outer">
+<div class="cookie-confirmation-outer" id="cookie-confirmation-outer" *ngIf="showCookieBanner">
   <div class="cookie-confirmation-inner">
     <p></p>
     <p>
@@ -229,11 +199,7 @@
       to remember you. We use this information in order to improve and customize
       your browsing experience and for analytics and metrics about our visitors
       both on this website and other media. To find out more about the cookies
-      we use, see our
-      <a href="https://gablum-dev.stackroute.io/terms" target="_blank"
-        >"Privacy Policy"</a
-      >
-      .
+      we use, see our Privacy Policy .
     </p>
     <p class="cookie-disclaimer">
       If you decline, your information won’t be tracked when you visit this
@@ -241,7 +207,7 @@
       preference not to be tracked.
     </p>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="2em">
-      <button mat-raised-button (click)="hideCookies()">Decline</button>
+      <button mat-raised-button (click)="hideCookies(false)">Decline</button>
       <button mat-raised-button color="primary" (click)="hideCookies()">Accept</button>
     </div>
   </div>

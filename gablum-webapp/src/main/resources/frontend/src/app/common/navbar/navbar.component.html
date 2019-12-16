@@ -7,10 +7,16 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs *ngIf="!isLoggedIn">Gablum</a>
-        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs *ngIf="!isLoggedIn">b</a>
-        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.xs *ngIf="isLoggedIn">Gablum</a>
-        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.gt-xs *ngIf="isLoggedIn">b</a>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.xs *ngIf="!isLoggedIn">
+        <img src="assets/logo.png" style="height: 50px; background: white;">
+        </a>
+        <a [routerLink]="['/']" class="home-link nav-icon" fxHide.gt-xs *ngIf="!isLoggedIn">
+            <img src="assets/logosmall.png" style="height: 30px; background: white;">
+        </a>
+        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.xs *ngIf="isLoggedIn">
+            <img src="assets/logo.png" style="height: 50px; background: white;"></a>
+        <a [routerLink]="['/dashboard']" class="home-link nav-icon" fxHide.gt-xs *ngIf="isLoggedIn">
+            <img src="assets/logosmall.png" style="height: 30px; background: white;"></a>
         <div class="spacer"></div>
         
         <div class="nav-links" *ngIf="!isLoggedIn" fxLayout="row" fxHide.xs>
@@ -36,8 +42,8 @@
         </button>
         <mat-menu #appMenu="matMenu">
             <a [routerLink]="['/profile']" routerLinkActive="router-link-active"  class="profile-short-container" fxLayout="column nowrap" fxLayoutAlign="space-around center" matTooltip="view your profile">
-                <div class="profile-short-image">
-                    <img src="https://picsum.photos/400/400">
+                <div class="profile-short-image" *ngIf="profile && profile.profileImage">
+                    <img [src]="profile.profileImage">
                 </div>
                 <span *ngIf="profile">{{profile.name}}<br>{{roles}}</span>
             </a>

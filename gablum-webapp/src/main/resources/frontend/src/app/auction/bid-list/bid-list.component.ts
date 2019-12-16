@@ -13,6 +13,7 @@ import { WebsocketService } from 'src/app/services/websocket.service';
 import { MatSnackBar } from '@angular/material';
 import { StompSubscription } from '@stomp/stompjs';
 import { NgxData, NgxDateData } from 'src/app/interfaces/ngx-data';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-bid-list',
@@ -41,7 +42,8 @@ export class BidListComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private logger: LoggerService,
     private ws: WebsocketService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location
   ) {
     comms.getMessages().subscribe(msg => {
       if (msg.dest === BidListComponent.messageKey || msg.dest === '@all') {
@@ -172,6 +174,11 @@ export class BidListComponent implements OnInit, OnDestroy {
         this.logger.log(err);
       }
     }
+    try {
+      this.snackBar.dismiss();
+    } catch (err) {
+      this.logger.log(err);
+    }
   }
 
   sortBidsByScore() {
@@ -198,5 +205,9 @@ export class BidListComponent implements OnInit, OnDestroy {
       }
       return 0;
     });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

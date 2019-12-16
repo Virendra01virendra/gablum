@@ -16,7 +16,7 @@
 <!--tab for seller-->
 
 <ng-container *ngIf="isSeller && !isBuyer" class="dashboard-container">
-  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+  <mat-tab-group class="tab-container" fxLayoutGap="5px">
     <mat-tab label="Active Auctions">
       <div
         class="auctions-cont"
@@ -45,8 +45,8 @@
         fxLayoutAlign="space-around"
       >
         <app-seller-proposal-card
-          *ngFor="let proposal of proposals"
-          [allProposal]="allProposals"
+          *ngFor="let proposal of allProposals"
+          [allProposal]="proposal"
           fxFlex="27%"
           fxFlex.sm="45%"
           fxFlex.xs="80%"
@@ -54,11 +54,11 @@
       </div>
     </mat-tab>
 
-    <mat-tab label="Past Auctions"> </mat-tab>
+    <!-- <mat-tab label="Past Auctions"> </mat-tab> -->
   </mat-tab-group>
 
   <!--expansion panel for seller-->
-  <mat-accordion class="tab-container" fxHide.gt-xs>
+  <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>Active Auctions</mat-panel-title>
@@ -95,17 +95,22 @@
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
 
-      <div>
-        <p>past auctions</p>
+      <div class="expansion-auction-card" fxLayout="column">
+        <app-auction-card
+          *ngFor="let auction of auctions"
+          [auction]="auction"
+          [buttonShow]="true"
+        ></app-auction-card>
       </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+
+      </mat-expansion-panel>
+  </mat-accordion> -->
 </ng-container>
 
 <!--Tab for buyer-->
 
 <ng-container *ngIf="isBuyer && !isSeller" class="dashboard-container">
-  <mat-tab-group class="tab-container" fxLayoutGap="5px" fxHide.xs>
+  <mat-tab-group class="tab-container" fxLayoutGap="5px">
     <mat-tab label="Active Auctions">
       <div
         class="auctions-card"
@@ -115,6 +120,7 @@
         <app-auction-card
           *ngFor="let auction of auctions"
           [auction]="auction"
+          [buttonShow]="true"
           fxFlex="27%"
           fxFlex.sm="45%"
           fxFlex.xs="80%"
@@ -139,13 +145,25 @@
     </mat-tab>
 
     <mat-tab label="Past Auctions">
-      <p>past auctions</p>
+      <div
+      class="auctions-card"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-around"
+    >
+      <app-auction-card
+        *ngFor="let auction of oldAuctions"
+        [auction]="auction"
+        fxFlex="27%"
+        fxFlex.sm="45%"
+        fxFlex.xs="80%"
+      ></app-auction-card>
+    </div>
     </mat-tab>
   </mat-tab-group>
 
   <!--expansion panel for buyer-->
 
-  <mat-accordion class="tab-container" fxHide.gt-xs>
+  <!-- <mat-accordion class="tab-container" fxHide.gt-xs>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
         <mat-panel-title>Active Auctions</mat-panel-title>
@@ -156,6 +174,7 @@
         <app-auction-card
           *ngFor="let auction of auctions"
           [auction]="auction"
+          [buttonShow]="true"
         ></app-auction-card>
       </div>
     </mat-expansion-panel>
@@ -181,11 +200,15 @@
         <mat-panel-description></mat-panel-description>
       </mat-expansion-panel-header>
 
-      <div>
-        <p>past auctions</p>
+      <div class="expansion-auction-card" fxLayout="column">
+        <app-auction-card
+          *ngFor="let auction of oldAuctions"
+          [auction]="auction"
+          [buttonShow]="true"
+        ></app-auction-card>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
 </ng-container>
 
 <!-- Tab for both buyer and seller -->
@@ -368,7 +391,7 @@
         </mat-expansion-panel-header>
   
         <div class="expansion-auction-card" fxLayout="column" *ngIf = auctionsNotEmpty>
-          <app-auction-card *ngFor="let auction of auctions" [auction]="auction"></app-auction-card>
+          <app-auction-card *ngFor="let auction of auctions" [auction]="auction" [buttonShow]="true"></app-auction-card>
         </div>
         <div class="auctions-empty-cont" fxLayout="column wrap" fxLayoutAlign="center center" *ngIf = !auctionsNotEmpty>
           <br>

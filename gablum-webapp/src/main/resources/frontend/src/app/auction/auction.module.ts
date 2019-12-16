@@ -13,6 +13,7 @@ import { BidCardComponent } from './bid-card/bid-card.component';
 import { AuctionStartDialogComponent } from './auction-start-dialog/auction-start-dialog.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { WinningBidDialogComponent } from './winning-bid-dialog/winning-bid-dialog.component';
+import { AddBidSheetComponent } from './add-bid-sheet/add-bid-sheet.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -30,7 +31,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BidListComponent,
     BidCardComponent,
     AuctionStartDialogComponent,
-    WinningBidDialogComponent
+    WinningBidDialogComponent,
+    AddBidSheetComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuctionCardComponent,
     BidCardComponent
   ],
-    entryComponents: [BidResponseDialogComponent, BidSubmissionDialogComponent, WinningBidDialogComponent]
+    entryComponents: [
+      BidResponseDialogComponent,
+      BidSubmissionDialogComponent,
+      WinningBidDialogComponent,
+      AddBidSheetComponent
+    ]
 })
 export class AuctionModule { }

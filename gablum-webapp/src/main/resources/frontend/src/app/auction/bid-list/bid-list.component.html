@@ -9,32 +9,67 @@
 </mat-toolbar>
 
 <div class="bid-list"
-fxLayout="row nowrap"
-fxLayout.xs="column nowrap"
-fxLayoutAlign="space-around flex-start"
-fxLayoutAlign.xs="flex-start center"
+fxLayout="column nowrap"
+fxLayoutAlign="flex-start center"
 >
+    <div class="auction-details-container"
+    fxLayout="row wrap"
+    fxLayout.xs="column nowrap"
+    fxLayoutAlign="space-around center"
+    style="margin: 2em 0;"
+    >
+        <app-auction-card
+        [auction]="auction"
+        *ngIf="auction"
+        [buttonShow]=false
+        fxFlex="1 1 40%"
+        fxFlex.xs="1 1 auto"
+        [ngStyle.xs]="{'width': '80%', 'margin': '1em 0'}"
+        ></app-auction-card>
+        <div
+        class="chart-container mat-elevation-z6"
+        fxFlex="1 1 40%"
+        fxFlex.xs="0 0 auto"
+        fxLayout="column nowrap"
+        fxLayoutAlign="space-around center"
+        [ngStyle.xs]="{'height': '22em', 'width': '80%', 'margin': '1em 0'}"
+        >
+        <span>
+            Score of bids over time
+        </span>
+        <div class="fixed-chart-container"
+        style="height: 19em; width: 100%;"
+        >
+                <ngx-charts-bar-vertical
+                [yAxis]="true"
+                [legend]="false"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxisLabel]="'Time'"
+                [yAxisLabel]="'Score'"
+                [results]="timeData"
+                [tooltipDisabled]="true"
+                *ngIf="timeData"
+                >
+                </ngx-charts-bar-vertical>
+            </div>
+        </div>
+    </div>
     <div class="bids-cont" fxLayout="column nowrap" fxLayoutAlign="flex-start center" fxLayoutGap="1em">
+        <div class="bid-list-header mat-title"
+        style="padding: 1em 0;"
+        >
+            Bids in this auction so far
+        </div>
+        <div class="bid-list-header mat-subheading-1" *ngIf="bids && bids.length === 0">
+            No bids yet
+        </div>
         <app-bid-card *ngFor="let bidDataEntity of bids" [bidDataEntity]="bidDataEntity" [auction]="auction"></app-bid-card>
     </div>
-    <div class="auction-details" fxLayout="column nowrap">
-        <h2 *ngIf="auction">{{auction.auctionName}}</h2>
-        <h2 *ngIf="timeData && timeData.length === 0">
-            No bids to show
-        </h2>
-        <ngx-charts-bar-vertical
-        style="width: 30em; height: 20em;"
-        [yAxis]="true"
-        [legend]="false"
-        [showXAxisLabel]="true"
-        [showYAxisLabel]="true"
-        [xAxisLabel]="'Time'"
-        [yAxisLabel]="'Score'"
-        [results]="timeData"
-        [tooltipDisabled]="true"
-        *ngIf="timeData && timeData.length !== 0"
-        >
-        </ngx-charts-bar-vertical>
-    </div>
-
 </div>
+
+<button mat-fab matTooltip="Go back" (click)="goBack()"
+    style="position: fixed; bottom: 2em; right: 2em;"
+>
+    <mat-icon>keyboard_backspace</mat-icon>
+</button>

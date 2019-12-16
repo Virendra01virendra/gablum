@@ -1,11 +1,7 @@
-.positive {
-    color: green;
+.mat-list-item-content{
+    margin: 0 0 0 0;
 }
 
-.medium {
-    color: #979700;
-}
-
-.negative {
-    color: red;
+.mat-dialog-container {
+    padding-bottom: 20 px;
 }
