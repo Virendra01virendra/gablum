@@ -9,3 +9,8 @@
 app-seller-proposal-card {
     margin: 2em 1em;
 }
+
+.but1 {
+right: 1em;
+position: fixed;
+}

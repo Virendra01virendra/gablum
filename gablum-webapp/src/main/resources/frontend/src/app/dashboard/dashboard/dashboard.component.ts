@@ -17,7 +17,6 @@ import { ProfileDataService } from 'src/app/services/profile-data.service';
 import { Profile } from 'src/app/interfaces/profile';
 // import { TranslateService } from '@ngx-translate/core';
 // import { IntlService } from 'src/app/services/intl.service';
-import { AlertServiceService } from 'src/app/services/alert-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -44,17 +43,6 @@ export class DashboardComponent implements OnInit {
   public businessSubdomain: string;
   public auctionsNotEmpty = true;
   public oldAuctionsNotEmpty = true;
-  // public dashboardSections: DashboardSection[] = [
-  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-  //   { label: 'Active Proposals', desc: 'Proposals currently active', icon: '', data: this.proposals },
-  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-  // ];
-
-  // public dashboardSections1: DashboardSection[] = [
-  //   { label: 'Ongoing Auctions', desc: 'Currently running auctions', icon: '', data: this.auctions, isActive: true },
-  //   { label: 'Active Proposals(Buyer)', desc: 'Proposals floated by you', icon: '', data: this.proposals },
-  //   { label: 'Past Auctions', desc: 'Your past auctions', icon: '', data: this.proposals },
-  //   { label: 'Active Proposals(Seller)', desc: 'Proposals floated by others recently', icon: '', data: this.proposals }];
 
   public bids: NewBid[] = [];
   data;
@@ -78,10 +66,6 @@ export class DashboardComponent implements OnInit {
     // public translate: TranslateService,
     // public intl: IntlService
   ) {
-    // this.isLoggedIn = auth.getAuthenticated();
-    // if (this.isLoggedIn) {
-    //   this.logger.log(this, auth.getProfileData());
-    // }
     comms.getMessages().subscribe(msg => {
       if (msg.dest === DashboardComponent.messageKey || msg.dest === '@all') {
         const data = msg.data;
@@ -97,20 +81,10 @@ export class DashboardComponent implements OnInit {
 
         if ('auctionsSeller' in data) {
           this.auctionsSeller = data.auctionsSeller;
-          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
-          // if (this.isSeller === true) {
-          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
-          //
-          // }
         }
 
         if ('auctionsSellerOnly' in data) {
           this.auctionsSeller = data.auctionsSellerOnly;
-          // console.log('auctionnnnnsellllllllllllre--->', this.auctionsSeller);
-          // if (this.isSeller === true) {
-          //   console.log('sseleeleleleleleleleleeeeeeeeeeeeerrrrr');
-          //
-          // }
           this.auctions = this.auctionsSeller;
           if (this.auctions.length !== 0) {
             this.auctionsNotEmpty = true;
