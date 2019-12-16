@@ -26,6 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material/material.module';
 import { InterceptorService } from './services/interceptor.service';
 import { BrowseProposalsModule } from './browse-proposals/browse-proposals.module';
+import { AdminModule } from './admin/admin.module';
+import { TeamComponent } from './team/team.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -39,6 +41,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     LandingPageComponent,
     LoginComponent,
+    TeamComponent,
     NotFoundComponent
   ],
   imports: [
@@ -66,6 +69,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     RouterModule,
     FormsModule,
     BrowseProposalsModule,
+    AdminModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

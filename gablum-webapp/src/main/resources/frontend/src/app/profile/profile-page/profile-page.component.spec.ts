@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProfilePageComponent', () => {
   let component: ProfilePageComponent;
@@ -18,7 +19,7 @@ describe('ProfilePageComponent', () => {
       declarations: [ ProfilePageComponent ],
       imports: [ MatDialogModule, MatButtonModule, FlexLayoutModule, ProfileRoutingModule,
         CommonModule, MatSelectModule, MatOptionModule, ReactiveFormsModule, FormsModule,
-        MaterialModule, HttpClientModule ]
+        MaterialModule, HttpClientModule, RouterTestingModule ]
     })
     .compileComponents();
   }));

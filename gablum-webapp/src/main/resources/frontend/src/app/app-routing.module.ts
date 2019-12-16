@@ -5,6 +5,8 @@ import { TimerComponent } from './scheduler/timer/timer.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BuyerGuardService } from './services/buyer-guard.service';
 import { SellerGuardService } from './services/seller-guard.service';
+import { TeamComponent } from './team/team.component';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -12,6 +14,11 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule),
     canLoad: [AuthGuardService]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule),
+    // canLoad: [AuthGuardService]
   },
   // {
   //   path: 'console',
@@ -38,6 +45,10 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+  },
+  {
+    path: 'register-admin',
+    loadChildren: () => import('./register-admin/register-admin.module').then(m => m.RegisterAdminModule)
   },
   {
     path: 'float-proposal',
@@ -71,6 +82,12 @@ const routes: Routes = [
     component: LandingPageComponent,
     pathMatch: 'full'
   },
+  {
+    path: 'team',
+    component: TeamComponent,
+    pathMatch: 'full'
+  },
+
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' }
 ];

@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SellersListDialogComponent', () => {
   let component: SellersListDialogComponent;

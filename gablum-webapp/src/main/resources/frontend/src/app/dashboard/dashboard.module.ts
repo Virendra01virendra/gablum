@@ -18,6 +18,7 @@ import { SellerProposalCardComponent } from './seller-proposal-card/seller-propo
 import { AuctionStartDialogComponent } from '../auction/auction-start-dialog/auction-start-dialog.component';
 import { MatDatepickerModule } from '@angular/material';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ProposalSellerDialogComponent } from './proposal-seller-dialog/proposal-seller-dialog.component';
 // import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -36,7 +37,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     GuestProposalListComponent,
     ExtendProposalDialogComponent,
     SellerProposalCardComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    ProposalSellerDialogComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     SellersListDialogComponent,
     ExtendProposalDialogComponent,
     AuctionStartDialogComponent,
-    DeleteConfirmationDialogComponent
+    DeleteConfirmationDialogComponent,
+    ProposalSellerDialogComponent
   ],
   exports: [
     SellerProposalCardComponent

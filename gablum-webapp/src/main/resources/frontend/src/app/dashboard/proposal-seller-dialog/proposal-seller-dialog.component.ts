@@ -13,13 +13,13 @@ import { Weights } from '../../interfaces/weights';
 import { element } from 'protractor';
 import { ProfileDataService } from 'src/app/services/profile-data.service';
 @Component({
-  selector: 'app-proposal-card-dialog',
-  templateUrl: './proposal-card-dialog.component.html',
-  styleUrls: ['./proposal-card-dialog.component.css']
+  selector: 'app-proposal-seller-dialog',
+  templateUrl: './proposal-seller-dialog.component.html',
+  styleUrls: ['./proposal-seller-dialog.component.css']
 })
-export class ProposalCardDialogComponent implements OnInit {
+export class ProposalSellerDialogComponent implements OnInit {
 
-  public static messageKey = 'ProposalCardDialog';
+  public static messageKey = 'ProposalSellerDialog';
   public userProfile: Profile;
   proposals: Proposal[];
   allProposals: Proposal[];
@@ -54,7 +54,7 @@ export class ProposalCardDialogComponent implements OnInit {
       }
     });
     comms.getMessages().subscribe(msg => {
-      if (msg.dest === ProposalCardDialogComponent.messageKey || msg.dest === '@all') {
+      if (msg.dest === ProposalSellerDialogComponent.messageKey || msg.dest === '@all') {
         const Data = msg.data;
 
         if ('userProfile' in Data) {
@@ -83,22 +83,7 @@ export class ProposalCardDialogComponent implements OnInit {
         name: key, value: this.data[key]
       };
     });
-    this.user.getUserProfileByEmail(ProposalCardDialogComponent.messageKey, 'userProfile');
-  }
-
-  startAuction(proposal1: Proposal) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = proposal1;
-    dialogConfig.width = '40%';
-    this.matDialog.open(AuctionStartDialogComponent, dialogConfig);
-  }
-
-  sellersListDialog() {
-    this.matDialog.open(SellersListDialogComponent, { data: this.data });
-  }
-
-  extendDialog() {
-    this.matDialog.open(ExtendProposalDialogComponent, { data: this.data });
+    this.user.getUserProfileByEmail(ProposalSellerDialogComponent.messageKey, 'userProfile');
   }
 
 }
