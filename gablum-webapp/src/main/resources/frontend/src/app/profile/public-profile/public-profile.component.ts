@@ -5,6 +5,7 @@ import { Profile } from 'src/app/interfaces/profile';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-public-profile',
@@ -24,7 +25,8 @@ export class PublicProfileComponent implements OnInit {
     public comms: CommunicatorService,
     private logger: LoggerService,
     public activatedRoute: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private location: Location
   ) {
     console.log('In public profile component');
     this.activatedRoute.paramMap
@@ -47,7 +49,8 @@ export class PublicProfileComponent implements OnInit {
   ngOnInit() {
     this.profileDataService.getUserProfileByEmailWithUrl(this.profileEmail, PublicProfileComponent.messageKey, 'profile');
   }
-  // onClick(){
-  //   this.router.navigate
-  // }
+
+  onClick() {
+    this.location.back();
+  }
 }

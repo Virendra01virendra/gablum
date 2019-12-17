@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Confirm Proposal Details :</h1>
+<h1 mat-dialog-title>Extend Proposal :</h1>
 <div mat-dialog-content class="mat-dialog" fxLayout="column nowrap" fxLayoutAlign="space-around center">
     <div class="form-container">
         <form [formGroup]="extendProposalForm">
@@ -17,6 +17,7 @@
                 </mat-form-field>
                 <div class="spacer"></div>
                 <div style="justify-self: end;">
+                    <button mat-raised-button (click)="close()" class="padded-btn">Cancel</button>
                     <button mat-raised-button color="primary" (click)="onSubmit(data,extendProposalForm)" [disabled]="!extendProposalForm.valid" class="padded-btn">Submit</button>
                 </div>
             </div>

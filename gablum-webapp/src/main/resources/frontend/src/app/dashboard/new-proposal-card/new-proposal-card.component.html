@@ -1,8 +1,8 @@
 <div class="proposal-card mat-elevation-z6" fxLayout="column nowrap" fxLayoutAlign="space-between">
     <div class="header-container" fxLayout="column nowrap" fxLayoutAlign="flex-start stretch" [style.backgroundColor]="getBackgroundColor()">
         <div class="mat-title card-header" fxFlexAlign="flex-start">{{proposal.productName | uppercase}}</div>
-        <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around">
-            <div class="mat-subheading-2 subdomain">{{ proposal.businessSubDomain | titlecase}}</div>
+        <div class="card-subtitle" fxLayout="row nowrap" fxLayoutAlign="space-around center">
+            <div class="mat-subheading-2 subdomain" style="margin: 0;">{{ proposal.businessSubDomain | titlecase}}</div>
             <div class="timer">
                 <app-timer style="align-content:flex-end ; color: #e61a1a;" [timerDetails]="proposal"></app-timer>
             </div>
