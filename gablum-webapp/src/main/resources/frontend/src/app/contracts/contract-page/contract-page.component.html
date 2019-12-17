@@ -11,7 +11,7 @@
 <!--Tab of Seller-->
 <div class="dashboard-container">
     <!-- <mat-tab label="Recieved"> -->
-    <div class="contract-cont" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="15px">
+    <div class="contract-cont" fxLayout="row wrap" fxLayoutAlign="space-around">
         <div *ngFor="let contract of contracts">
             <app-contract-card [contract]="contract"></app-contract-card>
         </div>

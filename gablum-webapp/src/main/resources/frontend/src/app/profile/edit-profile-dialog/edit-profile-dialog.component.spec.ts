@@ -10,6 +10,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfilePageComponent } from '../profile-page/profile-page.component';
+import { PublicProfileComponent } from '../public-profile/public-profile.component';
 
 describe('EditProfileDialogComponent', () => {
   let component: EditProfileDialogComponent;
@@ -17,7 +18,7 @@ describe('EditProfileDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditProfileDialogComponent, ProfilePageComponent ],
+      declarations: [ EditProfileDialogComponent, ProfilePageComponent, PublicProfileComponent ],
       imports: [MatDialogModule, MatButtonModule, FlexLayoutModule, ProfileRoutingModule,
         CommonModule, MatSelectModule, MatOptionModule, ReactiveFormsModule, FormsModule,
         MaterialModule, HttpClientModule, MatDialogModule, BrowserAnimationsModule],

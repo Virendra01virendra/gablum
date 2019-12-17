@@ -66,4 +66,8 @@ export class InboxPageComponent implements OnInit {
     this.router.navigate(['/browse']);
   }
 
+  loadProfile(email) {
+    this.router.navigate(['/profile', email]);
+  }
+
 }

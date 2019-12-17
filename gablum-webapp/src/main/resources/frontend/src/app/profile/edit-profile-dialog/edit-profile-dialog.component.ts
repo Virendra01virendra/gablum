@@ -65,7 +65,7 @@ export class EditProfileDialogComponent implements OnInit {
     return this.editProfileForm.get('businessSubDomain');
   }
 
-  public subDomains = ['Raw Materials', 'Crops', 'Machinery'];
+  public subDomains = ['Raw material', 'Crops', 'Machinery'];
 
   public editProfileForm: FormGroup;
 

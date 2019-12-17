@@ -8,11 +8,12 @@ import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatOptionModule, 
 import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 // import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  entryComponents: [EditProfileDialogComponent],
-  declarations: [ProfilePageComponent, EditProfileDialogComponent],
+  entryComponents: [EditProfileDialogComponent, ProfilePageComponent],
+  declarations: [ProfilePageComponent, EditProfileDialogComponent, PublicProfileComponent],
   imports: [
     CommonModule,
     ProfileRoutingModule,

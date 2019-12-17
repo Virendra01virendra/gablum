@@ -197,4 +197,8 @@ export class RegisterPageComponent implements OnInit {
     this.registrationService.register(registerProfile);
     this.router.navigate(['/register']);
   }
+
+  cancel() {
+    this.router.navigate(['']);
+  }
 }

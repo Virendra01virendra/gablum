@@ -4,6 +4,7 @@ import { Proposal } from 'src/app/interfaces/proposal';
 import { ProposalsDataService } from 'src/app/services/proposals-data.service';
 import { CommunicatorService } from 'src/app/services/communicator.service';
 import { LoggerService } from 'src/app/services/logger.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guest-proposal-list',
@@ -20,7 +21,8 @@ export class GuestProposalListComponent implements OnInit {
   constructor(
     private proposalDataService: ProposalsDataService,
     private comms: CommunicatorService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    public router: Router
     ) {
       comms.getMessages().subscribe(msg => {
         if (msg.dest === GuestProposalListComponent.messageKey || msg.dest === '@all') {
@@ -43,5 +45,8 @@ export class GuestProposalListComponent implements OnInit {
     this.logger.log('some data which we are publishing ' , element );
     // this.alreadyRegistered = true;
     this.proposalDataService.postInterestedSeller(GuestProposalListComponent.messageKey, element , 'interestedSellers');
+  }
+  loadProfile(email) {
+    this.router.navigate(['/profile', email]);
   }
 }

@@ -38,7 +38,7 @@ export class NewProposalCardComponent implements OnInit {
   }
 
   sellersListDialog(proposal: Proposal) {
-    this.dialog.open(SellersListDialogComponent, { data: proposal });
+    this.dialog.open(SellersListDialogComponent, { data: proposal, width : '40%'});
   }
 
   shownInterest(proposal: Proposal) {

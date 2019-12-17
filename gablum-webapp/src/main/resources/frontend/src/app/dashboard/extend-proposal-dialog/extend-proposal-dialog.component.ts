@@ -73,4 +73,8 @@ export class ExtendProposalDialogComponent implements OnInit {
     return d >= new Date(this.extendProposalForm.value.regStartDate) && d < new Date(this.data.deliveryDate);
   }
 
+  close() {
+    this.dialogRef.close(ExtendProposalDialogComponent);
+  }
+
 }

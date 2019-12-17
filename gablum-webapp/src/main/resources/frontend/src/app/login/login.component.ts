@@ -10,6 +10,7 @@ import { LoggerService } from '../services/logger.service';
 import { ProfileDataService } from '../services/profile-data.service';
 import { MatDialogRef } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Profile } from '../interfaces/profile';
 // import { MatError } from '@angular/material';
 // import { UserRole } from '../interfaces/user-role';
 
@@ -19,6 +20,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public static messageKey = 'login-component';
+  public userProfile: Profile;
+  public userRole = new Array();
 
   get password() {
     return this.loginForm.get('password');
@@ -57,14 +61,20 @@ export class LoginComponent implements OnInit {
               auth.authChanged();
               this.loginError = false;
               this.profile.getUserProfileByEmail('@all', 'profile');
-              this.router.navigate(['/dashboard']);
+              if ('userProfile' in data) {
+                this.userProfile = data.userProfile;
+                this.userRole = this.userProfile.role;
+                if ( this.userRole[0].role === 'Admin') {
+                  this.router.navigate(['/grafana']);
+                } else {
+                  this.router.navigate(['/dashboard']);
+                }
+              }
             }
           }
         }
       });
   }
-
-  public static messageKey = 'login-component';
 
   public loginError = false;
   public loginErrorMesage = '';
@@ -79,6 +89,10 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.profile.getUserProfileByEmail(
+      LoginComponent.messageKey,
+      'userProfile'
+    );
   }
 
   getErrorMessage1() {
@@ -94,7 +108,6 @@ export class LoginComponent implements OnInit {
         this.password.hasError('minlength') ? '*Minimum 3 characters' :
             '';
   }
-
   onSubmit() {
     this.loginService.login(this.loginForm.value)
     .subscribe(res => {
@@ -127,5 +140,7 @@ export class LoginComponent implements OnInit {
   OnSignUp() {
     this.router.navigate(['/register']);
   }
-
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

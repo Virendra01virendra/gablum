@@ -1,19 +1,19 @@
 <h1 mat-dialog-title>Confirm Proposal Details</h1>
-<div mat-dialog-content class="mat-dialog"  style="overflow: hidden;">
+<div mat-dialog-content class="mat-dialog" style="overflow: hidden;">
     <mat-list fxLayout="column" fxLayoutAlign="center center">
         <mat-list-item>
             <div fxFlex=70>Business Sub-Domain:</div>
-            <div fxFlex=30>{{ data.form1.value.businessSubDomain}}</div>
+            <div fxFlex=30>{{ data.form1.value.businessSubDomain | titlecase}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <div fxFlex=70>Product Name</div>
-            <div fxFlex=30>{{ data.form1.value.productName}}</div>
+            <div fxFlex=30>{{ data.form1.value.productName | uppercase}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
             <div fxFlex=70%>Price</div>
-            <div fxFlex=30% ><span matPrefix>&#8377;&nbsp;</span>{{ data.form2.value.price}}</div>
+            <div fxFlex=30%><span matPrefix>&#8377;&nbsp;</span>{{ data.form2.value.price}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
